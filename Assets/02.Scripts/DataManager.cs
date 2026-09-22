@@ -33,7 +33,7 @@ public class DataManager : MonoBehaviour
 
         WeaponDatas = new Dictionary<string, WeaponData>();
         string[] datas = csvData.text.Split(new char[] { '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
-        for (int i = 0; i < datas.Length; i++)
+        for (int i = 1; i < datas.Length; i++)//pass Header
         {
             string[] row = datas[i].Split(',');
             WeaponDatas[row[0]] = new WeaponData
@@ -61,7 +61,7 @@ public class DataManager : MonoBehaviour
         ProjectileType projectileType;
         ProjectileDatas = new Dictionary<ProjectileType, ProjectileData>();
         string[] datas = csvData.text.Split(new char[] { '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
-        for (int i = 0; i < datas.Length; i++)
+        for (int i = 1; i < datas.Length; i++)//pass Header
         {
             string[] row = datas[i].Split(',');
             projectileType = (ProjectileType)Enum.Parse(typeof(ProjectileType), row[0]);
