@@ -30,7 +30,8 @@ public class DataManager : MonoBehaviour
             Debug.LogWarning("Weapon data not found");
             return;
         }
-        
+
+        WeaponDatas = new Dictionary<string, WeaponData>();
         string[] datas = csvData.text.Split(new char[] { '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
         for (int i = 0; i < datas.Length; i++)
         {
@@ -58,6 +59,7 @@ public class DataManager : MonoBehaviour
         }
         
         ProjectileType projectileType;
+        ProjectileDatas = new Dictionary<ProjectileType, ProjectileData>();
         string[] datas = csvData.text.Split(new char[] { '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
         for (int i = 0; i < datas.Length; i++)
         {
