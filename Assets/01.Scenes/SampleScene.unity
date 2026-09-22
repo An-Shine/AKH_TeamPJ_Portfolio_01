@@ -129,9 +129,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3648020}
   - component: {fileID: 3648021}
+  - component: {fileID: 3648022}
   m_Layer: 0
   m_Name: RangeMonster
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -210,6 +211,24 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &3648022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3648019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f499990db5c84b24da3e79a02000ecf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RangeMonster
+  _maxHealth: 100
+  _moveSpeed: 2
+  _contactDamage: 10
+  _attackRange: 6
+  _keepDistance: 4
+  _attackCooldown: 2
 --- !u!1 &4389389
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,9 +429,10 @@ GameObject:
   m_Component:
   - component: {fileID: 770166425}
   - component: {fileID: 770166426}
+  - component: {fileID: 770166427}
   m_Layer: 0
   m_Name: MeleeMonster
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -491,6 +511,23 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &770166427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 770166424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a0d91a31eeb9994d90ed8efe7a2423e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MeleeMonster
+  _maxHealth: 100
+  _moveSpeed: 2
+  _contactDamage: 10
+  _attackRange: 1.5
+  _attackCooldown: 1
 --- !u!1 &1624815246
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,9 +538,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1624815247}
   - component: {fileID: 1624815248}
+  - component: {fileID: 1624815249}
   m_Layer: 0
   m_Name: KamikazeMonster
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -582,6 +620,24 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1624815249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1624815246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b1719c92019fe146b041476b4b3c680, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KamikazeMonster
+  _maxHealth: 100
+  _moveSpeed: 2
+  _contactDamage: 10
+  _explosionRange: 1.5
+  _explosionDelay: 1
+  _explosionDamage: 50
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
