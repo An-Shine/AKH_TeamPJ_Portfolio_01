@@ -1,10 +1,18 @@
 public class WeaponData
 {
-    public float ShootingTerm;
+    public string Name;
+    
+    public FireType Type;
+    
+    public float FireRate;
     public int ProjectileCount;
     public ProjectileType ProjectileType;
-    public float Rebound;
+    
     public int MagazineSize;
     public float ReloadTime;
     public float ChargeTime;
+    
+    public float Rebound;
+    public float Angle;
+    public float Range;
 }
