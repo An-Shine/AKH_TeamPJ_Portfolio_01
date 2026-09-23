@@ -18,13 +18,21 @@ public class Weapon : MonoBehaviour
     private float ReloadSpeed => (1 + Modifier.ReloadSpeed.Flat)
                                 * (1f + Modifier.ReloadSpeed.Rate);
 
+    private float ChargeSpeed => (1 + Modifier.ChargeSpeed.Flat)
+                                 * (1f + Modifier.ChargeSpeed.Rate);
+
     private int MagazineSize => (Data.MagazineSize + Modifier.MagazineSize);
     private int ProjectileCount => (Data.ProjectileCount + Modifier.ProjectileCount);
     private float Angle => (Data.Angle + Modifier.Angle);
+    private float Range => (Data.Range + Modifier.Range);
 
     private void Start()
     {
         _timer = CoolTime;
+        
+        //아래는 추후 생성 시 DataManager로부터 초기화
+        Data = new WeaponData();
+        Modifier = new WeaponModifier();
         _remainingAmmo = MagazineSize;
         //_fireBehaviour initialization
     }
