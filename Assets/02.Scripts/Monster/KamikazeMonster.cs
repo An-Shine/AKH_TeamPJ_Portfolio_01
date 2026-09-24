@@ -7,8 +7,21 @@ public class KamikazeMonster : NormalMonster
     [SerializeField] private float _explosionDelay = 1f;
     [SerializeField] private float _explosionDamage = 50f;
 
+    [Header("자폭 경고 연출")]
+    [SerializeField] private float _warningScale = 1.25f;
+    [SerializeField] private float _warningSpeed = 12f;
+
     private bool _isExploding;
     private float _explosionTimer;
+
+    private Vector3 _originalScale;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        _originalScale = transform.localScale;
+    }
 
     protected override void Update()
     {
@@ -18,6 +31,10 @@ public class KamikazeMonster : NormalMonster
         {
             return;
         }
+
+        FacePlayer();
+
+        ApplySeparation();
 
         if (_isExploding)
         {
@@ -44,7 +61,11 @@ public class KamikazeMonster : NormalMonster
             (_player.position - transform.position).normalized;
 
         transform.position +=
-            (Vector3)(direction * _moveSpeed * Time.deltaTime);
+            (Vector3)(
+                direction *
+                _moveSpeed *
+                Time.deltaTime
+            );
     }
 
     private void StartExplosion()
@@ -52,12 +73,29 @@ public class KamikazeMonster : NormalMonster
         _isExploding = true;
         _explosionTimer = _explosionDelay;
 
-        Debug.Log($"{gameObject.name}: 자폭 준비!");
+        Debug.Log(
+            $"{gameObject.name}: 자폭 준비!"
+        );
     }
 
     private void UpdateExplosion()
     {
         _explosionTimer -= Time.deltaTime;
+
+        float warning =
+            (Mathf.Sin(
+                Time.time * _warningSpeed
+            ) + 1f) * 0.5f;
+
+        float currentScale =
+            Mathf.Lerp(
+                1f,
+                _warningScale,
+                warning
+            );
+
+        transform.localScale =
+            _originalScale * currentScale;
 
         if (_explosionTimer > 0f)
         {
@@ -69,19 +107,22 @@ public class KamikazeMonster : NormalMonster
 
     private void Explode()
     {
-        Collider2D[] hitTargets = Physics2D.OverlapCircleAll(
-            transform.position,
-            _explosionRange
-        );
+        Collider2D[] hitTargets =
+            Physics2D.OverlapCircleAll(
+                transform.position,
+                _explosionRange
+            );
 
         foreach (Collider2D target in hitTargets)
         {
-            if (target.CompareTag("Player"))
+            if (!target.CompareTag("Player"))
             {
-                Debug.Log(
-                    $"{gameObject.name}: 폭발 범위 안의 Player 감지! 데미지: {_explosionDamage}"
-                );
+                continue;
             }
+
+            Debug.Log(
+                $"{gameObject.name}: 폭발 범위 안의 Player 감지! 데미지: {_explosionDamage}"
+            );
         }
 
         Debug.Log(

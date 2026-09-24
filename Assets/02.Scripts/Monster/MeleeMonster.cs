@@ -1,12 +1,27 @@
+using System.Collections;
 using UnityEngine;
 
 public class MeleeMonster : NormalMonster
 {
     [Header("근접 공격")]
     [SerializeField] private float _attackRange = 1.5f;
+    [SerializeField] private float _attackAngle = 90f;
     [SerializeField] private float _attackCooldown = 1f;
 
+    [Header("공격 연출")]
+    [SerializeField] private float _attackScale = 1.2f;
+    [SerializeField] private float _attackAnimationTime = 0.12f;
+
     private float _attackCooldownTimer;
+    private Vector3 _originalScale;
+    private bool _isAttacking;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        _originalScale = transform.localScale;
+    }
 
     protected override void Update()
     {
@@ -18,6 +33,9 @@ public class MeleeMonster : NormalMonster
         }
 
         _attackCooldownTimer -= Time.deltaTime;
+
+        FacePlayer();
+        ApplySeparation();
 
         float distanceToPlayer = Vector2.Distance(
             transform.position,
@@ -36,11 +54,20 @@ public class MeleeMonster : NormalMonster
 
     private void MoveToPlayer()
     {
+        if (_isAttacking)
+        {
+            return;
+        }
+
         Vector2 direction =
             (_player.position - transform.position).normalized;
 
         transform.position +=
-            (Vector3)(direction * _moveSpeed * Time.deltaTime);
+            (Vector3)(
+                direction *
+                _moveSpeed *
+                Time.deltaTime
+            );
     }
 
     private void TryAttack()
@@ -50,12 +77,88 @@ public class MeleeMonster : NormalMonster
             return;
         }
 
+        if (_isAttacking)
+        {
+            return;
+        }
+
+        Vector2 directionToPlayer =
+            (_player.position - transform.position).normalized;
+
+        float angle = Vector2.Angle(
+            transform.right,
+            directionToPlayer
+        );
+
+        if (angle > _attackAngle * 0.5f)
+        {
+            return;
+        }
+
         _attackCooldownTimer = _attackCooldown;
 
-        Collider2D[] hitTargets = Physics2D.OverlapCircleAll(
-            transform.position,
-            _attackRange
+        StartCoroutine(AttackRoutine());
+    }
+
+    private IEnumerator AttackRoutine()
+    {
+        _isAttacking = true;
+
+        Debug.Log(
+            $"{gameObject.name}: 근접 공격 실행!"
         );
+
+        Vector3 targetScale =
+            _originalScale * _attackScale;
+
+        float timer = 0f;
+
+        while (timer < _attackAnimationTime)
+        {
+            timer += Time.deltaTime;
+
+            float progress =
+                timer / _attackAnimationTime;
+
+            transform.localScale =
+                Vector3.Lerp(
+                    _originalScale,
+                    targetScale,
+                    progress
+                );
+
+            yield return null;
+        }
+
+        timer = 0f;
+
+        while (timer < _attackAnimationTime)
+        {
+            timer += Time.deltaTime;
+
+            float progress =
+                timer / _attackAnimationTime;
+
+            transform.localScale =
+                Vector3.Lerp(
+                    targetScale,
+                    _originalScale,
+                    progress
+                );
+
+            yield return null;
+        }
+
+        transform.localScale =
+            _originalScale;
+
+        _isAttacking = false;
+
+        Collider2D[] hitTargets =
+            Physics2D.OverlapCircleAll(
+                transform.position,
+                _attackRange
+            );
 
         foreach (Collider2D target in hitTargets)
         {
@@ -70,10 +173,6 @@ public class MeleeMonster : NormalMonster
 
             return;
         }
-
-        Debug.Log(
-            $"{gameObject.name}: 근접 공격 실행 - 플레이어가 공격 범위에 없음"
-        );
     }
 
     private void OnDrawGizmosSelected()
