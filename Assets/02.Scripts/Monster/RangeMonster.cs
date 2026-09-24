@@ -7,6 +7,10 @@ public class RangeMonster : NormalMonster
     [SerializeField] private float _keepDistance = 4f;
     [SerializeField] private float _attackCooldown = 2f;
 
+    [Header("투사체")]
+    [SerializeField] private RangeProjectile _projectilePrefab;
+    [SerializeField] private Transform _firePoint;
+
     private float _attackCooldownTimer;
 
     protected override void Update()
@@ -66,6 +70,34 @@ public class RangeMonster : NormalMonster
 
         _attackCooldownTimer = _attackCooldown;
 
-        Debug.Log($"{gameObject.name}: 원거리 공격!");
+        if (_projectilePrefab == null)
+        {
+            Debug.LogWarning(
+                $"{gameObject.name}: RangeProjectile 프리팹이 설정되지 않았습니다."
+            );
+
+            return;
+        }
+
+        Vector2 firePosition = transform.position;
+
+        if (_firePoint != null)
+        {
+            firePosition = _firePoint.position;
+        }
+
+        Vector2 direction =
+            (_player.position - (Vector3)firePosition).normalized;
+
+        RangeProjectile projectile = Instantiate(
+            _projectilePrefab,
+            firePosition,
+            Quaternion.identity
+        );
+
+        projectile.SetDirection(direction);
+
+        Debug.Log($"{gameObject.name}: 원거리 투사체 발사!");
     }
 }
+
