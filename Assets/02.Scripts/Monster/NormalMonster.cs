@@ -7,8 +7,13 @@ public class NormalMonster : MonoBehaviour
     [SerializeField] protected float _moveSpeed = 2f;
     [SerializeField] protected int _contactDamage = 10;
 
+    [Header("피격 설정")]
+    [SerializeField] private float _hitCooldown = 0.1f;
+
     protected float _currentHealth;
     protected Transform _player;
+
+    private float _hitCooldownTimer;
 
     protected virtual void Awake()
     {
@@ -17,7 +22,8 @@ public class NormalMonster : MonoBehaviour
 
     protected virtual void Start()
     {
-        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        GameObject playerObject =
+            GameObject.FindGameObjectWithTag("Player");
 
         if (playerObject != null)
         {
@@ -25,12 +31,18 @@ public class NormalMonster : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"{gameObject.name}: Player 태그가 붙은 오브젝트를 찾을 수 없습니다.");
+            Debug.LogWarning(
+                $"{gameObject.name}: Player 태그가 붙은 오브젝트를 찾을 수 없습니다."
+            );
         }
     }
 
     protected virtual void Update()
     {
+        if (_hitCooldownTimer > 0f)
+        {
+            _hitCooldownTimer -= Time.deltaTime;
+        }
     }
 
     public virtual void TakeDamage(float damage)
@@ -40,18 +52,35 @@ public class NormalMonster : MonoBehaviour
             return;
         }
 
+        if (_currentHealth <= 0f)
+        {
+            return;
+        }
+
+        if (_hitCooldownTimer > 0f)
+        {
+            return;
+        }
+
+        _hitCooldownTimer = _hitCooldown;
+
         _currentHealth -= damage;
 
-        Debug.Log($"{gameObject.name} 피격! 현재 체력: {_currentHealth}");
+        Debug.Log(
+            $"{gameObject.name} 피격! 받은 데미지: {damage}, 현재 체력: {_currentHealth}"
+        );
 
         if (_currentHealth <= 0f)
         {
+            _currentHealth = 0f;
             Die();
         }
     }
 
     protected virtual void Die()
     {
+        Debug.Log($"{gameObject.name} 사망!");
+
         Destroy(gameObject);
     }
 }
