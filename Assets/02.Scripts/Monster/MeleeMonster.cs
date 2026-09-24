@@ -13,6 +13,7 @@ public class MeleeMonster : NormalMonster
     [SerializeField] private float _attackAnimationTime = 0.12f;
 
     private float _attackCooldownTimer;
+
     private Vector3 _originalScale;
     private bool _isAttacking;
 
@@ -95,9 +96,12 @@ public class MeleeMonster : NormalMonster
             return;
         }
 
-        _attackCooldownTimer = _attackCooldown;
+        _attackCooldownTimer =
+            _attackCooldown;
 
-        StartCoroutine(AttackRoutine());
+        StartCoroutine(
+            AttackRoutine()
+        );
     }
 
     private IEnumerator AttackRoutine()
@@ -113,6 +117,7 @@ public class MeleeMonster : NormalMonster
 
         float timer = 0f;
 
+        // 커지는 연출
         while (timer < _attackAnimationTime)
         {
             timer += Time.deltaTime;
@@ -130,6 +135,28 @@ public class MeleeMonster : NormalMonster
             yield return null;
         }
 
+        // 실제 공격 판정
+        Collider2D[] hitTargets =
+            Physics2D.OverlapCircleAll(
+                transform.position,
+                _attackRange
+            );
+
+        foreach (Collider2D target in hitTargets)
+        {
+            if (!target.CompareTag("Player"))
+            {
+                continue;
+            }
+
+            Debug.Log(
+                $"{gameObject.name}: 플레이어 근접 공격 적중! 데미지: {_contactDamage}"
+            );
+
+            break;
+        }
+
+        // 작아지는 연출
         timer = 0f;
 
         while (timer < _attackAnimationTime)
@@ -153,26 +180,6 @@ public class MeleeMonster : NormalMonster
             _originalScale;
 
         _isAttacking = false;
-
-        Collider2D[] hitTargets =
-            Physics2D.OverlapCircleAll(
-                transform.position,
-                _attackRange
-            );
-
-        foreach (Collider2D target in hitTargets)
-        {
-            if (!target.CompareTag("Player"))
-            {
-                continue;
-            }
-
-            Debug.Log(
-                $"{gameObject.name}: 플레이어 근접 공격 적중! 데미지: {_contactDamage}"
-            );
-
-            return;
-        }
     }
 
     private void OnDrawGizmosSelected()
