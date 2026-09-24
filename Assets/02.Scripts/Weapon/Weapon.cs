@@ -5,7 +5,9 @@ public class Weapon : MonoBehaviour
     public WeaponData Data { get; private set; }
     public WeaponModifier Modifier { get; private set; }
     
+    //ToDo : factory를 알아봐서 활용하여 초기화
     private FireBehaviour _fireBehaviour;
+    private IFirePattern _firePattern;
     
     private const float CoolTime = 10f;
 
@@ -77,6 +79,7 @@ public class Weapon : MonoBehaviour
 
     private void Fire()
     {
-        //Fire Logic
+        FireContext context = new FireContext(transform.position, transform.up, ProjectileCount, Angle);
+        _firePattern.Fire(context);
     }
 }

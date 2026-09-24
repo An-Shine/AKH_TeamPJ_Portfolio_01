@@ -2,6 +2,6 @@
 {
     public override void OnMouseDown(Weapon weapon)
     {
-        int i = 0;
+        weapon.TryFire();
     }
 }
