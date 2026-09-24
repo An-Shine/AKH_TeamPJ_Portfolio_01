@@ -69,10 +69,35 @@ public class KamikazeMonster : NormalMonster
 
     private void Explode()
     {
+        Collider2D[] hitTargets = Physics2D.OverlapCircleAll(
+            transform.position,
+            _explosionRange
+        );
+
+        foreach (Collider2D target in hitTargets)
+        {
+            if (target.CompareTag("Player"))
+            {
+                Debug.Log(
+                    $"{gameObject.name}: 폭발 범위 안의 Player 감지! 데미지: {_explosionDamage}"
+                );
+            }
+        }
+
         Debug.Log(
-            $"{gameObject.name}: 자폭! 폭발 데미지 {_explosionDamage}"
+            $"{gameObject.name}: 자폭! 폭발 범위: {_explosionRange}, 데미지: {_explosionDamage}"
         );
 
         Destroy(gameObject);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+
+        Gizmos.DrawWireSphere(
+            transform.position,
+            _explosionRange
+        );
     }
 }
