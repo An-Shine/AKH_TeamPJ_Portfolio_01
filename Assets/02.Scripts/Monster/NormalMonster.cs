@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class NormalMonster : MonoBehaviour
@@ -10,10 +11,15 @@ public class NormalMonster : MonoBehaviour
     [Header("피격 설정")]
     [SerializeField] private float _hitCooldown = 0.1f;
 
+    [Header("사망 설정")]
+    [SerializeField] private float _deathDelay = 0.2f;
+    [SerializeField] private float _deathScale = 0f;
+
     protected float _currentHealth;
     protected Transform _player;
 
     private float _hitCooldownTimer;
+    private bool _isDead;
 
     protected virtual void Awake()
     {
@@ -39,6 +45,11 @@ public class NormalMonster : MonoBehaviour
 
     protected virtual void Update()
     {
+        if (_isDead)
+        {
+            return;
+        }
+
         if (_hitCooldownTimer > 0f)
         {
             _hitCooldownTimer -= Time.deltaTime;
@@ -52,7 +63,7 @@ public class NormalMonster : MonoBehaviour
             return;
         }
 
-        if (_currentHealth <= 0f)
+        if (_isDead)
         {
             return;
         }
@@ -79,7 +90,41 @@ public class NormalMonster : MonoBehaviour
 
     protected virtual void Die()
     {
+        if (_isDead)
+        {
+            return;
+        }
+
+        _isDead = true;
+
         Debug.Log($"{gameObject.name} 사망!");
+
+        StartCoroutine(DeathRoutine());
+    }
+
+    private IEnumerator DeathRoutine()
+    {
+        Vector3 startScale = transform.localScale;
+        Vector3 targetScale = startScale * _deathScale;
+
+        float timer = 0f;
+
+        while (timer < _deathDelay)
+        {
+            timer += Time.deltaTime;
+
+            float progress = timer / _deathDelay;
+
+            transform.localScale = Vector3.Lerp(
+                startScale,
+                targetScale,
+                progress
+            );
+
+            yield return null;
+        }
+
+        transform.localScale = targetScale;
 
         Destroy(gameObject);
     }
