@@ -1,7 +1,21 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class ProjectileSpawner : MonoBehaviour
 {
+    private static ProjectileSpawner _instance;
+    public static ProjectileSpawner Instance => _instance;
+
+    private void Awake()
+    {
+        if (_instance != null)
+        {
+            Destroy(gameObject);
+        }
+
+        _instance = this;
+    }
+
     public Projectile Spawn(ProjectileType type, Vector2 position, Vector2 direction)
     {
         Projectile projectile = ProjectilePoolManager.Instance.Get(type);
