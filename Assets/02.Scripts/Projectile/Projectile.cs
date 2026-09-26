@@ -15,19 +15,22 @@ public abstract class Projectile : MonoBehaviour
         Move();
     }
 
-    public void Initialize(ProjectileType type, int damage, int durability, Vector3 direction, float speedScalar)
+    public void Initialize(ProjectileType type, int damage, int durability, float speedScalar)
     {
         _type = type;
         _damage = damage;
         _initialDurability = durability;
         _durability = _initialDurability;
-        _direction = direction;
+        _direction = Vector3.zero;
         _speedScalar = speedScalar;
     }
 
-    public void OnSpawn()
+    public void OnSpawn(Vector3 position, Vector3 direction)
     {
         _durability = _initialDurability;
+        _direction = direction;
+        gameObject.transform.position = position;
+        gameObject.SetActive(true);
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D other)
