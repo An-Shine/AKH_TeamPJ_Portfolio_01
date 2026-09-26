@@ -2,6 +2,6 @@
 {
     public void Fire(FireContext context)
     {
-        //spawner에게 spawn 요청 by context.Position, context.Direction
+        ProjectileSpawner.Instance.Spawn(context.Type, context.Position, context.Direction);
     }
 }
