@@ -1,9 +1,9 @@
-public class StatModifier
+public class WeaponStatModifier
 {
     public float Flat;
     public float Rate;
 
-    public StatModifier()
+    public WeaponStatModifier()
     {
         Flat = 0f;
         Rate = 0f;

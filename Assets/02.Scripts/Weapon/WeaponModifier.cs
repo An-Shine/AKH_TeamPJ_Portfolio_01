@@ -1,9 +1,9 @@
 public class WeaponModifier
 {
-    public StatModifier Damage;
-    public StatModifier FireRate;
-    public StatModifier ReloadSpeed;
-    public StatModifier ChargeSpeed;
+    public WeaponStatModifier Damage;
+    public WeaponStatModifier FireRate;
+    public WeaponStatModifier ReloadSpeed;
+    public WeaponStatModifier ChargeSpeed;
 
     public int MagazineSize;
 
@@ -13,10 +13,10 @@ public class WeaponModifier
 
     public WeaponModifier()
     {
-        Damage = new StatModifier();
-        FireRate = new StatModifier();
-        ReloadSpeed = new StatModifier();
-        ChargeSpeed = new  StatModifier();
+        Damage = new WeaponStatModifier();
+        FireRate = new WeaponStatModifier();
+        ReloadSpeed = new WeaponStatModifier();
+        ChargeSpeed = new  WeaponStatModifier();
         
         MagazineSize = 0;
 
