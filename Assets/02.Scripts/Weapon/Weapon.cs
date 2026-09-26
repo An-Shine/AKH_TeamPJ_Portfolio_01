@@ -79,7 +79,7 @@ public class Weapon : MonoBehaviour
 
     private void Fire()
     {
-        FireContext context = new FireContext(transform.position, transform.up, ProjectileCount, Angle);
+        FireContext context = new FireContext(Data.ProjectileType,transform.position, transform.up, ProjectileCount, Angle);
         _firePattern.Fire(context);
     }
 }
