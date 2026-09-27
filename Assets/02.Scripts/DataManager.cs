@@ -24,7 +24,7 @@ public class DataManager : MonoBehaviour
     }
     private void LoadWeaponCSV()
     {
-        TextAsset csvData = Resources.Load("08.Data/Weapon") as TextAsset;
+        TextAsset csvData = Resources.Load("Datas/Weapon") as TextAsset;
         if (csvData == null)
         {
             Debug.LogWarning("Weapon data not found");
@@ -54,7 +54,7 @@ public class DataManager : MonoBehaviour
     
     private void LoadProjectileCSV()
     {
-        TextAsset csvData = Resources.Load("08.Data/Projectile") as TextAsset;
+        TextAsset csvData = Resources.Load("Datas/Projectile") as TextAsset;
         if (csvData == null)
         {
             Debug.LogWarning("Projectile data not found");
