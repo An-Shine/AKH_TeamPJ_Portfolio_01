@@ -39,15 +39,16 @@ public class DataManager : MonoBehaviour
             WeaponDatas[row[0]] = new WeaponData
             {
                 Name = row[1],
-                FireRate = float.Parse(row[2]),
-                ProjectileCount = int.Parse(row[2]),
-                ProjectileType = (ProjectileType)Enum.Parse(typeof(ProjectileType), row[3]),
-                Rebound = float.Parse(row[4]),
-                MagazineSize = int.Parse(row[5]),
-                ReloadTime = float.Parse(row[6]),
-                ChargeTime = float.Parse(row[7]),
-                Angle = float.Parse(row[8]),
-                Range = float.Parse(row[9]),
+                Type = (FireType)Enum.Parse(typeof(FireType), row[2]),
+                FireRate = float.Parse(row[3]),
+                ProjectileCount = int.Parse(row[4]),
+                ProjectileType = (ProjectileType)Enum.Parse(typeof(ProjectileType), row[5]),
+                Rebound = float.Parse(row[6]),
+                MagazineSize = int.Parse(row[7]),
+                ReloadTime = float.Parse(row[8]),
+                ChargeTime = float.Parse(row[9]),
+                Angle = float.Parse(row[10]),
+                Range = float.Parse(row[11]),
             };
         }
     }
