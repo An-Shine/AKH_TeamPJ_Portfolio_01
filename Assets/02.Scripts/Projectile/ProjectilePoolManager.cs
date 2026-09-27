@@ -29,7 +29,18 @@ public class ProjectilePoolManager : MonoBehaviour
         foreach (ProjectileEntry projectileEntry in _entries)
         {
             _projectilePools[projectileEntry.Type] =
-                new ObjectPool<Projectile>(() => Instantiate(projectileEntry.ProjectilePrefab, _projectileContainer),
+                new ObjectPool<Projectile>(
+                    () =>
+                    {
+                        Projectile projectile = Instantiate(projectileEntry.ProjectilePrefab, _projectileContainer);
+                        
+                        int damage = DataManager.Instance.ProjectileDatas[projectileEntry.Type].Damage;
+                        float speedScalar = DataManager.Instance.ProjectileDatas[projectileEntry.Type].SpeedScalar;
+                        int durability = DataManager.Instance.ProjectileDatas[projectileEntry.Type].Durability;
+                        projectile.Initialize(projectileEntry.Type, damage,  speedScalar, durability);
+                        
+                        return projectile;
+                    },
                     ActivateProjectile,
                     DisableProjectile,
                     DestroyProjectile,
