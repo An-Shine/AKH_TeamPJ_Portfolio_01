@@ -2,16 +2,20 @@ using UnityEngine;
 
 public abstract class Projectile : MonoBehaviour
 {
-    private ProjectileType _type;
+    protected ProjectileType _type;
     private int _damage;
+    protected float _range;
     private int _initialDurability;
     private int _durability;
+    
     protected Vector3 _direction;
     protected float _speedScalar;
+    protected Vector3 _initialPosition;
 
     private void Update()
     {
         Move();
+        CheckRange();
     }
 
     public void Initialize(ProjectileType type, int damage, float speedScalar, int durability)
@@ -24,11 +28,13 @@ public abstract class Projectile : MonoBehaviour
         _speedScalar = speedScalar;
     }
 
-    public void OnSpawn(Vector3 position, Vector3 direction)
+    public virtual void OnSpawn(Vector3 position, Vector3 direction, float range)
     {
         _durability = _initialDurability;
         _direction = direction;
+        _range = range;
         gameObject.transform.position = position;
+        _initialPosition = position;
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D other)
@@ -38,8 +44,17 @@ public abstract class Projectile : MonoBehaviour
     }
     
     protected abstract void Move();
+    protected virtual void CheckRange()
+    {
+        Vector3 distanceVector = transform.position - _initialPosition;
+        float distance = distanceVector.magnitude;
+        if (distance > _range)
+        {
+            ProjectilePoolManager.Instance.Release(this, _type);
+        }
+    }
     
-    protected void GiveDamage(Collider2D other)
+    protected virtual void GiveDamage(Collider2D other)
     {
         if (other.CompareTag("Enemy"))
         {
