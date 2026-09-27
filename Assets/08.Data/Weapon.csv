@@ -1,0 +1,6 @@
+weapon_id,Name,FireType,FireRate(10/period),projectile_count,type_of_projectile,rebound,magazine_size,reloading_time(sec),charge_time(sec),Angle(Max80),range
+WPN_00,핸드건,Normal,60,1,Normal,0,68,0.8,0,0,25
+WPN_01,메테오 런처,Charge,8,1,BigExplosion,0.4,12,2.5,2,0,16
+WPN_02,레이저건,Auto,5000,1,Laser,0,128,1.6,0,0,80
+WPN_03,플라즈마 샷건,Normal,16,8,Shot,0.15,22,1.8,0,30,12
+WPN_04,에너지 라이플,Normal,45,1,Penetration,0.1,42,1.4,0,0,40
