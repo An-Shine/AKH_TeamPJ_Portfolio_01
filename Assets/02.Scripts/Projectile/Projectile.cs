@@ -1,4 +1,3 @@
-﻿using System;
 using UnityEngine;
 
 public abstract class Projectile : MonoBehaviour
@@ -15,7 +14,7 @@ public abstract class Projectile : MonoBehaviour
         Move();
     }
 
-    public void Initialize(ProjectileType type, int damage, int durability, float speedScalar)
+    public void Initialize(ProjectileType type, int damage, float speedScalar, int durability)
     {
         _type = type;
         _damage = damage;
@@ -30,7 +29,6 @@ public abstract class Projectile : MonoBehaviour
         _durability = _initialDurability;
         _direction = direction;
         gameObject.transform.position = position;
-        gameObject.SetActive(true);
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D other)

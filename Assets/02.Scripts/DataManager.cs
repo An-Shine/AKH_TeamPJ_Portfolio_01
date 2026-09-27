@@ -72,6 +72,7 @@ public class DataManager : MonoBehaviour
             {
                 Damage = int.Parse(row[1]),
                 SpeedScalar = float.Parse(row[2]),
+                Durability = int.Parse(row[3]),
             };
         }
     }
