@@ -42,7 +42,7 @@ public class Weapon : MonoBehaviour
     private void Update()
     {
         _timer += Time.deltaTime * FireRate;
-        TryFire();
+        //TryFire();
     }
 
     public void Initialize(WeaponData data)
