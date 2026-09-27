@@ -6,7 +6,6 @@ public class Weapon : MonoBehaviour
     public WeaponData Data { get; private set; }
     public WeaponModifier Modifier { get; private set; }
     
-    //ToDo : factory를 알아봐서 활용하여 초기화
     private FireBehaviour _fireBehaviour;
     private IFirePattern _firePattern;
     
