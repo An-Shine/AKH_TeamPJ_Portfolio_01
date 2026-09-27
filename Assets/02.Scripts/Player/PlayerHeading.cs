@@ -24,16 +24,16 @@ public class PlayerHeading : MonoBehaviour
         Vector3 mouseWorldPos = GetMouseWorldPosition();
 
         Vector3 startPos = transform.position;
+        Vector3 dir = (mouseWorldPos - transform.position).normalized;
 
         // 레이저 시작점을 플레이어 중심보다 조금 앞에 두고 싶다면
         if (_laserStartOffset != 0f)
         {
-            Vector3 dir = (mouseWorldPos - transform.position).normalized;
             startPos += dir * _laserStartOffset;
         }
 
         _lineRenderer.SetPosition(0, startPos);
-        _lineRenderer.SetPosition(1, mouseWorldPos);
+        _lineRenderer.SetPosition(1, mouseWorldPos + dir*30);
     }
 
     private Vector3 GetMouseWorldPosition()
