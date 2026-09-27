@@ -50,8 +50,8 @@ public class Weapon : MonoBehaviour
         _isReloading = false;
         _remainingAmmo = MagazineSize;
         
-        _fireBehaviour = FireFactory.CreateBehaviour(Data.Type);
-        _firePattern = FireFactory.CreatePattern(Data.ProjectileType);
+        _fireBehaviour = FireFactory.CreateBehaviour(Data.BehaviourType);
+        _firePattern = FireFactory.CreatePattern(Data.PatternType);
     }
     
     public void OnMouseDown()

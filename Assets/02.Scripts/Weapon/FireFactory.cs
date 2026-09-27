@@ -1,16 +1,16 @@
 ﻿public static class FireFactory
 {
-    public static FireBehaviour CreateBehaviour(FireType fireType)
+    public static FireBehaviour CreateBehaviour(FireBehaviourType fireBehaviourType)
     {
         FireBehaviour fireBehaviour =new NormalFire();
-        switch (fireType)
+        switch (fireBehaviourType)
         {
-            case FireType.Auto:
+            case FireBehaviourType.Auto:
             {
                 //fireBehaviour = new AutoFire();
                 break;
             }
-            case FireType.Charge:
+            case FireBehaviourType.Charge:
             {
                 //fireBehaviour = new ChargeFire();
                 break;
@@ -20,28 +20,20 @@
         return fireBehaviour;
     }
 
-    public static IFirePattern CreatePattern(ProjectileType projectileType)
+    public static IFirePattern CreatePattern(FirePatternType patternType)
     {
         IFirePattern firePattern =new NormalFirePattern();
-        switch (projectileType)
+        switch (patternType)
         {
-            case ProjectileType.Explosion:
+            case FirePatternType.Spread:
             {
                 break;
             }
-            case ProjectileType.BigExplosion:
+            case FirePatternType.RandomSpread:
             {
                 break;
             }
-            case ProjectileType.Laser:
-            {
-                break;
-            }
-            case ProjectileType.Shot:
-            {
-                break;
-            }
-            case ProjectileType.Penetration:
+            case FirePatternType.Parallel:
             {
                 break;
             }
