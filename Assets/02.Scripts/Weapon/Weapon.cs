@@ -29,21 +29,30 @@ public class Weapon : MonoBehaviour
     private float Angle => (Data.Angle + Modifier.Angle);
     private float Range => (Data.Range + Modifier.Range);
 
+    private void Awake()
+    {
+        Modifier = new WeaponModifier();
+    }
+
     private void Start()
     {
         _timer = CoolTime;
-        
-        //아래는 추후 생성 시 DataManager로부터 초기화
-        Data = new WeaponData();
-        Modifier = new WeaponModifier();
-        _remainingAmmo = MagazineSize;
-        //_fireBehaviour initialization
     }
 
     private void Update()
     {
         _timer += Time.deltaTime * FireRate;
         TryFire();
+    }
+
+    public void Initialize(WeaponData data)
+    {
+        Data = data;
+        _isReloading = false;
+        _remainingAmmo = MagazineSize;
+        
+        _fireBehaviour = FireFactory.CreateBehaviour(Data.Type);
+        _firePattern = FireFactory.CreatePattern(Data.ProjectileType);
     }
     
     public void OnMouseDown()
