@@ -24,7 +24,6 @@ public class ProjectilePoolManager : MonoBehaviour
 
     private void Start()
     {
-        _entries = new List<ProjectileEntry>();
         _projectilePools = new Dictionary<ProjectileType, ObjectPool<Projectile>>();
         foreach (ProjectileEntry projectileEntry in _entries)
         {
