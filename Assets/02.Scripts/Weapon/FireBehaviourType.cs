@@ -1,4 +1,4 @@
-public enum FireType
+public enum FireBehaviourType
 {
     Normal,
     Charge,
