@@ -2,6 +2,7 @@
 
 public class Weapon : MonoBehaviour
 {
+    [SerializeField] Transform _firePoint;
     public WeaponData Data { get; private set; }
     public WeaponModifier Modifier { get; private set; }
     
@@ -42,6 +43,7 @@ public class Weapon : MonoBehaviour
     private void Update()
     {
         _timer += Time.deltaTime * FireRate;
+        TryFire();
     }
     
     public void OnMouseDown()
@@ -71,6 +73,7 @@ public class Weapon : MonoBehaviour
             return false;
 
         Fire();
+        _timer = 0;
 
         _remainingAmmo--;
 
@@ -79,7 +82,7 @@ public class Weapon : MonoBehaviour
 
     private void Fire()
     {
-        FireContext context = new FireContext(Data.ProjectileType,transform.position, transform.up, ProjectileCount, Angle);
+        FireContext context = new FireContext(Data.ProjectileType,_firePoint.transform.position, transform.right, ProjectileCount, Angle);
         _firePattern.Fire(context);
     }
 }
