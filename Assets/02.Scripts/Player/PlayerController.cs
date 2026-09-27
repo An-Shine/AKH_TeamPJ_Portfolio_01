@@ -33,8 +33,11 @@ public class PlayerController : MonoBehaviour
 
         // FixedUpdate 전에 들어온 대시 입력도 즉시 사격 제한에 반영합니다.
         bool dashStarting = _dashQueued && _fsm.CanDash;
+        Vector2 fireDirection = _weapon.Muzzle != null
+            ? _aim.GetDirectionFrom(_weapon.Muzzle.position)
+            : _aim.AimDirection;
         _weapon.Tick(Input.GetMouseButton(0), _fsm.IsDashing || dashStarting,
-                     _aim.AimDirection);
+                     fireDirection);
     }
 
     private void FixedUpdate()

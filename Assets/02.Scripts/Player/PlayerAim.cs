@@ -10,6 +10,7 @@ public class PlayerAim : MonoBehaviour
     private bool _hasFacing;
 
     public Vector2 AimDirection { get; private set; } = Vector2.down;
+    public Camera WorldCamera => _worldCamera;
     public FacingDirection Facing { get; private set; } = FacingDirection.Down;
 
     private void Awake()
@@ -22,13 +23,10 @@ public class PlayerAim : MonoBehaviour
 
     public void Refresh()
     {
-        if (_worldCamera == null) return;
+        if (!TryGetMouseWorldPosition(out Vector3 mouseWorldPosition)) return;
         Vector3 origin = _aimOrigin.position;
-        Plane plane = new Plane(Vector3.forward, origin);
-        Ray ray = _worldCamera.ScreenPointToRay(Input.mousePosition);
-        if (!plane.Raycast(ray, out float distance)) return;
 
-        Vector2 offset = ray.GetPoint(distance) - origin;
+        Vector2 offset = mouseWorldPosition - origin;
         if (offset.sqrMagnitude <= _mouseDeadZone * _mouseDeadZone) return;
 
         AimDirection = offset.normalized;
@@ -45,6 +43,28 @@ public class PlayerAim : MonoBehaviour
         else if (angle <= 0f) Facing = FacingDirection.RightDown;
         else Facing = FacingDirection.RightUp;
         _hasFacing = true;
+    }
+
+    // 조준선도 같은 XY 게임 평면에서 마우스 좌표를 얻습니다.
+    public bool TryGetMouseWorldPosition(out Vector3 worldPosition)
+    {
+        worldPosition = default;
+        if (_worldCamera == null || _aimOrigin == null) return false;
+
+        Plane plane = new Plane(Vector3.forward, _aimOrigin.position);
+        Ray ray = _worldCamera.ScreenPointToRay(Input.mousePosition);
+        if (!plane.Raycast(ray, out float distance)) return false;
+
+        worldPosition = ray.GetPoint(distance);
+        return true;
+    }
+
+    // 몸의 바라보는 방향과 별개로, 총알은 총구에서 마우스를 향합니다.
+    public Vector2 GetDirectionFrom(Vector3 worldPosition)
+    {
+        if (!TryGetMouseWorldPosition(out Vector3 target)) return AimDirection;
+        Vector2 offset = target - worldPosition;
+        return offset.sqrMagnitude > 0.000001f ? offset.normalized : AimDirection;
     }
 
     private static float CenterAngle(FacingDirection direction)
