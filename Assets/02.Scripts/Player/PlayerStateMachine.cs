@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class PlayerStateMachine : MonoBehaviour
 {
-    [SerializeField, Min(0.02f)] private float _dashDuration = 0.2f;
-    [Tooltip("대시가 끝난 뒤 다음 대시까지의 대기 시간")]
-    [SerializeField, Min(0f)] private float _dashCooldown = 0.5f;
+    [SerializeField] private float _dashDuration = 0.2f;
+
+    //대시가 끝난 뒤 다음 대시까지의 대기 시간
+    [SerializeField] private float _dashCooldown = 0.5f;
+
     private float _dashRemaining;
     private float _cooldownRemaining;
     private Vector2 _dashDirection;
@@ -14,8 +16,7 @@ public class PlayerStateMachine : MonoBehaviour
     public bool IsDashing => CurrentState == PlayerState.Dash;
     public bool CanDash => !IsDashing && _cooldownRemaining <= 0f;
 
-    public void Tick(Vector2 moveInput, Vector2 aimDirection,
-                     bool dashRequested, float deltaTime)
+    public void Act(Vector2 moveInput, Vector2 aimDirection, bool dashRequested, float deltaTime)
     {
         _cooldownRemaining = Mathf.Max(0f, _cooldownRemaining - deltaTime);
 
@@ -27,6 +28,7 @@ public class PlayerStateMachine : MonoBehaviour
                 MovementDirection = _dashDirection;
                 return;
             }
+
             ChangeState(moveInput.sqrMagnitude > 0f ? PlayerState.Run : PlayerState.Idle);
         }
 
@@ -44,8 +46,16 @@ public class PlayerStateMachine : MonoBehaviour
         ChangeState(moveInput.sqrMagnitude > 0f ? PlayerState.Run : PlayerState.Idle);
         switch (CurrentState)
         {
-            case PlayerState.Idle: MovementDirection = Vector2.zero; break;
-            case PlayerState.Run: MovementDirection = moveInput; break;
+            case PlayerState.Idle:
+            {
+                MovementDirection = Vector2.zero;
+                break;
+            }
+            case PlayerState.Run:
+            {
+                MovementDirection = moveInput;
+                break;
+            }
         }
     }
 

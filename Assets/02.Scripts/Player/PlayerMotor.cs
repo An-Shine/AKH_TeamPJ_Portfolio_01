@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMotor : MonoBehaviour
 {
     [SerializeField, Min(0f)] private float _moveSpeed = 5f;
@@ -22,6 +21,9 @@ public class PlayerMotor : MonoBehaviour
 
     public void Stop()
     {
-        if (_body != null) _body.linearVelocity = Vector2.zero;
+        if (_body != null)
+        {
+            _body.linearVelocity = Vector2.zero;
+        }
     }
 }

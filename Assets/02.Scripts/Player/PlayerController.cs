@@ -1,7 +1,5 @@
 using UnityEngine;
 
-[RequireComponent(typeof(PlayerMotor), typeof(PlayerStateMachine), typeof(PlayerAim))]
-[RequireComponent(typeof(PlayerWeapon))]
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private PlayerAnimation _animation;
@@ -26,8 +24,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        _moveInput = new Vector2(Input.GetAxisRaw("Horizontal"),
-                                 Input.GetAxisRaw("Vertical")).normalized;
+        _moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
         _dashQueued |= Input.GetKeyDown(KeyCode.Space);
         _aim.Refresh();
 
@@ -36,13 +33,12 @@ public class PlayerController : MonoBehaviour
         Vector2 fireDirection = _weapon.Muzzle != null
             ? _aim.GetDirectionFrom(_weapon.Muzzle.position)
             : _aim.AimDirection;
-        _weapon.Tick(Input.GetMouseButton(0), _fsm.IsDashing || dashStarting,
-                     fireDirection);
+        _weapon.Tick(Input.GetMouseButton(0), _fsm.IsDashing || dashStarting, fireDirection);
     }
 
     private void FixedUpdate()
     {
-        _fsm.Tick(_moveInput, _aim.AimDirection, _dashQueued, Time.fixedDeltaTime);
+        _fsm.Act(_moveInput, _aim.AimDirection, _dashQueued, Time.fixedDeltaTime);
         _dashQueued = false;
         _motor.Move(_fsm.MovementDirection, _fsm.IsDashing);
     }
@@ -50,16 +46,28 @@ public class PlayerController : MonoBehaviour
     private void LateUpdate()
     {
         if (_animation != null)
-            _animation.Refresh(_fsm.CurrentState, _aim.Facing,
-                               _weapon.IsAttacking, _weapon.ShotSequence);
+        {
+            _animation.Refresh(_fsm.CurrentState, _aim.Facing, _weapon.IsAttacking, _weapon.ShotSequence);
+        }
     }
 
     private void OnDisable()
     {
         _moveInput = Vector2.zero;
         _dashQueued = false;
-        if (_motor != null) _motor.Stop();
-        if (_fsm != null) _fsm.ResetState();
-        if (_weapon != null) _weapon.CancelAttackVisual();
+        if (_motor != null)
+        {
+            _motor.Stop();
+        }
+
+        if (_fsm != null)
+        {
+            _fsm.ResetState();
+        }
+
+        if (_weapon != null)
+        {
+            _weapon.CancelAttackVisual();
+        }
     }
 }

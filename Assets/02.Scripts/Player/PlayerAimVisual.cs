@@ -22,9 +22,13 @@ public class PlayerAimVisual : MonoBehaviour
         _weapon = GetComponent<PlayerWeapon>();
 
         if (_crosshairImage == null)
+        {
             Debug.LogError("PlayerAimVisual에 Crosshair Image를 연결하세요.", this);
+        }
         else
+        {
             _crosshairImage.raycastTarget = false;
+        }
 
         if (_aimLine == null)
         {
@@ -42,11 +46,17 @@ public class PlayerAimVisual : MonoBehaviour
     private void OnEnable()
     {
         if (_crosshairImage != null)
+        {
             _previousCrosshairVisible = _crosshairImage.enabled;
+        }
+
         RefreshVisual();
     }
 
-    private void LateUpdate() => RefreshVisual();
+    private void LateUpdate()
+    {
+        RefreshVisual();
+    }
 
     private void RefreshVisual()
     {
@@ -56,7 +66,9 @@ public class PlayerAimVisual : MonoBehaviour
         // GameObject나 CrosshairFollowMouse를 끄지 않습니다.
         // 원래 스크립트의 위치 갱신과 기본 커서 숨김 동작을 유지합니다.
         if (_crosshairImage != null)
+        {
             _crosshairImage.enabled = !showLine;
+        }
 
         if (_aimLine == null) return;
         if (!showLine)
@@ -125,9 +137,13 @@ public class PlayerAimVisual : MonoBehaviour
 
             float hitDistance = -distance / slope;
             if (slope > 0f)
+            {
                 enterDistance = Mathf.Max(enterDistance, hitDistance);
+            }
             else
+            {
                 exitDistance = Mathf.Min(exitDistance, hitDistance);
+            }
 
             if (exitDistance < enterDistance) return false;
         }
@@ -139,8 +155,14 @@ public class PlayerAimVisual : MonoBehaviour
 
     private void OnDisable()
     {
-        if (_aimLine != null) _aimLine.enabled = false;
+        if (_aimLine != null)
+        {
+            _aimLine.enabled = false;
+        }
+
         if (_crosshairImage != null)
+        {
             _crosshairImage.enabled = _previousCrosshairVisible;
+        }
     }
 }
