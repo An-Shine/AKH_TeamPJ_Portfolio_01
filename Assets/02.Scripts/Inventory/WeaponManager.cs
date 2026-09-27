@@ -35,10 +35,6 @@ public class WeaponManager : MonoBehaviour
             _unobtainedWeapons[weaponSlot.WeaponId].Initialize(DataManager.Instance.WeaponDatas[weaponSlot.WeaponId]);
             _unobtainedWeapons[weaponSlot.WeaponId].gameObject.SetActive(false);
         }
-        
-        //test
-        GainWeapon("WPN_00");
-        EquipByIndex(0);
     }
     
     public void EquipByIndex(int targetIndex)
