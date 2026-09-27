@@ -74,7 +74,7 @@ public class Weapon : MonoBehaviour
         if (_isReloading)
             return false;
 
-        if (_remainingAmmo <= 0)
+        if (!CheckRemainingAmmo())
             return false;
 
         if (_timer < CoolTime)
@@ -90,7 +90,14 @@ public class Weapon : MonoBehaviour
 
     private void Fire()
     {
-        FireContext context = new FireContext(Data.ProjectileType,_firePoint.transform.position, transform.right, ProjectileCount, Angle);
+        FireContext context = new FireContext(Data.ProjectileType,_firePoint.transform.position, 
+            transform.right, Range, ProjectileCount, Angle);
         _firePattern.Fire(context);
+    }
+
+    public bool CheckRemainingAmmo()
+    {
+        if (_remainingAmmo <= 0)    return false;
+        return true;
     }
 }
