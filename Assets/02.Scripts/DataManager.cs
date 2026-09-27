@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class DataManager : MonoBehaviour 
 {
-    private static  DataManager _instance;
+    private static DataManager _instance;
     public static DataManager Instance => _instance;
 
     public Dictionary<string, WeaponData> WeaponDatas { get; private set; }
