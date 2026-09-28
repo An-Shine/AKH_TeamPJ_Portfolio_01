@@ -1,0 +1,832 @@
+fileFormatVersion: 2
+guid: b254fc11de3cd4948a0fb95c47d5a1c0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 850864998332608157
+    second: FX43_0
+  - first:
+      213: -527221414758162811
+    second: FX43_1
+  - first:
+      213: 7865907167638449277
+    second: FX43_2
+  - first:
+      213: -8903836248947434930
+    second: FX43_3
+  - first:
+      213: 1865164893921499453
+    second: FX43_4
+  - first:
+      213: -591481751341090227
+    second: FX43_5
+  - first:
+      213: -1202835864513573426
+    second: FX43_6
+  - first:
+      213: 7150997687018806189
+    second: FX43_7
+  - first:
+      213: -8787850342033060211
+    second: FX43_8
+  - first:
+      213: 6318071877381107648
+    second: FX43_9
+  - first:
+      213: -3211245072728305495
+    second: FX43_10
+  - first:
+      213: -1348502508304420031
+    second: FX43_11
+  - first:
+      213: 5199599522390224503
+    second: FX43_12
+  - first:
+      213: -7238492544799198102
+    second: FX43_13
+  - first:
+      213: 7401405747711913301
+    second: FX43_14
+  - first:
+      213: 2173451109788748065
+    second: FX43_15
+  - first:
+      213: -8291744393238034455
+    second: FX43_16
+  - first:
+      213: 4186214100786194775
+    second: FX43_17
+  - first:
+      213: -1806112174311564258
+    second: FX43_18
+  - first:
+      213: 8544117083901102413
+    second: FX43_19
+  - first:
+      213: 2270055760670421330
+    second: FX43_20
+  - first:
+      213: 1643027946366228945
+    second: FX43_21
+  - first:
+      213: 1490264476106428987
+    second: FX43_22
+  - first:
+      213: -8640085595362468887
+    second: FX43_23
+  - first:
+      213: 2272056455611649457
+    second: FX43_24
+  - first:
+      213: 8703125038924925147
+    second: FX43_25
+  - first:
+      213: 8423763871410078844
+    second: FX43_26
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: FX43_0
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 28
+        width: 34
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9ead693531eecb00800000000000000
+      internalID: 850864998332608157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX43_1
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 6
+        width: 66
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58e5c57aaeeeea8f0800000000000000
+      internalID: -527221414758162811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX43_2
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 55
+        width: 15
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7ce943c4e0592d60800000000000000
+      internalID: 7865907167638449277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX43_3
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 12
+        width: 66
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4add3b2b183f6480800000000000000
+      internalID: -8903836248947434930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX43_4
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 33
+        width: 15
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3958b5c69562e910800000000000000
+      internalID: 1865164893921499453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX43_5
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 59
+        width: 11
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4a30302b72aac7f0800000000000000
+      internalID: -591481751341090227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX43_6
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 3
+        width: 102
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ecd8194772bae4fe0800000000000000
+      internalID: -1202835864513573426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX43_7
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 31
+        width: 11
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dab556c32827d3360800000000000000
+      internalID: 7150997687018806189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX43_8
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 6
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8e03d78ca84b0680800000000000000
+      internalID: -8787850342033060211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX43_9
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 10
+        width: 82
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cfafacd5ec4ea750800000000000000
+      internalID: 6318071877381107648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX43_10
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 79
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a05e49ce9d5f63d0800000000000000
+      internalID: -3211245072728305495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX43_11
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 1
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 143bac50d18294de0800000000000000
+      internalID: -1348502508304420031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX43_12
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 50
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77e2c5a8730b82840800000000000000
+      internalID: 5199599522390224503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX43_13
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 4
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a643ee5b165bb8b90800000000000000
+      internalID: -7238492544799198102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX43_14
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 29
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55d27ee205317b660800000000000000
+      internalID: 7401405747711913301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX43_15
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 43
+        width: 10
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12903a7d446a92e10800000000000000
+      internalID: 2173451109788748065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX43_16
+      rect:
+        serializedVersion: 2
+        x: 503
+        y: 70
+        width: 30
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e7c5b8e76ecdec80800000000000000
+      internalID: -8291744393238034455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX43_17
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 29
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 759a71f8b8b681a30800000000000000
+      internalID: 4186214100786194775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX43_18
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 8
+        width: 30
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1c96a1fb866fe6e0800000000000000
+      internalID: -1806112174311564258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX43_19
+      rect:
+        serializedVersion: 2
+        x: 509
+        y: 66
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d498549183dc29670800000000000000
+      internalID: 8544117083901102413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX43_20
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 0
+        width: 137
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 251f613efabd08f10800000000000000
+      internalID: 2270055760670421330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX43_21
+      rect:
+        serializedVersion: 2
+        x: 539
+        y: 23
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d9d23b46353dc610800000000000000
+      internalID: 1643027946366228945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX43_22
+      rect:
+        serializedVersion: 2
+        x: 541
+        y: 66
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3215bf25ab7ea410800000000000000
+      internalID: 1490264476106428987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX43_23
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 61
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9eb537b9def381880800000000000000
+      internalID: -8640085595362468887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX43_24
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 29
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1bd8d5afe47f78f10800000000000000
+      internalID: 2272056455611649457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX43_25
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 19
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd88dec9c16b7c870800000000000000
+      internalID: 8703125038924925147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX43_26
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 58
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c74ca2b2c9837e470800000000000000
+      internalID: 8423763871410078844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      FX43_0: 850864998332608157
+      FX43_1: -527221414758162811
+      FX43_10: -3211245072728305495
+      FX43_11: -1348502508304420031
+      FX43_12: 5199599522390224503
+      FX43_13: -7238492544799198102
+      FX43_14: 7401405747711913301
+      FX43_15: 2173451109788748065
+      FX43_16: -8291744393238034455
+      FX43_17: 4186214100786194775
+      FX43_18: -1806112174311564258
+      FX43_19: 8544117083901102413
+      FX43_2: 7865907167638449277
+      FX43_20: 2270055760670421330
+      FX43_21: 1643027946366228945
+      FX43_22: 1490264476106428987
+      FX43_23: -8640085595362468887
+      FX43_24: 2272056455611649457
+      FX43_25: 8703125038924925147
+      FX43_26: 8423763871410078844
+      FX43_3: -8903836248947434930
+      FX43_4: 1865164893921499453
+      FX43_5: -591481751341090227
+      FX43_6: -1202835864513573426
+      FX43_7: 7150997687018806189
+      FX43_8: -8787850342033060211
+      FX43_9: 6318071877381107648
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

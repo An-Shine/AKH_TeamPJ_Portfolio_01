@@ -1,0 +1,4108 @@
+fileFormatVersion: 2
+guid: 60ca900e75841d749a4798aa9d40cb93
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6783169084462668462
+    second: FX129_0
+  - first:
+      213: 8878648353792614865
+    second: FX129_1
+  - first:
+      213: -5907379520085246911
+    second: FX129_2
+  - first:
+      213: 1216209392307190284
+    second: FX129_3
+  - first:
+      213: 5040815325442793169
+    second: FX129_4
+  - first:
+      213: 7244786177904481362
+    second: FX129_5
+  - first:
+      213: -7361470021458673865
+    second: FX129_6
+  - first:
+      213: 2331155669440075896
+    second: FX129_7
+  - first:
+      213: -7085450293823847665
+    second: FX129_8
+  - first:
+      213: 4210553904565010191
+    second: FX129_9
+  - first:
+      213: -6372936334328965861
+    second: FX129_10
+  - first:
+      213: -3380138535000002408
+    second: FX129_11
+  - first:
+      213: 2132649849359691165
+    second: FX129_12
+  - first:
+      213: -3724290231685408667
+    second: FX129_13
+  - first:
+      213: -9213201557452335360
+    second: FX129_14
+  - first:
+      213: -2772421977242338829
+    second: FX129_15
+  - first:
+      213: -3674989691366929832
+    second: FX129_16
+  - first:
+      213: 8670787484219650163
+    second: FX129_17
+  - first:
+      213: -6489058284962923252
+    second: FX129_18
+  - first:
+      213: -5380242362649226290
+    second: FX129_19
+  - first:
+      213: 3119546291308634658
+    second: FX129_20
+  - first:
+      213: 893022028577811552
+    second: FX129_21
+  - first:
+      213: 4935828518054873934
+    second: FX129_22
+  - first:
+      213: 8448381354280789325
+    second: FX129_23
+  - first:
+      213: 8702075621545209703
+    second: FX129_24
+  - first:
+      213: -3142062335773262478
+    second: FX129_25
+  - first:
+      213: 265730708626076554
+    second: FX129_26
+  - first:
+      213: 9037458831469918174
+    second: FX129_27
+  - first:
+      213: 6153427666857399548
+    second: FX129_28
+  - first:
+      213: -8101738116682265250
+    second: FX129_29
+  - first:
+      213: -7038319693388453503
+    second: FX129_30
+  - first:
+      213: 2987875726356182418
+    second: FX129_31
+  - first:
+      213: -3557735136903480562
+    second: FX129_32
+  - first:
+      213: 7014192331391752922
+    second: FX129_33
+  - first:
+      213: 4697784801659137260
+    second: FX129_34
+  - first:
+      213: -7677682671654145209
+    second: FX129_35
+  - first:
+      213: -2080591160704151801
+    second: FX129_36
+  - first:
+      213: 9184814402430786143
+    second: FX129_37
+  - first:
+      213: -134007777253470574
+    second: FX129_38
+  - first:
+      213: 4070646308969023338
+    second: FX129_39
+  - first:
+      213: -197332576608824734
+    second: FX129_40
+  - first:
+      213: -3765288902057292535
+    second: FX129_41
+  - first:
+      213: 3551679289315188024
+    second: FX129_42
+  - first:
+      213: -6970528866533094583
+    second: FX129_43
+  - first:
+      213: -7141010590303231248
+    second: FX129_44
+  - first:
+      213: 6083747158948053303
+    second: FX129_45
+  - first:
+      213: 4530494700263417424
+    second: FX129_46
+  - first:
+      213: 7331919997672646531
+    second: FX129_47
+  - first:
+      213: -6271301163724525446
+    second: FX129_48
+  - first:
+      213: -4843041354303604036
+    second: FX129_49
+  - first:
+      213: 5657301232230746553
+    second: FX129_50
+  - first:
+      213: 3609456806510301994
+    second: FX129_51
+  - first:
+      213: -6926228209386123377
+    second: FX129_52
+  - first:
+      213: 6097684064549599898
+    second: FX129_53
+  - first:
+      213: -2625679379094990784
+    second: FX129_54
+  - first:
+      213: -4699065480542027514
+    second: FX129_55
+  - first:
+      213: 3226671710684592643
+    second: FX129_56
+  - first:
+      213: -5154689735867276606
+    second: FX129_57
+  - first:
+      213: -146674233060783623
+    second: FX129_58
+  - first:
+      213: -2036657390731766713
+    second: FX129_59
+  - first:
+      213: -7103322467619940392
+    second: FX129_60
+  - first:
+      213: 8523767356020544857
+    second: FX129_61
+  - first:
+      213: -6410993884637041526
+    second: FX129_62
+  - first:
+      213: 2305750047591849324
+    second: FX129_63
+  - first:
+      213: -6817161946087713375
+    second: FX129_64
+  - first:
+      213: 6199923369621291823
+    second: FX129_65
+  - first:
+      213: -6234173886203872641
+    second: FX129_66
+  - first:
+      213: 7548632610984230902
+    second: FX129_67
+  - first:
+      213: 1076481019682783915
+    second: FX129_68
+  - first:
+      213: -1009378586157279953
+    second: FX129_69
+  - first:
+      213: 1759250935815072687
+    second: FX129_70
+  - first:
+      213: -3306735718634551439
+    second: FX129_71
+  - first:
+      213: 403449801471451742
+    second: FX129_72
+  - first:
+      213: -1843103208199999263
+    second: FX129_73
+  - first:
+      213: 1752017595573370127
+    second: FX129_74
+  - first:
+      213: 4054926235238452328
+    second: FX129_75
+  - first:
+      213: -9128029357273423660
+    second: FX129_76
+  - first:
+      213: -5571180608829307063
+    second: FX129_77
+  - first:
+      213: -8359446357026848613
+    second: FX129_78
+  - first:
+      213: -3501420501415750196
+    second: FX129_79
+  - first:
+      213: 3412158827948275807
+    second: FX129_80
+  - first:
+      213: -8706780061641953452
+    second: FX129_81
+  - first:
+      213: 816239879283625386
+    second: FX129_82
+  - first:
+      213: -8257869037802762249
+    second: FX129_83
+  - first:
+      213: -1650892497002911652
+    second: FX129_84
+  - first:
+      213: -7917152275894239028
+    second: FX129_85
+  - first:
+      213: 2912504957643730679
+    second: FX129_86
+  - first:
+      213: 5841101254676531424
+    second: FX129_87
+  - first:
+      213: 7462670505149934643
+    second: FX129_88
+  - first:
+      213: 1029603195283576317
+    second: FX129_89
+  - first:
+      213: 3620649733973101409
+    second: FX129_90
+  - first:
+      213: -5479561726828225990
+    second: FX129_91
+  - first:
+      213: -2582748133341201637
+    second: FX129_92
+  - first:
+      213: 6762002404920616065
+    second: FX129_93
+  - first:
+      213: -7018598200067561494
+    second: FX129_94
+  - first:
+      213: -1078089948828804144
+    second: FX129_95
+  - first:
+      213: 3088347773481773015
+    second: FX129_96
+  - first:
+      213: -1225836173173439059
+    second: FX129_97
+  - first:
+      213: 1084306491323027702
+    second: FX129_98
+  - first:
+      213: 4354358172292074199
+    second: FX129_99
+  - first:
+      213: -6810038388114198620
+    second: FX129_100
+  - first:
+      213: 4609588435026293581
+    second: FX129_101
+  - first:
+      213: 7115773804164273019
+    second: FX129_102
+  - first:
+      213: -1572542264657948690
+    second: FX129_103
+  - first:
+      213: -969920991538815094
+    second: FX129_104
+  - first:
+      213: 7248461139578061204
+    second: FX129_105
+  - first:
+      213: -310682456147700314
+    second: FX129_106
+  - first:
+      213: 293686990869343487
+    second: FX129_107
+  - first:
+      213: 198936111150287533
+    second: FX129_108
+  - first:
+      213: -7270084600229211477
+    second: FX129_109
+  - first:
+      213: -8574524061081781689
+    second: FX129_110
+  - first:
+      213: 3770730576742283786
+    second: FX129_111
+  - first:
+      213: -8821737577757924764
+    second: FX129_112
+  - first:
+      213: -9008209432839703212
+    second: FX129_113
+  - first:
+      213: -2610638724351146770
+    second: FX129_114
+  - first:
+      213: -4218605483574492325
+    second: FX129_115
+  - first:
+      213: -6717348859988633879
+    second: FX129_116
+  - first:
+      213: -3731137331960900973
+    second: FX129_117
+  - first:
+      213: 5604133556100889567
+    second: FX129_118
+  - first:
+      213: 2284740028303377120
+    second: FX129_119
+  - first:
+      213: 5530283054344670745
+    second: FX129_120
+  - first:
+      213: -532501336635063695
+    second: FX129_121
+  - first:
+      213: 2552149456750436579
+    second: FX129_122
+  - first:
+      213: -4147633461698009963
+    second: FX129_123
+  - first:
+      213: 2089393714250273040
+    second: FX129_124
+  - first:
+      213: -696380132700136527
+    second: FX129_125
+  - first:
+      213: 767480303326413372
+    second: FX129_126
+  - first:
+      213: -1466143826529673111
+    second: FX129_127
+  - first:
+      213: 3629105632740388649
+    second: FX129_128
+  - first:
+      213: 4920115109132901626
+    second: FX129_129
+  - first:
+      213: -312819569698457756
+    second: FX129_130
+  - first:
+      213: -3987483777270329702
+    second: FX129_131
+  - first:
+      213: 5196848222317740741
+    second: FX129_132
+  - first:
+      213: -7076185556041560055
+    second: FX129_133
+  - first:
+      213: -4059186150170033885
+    second: FX129_134
+  - first:
+      213: -1638104896393223869
+    second: FX129_135
+  - first:
+      213: -8999918227760166163
+    second: FX129_136
+  - first:
+      213: -2154575448362811748
+    second: FX129_137
+  - first:
+      213: -7009598523782428553
+    second: FX129_138
+  - first:
+      213: -2721998967485397338
+    second: FX129_139
+  - first:
+      213: 8505494355436733102
+    second: FX129_140
+  - first:
+      213: -2439691836627973712
+    second: FX129_141
+  - first:
+      213: -5430701693317649248
+    second: FX129_142
+  - first:
+      213: -2724353246071379582
+    second: FX129_143
+  - first:
+      213: 836369977884218692
+    second: FX129_144
+  - first:
+      213: -2467352193581972720
+    second: FX129_145
+  - first:
+      213: -4877174809981429934
+    second: FX129_146
+  - first:
+      213: 6431384165589054203
+    second: FX129_147
+  - first:
+      213: -5573870142457284190
+    second: FX129_148
+  - first:
+      213: -2201826651642583639
+    second: FX129_149
+  - first:
+      213: 4419964687565309239
+    second: FX129_150
+  - first:
+      213: 6824724293369025363
+    second: FX129_151
+  - first:
+      213: 8730862652800944150
+    second: FX129_152
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: FX129_0
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 952
+        width: 30
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 255e03d08a75dd1a0800000000000000
+      internalID: -6783169084462668462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_1
+      rect:
+        serializedVersion: 2
+        x: 668
+        y: 958
+        width: 39
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d16a6df2ab473b70800000000000000
+      internalID: 8878648353792614865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_2
+      rect:
+        serializedVersion: 2
+        x: 996
+        y: 963
+        width: 39
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14cb6e700a5c40ea0800000000000000
+      internalID: -5907379520085246911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_3
+      rect:
+        serializedVersion: 2
+        x: 1010
+        y: 952
+        width: 37
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0ab6f0aff7d0e010800000000000000
+      internalID: 1216209392307190284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_4
+      rect:
+        serializedVersion: 2
+        x: 1324
+        y: 958
+        width: 50
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1dedc53c4d294f540800000000000000
+      internalID: 5040815325442793169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_5
+      rect:
+        serializedVersion: 2
+        x: 1648
+        y: 959
+        width: 55
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25418afe4a6aa8460800000000000000
+      internalID: 7244786177904481362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_6
+      rect:
+        serializedVersion: 2
+        x: 1681
+        y: 952
+        width: 43
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73fb44aa40ec6d990800000000000000
+      internalID: -7361470021458673865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_7
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 944
+        width: 37
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8781d19fabde95020800000000000000
+      internalID: 2331155669440075896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_8
+      rect:
+        serializedVersion: 2
+        x: 683
+        y: 944
+        width: 35
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0341f28f7c6bad90800000000000000
+      internalID: -7085450293823847665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_9
+      rect:
+        serializedVersion: 2
+        x: 1351
+        y: 944
+        width: 47
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0f3b3db774ee6a30800000000000000
+      internalID: 4210553904565010191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_10
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 862
+        width: 85
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1554205b28ce87a0800000000000000
+      internalID: -6372936334328965861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_11
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 863
+        width: 93
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89037b149e55711d0800000000000000
+      internalID: -3380138535000002408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_12
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 856
+        width: 32
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9def5d1db1b89d10800000000000000
+      internalID: 2132649849359691165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_13
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 862
+        width: 111
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5681fe334c9a05cc0800000000000000
+      internalID: -3724290231685408667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_14
+      rect:
+        serializedVersion: 2
+        x: 1004
+        y: 867
+        width: 39
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0075af34ff1242080800000000000000
+      internalID: -9213201557452335360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_15
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 863
+        width: 88
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f9fbfe86e06689d0800000000000000
+      internalID: -2772421977242338829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_16
+      rect:
+        serializedVersion: 2
+        x: 1106
+        y: 856
+        width: 30
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85a0adcb850dffcc0800000000000000
+      internalID: -3674989691366929832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_17
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 863
+        width: 39
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 370b0dfe643d45870800000000000000
+      internalID: 8670787484219650163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_18
+      rect:
+        serializedVersion: 2
+        x: 1358
+        y: 867
+        width: 98
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0dbafdcedb32f5a0800000000000000
+      internalID: -6489058284962923252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_19
+      rect:
+        serializedVersion: 2
+        x: 1431
+        y: 862
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec3d8c0b31a8555b0800000000000000
+      internalID: -5380242362649226290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_20
+      rect:
+        serializedVersion: 2
+        x: 1638
+        y: 861
+        width: 39
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 222a6d9e2dada4b20800000000000000
+      internalID: 3119546291308634658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_21
+      rect:
+        serializedVersion: 2
+        x: 1674
+        y: 867
+        width: 37
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06caaf5bdc6a46c00800000000000000
+      internalID: 893022028577811552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_22
+      rect:
+        serializedVersion: 2
+        x: 1708
+        y: 863
+        width: 83
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4b47e2d2e59f7440800000000000000
+      internalID: 4935828518054873934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_23
+      rect:
+        serializedVersion: 2
+        x: 1773
+        y: 856
+        width: 30
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d45a0fc841eae3570800000000000000
+      internalID: 8448381354280789325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_24
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 848
+        width: 32
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76fe9c61cabf3c870800000000000000
+      internalID: 8702075621545209703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_25
+      rect:
+        serializedVersion: 2
+        x: 776
+        y: 848
+        width: 30
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27db916f3f62564d0800000000000000
+      internalID: -3142062335773262478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_26
+      rect:
+        serializedVersion: 2
+        x: 1443
+        y: 848
+        width: 37
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a83f19deba010b300800000000000000
+      internalID: 265730708626076554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_27
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 763
+        width: 39
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed73bf9bce08b6d70800000000000000
+      internalID: 9037458831469918174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_28
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 767
+        width: 37
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf4981a5cdd556550800000000000000
+      internalID: 6153427666857399548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_29
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 766
+        width: 111
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5d49e39b18d09f80800000000000000
+      internalID: -8101738116682265250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_30
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 763
+        width: 69
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 189e1fb878dd25e90800000000000000
+      internalID: -7038319693388453503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_31
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 771
+        width: 49
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 295f8768421177920800000000000000
+      internalID: 2987875726356182418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_32
+      rect:
+        serializedVersion: 2
+        x: 466
+        y: 767
+        width: 79
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0b31ff1eb260aec0800000000000000
+      internalID: -3557735136903480562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_33
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 760
+        width: 20
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adadfda33ca675160800000000000000
+      internalID: 7014192331391752922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_34
+      rect:
+        serializedVersion: 2
+        x: 676
+        y: 763
+        width: 67
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cec2f1e1362e13140800000000000000
+      internalID: 4697784801659137260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_35
+      rect:
+        serializedVersion: 2
+        x: 738
+        y: 767
+        width: 49
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 743f1e9c944637590800000000000000
+      internalID: -7677682671654145209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_36
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 766
+        width: 100
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70f496fdc514023e0800000000000000
+      internalID: -2080591160704151801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_37
+      rect:
+        serializedVersion: 2
+        x: 996
+        y: 763
+        width: 109
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5a57c82904077f70800000000000000
+      internalID: 9184814402430786143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_38
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 771
+        width: 36
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29ecaa7f2a8e32ef0800000000000000
+      internalID: -134007777253470574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_39
+      rect:
+        serializedVersion: 2
+        x: 1133
+        y: 767
+        width: 79
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a678a543047dd7830800000000000000
+      internalID: 4070646308969023338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_40
+      rect:
+        serializedVersion: 2
+        x: 1187
+        y: 760
+        width: 30
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2625e9c211fe24df0800000000000000
+      internalID: -197332576608824734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_41
+      rect:
+        serializedVersion: 2
+        x: 1316
+        y: 763
+        width: 107
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90d872461b10fbbc0800000000000000
+      internalID: -3765288902057292535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_42
+      rect:
+        serializedVersion: 2
+        x: 1416
+        y: 767
+        width: 36
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83d5ebbfe791a4130800000000000000
+      internalID: 3551679289315188024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_43
+      rect:
+        serializedVersion: 2
+        x: 1451
+        y: 766
+        width: 100
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94b40b56de4b34f90800000000000000
+      internalID: -6970528866533094583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_44
+      rect:
+        serializedVersion: 2
+        x: 1636
+        y: 763
+        width: 107
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f26cabe3b806ec90800000000000000
+      internalID: -7141010590303231248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_45
+      rect:
+        serializedVersion: 2
+        x: 1734
+        y: 765
+        width: 36
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7310468decfcd6450800000000000000
+      internalID: 6083747158948053303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_46
+      rect:
+        serializedVersion: 2
+        x: 1767
+        y: 771
+        width: 33
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 056adf12dec8fde30800000000000000
+      internalID: 4530494700263417424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_47
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 767
+        width: 79
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3876cd6446630c560800000000000000
+      internalID: 7331919997672646531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_48
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 752
+        width: 30
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a70b4b081dcd7f8a0800000000000000
+      internalID: -6271301163724525446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_49
+      rect:
+        serializedVersion: 2
+        x: 857
+        y: 752
+        width: 37
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbaf43c3c8f0accb0800000000000000
+      internalID: -4843041354303604036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_50
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 667
+        width: 132
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b94e7e3f75c28e40800000000000000
+      internalID: 5657301232230746553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_51
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 671
+        width: 33
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a23992087dd571230800000000000000
+      internalID: 3609456806510301994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_52
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 675
+        width: 89
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8f004ae32811ef90800000000000000
+      internalID: -6926228209386123377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_53
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 667
+        width: 158
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9af90c89535f9450800000000000000
+      internalID: 6097684064549599898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_54
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 675
+        width: 39
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04099f22486bf8bd0800000000000000
+      internalID: -2625679379094990784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_55
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 671
+        width: 57
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6010ef797d099ceb0800000000000000
+      internalID: -4699065480542027514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_56
+      rect:
+        serializedVersion: 2
+        x: 676
+        y: 667
+        width: 156
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30a382243d077cc20800000000000000
+      internalID: 3226671710684592643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_57
+      rect:
+        serializedVersion: 2
+        x: 830
+        y: 671
+        width: 39
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c26746fefcd678b0800000000000000
+      internalID: -5154689735867276606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_58
+      rect:
+        serializedVersion: 2
+        x: 872
+        y: 675
+        width: 61
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f985b8ef88e6fdf0800000000000000
+      internalID: -146674233060783623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_59
+      rect:
+        serializedVersion: 2
+        x: 996
+        y: 667
+        width: 191
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7445240d4e65cb3e0800000000000000
+      internalID: -2036657390731766713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_60
+      rect:
+        serializedVersion: 2
+        x: 1188
+        y: 675
+        width: 32
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d75678c9ddeb6d90800000000000000
+      internalID: -7103322467619940392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_61
+      rect:
+        serializedVersion: 2
+        x: 1214
+        y: 678
+        width: 39
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 955dcabdf318a4670800000000000000
+      internalID: 8523767356020544857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_62
+      rect:
+        serializedVersion: 2
+        x: 1316
+        y: 667
+        width: 189
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8ce10167039707a0800000000000000
+      internalID: -6410993884637041526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_63
+      rect:
+        serializedVersion: 2
+        x: 1504
+        y: 671
+        width: 32
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6d5d8fa37bafff10800000000000000
+      internalID: 2305750047591849324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_64
+      rect:
+        serializedVersion: 2
+        x: 1532
+        y: 679
+        width: 39
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a5912334539461a0800000000000000
+      internalID: -6817161946087713375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_65
+      rect:
+        serializedVersion: 2
+        x: 1636
+        y: 667
+        width: 218
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f238be0c47d8a0650800000000000000
+      internalID: 6199923369621291823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_66
+      rect:
+        serializedVersion: 2
+        x: 1848
+        y: 675
+        width: 39
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7a3dcc61e3cb79a0800000000000000
+      internalID: -6234173886203872641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_67
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 571
+        width: 216
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fff4a58d5122c860800000000000000
+      internalID: 7548632610984230902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_68
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 575
+        width: 39
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba284a1b8cd60fe00800000000000000
+      internalID: 1076481019682783915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_69
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 571
+        width: 245
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2595381687fdf1f0800000000000000
+      internalID: -1009378586157279953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_70
+      rect:
+        serializedVersion: 2
+        x: 676
+        y: 571
+        width: 243
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fabe70cb76d1a6810800000000000000
+      internalID: 1759250935815072687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_71
+      rect:
+        serializedVersion: 2
+        x: 996
+        y: 571
+        width: 243
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17701bc326d1c12d0800000000000000
+      internalID: -3306735718634551439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_72
+      rect:
+        serializedVersion: 2
+        x: 1316
+        y: 571
+        width: 243
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e526865f477599500800000000000000
+      internalID: 403449801471451742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_73
+      rect:
+        serializedVersion: 2
+        x: 1636
+        y: 571
+        width: 243
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e03bd6b56bfb66e0800000000000000
+      internalID: -1843103208199999263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_74
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 475
+        width: 243
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0d726878ba605810800000000000000
+      internalID: 1752017595573370127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_75
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 475
+        width: 243
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86cccc15dedf54830800000000000000
+      internalID: 4054926235238452328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_76
+      rect:
+        serializedVersion: 2
+        x: 676
+        y: 475
+        width: 243
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d0616479a9b25180800000000000000
+      internalID: -9128029357273423660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_77
+      rect:
+        serializedVersion: 2
+        x: 997
+        y: 475
+        width: 242
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9474f2fe0c03fa2b0800000000000000
+      internalID: -5571180608829307063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_78
+      rect:
+        serializedVersion: 2
+        x: 1319
+        y: 475
+        width: 33
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b904b7a14d74dfb80800000000000000
+      internalID: -8359446357026848613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_79
+      rect:
+        serializedVersion: 2
+        x: 1346
+        y: 475
+        width: 213
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc518d3fa94786fc0800000000000000
+      internalID: -3501420501415750196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_80
+      rect:
+        serializedVersion: 2
+        x: 1640
+        y: 475
+        width: 31
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f58f119206c6a5f20800000000000000
+      internalID: 3412158827948275807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_81
+      rect:
+        serializedVersion: 2
+        x: 1667
+        y: 475
+        width: 212
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45fa0681aad4b2780800000000000000
+      internalID: -8706780061641953452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_82
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 379
+        width: 27
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aad453878ddd35b00800000000000000
+      internalID: 816239879283625386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_83
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 379
+        width: 210
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ffc118bcd7266d80800000000000000
+      internalID: -8257869037802762249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_84
+      rect:
+        serializedVersion: 2
+        x: 363
+        y: 379
+        width: 25
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c58a8c1550ad619e0800000000000000
+      internalID: -1650892497002911652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_85
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 379
+        width: 29
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc006a2b3ff902290800000000000000
+      internalID: -7917152275894239028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_86
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 379
+        width: 183
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fe2beee3db4b6820800000000000000
+      internalID: 2912504957643730679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_87
+      rect:
+        serializedVersion: 2
+        x: 685
+        y: 379
+        width: 21
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e84516c4a2cf0150800000000000000
+      internalID: 5841101254676531424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_88
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 379
+        width: 27
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33c2f37194bb09760800000000000000
+      internalID: 7462670505149934643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_89
+      rect:
+        serializedVersion: 2
+        x: 738
+        y: 379
+        width: 41
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df51c7aa6a2e94e00800000000000000
+      internalID: 1029603195283576317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_90
+      rect:
+        serializedVersion: 2
+        x: 772
+        y: 379
+        width: 147
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16b449100c12f3230800000000000000
+      internalID: 3620649733973101409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_91
+      rect:
+        serializedVersion: 2
+        x: 1006
+        y: 379
+        width: 19
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3ad39334afa4f3b0800000000000000
+      internalID: -5479561726828225990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_92
+      rect:
+        serializedVersion: 2
+        x: 1033
+        y: 379
+        width: 23
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1bf4e7b14c382cd0800000000000000
+      internalID: -2582748133341201637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_93
+      rect:
+        serializedVersion: 2
+        x: 1060
+        y: 379
+        width: 37
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18461a35c5577dd50800000000000000
+      internalID: 6762002404920616065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_94
+      rect:
+        serializedVersion: 2
+        x: 1093
+        y: 379
+        width: 146
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae7e6c78f1ee89e90800000000000000
+      internalID: -7018598200067561494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_95
+      rect:
+        serializedVersion: 2
+        x: 1328
+        y: 379
+        width: 15
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0dbd32c47ead901f0800000000000000
+      internalID: -1078089948828804144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_96
+      rect:
+        serializedVersion: 2
+        x: 1354
+        y: 379
+        width: 21
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d7ef3defe30cda20800000000000000
+      internalID: 3088347773481773015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_97
+      rect:
+        serializedVersion: 2
+        x: 1382
+        y: 379
+        width: 33
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da54c29ce74fcfee0800000000000000
+      internalID: -1225836173173439059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_98
+      rect:
+        serializedVersion: 2
+        x: 1415
+        y: 379
+        width: 30
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f095fa420b3c0f00800000000000000
+      internalID: 1084306491323027702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_99
+      rect:
+        serializedVersion: 2
+        x: 1439
+        y: 379
+        width: 120
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7dac944ffa9cd6c30800000000000000
+      internalID: 4354358172292074199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_100
+      rect:
+        serializedVersion: 2
+        x: 1649
+        y: 379
+        width: 13
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4afeda9ca22ed71a0800000000000000
+      internalID: -6810038388114198620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_101
+      rect:
+        serializedVersion: 2
+        x: 1675
+        y: 379
+        width: 19
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d43bd7e424c88ff30800000000000000
+      internalID: 4609588435026293581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_102
+      rect:
+        serializedVersion: 2
+        x: 1704
+        y: 379
+        width: 29
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b73dd3be29e40c260800000000000000
+      internalID: 7115773804164273019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_103
+      rect:
+        serializedVersion: 2
+        x: 1736
+        y: 379
+        width: 28
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eef46c854253d2ae0800000000000000
+      internalID: -1572542264657948690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_104
+      rect:
+        serializedVersion: 2
+        x: 1760
+        y: 379
+        width: 119
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8f522f3ff52a82f0800000000000000
+      internalID: -969920991538815094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_105
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 283
+        width: 15
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49106c0a005b79460800000000000000
+      internalID: 7248461139578061204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_106
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 283
+        width: 25
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a5de53c3fb30bbf0800000000000000
+      internalID: -310682456147700314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_107
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 283
+        width: 26
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffcabed13c2631400800000000000000
+      internalID: 293686990869343487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_108
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 283
+        width: 118
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: daa4c1ec653c2c200800000000000000
+      internalID: 198936111150287533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_109
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 283
+        width: 13
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba2dc4c13987b1b90800000000000000
+      internalID: -7270084600229211477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_110
+      rect:
+        serializedVersion: 2
+        x: 428
+        y: 283
+        width: 21
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74a3e25dbcb210980800000000000000
+      internalID: -8574524061081781689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_111
+      rect:
+        serializedVersion: 2
+        x: 459
+        y: 283
+        width: 23
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0a7d6a3b73545430800000000000000
+      internalID: 3770730576742283786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_112
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 283
+        width: 27
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4622600a964e29580800000000000000
+      internalID: -8821737577757924764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_113
+      rect:
+        serializedVersion: 2
+        x: 507
+        y: 283
+        width: 92
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45534459f396cf280800000000000000
+      internalID: -9008209432839703212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_114
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 283
+        width: 17
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee4cb2679e525cbd0800000000000000
+      internalID: -2610638724351146770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_115
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 283
+        width: 20
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b530700f9a08475c0800000000000000
+      internalID: -4218605483574492325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_116
+      rect:
+        serializedVersion: 2
+        x: 804
+        y: 283
+        width: 23
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e690084dce27c2a0800000000000000
+      internalID: -6717348859988633879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_117
+      rect:
+        serializedVersion: 2
+        x: 829
+        y: 283
+        width: 33
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39295407d56583cc0800000000000000
+      internalID: -3731137331960900973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_118
+      rect:
+        serializedVersion: 2
+        x: 860
+        y: 283
+        width: 59
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fdb7d3df6c1e5cd40800000000000000
+      internalID: 5604133556100889567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_119
+      rect:
+        serializedVersion: 2
+        x: 1072
+        y: 283
+        width: 13
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e2832f53f605bf10800000000000000
+      internalID: 2284740028303377120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_120
+      rect:
+        serializedVersion: 2
+        x: 1101
+        y: 283
+        width: 18
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91e839123238fbc40800000000000000
+      internalID: 5530283054344670745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_121
+      rect:
+        serializedVersion: 2
+        x: 1125
+        y: 283
+        width: 21
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 172427b0bdc2c98f0800000000000000
+      internalID: -532501336635063695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_122
+      rect:
+        serializedVersion: 2
+        x: 1150
+        y: 283
+        width: 31
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e0e057b86e0b6320800000000000000
+      internalID: 2552149456750436579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_123
+      rect:
+        serializedVersion: 2
+        x: 1181
+        y: 283
+        width: 58
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59467f87755a076c0800000000000000
+      internalID: -4147633461698009963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_124
+      rect:
+        serializedVersion: 2
+        x: 1422
+        y: 283
+        width: 16
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01152d553840ffc10800000000000000
+      internalID: 2089393714250273040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_125
+      rect:
+        serializedVersion: 2
+        x: 1446
+        y: 283
+        width: 19
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1bbd4c975f5f556f0800000000000000
+      internalID: -696380132700136527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_126
+      rect:
+        serializedVersion: 2
+        x: 1472
+        y: 283
+        width: 27
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3241e30543a6aa00800000000000000
+      internalID: 767480303326413372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_127
+      rect:
+        serializedVersion: 2
+        x: 1502
+        y: 283
+        width: 57
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 960211e25f537abe0800000000000000
+      internalID: -1466143826529673111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_128
+      rect:
+        serializedVersion: 2
+        x: 1744
+        y: 285
+        width: 12
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92f2cdb585c2d5230800000000000000
+      internalID: 3629105632740388649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_129
+      rect:
+        serializedVersion: 2
+        x: 1767
+        y: 283
+        width: 17
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afc16e5bf92c74440800000000000000
+      internalID: 4920115109132901626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_130
+      rect:
+        serializedVersion: 2
+        x: 1793
+        y: 283
+        width: 25
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 467355d3244a8abf0800000000000000
+      internalID: -312819569698457756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_131
+      rect:
+        serializedVersion: 2
+        x: 1823
+        y: 283
+        width: 26
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9e4b2491ac99a8c0800000000000000
+      internalID: -3987483777270329702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_132
+      rect:
+        serializedVersion: 2
+        x: 1841
+        y: 283
+        width: 37
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c28ed29ce9ee1840800000000000000
+      internalID: 5196848222317740741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_133
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 187
+        width: 15
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 900946f5ab65ccd90800000000000000
+      internalID: -7076185556041560055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_134
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 187
+        width: 21
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3210ee1f3bfdaa7c0800000000000000
+      internalID: -4059186150170033885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_135
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 187
+        width: 24
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34167a996484449e0800000000000000
+      internalID: -1638104896393223869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_136
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 187
+        width: 33
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: deacac23e0ed91380800000000000000
+      internalID: -8999918227760166163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_137
+      rect:
+        serializedVersion: 2
+        x: 489
+        y: 187
+        width: 13
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9e7e8e8b096912e0800000000000000
+      internalID: -2154575448362811748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_138
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 187
+        width: 19
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77888d3f747e8be90800000000000000
+      internalID: -7009598523782428553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_139
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 187
+        width: 21
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a68d006c54893ad0800000000000000
+      internalID: -2721998967485397338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_140
+      rect:
+        serializedVersion: 2
+        x: 564
+        y: 187
+        width: 31
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea285ee5d06990670800000000000000
+      internalID: 8505494355436733102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_141
+      rect:
+        serializedVersion: 2
+        x: 838
+        y: 187
+        width: 15
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b98e5c5339742ed0800000000000000
+      internalID: -2439691836627973712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_142
+      rect:
+        serializedVersion: 2
+        x: 867
+        y: 187
+        width: 18
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ac60b0459542a4b0800000000000000
+      internalID: -5430701693317649248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_143
+      rect:
+        serializedVersion: 2
+        x: 886
+        y: 187
+        width: 27
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 289ab3d2827213ad0800000000000000
+      internalID: -2724353246071379582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_144
+      rect:
+        serializedVersion: 2
+        x: 1159
+        y: 187
+        width: 13
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 445179840126b9b00800000000000000
+      internalID: 836369977884218692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_145
+      rect:
+        serializedVersion: 2
+        x: 1188
+        y: 187
+        width: 16
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01304c5a04432cdd0800000000000000
+      internalID: -2467352193581972720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_146
+      rect:
+        serializedVersion: 2
+        x: 1207
+        y: 187
+        width: 25
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 257d297c95bc05cb0800000000000000
+      internalID: -4877174809981429934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_147
+      rect:
+        serializedVersion: 2
+        x: 1509
+        y: 187
+        width: 14
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf2f10cd2ddd04950800000000000000
+      internalID: 6431384165589054203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_148
+      rect:
+        serializedVersion: 2
+        x: 1529
+        y: 187
+        width: 21
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a97da613a2a5a2b0800000000000000
+      internalID: -5573870142457284190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_149
+      rect:
+        serializedVersion: 2
+        x: 1830
+        y: 187
+        width: 12
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a52bdb735a8171e0800000000000000
+      internalID: -2201826651642583639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_150
+      rect:
+        serializedVersion: 2
+        x: 1850
+        y: 187
+        width: 19
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 735c912277ed65d30800000000000000
+      internalID: 4419964687565309239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_151
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 91
+        width: 15
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3535d3cf59a46be50800000000000000
+      internalID: 6824724293369025363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX129_152
+      rect:
+        serializedVersion: 2
+        x: 573
+        y: 91
+        width: 13
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 618ccea13514a2970800000000000000
+      internalID: 8730862652800944150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      FX129_0: -6783169084462668462
+      FX129_1: 8878648353792614865
+      FX129_10: -6372936334328965861
+      FX129_100: -6810038388114198620
+      FX129_101: 4609588435026293581
+      FX129_102: 7115773804164273019
+      FX129_103: -1572542264657948690
+      FX129_104: -969920991538815094
+      FX129_105: 7248461139578061204
+      FX129_106: -310682456147700314
+      FX129_107: 293686990869343487
+      FX129_108: 198936111150287533
+      FX129_109: -7270084600229211477
+      FX129_11: -3380138535000002408
+      FX129_110: -8574524061081781689
+      FX129_111: 3770730576742283786
+      FX129_112: -8821737577757924764
+      FX129_113: -9008209432839703212
+      FX129_114: -2610638724351146770
+      FX129_115: -4218605483574492325
+      FX129_116: -6717348859988633879
+      FX129_117: -3731137331960900973
+      FX129_118: 5604133556100889567
+      FX129_119: 2284740028303377120
+      FX129_12: 2132649849359691165
+      FX129_120: 5530283054344670745
+      FX129_121: -532501336635063695
+      FX129_122: 2552149456750436579
+      FX129_123: -4147633461698009963
+      FX129_124: 2089393714250273040
+      FX129_125: -696380132700136527
+      FX129_126: 767480303326413372
+      FX129_127: -1466143826529673111
+      FX129_128: 3629105632740388649
+      FX129_129: 4920115109132901626
+      FX129_13: -3724290231685408667
+      FX129_130: -312819569698457756
+      FX129_131: -3987483777270329702
+      FX129_132: 5196848222317740741
+      FX129_133: -7076185556041560055
+      FX129_134: -4059186150170033885
+      FX129_135: -1638104896393223869
+      FX129_136: -8999918227760166163
+      FX129_137: -2154575448362811748
+      FX129_138: -7009598523782428553
+      FX129_139: -2721998967485397338
+      FX129_14: -9213201557452335360
+      FX129_140: 8505494355436733102
+      FX129_141: -2439691836627973712
+      FX129_142: -5430701693317649248
+      FX129_143: -2724353246071379582
+      FX129_144: 836369977884218692
+      FX129_145: -2467352193581972720
+      FX129_146: -4877174809981429934
+      FX129_147: 6431384165589054203
+      FX129_148: -5573870142457284190
+      FX129_149: -2201826651642583639
+      FX129_15: -2772421977242338829
+      FX129_150: 4419964687565309239
+      FX129_151: 6824724293369025363
+      FX129_152: 8730862652800944150
+      FX129_16: -3674989691366929832
+      FX129_17: 8670787484219650163
+      FX129_18: -6489058284962923252
+      FX129_19: -5380242362649226290
+      FX129_2: -5907379520085246911
+      FX129_20: 3119546291308634658
+      FX129_21: 893022028577811552
+      FX129_22: 4935828518054873934
+      FX129_23: 8448381354280789325
+      FX129_24: 8702075621545209703
+      FX129_25: -3142062335773262478
+      FX129_26: 265730708626076554
+      FX129_27: 9037458831469918174
+      FX129_28: 6153427666857399548
+      FX129_29: -8101738116682265250
+      FX129_3: 1216209392307190284
+      FX129_30: -7038319693388453503
+      FX129_31: 2987875726356182418
+      FX129_32: -3557735136903480562
+      FX129_33: 7014192331391752922
+      FX129_34: 4697784801659137260
+      FX129_35: -7677682671654145209
+      FX129_36: -2080591160704151801
+      FX129_37: 9184814402430786143
+      FX129_38: -134007777253470574
+      FX129_39: 4070646308969023338
+      FX129_4: 5040815325442793169
+      FX129_40: -197332576608824734
+      FX129_41: -3765288902057292535
+      FX129_42: 3551679289315188024
+      FX129_43: -6970528866533094583
+      FX129_44: -7141010590303231248
+      FX129_45: 6083747158948053303
+      FX129_46: 4530494700263417424
+      FX129_47: 7331919997672646531
+      FX129_48: -6271301163724525446
+      FX129_49: -4843041354303604036
+      FX129_5: 7244786177904481362
+      FX129_50: 5657301232230746553
+      FX129_51: 3609456806510301994
+      FX129_52: -6926228209386123377
+      FX129_53: 6097684064549599898
+      FX129_54: -2625679379094990784
+      FX129_55: -4699065480542027514
+      FX129_56: 3226671710684592643
+      FX129_57: -5154689735867276606
+      FX129_58: -146674233060783623
+      FX129_59: -2036657390731766713
+      FX129_6: -7361470021458673865
+      FX129_60: -7103322467619940392
+      FX129_61: 8523767356020544857
+      FX129_62: -6410993884637041526
+      FX129_63: 2305750047591849324
+      FX129_64: -6817161946087713375
+      FX129_65: 6199923369621291823
+      FX129_66: -6234173886203872641
+      FX129_67: 7548632610984230902
+      FX129_68: 1076481019682783915
+      FX129_69: -1009378586157279953
+      FX129_7: 2331155669440075896
+      FX129_70: 1759250935815072687
+      FX129_71: -3306735718634551439
+      FX129_72: 403449801471451742
+      FX129_73: -1843103208199999263
+      FX129_74: 1752017595573370127
+      FX129_75: 4054926235238452328
+      FX129_76: -9128029357273423660
+      FX129_77: -5571180608829307063
+      FX129_78: -8359446357026848613
+      FX129_79: -3501420501415750196
+      FX129_8: -7085450293823847665
+      FX129_80: 3412158827948275807
+      FX129_81: -8706780061641953452
+      FX129_82: 816239879283625386
+      FX129_83: -8257869037802762249
+      FX129_84: -1650892497002911652
+      FX129_85: -7917152275894239028
+      FX129_86: 2912504957643730679
+      FX129_87: 5841101254676531424
+      FX129_88: 7462670505149934643
+      FX129_89: 1029603195283576317
+      FX129_9: 4210553904565010191
+      FX129_90: 3620649733973101409
+      FX129_91: -5479561726828225990
+      FX129_92: -2582748133341201637
+      FX129_93: 6762002404920616065
+      FX129_94: -7018598200067561494
+      FX129_95: -1078089948828804144
+      FX129_96: 3088347773481773015
+      FX129_97: -1225836173173439059
+      FX129_98: 1084306491323027702
+      FX129_99: 4354358172292074199
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

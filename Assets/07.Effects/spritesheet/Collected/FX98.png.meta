@@ -1,0 +1,962 @@
+fileFormatVersion: 2
+guid: 9031db80ac352104b8c1231b7da7b351
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3769648961393239507
+    second: FX98_0
+  - first:
+      213: 2644162764036652079
+    second: FX98_1
+  - first:
+      213: -5679413706334709122
+    second: FX98_2
+  - first:
+      213: 3659156453953355408
+    second: FX98_3
+  - first:
+      213: 6619630117480776795
+    second: FX98_4
+  - first:
+      213: -6780883511819377965
+    second: FX98_5
+  - first:
+      213: 1070338468882046122
+    second: FX98_6
+  - first:
+      213: -3238948016015096307
+    second: FX98_7
+  - first:
+      213: -1510680649284894843
+    second: FX98_8
+  - first:
+      213: -1700523765534670283
+    second: FX98_9
+  - first:
+      213: 5474243371095466365
+    second: FX98_10
+  - first:
+      213: -1469808980584858269
+    second: FX98_11
+  - first:
+      213: -5456382468544737341
+    second: FX98_12
+  - first:
+      213: -5242945945742299313
+    second: FX98_13
+  - first:
+      213: -41752978669618706
+    second: FX98_14
+  - first:
+      213: -8384365798211022452
+    second: FX98_15
+  - first:
+      213: 8933002170889705112
+    second: FX98_16
+  - first:
+      213: -2395415701344457833
+    second: FX98_17
+  - first:
+      213: -1376236674044389188
+    second: FX98_18
+  - first:
+      213: -5072806086229868288
+    second: FX98_19
+  - first:
+      213: 3902552258308982869
+    second: FX98_20
+  - first:
+      213: 8909438269823071865
+    second: FX98_21
+  - first:
+      213: -5746411636450220657
+    second: FX98_22
+  - first:
+      213: -5498065120844440361
+    second: FX98_23
+  - first:
+      213: -917583071589581138
+    second: FX98_24
+  - first:
+      213: 7871216448273878243
+    second: FX98_25
+  - first:
+      213: -4129843487003996613
+    second: FX98_26
+  - first:
+      213: -6090489241196530740
+    second: FX98_27
+  - first:
+      213: 337189356905095465
+    second: FX98_28
+  - first:
+      213: -5075258318264136050
+    second: FX98_29
+  - first:
+      213: 3122723232596506344
+    second: FX98_30
+  - first:
+      213: -8129127818381625332
+    second: FX98_31
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: FX98_0
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 8
+        width: 62
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2a5c38fd348fabc0800000000000000
+      internalID: -3769648961393239507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX98_1
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 4
+        width: 64
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2c38b64604f1b420800000000000000
+      internalID: 2644162764036652079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX98_2
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 3
+        width: 54
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7a5f6d235bae21b0800000000000000
+      internalID: -5679413706334709122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX98_3
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 49
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09eb777686fe7c230800000000000000
+      internalID: 3659156453953355408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX98_4
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 49
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b544be00586addb50800000000000000
+      internalID: 6619630117480776795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX98_5
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 2
+        width: 75
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d2e3b66f5675e1a0800000000000000
+      internalID: -6780883511819377965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX98_6
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 47
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aac5623aa2b9ade00800000000000000
+      internalID: 1070338468882046122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX98_7
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 53
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d06c67ba0f1fc03d0800000000000000
+      internalID: -3238948016015096307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX98_8
+      rect:
+        serializedVersion: 2
+        x: 497
+        y: 53
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58f315214fbf80be0800000000000000
+      internalID: -1510680649284894843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX98_9
+      rect:
+        serializedVersion: 2
+        x: 501
+        y: 47
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 532423f15a68668e0800000000000000
+      internalID: -1700523765534670283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX98_10
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 46
+        width: 46
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d71ae2c975b68fb40800000000000000
+      internalID: 5474243371095466365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX98_11
+      rect:
+        serializedVersion: 2
+        x: 563
+        y: 1
+        width: 75
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36d7f8005803a9be0800000000000000
+      internalID: -1469808980584858269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX98_12
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 27
+        width: 12
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cfc8b3dd090744b0800000000000000
+      internalID: -5456382468544737341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX98_13
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 46
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4fa47fc0705d37b0800000000000000
+      internalID: -5242945945742299313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX98_14
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 29
+        width: 14
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee9351a13e9ab6ff0800000000000000
+      internalID: -41752978669618706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX98_15
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 28
+        width: 22
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8192b29abfb4ab80800000000000000
+      internalID: -8384365798211022452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX98_16
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 26
+        width: 38
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8969ca5352668fb70800000000000000
+      internalID: 8933002170889705112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX98_17
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 19
+        width: 40
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79b68ff6c16c1ced0800000000000000
+      internalID: -2395415701344457833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX98_18
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 34
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb818bc5900a6ece0800000000000000
+      internalID: -1376236674044389188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX98_19
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 24
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00144dfcdb5c999b0800000000000000
+      internalID: -5072806086229868288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX98_20
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 34
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 558c7e13a96a82630800000000000000
+      internalID: 3902552258308982869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX98_21
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 24
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9763315f6eea4ab70800000000000000
+      internalID: 8909438269823071865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX98_22
+      rect:
+        serializedVersion: 2
+        x: 518
+        y: 16
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f85a63cff05a040b0800000000000000
+      internalID: -5746411636450220657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX98_23
+      rect:
+        serializedVersion: 2
+        x: 564
+        y: 16
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7dc1a1017e2f2b3b0800000000000000
+      internalID: -5498065120844440361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX98_24
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 4
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eaebdf5de071443f0800000000000000
+      internalID: -917583071589581138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX98_25
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 4
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ec839df7ad2c3d60800000000000000
+      internalID: 7871216448273878243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX98_26
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 11
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3e8a2bba39dfa6c0800000000000000
+      internalID: -4129843487003996613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX98_27
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 1
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc3742ecd4c3a7ba0800000000000000
+      internalID: -6090489241196530740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX98_28
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 1
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 921ee500fefeda400800000000000000
+      internalID: 337189356905095465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX98_29
+      rect:
+        serializedVersion: 2
+        x: 501
+        y: 11
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8e058c037f0199b0800000000000000
+      internalID: -5075258318264136050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX98_30
+      rect:
+        serializedVersion: 2
+        x: 518
+        y: 1
+        width: 32
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e636c23c34265b20800000000000000
+      internalID: 3122723232596506344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX98_31
+      rect:
+        serializedVersion: 2
+        x: 549
+        y: 1
+        width: 19
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c08fd93b1598f2f80800000000000000
+      internalID: -8129127818381625332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      FX98_0: -3769648961393239507
+      FX98_1: 2644162764036652079
+      FX98_10: 5474243371095466365
+      FX98_11: -1469808980584858269
+      FX98_12: -5456382468544737341
+      FX98_13: -5242945945742299313
+      FX98_14: -41752978669618706
+      FX98_15: -8384365798211022452
+      FX98_16: 8933002170889705112
+      FX98_17: -2395415701344457833
+      FX98_18: -1376236674044389188
+      FX98_19: -5072806086229868288
+      FX98_2: -5679413706334709122
+      FX98_20: 3902552258308982869
+      FX98_21: 8909438269823071865
+      FX98_22: -5746411636450220657
+      FX98_23: -5498065120844440361
+      FX98_24: -917583071589581138
+      FX98_25: 7871216448273878243
+      FX98_26: -4129843487003996613
+      FX98_27: -6090489241196530740
+      FX98_28: 337189356905095465
+      FX98_29: -5075258318264136050
+      FX98_3: 3659156453953355408
+      FX98_30: 3122723232596506344
+      FX98_31: -8129127818381625332
+      FX98_4: 6619630117480776795
+      FX98_5: -6780883511819377965
+      FX98_6: 1070338468882046122
+      FX98_7: -3238948016015096307
+      FX98_8: -1510680649284894843
+      FX98_9: -1700523765534670283
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
