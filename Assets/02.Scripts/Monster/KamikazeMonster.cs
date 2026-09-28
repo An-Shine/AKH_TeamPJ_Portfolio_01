@@ -1,0 +1,144 @@
+using UnityEngine;
+
+public class KamikazeMonster : NormalMonster
+{
+    [Header("자폭 설정")]
+    [SerializeField] private float _explosionRange = 1.5f;
+    [SerializeField] private float _explosionDelay = 1f;
+    [SerializeField] private float _explosionDamage = 50f;
+
+    [Header("자폭 경고 연출")]
+    [SerializeField] private float _warningScale = 1.25f;
+    [SerializeField] private float _warningSpeed = 12f;
+
+    private bool _isExploding;
+    private float _explosionTimer;
+
+    private Vector3 _originalScale;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        _originalScale = transform.localScale;
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        if (_player == null)
+        {
+            return;
+        }
+
+        FacePlayer();
+
+        ApplySeparation();
+
+        if (_isExploding)
+        {
+            UpdateExplosion();
+            return;
+        }
+
+        MoveToPlayer();
+
+        float distanceToPlayer = Vector2.Distance(
+            transform.position,
+            _player.position
+        );
+
+        if (distanceToPlayer <= _explosionRange)
+        {
+            StartExplosion();
+        }
+    }
+
+    private void MoveToPlayer()
+    {
+        Vector2 direction =
+            (_player.position - transform.position).normalized;
+
+        transform.position +=
+            (Vector3)(
+                direction *
+                _moveSpeed *
+                Time.deltaTime
+            );
+    }
+
+    private void StartExplosion()
+    {
+        _isExploding = true;
+        _explosionTimer = _explosionDelay;
+
+        Debug.Log(
+            $"{gameObject.name}: 자폭 준비!"
+        );
+    }
+
+    private void UpdateExplosion()
+    {
+        _explosionTimer -= Time.deltaTime;
+
+        float warning =
+            (Mathf.Sin(
+                Time.time * _warningSpeed
+            ) + 1f) * 0.5f;
+
+        float currentScale =
+            Mathf.Lerp(
+                1f,
+                _warningScale,
+                warning
+            );
+
+        transform.localScale =
+            _originalScale * currentScale;
+
+        if (_explosionTimer > 0f)
+        {
+            return;
+        }
+
+        Explode();
+    }
+
+    private void Explode()
+    {
+        Collider2D[] hitTargets =
+            Physics2D.OverlapCircleAll(
+                transform.position,
+                _explosionRange
+            );
+
+        foreach (Collider2D target in hitTargets)
+        {
+            if (!target.CompareTag("Player"))
+            {
+                continue;
+            }
+
+            Debug.Log(
+                $"{gameObject.name}: 폭발 범위 안의 Player 감지! 데미지: {_explosionDamage}"
+            );
+        }
+
+        Debug.Log(
+            $"{gameObject.name}: 자폭! 폭발 범위: {_explosionRange}, 데미지: {_explosionDamage}"
+        );
+
+        Destroy(gameObject);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+
+        Gizmos.DrawWireSphere(
+            transform.position,
+            _explosionRange
+        );
+    }
+}
