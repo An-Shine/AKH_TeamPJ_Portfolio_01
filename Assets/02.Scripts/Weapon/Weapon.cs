@@ -117,7 +117,7 @@ public class Weapon : MonoBehaviour
         
         if (_isReloading && _reloadTimer < Data.ReloadTime)
         {
-            _reloadTimer -= Time.deltaTime * ReloadSpeed;
+            _reloadTimer += Time.deltaTime * ReloadSpeed;
             _remainingAmmo = (int)(MagazineSize * (_reloadTimer / Data.ReloadTime));
             if (_remainingAmmo > MagazineSize)
             {
