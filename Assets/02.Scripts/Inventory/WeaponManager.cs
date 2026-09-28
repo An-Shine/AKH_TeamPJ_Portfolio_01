@@ -5,13 +5,13 @@ public class WeaponManager : MonoBehaviour
 {
     private static WeaponManager _instance;
     public static WeaponManager Instance => _instance;
-    
+
     [SerializeField] private List<WeaponEntry> _weaponEntryList;
     [SerializeField] private Transform _weaponContainer;
 
     private Dictionary<string, Weapon> _unobtainedWeapons;
     private List<Weapon> _gainedWeaponList;
-    
+
     public Weapon CurrentWeapon { get; private set; }
     public int CurrentWeaponIndex { get; private set; }
 
@@ -36,13 +36,14 @@ public class WeaponManager : MonoBehaviour
             _unobtainedWeapons[weaponSlot.WeaponId].gameObject.SetActive(false);
         }
     }
-    
+
     public void EquipByIndex(int targetIndex)
     {
         if (targetIndex >= _gainedWeaponList.Count)
         {
             return;
         }
+
         if (targetIndex < 0)
         {
             return;
@@ -72,7 +73,7 @@ public class WeaponManager : MonoBehaviour
         CurrentWeapon = _gainedWeaponList[CurrentWeaponIndex];
         CurrentWeapon.gameObject.SetActive(true);
     }
-    
+
     public void PreviousWeapon()
     {
         int index = CurrentWeaponIndex - 1;
@@ -89,7 +90,7 @@ public class WeaponManager : MonoBehaviour
         CurrentWeapon = _gainedWeaponList[CurrentWeaponIndex];
         CurrentWeapon.gameObject.SetActive(true);
     }
-    
+
     public bool GainWeapon(string weaponId)
     {
         if (_unobtainedWeapons.TryGetValue(weaponId, out Weapon targetWeapon))

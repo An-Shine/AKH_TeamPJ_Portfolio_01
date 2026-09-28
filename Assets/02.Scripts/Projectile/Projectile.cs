@@ -7,7 +7,6 @@ public abstract class Projectile : MonoBehaviour
     protected float _range;
     private int _initialDurability;
     private int _durability;
-    
     protected Vector3 _direction;
     protected float _speedScalar;
     protected Vector3 _initialPosition;
@@ -42,8 +41,9 @@ public abstract class Projectile : MonoBehaviour
         GiveDamage(other);
         DecreaseDurability(other);
     }
-    
+
     protected abstract void Move();
+
     protected virtual void CheckRange()
     {
         Vector3 distanceVector = transform.position - _initialPosition;
@@ -53,7 +53,7 @@ public abstract class Projectile : MonoBehaviour
             ProjectilePoolManager.Instance.Release(this, _type);
         }
     }
-    
+
     protected virtual void GiveDamage(Collider2D other)
     {
         if (other.CompareTag("Enemy"))
@@ -69,7 +69,7 @@ public abstract class Projectile : MonoBehaviour
         {
             _durability -= 1;
         }
-        
+
         if (_durability <= 0)
         {
             ProjectilePoolManager.Instance.Release(this, _type);

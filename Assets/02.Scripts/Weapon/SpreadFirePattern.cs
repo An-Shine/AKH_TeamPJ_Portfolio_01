@@ -19,10 +19,9 @@ public class SpreadFirePattern : IFirePattern
         for (int i = 0; i < projectileCount; i++)
         {
             float angle = startAngle + intervalOfAngle * i;
-            
             Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             Vector2 direction = rotation * context.Direction;
-            
+
             ProjectileSpawner.Instance.Spawn(context.Type, context.Position, direction, context.Range);
         }
     }

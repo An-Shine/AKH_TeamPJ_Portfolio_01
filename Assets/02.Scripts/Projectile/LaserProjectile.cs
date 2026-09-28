@@ -2,20 +2,21 @@ using UnityEngine;
 
 public class LaserProjectile : Projectile
 {
-    [SerializeField]
-    private LineRenderer _lineRenderer;
+    [SerializeField] private LineRenderer _lineRenderer;
 
-    [SerializeField]
-    private LayerMask _targetLayer;
+    [SerializeField] private LayerMask _targetLayer;
 
     protected override void Move()
-    {}
+    {
+    }
 
     protected override void CheckRange()
-    {}
-    
+    {
+    }
+
     protected override void OnTriggerEnter2D(Collider2D other)
-    {}
+    {
+    }
 
     public override void OnSpawn(Vector3 position, Vector3 direction, float range)
     {
