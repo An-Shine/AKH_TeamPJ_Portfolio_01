@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class DataManager : MonoBehaviour 
 {
-    private static  DataManager _instance;
+    private static DataManager _instance;
     public static DataManager Instance => _instance;
 
     public Dictionary<string, WeaponData> WeaponDatas { get; private set; }
@@ -38,13 +38,18 @@ public class DataManager : MonoBehaviour
             string[] row = datas[i].Split(',');
             WeaponDatas[row[0]] = new WeaponData
             {
-                ShootingTerm =  float.Parse(row[1]),
-                ProjectileCount = int.Parse(row[2]),
-                ProjectileType = (ProjectileType)Enum.Parse(typeof(ProjectileType), row[3]),
-                Rebound = float.Parse(row[4]),
-                MagazineSize = int.Parse(row[5]),
-                ReloadTime = float.Parse(row[6]),
-                ChargeTime = float.Parse(row[7])
+                Name = row[1],
+                BehaviourType = (FireBehaviourType)Enum.Parse(typeof(FireBehaviourType), row[2]),
+                PatternType = (FirePatternType)Enum.Parse(typeof(FirePatternType), row[3]),
+                ProjectileType = (ProjectileType)Enum.Parse(typeof(ProjectileType), row[4]),
+                FireRate = float.Parse(row[5]),
+                ProjectileCount = int.Parse(row[6]),
+                Rebound = float.Parse(row[7]),
+                MagazineSize = int.Parse(row[8]),
+                ReloadTime = float.Parse(row[9]),
+                ChargeTime = float.Parse(row[10]),
+                Angle = float.Parse(row[11]),
+                Range = float.Parse(row[12]),
             };
         }
     }
@@ -69,7 +74,7 @@ public class DataManager : MonoBehaviour
             {
                 Damage = int.Parse(row[1]),
                 SpeedScalar = float.Parse(row[2]),
-                Range = float.Parse(row[3])
+                Durability = int.Parse(row[3]),
             };
         }
     }
