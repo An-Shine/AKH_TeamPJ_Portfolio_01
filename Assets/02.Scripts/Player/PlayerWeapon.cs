@@ -8,7 +8,7 @@ public class PlayerWeapon : MonoBehaviour
     private AimDisplayMode _aimDisplayMode = AimDisplayMode.Crosshair;
 
     // 총구 transform
-    private Transform _muzzle;
+    [SerializeField] private Transform _muzzle;
 
     private float _fireInterval = 0.2f;
 

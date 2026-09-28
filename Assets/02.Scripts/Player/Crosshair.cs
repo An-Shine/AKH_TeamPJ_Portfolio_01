@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Crosshair : MonoBehaviour
+[RequireComponent(typeof(RectTransform))]
+public class CrosshairFollowMouse : MonoBehaviour
 {
     private RectTransform _crosshair;
     private RectTransform _parentRect;
@@ -21,5 +22,29 @@ public class Crosshair : MonoBehaviour
         {
             image.raycastTarget = false;
         }
+    }
+
+    private void OnEnable()
+    {
+        _previousCursorVisible = Cursor.visible;
+        Cursor.visible = false;
+    }
+
+    private void LateUpdate()
+    {
+        Camera uiCamera = _canvas.renderMode == RenderMode.ScreenSpaceOverlay
+            ? null
+            : _canvas.worldCamera;
+
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(_parentRect, Input.mousePosition, uiCamera,
+                out Vector2 position))
+        {
+            _crosshair.localPosition = new Vector3(position.x, position.y, 0f);
+        }
+    }
+
+    private void OnDisable()
+    {
+        Cursor.visible = _previousCursorVisible;
     }
 }
