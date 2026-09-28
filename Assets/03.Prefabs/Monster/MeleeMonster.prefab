@@ -120,6 +120,7 @@ MonoBehaviour:
   _hitFlashDuration: 0.08
   _deathDelay: 0.2
   _deathScale: 0
+  _directionAnimator: {fileID: 4648255640607117109}
   _attackRange: 1.5
   _attackAngle: 90
   _attackCooldown: 1
