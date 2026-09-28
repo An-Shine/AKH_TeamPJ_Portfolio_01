@@ -20,7 +20,7 @@ public class ProjectileSpawner : MonoBehaviour
     {
         Projectile projectile = ProjectilePoolManager.Instance.Get(type);
         projectile.transform.SetPositionAndRotation(position, Quaternion.identity);
-        projectile.OnSpawn(direction, direction, range);
+        projectile.OnSpawn(position, direction, range);
         transform.right = direction;
 
         return projectile;
