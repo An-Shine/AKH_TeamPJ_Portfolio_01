@@ -3,7 +3,7 @@ using UnityEngine;
 public abstract class Projectile : MonoBehaviour
 {
     protected ProjectileType _type;
-    private int _damage;
+    protected int _damage;
     protected float _range;
     private int _initialDurability;
     private int _durability;
@@ -63,7 +63,7 @@ public abstract class Projectile : MonoBehaviour
         }
     }
 
-    protected void DecreaseDurability(Collider2D other)
+    private void DecreaseDurability(Collider2D other)
     {
         if (other.CompareTag("Enemy"))
         {
@@ -72,7 +72,12 @@ public abstract class Projectile : MonoBehaviour
 
         if (_durability <= 0)
         {
-            ProjectilePoolManager.Instance.Release(this, _type);
+            OnDestroySelf();
         }
+    }
+    
+    protected virtual void OnDestroySelf()
+    {
+        ProjectilePoolManager.Instance.Release(this, _type);
     }
 }
