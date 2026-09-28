@@ -9,7 +9,6 @@ public class PlayerStatus
     public float DashCooldown;
     public bool IsVulnerable;
     public float HitInvulnerableDuration;
-    public int KeyCount;
     public int UpgradeCurrency;
 
     public float Damage;

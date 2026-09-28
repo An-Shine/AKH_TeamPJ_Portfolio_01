@@ -19,10 +19,6 @@ public class PlayerManager : MonoBehaviour
         _instance = this;
     }
 
-    private void Update()
-    {
-    }
-
     public void GetWeapon(WeaponData weaponData)
     {
         //todo 
