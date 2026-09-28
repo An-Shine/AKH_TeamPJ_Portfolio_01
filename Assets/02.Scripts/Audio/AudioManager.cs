@@ -2,10 +2,10 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class AudioManger : MonoBehaviour
+public class AudioManager : MonoBehaviour
 {
-    private static AudioManger _instance;
-    public static AudioManger Instance => _instance;
+    private static AudioManager _instance;
+    public static AudioManager Instance => _instance;
     
     [SerializeField] private AudioSource _bgmSource;
     [SerializeField] private List<AudioSource> _sfxSources;
