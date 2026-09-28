@@ -27,6 +27,7 @@
         {
             case FirePatternType.Spread:
             {
+                firePattern = new SpreadFirePattern();
                 break;
             }
             case FirePatternType.RandomSpread:
