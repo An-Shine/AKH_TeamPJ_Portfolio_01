@@ -14,6 +14,7 @@ public class Weapon : MonoBehaviour
     private bool _isReloading;
     private int _remainingAmmo;
     private float _timer;
+    private float _reloadTimer;
 
     private float FireRate => (Data.FireRate + Modifier.FireRate.Flat)
                              * (1f + Modifier.FireRate.Rate);
@@ -41,7 +42,7 @@ public class Weapon : MonoBehaviour
     private void Update()
     {
         _timer += Time.deltaTime * FireRate;
-        //TryFire();
+        Reloading();
     }
 
     public void Initialize(WeaponData data)
@@ -97,7 +98,36 @@ public class Weapon : MonoBehaviour
 
     public bool CheckRemainingAmmo()
     {
-        if (_remainingAmmo <= 0)    return false;
+        if (_remainingAmmo <= 0)
+        {
+            return false;
+        }
         return true;
+    }
+
+    public void Reload()
+    {
+        _isReloading = true;
+        _reloadTimer = 0;
+    }
+    
+    private void Reloading()
+    {
+        if (!_isReloading) return;
+        
+        if (_isReloading && _reloadTimer < Data.ReloadTime)
+        {
+            _reloadTimer -= Time.deltaTime * ReloadSpeed;
+            _remainingAmmo = (int)(MagazineSize * (_reloadTimer / Data.ReloadTime));
+            if (_remainingAmmo > MagazineSize)
+            {
+                _remainingAmmo = MagazineSize;
+            }
+        }
+
+        if (_reloadTimer >= Data.ReloadTime)
+        {
+            _isReloading = false;
+        }
     }
 }
