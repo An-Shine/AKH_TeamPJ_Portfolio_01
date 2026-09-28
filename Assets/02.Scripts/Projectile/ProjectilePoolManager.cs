@@ -71,6 +71,7 @@ public class ProjectilePoolManager : MonoBehaviour
 
     private void DestroyProjectile(Projectile projectile)
     {
+        if (projectile == null) return;
         Destroy(projectile.gameObject);
     }
 }
