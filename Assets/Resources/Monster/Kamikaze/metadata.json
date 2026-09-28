@@ -1,0 +1,36 @@
+{
+  "group_id": "5f525761-d1dc-437b-954b-fdfdfb482b3e",
+  "states": [
+    {
+      "character": {
+        "id": "0a06e33b-92be-45aa-8dc7-b51576e2a56a",
+        "name": "Idle",
+        "prompt": "Create a single 2D top-down pixel art Kamikaze Monster for a sci-fi space shooter game. It must clearly belong to the SAME alien-machine species and industrial mechanical system as the existing Melee Monster and Range Monster. Match their visual language, body structure, proportions, pixel density, dark worn metal, organic alien anatomy, mechanical joints, armor construction, and limited neon energy accents. It must look like the same species designed for a different combat role.\n\nThe defining feature is a large UNSTABLE ENERGY CORE integrated into the torso. The Energy Core should visibly look damaged, overloaded, and dangerous, with mechanical containment parts around it. Add an integrated explosion device or unstable energy chamber designed specifically for self-destruction. The explosion mechanism must be part of the body, not a separate weapon. Add a small number of clearly visible warning lights or warning indicators around the unstable core.\n\nShow subtle signs of overheating: damaged armor, exposed mechanical parts, small vents, heat-stressed metal, and restrained energy leakage around the core. The design should communicate that the creature is unstable and will eventually explode, while still looking like the same industrial alien-machine species.\n\nKeep the arms, legs, torso, unstable Energy Core, containment mechanism, and mechanical joints visually separated and structurally clear so they can later be animated independently for Idle, Walk, Explosion Warning, Explosion, Hit, and Death animations. Keep the silhouette simple and readable. Do not add weapons.\n\nUse dark industrial metal, dust, scratches, worn surfaces, and limited neon energy. The Energy Core may have a stronger neon accent than the other monsters, but avoid excessive glow, bloom, gradients, or cinematic lighting. The warning lights should be small and readable.\n\nThe result must look like an actual finished GAME SPRITE, not concept art, illustration, 3D render, cinematic artwork, or realistic ",
+        "size": {
+          "width": 32,
+          "height": 32
+        },
+        "template_id": "custom",
+        "directions": 8,
+        "view": "high top-down",
+        "created_at": "2026-09-28T06:50:26.052499+00:00"
+      },
+      "folder": "Idle",
+      "frames": {
+        "rotations": {
+          "south": "Idle/rotations/south.png",
+          "south-east": "Idle/rotations/south-east.png",
+          "east": "Idle/rotations/east.png",
+          "north-east": "Idle/rotations/north-east.png",
+          "north": "Idle/rotations/north.png",
+          "north-west": "Idle/rotations/north-west.png",
+          "west": "Idle/rotations/west.png",
+          "south-west": "Idle/rotations/south-west.png"
+        },
+        "animations": {}
+      }
+    }
+  ],
+  "export_version": "3.1",
+  "export_date": "2026-09-28T06:55:55.515990"
+}

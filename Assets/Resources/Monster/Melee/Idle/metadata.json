@@ -1,0 +1,36 @@
+{
+  "group_id": "49ca241b-7fb2-4614-9c9b-ab706bca02c9",
+  "states": [
+    {
+      "character": {
+        "id": "8e2d2e90-81b4-4ecf-8139-7e8a9e6f4cfd",
+        "name": "Idle",
+        "prompt": "2D top-down pixel art game sprite, single full-body melee enemy for a sci-fi space roguelike shooter. Alien creature fused with industrial combat machinery: organic alien body combined with rugged mechanical armor, mechanical joints and worn metal plating. Close-range combat monster with one large distinctive melee weapon integrated into one powerful mechanical arm. Compact, strong and readable silhouette. A clearly visible central neon energy core in the torso, with restrained neon energy lines and small glowing mechanical details. Dark worn metal, dusty industrial materials, subtle scratches and battle damage, alien organic textures mixed with machinery. The creature must feel like an alien organism transformed into a combat machine, not a normal robot and not a normal animal. Its heavy armor, mechanical arm, melee weapon and neon energy core should look like distinctive physical components that could later be reused as parts of a large final boss assembled from this monster, a ranged monster and an explosive monster. Strong silhouette and clearly separated arms, legs, weapon and torso so the character can later be animated consistently for Idle, Walk, Melee Attack, Hit and Death. Slight simple contact shadow beneath the character is allowed. Authentic handcrafted game pixel art, clean hard edges, deliberate pixel clusters, controlled limited palette, strong shape readability, production-ready 2D game asset, consistent proportions, practical sprite design. Centered character, isolated transparent background, no environment, no text, no UI, no other characters. Avoid AI-generated concept art appearance, cinematic illustration, 3D rendering, photorealism, excessive detail, random mechanical parts, excessive glow, bloom, gradients, soft painted shading, blurry edges, multiple weapons or accessories.",
+        "size": {
+          "width": 32,
+          "height": 32
+        },
+        "template_id": "custom",
+        "directions": 8,
+        "view": "high top-down",
+        "created_at": "2026-09-28T06:37:54.609689+00:00"
+      },
+      "folder": "Idle",
+      "frames": {
+        "rotations": {
+          "south": "Idle/rotations/south.png",
+          "south-east": "Idle/rotations/south-east.png",
+          "east": "Idle/rotations/east.png",
+          "north-east": "Idle/rotations/north-east.png",
+          "north": "Idle/rotations/north.png",
+          "north-west": "Idle/rotations/north-west.png",
+          "west": "Idle/rotations/west.png",
+          "south-west": "Idle/rotations/south-west.png"
+        },
+        "animations": {}
+      }
+    }
+  ],
+  "export_version": "3.1",
+  "export_date": "2026-09-28T06:54:18.594972"
+}

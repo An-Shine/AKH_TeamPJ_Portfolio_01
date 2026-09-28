@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 639612782717581268}
   - component: {fileID: 7007430183231636224}
   - component: {fileID: 7013926720832336473}
+  - component: {fileID: 4648255640607117109}
   m_Layer: 0
   m_Name: MeleeMonster
   m_TagString: Player
@@ -109,11 +110,21 @@ MonoBehaviour:
   _maxHealth: 100
   _moveSpeed: 2
   _contactDamage: 10
+  _separationRadius: 0.8
+  _separationStrength: 1.5
+  _collisionCheckRadius: 0.25
+  _obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 0
   _hitCooldown: 0.1
+  _hitFlashDuration: 0.08
   _deathDelay: 0.2
   _deathScale: 0
   _attackRange: 1.5
+  _attackAngle: 90
   _attackCooldown: 1
+  _attackScale: 1.2
+  _attackAnimationTime: 0.12
 --- !u!60 &7007430183231636224
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -194,3 +205,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &4648255640607117109
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9050073270099259043}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b7590d567be1bfb4cbfa13cc48744bf0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
