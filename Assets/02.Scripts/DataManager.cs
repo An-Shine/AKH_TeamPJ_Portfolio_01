@@ -2,14 +2,13 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 
-public class DataManager : MonoBehaviour 
+public class DataManager : MonoBehaviour
 {
-    private static  DataManager _instance;
+    private static DataManager _instance;
     public static DataManager Instance => _instance;
-
     public Dictionary<string, WeaponData> WeaponDatas { get; private set; }
     public Dictionary<ProjectileType, ProjectileData> ProjectileDatas { get; private set; }
-    
+
     private void Awake()
     {
         if (_instance != null)
@@ -18,10 +17,11 @@ public class DataManager : MonoBehaviour
         }
 
         _instance = this;
-        
+
         LoadWeaponCSV();
         LoadProjectileCSV();
     }
+
     private void LoadWeaponCSV()
     {
         TextAsset csvData = Resources.Load("Datas/Weapon") as TextAsset;
@@ -33,12 +33,12 @@ public class DataManager : MonoBehaviour
 
         WeaponDatas = new Dictionary<string, WeaponData>();
         string[] datas = csvData.text.Split(new char[] { '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
-        for (int i = 1; i < datas.Length; i++)//pass Header
+        for (int i = 1; i < datas.Length; i++) //pass Header
         {
             string[] row = datas[i].Split(',');
             WeaponDatas[row[0]] = new WeaponData
             {
-                ShootingTerm =  float.Parse(row[1]),
+                ShootingTerm = float.Parse(row[1]),
                 ProjectileCount = int.Parse(row[2]),
                 ProjectileType = (ProjectileType)Enum.Parse(typeof(ProjectileType), row[3]),
                 Rebound = float.Parse(row[4]),
@@ -48,7 +48,7 @@ public class DataManager : MonoBehaviour
             };
         }
     }
-    
+
     private void LoadProjectileCSV()
     {
         TextAsset csvData = Resources.Load("Datas/Projectile") as TextAsset;
@@ -57,11 +57,11 @@ public class DataManager : MonoBehaviour
             Debug.LogWarning("Projectile data not found");
             return;
         }
-        
+
         ProjectileType projectileType;
         ProjectileDatas = new Dictionary<ProjectileType, ProjectileData>();
         string[] datas = csvData.text.Split(new char[] { '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
-        for (int i = 1; i < datas.Length; i++)//pass Header
+        for (int i = 1; i < datas.Length; i++) //pass Header
         {
             string[] row = datas[i].Split(',');
             projectileType = (ProjectileType)Enum.Parse(typeof(ProjectileType), row[0]);

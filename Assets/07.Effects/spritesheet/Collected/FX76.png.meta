@@ -1,0 +1,1014 @@
+fileFormatVersion: 2
+guid: 17f7c9850dfa7a742bab0383dc50daec
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2266570712948718125
+    second: FX76_0
+  - first:
+      213: 3513509197185606425
+    second: FX76_1
+  - first:
+      213: 7961053385750510460
+    second: FX76_2
+  - first:
+      213: 2074120640220660341
+    second: FX76_3
+  - first:
+      213: -4058323436901440126
+    second: FX76_4
+  - first:
+      213: -4422235047156700677
+    second: FX76_5
+  - first:
+      213: 2223148622877510786
+    second: FX76_6
+  - first:
+      213: 1696491443451510102
+    second: FX76_7
+  - first:
+      213: 7959196891269049803
+    second: FX76_8
+  - first:
+      213: -5568287312936596684
+    second: FX76_9
+  - first:
+      213: -7441202461111207719
+    second: FX76_10
+  - first:
+      213: -2493494141081183647
+    second: FX76_11
+  - first:
+      213: 3831785602877839578
+    second: FX76_12
+  - first:
+      213: 2474657148719568660
+    second: FX76_13
+  - first:
+      213: -6144615392068235546
+    second: FX76_14
+  - first:
+      213: -2884945697375808541
+    second: FX76_15
+  - first:
+      213: 947701222867818746
+    second: FX76_16
+  - first:
+      213: -8006497586323383188
+    second: FX76_17
+  - first:
+      213: 6601169370419333964
+    second: FX76_18
+  - first:
+      213: -276255767490423349
+    second: FX76_19
+  - first:
+      213: -7211992741786191619
+    second: FX76_20
+  - first:
+      213: -1358067860627481612
+    second: FX76_21
+  - first:
+      213: 1258591266112985523
+    second: FX76_22
+  - first:
+      213: -8740319331255280805
+    second: FX76_23
+  - first:
+      213: 2507959077244818385
+    second: FX76_24
+  - first:
+      213: -1461003323682643582
+    second: FX76_25
+  - first:
+      213: -8761725114815627512
+    second: FX76_26
+  - first:
+      213: 2166411812328825354
+    second: FX76_27
+  - first:
+      213: -9095619636310859681
+    second: FX76_28
+  - first:
+      213: -2793731495912081460
+    second: FX76_29
+  - first:
+      213: 56978394516350663
+    second: FX76_30
+  - first:
+      213: -6543556033337207863
+    second: FX76_31
+  - first:
+      213: 6725255793271432419
+    second: FX76_32
+  - first:
+      213: 3337494154608426342
+    second: FX76_33
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: FX76_0
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 33
+        width: 142
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d5436402f58b80e0800000000000000
+      internalID: -2266570712948718125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX76_1
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 30
+        width: 46
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 913e05ddffd72c030800000000000000
+      internalID: 3513509197185606425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX76_2
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 20
+        width: 102
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7b7497ffd75b7e60800000000000000
+      internalID: 7961053385750510460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX76_3
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 8
+        width: 115
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57288adabb1c8cc10800000000000000
+      internalID: 2074120640220660341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX76_4
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 30
+        width: 94
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 285e8d70650fda7c0800000000000000
+      internalID: -4058323436901440126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX76_5
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 44
+        width: 31
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf921f497a011a2c0800000000000000
+      internalID: -4422235047156700677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX76_6
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 21
+        width: 40
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28c438dc4e53ade10800000000000000
+      internalID: 2223148622877510786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX76_7
+      rect:
+        serializedVersion: 2
+        x: 669
+        y: 7
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65dba6bbaf52b8710800000000000000
+      internalID: 1696491443451510102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX76_8
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 37
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bcd2c79276fb47e60800000000000000
+      internalID: 7959196891269049803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX76_9
+      rect:
+        serializedVersion: 2
+        x: 686
+        y: 43
+        width: 15
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43b8911e03879b2b0800000000000000
+      internalID: -5568287312936596684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX76_10
+      rect:
+        serializedVersion: 2
+        x: 686
+        y: 4
+        width: 15
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d834bb69c98bb890800000000000000
+      internalID: -7441202461111207719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX76_11
+      rect:
+        serializedVersion: 2
+        x: 692
+        y: 39
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16a965f2a44556dd0800000000000000
+      internalID: -2493494141081183647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX76_12
+      rect:
+        serializedVersion: 2
+        x: 692
+        y: 26
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad85df244bc3d2530800000000000000
+      internalID: 3831785602877839578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX76_13
+      rect:
+        serializedVersion: 2
+        x: 707
+        y: 43
+        width: 15
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4179f42c09fb75220800000000000000
+      internalID: 2474657148719568660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX76_14
+      rect:
+        serializedVersion: 2
+        x: 707
+        y: 4
+        width: 15
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ee00624bd0f9baa0800000000000000
+      internalID: -6144615392068235546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX76_15
+      rect:
+        serializedVersion: 2
+        x: 710
+        y: 39
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e39f9f5c2d96f7d0800000000000000
+      internalID: -2884945697375808541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX76_16
+      rect:
+        serializedVersion: 2
+        x: 710
+        y: 26
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af85d36bd39e62d00800000000000000
+      internalID: 947701222867818746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX76_17
+      rect:
+        serializedVersion: 2
+        x: 718
+        y: 21
+        width: 40
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6c1c209dd433e090800000000000000
+      internalID: -8006497586323383188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX76_18
+      rect:
+        serializedVersion: 2
+        x: 721
+        y: 37
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4b880261901c9b50800000000000000
+      internalID: 6601169370419333964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX76_19
+      rect:
+        serializedVersion: 2
+        x: 727
+        y: 35
+        width: 37
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc59497d7da8a2cf0800000000000000
+      internalID: -276255767490423349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX76_20
+      rect:
+        serializedVersion: 2
+        x: 727
+        y: 7
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df87327efcad9eb90800000000000000
+      internalID: -7211992741786191619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX76_21
+      rect:
+        serializedVersion: 2
+        x: 772
+        y: 35
+        width: 36
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fb9c62e97c272de0800000000000000
+      internalID: -1358067860627481612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX76_22
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 20
+        width: 39
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b9d216961a677110800000000000000
+      internalID: 1258591266112985523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX76_23
+      rect:
+        serializedVersion: 2
+        x: 794
+        y: 4
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5b9c0d50e524b680800000000000000
+      internalID: -8740319331255280805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX76_24
+      rect:
+        serializedVersion: 2
+        x: 799
+        y: 37
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d3d4663e7f0ec220800000000000000
+      internalID: 2507959077244818385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX76_25
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 1
+        width: 64
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2812b34c73979bbe0800000000000000
+      internalID: -1461003323682643582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX76_26
+      rect:
+        serializedVersion: 2
+        x: 813
+        y: 42
+        width: 15
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80fbbcffd69186680800000000000000
+      internalID: -8761725114815627512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX76_27
+      rect:
+        serializedVersion: 2
+        x: 817
+        y: 16
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a02e11fa014a01e10800000000000000
+      internalID: 2166411812328825354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX76_28
+      rect:
+        serializedVersion: 2
+        x: 836
+        y: 48
+        width: 11
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f50af95a12ed5c180800000000000000
+      internalID: -9095619636310859681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX76_29
+      rect:
+        serializedVersion: 2
+        x: 836
+        y: 16
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc7f65c910caa39d0800000000000000
+      internalID: -2793731495912081460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX76_30
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 37
+        width: 25
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c6e4054c8d6ac000800000000000000
+      internalID: 56978394516350663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX76_31
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 20
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c35219f47e9035a0800000000000000
+      internalID: -6543556033337207863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX76_32
+      rect:
+        serializedVersion: 2
+        x: 856
+        y: 0
+        width: 290
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e4e4951388e45d50800000000000000
+      internalID: 6725255793271432419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX76_33
+      rect:
+        serializedVersion: 2
+        x: 858
+        y: 4
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66db0653049215e20800000000000000
+      internalID: 3337494154608426342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      FX76_0: -2266570712948718125
+      FX76_1: 3513509197185606425
+      FX76_10: -7441202461111207719
+      FX76_11: -2493494141081183647
+      FX76_12: 3831785602877839578
+      FX76_13: 2474657148719568660
+      FX76_14: -6144615392068235546
+      FX76_15: -2884945697375808541
+      FX76_16: 947701222867818746
+      FX76_17: -8006497586323383188
+      FX76_18: 6601169370419333964
+      FX76_19: -276255767490423349
+      FX76_2: 7961053385750510460
+      FX76_20: -7211992741786191619
+      FX76_21: -1358067860627481612
+      FX76_22: 1258591266112985523
+      FX76_23: -8740319331255280805
+      FX76_24: 2507959077244818385
+      FX76_25: -1461003323682643582
+      FX76_26: -8761725114815627512
+      FX76_27: 2166411812328825354
+      FX76_28: -9095619636310859681
+      FX76_29: -2793731495912081460
+      FX76_3: 2074120640220660341
+      FX76_30: 56978394516350663
+      FX76_31: -6543556033337207863
+      FX76_32: 6725255793271432419
+      FX76_33: 3337494154608426342
+      FX76_4: -4058323436901440126
+      FX76_5: -4422235047156700677
+      FX76_6: 2223148622877510786
+      FX76_7: 1696491443451510102
+      FX76_8: 7959196891269049803
+      FX76_9: -5568287312936596684
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
