@@ -40,7 +40,7 @@ public abstract class Projectile : MonoBehaviour
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
         GiveDamage(other);
-        DecreaseDurability();
+        DecreaseDurability(other);
     }
     
     protected abstract void Move();
@@ -63,9 +63,13 @@ public abstract class Projectile : MonoBehaviour
         }
     }
 
-    protected void DecreaseDurability()
+    protected void DecreaseDurability(Collider2D other)
     {
-        _durability -= 1;
+        if (other.CompareTag("Enemy"))
+        {
+            _durability -= 1;
+        }
+        
         if (_durability <= 0)
         {
             gameObject.SetActive(false);
