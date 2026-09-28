@@ -19,8 +19,10 @@ namespace Michsky.UI.Shift
         public bool preferSelector = true;
         public HorizontalSelector resolutionSelector;
         public TMP_Dropdown resolutionDropdown;
+
         [System.Serializable]
         public class DynamicRes : UnityEvent<int> { }
+
         public DynamicRes clickEvent;
 
         Resolution[] resolutions;
@@ -28,112 +30,197 @@ namespace Michsky.UI.Shift
 
         void Start()
         {
-            mixer.SetFloat("Master", Mathf.Log10(PlayerPrefs.GetFloat(masterSlider.sliderTag + "SliderValue")) * 20);
-            mixer.SetFloat("Music", Mathf.Log10(PlayerPrefs.GetFloat(musicSlider.sliderTag + "SliderValue")) * 20);
-            mixer.SetFloat("SFX", Mathf.Log10(PlayerPrefs.GetFloat(sfxSlider.sliderTag + "SliderValue")) * 20);
+            mixer.SetFloat(
+                "Master",
+                Mathf.Log10(PlayerPrefs.GetFloat(masterSlider.sliderTag + "SliderValue")) * 20
+            );
 
-            resolutions = Screen.resolutions;
+            mixer.SetFloat(
+                "Music",
+                Mathf.Log10(PlayerPrefs.GetFloat(musicSlider.sliderTag + "SliderValue")) * 20
+            );
+
+            mixer.SetFloat(
+                "SFX",
+                Mathf.Log10(PlayerPrefs.GetFloat(sfxSlider.sliderTag + "SliderValue")) * 20
+            );
+
+            CreateResolutionList();
+
+            if (resolutions.Length == 0)
+            {
+                // Debug.LogWarning("해상도 확인안됨");
+                return;
+            }
 
             if (preferSelector == true)
-            {
-                if (resolutionDropdown != null) { resolutionDropdown.gameObject.SetActive(false); }
-                if (resolutionSelector != null) { resolutionSelector.gameObject.SetActive(true); }
-                else { return; }
-
-                resolutionSelector.itemList.RemoveRange(0, resolutionSelector.itemList.Count);
-
-                int currentResolutionIndex = -1;
-                for (int i = 0; i < resolutions.Length; i++)
-                {
-#if UNITY_2022_2_OR_NEWER
-                    string option = resolutions[i].width + "x" + resolutions[i].height + " " + resolutions[i].refreshRateRatio.numerator + "hz";
-#else
-                    string option = resolutions[i].width + "x" + resolutions[i].height + " " + resolutions[i].refreshRate + "hz";
-#endif
-                    options.Add(option);
-
-                    resolutionSelector.CreateNewItem(options[i]);
-                    // resolutionSelector.itemList[i].onValueChanged.AddListener(UpdateResolution);
-
-#if UNITY_2022_2_OR_NEWER
-                    if (resolutions[i].width == Screen.currentResolution.width
-                        && resolutions[i].height == Screen.currentResolution.height
-                        && resolutions[i].refreshRateRatio.numerator == Screen.currentResolution.refreshRateRatio.numerator)
-#else
-                    if (resolutions[i].width == Screen.currentResolution.width
-                        && resolutions[i].height == Screen.currentResolution.height
-                        && resolutions[i].refreshRate == Screen.currentResolution.refreshRate)
-#endif
-                    {
-                        currentResolutionIndex = i;
-                        resolutionSelector.index = currentResolutionIndex;
-                    }
-                }
-
-                if (currentResolutionIndex == 0) { resolutionSelector.index = resolutionSelector.itemList.Count - 1; }
-                resolutionSelector.UpdateUI();
-            }
-
+                SetupResolutionSelector();
             else
+                SetupResolutionDropdown();
+        }
+
+        void CreateResolutionList()
+        {
+            Resolution[] supportedResolutions = Screen.resolutions;
+            List<Resolution> filteredResolutions = new List<Resolution>();
+
+            for (int i = 0; i < supportedResolutions.Length; i++)
             {
-                if (resolutionSelector != null) { resolutionSelector.gameObject.SetActive(false); }
-                if (resolutionDropdown != null) { resolutionDropdown.gameObject.SetActive(true); }
-                else { return; }
+                int refreshRate = GetRefreshRate(supportedResolutions[i]);
 
-                resolutionDropdown.ClearOptions();
-
-                List<string> options = new List<string>();
-
-                int currentResolutionIndex = 0;
-                for (int i = 0; i < resolutions.Length; i++)
-                {
-#if UNITY_2022_2_OR_NEWER
-                    string option = resolutions[i].width + "x" + resolutions[i].height + " " + resolutions[i].refreshRateRatio.numerator + "hz";
-#else
-                    string option = resolutions[i].width + "x" + resolutions[i].height + " " + resolutions[i].refreshRate + "hz";
-#endif
-                    options.Add(option);
-
-#if UNITY_2022_2_OR_NEWER
-                    if (resolutions[i].width == Screen.currentResolution.width
-                        && resolutions[i].height == Screen.currentResolution.height
-                        && resolutions[i].refreshRateRatio.numerator == Screen.currentResolution.refreshRateRatio.numerator)
-#else
-                    if (resolutions[i].width == Screen.currentResolution.width
-                        && resolutions[i].height == Screen.currentResolution.height
-                        && resolutions[i].refreshRate == Screen.currentResolution.refreshRate)
-#endif
-                    {
-                        currentResolutionIndex = i;
-                    }
-                }
-
-                resolutionDropdown.AddOptions(options);
-                resolutionDropdown.value = currentResolutionIndex;
-                resolutionDropdown.RefreshShownValue();
-                resolutionDropdown.onValueChanged.RemoveAllListeners();
-                resolutionDropdown.onValueChanged.AddListener(SetResolution);
+                if (refreshRate == 60 || refreshRate == 144)
+                    filteredResolutions.Add(supportedResolutions[i]);
             }
+
+            resolutions = filteredResolutions.ToArray();
+        }
+
+        void SetupResolutionSelector()
+        {
+            if (resolutionDropdown != null)
+                resolutionDropdown.gameObject.SetActive(false);
+
+            if (resolutionSelector == null)
+                return;
+
+            resolutionSelector.gameObject.SetActive(true);
+            resolutionSelector.itemList.Clear();
+            options.Clear();
+
+            int currentResolutionIndex = FindCurrentResolutionIndex();
+
+            for (int i = 0; i < resolutions.Length; i++)
+            {
+                string option = CreateResolutionLabel(resolutions[i]);
+
+                options.Add(option);
+                resolutionSelector.CreateNewItem(option);
+            }
+
+            if (currentResolutionIndex < 0)
+                currentResolutionIndex = 0;
+
+            resolutionSelector.defaultIndex = currentResolutionIndex;
+            resolutionSelector.index = currentResolutionIndex;
+            resolutionSelector.UpdateUI();
+        }
+
+        void SetupResolutionDropdown()
+        {
+            if (resolutionSelector != null)
+                resolutionSelector.gameObject.SetActive(false);
+
+            if (resolutionDropdown == null)
+                return;
+
+            resolutionDropdown.gameObject.SetActive(true);
+            resolutionDropdown.ClearOptions();
+
+            List<string> dropdownOptions = new List<string>();
+
+            for (int i = 0; i < resolutions.Length; i++)
+                dropdownOptions.Add(CreateResolutionLabel(resolutions[i]));
+
+            int currentResolutionIndex = FindCurrentResolutionIndex();
+
+            if (currentResolutionIndex < 0)
+                currentResolutionIndex = 0;
+
+            resolutionDropdown.AddOptions(dropdownOptions);
+            resolutionDropdown.value = currentResolutionIndex;
+            resolutionDropdown.RefreshShownValue();
+
+            resolutionDropdown.onValueChanged.RemoveAllListeners();
+            resolutionDropdown.onValueChanged.AddListener(SetResolution);
+        }
+
+        string CreateResolutionLabel(Resolution resolution)
+        {
+            int refreshRate = GetRefreshRate(resolution);
+
+            return resolution.width
+                   + "x"
+                   + resolution.height
+                   + " "
+                   + refreshRate
+                   + "Hz";
+        }
+
+        int FindCurrentResolutionIndex()
+        {
+            int currentRefreshRate = GetRefreshRate(Screen.currentResolution);
+
+            for (int i = 0; i < resolutions.Length; i++)
+            {
+                bool sameWidth =
+                    resolutions[i].width == Screen.currentResolution.width;
+
+                bool sameHeight =
+                    resolutions[i].height == Screen.currentResolution.height;
+
+                bool sameRefreshRate =
+                    GetRefreshRate(resolutions[i]) == currentRefreshRate;
+
+                if (sameWidth && sameHeight && sameRefreshRate)
+                    return i;
+            }
+
+            return -1;
+        }
+
+        int GetRefreshRate(Resolution resolution)
+        {
+#if UNITY_2022_2_OR_NEWER
+            return Mathf.RoundToInt(
+                (float)resolution.refreshRateRatio.value
+            );
+#else
+            return resolution.refreshRate;
+#endif
         }
 
         public void UpdateResolution()
         {
-            clickEvent.Invoke(resolutionSelector.index);
+            if (resolutionSelector == null)
+                return;
+
+            SetResolution(resolutionSelector.index);
         }
 
         public void SetResolution(int resolutionIndex)
         {
-            Screen.SetResolution(resolutions[resolutionIndex].width, resolutions[resolutionIndex].height, Screen.fullScreen);
+            if (resolutionIndex < 0 || resolutionIndex >= resolutions.Length)
+                return;
+
+            Resolution selectedResolution = resolutions[resolutionIndex];
+
+#if UNITY_2022_2_OR_NEWER
+            Screen.SetResolution(
+                selectedResolution.width,
+                selectedResolution.height,
+                Screen.fullScreenMode,
+                selectedResolution.refreshRateRatio
+            );
+#else
+            Screen.SetResolution(
+                selectedResolution.width,
+                selectedResolution.height,
+                Screen.fullScreen,
+                selectedResolution.refreshRate
+            );
+#endif
         }
 
         public void AnisotrpicFilteringEnable()
         {
-            QualitySettings.anisotropicFiltering = AnisotropicFiltering.ForceEnable;
+            QualitySettings.anisotropicFiltering =
+                AnisotropicFiltering.ForceEnable;
         }
 
         public void AnisotrpicFilteringDisable()
         {
-            QualitySettings.anisotropicFiltering = AnisotropicFiltering.Disable;
+            QualitySettings.anisotropicFiltering =
+                AnisotropicFiltering.Disable;
         }
 
         public void AntiAlisasingSet(int index)
@@ -151,26 +238,34 @@ namespace Michsky.UI.Shift
         public void ShadowResolutionSet(int index)
         {
             if (index == 3)
-                QualitySettings.shadowResolution = ShadowResolution.VeryHigh;
+                QualitySettings.shadowResolution =
+                    ShadowResolution.VeryHigh;
+
             else if (index == 2)
-                QualitySettings.shadowResolution = ShadowResolution.High;
+                QualitySettings.shadowResolution =
+                    ShadowResolution.High;
+
             else if (index == 1)
-                QualitySettings.shadowResolution = ShadowResolution.Medium;
+                QualitySettings.shadowResolution =
+                    ShadowResolution.Medium;
+
             else if (index == 0)
-                QualitySettings.shadowResolution = ShadowResolution.Low;
+                QualitySettings.shadowResolution =
+                    ShadowResolution.Low;
         }
 
         public void ShadowsSet(int index)
         {
             if (index == 0)
                 QualitySettings.shadows = ShadowQuality.Disable;
+
             else if (index == 1)
                 QualitySettings.shadows = ShadowQuality.All;
         }
 
         public void ShadowsCascasedSet(int index)
         {
-            //0 = No, 2 = Two, 4 = Four
+            // 0 = No, 2 = Two, 4 = Four
             QualitySettings.shadowCascades = index;
         }
 
@@ -188,6 +283,7 @@ namespace Michsky.UI.Shift
         {
             if (index == 0)
                 QualitySettings.softParticles = false;
+
             else if (index == 1)
                 QualitySettings.softParticles = true;
         }
@@ -196,23 +292,33 @@ namespace Michsky.UI.Shift
         {
             if (index == 0)
                 QualitySettings.realtimeReflectionProbes = false;
+
             else if (index == 1)
                 QualitySettings.realtimeReflectionProbes = true;
         }
 
         public void VolumeSetMaster(float volume)
         {
-            mixer.SetFloat("Master", Mathf.Log10(volume) * 20);
+            mixer.SetFloat(
+                "Master",
+                Mathf.Log10(volume) * 20
+            );
         }
 
         public void VolumeSetMusic(float volume)
         {
-            mixer.SetFloat("Music", Mathf.Log10(volume) * 20);
+            mixer.SetFloat(
+                "Music",
+                Mathf.Log10(volume) * 20
+            );
         }
 
         public void VolumeSetSFX(float volume)
         {
-            mixer.SetFloat("SFX", Mathf.Log10(volume) * 20);
+            mixer.SetFloat(
+                "SFX",
+                Mathf.Log10(volume) * 20
+            );
         }
 
         public void SetOverallQuality(int qualityIndex)
@@ -223,18 +329,21 @@ namespace Michsky.UI.Shift
         public void WindowFullscreen()
         {
             Screen.fullScreen = true;
-            Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
+            Screen.fullScreenMode =
+                FullScreenMode.ExclusiveFullScreen;
         }
 
         public void WindowBorderless()
         {
-            Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+            Screen.fullScreenMode =
+                FullScreenMode.FullScreenWindow;
         }
 
         public void WindowWindowed()
         {
             Screen.fullScreen = false;
-            Screen.fullScreenMode = FullScreenMode.Windowed;
+            Screen.fullScreenMode =
+                FullScreenMode.Windowed;
         }
     }
 }
