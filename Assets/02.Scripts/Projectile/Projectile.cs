@@ -72,7 +72,7 @@ public abstract class Projectile : MonoBehaviour
         
         if (_durability <= 0)
         {
-            gameObject.SetActive(false);
+            ProjectilePoolManager.Instance.Release(this, _type);
         }
     }
 }
