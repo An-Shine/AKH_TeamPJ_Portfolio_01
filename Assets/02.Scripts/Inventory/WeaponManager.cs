@@ -51,7 +51,8 @@ public class WeaponManager : MonoBehaviour
         if (CurrentWeapon != null)
             CurrentWeapon.gameObject.SetActive(false);
 
-        CurrentWeapon = _gainedWeaponList[targetIndex];
+        CurrentWeaponIndex = targetIndex;
+        CurrentWeapon = _gainedWeaponList[CurrentWeaponIndex];
         CurrentWeapon.gameObject.SetActive(true);
     }
 
@@ -67,7 +68,8 @@ public class WeaponManager : MonoBehaviour
         if (CurrentWeapon != null)
             CurrentWeapon.gameObject.SetActive(false);
 
-        CurrentWeapon = _gainedWeaponList[index];
+        CurrentWeaponIndex = index;
+        CurrentWeapon = _gainedWeaponList[CurrentWeaponIndex];
         CurrentWeapon.gameObject.SetActive(true);
     }
     
@@ -83,7 +85,8 @@ public class WeaponManager : MonoBehaviour
         if (CurrentWeapon != null)
             CurrentWeapon.gameObject.SetActive(false);
 
-        CurrentWeapon = _gainedWeaponList[index];
+        CurrentWeaponIndex = index;
+        CurrentWeapon = _gainedWeaponList[CurrentWeaponIndex];
         CurrentWeapon.gameObject.SetActive(true);
     }
     
