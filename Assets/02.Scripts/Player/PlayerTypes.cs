@@ -20,3 +20,12 @@ public enum AimDisplayMode
     Crosshair,
     AimLine
 }
+
+public enum Motion
+{
+    Idle,
+    Run,
+    Dash,
+    Attack,
+    RunAttack
+}

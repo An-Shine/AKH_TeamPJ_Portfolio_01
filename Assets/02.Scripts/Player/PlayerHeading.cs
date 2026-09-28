@@ -33,7 +33,7 @@ public class PlayerHeading : MonoBehaviour
         }
 
         _lineRenderer.SetPosition(0, startPos);
-        _lineRenderer.SetPosition(1, mouseWorldPos + dir*30);
+        _lineRenderer.SetPosition(1, mouseWorldPos + dir * 30);
     }
 
     private Vector3 GetMouseWorldPosition()

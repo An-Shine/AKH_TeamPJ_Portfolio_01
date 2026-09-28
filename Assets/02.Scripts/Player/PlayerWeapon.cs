@@ -12,8 +12,8 @@ public class PlayerWeapon : MonoBehaviour
 
     private float _fireInterval = 0.2f;
 
-    [Tooltip("발사 후 Attack / RunAttack 애니메이션을 표시하는 시간")] [SerializeField, Min(0f)]
-    private float _attackVisualDuration = 0.15f;
+    // 발사 후 Attack / RunAttack 애니메이션을 표시하는 시간
+    [SerializeField, Min(0f)] private float _attackVisualDuration = 0.15f;
 
     private float _nextFireTime;
     private float _attackVisualUntil;

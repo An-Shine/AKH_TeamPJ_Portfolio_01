@@ -4,8 +4,8 @@ public class PlayerAim : MonoBehaviour
 {
     [SerializeField] private Camera _worldCamera;
 
-    [Tooltip("비워 두면 플레이어 Transform을 조준 기준점으로 사용")] [SerializeField]
-    private Transform _aimOrigin;
+    // 비워 두면 플레이어 Transform을 조준 기준점으로 사용
+    [SerializeField] private Transform _aimOrigin;
 
     [SerializeField, Range(0f, 15f)] private float _directionHysteresis = 5f;
     [SerializeField, Min(0f)] private float _mouseDeadZone = 0.05f;
@@ -45,8 +45,10 @@ public class PlayerAim : MonoBehaviour
         float angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
 
         // 현재 방향의 범위를 여유 각도만큼 더 벗어나야 방향을 변경합니다.
-        if (_hasFacing && Mathf.Abs(Mathf.DeltaAngle(CenterAngle(Facing), angle))
-            <= 30f + _directionHysteresis) return;
+        if (_hasFacing && Mathf.Abs(Mathf.DeltaAngle(CenterAngle(Facing), angle)) <= 30f + _directionHysteresis)
+        {
+            return;
+        }
 
         if (angle >= 60f && angle < 120f)
         {
@@ -112,12 +114,30 @@ public class PlayerAim : MonoBehaviour
     {
         switch (direction)
         {
-            case FacingDirection.Up: return 90f;
-            case FacingDirection.Down: return -90f;
-            case FacingDirection.RightUp: return 30f;
-            case FacingDirection.RightDown: return -30f;
-            case FacingDirection.LeftUp: return 150f;
-            default: return -150f;
+            case FacingDirection.Up:
+            {
+                return 90f;
+            }
+            case FacingDirection.Down:
+            {
+                return -90f;
+            }
+            case FacingDirection.RightUp:
+            {
+                return 30f;
+            }
+            case FacingDirection.RightDown:
+            {
+                return -30f;
+            }
+            case FacingDirection.LeftUp:
+            {
+                return 150f;
+            }
+            default:
+            {
+                return -150f;
+            }
         }
     }
 }
