@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(RectTransform))]
-public class Crosshair : MonoBehaviour
+public class CrosshairFollowMouse : MonoBehaviour
 {
     private RectTransform _crosshair;
     private RectTransform _parentRect;
@@ -36,8 +36,8 @@ public class Crosshair : MonoBehaviour
             ? null
             : _canvas.worldCamera;
 
-        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                _parentRect, Input.mousePosition, uiCamera, out Vector2 position))
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(_parentRect, Input.mousePosition, uiCamera,
+                out Vector2 position))
         {
             _crosshair.localPosition = new Vector3(position.x, position.y, 0f);
         }
