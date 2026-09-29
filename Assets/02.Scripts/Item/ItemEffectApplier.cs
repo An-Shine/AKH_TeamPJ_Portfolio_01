@@ -44,7 +44,7 @@ public static class ItemEffectApplier
     {
         foreach (Item item in items)
         {
-            foreach (ItemEffectData effect in item.effects)
+            foreach (ItemEffectData effect in item.Effects)
             {
                 if (effect.TargetType != EffectTarget.Player)
                     continue;
@@ -75,7 +75,7 @@ public static class ItemEffectApplier
     {
         foreach (Item item in items)
         {
-            foreach (ItemEffectData effect in item.effects)
+            foreach (ItemEffectData effect in item.Effects)
             {
                 if (effect.TargetType != EffectTarget.Weapon)
                     continue;
@@ -136,7 +136,7 @@ public static class ItemEffectApplier
     {
         foreach (Item item in items)
         {
-            foreach (ItemEffectData effect in item.effects)
+            foreach (ItemEffectData effect in item.Effects)
             {
                 if (effect.TargetType != EffectTarget.Projectile)
                     continue;
