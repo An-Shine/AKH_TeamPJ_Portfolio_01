@@ -9,7 +9,7 @@ public enum EffectType
     // Weapon
     FireSpeedModifier,
     FireSpeedMultiplier,
-    MagazineSizeModifier,
+    MagazineSizeMultiplier,
     ProjectileCountModifier,
     SpreadAngleModifier,
     SpreadAngleMultiplier,
