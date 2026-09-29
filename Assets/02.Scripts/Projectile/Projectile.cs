@@ -46,12 +46,9 @@ public abstract class Projectile : MonoBehaviour
 
     protected virtual void CheckRange()
     {
-        Vector3 distanceVector = transform.position - _initialPosition;
-        float distance = distanceVector.magnitude;
-        if (distance > _range)
-        {
-            ProjectilePoolManager.Instance.Release(this, _type);
-        }
+        var distanceVector = transform.position - _initialPosition;
+        var distance = distanceVector.magnitude;
+        if (distance > _range) ProjectilePoolManager.Instance.Release(this, _type);
     }
 
     protected virtual void GiveDamage(Collider2D other)

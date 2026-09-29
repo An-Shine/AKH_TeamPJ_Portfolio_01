@@ -5,5 +5,5 @@ public enum ProjectileType
     BigExplosion,
     Laser,
     Shot,
-    Penetration,
+    Penetration
 }
