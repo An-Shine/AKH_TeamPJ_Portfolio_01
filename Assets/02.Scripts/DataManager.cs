@@ -103,6 +103,7 @@ public class DataManager : MonoBehaviour
             effectList.Add(row[5]);
             effectList.Add(row[6]);
             effectList.Add(row[7]);
+            effectList.Add(row[8]);
 
             ItemDatas[row[0]] = new ItemData
             {
