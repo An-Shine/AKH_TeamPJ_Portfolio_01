@@ -9,7 +9,6 @@ public class ProjectilePoolManager : MonoBehaviour
 
     [SerializeField] private List<ProjectileEntry> _entries;
     private Dictionary<ProjectileType, ObjectPool<Projectile>> _projectilePools;
-
     [SerializeField] private Transform _projectileContainer;
 
     private void Awake()
@@ -28,11 +27,10 @@ public class ProjectilePoolManager : MonoBehaviour
                 new ObjectPool<Projectile>(
                     () =>
                     {
-                        var projectile = Instantiate(projectileEntry.ProjectilePrefab, _projectileContainer);
-
-                        var damage = DataManager.Instance.ProjectileDatas[projectileEntry.Type].Damage;
-                        var speedScalar = DataManager.Instance.ProjectileDatas[projectileEntry.Type].SpeedScalar;
-                        var durability = DataManager.Instance.ProjectileDatas[projectileEntry.Type].Durability;
+                        Projectile projectile = Instantiate(projectileEntry.ProjectilePrefab, _projectileContainer);
+                        int damage = DataManager.Instance.ProjectileDatas[projectileEntry.Type].Damage;
+                        float speedScalar = DataManager.Instance.ProjectileDatas[projectileEntry.Type].SpeedScalar;
+                        int durability = DataManager.Instance.ProjectileDatas[projectileEntry.Type].Durability;
                         projectile.Initialize(projectileEntry.Type, damage, speedScalar, durability);
 
                         return projectile;

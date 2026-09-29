@@ -12,7 +12,7 @@
             }
             case FireBehaviourType.Charge:
             {
-                //fireBehaviour = new ChargeFire();
+                fireBehaviour = new ChargeFire();
                 break;
             }
         }

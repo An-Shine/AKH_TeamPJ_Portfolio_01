@@ -2,7 +2,9 @@
 
 public class Weapon : MonoBehaviour
 {
-    [SerializeField] private Transform _firePoint;
+
+    [SerializeField] private SFXType _fireSoundType;
+    [SerializeField] Transform _firePoint;
     public WeaponData Data { get; private set; }
     public WeaponModifier Modifier { get; private set; }
 
@@ -15,15 +17,9 @@ public class Weapon : MonoBehaviour
     private int _remainingAmmo;
     private float _timer;
     private float _reloadTimer;
-
-    private float FireRate => (Data.FireRate + Modifier.FireRate.Flat)
-                              * (1f + Modifier.FireRate.Rate);
-    private float ReloadSpeed => (1 + Modifier.ReloadSpeed.Flat)
-                                 * (1f + Modifier.ReloadSpeed.Rate);
-
-    private float ChargeSpeed => (1 + Modifier.ChargeSpeed.Flat)
-                                 * (1f + Modifier.ChargeSpeed.Rate);
-
+    private float FireRate => (Data.FireRate + Modifier.FireRate.Flat) * (1f + Modifier.FireRate.Rate);
+    private float ReloadSpeed => (1 + Modifier.ReloadSpeed.Flat) * (1f + Modifier.ReloadSpeed.Rate);
+    public float ChargeSpeed => (1 + Modifier.ChargeSpeed.Flat) * (1f + Modifier.ChargeSpeed.Rate);
     private int MagazineSize => Data.MagazineSize + Modifier.MagazineSize;
     private int ProjectileCount => Data.ProjectileCount + Modifier.ProjectileCount;
     private float Angle => Data.Angle + Modifier.Angle;
@@ -91,14 +87,17 @@ public class Weapon : MonoBehaviour
 
     private void Fire()
     {
-        var context = new FireContext(Data.ProjectileType, _firePoint.transform.position,
-            transform.right, Range, ProjectileCount, Angle);
+        FireContext context = new FireContext(Data.ProjectileType, _firePoint.transform.position,transform.right, Range, ProjectileCount, Angle);
         _firePattern.Fire(context);
+        AudioManager.Instance.PlaySFX(_fireSoundType);
     }
 
     public bool CheckRemainingAmmo()
     {
-        if (_remainingAmmo <= 0) return false;
+        if (_remainingAmmo <= 0)
+        {
+            return false;
+        }
         return true;
     }
 
@@ -114,7 +113,7 @@ public class Weapon : MonoBehaviour
 
         if (_isReloading && _reloadTimer < Data.ReloadTime)
         {
-            _reloadTimer -= Time.deltaTime * ReloadSpeed;
+            _reloadTimer += Time.deltaTime * ReloadSpeed;
             _remainingAmmo = (int)(MagazineSize * (_reloadTimer / Data.ReloadTime));
             if (_remainingAmmo > MagazineSize) _remainingAmmo = MagazineSize;
         }

@@ -4,9 +4,7 @@ public class WeaponModifier
     public WeaponStatModifier FireRate;
     public WeaponStatModifier ReloadSpeed;
     public WeaponStatModifier ChargeSpeed;
-
     public int MagazineSize;
-
     public int ProjectileCount;
     public float Angle;
     public float Range;

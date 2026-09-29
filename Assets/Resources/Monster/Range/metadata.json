@@ -1,0 +1,36 @@
+{
+  "group_id": "696faba6-4881-40e3-930b-f34e96237279",
+  "states": [
+    {
+      "character": {
+        "id": "84b743ac-faae-4a80-a8f4-6db9fc70a3a9",
+        "name": "Idle",
+        "prompt": "Create a single 2D top-down pixel art Range Monster for a sci-fi space shooter game. It must clearly belong to the SAME alien-machine species and industrial mechanical system as the existing Melee Monster. Match its visual language, body structure, proportions, pixel density, dark worn metal, organic alien anatomy, mechanical joints, armor style, and limited neon energy accents. This is a different combat variant, not a completely new species.\n\nThe defining feature is ONE prominent shoulder-mounted energy cannon used as its ranged weapon. The cannon must be clearly readable from a top-down gameplay view and physically integrated into the body. Add one simple mechanical aiming device or targeting sensor connected to the cannon. Do NOT add any other weapon.\n\nUse an alien creature body combined with industrial robot armor, reinforced limbs, exposed mechanical joints, and a clearly visible Energy Core integrated into the torso. Keep the arms, legs, torso, shoulder cannon, aiming device, and Energy Core visually separated and structurally clear so they can later be animated independently for Idle, Walk, Range Attack, Hit, and Death animations.\n\nUse dark industrial metal, subtle dust, scratches, and worn surfaces. Use limited neon energy only on the Energy Core and weapon. Keep the neon restrained. No excessive glow, bloom, gradients, or bright cinematic lighting.\n\nThe result must look like an actual finished GAME SPRITE, not concept art, illustration, 3D render, cinematic artwork, or realistic character art. Use clean pixel clusters, a controlled limited color palette, strong readable silhouette, simple game-ready shapes, and clear separation between body parts. The character must remain readable at small gameplay scale.\n\nSingle character only. Full body visible. Centered. Top-down view. Consistent facing direction. Neutral standing pose suitable as the base design for animation. Transparent background.\n\nNO environment, NO ground, NO text, NO UI, NO other characters, NO ",
+        "size": {
+          "width": 32,
+          "height": 32
+        },
+        "template_id": "custom",
+        "directions": 8,
+        "view": "low top-down",
+        "created_at": "2026-09-28T06:45:41.497693+00:00"
+      },
+      "folder": "Idle",
+      "frames": {
+        "rotations": {
+          "south": "Idle/rotations/south.png",
+          "south-east": "Idle/rotations/south-east.png",
+          "east": "Idle/rotations/east.png",
+          "north-east": "Idle/rotations/north-east.png",
+          "north": "Idle/rotations/north.png",
+          "north-west": "Idle/rotations/north-west.png",
+          "west": "Idle/rotations/west.png",
+          "south-west": "Idle/rotations/south-west.png"
+        },
+        "animations": {}
+      }
+    }
+  ],
+  "export_version": "3.1",
+  "export_date": "2026-09-28T06:56:04.696905"
+}
