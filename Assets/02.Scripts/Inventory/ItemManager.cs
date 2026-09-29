@@ -64,5 +64,7 @@ public class ItemManager : MonoBehaviour
                 }
             }
         }
+
+        item.gameObject.SetActive(false);
     }
 }
