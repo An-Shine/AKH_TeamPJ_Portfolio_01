@@ -3,17 +3,31 @@ using UnityEngine;
 
 public class ItemManager : MonoBehaviour
 {
+    private static ItemManager _instance;
+    public static ItemManager Instance => _instance;
+
     private List<Item> _gaineItemList;
 
     public ItemPlayerStat PlayerStat { get; private set; }
     public ItemWeaponStat WeaponStat { get; private set; }
     public ItemProjectileStat ProjectileStat { get; private set; }
 
+    private void Awake()
+    {
+        if (_instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        _instance = this;
+    }
+
     public void GainItem(Item item)
     {
         _gaineItemList.Add(item);
 
-        foreach (ItemEffectData effect in item.effects)
+        foreach (ItemEffectData effect in item.Effects)
         {
             switch (effect.ApplyType)
             {
