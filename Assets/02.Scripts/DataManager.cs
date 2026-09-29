@@ -8,6 +8,7 @@ public class DataManager : MonoBehaviour
     public static DataManager Instance => _instance;
     public Dictionary<string, WeaponData> WeaponDatas { get; private set; }
     public Dictionary<ProjectileType, ProjectileData> ProjectileDatas { get; private set; }
+    public SavePlayerStatus PlayerStatusDatas { get; private set; }
 
     private void Awake()
     {
@@ -74,5 +75,31 @@ public class DataManager : MonoBehaviour
                 Durability = int.Parse(row[3])
             };
         }
+    }
+
+    private void LoadPlayerStatusCSV()
+    {
+        TextAsset csvData = Resources.Load("Datas/PlayerStatus") as TextAsset;
+        if (csvData == null)
+        {
+            Debug.LogWarning("PlayerStatus data not found");
+            return;
+        }
+
+        string[] datas = csvData.text.Split(new char[] { '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
+        string[] row = datas[1].Split(','); //datas[0]은 열 이름 있음
+        PlayerStatusDatas = new SavePlayerStatus
+        (
+            float.Parse(row[1]),
+            float.Parse(row[2]),
+            float.Parse(row[3]),
+            float.Parse(row[4]),
+            float.Parse(row[5]),
+            float.Parse(row[6]),
+            float.Parse(row[7]),
+            int.Parse(row[8]),
+            int.Parse(row[9]),
+            int.Parse(row[10])
+        );
     }
 }

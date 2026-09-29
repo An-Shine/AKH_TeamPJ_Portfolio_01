@@ -7,7 +7,6 @@ public class PlayerAnimation : MonoBehaviour
     [SerializeField] private string _layerName = "Base Layer";
     private Animator _animator;
     private readonly int[,] _hashes = new int[5, 6];
-    private readonly HashSet<int> _warnedMissing = new HashSet<int>();
     private int _lastHash;
     private int _lastShotSequence;
     private Motion _lastMotion;
@@ -26,7 +25,10 @@ public class PlayerAnimation : MonoBehaviour
         }
     }
 
-    private void OnEnable() => _hasPlayed = false;
+    private void OnEnable()
+    {
+        _hasPlayed = false;
+    }
 
     public void Refresh(PlayerState state, FacingDirection facing, bool isAttacking, int shotSequence)
     {
@@ -48,8 +50,6 @@ public class PlayerAnimation : MonoBehaviour
 
         if (!_animator.HasState(0, hash))
         {
-            if (_warnedMissing.Add(hash))
-                Debug.LogWarning($"Animator State가 없습니다: {_layerName}.{motion}_{facing}", this);
             return;
         }
 
