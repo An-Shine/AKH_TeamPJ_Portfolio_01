@@ -1,40 +1,31 @@
 fileFormatVersion: 2
-guid: 61e3cf6ae22b82f4dac9fca9800dc9f3
+guid: bf4202376928e894baa3f7aaf2e1b34d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7893811080159322527
-    second: PlayerDefault_0
+      213: 2187531045214866346
+    second: Dash_Down_Body_0
   - first:
-      213: 3797600247012982168
-    second: PlayerDefault_1
+      213: 4455349817443214
+    second: Dash_Down_Body_1
   - first:
-      213: -6552708207353842218
-    second: PlayerDefault_2
+      213: 1270121623975598985
+    second: Dash_Down_Body_2
   - first:
-      213: 6654498660583437746
-    second: PlayerDefault_3
+      213: 11855815218399386
+    second: Dash_Down_Body_3
   - first:
-      213: 2597365722605198315
-    second: PlayerDefault_4
+      213: 5966442783543883234
+    second: Dash_Down_Body_4
   - first:
-      213: 7911161980732217704
-    second: PlayerDefault_5
+      213: -3288081612399396050
+    second: Dash_Down_Body_5
   - first:
-      213: 5736550797081290327
-    second: PlayerDefault_6
+      213: -5045214976642860426
+    second: Dash_Down_Body_6
   - first:
-      213: 4710774533793183081
-    second: PlayerDefault_7
-  - first:
-      213: -6953184629966124058
-    second: PlayerDefault_8
-  - first:
-      213: -2207088975327880388
-    second: PlayerDefault_9
-  - first:
-      213: 5814417584279417224
-    second: PlayerDefault_10
+      213: 582617840505344304
+    second: Dash_Down_Body_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -81,7 +72,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 25
+  spritePixelsToUnits: 35
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -156,167 +147,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlayerDefault_0
-      rect:
-        serializedVersion: 2
-        x: 2
-        y: 49
-        width: 10
-        height: 14
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 16e9f0355ac837290800000000000000
-      internalID: -7893811080159322527
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerDefault_1
-      rect:
-        serializedVersion: 2
-        x: 17
-        y: 50
-        width: 9
-        height: 13
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 89df42add49c3b430800000000000000
-      internalID: 3797600247012982168
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerDefault_2
-      rect:
-        serializedVersion: 2
-        x: 35
-        y: 48
-        width: 24
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6d533e76a9a1015a0800000000000000
-      internalID: -6552708207353842218
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerDefault_3
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 17
-        width: 14
-        height: 14
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2b573665647895c50800000000000000
-      internalID: 6654498660583437746
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerDefault_4
-      rect:
-        serializedVersion: 2
-        x: 3
-        y: 32
-        width: 24
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: beb98affc52bb0420800000000000000
-      internalID: 2597365722605198315
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerDefault_5
-      rect:
-        serializedVersion: 2
-        x: 35
-        y: 32
-        width: 24
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8699e1608e71acd60800000000000000
-      internalID: 7911161980732217704
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerDefault_6
-      rect:
-        serializedVersion: 2
-        x: 18
-        y: 17
-        width: 4
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 756a3007e825c9f40800000000000000
-      internalID: 5736550797081290327
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerDefault_7
+      name: Dash_Down_Body_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 2
-        width: 7
-        height: 11
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -325,20 +162,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 965f2bfca78006140800000000000000
-      internalID: 4710774533793183081
+      spriteID: aabcb2545ebab5e10800000000000000
+      internalID: 2187531045214866346
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerDefault_8
+      name: Dash_Down_Body_1
       rect:
         serializedVersion: 2
-        x: 9
-        y: 2
-        width: 7
-        height: 11
+        x: 48
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -347,20 +184,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6ebc9292b63518f90800000000000000
-      internalID: -6953184629966124058
+      spriteID: e830837fd14df0000800000000000000
+      internalID: 4455349817443214
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerDefault_9
+      name: Dash_Down_Body_2
       rect:
         serializedVersion: 2
-        x: 34
-        y: 1
-        width: 12
-        height: 14
+        x: 96
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -369,20 +206,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c3b96e54548de51e0800000000000000
-      internalID: -2207088975327880388
+      spriteID: 98b9b9a33e060a110800000000000000
+      internalID: 1270121623975598985
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerDefault_10
+      name: Dash_Down_Body_3
       rect:
         serializedVersion: 2
-        x: 52
-        y: 4
-        width: 7
-        height: 7
+        x: 144
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -391,30 +228,96 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 88172ce9cf5f0b050800000000000000
-      internalID: 5814417584279417224
+      spriteID: a988d961dce1a2000800000000000000
+      internalID: 11855815218399386
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerDefault_11
+      name: Dash_Down_Body_4
       rect:
         serializedVersion: 2
-        x: 23
-        y: 23
-        width: 6
-        height: 6
+        x: 192
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 6675f0f4440c4b54abac5dcbe35a5265
-      internalID: 1931305158
+      spriteID: 2e573dd99101dc250800000000000000
+      internalID: 5966442783543883234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dash_Down_Body_5
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2bb07cc1336e52d0800000000000000
+      internalID: -3288081612399396050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dash_Down_Body_6
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67ab8bd95bbcbf9b0800000000000000
+      internalID: -5045214976642860426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dash_Down_Body_7
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 0
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 031502fc6dfd51800800000000000000
+      internalID: 582617840505344304
       vertices: []
       indices: 
       edges: []
@@ -423,7 +326,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: fd5fb8b45dc06374a806182d33a2f917
+    spriteID: 889f77fd99fffc8488228c132457c380
     internalID: 0
     vertices: []
     indices: 
@@ -431,20 +334,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":8.0,"y":1.0},"gridSpriteSize":{"x":48.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      PlayerDefault_0: -7893811080159322527
-      PlayerDefault_1: 3797600247012982168
-      PlayerDefault_10: 5814417584279417224
-      PlayerDefault_11: 1931305158
-      PlayerDefault_2: -6552708207353842218
-      PlayerDefault_3: 6654498660583437746
-      PlayerDefault_4: 2597365722605198315
-      PlayerDefault_5: 7911161980732217704
-      PlayerDefault_6: 5736550797081290327
-      PlayerDefault_7: 4710774533793183081
-      PlayerDefault_8: -6953184629966124058
-      PlayerDefault_9: -2207088975327880388
+      Dash_Down_Body_0: 2187531045214866346
+      Dash_Down_Body_1: 4455349817443214
+      Dash_Down_Body_2: 1270121623975598985
+      Dash_Down_Body_3: 11855815218399386
+      Dash_Down_Body_4: 5966442783543883234
+      Dash_Down_Body_5: -3288081612399396050
+      Dash_Down_Body_6: -5045214976642860426
+      Dash_Down_Body_7: 582617840505344304
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
