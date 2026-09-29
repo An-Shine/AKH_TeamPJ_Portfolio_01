@@ -3,41 +3,36 @@ using UnityEngine;
 public class AreaLightManager : MonoBehaviour
 {
     [Header("구역 리스트")]
-    [SerializeField] private AreaLightingZone[] zones;
+    [SerializeField] private AreaLightingZone[] _zones;
     [Header("초기 구역")]
-    [SerializeField] private AreaLightingZone initialZone;
+    [SerializeField] private AreaLightingZone _initialZone;
 
-    public AreaLightingZone CurrentZone { get; private set; }
+    public AreaLightingZone _currentZone { get; private set; }
 
     private void Awake()
     {
-        foreach (AreaLightingZone zone in zones)
+        foreach (AreaLightingZone zone in _zones)
         {
-            if (zone == null)
-            {
-                continue;
-            }
+            if (zone == null) continue;
             zone.DeactivateLighting();
         }
 
-        CurrentZone = null;
+        _currentZone = null;
 
-        if (initialZone != null)
+        if (_initialZone != null)
         {
-            CurrentZone = initialZone;
-            CurrentZone.ActivateLighting();
+            _currentZone = _initialZone;
+            _currentZone.ActivateLighting();
         }
     }
+
     public void EnterZone(AreaLightingZone newZone)
     {
-        if (newZone == null || newZone == CurrentZone)
+        if (newZone == null || newZone == _currentZone)
             return;
 
-        if (CurrentZone != null)
-        {
-            CurrentZone.DeactivateLighting();
-        }
-        CurrentZone = newZone;
-        CurrentZone.ActivateLighting();
+        if (_currentZone != null) _currentZone.DeactivateLighting();
+        _currentZone = newZone;
+        _currentZone.ActivateLighting();
     }
 }

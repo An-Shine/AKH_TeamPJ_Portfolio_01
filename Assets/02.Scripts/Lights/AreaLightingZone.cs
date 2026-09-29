@@ -4,44 +4,35 @@ using UnityEngine.Rendering.Universal;
 public class AreaLightingZone : MonoBehaviour
 {
     [Header("조명")]
-    [SerializeField] private Light2D[] lights;
-    
+    [SerializeField] private Light2D[] _lights;
+
     [Header("매니저")]
-    [SerializeField] private AreaLightManager areaLightManager;
+    [SerializeField] private AreaLightManager _areaLightManager;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Rigidbody2D rb = collision.attachedRigidbody;
+        var rb = collision.attachedRigidbody;
 
-        if (rb == null || !rb.CompareTag("Player"))
-        {
-            return;
-        }
+        if (rb == null || !rb.CompareTag("Player")) return;
 
-        areaLightManager.EnterZone(this);
+        _areaLightManager.EnterZone(this);
     }
 
     public void ActivateLighting()
     {
-        foreach (Light2D lightObject in lights)
+        foreach (var lightObject in _lights)
         {
-            if (lightObject == null)
-            {
-                continue;
-            }
+            if (lightObject == null) continue;
             lightObject.enabled = true;
         }
     }
 
     public void DeactivateLighting()
     {
-        foreach (Light2D lightObject in lights)
+        foreach (var lightObject in _lights)
         {
-            if (lightObject == null)
-            {
-                continue;
-            }
-            
+            if (lightObject == null) continue;
+
             lightObject.enabled = false;
         }
     }

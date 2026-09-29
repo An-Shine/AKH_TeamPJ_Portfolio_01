@@ -16,8 +16,8 @@ public class WeaponModifier
         Damage = new WeaponStatModifier();
         FireRate = new WeaponStatModifier();
         ReloadSpeed = new WeaponStatModifier();
-        ChargeSpeed = new  WeaponStatModifier();
-        
+        ChargeSpeed = new WeaponStatModifier();
+
         MagazineSize = 0;
 
         ProjectileCount = 0;

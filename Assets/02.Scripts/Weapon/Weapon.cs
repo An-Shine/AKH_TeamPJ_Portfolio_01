@@ -2,13 +2,13 @@
 
 public class Weapon : MonoBehaviour
 {
-    [SerializeField] Transform _firePoint;
+    [SerializeField] private Transform _firePoint;
     public WeaponData Data { get; private set; }
     public WeaponModifier Modifier { get; private set; }
-    
+
     private FireBehaviour _fireBehaviour;
     private IFirePattern _firePattern;
-    
+
     private const float CoolTime = 10f;
 
     private bool _isReloading;
@@ -17,17 +17,17 @@ public class Weapon : MonoBehaviour
     private float _reloadTimer;
 
     private float FireRate => (Data.FireRate + Modifier.FireRate.Flat)
-                             * (1f + Modifier.FireRate.Rate);
+                              * (1f + Modifier.FireRate.Rate);
     private float ReloadSpeed => (1 + Modifier.ReloadSpeed.Flat)
-                                * (1f + Modifier.ReloadSpeed.Rate);
+                                 * (1f + Modifier.ReloadSpeed.Rate);
 
     private float ChargeSpeed => (1 + Modifier.ChargeSpeed.Flat)
                                  * (1f + Modifier.ChargeSpeed.Rate);
 
-    private int MagazineSize => (Data.MagazineSize + Modifier.MagazineSize);
-    private int ProjectileCount => (Data.ProjectileCount + Modifier.ProjectileCount);
-    private float Angle => (Data.Angle + Modifier.Angle);
-    private float Range => (Data.Range + Modifier.Range);
+    private int MagazineSize => Data.MagazineSize + Modifier.MagazineSize;
+    private int ProjectileCount => Data.ProjectileCount + Modifier.ProjectileCount;
+    private float Angle => Data.Angle + Modifier.Angle;
+    private float Range => Data.Range + Modifier.Range;
 
     private void Awake()
     {
@@ -50,11 +50,11 @@ public class Weapon : MonoBehaviour
         Data = data;
         _isReloading = false;
         _remainingAmmo = MagazineSize;
-        
+
         _fireBehaviour = FireFactory.CreateBehaviour(Data.BehaviourType);
         _firePattern = FireFactory.CreatePattern(Data.PatternType);
     }
-    
+
     public void OnMouseDown()
     {
         _fireBehaviour.OnMouseDown(this);
@@ -69,7 +69,7 @@ public class Weapon : MonoBehaviour
     {
         _fireBehaviour.OnMouseUp(this);
     }
-    
+
     public bool TryFire()
     {
         if (_isReloading)
@@ -91,17 +91,14 @@ public class Weapon : MonoBehaviour
 
     private void Fire()
     {
-        FireContext context = new FireContext(Data.ProjectileType,_firePoint.transform.position, 
+        var context = new FireContext(Data.ProjectileType, _firePoint.transform.position,
             transform.right, Range, ProjectileCount, Angle);
         _firePattern.Fire(context);
     }
 
     public bool CheckRemainingAmmo()
     {
-        if (_remainingAmmo <= 0)
-        {
-            return false;
-        }
+        if (_remainingAmmo <= 0) return false;
         return true;
     }
 
@@ -110,24 +107,18 @@ public class Weapon : MonoBehaviour
         _isReloading = true;
         _reloadTimer = 0;
     }
-    
+
     private void Reloading()
     {
         if (!_isReloading) return;
-        
+
         if (_isReloading && _reloadTimer < Data.ReloadTime)
         {
             _reloadTimer -= Time.deltaTime * ReloadSpeed;
             _remainingAmmo = (int)(MagazineSize * (_reloadTimer / Data.ReloadTime));
-            if (_remainingAmmo > MagazineSize)
-            {
-                _remainingAmmo = MagazineSize;
-            }
+            if (_remainingAmmo > MagazineSize) _remainingAmmo = MagazineSize;
         }
 
-        if (_reloadTimer >= Data.ReloadTime)
-        {
-            _isReloading = false;
-        }
+        if (_reloadTimer >= Data.ReloadTime) _isReloading = false;
     }
 }

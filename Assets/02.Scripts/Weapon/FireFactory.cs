@@ -2,7 +2,7 @@
 {
     public static FireBehaviour CreateBehaviour(FireBehaviourType fireBehaviourType)
     {
-        FireBehaviour fireBehaviour =new NormalFire();
+        FireBehaviour fireBehaviour = new NormalFire();
         switch (fireBehaviourType)
         {
             case FireBehaviourType.Auto:
@@ -22,7 +22,7 @@
 
     public static IFirePattern CreatePattern(FirePatternType patternType)
     {
-        IFirePattern firePattern =new NormalFirePattern();
+        IFirePattern firePattern = new NormalFirePattern();
         switch (patternType)
         {
             case FirePatternType.Spread:

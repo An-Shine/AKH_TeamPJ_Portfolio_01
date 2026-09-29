@@ -2,20 +2,21 @@ using UnityEngine;
 
 public class LaserProjectile : Projectile
 {
-    [SerializeField]
-    private LineRenderer _lineRenderer;
+    [SerializeField] private LineRenderer _lineRenderer;
 
-    [SerializeField]
-    private LayerMask _targetLayer;
+    [SerializeField] private LayerMask _targetLayer;
 
     protected override void Move()
-    {}
+    {
+    }
 
     protected override void CheckRange()
-    {}
-    
+    {
+    }
+
     protected override void OnTriggerEnter2D(Collider2D other)
-    {}
+    {
+    }
 
     public override void OnSpawn(Vector3 position, Vector3 direction, float range)
     {
@@ -25,10 +26,10 @@ public class LaserProjectile : Projectile
 
     public void CreateLaser()
     {
-        Vector3 direction = _direction;
+        var direction = _direction;
         direction.Normalize();
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, _range, _targetLayer);
+        var hit = Physics2D.Raycast(transform.position, direction, _range, _targetLayer);
 
         Vector2 endPosition;
         if (hit.collider != null)
@@ -40,7 +41,6 @@ public class LaserProjectile : Projectile
         {
             endPosition = transform.position + direction * _range;
         }
-
         _lineRenderer.SetPosition(0, transform.position);
         _lineRenderer.SetPosition(1, endPosition);
     }
