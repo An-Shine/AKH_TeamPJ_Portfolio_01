@@ -72,7 +72,6 @@ public abstract class Projectile : MonoBehaviour
             OnDestroySelf();
         }
     }
-    
     protected virtual void OnDestroySelf()
     {
         ProjectilePoolManager.Instance.Release(this, _type);

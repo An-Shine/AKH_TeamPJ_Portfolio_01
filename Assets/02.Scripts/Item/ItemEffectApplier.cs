@@ -24,7 +24,7 @@ public static class ItemEffectApplier
             }
         }
     }
-    
+
     public static void ApplyImmediateEffect(ItemEffectData effect)
     {
         switch (effect.EffectType)
@@ -39,12 +39,12 @@ public static class ItemEffectApplier
             }
         }
     }
-    
+
     public static void ApplyToPlayer(ItemPlayerStat stat, IEnumerable<Item> items)
     {
-        foreach (Item item in items)
+        foreach (var item in items)
         {
-            foreach (ItemEffectData effect in item.effects)
+            foreach (var effect in item.effects)
             {
                 if (effect.TargetType != EffectTarget.Player)
                     continue;
@@ -70,12 +70,12 @@ public static class ItemEffectApplier
             }
         }
     }
-    
+
     public static void ApplyToWeapon(ItemWeaponStat stat, IEnumerable<Item> items)
     {
-        foreach (Item item in items)
+        foreach (var item in items)
         {
-            foreach (ItemEffectData effect in item.effects)
+            foreach (var effect in item.effects)
             {
                 if (effect.TargetType != EffectTarget.Weapon)
                     continue;

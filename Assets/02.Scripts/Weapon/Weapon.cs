@@ -2,9 +2,8 @@
 
 public class Weapon : MonoBehaviour
 {
-
     [SerializeField] private SFXType _fireSoundType;
-    [SerializeField] Transform _firePoint;
+    [SerializeField] private Transform _firePoint;
     public WeaponData Data { get; private set; }
     public WeaponModifier Modifier { get; private set; }
 
@@ -87,17 +86,15 @@ public class Weapon : MonoBehaviour
 
     private void Fire()
     {
-        FireContext context = new FireContext(Data.ProjectileType, _firePoint.transform.position,transform.right, Range, ProjectileCount, Angle);
+        var context = new FireContext(Data.ProjectileType, _firePoint.transform.position, transform.right, Range,
+            ProjectileCount, Angle);
         _firePattern.Fire(context);
         AudioManager.Instance.PlaySFX(_fireSoundType);
     }
 
     public bool CheckRemainingAmmo()
     {
-        if (_remainingAmmo <= 0)
-        {
-            return false;
-        }
+        if (_remainingAmmo <= 0) return false;
         return true;
     }
 

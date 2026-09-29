@@ -6,10 +6,8 @@ public class AudioManager : MonoBehaviour
 {
     private static AudioManager _instance;
     public static AudioManager Instance => _instance;
-    
     [SerializeField] private AudioSource _bgmSource;
     [SerializeField] private List<AudioSource> _sfxSources;
-    
     [SerializeField] private List<BGMClip> _bgmEntries;
     [SerializeField] private List<SFXClip> _sfxEntries;
 
@@ -18,19 +16,16 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        if (_instance != null)
-        {
-            Destroy(gameObject);
-        }
+        if (_instance != null) Destroy(gameObject);
 
         _instance = this;
         _bgmDictionary = _bgmEntries.ToDictionary(x => x.Type, x => x.Clip);
         _sfxDictionary = _sfxEntries.ToDictionary(x => x.Type, x => x.Clip);
     }
-    
+
     public void PlayBGM(BGMType type)
     {
-        if (!_bgmDictionary.TryGetValue(type, out AudioClip clip))
+        if (!_bgmDictionary.TryGetValue(type, out var clip))
         {
             Debug.LogWarning("BGM Clip: " + type + " is not found!");
             return;
@@ -39,16 +34,16 @@ public class AudioManager : MonoBehaviour
         _bgmSource.clip = clip;
         _bgmSource.Play();
     }
-    
+
     public void PlaySFX(SFXType type)
     {
-        if (!_sfxDictionary.TryGetValue(type, out AudioClip clip))
+        if (!_sfxDictionary.TryGetValue(type, out var clip))
         {
             Debug.LogWarning("SFX Clip: " + type + " is not found!");
             return;
         }
 
-        AudioSource source = _sfxSources.FirstOrDefault(x => !x.isPlaying);
+        var source = _sfxSources.FirstOrDefault(x => !x.isPlaying);
 
         if (source == null)
             return;
