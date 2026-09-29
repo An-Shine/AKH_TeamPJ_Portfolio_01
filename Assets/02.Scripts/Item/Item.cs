@@ -10,7 +10,7 @@ public class Item : MonoBehaviour
 
     public void Initialize(string itemId)
     {
-        Data = DataManager.Instance.ItemDatas[itemId];
+        Data = DataManager.Instance.ItemDatas.TryGetValue(itemId, out ItemData itemData) ? itemData : null;
 
         _effects = new List<ItemEffectData>();
         foreach (string effectId in Data.EffectIdList)
@@ -19,7 +19,11 @@ public class Item : MonoBehaviour
             {
                 continue;
             }
-            _effects.Add(DataManager.Instance.ItemEffectDatas[effectId]);
+
+            if (DataManager.Instance.ItemEffectDatas.TryGetValue(effectId, out ItemEffectData effectData))
+            {
+                _effects.Add(effectData);
+            }
         }
     }
 }
