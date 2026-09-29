@@ -31,6 +31,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8725180094578488544}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3132997878098961892
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5063813330183136888}
+  m_Layer: 0
+  m_Name: EffectPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5063813330183136888
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3132997878098961892}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.44, y: 0.05, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8725180094578488544}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7668832566510512147
 GameObject:
   m_ObjectHideFlags: 0
@@ -63,6 +94,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8981952432434223440}
+  - {fileID: 5063813330183136888}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7607242473662261608
@@ -136,4 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ab1a1d0de204b0db9d1248b3be277b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapon
+  _fireSoundType: 0
+  _fireEffectPrefab: {fileID: 7269550981838179250, guid: 3f561e6f1cc50fa4686b9c039a6537a6, type: 3}
   _firePoint: {fileID: 8981952432434223440}
+  _effectPoint: {fileID: 5063813330183136888}
