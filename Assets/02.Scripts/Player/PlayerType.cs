@@ -2,7 +2,8 @@ public enum PlayerState
 {
     Idle,
     Run,
-    Dash
+    Dash,
+    Attack,
 }
 
 public enum FacingDirection
