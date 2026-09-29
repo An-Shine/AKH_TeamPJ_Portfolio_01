@@ -13,10 +13,7 @@ public class ProjectilePoolManager : MonoBehaviour
 
     private void Awake()
     {
-        if (_instance != null)
-        {
-            Destroy(gameObject);
-        }
+        if (_instance != null) Destroy(gameObject);
 
         _instance = this;
     }
@@ -24,14 +21,13 @@ public class ProjectilePoolManager : MonoBehaviour
     private void Start()
     {
         _projectilePools = new Dictionary<ProjectileType, ObjectPool<Projectile>>();
-        foreach (ProjectileEntry projectileEntry in _entries)
+        foreach (var projectileEntry in _entries)
         {
             _projectilePools[projectileEntry.Type] =
                 new ObjectPool<Projectile>(
                     () =>
                     {
                         Projectile projectile = Instantiate(projectileEntry.ProjectilePrefab, _projectileContainer);
-
                         int damage = DataManager.Instance.ProjectileDatas[projectileEntry.Type].Damage;
                         float speedScalar = DataManager.Instance.ProjectileDatas[projectileEntry.Type].SpeedScalar;
                         int durability = DataManager.Instance.ProjectileDatas[projectileEntry.Type].Durability;

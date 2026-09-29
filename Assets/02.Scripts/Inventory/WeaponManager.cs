@@ -17,10 +17,7 @@ public class WeaponManager : MonoBehaviour
 
     private void Awake()
     {
-        if (_instance != null)
-        {
-            Destroy(gameObject);
-        }
+        if (_instance != null) Destroy(gameObject);
 
         _instance = this;
     }
@@ -29,7 +26,7 @@ public class WeaponManager : MonoBehaviour
     {
         _unobtainedWeapons = new Dictionary<string, Weapon>();
         _gainedWeaponList = new List<Weapon>();
-        foreach (WeaponEntry weaponSlot in _weaponEntryList)
+        foreach (var weaponSlot in _weaponEntryList)
         {
             _unobtainedWeapons[weaponSlot.WeaponId] = Instantiate(weaponSlot.WeaponPrefab, _weaponContainer);
             _unobtainedWeapons[weaponSlot.WeaponId].Initialize(DataManager.Instance.WeaponDatas[weaponSlot.WeaponId]);
@@ -48,7 +45,6 @@ public class WeaponManager : MonoBehaviour
         {
             return;
         }
-
         if (CurrentWeapon != null)
             CurrentWeapon.gameObject.SetActive(false);
 
@@ -59,7 +55,7 @@ public class WeaponManager : MonoBehaviour
 
     public void NextWeapon()
     {
-        int index = CurrentWeaponIndex + 1;
+        var index = CurrentWeaponIndex + 1;
         if (index >= _gainedWeaponList.Count)
         {
             index = 0;
@@ -76,7 +72,7 @@ public class WeaponManager : MonoBehaviour
 
     public void PreviousWeapon()
     {
-        int index = CurrentWeaponIndex - 1;
+        var index = CurrentWeaponIndex - 1;
         if (index < 0)
         {
             index = _gainedWeaponList.Count - 1;
@@ -93,7 +89,7 @@ public class WeaponManager : MonoBehaviour
 
     public bool GainWeapon(string weaponId)
     {
-        if (_unobtainedWeapons.TryGetValue(weaponId, out Weapon targetWeapon))
+        if (_unobtainedWeapons.TryGetValue(weaponId, out var targetWeapon))
         {
             _gainedWeaponList.Add(targetWeapon);
             _unobtainedWeapons.Remove(weaponId);

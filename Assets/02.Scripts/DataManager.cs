@@ -12,10 +12,7 @@ public class DataManager : MonoBehaviour
 
     private void Awake()
     {
-        if (_instance != null)
-        {
-            Destroy(gameObject);
-        }
+        if (_instance != null) Destroy(gameObject);
 
         _instance = this;
 
@@ -25,7 +22,7 @@ public class DataManager : MonoBehaviour
 
     private void LoadWeaponCSV()
     {
-        TextAsset csvData = Resources.Load("Datas/Weapon") as TextAsset;
+        var csvData = Resources.Load("Datas/Weapon") as TextAsset;
         if (csvData == null)
         {
             Debug.LogWarning("Weapon data not found");
@@ -36,7 +33,7 @@ public class DataManager : MonoBehaviour
         string[] datas = csvData.text.Split(new char[] { '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
         for (int i = 1; i < datas.Length; i++) //pass Header
         {
-            string[] row = datas[i].Split(',');
+            var row = datas[i].Split(',');
             WeaponDatas[row[0]] = new WeaponData
             {
                 Name = row[1],
@@ -50,14 +47,14 @@ public class DataManager : MonoBehaviour
                 ReloadTime = float.Parse(row[9]),
                 ChargeTime = float.Parse(row[10]),
                 Angle = float.Parse(row[11]),
-                Range = float.Parse(row[12]),
+                Range = float.Parse(row[12])
             };
         }
     }
 
     private void LoadProjectileCSV()
     {
-        TextAsset csvData = Resources.Load("Datas/Projectile") as TextAsset;
+        var csvData = Resources.Load("Datas/Projectile") as TextAsset;
         if (csvData == null)
         {
             Debug.LogWarning("Projectile data not found");
@@ -69,13 +66,13 @@ public class DataManager : MonoBehaviour
         string[] datas = csvData.text.Split(new char[] { '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
         for (int i = 1; i < datas.Length; i++) //pass Header
         {
-            string[] row = datas[i].Split(',');
+            var row = datas[i].Split(',');
             projectileType = (ProjectileType)Enum.Parse(typeof(ProjectileType), row[0]);
             ProjectileDatas[projectileType] = new ProjectileData
             {
                 Damage = int.Parse(row[1]),
                 SpeedScalar = float.Parse(row[2]),
-                Durability = int.Parse(row[3]),
+                Durability = int.Parse(row[3])
             };
         }
     }
