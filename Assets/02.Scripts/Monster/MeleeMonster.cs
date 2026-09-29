@@ -6,20 +6,23 @@ public class MeleeMonster : NormalMonster
     [Header("방향 애니메이션")]
     [SerializeField] private Animator _directionAnimator;
 
+    [Header("방향 전환 안정화")]
+    [SerializeField] private float _directionChangeAngle = 30f;
+
     [Header("근접 공격")]
     [SerializeField] private float _attackRange = 1.5f;
     [SerializeField] private float _attackAngle = 90f;
     [SerializeField] private float _attackCooldown = 1f;
 
-    [Header("공격 애니메이션")]
-    // Attack 8프레임 / Samples 12 기준 약 0.67초
-    [SerializeField] private float _attackDuration = 0.67f;
+    [Header("공격 판정")]
+    [Range(0f, 1f)]
+    [SerializeField] private float _attackHitNormalizedTime = 0.5f;
 
-    [Header("공격 연출")]
-    [SerializeField] private float _attackScale = 1.2f;
-    [SerializeField] private float _attackAnimationTime = 0.12f;
 
+    // =========================================================
     // Animator Parameters
+    // =========================================================
+
     private static readonly int DirectionHash =
         Animator.StringToHash("Direction");
 
@@ -28,6 +31,17 @@ public class MeleeMonster : NormalMonster
 
     private static readonly int IsAttackingHash =
         Animator.StringToHash("IsAttacking");
+
+    private static readonly int IsHitHash =
+        Animator.StringToHash("IsHit");
+
+    private static readonly int IsDeadHash =
+        Animator.StringToHash("IsDead");
+
+
+    // =========================================================
+    // 방향 번호
+    // =========================================================
 
     /*
      * Animator Direction
@@ -41,47 +55,69 @@ public class MeleeMonster : NormalMonster
      * 6 = West
      * 7 = South-West
      *
-     * Atan2 sector 순서
      *
-     * East
-     * North-East
-     * North
-     * North-West
-     * West
-     * South-West
-     * South
-     * South-East
+     * Atan2 Sector
+     *
+     * 0 = East
+     * 1 = North-East
+     * 2 = North
+     * 3 = North-West
+     * 4 = West
+     * 5 = South-West
+     * 6 = South
+     * 7 = South-East
      */
+
     private static readonly int[] DirectionNumbers =
     {
-        2, 3, 4, 5, 6, 7, 0, 1
+        2, // East
+        3, // North-East
+        4, // North
+        5, // North-West
+        6, // West
+        7, // South-West
+        0, // South
+        1  // South-East
     };
+
+
+    // =========================================================
+    // 내부 상태
+    // =========================================================
 
     private float _attackCooldownTimer;
 
-    private Vector3 _originalScale;
+    private Vector2 _facingDirection =
+        Vector2.down;
 
-    // 처음에는 아래쪽을 바라봄
-    private Vector2 _facingDirection = Vector2.down;
+    // Atan2 기준 South = 6
+    private int _currentSector = 6;
 
     private bool _isAttacking;
+    private bool _isHit;
     private bool _deathStarted;
 
     private Coroutine _attackRoutine;
+    private Coroutine _hitRoutine;
 
+
+    // =========================================================
+    // Awake
+    // =========================================================
 
     protected override void Awake()
     {
         base.Awake();
 
-        _originalScale = transform.localScale;
-
-        // MeleeMonster 자기 자신에게 붙어 있는 Animator 사용
-        _directionAnimator = GetComponent<Animator>();
+        // MeleeMonster 자기 자신의 Animator 사용
+        _directionAnimator =
+            GetComponent<Animator>();
 
         // 8방향 Sprite를 사용하므로
-        // 오브젝트 자체는 회전시키지 않음
-        transform.rotation = Quaternion.identity;
+        // Transform 자체를 회전시키지 않음
+        transform.rotation =
+            Quaternion.identity;
+
 
         if (_directionAnimator == null)
         {
@@ -93,6 +129,7 @@ public class MeleeMonster : NormalMonster
             return;
         }
 
+
         if (_directionAnimator.runtimeAnimatorController == null)
         {
             Debug.LogError(
@@ -103,7 +140,8 @@ public class MeleeMonster : NormalMonster
             return;
         }
 
-        // 초기 Animator 상태
+
+        // 처음에는 South Idle
         _directionAnimator.SetInteger(
             DirectionHash,
             0
@@ -118,46 +156,94 @@ public class MeleeMonster : NormalMonster
             IsAttackingHash,
             false
         );
+
+        _directionAnimator.SetBool(
+            IsHitHash,
+            false
+        );
+
+        _directionAnimator.SetBool(
+            IsDeadHash,
+            false
+        );
     }
 
+
+    // =========================================================
+    // Update
+    // =========================================================
 
     protected override void Update()
     {
         base.Update();
 
-        // 사망 중
+
+        // 사망 시작 후 행동 중지
         if (_deathStarted)
         {
             SetMoving(false);
-            SetAttacking(false);
             return;
         }
 
-        // 플레이어 없음
+
+        // Player를 찾지 못했다면 행동 중지
         if (_player == null)
         {
             SetMoving(false);
             return;
         }
 
-        // 공격 쿨타임 감소
+
+        // 공격 쿨타임
         if (_attackCooldownTimer > 0f)
         {
-            _attackCooldownTimer -= Time.deltaTime;
+            _attackCooldownTimer -=
+                Time.deltaTime;
         }
 
-        ApplySeparation();
+
+        // =====================================================
+        // Hit 중
+        // =====================================================
 
         /*
-         * 공격 중에는 방향을 바꾸지 않습니다.
+         * 피격 중에는:
          *
-         * 공격 시작 순간의 방향으로
-         * Attack 애니메이션 끝까지 유지.
+         * 이동 X
+         * 공격 X
+         * 방향전환 X
          */
-        if (!_isAttacking)
+        if (_isHit)
         {
-            UpdateFacingDirection();
+            SetMoving(false);
+            return;
         }
+
+
+        // =====================================================
+        // Attack 중
+        // =====================================================
+
+        /*
+         * 공격 중에는:
+         *
+         * 이동 X
+         * 방향전환 X
+         */
+        if (_isAttacking)
+        {
+            SetMoving(false);
+            return;
+        }
+
+
+        // 공격/피격 상태가 아닐 때만 방향 갱신
+        UpdateFacingDirection();
+
+
+        // 몬스터끼리 겹치는 현상 완화
+        ApplySeparation();
+
 
         float distanceToPlayer =
             Vector2.Distance(
@@ -165,26 +251,25 @@ public class MeleeMonster : NormalMonster
                 _player.position
             );
 
-        // 공격 중에는 이동하지 않음
-        if (_isAttacking)
-        {
-            SetMoving(false);
-            return;
-        }
 
-        // 플레이어가 공격 범위 밖
+        // 공격 범위보다 멀면 추적
         if (distanceToPlayer > _attackRange)
         {
             MoveToPlayer();
         }
-        // 플레이어가 공격 범위 안
+        // 공격 범위 안이면 멈추고 공격
         else
         {
             SetMoving(false);
+
             TryAttack();
         }
     }
 
+
+    // =========================================================
+    // Animator 상태 확인
+    // =========================================================
 
     private bool IsAnimatorReady()
     {
@@ -196,7 +281,7 @@ public class MeleeMonster : NormalMonster
 
 
     // =========================================================
-    // 방향 처리
+    // 8방향 처리
     // =========================================================
 
     private void UpdateFacingDirection()
@@ -206,49 +291,94 @@ public class MeleeMonster : NormalMonster
             return;
         }
 
+
         Vector2 direction =
             (Vector2)(
                 _player.position -
                 transform.position
             );
 
-        // 거의 같은 위치라면 마지막 방향 유지
+
         if (direction.sqrMagnitude <= 0.0001f)
         {
             return;
         }
 
+
         _facingDirection =
             direction.normalized;
 
+
+        /*
+         * East  = 0도
+         * North = 90도
+         * West  = 180도
+         * South = 270도
+         */
         float angle =
             Mathf.Atan2(
-                _facingDirection.y,
-                _facingDirection.x
+                direction.y,
+                direction.x
             ) * Mathf.Rad2Deg;
+
 
         if (angle < 0f)
         {
             angle += 360f;
         }
 
-        // 45도씩 8구역
-        int sector =
-            Mathf.FloorToInt(
-                (angle + 22.5f) / 45f
+
+        // 가장 가까운 45도 방향
+        int candidateSector =
+            Mathf.RoundToInt(
+                angle / 45f
             ) % 8;
 
-        int directionNumber =
-            DirectionNumbers[sector];
+
+        // 현재 바라보는 방향의 중심 각도
+        float currentSectorAngle =
+            _currentSector * 45f;
+
+
+        float difference =
+            Mathf.Abs(
+                Mathf.DeltaAngle(
+                    currentSectorAngle,
+                    angle
+                )
+            );
+
+
+        /*
+         * 방향 경계에서
+         *
+         * E → NE → E → NE
+         *
+         * 식으로 계속 튀는 현상 방지
+         */
+        if (
+            candidateSector != _currentSector &&
+            difference >= _directionChangeAngle
+        )
+        {
+            _currentSector =
+                candidateSector;
+        }
+
 
         if (!IsAnimatorReady())
         {
             return;
         }
 
+
+        int animatorDirection =
+            DirectionNumbers[_currentSector];
+
+
         _directionAnimator.SetInteger(
             DirectionHash,
-            directionNumber
+            animatorDirection
         );
     }
 
@@ -259,11 +389,20 @@ public class MeleeMonster : NormalMonster
 
     private void MoveToPlayer()
     {
-        if (_isAttacking)
+        /*
+         * 공격 / 피격 / 사망 중이면
+         * 절대 이동하지 않음
+         */
+        if (
+            _isAttacking ||
+            _isHit ||
+            _deathStarted
+        )
         {
             SetMoving(false);
             return;
         }
+
 
         if (_player == null)
         {
@@ -271,11 +410,13 @@ public class MeleeMonster : NormalMonster
             return;
         }
 
+
         Vector2 direction =
             (Vector2)(
                 _player.position -
                 transform.position
             );
+
 
         if (direction.sqrMagnitude <= 0.0001f)
         {
@@ -283,10 +424,24 @@ public class MeleeMonster : NormalMonster
             return;
         }
 
+
         direction.Normalize();
 
+
+        // Walk Animation
         SetMoving(true);
 
+
+        /*
+         * 중요:
+         *
+         * MoveWithCollisionCheck() 사용하지 않음.
+         *
+         * 이전에 잘 움직이던 방식으로
+         * 직접 Transform 이동.
+         *
+         * Player 코드는 전혀 건드리지 않습니다.
+         */
         transform.position +=
             (Vector3)(
                 direction *
@@ -296,22 +451,23 @@ public class MeleeMonster : NormalMonster
     }
 
 
-    private void SetMoving(bool isMoving)
+    private void SetMoving(bool value)
     {
         if (!IsAnimatorReady())
         {
             return;
         }
 
+
         _directionAnimator.SetBool(
             IsMovingHash,
-            isMoving
+            value
         );
     }
 
 
     // =========================================================
-    // 공격
+    // 공격 시작 판정
     // =========================================================
 
     private void TryAttack()
@@ -321,21 +477,29 @@ public class MeleeMonster : NormalMonster
             return;
         }
 
-        if (_isAttacking)
+
+        if (
+            _isAttacking ||
+            _isHit ||
+            _deathStarted
+        )
         {
             return;
         }
+
 
         if (_player == null)
         {
             return;
         }
 
+
         Vector2 directionToPlayer =
             (Vector2)(
                 _player.position -
                 transform.position
             );
+
 
         if (directionToPlayer.sqrMagnitude <= 0.0001f)
         {
@@ -347,20 +511,24 @@ public class MeleeMonster : NormalMonster
             directionToPlayer.Normalize();
         }
 
+
         float angle =
             Vector2.Angle(
                 _facingDirection,
                 directionToPlayer
             );
 
-        // 공격 가능 각도 확인
+
+        // 공격 가능 각도 밖
         if (angle > _attackAngle * 0.5f)
         {
             return;
         }
 
+
         _attackCooldownTimer =
             _attackCooldown;
+
 
         _attackRoutine =
             StartCoroutine(
@@ -369,84 +537,151 @@ public class MeleeMonster : NormalMonster
     }
 
 
+    // =========================================================
+    // 공격 Animation
+    // =========================================================
+
     private IEnumerator AttackRoutine()
     {
         _isAttacking = true;
 
+
         SetMoving(false);
+
         SetAttacking(true);
 
-        Debug.Log(
-            $"{gameObject.name}: 근접 공격 시작!"
-        );
 
         /*
-         * Attack 애니메이션:
-         *
-         * IsAttacking = true
-         *
-         * 현재 Direction에 따라서
-         *
-         * attack_S
-         * attack_SE
-         * attack_E
-         * ...
-         *
-         * 중 하나가 Animator에서 재생됩니다.
+         * Animator가 Any State → Attack
+         * Transition을 처리할 시간
          */
-
-        float elapsedTime = 0f;
-
-        Vector3 targetScale =
-            _originalScale * _attackScale;
+        yield return null;
 
 
-        // =====================================================
-        // 공격 전진 느낌 - 확대
-        // =====================================================
+        float timeout = 0f;
 
-        float timer = 0f;
 
-        while (timer < _attackAnimationTime)
+        // 실제 Attack State 진입 대기
+        while (IsAnimatorReady())
         {
-            timer += Time.deltaTime;
-            elapsedTime += Time.deltaTime;
+            AnimatorStateInfo info =
+                _directionAnimator
+                    .GetCurrentAnimatorStateInfo(0);
 
-            float t =
-                Mathf.Clamp01(
-                    timer / _attackAnimationTime
+
+            if (info.IsTag("Attack"))
+            {
+                break;
+            }
+
+
+            timeout +=
+                Time.deltaTime;
+
+
+            if (timeout >= 0.5f)
+            {
+                Debug.LogError(
+                    $"{gameObject.name}: " +
+                    "Attack 상태 진입 실패. " +
+                    "Attack Tag 또는 Transition을 확인하세요.",
+                    this
                 );
 
-            transform.localScale =
-                Vector3.Lerp(
-                    _originalScale,
-                    targetScale,
-                    t
-                );
+
+                SetAttacking(false);
+
+                _isAttacking = false;
+                _attackRoutine = null;
+
+                yield break;
+            }
+
 
             yield return null;
         }
 
-        transform.localScale =
-            targetScale;
+
+        bool damageApplied =
+            false;
 
 
         // =====================================================
-        // 공격 판정
+        // 실제 Attack Clip 끝까지 재생
         // =====================================================
 
-        Collider2D[] hitTargets =
+        while (IsAnimatorReady())
+        {
+            AnimatorStateInfo info =
+                _directionAnimator
+                    .GetCurrentAnimatorStateInfo(0);
+
+
+            if (!info.IsTag("Attack"))
+            {
+                yield return null;
+                continue;
+            }
+
+
+            /*
+             * 기본값 0.5
+             *
+             * 애니메이션 절반쯤에서
+             * 실제 공격 판정
+             */
+            if (
+                !damageApplied &&
+                info.normalizedTime >=
+                _attackHitNormalizedTime
+            )
+            {
+                damageApplied = true;
+
+                ApplyAttackHit();
+            }
+
+
+            /*
+             * normalizedTime >= 1
+             *
+             * Attack Animation 100% 완료
+             */
+            if (info.normalizedTime >= 1f)
+            {
+                break;
+            }
+
+
+            yield return null;
+        }
+
+
+        // 공격 종료
+        SetAttacking(false);
+
+
+        _isAttacking = false;
+        _attackRoutine = null;
+    }
+
+
+    private void ApplyAttackHit()
+    {
+        Collider2D[] targets =
             Physics2D.OverlapCircleAll(
                 transform.position,
                 _attackRange
             );
 
-        foreach (Collider2D target in hitTargets)
+
+        foreach (Collider2D target in targets)
         {
             if (!target.CompareTag("Player"))
             {
                 continue;
             }
+
 
             Debug.Log(
                 $"{gameObject.name}: " +
@@ -454,91 +689,221 @@ public class MeleeMonster : NormalMonster
                 $"데미지: {_contactDamage}"
             );
 
+
             /*
-             * 현재 기존 코드에는 실제 PlayerHealth 데미지 호출이
-             * 연결되어 있지 않으므로 우선 기존 구조를 유지합니다.
+             * Player 쪽 코드는 팀원 작업물이므로
+             * 여기서 수정하거나 직접 호출하지 않습니다.
              */
+
 
             break;
         }
-
-
-        // =====================================================
-        // 원래 크기로 복귀
-        // =====================================================
-
-        timer = 0f;
-
-        while (timer < _attackAnimationTime)
-        {
-            timer += Time.deltaTime;
-            elapsedTime += Time.deltaTime;
-
-            float t =
-                Mathf.Clamp01(
-                    timer / _attackAnimationTime
-                );
-
-            transform.localScale =
-                Vector3.Lerp(
-                    targetScale,
-                    _originalScale,
-                    t
-                );
-
-            yield return null;
-        }
-
-        transform.localScale =
-            _originalScale;
-
-
-        // =====================================================
-        // Attack Clip이 끝날 때까지 기다림
-        // =====================================================
-
-        float remainingTime =
-            _attackDuration - elapsedTime;
-
-        if (remainingTime > 0f)
-        {
-            yield return new WaitForSeconds(
-                remainingTime
-            );
-        }
-
-
-        // =====================================================
-        // 공격 종료
-        // =====================================================
-
-        SetAttacking(false);
-
-        _isAttacking = false;
-        _attackRoutine = null;
-
-        Debug.Log(
-            $"{gameObject.name}: 근접 공격 종료!"
-        );
     }
 
 
-    private void SetAttacking(bool isAttacking)
+    private void SetAttacking(bool value)
     {
         if (!IsAnimatorReady())
         {
             return;
         }
 
+
         _directionAnimator.SetBool(
             IsAttackingHash,
-            isAttacking
+            value
         );
     }
 
 
     // =========================================================
-    // 사망
+    // HIT
+    // =========================================================
+
+    protected override void OnHit()
+    {
+        if (_deathStarted)
+        {
+            return;
+        }
+
+
+        /*
+         * 이미 Hit 중이면
+         * 현재 Hit 애니메이션을 그대로 끝까지 재생.
+         */
+        if (_isHit)
+        {
+            return;
+        }
+
+
+        /*
+         * Attack 중 총알 맞으면
+         * 공격 Coroutine 즉시 중단
+         */
+        if (_attackRoutine != null)
+        {
+            StopCoroutine(
+                _attackRoutine
+            );
+
+            _attackRoutine = null;
+        }
+
+
+        _isAttacking =
+            false;
+
+
+        SetAttacking(false);
+
+        SetMoving(false);
+
+
+        _hitRoutine =
+            StartCoroutine(
+                HitRoutine()
+            );
+    }
+
+
+    private IEnumerator HitRoutine()
+    {
+        _isHit = true;
+
+
+        SetMoving(false);
+
+        SetHit(true);
+
+
+        /*
+         * Any State → Hit으로 넘어갈
+         * 한 프레임의 시간
+         */
+        yield return null;
+
+
+        float timeout = 0f;
+
+
+        // =====================================================
+        // 실제 Hit State 진입 확인
+        // =====================================================
+
+        while (IsAnimatorReady())
+        {
+            AnimatorStateInfo info =
+                _directionAnimator
+                    .GetCurrentAnimatorStateInfo(0);
+
+
+            if (info.IsTag("Hit"))
+            {
+                break;
+            }
+
+
+            timeout +=
+                Time.deltaTime;
+
+
+            if (timeout >= 0.5f)
+            {
+                Debug.LogError(
+                    $"{gameObject.name}: " +
+                    "Hit 상태 진입 실패. " +
+                    "Hit Tag / Direction / Transition을 확인하세요.",
+                    this
+                );
+
+
+                SetHit(false);
+
+                _isHit = false;
+                _hitRoutine = null;
+
+                yield break;
+            }
+
+
+            yield return null;
+        }
+
+
+        // =====================================================
+        // Hit Animation 실제 끝까지 대기
+        // =====================================================
+
+        while (IsAnimatorReady())
+        {
+            AnimatorStateInfo info =
+                _directionAnimator
+                    .GetCurrentAnimatorStateInfo(0);
+
+
+            if (!info.IsTag("Hit"))
+            {
+                yield return null;
+                continue;
+            }
+
+
+            /*
+             * Hit Clip 100% 완료
+             */
+            if (info.normalizedTime >= 1f)
+            {
+                break;
+            }
+
+
+            yield return null;
+        }
+
+
+        // =====================================================
+        // Hit 종료
+        // =====================================================
+
+        SetHit(false);
+
+
+        _isHit = false;
+        _hitRoutine = null;
+
+
+        /*
+         * 여기서 Update가 다시 실행됨.
+         *
+         * 플레이어가 멀다
+         * → 다시 Walk
+         *
+         * 플레이어가 공격 범위 안
+         * → 다시 Attack
+         */
+    }
+
+
+    private void SetHit(bool value)
+    {
+        if (!IsAnimatorReady())
+        {
+            return;
+        }
+
+
+        _directionAnimator.SetBool(
+            IsHitHash,
+            value
+        );
+    }
+
+
+    // =========================================================
+    // DEATH
+    // 현재 Death Animation은 아직 다음 단계
     // =========================================================
 
     protected override void Die()
@@ -548,10 +913,18 @@ public class MeleeMonster : NormalMonster
             return;
         }
 
-        _deathStarted = true;
 
+        _deathStarted =
+            true;
+
+
+        // 이동 중지
         SetMoving(false);
-        SetAttacking(false);
+
+
+        // =====================================================
+        // Attack 중이면 취소
+        // =====================================================
 
         if (_attackRoutine != null)
         {
@@ -562,22 +935,67 @@ public class MeleeMonster : NormalMonster
             _attackRoutine = null;
         }
 
-        _isAttacking = false;
 
-        transform.localScale =
-            _originalScale;
+        // =====================================================
+        // Hit 중이면 취소
+        // =====================================================
 
+        if (_hitRoutine != null)
+        {
+            StopCoroutine(
+                _hitRoutine
+            );
+
+            _hitRoutine = null;
+        }
+
+
+        _isAttacking =
+            false;
+
+        _isHit =
+            false;
+
+
+        SetAttacking(false);
+
+        SetHit(false);
+
+
+        /*
+         * 기존 Idle / Walk / Attack / Hit Transition에
+         * IsDead = false를 넣어놨기 때문에
+         * true가 되면 그쪽으로 다시 못 들어갑니다.
+         */
+        if (IsAnimatorReady())
+        {
+            _directionAnimator.SetBool(
+                IsDeadHash,
+                true
+            );
+        }
+
+
+        /*
+         * Death Animation은 아직 연결 전이므로
+         * 현재는 NormalMonster의 기존 사망 처리 실행.
+         *
+         * 다음 단계에서
+         * Death 8방향 Animation으로 교체합니다.
+         */
         base.Die();
     }
 
 
     // =========================================================
-    // Gizmo
+    // 공격 범위 Gizmo
     // =========================================================
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;
+        Gizmos.color =
+            Color.red;
+
 
         Gizmos.DrawWireSphere(
             transform.position,
