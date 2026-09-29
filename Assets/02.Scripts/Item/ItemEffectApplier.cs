@@ -24,7 +24,7 @@ public static class ItemEffectApplier
             }
         }
     }
-    
+
     public static void ApplyImmediateEffect(ItemEffectData effect)
     {
         switch (effect.EffectType)
@@ -39,7 +39,7 @@ public static class ItemEffectApplier
             }
         }
     }
-    
+
     public static void ApplyToPlayer(ItemPlayerStat stat, IEnumerable<Item> items)
     {
         foreach (Item item in items)
@@ -70,7 +70,7 @@ public static class ItemEffectApplier
             }
         }
     }
-    
+
     public static void ApplyToWeapon(ItemWeaponStat stat, IEnumerable<Item> items)
     {
         foreach (Item item in items)
