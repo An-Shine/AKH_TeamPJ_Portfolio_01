@@ -129,7 +129,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Idle_Gun_Down
     originalName: 
-    pivot: {x: 1.2580645, y: -0.033333335}
+    pivot: {x: 0.78391963, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -137,8 +137,8 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 124
-      height: 60
+      width: 199
+      height: 62
     spriteID: 5f5a3226d81cc804aaeb1bf740b70a36
     spriteBone: []
     spriteOutline: []
@@ -168,9 +168,9 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 36
-        y: 2
-        width: 124
-        height: 60
+        y: 0
+        width: 199
+        height: 62
       spriteId: 5f5a3226d81cc804aaeb1bf740b70a36
     linkedCells: []
     tileCells: []
