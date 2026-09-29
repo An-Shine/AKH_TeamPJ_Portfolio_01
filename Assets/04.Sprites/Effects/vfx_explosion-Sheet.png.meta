@@ -1,0 +1,2368 @@
+fileFormatVersion: 2
+guid: 46393cc0d3bb02548b407b99c3686250
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -900289933308699707
+    second: vfx_explosion-Sheet_0
+  - first:
+      213: 8961566373118842046
+    second: vfx_explosion-Sheet_1
+  - first:
+      213: 7560303547066872683
+    second: vfx_explosion-Sheet_2
+  - first:
+      213: -3848614312757743074
+    second: vfx_explosion-Sheet_3
+  - first:
+      213: -8426441198140282117
+    second: vfx_explosion-Sheet_4
+  - first:
+      213: 4385652049295392268
+    second: vfx_explosion-Sheet_5
+  - first:
+      213: 881906466227027137
+    second: vfx_explosion-Sheet_6
+  - first:
+      213: -2531457681437956885
+    second: vfx_explosion-Sheet_7
+  - first:
+      213: -5186513426814775987
+    second: vfx_explosion-Sheet_8
+  - first:
+      213: 8852078804466859452
+    second: vfx_explosion-Sheet_9
+  - first:
+      213: -8042500899725644527
+    second: vfx_explosion-Sheet_10
+  - first:
+      213: 3744279010617317108
+    second: vfx_explosion-Sheet_11
+  - first:
+      213: -2863127544237712919
+    second: vfx_explosion-Sheet_12
+  - first:
+      213: -7169700163501714334
+    second: vfx_explosion-Sheet_13
+  - first:
+      213: -6784932545578529786
+    second: vfx_explosion-Sheet_14
+  - first:
+      213: -4000519846035792144
+    second: vfx_explosion-Sheet_15
+  - first:
+      213: 8115706126582258512
+    second: vfx_explosion-Sheet_16
+  - first:
+      213: -6923142798584135934
+    second: vfx_explosion-Sheet_17
+  - first:
+      213: 1707380184074116684
+    second: vfx_explosion-Sheet_18
+  - first:
+      213: 3418476834583019249
+    second: vfx_explosion-Sheet_19
+  - first:
+      213: 1687131113600389473
+    second: vfx_explosion-Sheet_20
+  - first:
+      213: 603069106988990052
+    second: vfx_explosion-Sheet_21
+  - first:
+      213: -1012686278247541683
+    second: vfx_explosion-Sheet_22
+  - first:
+      213: -7356690163442283252
+    second: vfx_explosion-Sheet_23
+  - first:
+      213: -1120894430490405737
+    second: vfx_explosion-Sheet_24
+  - first:
+      213: -3785763234931826904
+    second: vfx_explosion-Sheet_25
+  - first:
+      213: 1664569156852154091
+    second: vfx_explosion-Sheet_26
+  - first:
+      213: -5394845554759232028
+    second: vfx_explosion-Sheet_27
+  - first:
+      213: -473835395359893307
+    second: vfx_explosion-Sheet_28
+  - first:
+      213: -68124759184368586
+    second: vfx_explosion-Sheet_29
+  - first:
+      213: 647303355389126936
+    second: vfx_explosion-Sheet_30
+  - first:
+      213: 920349224678273084
+    second: vfx_explosion-Sheet_31
+  - first:
+      213: 286178572695883380
+    second: vfx_explosion-Sheet_32
+  - first:
+      213: 6424227630821758332
+    second: vfx_explosion-Sheet_33
+  - first:
+      213: 6018904825186669401
+    second: vfx_explosion-Sheet_34
+  - first:
+      213: 5496197577394084334
+    second: vfx_explosion-Sheet_35
+  - first:
+      213: 4685792480157915411
+    second: vfx_explosion-Sheet_36
+  - first:
+      213: -8976796189951055548
+    second: vfx_explosion-Sheet_37
+  - first:
+      213: 6645313643541923351
+    second: vfx_explosion-Sheet_38
+  - first:
+      213: 5425233633293540210
+    second: vfx_explosion-Sheet_39
+  - first:
+      213: -3745153986166719920
+    second: vfx_explosion-Sheet_40
+  - first:
+      213: 6423214983238593559
+    second: vfx_explosion-Sheet_41
+  - first:
+      213: 6479702243485737808
+    second: vfx_explosion-Sheet_42
+  - first:
+      213: -1728332955099383457
+    second: vfx_explosion-Sheet_43
+  - first:
+      213: -7792532036053537653
+    second: vfx_explosion-Sheet_44
+  - first:
+      213: 7526957020889477930
+    second: vfx_explosion-Sheet_45
+  - first:
+      213: 5643654785718717885
+    second: vfx_explosion-Sheet_46
+  - first:
+      213: -923418783365591223
+    second: vfx_explosion-Sheet_47
+  - first:
+      213: -4460331294160973218
+    second: vfx_explosion-Sheet_48
+  - first:
+      213: -2065031661099712544
+    second: vfx_explosion-Sheet_49
+  - first:
+      213: -2466771361996797002
+    second: vfx_explosion-Sheet_50
+  - first:
+      213: 776371947731917114
+    second: vfx_explosion-Sheet_51
+  - first:
+      213: -3562691107643858609
+    second: vfx_explosion-Sheet_52
+  - first:
+      213: -3088303471547572539
+    second: vfx_explosion-Sheet_53
+  - first:
+      213: 207924070365442195
+    second: vfx_explosion-Sheet_54
+  - first:
+      213: 861671054013027642
+    second: vfx_explosion-Sheet_55
+  - first:
+      213: 4722786187285319610
+    second: vfx_explosion-Sheet_56
+  - first:
+      213: 5602125464893154514
+    second: vfx_explosion-Sheet_57
+  - first:
+      213: -1112676700049139241
+    second: vfx_explosion-Sheet_58
+  - first:
+      213: 6493020103841946042
+    second: vfx_explosion-Sheet_59
+  - first:
+      213: -5184214340481335264
+    second: vfx_explosion-Sheet_60
+  - first:
+      213: -5542378323754304914
+    second: vfx_explosion-Sheet_61
+  - first:
+      213: -1711680952089826039
+    second: vfx_explosion-Sheet_62
+  - first:
+      213: -5854231483539029355
+    second: vfx_explosion-Sheet_63
+  - first:
+      213: 207018384488810510
+    second: vfx_explosion-Sheet_64
+  - first:
+      213: -9075247070404465271
+    second: vfx_explosion-Sheet_65
+  - first:
+      213: 2906972407347551728
+    second: vfx_explosion-Sheet_66
+  - first:
+      213: -7784022478983452818
+    second: vfx_explosion-Sheet_67
+  - first:
+      213: 1672959311237109257
+    second: vfx_explosion-Sheet_68
+  - first:
+      213: 8153576341562105074
+    second: vfx_explosion-Sheet_69
+  - first:
+      213: -2701973301368769882
+    second: vfx_explosion-Sheet_70
+  - first:
+      213: 1560769957488445159
+    second: vfx_explosion-Sheet_71
+  - first:
+      213: 1481471732637365934
+    second: vfx_explosion-Sheet_72
+  - first:
+      213: 95191280449778775
+    second: vfx_explosion-Sheet_73
+  - first:
+      213: 2341019719164214644
+    second: vfx_explosion-Sheet_74
+  - first:
+      213: -1023097078273600963
+    second: vfx_explosion-Sheet_75
+  - first:
+      213: -3503247329515209347
+    second: vfx_explosion-Sheet_76
+  - first:
+      213: 8936136308847609779
+    second: vfx_explosion-Sheet_77
+  - first:
+      213: -5663557501451695066
+    second: vfx_explosion-Sheet_78
+  - first:
+      213: -7601642485936372881
+    second: vfx_explosion-Sheet_79
+  - first:
+      213: -1813239077969727748
+    second: vfx_explosion-Sheet_80
+  - first:
+      213: -7894015873326783925
+    second: vfx_explosion-Sheet_81
+  - first:
+      213: 8228877896066280528
+    second: vfx_explosion-Sheet_82
+  - first:
+      213: -9077601758069436314
+    second: vfx_explosion-Sheet_83
+  - first:
+      213: 1196570772844340072
+    second: vfx_explosion-Sheet_84
+  - first:
+      213: -6498194232294158400
+    second: vfx_explosion-Sheet_85
+  - first:
+      213: -3584141413855644900
+    second: vfx_explosion-Sheet_86
+  - first:
+      213: -4452950667444546460
+    second: vfx_explosion-Sheet_87
+  - first:
+      213: 570363895841854005
+    second: vfx_explosion-Sheet_88
+  - first:
+      213: -936934702436759260
+    second: vfx_explosion-Sheet_89
+  - first:
+      213: -6466337235730934793
+    second: vfx_explosion-Sheet_90
+  - first:
+      213: 8272459504993317743
+    second: vfx_explosion-Sheet_91
+  - first:
+      213: 1345252445180330953
+    second: vfx_explosion-Sheet_92
+  - first:
+      213: -1406091768872050272
+    second: vfx_explosion-Sheet_93
+  - first:
+      213: -7117804150663138338
+    second: vfx_explosion-Sheet_94
+  - first:
+      213: 3798766216610445524
+    second: vfx_explosion-Sheet_95
+  - first:
+      213: 6133858022040972378
+    second: vfx_explosion-Sheet_96
+  - first:
+      213: -3940485618063370197
+    second: vfx_explosion-Sheet_97
+  - first:
+      213: 3533927423825296474
+    second: vfx_explosion-Sheet_98
+  - first:
+      213: -6538023417041310740
+    second: vfx_explosion-Sheet_99
+  - first:
+      213: 1430085465139451191
+    second: vfx_explosion-Sheet_100
+  - first:
+      213: -1944873657685847239
+    second: vfx_explosion-Sheet_101
+  - first:
+      213: 8767883564680038787
+    second: vfx_explosion-Sheet_102
+  - first:
+      213: -2145739940250688332
+    second: vfx_explosion-Sheet_103
+  - first:
+      213: 4591493172903176817
+    second: vfx_explosion-Sheet_104
+  - first:
+      213: 8220515411049965160
+    second: vfx_explosion-Sheet_105
+  - first:
+      213: -5090448287420284899
+    second: vfx_explosion-Sheet_106
+  - first:
+      213: 2224492784365733078
+    second: vfx_explosion-Sheet_107
+  - first:
+      213: 4415091390199781668
+    second: vfx_explosion-Sheet_108
+  - first:
+      213: -5121698942510191244
+    second: vfx_explosion-Sheet_109
+  - first:
+      213: -1266735518649429239
+    second: vfx_explosion-Sheet_110
+  - first:
+      213: 8682005381673653090
+    second: vfx_explosion-Sheet_111
+  - first:
+      213: 1921563715143685406
+    second: vfx_explosion-Sheet_112
+  - first:
+      213: 4178811543647011271
+    second: vfx_explosion-Sheet_113
+  - first:
+      213: -6200312901282316194
+    second: vfx_explosion-Sheet_114
+  - first:
+      213: 345067084853159925
+    second: vfx_explosion-Sheet_115
+  - first:
+      213: -6336746265354470249
+    second: vfx_explosion-Sheet_116
+  - first:
+      213: -2641713209257955730
+    second: vfx_explosion-Sheet_117
+  - first:
+      213: -741110768010317748
+    second: vfx_explosion-Sheet_118
+  - first:
+      213: -2818914334407288449
+    second: vfx_explosion-Sheet_119
+  - first:
+      213: 8216912380019661301
+    second: vfx_explosion-Sheet_120
+  - first:
+      213: 6325222635674674188
+    second: vfx_explosion-Sheet_121
+  - first:
+      213: 8567942647909899622
+    second: vfx_explosion-Sheet_122
+  - first:
+      213: -2635659649331140837
+    second: vfx_explosion-Sheet_123
+  - first:
+      213: 6500948189949417434
+    second: vfx_explosion-Sheet_124
+  - first:
+      213: -5402755498960069233
+    second: vfx_explosion-Sheet_125
+  - first:
+      213: -2921775334070759915
+    second: vfx_explosion-Sheet_126
+  - first:
+      213: 3528288900107345279
+    second: vfx_explosion-Sheet_127
+  - first:
+      213: -1031466891962207469
+    second: vfx_explosion-Sheet_128
+  - first:
+      213: 7958539612678892128
+    second: vfx_explosion-Sheet_129
+  - first:
+      213: 5148171209136652566
+    second: vfx_explosion-Sheet_130
+  - first:
+      213: 8238816772585964925
+    second: vfx_explosion-Sheet_131
+  - first:
+      213: 4275297317706750657
+    second: vfx_explosion-Sheet_132
+  - first:
+      213: -3166009109307301320
+    second: vfx_explosion-Sheet_133
+  - first:
+      213: -1881790306633470000
+    second: vfx_explosion-Sheet_134
+  - first:
+      213: 6917283956226262798
+    second: vfx_explosion-Sheet_135
+  - first:
+      213: -6038943635028938547
+    second: vfx_explosion-Sheet_136
+  - first:
+      213: 1409694651012068307
+    second: vfx_explosion-Sheet_137
+  - first:
+      213: 8601073767917300404
+    second: vfx_explosion-Sheet_138
+  - first:
+      213: 8530783830115689592
+    second: vfx_explosion-Sheet_139
+  - first:
+      213: -2522147672274696065
+    second: vfx_explosion-Sheet_140
+  - first:
+      213: 7302697667718381524
+    second: vfx_explosion-Sheet_141
+  - first:
+      213: 3171215448332649031
+    second: vfx_explosion-Sheet_142
+  - first:
+      213: 3983141661261921507
+    second: vfx_explosion-Sheet_143
+  - first:
+      213: -4175166687946515030
+    second: vfx_explosion-Sheet_144
+  - first:
+      213: -5919974458363214929
+    second: vfx_explosion-Sheet_145
+  - first:
+      213: 2881427882296127040
+    second: vfx_explosion-Sheet_146
+  - first:
+      213: 8692125008214640095
+    second: vfx_explosion-Sheet_147
+  - first:
+      213: -5231794451278407511
+    second: vfx_explosion-Sheet_148
+  - first:
+      213: -3493570661893156808
+    second: vfx_explosion-Sheet_149
+  - first:
+      213: -3717813569517518818
+    second: vfx_explosion-Sheet_150
+  - first:
+      213: 6854145789953052202
+    second: vfx_explosion-Sheet_151
+  - first:
+      213: 2021804592539533608
+    second: vfx_explosion-Sheet_152
+  - first:
+      213: -5678691536604393558
+    second: vfx_explosion-Sheet_153
+  - first:
+      213: 20028449132877963
+    second: vfx_explosion-Sheet_154
+  - first:
+      213: -4088244079534374431
+    second: vfx_explosion-Sheet_155
+  - first:
+      213: -5383918779212705960
+    second: vfx_explosion-Sheet_156
+  - first:
+      213: 544810339904010861
+    second: vfx_explosion-Sheet_157
+  - first:
+      213: 5374377123753916962
+    second: vfx_explosion-Sheet_158
+  - first:
+      213: -4383503265969358785
+    second: vfx_explosion-Sheet_159
+  - first:
+      213: -6182400541309839619
+    second: vfx_explosion-Sheet_160
+  - first:
+      213: -317554683905326813
+    second: vfx_explosion-Sheet_161
+  - first:
+      213: -3939774580986124053
+    second: vfx_explosion-Sheet_162
+  - first:
+      213: 1726579159750775848
+    second: vfx_explosion-Sheet_163
+  - first:
+      213: 4872045351588921745
+    second: vfx_explosion-Sheet_164
+  - first:
+      213: -8682057024987385179
+    second: vfx_explosion-Sheet_165
+  - first:
+      213: 6753706971359313001
+    second: vfx_explosion-Sheet_166
+  - first:
+      213: -6657417691616924725
+    second: vfx_explosion-Sheet_167
+  - first:
+      213: 1969783977211473726
+    second: vfx_explosion-Sheet_168
+  - first:
+      213: -4495284316237984555
+    second: vfx_explosion-Sheet_169
+  - first:
+      213: -351646169572391433
+    second: vfx_explosion-Sheet_170
+  - first:
+      213: -784063890374110319
+    second: vfx_explosion-Sheet_171
+  - first:
+      213: 8920504651841617976
+    second: vfx_explosion-Sheet_172
+  - first:
+      213: 6058586036201513062
+    second: vfx_explosion-Sheet_173
+  - first:
+      213: -5830224810584477253
+    second: vfx_explosion-Sheet_174
+  - first:
+      213: 1186690335031077280
+    second: vfx_explosion-Sheet_175
+  - first:
+      213: 2447676440095617490
+    second: vfx_explosion-Sheet_176
+  - first:
+      213: -8477751772552177054
+    second: vfx_explosion-Sheet_177
+  - first:
+      213: 6897102973838886390
+    second: vfx_explosion-Sheet_178
+  - first:
+      213: -3638543965048831802
+    second: vfx_explosion-Sheet_179
+  - first:
+      213: 7998364076422989932
+    second: vfx_explosion-Sheet_180
+  - first:
+      213: -8323921795881495804
+    second: vfx_explosion-Sheet_181
+  - first:
+      213: 4546635800320796268
+    second: vfx_explosion-Sheet_182
+  - first:
+      213: -1656631309937118696
+    second: vfx_explosion-Sheet_183
+  - first:
+      213: -2777742291546738313
+    second: vfx_explosion-Sheet_184
+  - first:
+      213: 578141284410107359
+    second: vfx_explosion-Sheet_185
+  - first:
+      213: -1411087414785814929
+    second: vfx_explosion-Sheet_186
+  - first:
+      213: 1141711061894959697
+    second: vfx_explosion-Sheet_187
+  - first:
+      213: 1055477773175993828
+    second: vfx_explosion-Sheet_188
+  - first:
+      213: 7189974283109768698
+    second: vfx_explosion-Sheet_189
+  - first:
+      213: 83116362486469983
+    second: vfx_explosion-Sheet_190
+  - first:
+      213: -2323260464113425059
+    second: vfx_explosion-Sheet_191
+  - first:
+      213: 245540170190150823
+    second: vfx_explosion-Sheet_192
+  - first:
+      213: -1512715301986489831
+    second: vfx_explosion-Sheet_193
+  - first:
+      213: -9064708302350105405
+    second: vfx_explosion-Sheet_194
+  - first:
+      213: 173662565985798309
+    second: vfx_explosion-Sheet_195
+  - first:
+      213: -7054356330580060257
+    second: vfx_explosion-Sheet_196
+  - first:
+      213: -5593352965681721911
+    second: vfx_explosion-Sheet_197
+  - first:
+      213: -1653687400898574668
+    second: vfx_explosion-Sheet_198
+  - first:
+      213: 5142072947964162640
+    second: vfx_explosion-Sheet_199
+  - first:
+      213: 8860773016651850922
+    second: vfx_explosion-Sheet_200
+  - first:
+      213: 6977572435555348415
+    second: vfx_explosion-Sheet_201
+  - first:
+      213: 8099342248286959022
+    second: vfx_explosion-Sheet_202
+  - first:
+      213: 4229874036321869995
+    second: vfx_explosion-Sheet_203
+  - first:
+      213: 2095868097083169064
+    second: vfx_explosion-Sheet_204
+  - first:
+      213: 5040809403850329919
+    second: vfx_explosion-Sheet_205
+  - first:
+      213: 2297642748426542811
+    second: vfx_explosion-Sheet_206
+  - first:
+      213: 6938811563447240236
+    second: vfx_explosion-Sheet_207
+  - first:
+      213: -2966219938470776448
+    second: vfx_explosion-Sheet_208
+  - first:
+      213: -5554502209717999421
+    second: vfx_explosion-Sheet_209
+  - first:
+      213: -7659350955206222390
+    second: vfx_explosion-Sheet_210
+  - first:
+      213: 7341688136386582839
+    second: vfx_explosion-Sheet_211
+  - first:
+      213: -8274125382323316457
+    second: vfx_explosion-Sheet_212
+  - first:
+      213: -3744185654061978264
+    second: vfx_explosion-Sheet_213
+  - first:
+      213: 3947696784198668217
+    second: vfx_explosion-Sheet_214
+  - first:
+      213: -2626451598835835750
+    second: vfx_explosion-Sheet_215
+  - first:
+      213: 6804155168269659964
+    second: vfx_explosion-Sheet_216
+  - first:
+      213: -3489641980765987459
+    second: vfx_explosion-Sheet_217
+  - first:
+      213: -3164132369200794739
+    second: vfx_explosion-Sheet_218
+  - first:
+      213: -7559913841145486362
+    second: vfx_explosion-Sheet_219
+  - first:
+      213: 8439605540166313039
+    second: vfx_explosion-Sheet_220
+  - first:
+      213: -2006509878332928818
+    second: vfx_explosion-Sheet_221
+  - first:
+      213: 4647340920185278440
+    second: vfx_explosion-Sheet_222
+  - first:
+      213: -5950722568419795905
+    second: vfx_explosion-Sheet_223
+  - first:
+      213: -2084960388562137513
+    second: vfx_explosion-Sheet_224
+  - first:
+      213: -1270351237244751892
+    second: vfx_explosion-Sheet_225
+  - first:
+      213: 5546598064968972626
+    second: vfx_explosion-Sheet_226
+  - first:
+      213: -711822352396550507
+    second: vfx_explosion-Sheet_227
+  - first:
+      213: 204837926222263979
+    second: vfx_explosion-Sheet_228
+  - first:
+      213: -7222922722651676702
+    second: vfx_explosion-Sheet_229
+  - first:
+      213: -5434960409536213916
+    second: vfx_explosion-Sheet_230
+  - first:
+      213: -4019150075760843508
+    second: vfx_explosion-Sheet_231
+  - first:
+      213: 6774342860775591180
+    second: vfx_explosion-Sheet_232
+  - first:
+      213: 6372839772946520514
+    second: vfx_explosion-Sheet_233
+  - first:
+      213: 6823994884481247873
+    second: vfx_explosion-Sheet_234
+  - first:
+      213: -3698897878385103066
+    second: vfx_explosion-Sheet_235
+  - first:
+      213: 4719015417089820612
+    second: vfx_explosion-Sheet_236
+  - first:
+      213: 480487340473661559
+    second: vfx_explosion-Sheet_237
+  - first:
+      213: -3283743448461091193
+    second: vfx_explosion-Sheet_238
+  - first:
+      213: 3389085648360098849
+    second: vfx_explosion-Sheet_239
+  - first:
+      213: -8750077250711363597
+    second: vfx_explosion-Sheet_240
+  - first:
+      213: 713578520026992579
+    second: vfx_explosion-Sheet_241
+  - first:
+      213: 4097265611403445292
+    second: vfx_explosion-Sheet_242
+  - first:
+      213: 5745697140235012446
+    second: vfx_explosion-Sheet_243
+  - first:
+      213: -937007228193583668
+    second: vfx_explosion-Sheet_244
+  - first:
+      213: -8821991711557422667
+    second: vfx_explosion-Sheet_245
+  - first:
+      213: 2984552289942150280
+    second: vfx_explosion-Sheet_246
+  - first:
+      213: -5842494761521120194
+    second: vfx_explosion-Sheet_247
+  - first:
+      213: 8387371480613321955
+    second: vfx_explosion-Sheet_248
+  - first:
+      213: -4796548261936730800
+    second: vfx_explosion-Sheet_249
+  - first:
+      213: 1693368992454896468
+    second: vfx_explosion-Sheet_250
+  - first:
+      213: -2183417728050344356
+    second: vfx_explosion-Sheet_251
+  - first:
+      213: 4903948453390539246
+    second: vfx_explosion-Sheet_252
+  - first:
+      213: -6900436629486499475
+    second: vfx_explosion-Sheet_253
+  - first:
+      213: -5246931162453389016
+    second: vfx_explosion-Sheet_254
+  - first:
+      213: 2451697503683744269
+    second: vfx_explosion-Sheet_255
+  - first:
+      213: 4911630209910414017
+    second: vfx_explosion-Sheet_256
+  - first:
+      213: 3961030174636955565
+    second: vfx_explosion-Sheet_257
+  - first:
+      213: 3758456770521939351
+    second: vfx_explosion-Sheet_258
+  - first:
+      213: 7331395993588378042
+    second: vfx_explosion-Sheet_259
+  - first:
+      213: 5234834168781003489
+    second: vfx_explosion-Sheet_260
+  - first:
+      213: -4401193588337608837
+    second: vfx_explosion-Sheet_261
+  - first:
+      213: -3768141417173407195
+    second: vfx_explosion-Sheet_262
+  - first:
+      213: 6091134414226228853
+    second: vfx_explosion-Sheet_263
+  - first:
+      213: -3378133907433217293
+    second: vfx_explosion-Sheet_264
+  - first:
+      213: 400322607320073201
+    second: vfx_explosion-Sheet_265
+  - first:
+      213: 259609716084101982
+    second: vfx_explosion-Sheet_266
+  - first:
+      213: -1597331306307428253
+    second: vfx_explosion-Sheet_267
+  - first:
+      213: 1567917129723262798
+    second: vfx_explosion-Sheet_268
+  - first:
+      213: 6903559256268410636
+    second: vfx_explosion-Sheet_269
+  - first:
+      213: 9151078936088014155
+    second: vfx_explosion-Sheet_270
+  - first:
+      213: 8437085049569230732
+    second: vfx_explosion-Sheet_271
+  - first:
+      213: -3899992808695106302
+    second: vfx_explosion-Sheet_272
+  - first:
+      213: 779353075800446687
+    second: vfx_explosion-Sheet_273
+  - first:
+      213: 8924899449340176687
+    second: vfx_explosion-Sheet_274
+  - first:
+      213: 6264240458086718834
+    second: vfx_explosion-Sheet_275
+  - first:
+      213: 2578411985626528640
+    second: vfx_explosion-Sheet_276
+  - first:
+      213: 6149213190200923322
+    second: vfx_explosion-Sheet_277
+  - first:
+      213: -667684657303349726
+    second: vfx_explosion-Sheet_278
+  - first:
+      213: -6432649500974971309
+    second: vfx_explosion-Sheet_279
+  - first:
+      213: 2371802147407009654
+    second: vfx_explosion-Sheet_280
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cb564a53178183f0800000000000000
+      internalID: -900289933308699707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 384
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb495dcc221ed5c70800000000000000
+      internalID: 8961566373118842046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 384
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b63fb0515089be860800000000000000
+      internalID: 7560303547066872683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 384
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1237926ca9f69ac0800000000000000
+      internalID: -3848614312757743074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 384
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfaa12020644f0b80800000000000000
+      internalID: -8426441198140282117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 384
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0e37ba7d47fcdc30800000000000000
+      internalID: 4385652049295392268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 384
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ccf49c22492d3c00800000000000000
+      internalID: 881906466227027137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 384
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be4e4f5a6a47edcd0800000000000000
+      internalID: -2531457681437956885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 384
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4d49e3848dc508b0800000000000000
+      internalID: -5186513426814775987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 384
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbdf208b5c6e8da70800000000000000
+      internalID: 8852078804466859452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 384
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11de71eea0c436090800000000000000
+      internalID: -8042500899725644527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 384
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f6dbcf0ce956f330800000000000000
+      internalID: 3744279010617317108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 288
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e913130ba02448d0800000000000000
+      internalID: -2863127544237712919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 288
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2649b6020bb108c90800000000000000
+      internalID: -7169700163501714334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 288
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60c0ec34cc317d1a0800000000000000
+      internalID: -6784932545578529786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 288
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fed22c456c4b78c0800000000000000
+      internalID: -4000519846035792144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 288
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05b956829b7c0a070800000000000000
+      internalID: 8115706126582258512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 288
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20fb6191e4e0cef90800000000000000
+      internalID: -6923142798584135934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 288
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4e57483b35d1b710800000000000000
+      internalID: 1707380184074116684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_19
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 288
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fef836b19ed07f20800000000000000
+      internalID: 3418476834583019249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_20
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 288
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16119ab1fc4e96710800000000000000
+      internalID: 1687131113600389473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_21
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 288
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46e371958288e5800800000000000000
+      internalID: 603069106988990052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_22
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 288
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d449424023732f1f0800000000000000
+      internalID: -1012686278247541683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_23
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 288
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0d89651649c7e990800000000000000
+      internalID: -7356690163442283252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 794d7e74478c170f0800000000000000
+      internalID: -1120894430490405737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_25
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 192
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82f972a4564467bc0800000000000000
+      internalID: -3785763234931826904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_26
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bee7e3234dcb91710800000000000000
+      internalID: 1664569156852154091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_27
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 192
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e51b721d88a125b0800000000000000
+      internalID: -5394845554759232028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_28
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 192
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c81199e7399c69f0800000000000000
+      internalID: -473835395359893307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_29
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 192
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63c186874e8fd0ff0800000000000000
+      internalID: -68124759184368586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_30
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 192
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81923efd8feabf800800000000000000
+      internalID: 647303355389126936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_31
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 192
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c30314e5ebcb5cc00800000000000000
+      internalID: 920349224678273084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_32
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 192
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47ecdd745e5b8f300800000000000000
+      internalID: 286178572695883380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_33
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 192
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7551634ef0772950800000000000000
+      internalID: 6424227630821758332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_34
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 192
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 953d22a8c02778350800000000000000
+      internalID: 6018904825186669401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_35
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 192
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee9dfe7939a664c40800000000000000
+      internalID: 5496197577394084334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 319520f2f67470140800000000000000
+      internalID: 4685792480157915411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_37
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 96
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44923e42d630c6380800000000000000
+      internalID: -8976796189951055548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_38
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 96
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7168f58ec85e83c50800000000000000
+      internalID: 6645313643541923351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_39
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 96
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27b96ffce3d4a4b40800000000000000
+      internalID: 5425233633293540210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_40
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 96
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05af461da4a860cc0800000000000000
+      internalID: -3745153986166719920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_41
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 96
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71c27efdef7d32950800000000000000
+      internalID: 6423214983238593559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_42
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 96
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 053e4490cd68ce950800000000000000
+      internalID: 6479702243485737808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_43
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 96
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5933bd955ab308e0800000000000000
+      internalID: -1728332955099383457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_44
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 96
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8c6d2a566d5bd390800000000000000
+      internalID: -7792532036053537653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_45
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 96
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a23ffbde78f157860800000000000000
+      internalID: 7526957020889477930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_46
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 96
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbd82b1502a425e40800000000000000
+      internalID: 5643654785718717885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_47
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 96
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94f029e428b5f23f0800000000000000
+      internalID: -923418783365591223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e521afed158b912c0800000000000000
+      internalID: -4460331294160973218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_49
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ef773e25a88753e0800000000000000
+      internalID: -2065031661099712544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_50
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6bb031a048444cdd0800000000000000
+      internalID: -2466771361996797002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_51
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a39932e4c2a36ca00800000000000000
+      internalID: 776371947731917114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_52
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f41e1744057ce8ec0800000000000000
+      internalID: -3562691107643858609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_53
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ce1dcbea542425d0800000000000000
+      internalID: -3088303471547572539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_54
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 390b26227d1b2e200800000000000000
+      internalID: 207924070365442195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_55
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a35deaf124545fb00800000000000000
+      internalID: 861671054013027642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_56
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abf4343d305ba8140800000000000000
+      internalID: 4722786187285319610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_57
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d46022dd6fbebd40800000000000000
+      internalID: 5602125464893154514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_58
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d997bfbf6afe80f0800000000000000
+      internalID: -1112676700049139241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion-Sheet_59
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab918f80267db1a50800000000000000
+      internalID: 6493020103841946042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 8a804536371cf8c4c91a491979600a1a
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":12.0,"y":5.0},"gridSpriteSize":{"x":96.0,"y":96.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      vfx_explosion-Sheet_0: -900289933308699707
+      vfx_explosion-Sheet_1: 8961566373118842046
+      vfx_explosion-Sheet_10: -8042500899725644527
+      vfx_explosion-Sheet_11: 3744279010617317108
+      vfx_explosion-Sheet_12: -2863127544237712919
+      vfx_explosion-Sheet_13: -7169700163501714334
+      vfx_explosion-Sheet_14: -6784932545578529786
+      vfx_explosion-Sheet_15: -4000519846035792144
+      vfx_explosion-Sheet_16: 8115706126582258512
+      vfx_explosion-Sheet_17: -6923142798584135934
+      vfx_explosion-Sheet_18: 1707380184074116684
+      vfx_explosion-Sheet_19: 3418476834583019249
+      vfx_explosion-Sheet_2: 7560303547066872683
+      vfx_explosion-Sheet_20: 1687131113600389473
+      vfx_explosion-Sheet_21: 603069106988990052
+      vfx_explosion-Sheet_22: -1012686278247541683
+      vfx_explosion-Sheet_23: -7356690163442283252
+      vfx_explosion-Sheet_24: -1120894430490405737
+      vfx_explosion-Sheet_25: -3785763234931826904
+      vfx_explosion-Sheet_26: 1664569156852154091
+      vfx_explosion-Sheet_27: -5394845554759232028
+      vfx_explosion-Sheet_28: -473835395359893307
+      vfx_explosion-Sheet_29: -68124759184368586
+      vfx_explosion-Sheet_3: -3848614312757743074
+      vfx_explosion-Sheet_30: 647303355389126936
+      vfx_explosion-Sheet_31: 920349224678273084
+      vfx_explosion-Sheet_32: 286178572695883380
+      vfx_explosion-Sheet_33: 6424227630821758332
+      vfx_explosion-Sheet_34: 6018904825186669401
+      vfx_explosion-Sheet_35: 5496197577394084334
+      vfx_explosion-Sheet_36: 4685792480157915411
+      vfx_explosion-Sheet_37: -8976796189951055548
+      vfx_explosion-Sheet_38: 6645313643541923351
+      vfx_explosion-Sheet_39: 5425233633293540210
+      vfx_explosion-Sheet_4: -8426441198140282117
+      vfx_explosion-Sheet_40: -3745153986166719920
+      vfx_explosion-Sheet_41: 6423214983238593559
+      vfx_explosion-Sheet_42: 6479702243485737808
+      vfx_explosion-Sheet_43: -1728332955099383457
+      vfx_explosion-Sheet_44: -7792532036053537653
+      vfx_explosion-Sheet_45: 7526957020889477930
+      vfx_explosion-Sheet_46: 5643654785718717885
+      vfx_explosion-Sheet_47: -923418783365591223
+      vfx_explosion-Sheet_48: -4460331294160973218
+      vfx_explosion-Sheet_49: -2065031661099712544
+      vfx_explosion-Sheet_5: 4385652049295392268
+      vfx_explosion-Sheet_50: -2466771361996797002
+      vfx_explosion-Sheet_51: 776371947731917114
+      vfx_explosion-Sheet_52: -3562691107643858609
+      vfx_explosion-Sheet_53: -3088303471547572539
+      vfx_explosion-Sheet_54: 207924070365442195
+      vfx_explosion-Sheet_55: 861671054013027642
+      vfx_explosion-Sheet_56: 4722786187285319610
+      vfx_explosion-Sheet_57: 5602125464893154514
+      vfx_explosion-Sheet_58: -1112676700049139241
+      vfx_explosion-Sheet_59: 6493020103841946042
+      vfx_explosion-Sheet_6: 881906466227027137
+      vfx_explosion-Sheet_7: -2531457681437956885
+      vfx_explosion-Sheet_8: -5186513426814775987
+      vfx_explosion-Sheet_9: 8852078804466859452
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

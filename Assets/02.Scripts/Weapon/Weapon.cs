@@ -2,6 +2,7 @@
 
 public class Weapon : MonoBehaviour
 {
+    [SerializeField] private SFXType _fireSoundType;
     [SerializeField] Transform _firePoint;
     public WeaponData Data { get; private set; }
     public WeaponModifier Modifier { get; private set; }
@@ -19,7 +20,7 @@ public class Weapon : MonoBehaviour
     private float FireRate => (Data.FireRate + Modifier.FireRate.Flat) * (1f + Modifier.FireRate.Rate);
     private float ReloadSpeed => (1 + Modifier.ReloadSpeed.Flat) * (1f + Modifier.ReloadSpeed.Rate);
 
-    private float ChargeSpeed => (1 + Modifier.ChargeSpeed.Flat) * (1f + Modifier.ChargeSpeed.Rate);
+    public float ChargeSpeed => (1 + Modifier.ChargeSpeed.Flat) * (1f + Modifier.ChargeSpeed.Rate);
 
     private int MagazineSize => (Data.MagazineSize + Modifier.MagazineSize);
     private int ProjectileCount => (Data.ProjectileCount + Modifier.ProjectileCount);
@@ -91,6 +92,7 @@ public class Weapon : MonoBehaviour
         FireContext context = new FireContext(Data.ProjectileType, _firePoint.transform.position,
             transform.right, Range, ProjectileCount, Angle);
         _firePattern.Fire(context);
+        AudioManager.Instance.PlaySFX(_fireSoundType);
     }
 
     public bool CheckRemainingAmmo()
