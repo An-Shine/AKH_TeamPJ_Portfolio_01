@@ -216,8 +216,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 149bef5a1d4e1d448b560343bb289da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RotatingWarningLight2D
-  rotationSpeed: 90
-  clockwise: 1
+  _rotationSpeed: 90
+  _clockwise: 1
 --- !u!1 &62114038
 GameObject:
   m_ObjectHideFlags: 0
@@ -1535,8 +1535,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 149bef5a1d4e1d448b560343bb289da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RotatingWarningLight2D
-  rotationSpeed: 90
-  clockwise: 1
+  _rotationSpeed: 90
+  _clockwise: 1
 --- !u!1 &234042407
 GameObject:
   m_ObjectHideFlags: 0
@@ -2161,8 +2161,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 149bef5a1d4e1d448b560343bb289da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RotatingWarningLight2D
-  rotationSpeed: 90
-  clockwise: 1
+  _rotationSpeed: 90
+  _clockwise: 1
 --- !u!1 &478051827
 GameObject:
   m_ObjectHideFlags: 0
@@ -98772,8 +98772,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 149bef5a1d4e1d448b560343bb289da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RotatingWarningLight2D
-  rotationSpeed: 90
-  clockwise: 1
+  _rotationSpeed: 90
+  _clockwise: 1
 --- !u!1 &695567685
 GameObject:
   m_ObjectHideFlags: 0
@@ -99562,8 +99562,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 149bef5a1d4e1d448b560343bb289da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RotatingWarningLight2D
-  rotationSpeed: 90
-  clockwise: 1
+  _rotationSpeed: 90
+  _clockwise: 1
 --- !u!1 &1132445695
 GameObject:
   m_ObjectHideFlags: 0
@@ -99960,8 +99960,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 149bef5a1d4e1d448b560343bb289da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RotatingWarningLight2D
-  rotationSpeed: 90
-  clockwise: 1
+  _rotationSpeed: 90
+  _clockwise: 1
 --- !u!1 &1235885575
 GameObject:
   m_ObjectHideFlags: 0
@@ -100155,8 +100155,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 149bef5a1d4e1d448b560343bb289da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RotatingWarningLight2D
-  rotationSpeed: 90
-  clockwise: 1
+  _rotationSpeed: 90
+  _clockwise: 1
 --- !u!1 &1263579346
 GameObject:
   m_ObjectHideFlags: 0
@@ -101165,8 +101165,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 149bef5a1d4e1d448b560343bb289da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RotatingWarningLight2D
-  rotationSpeed: 90
-  clockwise: 1
+  _rotationSpeed: 90
+  _clockwise: 1
 --- !u!1 &1628004821
 GameObject:
   m_ObjectHideFlags: 0
@@ -101495,8 +101495,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 149bef5a1d4e1d448b560343bb289da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RotatingWarningLight2D
-  rotationSpeed: 90
-  clockwise: 1
+  _rotationSpeed: 90
+  _clockwise: 1
 --- !u!1 &1669535726
 GameObject:
   m_ObjectHideFlags: 0
@@ -111456,10 +111456,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AreaLightingZone
   _lights:
   - {fileID: 941977729}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1876037594}
+  - {fileID: 1457735593}
+  - {fileID: 1591361209}
   _areaLightManager: {fileID: 370533785}
 --- !u!61 &1879547639
 BoxCollider2D:
@@ -112099,8 +112098,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 149bef5a1d4e1d448b560343bb289da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RotatingWarningLight2D
-  rotationSpeed: 90
-  clockwise: 1
+  _rotationSpeed: 90
+  _clockwise: 1
 --- !u!1 &2005092249
 GameObject:
   m_ObjectHideFlags: 0
@@ -112264,8 +112263,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 149bef5a1d4e1d448b560343bb289da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RotatingWarningLight2D
-  rotationSpeed: 90
-  clockwise: 1
+  _rotationSpeed: 90
+  _clockwise: 1
 --- !u!1 &2093387328
 GameObject:
   m_ObjectHideFlags: 0
