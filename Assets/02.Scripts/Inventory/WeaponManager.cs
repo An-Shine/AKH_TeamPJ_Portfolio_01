@@ -45,6 +45,7 @@ public class WeaponManager : MonoBehaviour
         {
             return;
         }
+
         if (CurrentWeapon != null)
             CurrentWeapon.gameObject.SetActive(false);
 

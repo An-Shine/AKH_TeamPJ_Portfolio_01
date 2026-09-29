@@ -2,7 +2,6 @@
 
 public class Weapon : MonoBehaviour
 {
-
     [SerializeField] private SFXType _fireSoundType;
     [SerializeField] Transform _firePoint;
     public WeaponData Data { get; private set; }
@@ -87,7 +86,8 @@ public class Weapon : MonoBehaviour
 
     private void Fire()
     {
-        FireContext context = new FireContext(Data.ProjectileType, _firePoint.transform.position,transform.right, Range, ProjectileCount, Angle);
+        FireContext context = new FireContext(Data.ProjectileType, _firePoint.transform.position, transform.right,
+            Range, ProjectileCount, Angle);
         _firePattern.Fire(context);
         AudioManager.Instance.PlaySFX(_fireSoundType);
     }
@@ -98,6 +98,7 @@ public class Weapon : MonoBehaviour
         {
             return false;
         }
+
         return true;
     }
 
