@@ -6,10 +6,10 @@ public class AudioManager : MonoBehaviour
 {
     private static AudioManager _instance;
     public static AudioManager Instance => _instance;
-    
+
     [SerializeField] private AudioSource _bgmSource;
     [SerializeField] private List<AudioSource> _sfxSources;
-    
+
     [SerializeField] private List<BGMClip> _bgmEntries;
     [SerializeField] private List<SFXClip> _sfxEntries;
 
@@ -27,7 +27,7 @@ public class AudioManager : MonoBehaviour
         _bgmDictionary = _bgmEntries.ToDictionary(x => x.Type, x => x.Clip);
         _sfxDictionary = _sfxEntries.ToDictionary(x => x.Type, x => x.Clip);
     }
-    
+
     public void PlayBGM(BGMType type)
     {
         if (!_bgmDictionary.TryGetValue(type, out AudioClip clip))
@@ -39,7 +39,7 @@ public class AudioManager : MonoBehaviour
         _bgmSource.clip = clip;
         _bgmSource.Play();
     }
-    
+
     public void PlaySFX(SFXType type)
     {
         if (!_sfxDictionary.TryGetValue(type, out AudioClip clip))
