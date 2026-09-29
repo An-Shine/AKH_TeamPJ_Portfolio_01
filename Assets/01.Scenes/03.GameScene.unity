@@ -634,16 +634,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982c88dcd9032b6408e043bf7a177a5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AreaLightManager
-  zones:
-  - {fileID: 556243454}
+  _zones:
   - {fileID: 1235885577}
+  - {fileID: 556243454}
+  - {fileID: 1208297664}
   - {fileID: 1738902616}
   - {fileID: 1132445696}
-  - {fileID: 1208297664}
   - {fileID: 712532552}
-  - {fileID: 1652849552}
   - {fileID: 1879547638}
-  initialZone: {fileID: 1235885577}
+  - {fileID: 1652849552}
+  _initialZone: {fileID: 1235885577}
 --- !u!1 &391106014
 GameObject:
   m_ObjectHideFlags: 0
@@ -983,7 +983,7 @@ Transform:
   m_GameObject: {fileID: 449865803}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.59, y: 1.79, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1083,6 +1083,90 @@ Transform:
   - {fileID: 1906640285}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &472427754
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 472427755}
+  - component: {fileID: 472427756}
+  m_Layer: 0
+  m_Name: Spot Light 2D
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &472427755
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472427754}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.4, y: 4.58, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1523154629}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &472427756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472427754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.2D.Runtime::UnityEngine.Rendering.Universal.Light2D
+  m_ComponentVersion: 3
+  m_LightType: 3
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 0.5
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
+  m_LightVolumeIntensity: 1
+  m_LightVolumeEnabled: 0
+  m_ApplyToSortingLayers: 00000000
+  m_LightCookieSprite: {fileID: 0}
+  m_DeprecatedPointLightCookieSprite: {fileID: 0}
+  m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
+  m_OverlapOperation: 0
+  m_NormalMapDistance: 3
+  m_NormalMapQuality: 2
+  m_UseNormalMap: 0
+  m_ShadowsEnabled: 1
+  m_ShadowIntensity: 0.75
+  m_ShadowSoftness: 0.3
+  m_ShadowSoftnessFalloffIntensity: 0.5
+  m_ShadowVolumeIntensityEnabled: 0
+  m_ShadowVolumeIntensity: 0.75
+  m_LocalBounds:
+    m_Center: {x: 0, y: -0.00000011920929, z: 0}
+    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
+  m_PointLightInnerAngle: 360
+  m_PointLightOuterAngle: 360
+  m_PointLightInnerRadius: 0
+  m_PointLightOuterRadius: 1
+  m_ShapeLightParametricSides: 5
+  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricRadius: 1
+  m_ShapeLightFalloffSize: 0.5
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: -0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: 0.5, z: 0}
+  - {x: -0.5, y: 0.5, z: 0}
 --- !u!1 &478051827
 GameObject:
   m_ObjectHideFlags: 0
@@ -98051,7 +98135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff6de2f3bf08f3543bcf10dc7958a3f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AreaLightingZone
-  lights:
+  _lights:
   - {fileID: 1628004823}
   - {fileID: 2048049058}
   - {fileID: 1678549544}
@@ -98062,7 +98146,7 @@ MonoBehaviour:
   - {fileID: 419756919}
   - {fileID: 118105272}
   - {fileID: 530042360}
-  areaLightManager: {fileID: 370533785}
+  _areaLightManager: {fileID: 370533785}
 --- !u!4 &556243455
 Transform:
   m_ObjectHideFlags: 0
@@ -98454,13 +98538,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff6de2f3bf08f3543bcf10dc7958a3f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AreaLightingZone
-  lights:
+  _lights:
   - {fileID: 7243084}
   - {fileID: 1217574552}
-  - {fileID: 2093387330}
   - {fileID: 981065191}
   - {fileID: 1984241129}
-  areaLightManager: {fileID: 370533785}
+  - {fileID: 2093387330}
+  _areaLightManager: {fileID: 370533785}
 --- !u!61 &712532553
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -99125,11 +99209,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff6de2f3bf08f3543bcf10dc7958a3f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AreaLightingZone
-  lights:
+  _lights:
   - {fileID: 634948379}
   - {fileID: 938346222}
   - {fileID: 1875708293}
-  areaLightManager: {fileID: 370533785}
+  _areaLightManager: {fileID: 370533785}
 --- !u!61 &1132445697
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -99255,7 +99339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff6de2f3bf08f3543bcf10dc7958a3f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AreaLightingZone
-  lights:
+  _lights:
   - {fileID: 1563474282}
   - {fileID: 651175934}
   - {fileID: 1528378099}
@@ -99264,7 +99348,7 @@ MonoBehaviour:
   - {fileID: 67038411}
   - {fileID: 1405734117}
   - {fileID: 1263579347}
-  areaLightManager: {fileID: 370533785}
+  _areaLightManager: {fileID: 370533785}
 --- !u!61 &1208297665
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -99570,7 +99654,7 @@ Transform:
   m_GameObject: {fileID: 1232619921}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20.25, y: -2.92, z: 0}
+  m_LocalPosition: {x: -44.27, y: -7.95, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -99622,11 +99706,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff6de2f3bf08f3543bcf10dc7958a3f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AreaLightingZone
-  lights:
+  _lights:
   - {fileID: 189993165}
   - {fileID: 1664176340}
   - {fileID: 1562489740}
-  areaLightManager: {fileID: 370533785}
+  _areaLightManager: {fileID: 370533785}
 --- !u!61 &1235885578
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -99673,6 +99757,90 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 10.181999, y: 3.373415}
   m_EdgeRadius: 0
+--- !u!1 &1245771366
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1245771367}
+  - component: {fileID: 1245771368}
+  m_Layer: 0
+  m_Name: Spot Light 2D (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1245771367
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245771366}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.71, y: 4.53, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1523154629}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1245771368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245771366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.2D.Runtime::UnityEngine.Rendering.Universal.Light2D
+  m_ComponentVersion: 3
+  m_LightType: 3
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 0.5
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
+  m_LightVolumeIntensity: 1
+  m_LightVolumeEnabled: 0
+  m_ApplyToSortingLayers: 00000000
+  m_LightCookieSprite: {fileID: 0}
+  m_DeprecatedPointLightCookieSprite: {fileID: 0}
+  m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
+  m_OverlapOperation: 0
+  m_NormalMapDistance: 3
+  m_NormalMapQuality: 2
+  m_UseNormalMap: 0
+  m_ShadowsEnabled: 1
+  m_ShadowIntensity: 0.75
+  m_ShadowSoftness: 0.3
+  m_ShadowSoftnessFalloffIntensity: 0.5
+  m_ShadowVolumeIntensityEnabled: 0
+  m_ShadowVolumeIntensity: 0.75
+  m_LocalBounds:
+    m_Center: {x: 0, y: -0.00000011920929, z: 0}
+    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
+  m_PointLightInnerAngle: 360
+  m_PointLightOuterAngle: 360
+  m_PointLightInnerRadius: 0
+  m_PointLightOuterRadius: 1
+  m_ShapeLightParametricSides: 5
+  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricRadius: 1
+  m_ShapeLightFalloffSize: 0.5
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: -0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: 0.5, z: 0}
+  - {x: -0.5, y: 0.5, z: 0}
 --- !u!1 &1263579346
 GameObject:
   m_ObjectHideFlags: 0
@@ -100112,6 +100280,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 946085056}
+  - {fileID: 472427755}
+  - {fileID: 1245771367}
   m_Father: {fileID: 73472027}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1528340075
@@ -100807,13 +100977,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff6de2f3bf08f3543bcf10dc7958a3f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AreaLightingZone
-  lights:
+  _lights:
   - {fileID: 946085057}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  areaLightManager: {fileID: 370533785}
+  - {fileID: 472427756}
+  - {fileID: 1245771368}
+  _areaLightManager: {fileID: 370533785}
 --- !u!61 &1652849553
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -105273,11 +105441,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff6de2f3bf08f3543bcf10dc7958a3f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AreaLightingZone
-  lights:
+  _lights:
   - {fileID: 728936243}
   - {fileID: 912133752}
   - {fileID: 391106016}
-  areaLightManager: {fileID: 370533785}
+  _areaLightManager: {fileID: 370533785}
 --- !u!61 &1738902617
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -110710,13 +110878,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff6de2f3bf08f3543bcf10dc7958a3f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AreaLightingZone
-  lights:
+  _lights:
   - {fileID: 941977729}
   - {fileID: 1528340077}
   - {fileID: 1471544657}
   - {fileID: 1762342872}
   - {fileID: 1702943694}
-  areaLightManager: {fileID: 370533785}
+  _areaLightManager: {fileID: 370533785}
 --- !u!61 &1879547639
 BoxCollider2D:
   m_ObjectHideFlags: 0
