@@ -15,6 +15,10 @@ public class Item : MonoBehaviour
         _effects = new List<ItemEffectData>();
         foreach (string effectId in Data.EffectIdList)
         {
+            if (effectId.Length <= 0)
+            {
+                continue;
+            }
             _effects.Add(DataManager.Instance.ItemEffectDatas[effectId]);
         }
     }
