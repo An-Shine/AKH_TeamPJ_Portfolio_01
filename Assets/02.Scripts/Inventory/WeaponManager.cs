@@ -17,7 +17,11 @@ public class WeaponManager : MonoBehaviour
 
     private void Awake()
     {
-        if (_instance != null) Destroy(gameObject);
+        if (_instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
 
         _instance = this;
     }
