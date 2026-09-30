@@ -2,9 +2,10 @@
 
 public class Weapon : MonoBehaviour
 {
-
     [SerializeField] private SFXType _fireSoundType;
+    [SerializeField] private GameObject _fireEffectPrefab;
     [SerializeField] Transform _firePoint;
+    [SerializeField] Transform _effectPoint;
     public WeaponData Data { get; private set; }
     public WeaponModifier Modifier { get; private set; }
 
@@ -87,9 +88,16 @@ public class Weapon : MonoBehaviour
 
     private void Fire()
     {
-        FireContext context = new FireContext(Data.ProjectileType, _firePoint.transform.position,transform.right, Range, ProjectileCount, Angle);
+        FireContext context = new FireContext(Data.ProjectileType, _firePoint.transform.position, transform.right,
+            Range, ProjectileCount, Angle);
         _firePattern.Fire(context);
         AudioManager.Instance.PlaySFX(_fireSoundType);
+        if (_fireEffectPrefab != null)
+        {
+            Quaternion additionalRotation = Quaternion.Euler(0f, 0f, 180f);
+            Quaternion finalRotation = transform.rotation * additionalRotation;
+            Instantiate(_fireEffectPrefab, _effectPoint.transform.position, finalRotation);
+        }
     }
 
     public bool CheckRemainingAmmo()
@@ -98,6 +106,7 @@ public class Weapon : MonoBehaviour
         {
             return false;
         }
+
         return true;
     }
 

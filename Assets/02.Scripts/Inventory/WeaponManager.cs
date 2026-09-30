@@ -29,7 +29,17 @@ public class WeaponManager : MonoBehaviour
         foreach (var weaponSlot in _weaponEntryList)
         {
             _unobtainedWeapons[weaponSlot.WeaponId] = Instantiate(weaponSlot.WeaponPrefab, _weaponContainer);
-            _unobtainedWeapons[weaponSlot.WeaponId].Initialize(DataManager.Instance.WeaponDatas[weaponSlot.WeaponId]);
+            if (DataManager.Instance.WeaponDatas.TryGetValue(weaponSlot.WeaponId, out WeaponData weaponData))
+            {
+                _unobtainedWeapons[weaponSlot.WeaponId].Initialize(weaponData);
+            }
+            else
+            {
+                Destroy(_unobtainedWeapons[weaponSlot.WeaponId]);
+                _unobtainedWeapons.Remove(weaponSlot.WeaponId);
+                continue;
+            }
+
             _unobtainedWeapons[weaponSlot.WeaponId].gameObject.SetActive(false);
         }
     }
@@ -45,6 +55,7 @@ public class WeaponManager : MonoBehaviour
         {
             return;
         }
+
         if (CurrentWeapon != null)
             CurrentWeapon.gameObject.SetActive(false);
 
