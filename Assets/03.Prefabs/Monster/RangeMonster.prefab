@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3752560541776440137}
   - component: {fileID: 1041100582857538942}
   - component: {fileID: 8807473177661448989}
+  - component: {fileID: 4001296727413696537}
   m_Layer: 0
   m_Name: RangeMonster
   m_TagString: Player
@@ -110,7 +111,14 @@ MonoBehaviour:
   _maxHealth: 100
   _moveSpeed: 2
   _contactDamage: 10
+  _separationRadius: 0.8
+  _separationStrength: 1.5
+  _collisionCheckRadius: 0.25
+  _obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 0
   _hitCooldown: 0.1
+  _hitFlashDuration: 0.08
   _deathDelay: 0.2
   _deathScale: 0
   _attackRange: 6
@@ -118,6 +126,8 @@ MonoBehaviour:
   _attackCooldown: 2
   _projectilePrefab: {fileID: 1382666949138593085, guid: 827b514e89826434996ab90f9150eb4a, type: 3}
   _firePoint: {fileID: 7992452664774812113}
+  _attackScale: 1.15
+  _attackAnimationTime: 0.1
 --- !u!50 &1041100582857538942
 Rigidbody2D:
   serializedVersion: 5
@@ -198,6 +208,28 @@ PolygonCollider2D:
       - {x: 0.43359375, y: 0.25}
       - {x: 0, y: 0.5}
   m_UseDelaunayMesh: 1
+--- !u!95 &4001296727413696537
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3084556249662808746}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dd88fe1a17e743b41bb0a71ea3b39849, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8140287152644180069
 GameObject:
   m_ObjectHideFlags: 0
