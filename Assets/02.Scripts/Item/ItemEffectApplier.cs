@@ -42,7 +42,7 @@ public static class ItemEffectApplier
 
     public static void ApplyToPlayer(ItemPlayerStat stat, IEnumerable<Item> items)
     {
-        foreach (Item item in items)
+        foreach (var item in items)
         {
             foreach (ItemEffectData effect in item.Effects)
             {
@@ -73,7 +73,7 @@ public static class ItemEffectApplier
 
     public static void ApplyToWeapon(ItemWeaponStat stat, IEnumerable<Item> items)
     {
-        foreach (Item item in items)
+        foreach (var item in items)
         {
             foreach (ItemEffectData effect in item.Effects)
             {
