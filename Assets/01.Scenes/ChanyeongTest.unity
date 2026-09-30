@@ -1807,8 +1807,16 @@ MonoBehaviour:
     ItemPrefab: {fileID: 5158470827918489186, guid: fec5fa7daa50d5049b8b3be7c750a03b, type: 3}
   - ItemId: ITM_02
     ItemPrefab: {fileID: 2881585295263553560, guid: b700618286991164394c50638c3d8456, type: 3}
+  - ItemId: ITM_03
+    ItemPrefab: {fileID: 1999943091658586458, guid: 154b410946f72be46a6f7d7d47f4e711, type: 3}
+  - ItemId: ITM_04
+    ItemPrefab: {fileID: 670094435488806455, guid: 09efb38b9d1838347855d74a26aeae7d, type: 3}
+  - ItemId: ITM_05
+    ItemPrefab: {fileID: 7369551286898498312, guid: 50bcac24e55de5a499c789940547b697, type: 3}
+  - ItemId: ITM_06
+    ItemPrefab: {fileID: 751336301646340192, guid: c93ef105bed638143a680affa2d9f611, type: 3}
   _itemContainer: {fileID: 1572088911}
-  _playerTransform: {fileID: 0}
+  _playerTransform: {fileID: 32498130}
 --- !u!4 &1875362486
 Transform:
   m_ObjectHideFlags: 0
