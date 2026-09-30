@@ -15,7 +15,9 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         if (FindFirstObjectByType<PlayerManager>() == null)
+        {
             gameObject.AddComponent<PlayerManager>();
+        }
 
         _motor = GetComponent<PlayerMotor>();
         _fsm = GetComponent<PlayerStateMachine>();
@@ -64,7 +66,9 @@ public class PlayerController : MonoBehaviour
     {
         if (!isActiveAndEnabled || Time.timeScale <= 0f || !_fsm.CanInteract ||
             (_dashQueued && _fsm.CanDash))
+        {
             return false;
+        }
 
         ItemManager items = ItemManager.Instance;
         if (items == null || items.PlayerStat == null) return false;
@@ -85,7 +89,10 @@ public class PlayerController : MonoBehaviour
         _dashQueued = false;
         _motor.Stop();
         _weapon.CancelAttackVisual();
-        if (_animation != null) _animation.BeginInteraction();
+        if (_animation != null)
+        {
+            _animation.BeginInteraction();
+        }
         items.GainItem(nearest);
         PlayerManager.Instance.GetItem();
         return true;

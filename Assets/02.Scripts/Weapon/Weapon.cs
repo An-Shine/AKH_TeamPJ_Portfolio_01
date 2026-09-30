@@ -25,7 +25,7 @@ public class Weapon : MonoBehaviour
     private int ProjectileCount => Data.ProjectileCount + Modifier.ProjectileCount;
     private float Angle => Data.Angle + Modifier.Angle;
     private float Range => Data.Range + Modifier.Range;
-    
+
     private Vector2 _fireOrigin;
     private Vector2 _fireDirection = Vector2.right;
     private bool _hasFirePose;
@@ -133,7 +133,7 @@ public class Weapon : MonoBehaviour
 
         if (_reloadTimer >= Data.ReloadTime) _isReloading = false;
     }
-    
+
     public void SetFirePose(Vector2 origin, Vector2 direction)
     {
         _fireOrigin = origin;
@@ -141,6 +141,7 @@ public class Weapon : MonoBehaviour
         {
             _fireDirection = direction.normalized;
         }
+
         _hasFirePose = true;
     }
 }

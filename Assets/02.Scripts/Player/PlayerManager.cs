@@ -94,9 +94,11 @@ public class PlayerManager : MonoBehaviour
         int magazine = stat != null ? Mathf.RoundToInt(weapon.Data.MagazineSize * stat.MagazineSizeMultiplier) : 0;
         int projectileCount = stat != null ? stat.ProjectileCountModifier : 0;
         float angle = stat != null
-            ? (weapon.Data.Angle + stat.SpreadAngleModifier) * (1f + stat.SpreadAngleMultiplier) - weapon.Data.Angle : 0f;
+            ? (weapon.Data.Angle + stat.SpreadAngleModifier) * (1f + stat.SpreadAngleMultiplier) - weapon.Data.Angle
+            : 0f;
         float range = stat != null
-            ? (weapon.Data.Range + stat.RangeModifier) * (1f + stat.RangeMultiplier) - weapon.Data.Range : 0f;
+            ? (weapon.Data.Range + stat.RangeModifier) * (1f + stat.RangeMultiplier) - weapon.Data.Range
+            : 0f;
 
         ApplyModifierDelta(weapon, fireFlat, fireRate, magazine, projectileCount, angle, range);
     }
@@ -135,16 +137,20 @@ public class PlayerManager : MonoBehaviour
         }
 
         float fireRate = (weapon.Data.FireRate + weapon.Modifier.FireRate.Flat)
-            * (1f + weapon.Modifier.FireRate.Rate);
+                         * (1f + weapon.Modifier.FireRate.Rate);
         PlayerStatusData.FireInterval = fireRate > 0f ? WeaponCooldownUnits / fireRate : float.PositiveInfinity;
         PlayerStatusData.isChargeWeapon = weapon.Data.BehaviourType == FireBehaviourType.Charge;
         PlayerStatusData.ChargeCooldown = PlayerStatusData.isChargeWeapon
-            ? weapon.Data.ChargeTime / Mathf.Max(0.0001f, weapon.ChargeSpeed) : 0f;
+            ? weapon.Data.ChargeTime / Mathf.Max(0.0001f, weapon.ChargeSpeed)
+            : 0f;
 
         PlayerStatusData.Damage = 0f;
         if (DataManager.Instance == null || DataManager.Instance.ProjectileDatas == null ||
-            !DataManager.Instance.ProjectileDatas.TryGetValue(weapon.Data.ProjectileType, out ProjectileData projectileData))
+            !DataManager.Instance.ProjectileDatas.TryGetValue(weapon.Data.ProjectileType,
+                out ProjectileData projectileData))
+        {
             return;
+        }
 
         int flat = projectileStat != null ? projectileStat.DamageModifier : 0;
         float rate = projectileStat != null ? projectileStat.DamageMultiplier : 0f;
