@@ -13,11 +13,11 @@ public class ProjectileSpawner : MonoBehaviour
         _instance = this;
     }
 
-    public Projectile Spawn(ProjectileType type, Vector2 position, Vector2 direction, float range)
+    public Projectile Spawn(ProjectileType type, Vector2 position, Vector2 direction, float range, int damage)
     {
         var projectile = ProjectilePoolManager.Instance.Get(type);
         projectile.transform.SetPositionAndRotation(position, Quaternion.identity);
-        projectile.OnSpawn(position, direction, range);
+        projectile.OnSpawn(position, direction, range, damage);
 
         return projectile;
     }

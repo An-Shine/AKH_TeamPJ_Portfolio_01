@@ -4,6 +4,8 @@ public abstract class Projectile : MonoBehaviour
 {
     protected ProjectileType _type;
     protected int _damage;
+    private int _bonusDamage;
+    public int Damage => _damage + _bonusDamage;
     protected float _range;
     private int _initialDurability;
     private int _durability;
@@ -21,19 +23,21 @@ public abstract class Projectile : MonoBehaviour
     {
         _type = type;
         _damage = damage;
+        _bonusDamage = 0;
         _initialDurability = durability;
         _durability = _initialDurability;
         _direction = Vector3.zero;
         _speedScalar = speedScalar;
     }
 
-    public virtual void OnSpawn(Vector3 position, Vector3 direction, float range)
+    public virtual void OnSpawn(Vector3 position, Vector3 direction, float range, int damage)
     {
         _durability = _initialDurability;
         _direction = direction;
         _range = range;
         gameObject.transform.position = position;
         _initialPosition = position;
+        _bonusDamage = damage;
 
         Rotation();
     }
@@ -65,7 +69,7 @@ public abstract class Projectile : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             //if(other.TryGetComponent(out Enemy enemy))
-            //enemy.TakeDamage(_damage);
+            //enemy.TakeDamage(Damage);
         }
     }
 

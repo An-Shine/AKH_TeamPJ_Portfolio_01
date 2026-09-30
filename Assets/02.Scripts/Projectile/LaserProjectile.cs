@@ -18,9 +18,9 @@ public class LaserProjectile : Projectile
     {
     }
 
-    public override void OnSpawn(Vector3 position, Vector3 direction, float range)
+    public override void OnSpawn(Vector3 position, Vector3 direction, float range, int damage)
     {
-        base.OnSpawn(position, direction, range);
+        base.OnSpawn(position, direction, range, damage);
         CreateLaser();
     }
 
