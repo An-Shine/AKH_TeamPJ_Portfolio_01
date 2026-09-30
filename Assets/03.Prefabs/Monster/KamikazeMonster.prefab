@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8326424469708161978}
   - component: {fileID: 4766278627352796448}
   - component: {fileID: 4306590552315301659}
+  - component: {fileID: 4475873238172789714}
   m_Layer: 0
   m_Name: KamikazeMonster
   m_TagString: Enemy
@@ -119,11 +120,14 @@ MonoBehaviour:
   _hitFlashDuration: 0.08
   _deathDelay: 0.2
   _deathScale: 0
-  _explosionRange: 1.5
-  _explosionDelay: 1
-  _explosionDamage: 50
-  _warningScale: 1.25
-  _warningSpeed: 12
+  _explodeRange: 1.2
+  _explodeNormalizedTime: 0.6
+  _chargeRange: 6
+  _chaseSpeedMultiplier: 1.2
+  _chargeSpeedMultiplier: 3
+  _crowdAvoidanceSpeed: 1.5
+  _explosionEffectPrefab: {fileID: 0}
+  _explosionEffectLifetime: 1
 --- !u!60 &4766278627352796448
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -204,3 +208,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &4475873238172789714
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6636468909261587316}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6e173708613f7264c9b790c741bea238, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
