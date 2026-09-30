@@ -8,6 +8,7 @@ public class ItemManager : MonoBehaviour
 
     [SerializeField] private List<ItemEntry> _itemEntryList;
     [SerializeField] private Transform _itemContainer;
+    [SerializeField] private Transform _playerTransform;
 
     private Dictionary<string, Item> _unobtainedItemDictionary;
     private List<Item> _gainedItemList;
@@ -64,6 +65,8 @@ public class ItemManager : MonoBehaviour
             }
         }
 
+        Instantiate(item.GainEffectPrefab, _playerTransform);
+        AudioManager.Instance.PlaySFX(item.GainEffectSFX);
         item.gameObject.SetActive(false);
     }
 }

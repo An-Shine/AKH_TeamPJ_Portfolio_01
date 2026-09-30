@@ -3,6 +3,11 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
+    [SerializeField] private GameObject _gainEffectPrefab;
+    public GameObject GainEffectPrefab => _gainEffectPrefab;
+    [SerializeField] private SFXType _gainEffectSFX;
+    public SFXType GainEffectSFX => _gainEffectSFX;
+
     public ItemData Data { get; private set; }
 
     private List<ItemEffectData> _effects;
