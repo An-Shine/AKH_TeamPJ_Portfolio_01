@@ -33,12 +33,13 @@ public class NormalMonster : MonoBehaviour
     private SpriteRenderer[] _spriteRenderers;
     private Color[] _originalColors;
 
+
     protected virtual void Awake()
     {
         _currentHealth = _maxHealth;
 
         _spriteRenderers =
-            GetComponentsInChildren<SpriteRenderer>();
+            GetComponentsInChildren<SpriteRenderer>(true);
 
         _originalColors =
             new Color[_spriteRenderers.Length];
@@ -49,6 +50,7 @@ public class NormalMonster : MonoBehaviour
                 _spriteRenderers[i].color;
         }
     }
+
 
     protected virtual void Start()
     {
@@ -67,6 +69,7 @@ public class NormalMonster : MonoBehaviour
         }
     }
 
+
     protected virtual void Update()
     {
         if (_isDead)
@@ -79,6 +82,7 @@ public class NormalMonster : MonoBehaviour
             _hitCooldownTimer -= Time.deltaTime;
         }
     }
+
 
     protected void FacePlayer()
     {
@@ -108,6 +112,7 @@ public class NormalMonster : MonoBehaviour
                 angle
             );
     }
+
 
     protected Vector2 GetSeparationDirection()
     {
@@ -151,7 +156,8 @@ public class NormalMonster : MonoBehaviour
             }
 
             float strength =
-                1f - Mathf.Clamp01(
+                1f -
+                Mathf.Clamp01(
                     distance / _separationRadius
                 );
 
@@ -161,6 +167,7 @@ public class NormalMonster : MonoBehaviour
 
         return separationDirection.normalized;
     }
+
 
     protected void ApplySeparation()
     {
@@ -180,6 +187,7 @@ public class NormalMonster : MonoBehaviour
             );
     }
 
+
     protected bool CanMoveTo(Vector2 targetPosition)
     {
         Collider2D hit =
@@ -192,6 +200,7 @@ public class NormalMonster : MonoBehaviour
         return hit == null;
     }
 
+
     protected void MoveWithCollisionCheck(Vector2 movement)
     {
         if (movement.sqrMagnitude <= 0.0001f)
@@ -200,7 +209,8 @@ public class NormalMonster : MonoBehaviour
         }
 
         Vector2 targetPosition =
-            (Vector2)transform.position + movement;
+            (Vector2)transform.position +
+            movement;
 
         if (CanMoveTo(targetPosition))
         {
@@ -208,6 +218,11 @@ public class NormalMonster : MonoBehaviour
                 targetPosition;
         }
     }
+
+
+    // =========================================================
+    // DAMAGE
+    // =========================================================
 
     public virtual void TakeDamage(float damage)
     {
@@ -226,25 +241,55 @@ public class NormalMonster : MonoBehaviour
             return;
         }
 
+
         _hitCooldownTimer =
             _hitCooldown;
 
         _currentHealth -= damage;
 
+
         Debug.Log(
-            $"{gameObject.name} 피격! 받은 데미지: {damage}, 현재 체력: {_currentHealth}"
+            $"{gameObject.name} 피격! " +
+            $"받은 데미지: {damage}, " +
+            $"현재 체력: {_currentHealth}"
         );
 
+
+        /*
+         * 죽는 공격이면 Hit을 거치지 않고
+         * 바로 사망 처리합니다.
+         */
+        if (_currentHealth <= 0f)
+        {
+            _currentHealth = 0f;
+
+            Die();
+
+            return;
+        }
+
+
+        // 기존 붉은색 피격 연출
         StartCoroutine(
             HitFlashRoutine()
         );
 
-        if (_currentHealth <= 0f)
-        {
-            _currentHealth = 0f;
-            Die();
-        }
+
+        // MeleeMonster에서 Hit 애니메이션 실행
+        OnHit();
     }
+
+
+    // =========================================================
+    // HIT HOOK
+    // =========================================================
+
+    protected virtual void OnHit()
+    {
+        // 기본 NormalMonster는 별도 Hit Animation 없음.
+        // MeleeMonster에서 Override합니다.
+    }
+
 
     private IEnumerator HitFlashRoutine()
     {
@@ -257,14 +302,17 @@ public class NormalMonster : MonoBehaviour
             }
         }
 
+
         yield return new WaitForSeconds(
             _hitFlashDuration
         );
+
 
         if (_isDead)
         {
             yield break;
         }
+
 
         for (int i = 0; i < _spriteRenderers.Length; i++)
         {
@@ -276,6 +324,13 @@ public class NormalMonster : MonoBehaviour
         }
     }
 
+
+    // =========================================================
+    // DEATH
+    // 현재는 기존 방식.
+    // Death Animation은 다음 단계에서 변경.
+    // =========================================================
+
     protected virtual void Die()
     {
         if (_isDead)
@@ -283,16 +338,20 @@ public class NormalMonster : MonoBehaviour
             return;
         }
 
+
         _isDead = true;
+
 
         Debug.Log(
             $"{gameObject.name} 사망!"
         );
 
+
         StartCoroutine(
             DeathRoutine()
         );
     }
+
 
     private IEnumerator DeathRoutine()
     {
@@ -303,6 +362,7 @@ public class NormalMonster : MonoBehaviour
             startScale * _deathScale;
 
         float timer = 0f;
+
 
         while (timer < _deathDelay)
         {
@@ -321,8 +381,10 @@ public class NormalMonster : MonoBehaviour
             yield return null;
         }
 
+
         transform.localScale =
             targetScale;
+
 
         Destroy(gameObject);
     }

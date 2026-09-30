@@ -121,11 +121,11 @@ MonoBehaviour:
   _deathDelay: 0.2
   _deathScale: 0
   _directionAnimator: {fileID: 4648255640607117109}
+  _directionChangeAngle: 30
   _attackRange: 1.5
   _attackAngle: 90
   _attackCooldown: 1
-  _attackScale: 1.2
-  _attackAnimationTime: 0.12
+  _attackHitNormalizedTime: 0.5
 --- !u!60 &7007430183231636224
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -216,7 +216,7 @@ Animator:
   m_GameObject: {fileID: 9050073270099259043}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b7590d567be1bfb4cbfa13cc48744bf0, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3bbb556ac1bb6ae4c819df63b790dbcd, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
