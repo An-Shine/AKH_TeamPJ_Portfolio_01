@@ -144,6 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RangeProjectile
   _moveSpeed: 8
   _lifeTime: 3
+  _damage: 10
 --- !u!50 &5467120278089081892
 Rigidbody2D:
   serializedVersion: 5

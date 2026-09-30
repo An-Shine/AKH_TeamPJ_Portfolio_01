@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4001296727413696537}
   m_Layer: 0
   m_Name: RangeMonster
-  m_TagString: Player
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,11 +123,12 @@ MonoBehaviour:
   _deathScale: 0
   _attackRange: 6
   _keepDistance: 4
-  _attackCooldown: 2
+  _attackCooldown: 1
   _projectilePrefab: {fileID: 1382666949138593085, guid: 827b514e89826434996ab90f9150eb4a, type: 3}
   _firePoint: {fileID: 7992452664774812113}
-  _attackScale: 1.15
-  _attackAnimationTime: 0.1
+  _fireNormalizedTime: 0.5
+  _firePointReferenceDirection: {x: 0, y: -1}
+  _crowdAvoidanceSpeed: 1.5
 --- !u!50 &1041100582857538942
 Rigidbody2D:
   serializedVersion: 5

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4306590552315301659}
   m_Layer: 0
   m_Name: KamikazeMonster
-  m_TagString: Player
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,12 +109,21 @@ MonoBehaviour:
   _maxHealth: 100
   _moveSpeed: 2
   _contactDamage: 10
+  _separationRadius: 0.8
+  _separationStrength: 1.5
+  _collisionCheckRadius: 0.25
+  _obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 0
   _hitCooldown: 0.1
+  _hitFlashDuration: 0.08
   _deathDelay: 0.2
   _deathScale: 0
   _explosionRange: 1.5
   _explosionDelay: 1
   _explosionDamage: 50
+  _warningScale: 1.25
+  _warningSpeed: 12
 --- !u!60 &4766278627352796448
 PolygonCollider2D:
   m_ObjectHideFlags: 0
