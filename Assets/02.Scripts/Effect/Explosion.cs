@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-public class Explosion : MonoBehaviour
+public class Explosion : Effect
 {
     private float _damage;
 
@@ -17,10 +16,5 @@ public class Explosion : MonoBehaviour
             //GetComponent
             //damage Process
         }
-    }
-
-    private void DestroyEffect()
-    {
-        Destroy(gameObject);
     }
 }
