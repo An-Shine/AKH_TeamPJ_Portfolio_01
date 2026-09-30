@@ -1,31 +1,31 @@
 fileFormatVersion: 2
-guid: caca6089f0d799d40897828fb0569d30
+guid: bf4202376928e894baa3f7aaf2e1b34d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2872710280611452312
-    second: Reload_Down_Arm_0
+      213: 2187531045214866346
+    second: Dash_Down_Body_0
   - first:
-      213: -1285932673632993429
-    second: Reload_Down_Arm_1
+      213: 4455349817443214
+    second: Dash_Down_Body_1
   - first:
-      213: 1306664216244026104
-    second: Reload_Down_Arm_2
+      213: 1270121623975598985
+    second: Dash_Down_Body_2
   - first:
-      213: -1513252351525150776
-    second: Reload_Down_Arm_3
+      213: 11855815218399386
+    second: Dash_Down_Body_3
   - first:
-      213: -2579041435460130711
-    second: Reload_Down_Arm_4
+      213: 5966442783543883234
+    second: Dash_Down_Body_4
   - first:
-      213: 1354562809792314736
-    second: Reload_Down_Arm_5
+      213: -3288081612399396050
+    second: Dash_Down_Body_5
   - first:
-      213: -1430551145908479619
-    second: Reload_Down_Arm_6
+      213: -5045214976642860426
+    second: Dash_Down_Body_6
   - first:
-      213: 7480548466328430739
-    second: Reload_Down_Arm_7
+      213: 582617840505344304
+    second: Dash_Down_Body_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -58,7 +58,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -72,7 +72,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 35
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -96,7 +96,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -147,177 +147,177 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Reload_Down_Arm_0
+      name: Dash_Down_Body_0
       rect:
         serializedVersion: 2
-        x: 13
-        y: 20
-        width: 12
-        height: 9
+        x: 0
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 86aaa8558351228d0800000000000000
-      internalID: -2872710280611452312
+      spriteID: aabcb2545ebab5e10800000000000000
+      internalID: 2187531045214866346
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Reload_Down_Arm_1
+      name: Dash_Down_Body_1
       rect:
         serializedVersion: 2
-        x: 26
-        y: 20
-        width: 7
-        height: 7
+        x: 48
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b6f7907eb03772ee0800000000000000
-      internalID: -1285932673632993429
+      spriteID: e830837fd14df0000800000000000000
+      internalID: 4455349817443214
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Reload_Down_Arm_2
+      name: Dash_Down_Body_2
       rect:
         serializedVersion: 2
-        x: 61
-        y: 19
-        width: 18
-        height: 10
+        x: 96
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8fa70f18e24322210800000000000000
-      internalID: 1306664216244026104
+      spriteID: 98b9b9a33e060a110800000000000000
+      internalID: 1270121623975598985
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Reload_Down_Arm_3
+      name: Dash_Down_Body_3
       rect:
         serializedVersion: 2
-        x: 109
-        y: 20
-        width: 17
-        height: 9
+        x: 144
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8cf91dbf009dffae0800000000000000
-      internalID: -1513252351525150776
+      spriteID: a988d961dce1a2000800000000000000
+      internalID: 11855815218399386
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Reload_Down_Arm_4
+      name: Dash_Down_Body_4
       rect:
         serializedVersion: 2
-        x: 157
-        y: 21
-        width: 19
-        height: 9
+        x: 192
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 968a2629a77653cd0800000000000000
-      internalID: -2579041435460130711
+      spriteID: 2e573dd99101dc250800000000000000
+      internalID: 5966442783543883234
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Reload_Down_Arm_5
+      name: Dash_Down_Body_5
       rect:
         serializedVersion: 2
-        x: 205
-        y: 21
-        width: 21
-        height: 9
+        x: 240
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 07d30afd2bf5cc210800000000000000
-      internalID: 1354562809792314736
+      spriteID: e2bb07cc1336e52d0800000000000000
+      internalID: -3288081612399396050
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Reload_Down_Arm_6
+      name: Dash_Down_Body_6
       rect:
         serializedVersion: 2
-        x: 253
-        y: 21
-        width: 19
-        height: 9
+        x: 288
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d79d81bef49a52ce0800000000000000
-      internalID: -1430551145908479619
+      spriteID: 67ab8bd95bbcbf9b0800000000000000
+      internalID: -5045214976642860426
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Reload_Down_Arm_7
+      name: Dash_Down_Body_7
       rect:
         serializedVersion: 2
-        x: 301
-        y: 19
-        width: 18
-        height: 10
+        x: 336
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 398699c423f30d760800000000000000
-      internalID: 7480548466328430739
+      spriteID: 031502fc6dfd51800800000000000000
+      internalID: 582617840505344304
       vertices: []
       indices: 
       edges: []
@@ -326,7 +326,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 889f77fd99fffc8488228c132457c380
     internalID: 0
     vertices: []
     indices: 
@@ -334,16 +334,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":8.0,"y":1.0},"gridSpriteSize":{"x":48.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Reload_Down_Arm_0: -2872710280611452312
-      Reload_Down_Arm_1: -1285932673632993429
-      Reload_Down_Arm_2: 1306664216244026104
-      Reload_Down_Arm_3: -1513252351525150776
-      Reload_Down_Arm_4: -2579041435460130711
-      Reload_Down_Arm_5: 1354562809792314736
-      Reload_Down_Arm_6: -1430551145908479619
-      Reload_Down_Arm_7: 7480548466328430739
+      Dash_Down_Body_0: 2187531045214866346
+      Dash_Down_Body_1: 4455349817443214
+      Dash_Down_Body_2: 1270121623975598985
+      Dash_Down_Body_3: 11855815218399386
+      Dash_Down_Body_4: 5966442783543883234
+      Dash_Down_Body_5: -3288081612399396050
+      Dash_Down_Body_6: -5045214976642860426
+      Dash_Down_Body_7: 582617840505344304
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,40 +1,19 @@
 fileFormatVersion: 2
-guid: 61e3cf6ae22b82f4dac9fca9800dc9f3
+guid: a23f6bcecda9ce84ca7197e2e9051c21
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7893811080159322527
-    second: PlayerDefault_0
+      213: 1855638063147135521
+    second: Dash_Down_Arm_0
   - first:
-      213: 3797600247012982168
-    second: PlayerDefault_1
+      213: -5822586614804141278
+    second: Dash_Down_Arm_1
   - first:
-      213: -6552708207353842218
-    second: PlayerDefault_2
+      213: -515888646953298539
+    second: Dash_Down_Arm_2
   - first:
-      213: 6654498660583437746
-    second: PlayerDefault_3
-  - first:
-      213: 2597365722605198315
-    second: PlayerDefault_4
-  - first:
-      213: 7911161980732217704
-    second: PlayerDefault_5
-  - first:
-      213: 5736550797081290327
-    second: PlayerDefault_6
-  - first:
-      213: 4710774533793183081
-    second: PlayerDefault_7
-  - first:
-      213: -6953184629966124058
-    second: PlayerDefault_8
-  - first:
-      213: -2207088975327880388
-    second: PlayerDefault_9
-  - first:
-      213: 5814417584279417224
-    second: PlayerDefault_10
+      213: -9170184107975802862
+    second: Dash_Down_Arm_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -81,7 +60,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 25
+  spritePixelsToUnits: 35
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -156,167 +135,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlayerDefault_0
-      rect:
-        serializedVersion: 2
-        x: 2
-        y: 49
-        width: 10
-        height: 14
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 16e9f0355ac837290800000000000000
-      internalID: -7893811080159322527
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerDefault_1
-      rect:
-        serializedVersion: 2
-        x: 17
-        y: 50
-        width: 9
-        height: 13
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 89df42add49c3b430800000000000000
-      internalID: 3797600247012982168
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerDefault_2
-      rect:
-        serializedVersion: 2
-        x: 35
-        y: 48
-        width: 24
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6d533e76a9a1015a0800000000000000
-      internalID: -6552708207353842218
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerDefault_3
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 17
-        width: 14
-        height: 14
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2b573665647895c50800000000000000
-      internalID: 6654498660583437746
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerDefault_4
-      rect:
-        serializedVersion: 2
-        x: 3
-        y: 32
-        width: 24
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: beb98affc52bb0420800000000000000
-      internalID: 2597365722605198315
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerDefault_5
-      rect:
-        serializedVersion: 2
-        x: 35
-        y: 32
-        width: 24
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8699e1608e71acd60800000000000000
-      internalID: 7911161980732217704
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerDefault_6
-      rect:
-        serializedVersion: 2
-        x: 18
-        y: 17
-        width: 4
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 756a3007e825c9f40800000000000000
-      internalID: 5736550797081290327
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerDefault_7
+      name: Dash_Down_Arm_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 2
-        width: 7
-        height: 11
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -325,20 +150,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 965f2bfca78006140800000000000000
-      internalID: 4710774533793183081
+      spriteID: 1223491acfc80c910800000000000000
+      internalID: 1855638063147135521
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerDefault_8
+      name: Dash_Down_Arm_1
       rect:
         serializedVersion: 2
-        x: 9
-        y: 2
-        width: 7
-        height: 11
+        x: 48
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -347,20 +172,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6ebc9292b63518f90800000000000000
-      internalID: -6953184629966124058
+      spriteID: 22ba7aeb254023fa0800000000000000
+      internalID: -5822586614804141278
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerDefault_9
+      name: Dash_Down_Arm_2
       rect:
         serializedVersion: 2
-        x: 34
-        y: 1
-        width: 12
-        height: 14
+        x: 96
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -369,20 +194,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c3b96e54548de51e0800000000000000
-      internalID: -2207088975327880388
+      spriteID: 59511b6420237d8f0800000000000000
+      internalID: -515888646953298539
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerDefault_10
+      name: Dash_Down_Arm_3
       rect:
         serializedVersion: 2
-        x: 52
-        y: 4
-        width: 7
-        height: 7
+        x: 144
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -391,30 +216,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 88172ce9cf5f0b050800000000000000
-      internalID: 5814417584279417224
+      spriteID: 2108b27b326fcb080800000000000000
+      internalID: -9170184107975802862
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerDefault_11
+      name: Dash_Down_Arm_4
       rect:
         serializedVersion: 2
-        x: 23
-        y: 23
-        width: 6
-        height: 6
+        x: 240
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6675f0f4440c4b54abac5dcbe35a5265
-      internalID: 1931305158
+      spriteID: d881423e7880615458fd055b5d93136a
+      internalID: -899617566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dash_Down_Arm_5
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f8e7cc7768fad64baac187c42974eaa
+      internalID: -564566961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dash_Down_Arm_6
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 0
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bde469aedeb356348886729aefd28bc1
+      internalID: -1344438876
       vertices: []
       indices: 
       edges: []
@@ -423,7 +292,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: fd5fb8b45dc06374a806182d33a2f917
+    spriteID: a66aa17ce7909d34683597ac97a815b6
     internalID: 0
     vertices: []
     indices: 
@@ -431,20 +300,17 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":8.0,"y":1.0},"gridSpriteSize":{"x":48.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      PlayerDefault_0: -7893811080159322527
-      PlayerDefault_1: 3797600247012982168
-      PlayerDefault_10: 5814417584279417224
-      PlayerDefault_11: 1931305158
-      PlayerDefault_2: -6552708207353842218
-      PlayerDefault_3: 6654498660583437746
-      PlayerDefault_4: 2597365722605198315
-      PlayerDefault_5: 7911161980732217704
-      PlayerDefault_6: 5736550797081290327
-      PlayerDefault_7: 4710774533793183081
-      PlayerDefault_8: -6953184629966124058
-      PlayerDefault_9: -2207088975327880388
+      Dash_Down_Arm_0: 1855638063147135521
+      Dash_Down_Arm_1: -5822586614804141278
+      Dash_Down_Arm_2: -515888646953298539
+      Dash_Down_Arm_3: -9170184107975802862
+      Dash_Down_Arm_4: -899617566
+      Dash_Down_Arm_5: -564566961
+      Dash_Down_Arm_6: -1344438876
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

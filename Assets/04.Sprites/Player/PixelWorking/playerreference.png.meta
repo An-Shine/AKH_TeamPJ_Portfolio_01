@@ -1,28 +1,19 @@
 fileFormatVersion: 2
-guid: cd2bb53688805ac4989f47c10d86c07e
+guid: 9ee663943089b7045adb2b8b6353c71d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3581720287212173463
-    second: Reload_Down_Body_0
+      213: -2107860765044231846
+    second: playerreference_0
   - first:
-      213: 2169410880150036237
-    second: Reload_Down_Body_1
+      213: 4528086430496090565
+    second: playerreference_1
   - first:
-      213: -5860845818769411309
-    second: Reload_Down_Body_2
+      213: -7507984541054686690
+    second: playerreference_2
   - first:
-      213: 6734811455699157491
-    second: Reload_Down_Body_3
-  - first:
-      213: -7550147651561408671
-    second: Reload_Down_Body_4
-  - first:
-      213: -3759433944014040559
-    second: Reload_Down_Body_5
-  - first:
-      213: -4466342016677446228
-    second: Reload_Down_Body_6
+      213: 8602002973786873635
+    second: playerreference_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -144,13 +135,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Reload_Down_Body_0
+      name: playerreference_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 10
-        width: 24
-        height: 47
+        x: 123
+        y: 27
+        width: 743
+        height: 810
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -159,20 +150,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 798771cdf93d4b130800000000000000
-      internalID: 3581720287212173463
+      spriteID: a513e875dcf5fb2e0800000000000000
+      internalID: -2107860765044231846
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Reload_Down_Body_1
+      name: playerreference_1
       rect:
         serializedVersion: 2
-        x: 59
-        y: 10
-        width: 24
-        height: 47
+        x: 355
+        y: 132
+        width: 11
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,20 +172,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d0fd53393bb4b1e10800000000000000
-      internalID: 2169410880150036237
+      spriteID: 5c96cf12e9ef6de30800000000000000
+      internalID: 4528086430496090565
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Reload_Down_Body_2
+      name: playerreference_2
       rect:
         serializedVersion: 2
-        x: 107
-        y: 10
-        width: 24
-        height: 47
+        x: 887
+        y: 27
+        width: 838
+        height: 823
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -203,20 +194,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3137ae8a7c71aaea0800000000000000
-      internalID: -5860845818769411309
+      spriteID: e1aaf43c6d74ec790800000000000000
+      internalID: -7507984541054686690
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Reload_Down_Body_3
+      name: playerreference_3
       rect:
         serializedVersion: 2
-        x: 155
-        y: 10
-        width: 24
-        height: 47
+        x: 1451
+        y: 55
+        width: 6
+        height: 7
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -225,74 +216,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3f10e2e165bd67d50800000000000000
-      internalID: 6734811455699157491
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Reload_Down_Body_4
-      rect:
-        serializedVersion: 2
-        x: 203
-        y: 10
-        width: 24
-        height: 46
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 167beea96bc783790800000000000000
-      internalID: -7550147651561408671
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Reload_Down_Body_5
-      rect:
-        serializedVersion: 2
-        x: 251
-        y: 10
-        width: 24
-        height: 47
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1125f7a0fbec3dbc0800000000000000
-      internalID: -3759433944014040559
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Reload_Down_Body_6
-      rect:
-        serializedVersion: 2
-        x: 299
-        y: 10
-        width: 24
-        height: 47
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cadf98a799d5402c0800000000000000
-      internalID: -4466342016677446228
+      spriteID: 32f9b691124706770800000000000000
+      internalID: 8602002973786873635
       vertices: []
       indices: 
       edges: []
@@ -311,13 +236,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Reload_Down_Body_0: 3581720287212173463
-      Reload_Down_Body_1: 2169410880150036237
-      Reload_Down_Body_2: -5860845818769411309
-      Reload_Down_Body_3: 6734811455699157491
-      Reload_Down_Body_4: -7550147651561408671
-      Reload_Down_Body_5: -3759433944014040559
-      Reload_Down_Body_6: -4466342016677446228
+      playerreference_0: -2107860765044231846
+      playerreference_1: 4528086430496090565
+      playerreference_2: -7507984541054686690
+      playerreference_3: 8602002973786873635
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
