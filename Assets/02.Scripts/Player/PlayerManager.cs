@@ -7,6 +7,7 @@ public class PlayerManager : MonoBehaviour
     public static PlayerManager Instance => _instance;
 
     public PlayerStatus PlayerStatusData { get; private set; }
+    private float _hitInvulnerableUntil;
     private Weapon _modifiedWeapon;
     private float _appliedFireFlat;
     private float _appliedFireRate;
@@ -192,6 +193,22 @@ public class PlayerManager : MonoBehaviour
         EnsureStatus();
         if (PlayerStatusData != null)
             PlayerStatusData.ModifyHealth(amount);
+    }
+
+    public bool TryTakeDamage(float damage)
+    {
+        EnsureStatus();
+        if (PlayerStatusData == null || !PlayerStatusData.IsVulnerable ||
+            PlayerStatusData.CurrentHP <= 0f || Time.timeScale <= 0f ||
+            Time.time < _hitInvulnerableUntil || damage <= 0f ||
+            float.IsNaN(damage) || float.IsInfinity(damage))
+        {
+            return false;
+        }
+
+        PlayerStatusData.ModifyHealth(-damage);
+        _hitInvulnerableUntil = Time.time + Mathf.Max(0f, PlayerStatusData.HitInvulnerableDuration);
+        return true;
     }
 
     public void MonsterHit()

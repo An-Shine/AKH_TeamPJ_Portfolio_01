@@ -1348,7 +1348,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 6ec3aac501df7994e9cce18e7763c2ad, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1809,6 +1809,8 @@ GameObject:
   - component: {fileID: 2051079639}
   - component: {fileID: 2051079638}
   - component: {fileID: 2051079637}
+  - component: {fileID: 2051079646}
+  - component: {fileID: 2051079647}
   m_Layer: 0
   m_Name: PlayerObject
   m_TagString: Untagged
@@ -1994,6 +1996,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   _animation: {fileID: 1432804645}
+  _interactionRadius: 1.5
+  _interactionDuration: 0.5
 --- !u!114 &2051079642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2054,6 +2058,31 @@ Transform:
   - {fileID: 1432804648}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2051079646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2051079636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f628d9c449f1fc54eb12a9a9c9154a23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDamageReceiver
+--- !u!114 &2051079647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2051079636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2c27d04260c2664a8562c6df6a11462, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHitFlash
+  _duration: 0.12
 --- !u!1 &2079359550
 GameObject:
   m_ObjectHideFlags: 0
