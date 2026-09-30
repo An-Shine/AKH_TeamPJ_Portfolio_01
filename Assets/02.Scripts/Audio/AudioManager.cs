@@ -6,6 +6,7 @@ public class AudioManager : MonoBehaviour
 {
     private static AudioManager _instance;
     public static AudioManager Instance => _instance;
+
     [SerializeField] private AudioSource _bgmSource;
     [SerializeField] private List<AudioSource> _sfxSources;
     [SerializeField] private List<BGMClip> _bgmEntries;

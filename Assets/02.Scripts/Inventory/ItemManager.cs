@@ -12,6 +12,7 @@ public class ItemManager : MonoBehaviour
     public void GainItem(Item item)
     {
         _gaineItemList.Add(item);
+
         foreach (ItemEffectData effect in item.effects)
         {
             switch (effect.ApplyType)
