@@ -19,11 +19,6 @@ public class WeaponAnimation : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        Refresh(FacingDirection.RightDown);
-    }
-
     private void OnEnable()
     {
         _hasPlayed = false;
