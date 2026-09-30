@@ -28,5 +28,6 @@ public enum Motion
     Run,
     Dash,
     Attack,
-    RunAttack
+    RunAttack,
+    Reload
 }

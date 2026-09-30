@@ -16,7 +16,17 @@ public class PlayerMotor : MonoBehaviour
     // PlayerController.FixedUpdate에서만 호출합니다.
     public void Move(Vector2 direction, bool isDashing)
     {
-        _body.linearVelocity = direction * (isDashing ? _dashSpeed : _moveSpeed);
+        float moveSpeed = _moveSpeed;
+        if (PlayerManager.Instance != null && PlayerManager.Instance.PlayerStatusData != null)
+        {
+            moveSpeed = PlayerManager.Instance.PlayerStatusData.MoveSpeed;
+        }
+        else if (ItemManager.Instance != null && ItemManager.Instance.PlayerStat != null)
+        {
+            moveSpeed *= Mathf.Max(0f, 1f + ItemManager.Instance.PlayerStat.MoveSpeedMultiplier);
+        }
+
+        _body.linearVelocity = direction * (isDashing ? _dashSpeed : moveSpeed);
     }
 
     public void Stop()

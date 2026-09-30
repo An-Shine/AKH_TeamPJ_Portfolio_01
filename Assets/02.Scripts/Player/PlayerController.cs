@@ -12,20 +12,30 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        if (FindFirstObjectByType<PlayerManager>() == null)
+            gameObject.AddComponent<PlayerManager>();
+
         _motor = GetComponent<PlayerMotor>();
         _fsm = GetComponent<PlayerStateMachine>();
         _aim = GetComponent<PlayerAim>();
         _weapon = GetComponent<PlayerWeapon>();
         if (_animation == null)
+        {
             _animation = GetComponentInChildren<PlayerAnimation>();
+        }
         if (_animation == null)
+        {
             Debug.LogError("PlayerAnimation을 Visual 자식에 추가하고 연결하세요.", this);
+        }
     }
 
     private void Update()
     {
         _moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
-        _dashQueued |= Input.GetKeyDown(KeyCode.Space);
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            _dashQueued = true;
+        }
         _aim.Refresh();
 
         // FixedUpdate 전에 들어온 대시 입력도 즉시 사격 제한에 반영합니다.
@@ -34,6 +44,14 @@ public class PlayerController : MonoBehaviour
             ? _aim.GetDirectionFrom(_weapon.Muzzle.position)
             : _aim.AimDirection;
         _weapon.Tick(Input.GetMouseButton(0), _fsm.IsDashing || dashStarting, fireDirection);
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            float reloadDuration = _weapon.Reload();
+            if (_animation != null)
+            {
+                _animation.PlayReload(reloadDuration);
+            }
+        }
     }
 
     private void FixedUpdate()

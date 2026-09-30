@@ -22,6 +22,7 @@ public class DataManager : MonoBehaviour
         LoadProjectileCSV();
         LoadItemCSV();
         LoadItemEffectCSV();
+        LoadPlayerStatusCSV();
     }
 
     private void LoadWeaponCSV()
@@ -153,16 +154,16 @@ public class DataManager : MonoBehaviour
         string[] row = datas[1].Split(','); //datas[0]은 열 이름 있음
         PlayerStatusDatas = new SavePlayerStatus
         (
+            float.Parse(row[0]),
             float.Parse(row[1]),
             float.Parse(row[2]),
             float.Parse(row[3]),
             float.Parse(row[4]),
             float.Parse(row[5]),
             float.Parse(row[6]),
-            float.Parse(row[7]),
+            int.Parse(row[7]),
             int.Parse(row[8]),
-            int.Parse(row[9]),
-            int.Parse(row[10])
+            int.Parse(row[9])
         );
     }
 }
