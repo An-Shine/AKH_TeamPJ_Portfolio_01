@@ -1,0 +1,1131 @@
+fileFormatVersion: 2
+guid: e60d54a1530ed554fb42592e13077284
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7631219046128225658
+    second: ShotGun_0
+  - first:
+      213: -6934976629734404245
+    second: ShotGun_1
+  - first:
+      213: -5341961696509113586
+    second: ShotGun_2
+  - first:
+      213: 70111152348249244
+    second: ShotGun_3
+  - first:
+      213: -5282252909996908158
+    second: ShotGun_4
+  - first:
+      213: -3319349901526857257
+    second: ShotGun_5
+  - first:
+      213: 6102361263206916926
+    second: ShotGun_6
+  - first:
+      213: -6470319020034500756
+    second: ShotGun_7
+  - first:
+      213: -3546312726243873171
+    second: ShotGun_8
+  - first:
+      213: -7482701246483414964
+    second: ShotGun_9
+  - first:
+      213: -5870052096501598676
+    second: ShotGun_10
+  - first:
+      213: -4728992137417389224
+    second: ShotGun_11
+  - first:
+      213: -9173426355280250478
+    second: ShotGun_12
+  - first:
+      213: 8487548011877669494
+    second: ShotGun_13
+  - first:
+      213: 289210421032733044
+    second: ShotGun_14
+  - first:
+      213: 8403027450605715798
+    second: ShotGun_15
+  - first:
+      213: 7999319290384742382
+    second: ShotGun_16
+  - first:
+      213: -776136383705197624
+    second: ShotGun_17
+  - first:
+      213: -1178075141096360950
+    second: ShotGun_18
+  - first:
+      213: -2192414170541798571
+    second: ShotGun_19
+  - first:
+      213: -7524133436688116068
+    second: ShotGun_20
+  - first:
+      213: 1341253038577917066
+    second: ShotGun_21
+  - first:
+      213: -6669060681077169059
+    second: ShotGun_22
+  - first:
+      213: 3578322771747385088
+    second: ShotGun_23
+  - first:
+      213: -4269521775259005122
+    second: ShotGun_24
+  - first:
+      213: 3431473422403588182
+    second: ShotGun_25
+  - first:
+      213: 6365663297180802338
+    second: ShotGun_26
+  - first:
+      213: -6987690272833597346
+    second: ShotGun_27
+  - first:
+      213: -6556691171645500280
+    second: ShotGun_28
+  - first:
+      213: 430101334367460518
+    second: ShotGun_29
+  - first:
+      213: 598333897795598885
+    second: ShotGun_30
+  - first:
+      213: 2394140539760095267
+    second: ShotGun_31
+  - first:
+      213: 6181551545400942446
+    second: ShotGun_32
+  - first:
+      213: -4327690866725744448
+    second: ShotGun_33
+  - first:
+      213: -4912359662512184465
+    second: ShotGun_34
+  - first:
+      213: -8493470944523417023
+    second: ShotGun_35
+  - first:
+      213: 3459499331005385139
+    second: ShotGun_36
+  - first:
+      213: 4889714514701239007
+    second: ShotGun_37
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ShotGun_0
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 330
+        width: 433
+        height: 499
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7d0baf5a4987e960800000000000000
+      internalID: 7631219046128225658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShotGun_1
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 821
+        width: 86
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6f8b039f7302cf90800000000000000
+      internalID: -6934976629734404245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShotGun_2
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 23
+        width: 616
+        height: 844
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0bc4d3d32a8dd5b0800000000000000
+      internalID: -5341961696509113586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShotGun_3
+      rect:
+        serializedVersion: 2
+        x: 1062
+        y: 444
+        width: 239
+        height: 362
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9cb28ab8b519f000800000000000000
+      internalID: 70111152348249244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShotGun_4
+      rect:
+        serializedVersion: 2
+        x: 1328
+        y: 757
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2816cd507faa1b6b0800000000000000
+      internalID: -5282252909996908158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShotGun_5
+      rect:
+        serializedVersion: 2
+        x: 1353
+        y: 467
+        width: 392
+        height: 313
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d9834ae9dc4fe1d0800000000000000
+      internalID: -3319349901526857257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShotGun_6
+      rect:
+        serializedVersion: 2
+        x: 1726
+        y: 549
+        width: 25
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e336d88bc31ffa450800000000000000
+      internalID: 6102361263206916926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShotGun_7
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 491
+        width: 28
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c67d36be12fc436a0800000000000000
+      internalID: -6470319020034500756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShotGun_8
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 489
+        width: 7
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6e69c95d57f8cec0800000000000000
+      internalID: -3546312726243873171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShotGun_9
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 457
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c40cbf28cda182890800000000000000
+      internalID: -7482701246483414964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShotGun_10
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 424
+        width: 22
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c263cf618b2698ea0800000000000000
+      internalID: -5870052096501598676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShotGun_11
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 447
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85b0f9fc4be3f5eb0800000000000000
+      internalID: -4728992137417389224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShotGun_12
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 436
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2997050355171b080800000000000000
+      internalID: -9173426355280250478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShotGun_13
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 420
+        width: 13
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67a9a06a2f3d9c570800000000000000
+      internalID: 8487548011877669494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShotGun_14
+      rect:
+        serializedVersion: 2
+        x: 1699
+        y: 436
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4794ffa785b730400800000000000000
+      internalID: 289210421032733044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShotGun_15
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 418
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 651c537f1fc8d9470800000000000000
+      internalID: 8403027450605715798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShotGun_16
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 418
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee7ff4c238a430f60800000000000000
+      internalID: 7999319290384742382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShotGun_17
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 386
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c3def7321c9a35f0800000000000000
+      internalID: -776136383705197624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShotGun_18
+      rect:
+        serializedVersion: 2
+        x: 1290
+        y: 33
+        width: 465
+        height: 364
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a04bb30a6e2a6afe0800000000000000
+      internalID: -1178075141096360950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShotGun_19
+      rect:
+        serializedVersion: 2
+        x: 1459
+        y: 394
+        width: 14
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55bc2548deaf291e0800000000000000
+      internalID: -2192414170541798571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShotGun_20
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 33
+        width: 398
+        height: 259
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c96d09ff088e49790800000000000000
+      internalID: -7524133436688116068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShotGun_21
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 126
+        width: 293
+        height: 231
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8c995648861d9210800000000000000
+      internalID: 1341253038577917066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShotGun_22
+      rect:
+        serializedVersion: 2
+        x: 937
+        y: 229
+        width: 8
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d54eede05acb273a0800000000000000
+      internalID: -6669060681077169059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShotGun_23
+      rect:
+        serializedVersion: 2
+        x: 1006
+        y: 227
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00fa1b52a91c8a130800000000000000
+      internalID: 3578322771747385088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShotGun_24
+      rect:
+        serializedVersion: 2
+        x: 1068
+        y: 0
+        width: 145
+        height: 387
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3f44e8f09c9fb4c0800000000000000
+      internalID: -4269521775259005122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShotGun_25
+      rect:
+        serializedVersion: 2
+        x: 1248
+        y: 195
+        width: 86
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6505f8e95ea0f9f20800000000000000
+      internalID: 3431473422403588182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShotGun_26
+      rect:
+        serializedVersion: 2
+        x: 1284
+        y: 120
+        width: 23
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22d1434ca01675850800000000000000
+      internalID: 6365663297180802338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShotGun_27
+      rect:
+        serializedVersion: 2
+        x: 1330
+        y: 112
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e501d4f18bcb60f90800000000000000
+      internalID: -6987690272833597346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShotGun_28
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 80
+        width: 19
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88451244e14f105a0800000000000000
+      internalID: -6556691171645500280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShotGun_29
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 82
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6acd46482e608f500800000000000000
+      internalID: 430101334367460518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShotGun_30
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 71
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52a7e2b8285bd4800800000000000000
+      internalID: 598333897795598885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShotGun_31
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 71
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32033ced222b93120800000000000000
+      internalID: 2394140539760095267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShotGun_32
+      rect:
+        serializedVersion: 2
+        x: 812
+        y: 82
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6fd368116849c550800000000000000
+      internalID: 6181551545400942446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShotGun_33
+      rect:
+        serializedVersion: 2
+        x: 1447
+        y: 78
+        width: 12
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c01c17f514f0f3c0800000000000000
+      internalID: -4327690866725744448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShotGun_34
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 51
+        width: 8
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f63e00be9eac3dbb0800000000000000
+      internalID: -4912359662512184465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShotGun_35
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 61
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14a84912d21212a80800000000000000
+      internalID: -8493470944523417023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShotGun_36
+      rect:
+        serializedVersion: 2
+        x: 1445
+        y: 53
+        width: 22
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b90745ff4c920030800000000000000
+      internalID: 3459499331005385139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShotGun_37
+      rect:
+        serializedVersion: 2
+        x: 701
+        y: 23
+        width: 16
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd2c6ddb171cbd340800000000000000
+      internalID: 4889714514701239007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      ShotGun_0: 7631219046128225658
+      ShotGun_1: -6934976629734404245
+      ShotGun_10: -5870052096501598676
+      ShotGun_11: -4728992137417389224
+      ShotGun_12: -9173426355280250478
+      ShotGun_13: 8487548011877669494
+      ShotGun_14: 289210421032733044
+      ShotGun_15: 8403027450605715798
+      ShotGun_16: 7999319290384742382
+      ShotGun_17: -776136383705197624
+      ShotGun_18: -1178075141096360950
+      ShotGun_19: -2192414170541798571
+      ShotGun_2: -5341961696509113586
+      ShotGun_20: -7524133436688116068
+      ShotGun_21: 1341253038577917066
+      ShotGun_22: -6669060681077169059
+      ShotGun_23: 3578322771747385088
+      ShotGun_24: -4269521775259005122
+      ShotGun_25: 3431473422403588182
+      ShotGun_26: 6365663297180802338
+      ShotGun_27: -6987690272833597346
+      ShotGun_28: -6556691171645500280
+      ShotGun_29: 430101334367460518
+      ShotGun_3: 70111152348249244
+      ShotGun_30: 598333897795598885
+      ShotGun_31: 2394140539760095267
+      ShotGun_32: 6181551545400942446
+      ShotGun_33: -4327690866725744448
+      ShotGun_34: -4912359662512184465
+      ShotGun_35: -8493470944523417023
+      ShotGun_36: 3459499331005385139
+      ShotGun_37: 4889714514701239007
+      ShotGun_4: -5282252909996908158
+      ShotGun_5: -3319349901526857257
+      ShotGun_6: 6102361263206916926
+      ShotGun_7: -6470319020034500756
+      ShotGun_8: -3546312726243873171
+      ShotGun_9: -7482701246483414964
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
