@@ -1,7 +1,8 @@
 public class ItemProjectileStat
 {
-    public int DamageModifire;
+    public int DamageModifier;
     public float DamageMultiplier;
+    public float MoveSpeedMultiplier;
     public float SizeMultiplier;
     public int PierceCount;
     public float KnockbackDistance;

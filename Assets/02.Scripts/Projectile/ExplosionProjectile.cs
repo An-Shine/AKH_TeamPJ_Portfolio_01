@@ -8,6 +8,7 @@ public class ExplosionProjectile : Projectile
     {
         transform.position += _direction * (_speedScalar * Time.deltaTime);
     }
+
     protected override void OnDestroySelf()
     {
         ProjectilePoolManager.Instance.Release(this, _type);

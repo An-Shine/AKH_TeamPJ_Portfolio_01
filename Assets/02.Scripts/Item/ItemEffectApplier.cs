@@ -19,7 +19,7 @@ public static class ItemEffectApplier
             }
             case EffectTarget.Projectile:
             {
-                //
+                ApplyProjectileEffect(itemProjectileStat, effect);
                 break;
             }
         }
@@ -44,7 +44,7 @@ public static class ItemEffectApplier
     {
         foreach (var item in items)
         {
-            foreach (var effect in item.effects)
+            foreach (ItemEffectData effect in item.Effects)
             {
                 if (effect.TargetType != EffectTarget.Player)
                     continue;
@@ -75,7 +75,7 @@ public static class ItemEffectApplier
     {
         foreach (var item in items)
         {
-            foreach (var effect in item.effects)
+            foreach (ItemEffectData effect in item.Effects)
             {
                 if (effect.TargetType != EffectTarget.Weapon)
                     continue;
@@ -99,9 +99,19 @@ public static class ItemEffectApplier
                 stat.FireSpeedMultiplier += effect.Value;
                 break;
             }
-            case EffectType.MagazineSizeModifier:
+            case EffectType.RangeModifier:
             {
-                stat.MagazineSizeModifier += (int)effect.Value;
+                stat.RangeModifier += (int)effect.Value;
+                break;
+            }
+            case EffectType.RangeMultiplier:
+            {
+                stat.RangeMultiplier += effect.Value;
+                break;
+            }
+            case EffectType.MagazineSizeMultiplier:
+            {
+                stat.MagazineSizeMultiplier += effect.Value;
                 break;
             }
             case EffectType.ProjectileCountModifier:
@@ -117,6 +127,47 @@ public static class ItemEffectApplier
             case EffectType.SpreadAngleMultiplier:
             {
                 stat.SpreadAngleMultiplier += effect.Value;
+                break;
+            }
+        }
+    }
+
+    public static void ApplyToProjectile(ItemProjectileStat stat, IEnumerable<Item> items)
+    {
+        foreach (Item item in items)
+        {
+            foreach (ItemEffectData effect in item.Effects)
+            {
+                if (effect.TargetType != EffectTarget.Projectile)
+                    continue;
+
+                ApplyProjectileEffect(stat, effect);
+            }
+        }
+    }
+
+    private static void ApplyProjectileEffect(ItemProjectileStat stat, ItemEffectData effect)
+    {
+        switch (effect.EffectType)
+        {
+            case EffectType.DamageModifier:
+            {
+                stat.DamageModifier += (int)effect.Value;
+                break;
+            }
+            case EffectType.DamageMultiplier:
+            {
+                stat.DamageMultiplier += effect.Value;
+                break;
+            }
+            case EffectType.MoveSpeedMultiplier:
+            {
+                stat.MoveSpeedMultiplier += effect.Value;
+                break;
+            }
+            case EffectType.ProjectileSizeMultiplier:
+            {
+                stat.SizeMultiplier += effect.Value;
                 break;
             }
         }

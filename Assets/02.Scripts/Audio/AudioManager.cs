@@ -6,7 +6,6 @@ public class AudioManager : MonoBehaviour
 {
     private static AudioManager _instance;
     public static AudioManager Instance => _instance;
-
     [SerializeField] private AudioSource _bgmSource;
     [SerializeField] private List<AudioSource> _sfxSources;
     [SerializeField] private List<BGMClip> _bgmEntries;
@@ -17,7 +16,11 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        if (_instance != null) Destroy(gameObject);
+        if (_instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
 
         _instance = this;
         _bgmDictionary = _bgmEntries.ToDictionary(x => x.Type, x => x.Clip);

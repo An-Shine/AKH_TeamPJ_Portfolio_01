@@ -41,6 +41,7 @@ public class LaserProjectile : Projectile
         {
             endPosition = transform.position + direction * _range;
         }
+
         _lineRenderer.SetPosition(0, transform.position);
         _lineRenderer.SetPosition(1, endPosition);
     }
