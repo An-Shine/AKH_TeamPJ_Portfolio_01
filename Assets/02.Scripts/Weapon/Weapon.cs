@@ -4,8 +4,9 @@ public class Weapon : MonoBehaviour
 {
     [SerializeField] private SFXType _fireSoundType;
     [SerializeField] private GameObject _fireEffectPrefab;
-    [SerializeField] Transform _firePoint;
-    [SerializeField] Transform _effectPoint;
+    [SerializeField] private Transform _originPoint;
+    [SerializeField] private Transform _firePoint;
+    [SerializeField] private Transform _effectPoint;
     public WeaponData Data { get; private set; }
     public WeaponModifier Modifier { get; private set; }
 
@@ -26,6 +27,9 @@ public class Weapon : MonoBehaviour
     private float Angle => Data.Angle + Modifier.Angle;
     private float Range => Data.Range + Modifier.Range;
 
+    private Vector3 _targetDirection;
+    private Vector3 _effectDirection;
+
     private void Awake()
     {
         Modifier = new WeaponModifier();
@@ -34,6 +38,7 @@ public class Weapon : MonoBehaviour
     private void Start()
     {
         _timer = CoolTime;
+        RefreshDirection();
     }
 
     private void Update()
@@ -88,16 +93,27 @@ public class Weapon : MonoBehaviour
 
     private void Fire()
     {
-        FireContext context = new FireContext(Data.ProjectileType, _firePoint.transform.position, transform.right,
+        FireContext context = new FireContext(Data.ProjectileType, _firePoint.transform.position, _targetDirection,
             Range, ProjectileCount, Angle);
         _firePattern.Fire(context);
         AudioManager.Instance.PlaySFX(_fireSoundType);
         if (_fireEffectPrefab != null)
         {
-            Quaternion additionalRotation = Quaternion.Euler(0f, 0f, 180f);
-            Quaternion finalRotation = transform.rotation * additionalRotation;
-            Instantiate(_fireEffectPrefab, _effectPoint.transform.position, finalRotation);
+            GameObject effectObject =
+                Instantiate(_fireEffectPrefab, _effectPoint.transform.position, Quaternion.identity);
+            effectObject.transform.eulerAngles = _effectDirection;
         }
+    }
+
+    public void RefreshDirection()
+    {
+        _targetDirection = _firePoint.position - _originPoint.position;
+        Debug.Log(_targetDirection);
+        float angle = Mathf.Atan2(_targetDirection.y, _targetDirection.x) * Mathf.Rad2Deg + 180f;
+        _effectDirection = new Vector3(
+            _fireEffectPrefab.transform.eulerAngles.x,
+            _fireEffectPrefab.transform.eulerAngles.y,
+            angle);
     }
 
     public bool CheckRemainingAmmo()
