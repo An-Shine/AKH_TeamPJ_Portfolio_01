@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 905744162f169c047b061ba71cd84598, type: 3}
-  m_Name: TutorialDialogue_01
+  m_Name: GameSceneTutorialDialogue_02
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  _dialogueId: GameScene_Tutorial_DIalogue01
+  _dialogueId: GameScene_Tutorial_DIalogue02
   _lines:
   - _speakerName: "\uBD80\uAD00"
     _portrait: {fileID: 3651158108210696409, guid: 37ef2a97b62b8754b8095bfc97519cf6, type: 3}
-    _text: "\uC2E0\uD638 \uBC1C\uC0DD\uC9C0\uC810\uC5D0 \uB3C4\uCC29\uD558\uC600\uC2B5\uB2C8\uB2E4."
+    _text: "\uB2E4\uC218 \uC0DD\uCCB4\uC2E0\uD638 \uAC10\uC9C0! \n\uD604\uC7AC \uC811\uADFC\uC911\uC785\uB2C8\uB2E4
+      \uC870\uC2EC\uD558\uC138\uC694"
   - _speakerName: "\uBD80\uAD00"
     _portrait: {fileID: 3651158108210696409, guid: 37ef2a97b62b8754b8095bfc97519cf6, type: 3}
-    _text: "\uAE30\uC9C0 \uC548\uC744 \uD0D0\uC0C9\uD574\uBCF4\uC138\uC694."
+    _text: "\uC800\uB4E4\uC774 \uBA3C\uC800 \uACF5\uACA9\uD558\uAE30\uC804\uC5D0
+      \uC120\uC81C\uACF5\uACA9\uC73C\uB85C \uC801\uC744 \uBB3C\uB9AC\uCE58\uC138\uC694"
