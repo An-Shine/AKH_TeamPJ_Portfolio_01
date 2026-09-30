@@ -27,17 +27,14 @@ public static class ItemEffectApplier
 
     public static void ApplyImmediateEffect(ItemEffectData effect)
     {
-        switch (effect.EffectType)
+        IItemImmediateEffect immediateEffect = ImmediateEffectFactory.Create(effect.EffectType);
+        ImmediateEffectContext immediateEffectContext = new ImmediateEffectContext
         {
-            case EffectType.HealHealth:
-            {
-                break;
-            }
-            case EffectType.DamageHealth:
-            {
-                break;
-            }
-        }
+            Player = null,
+            Id = string.Empty,
+            Value = effect.Value,
+        };
+        immediateEffect.Apply(immediateEffectContext);
     }
 
     public static void ApplyToPlayer(ItemPlayerStat stat, IEnumerable<Item> items)
