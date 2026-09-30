@@ -4,12 +4,13 @@ public enum EffectType
     HealHealth,
     DamageHealth,
     MaxHealthModifier,
-    MoveSpeedMultiplier,
 
     // Weapon
     FireSpeedModifier,
     FireSpeedMultiplier,
-    MagazineSizeModifier,
+    RangeModifier,
+    RangeMultiplier,
+    MagazineSizeMultiplier,
     ProjectileCountModifier,
     SpreadAngleModifier,
     SpreadAngleMultiplier,
@@ -22,4 +23,7 @@ public enum EffectType
     AddExplosionEffect,
     AddHomingEffect,
     AddKnockbackEffect,
+
+    //Player or Projectile
+    MoveSpeedMultiplier,
 }

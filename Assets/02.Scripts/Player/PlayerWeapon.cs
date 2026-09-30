@@ -36,12 +36,12 @@ public class PlayerWeapon : MonoBehaviour
         _nextFireTime = Time.time + _fireInterval;
         _attackVisualUntil = Time.time + _attackVisualDuration;
         ShotSequence++;
-        Fire(aimDirection);
+        PlayerFire(aimDirection);
     }
 
     public void CancelAttackVisual() => _attackVisualUntil = 0f;
 
-    private void Fire(Vector2 aimDirection)
+    private void PlayerFire(Vector2 aimDirection)
     {
         Debug.LogError("Fire");
     }

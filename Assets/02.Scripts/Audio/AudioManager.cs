@@ -16,7 +16,11 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        if (_instance != null) Destroy(gameObject);
+        if (_instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
 
         _instance = this;
         _bgmDictionary = _bgmEntries.ToDictionary(x => x.Type, x => x.Clip);

@@ -34,12 +34,21 @@ public abstract class Projectile : MonoBehaviour
         _range = range;
         gameObject.transform.position = position;
         _initialPosition = position;
+
+        Rotation();
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
         GiveDamage(other);
         DecreaseDurability(other);
+    }
+
+    private void Rotation()
+    {
+        float angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
+        Vector3 targetAngle = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, angle);
+        transform.eulerAngles = targetAngle;
     }
 
     protected abstract void Move();
@@ -72,6 +81,7 @@ public abstract class Projectile : MonoBehaviour
             OnDestroySelf();
         }
     }
+
     protected virtual void OnDestroySelf()
     {
         ProjectilePoolManager.Instance.Release(this, _type);
