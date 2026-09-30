@@ -12,9 +12,12 @@ public class ItemManager : MonoBehaviour
     private Dictionary<string, Item> _unobtainedItemDictionary;
     private List<Item> _gainedItemList;
 
-    public ItemPlayerStat PlayerStat { get; private set; }
-    public ItemWeaponStat WeaponStat { get; private set; }
-    public ItemProjectileStat ProjectileStat { get; private set; }
+    private ItemPlayerStat _playerStat = new ItemPlayerStat();
+    public ItemPlayerStat PlayerStat => _playerStat;
+    private ItemWeaponStat _weaponStat = new ItemWeaponStat();
+    public ItemWeaponStat WeaponStat => _weaponStat;
+    private ItemProjectileStat _projectileStat = new ItemProjectileStat();
+    public ItemProjectileStat ProjectileStat => _projectileStat;
 
     private void Awake()
     {
@@ -30,10 +33,6 @@ public class ItemManager : MonoBehaviour
     private void Start()
     {
         _gainedItemList = new List<Item>();
-        PlayerStat = new ItemPlayerStat();
-        WeaponStat = new ItemWeaponStat();
-        ProjectileStat = new ItemProjectileStat();
-
         _unobtainedItemDictionary = new Dictionary<string, Item>();
         foreach (ItemEntry itemEntry in _itemEntryList)
         {
