@@ -108,7 +108,6 @@ public class Weapon : MonoBehaviour
     public void RefreshDirection()
     {
         _targetDirection = _firePoint.position - _originPoint.position;
-        Debug.Log(_targetDirection);
         float angle = Mathf.Atan2(_targetDirection.y, _targetDirection.x) * Mathf.Rad2Deg + 180f;
         _effectDirection = new Vector3(
             _fireEffectPrefab.transform.eulerAngles.x,
