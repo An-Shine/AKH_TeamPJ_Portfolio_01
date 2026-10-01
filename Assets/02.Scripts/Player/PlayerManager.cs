@@ -175,8 +175,8 @@ public class PlayerManager : MonoBehaviour
 
     public void GetWeapon(string weaponId)
     {
-        if (WeaponManager.Instance == null || !WeaponManager.Instance.GainWeapon(weaponId))
-            return;
+        // if (WeaponManager.Instance == null || !WeaponManager.Instance.GainWeapon(weaponId))
+        //     return;
 
         if (WeaponManager.Instance.CurrentWeapon == null)
             WeaponManager.Instance.EquipByIndex(0);
