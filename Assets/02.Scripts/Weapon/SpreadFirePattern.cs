@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class SpreadFirePattern : IFirePattern
 {
-    public void Fire(FireContext context)
+    public void Fire(FireContext context, int damage)
     {
         var projectileCount = context.ProjectileCount;
 
         if (projectileCount <= 1)
         {
-            ProjectileSpawner.Instance.Spawn(context.Type, context.Position, context.Direction, context.Range);
+            ProjectileSpawner.Instance.Spawn(context.Type, context.Position, context.Direction, context.Range, damage);
             return;
         }
 
@@ -22,7 +22,7 @@ public class SpreadFirePattern : IFirePattern
             Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             Vector2 direction = rotation * context.Direction;
 
-            ProjectileSpawner.Instance.Spawn(context.Type, context.Position, direction, context.Range);
+            ProjectileSpawner.Instance.Spawn(context.Type, context.Position, direction, context.Range, damage);
         }
     }
 }

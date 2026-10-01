@@ -4,6 +4,7 @@ public enum PlayerState
     Run,
     Dash,
     Attack,
+    Interact,
 }
 
 public enum FacingDirection
@@ -28,5 +29,7 @@ public enum Motion
     Run,
     Dash,
     Attack,
-    RunAttack
+    RunAttack,
+    Reload,
+    Interact
 }

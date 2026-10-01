@@ -22,6 +22,7 @@ public class DataManager : MonoBehaviour
         LoadProjectileCSV();
         LoadItemCSV();
         LoadItemEffectCSV();
+        LoadPlayerStatusCSV();
     }
 
     private void LoadWeaponCSV()
@@ -38,7 +39,7 @@ public class DataManager : MonoBehaviour
         for (int i = 1; i < datas.Length; i++) //pass Header
         {
             var row = datas[i].Split(',');
-            WeaponDatas[row[0]] = new WeaponData
+            WeaponDatas[IdPrefix.WeaponPrefix + row[0]] = new WeaponData
             {
                 Name = row[1],
                 BehaviourType = (FireBehaviourType)Enum.Parse(typeof(FireBehaviourType), row[2]),
@@ -105,9 +106,9 @@ public class DataManager : MonoBehaviour
             effectList.Add(row[7]);
             effectList.Add(row[8]);
 
-            ItemDatas[row[0]] = new ItemData
+            ItemDatas[IdPrefix.ItemPrefix + row[0]] = new ItemData
             {
-                ItemId = row[0],
+                ItemId = int.Parse(row[0]),
                 Name = row[1],
                 Description = row[2],
                 EffectIdList = effectList
@@ -153,16 +154,16 @@ public class DataManager : MonoBehaviour
         string[] row = datas[1].Split(','); //datas[0]은 열 이름 있음
         PlayerStatusDatas = new SavePlayerStatus
         (
+            float.Parse(row[0]),
             float.Parse(row[1]),
             float.Parse(row[2]),
             float.Parse(row[3]),
             float.Parse(row[4]),
             float.Parse(row[5]),
             float.Parse(row[6]),
-            float.Parse(row[7]),
+            int.Parse(row[7]),
             int.Parse(row[8]),
-            int.Parse(row[9]),
-            int.Parse(row[10])
+            int.Parse(row[9])
         );
     }
 }

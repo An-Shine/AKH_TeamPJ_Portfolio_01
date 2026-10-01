@@ -13,4 +13,7 @@ public enum SFXType
     EnemyDamaged,
     ButtonPressed,
     ButtonReleased,
+    ItemGain01,
+    ItemGain02,
+    ItemGain03,
 }

@@ -7,6 +7,7 @@ public class PlayerStateMachine : MonoBehaviour
     //대시가 끝난 뒤 다음 대시까지의 대기 시간
     [SerializeField] private float _dashCooldown = 0.5f;
 
+    private float _interactionRemaining;
     private float _dashRemaining;
     private float _cooldownRemaining;
     private Vector2 _dashDirection;
@@ -14,11 +15,30 @@ public class PlayerStateMachine : MonoBehaviour
     public PlayerState CurrentState { get; private set; } = PlayerState.Idle;
     public Vector2 MovementDirection { get; private set; }
     public bool IsDashing => CurrentState == PlayerState.Dash;
-    public bool CanDash => !IsDashing && _cooldownRemaining <= 0f;
+    public bool IsInteracting => CurrentState == PlayerState.Interact;
+    public bool CanInteract => !IsDashing && !IsInteracting;
+    public bool CanDash => !IsDashing && !IsInteracting && _cooldownRemaining <= 0f;
+
+    public bool TryStartInteraction(float duration)
+    {
+        if (!CanInteract || duration <= 0f || Time.timeScale <= 0f) return false;
+        _interactionRemaining = duration;
+        MovementDirection = Vector2.zero;
+        ChangeState(PlayerState.Interact);
+        return true;
+    }
 
     public void Act(Vector2 moveInput, Vector2 aimDirection, bool dashRequested, float deltaTime)
     {
         _cooldownRemaining = Mathf.Max(0f, _cooldownRemaining - deltaTime);
+
+        if (IsInteracting)
+        {
+            _interactionRemaining = Mathf.Max(0f, _interactionRemaining - deltaTime);
+            MovementDirection = Vector2.zero;
+            if (_interactionRemaining > 0f) return;
+            ChangeState(moveInput.sqrMagnitude > 0f ? PlayerState.Run : PlayerState.Idle);
+        }
 
         if (IsDashing)
         {
@@ -70,6 +90,7 @@ public class PlayerStateMachine : MonoBehaviour
     {
         CurrentState = PlayerState.Idle;
         MovementDirection = Vector2.zero;
+        _interactionRemaining = 0f;
         _dashRemaining = 0f;
         _cooldownRemaining = 0f;
     }

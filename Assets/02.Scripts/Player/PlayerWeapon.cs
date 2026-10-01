@@ -1,21 +1,14 @@
-using System;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.Rendering;
 
 public class PlayerWeapon : MonoBehaviour
 {
     private AimDisplayMode _aimDisplayMode = AimDisplayMode.Crosshair;
-
-    // 총구 transform
     [SerializeField] private Transform _muzzle;
-
-    private float _fireInterval = 0.2f;
-
-    // 발사 후 Attack / RunAttack 애니메이션을 표시하는 시간
     [SerializeField, Min(0f)] private float _attackVisualDuration = 0.15f;
 
-    private float _nextFireTime;
+    private Weapon _activeWeapon;
+    private bool _wasFireHeld;
+    private float _chargeTime;
     private float _attackVisualUntil;
 
     public bool IsAttacking => Time.time < _attackVisualUntil;
@@ -25,25 +18,87 @@ public class PlayerWeapon : MonoBehaviour
 
     public void Tick(bool fireHeld, bool isDashing, Vector2 aimDirection)
     {
-        if (isDashing)
+        WeaponManager weaponManager = WeaponManager.Instance;
+        Weapon equippedWeapon = weaponManager.CurrentWeapon;
+        if (_activeWeapon != equippedWeapon)
+        {
+            _activeWeapon = equippedWeapon;
+            CancelAttackVisual();
+        }
+
+        if (_activeWeapon == null)
+        {
+            return;
+        }
+
+        if (isDashing || Time.timeScale <= 0f)
         {
             CancelAttackVisual();
             return;
         }
 
-        if (Time.timeScale <= 0f || !fireHeld || Time.time < _nextFireTime) return;
+        Vector2 fireOrigin = _muzzle != null ? _muzzle.position : transform.position;
+        _activeWeapon.SetFirePose(fireOrigin, aimDirection);
 
-        _nextFireTime = Time.time + _fireInterval;
-        _attackVisualUntil = Time.time + _attackVisualDuration;
-        ShotSequence++;
-        PlayerFire(aimDirection);
+        if (_activeWeapon.Data.BehaviourType == FireBehaviourType.Charge)
+        {
+            TickCharge(fireHeld);
+        }
+        else if (fireHeld && _activeWeapon.TryFire())
+        {
+            ShowAttack();
+        }
+
+        _wasFireHeld = fireHeld;
     }
 
-    public void CancelAttackVisual() => _attackVisualUntil = 0f;
-
-    private void PlayerFire(Vector2 aimDirection)
+    private void TickCharge(bool fireHeld)
     {
-        Debug.LogError("Fire");
+        if (fireHeld)
+        {
+            if (!_wasFireHeld)
+            {
+                _chargeTime = 0f;
+                _activeWeapon.OnMouseDown();
+            }
+
+            _chargeTime += Time.deltaTime * _activeWeapon.ChargeSpeed;
+            _activeWeapon.OnMouseHeld();
+        }
+        else if (_wasFireHeld)
+        {
+            bool charged = _chargeTime >= _activeWeapon.Data.ChargeTime && _activeWeapon.CheckRemainingAmmo();
+            _activeWeapon.OnMouseUp();
+            _chargeTime = 0f;
+            if (charged)
+                ShowAttack();
+        }
+    }
+
+    private void ShowAttack()
+    {
+        _attackVisualUntil = Time.time + _attackVisualDuration;
+        ShotSequence++;
+    }
+
+    public float Reload()
+    {
+        if (_activeWeapon == null)
+        {
+            return 0f;
+        }
+
+        _activeWeapon.Reload();
+        WeaponStatModifier modifier = _activeWeapon.Modifier.ReloadSpeed;
+        float reloadSpeed = (1f + modifier.Flat) * (1f + modifier.Rate);
+        return reloadSpeed > 0f ? _activeWeapon.Data.ReloadTime / reloadSpeed : 0f;
+    }
+
+    public void CancelAttackVisual()
+    {
+        _attackVisualUntil = 0f;
+        _wasFireHeld = false;
+        _chargeTime = 0f;
     }
 
     public void SetAimPresentation(AimDisplayMode mode, Transform muzzle)
