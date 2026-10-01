@@ -1,31 +1,43 @@
 fileFormatVersion: 2
-guid: ab96a5d43713e3d4686a832f7afb6dad
+guid: 351522106d3b73b4bb908495b75c185b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2968949683739101643
-    second: Idle_Up_Arm_0
+      213: 4457663794195168306
+    second: Hit_0
   - first:
-      213: -215615068146751821
-    second: Idle_Up_Arm_1
+      213: -5364657433725072944
+    second: Hit_1
   - first:
-      213: 3424945757641215048
-    second: Idle_Up_Arm_2
+      213: -4947864620551752270
+    second: Hit_2
   - first:
-      213: 6348215951223617175
-    second: Idle_Up_Arm_3
+      213: 8733631668352107246
+    second: Hit_3
   - first:
-      213: -7590303694877668187
-    second: Idle_Up_Arm_4
+      213: -7612900313820856468
+    second: Hit_4
   - first:
-      213: 3508148480396789767
-    second: Idle_Up_Arm_5
+      213: -1970368629675539405
+    second: Hit_5
   - first:
-      213: -4559467591801759149
-    second: Idle_Up_Arm_6
+      213: -3593213518556833045
+    second: Hit_6
   - first:
-      213: 161277737887674844
-    second: Idle_Up_Arm_7
+      213: -2594108969642184640
+    second: Hit_7
+  - first:
+      213: -1995372517840377439
+    second: Hit_8
+  - first:
+      213: 4864915274186586373
+    second: Hit_9
+  - first:
+      213: 1599344967757016915
+    second: Hit_10
+  - first:
+      213: 4247286829048875916
+    second: Hit_11
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -58,7 +70,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -96,7 +108,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -147,177 +159,177 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Idle_Up_Arm_0
+      name: Hit_0
       rect:
         serializedVersion: 2
-        x: 37
-        y: 25
-        width: 8
-        height: 9
+        x: 0
+        y: 0
+        width: 96
+        height: 96
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 536f8b82efb2cc6d0800000000000000
-      internalID: -2968949683739101643
+      spriteID: 23c7f156a9dccdd30800000000000000
+      internalID: 4457663794195168306
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_Up_Arm_1
+      name: Hit_1
       rect:
         serializedVersion: 2
-        x: 105
-        y: 24
-        width: 8
-        height: 9
+        x: 96
+        y: 0
+        width: 96
+        height: 96
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3b624e6ec3bf10df0800000000000000
-      internalID: -215615068146751821
+      spriteID: 0d98829bc78ec85b0800000000000000
+      internalID: -5364657433725072944
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_Up_Arm_2
+      name: Hit_2
       rect:
         serializedVersion: 2
-        x: 173
-        y: 23
-        width: 8
-        height: 9
+        x: 192
+        y: 0
+        width: 96
+        height: 96
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 84c8f2b350ad78f20800000000000000
-      internalID: 3424945757641215048
+      spriteID: 2b53a4fa757a55bb0800000000000000
+      internalID: -4947864620551752270
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_Up_Arm_3
+      name: Hit_3
       rect:
         serializedVersion: 2
-        x: 241
-        y: 24
-        width: 8
-        height: 9
+        x: 288
+        y: 0
+        width: 96
+        height: 96
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 796f62af5c4691850800000000000000
-      internalID: 6348215951223617175
+      spriteID: ee2ca37cab7143970800000000000000
+      internalID: 8733631668352107246
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_Up_Arm_4
+      name: Hit_4
       rect:
         serializedVersion: 2
-        x: 309
-        y: 26
-        width: 8
-        height: 9
+        x: 384
+        y: 0
+        width: 96
+        height: 96
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5ac4b713103d9a690800000000000000
-      internalID: -7590303694877668187
+      spriteID: c6f7f3cdf7b895690800000000000000
+      internalID: -7612900313820856468
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_Up_Arm_5
+      name: Hit_5
       rect:
         serializedVersion: 2
-        x: 377
-        y: 24
-        width: 8
-        height: 9
+        x: 480
+        y: 0
+        width: 96
+        height: 96
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7088069b4727fa030800000000000000
-      internalID: 3508148480396789767
+      spriteID: 334cd97bb28d7a4e0800000000000000
+      internalID: -1970368629675539405
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_Up_Arm_6
+      name: Hit_6
       rect:
         serializedVersion: 2
-        x: 445
-        y: 23
-        width: 8
-        height: 9
+        x: 576
+        y: 0
+        width: 96
+        height: 96
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 35a10c1e16489b0c0800000000000000
-      internalID: -4559467591801759149
+      spriteID: bead940b757522ec0800000000000000
+      internalID: -3593213518556833045
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_Up_Arm_7
+      name: Hit_7
       rect:
         serializedVersion: 2
-        x: 513
-        y: 26
-        width: 8
-        height: 9
+        x: 672
+        y: 0
+        width: 96
+        height: 96
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cd139f48f39fc3200800000000000000
-      internalID: 161277737887674844
+      spriteID: 040b2d3e2afdffbd0800000000000000
+      internalID: -2594108969642184640
       vertices: []
       indices: 
       edges: []
@@ -326,7 +338,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: d6662659f904f2a418f3cd53f986db3b
     internalID: 0
     vertices: []
     indices: 
@@ -334,16 +346,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":96.0,"y":96.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Idle_Up_Arm_0: -2968949683739101643
-      Idle_Up_Arm_1: -215615068146751821
-      Idle_Up_Arm_2: 3424945757641215048
-      Idle_Up_Arm_3: 6348215951223617175
-      Idle_Up_Arm_4: -7590303694877668187
-      Idle_Up_Arm_5: 3508148480396789767
-      Idle_Up_Arm_6: -4559467591801759149
-      Idle_Up_Arm_7: 161277737887674844
+      Hit_0: 4457663794195168306
+      Hit_1: -5364657433725072944
+      Hit_2: -4947864620551752270
+      Hit_3: 8733631668352107246
+      Hit_4: -7612900313820856468
+      Hit_5: -1970368629675539405
+      Hit_6: -3593213518556833045
+      Hit_7: -2594108969642184640
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

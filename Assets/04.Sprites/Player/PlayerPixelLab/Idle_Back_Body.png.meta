@@ -1,19 +1,31 @@
 fileFormatVersion: 2
-guid: ee52fd3a8275e8849a794901dc06c022
+guid: 95ff45e005397cf4fa72d120f6112f35
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7490139386027710502
-    second: Attack_Up_Body_0
+      213: 8825887916754190877
+    second: Idle_Back_Body_0
   - first:
-      213: -7832026714649782658
-    second: Attack_Up_Body_1
+      213: -21238091132119927
+    second: Idle_Back_Body_1
   - first:
-      213: -6268877873216895905
-    second: Attack_Up_Body_2
+      213: 4468172693281913228
+    second: Idle_Back_Body_2
   - first:
-      213: 7407318390152534151
-    second: Attack_Up_Body_3
+      213: 5967135495392089139
+    second: Idle_Back_Body_3
+  - first:
+      213: 8149742627147753247
+    second: Idle_Back_Body_4
+  - first:
+      213: -7972745384310754462
+    second: Idle_Back_Body_5
+  - first:
+      213: -2840732820444355165
+    second: Idle_Back_Body_6
+  - first:
+      213: -1492457055878907204
+    second: Idle_Back_Body_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +58,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -60,7 +72,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 35
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -84,7 +96,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -135,89 +147,177 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Attack_Up_Body_0
+      name: Idle_Back_Body_0
       rect:
         serializedVersion: 2
-        x: 21
-        y: 17
-        width: 25
-        height: 41
+        x: 0
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 628185e461252f760800000000000000
-      internalID: 7490139386027710502
+      spriteID: d12cb897c4adb7a70800000000000000
+      internalID: 8825887916754190877
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack_Up_Body_1
+      name: Idle_Back_Body_1
       rect:
         serializedVersion: 2
-        x: 88
-        y: 17
-        width: 26
-        height: 41
+        x: 48
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e761ee9e23d0f4390800000000000000
-      internalID: -7832026714649782658
+      spriteID: 984dc52911c84bff0800000000000000
+      internalID: -21238091132119927
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack_Up_Body_2
+      name: Idle_Back_Body_2
       rect:
         serializedVersion: 2
-        x: 156
-        y: 17
-        width: 26
-        height: 40
+        x: 96
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f54c99ac9c87009a0800000000000000
-      internalID: -6268877873216895905
+      spriteID: c893b222463220e30800000000000000
+      internalID: 4468172693281913228
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack_Up_Body_3
+      name: Idle_Back_Body_3
       rect:
         serializedVersion: 2
-        x: 224
-        y: 17
-        width: 26
-        height: 40
+        x: 144
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 788924784d41cc660800000000000000
-      internalID: 7407318390152534151
+      spriteID: 33458792e168fc250800000000000000
+      internalID: 5967135495392089139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Back_Body_4
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f17200e7db3b91170800000000000000
+      internalID: 8149742627147753247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Back_Body_5
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 263b58b705e1b5190800000000000000
+      internalID: -7972745384310754462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Back_Body_6
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a5ee97fc80b398d0800000000000000
+      internalID: -2840732820444355165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Back_Body_7
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 0
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbaffcd073ab94be0800000000000000
+      internalID: -1492457055878907204
       vertices: []
       indices: 
       edges: []
@@ -226,7 +326,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 6b91e78a840bf6f4f93b62e0fecdff77
     internalID: 0
     vertices: []
     indices: 
@@ -234,12 +334,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":48.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Attack_Up_Body_0: 7490139386027710502
-      Attack_Up_Body_1: -7832026714649782658
-      Attack_Up_Body_2: -6268877873216895905
-      Attack_Up_Body_3: 7407318390152534151
+      Idle_Back_Body_0: 8825887916754190877
+      Idle_Back_Body_1: -21238091132119927
+      Idle_Back_Body_2: 4468172693281913228
+      Idle_Back_Body_3: 5967135495392089139
+      Idle_Back_Body_4: 8149742627147753247
+      Idle_Back_Body_5: -7972745384310754462
+      Idle_Back_Body_6: -2840732820444355165
+      Idle_Back_Body_7: -1492457055878907204
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
