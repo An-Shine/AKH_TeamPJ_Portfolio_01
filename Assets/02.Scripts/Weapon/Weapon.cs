@@ -142,7 +142,6 @@ public class Weapon : MonoBehaviour
     {
         if (_remainingAmmo <= 0)
         {
-            AudioManager.Instance.PlaySFX(SFXType.FailFire);
             return false;
         }
 
