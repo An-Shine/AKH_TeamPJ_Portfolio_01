@@ -3,6 +3,7 @@ using UnityEngine;
 public class WeaponPickup : MonoBehaviour, IInteractable
 {
     [SerializeField] private int _weaponId;
+    public int WeaponId => _weaponId;
 
     public void Interact(GameObject actor)
     {

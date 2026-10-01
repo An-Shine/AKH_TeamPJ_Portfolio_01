@@ -10,6 +10,7 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] private Transform _weaponContainer;
 
     private Dictionary<string, Weapon> _unobtainedWeapons;
+    public IReadOnlyDictionary<string, Weapon> UnobtainedWeapons => _unobtainedWeapons;
     private List<Weapon> _gainedWeaponList;
 
     public Weapon CurrentWeapon { get; private set; }
