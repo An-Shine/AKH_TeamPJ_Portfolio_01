@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class NormalMonster : MonoBehaviour
@@ -22,120 +23,178 @@ public class NormalMonster : MonoBehaviour
 
     [Header("사망 설정")]
     [SerializeField] private float _deathDelay = 0.2f;
-    [SerializeField] private float _deathScale = 0f;
 
     protected float _currentHealth;
     protected Transform _player;
 
-    private float _hitCooldownTimer;
-    private bool _isDead;
+    public bool IsDead => _normalIsDead;
 
-    private SpriteRenderer[] _spriteRenderers;
-    private Color[] _originalColors;
+    private float _normalHitCooldownTimer;
+    private bool _normalIsDead;
+    private Coroutine _normalHitFlashRoutine;
+    private SpriteRenderer[] _normalSpriteRenderers;
+    private Color[] _normalOriginalColors;
+    private bool _normalDeathPositionLocked;
+    private Vector3 _normalDeathPosition;
+    private Transform[] _normalDeathTransforms;
+    private Vector3[] _normalDeathLocalPositions;
 
+    private readonly List<Collider2D> _normalMovementHits =
+        new List<Collider2D>(16);
+
+    private readonly HashSet<NormalMonster> _normalSeparationTargets =
+        new HashSet<NormalMonster>();
 
     protected virtual void Awake()
     {
-        _currentHealth = _maxHealth;
+        _currentHealth = Mathf.Max(1f, _maxHealth);
+        _normalSpriteRenderers = GetComponentsInChildren<SpriteRenderer>(true);
+        _normalOriginalColors = new Color[_normalSpriteRenderers.Length];
 
-        _spriteRenderers =
-            GetComponentsInChildren<SpriteRenderer>(true);
-
-        _originalColors =
-            new Color[_spriteRenderers.Length];
-
-        for (int i = 0; i < _spriteRenderers.Length; i++)
+        for (int i = 0; i < _normalSpriteRenderers.Length; i++)
         {
-            _originalColors[i] =
-                _spriteRenderers[i].color;
+            _normalOriginalColors[i] = _normalSpriteRenderers[i].color;
         }
     }
 
-
     protected virtual void Start()
     {
-        GameObject playerObject =
-            GameObject.FindGameObjectWithTag("Player");
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
 
-        if (playerObject != null)
+        foreach (GameObject playerObject in players)
         {
-            _player = playerObject.transform;
+            if (playerObject.GetComponentInParent<NormalMonster>() != null)
+            {
+                continue;
+            }
+
+            Transform candidate = playerObject.transform;
+
+            if (candidate == transform || candidate.IsChildOf(transform))
+            {
+                continue;
+            }
+
+            _player = candidate;
+            break;
         }
-        else
+
+        if (_player == null)
         {
             Debug.LogWarning(
-                $"{gameObject.name}: Player 태그가 붙은 오브젝트를 찾을 수 없습니다."
+                $"{name}: Player 태그가 붙은 실제 플레이어를 찾을 수 없습니다.",
+                this
             );
         }
     }
 
-
     protected virtual void Update()
     {
-        if (_isDead)
+        if (_normalIsDead)
         {
             return;
         }
 
-        if (_hitCooldownTimer > 0f)
+        if (_normalHitCooldownTimer > 0f)
         {
-            _hitCooldownTimer -= Time.deltaTime;
+            _normalHitCooldownTimer = Mathf.Max(
+                0f,
+                _normalHitCooldownTimer - Time.deltaTime
+            );
         }
     }
 
-
-    protected void FacePlayer()
+    protected virtual void LateUpdate()
     {
-        if (_player == null)
+        if (!_normalDeathPositionLocked)
         {
             return;
         }
 
-        Vector2 direction =
-            _player.position - transform.position;
+        // Animator가 위치를 변경해도 사망을 시작한 자리에 고정합니다.
+        transform.position = _normalDeathPosition;
+
+        for (int i = 0; i < _normalDeathTransforms.Length; i++)
+        {
+            Transform target = _normalDeathTransforms[i];
+
+            if (target != null && target != transform)
+            {
+                target.localPosition = _normalDeathLocalPositions[i];
+            }
+        }
+    }
+
+    protected void StopMovementForDeath()
+    {
+        _normalIsDead = true;
+
+        if (_normalDeathPositionLocked)
+        {
+            return;
+        }
+
+        _normalDeathPositionLocked = true;
+        _normalDeathPosition = transform.position;
+        _normalDeathTransforms = GetComponentsInChildren<Transform>(true);
+        _normalDeathLocalPositions = new Vector3[_normalDeathTransforms.Length];
+
+        for (int i = 0; i < _normalDeathTransforms.Length; i++)
+        {
+            _normalDeathLocalPositions[i] = _normalDeathTransforms[i].localPosition;
+        }
+
+        foreach (Rigidbody2D body in GetComponentsInChildren<Rigidbody2D>(true))
+        {
+#if UNITY_6000_0_OR_NEWER
+            body.linearVelocity = Vector2.zero;
+#else
+            body.velocity = Vector2.zero;
+#endif
+            body.angularVelocity = 0f;
+            body.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
+    }
+
+    protected void FacePlayer()
+    {
+        if (_normalIsDead || _player == null)
+        {
+            return;
+        }
+
+        Vector2 direction = _player.position - transform.position;
 
         if (direction.sqrMagnitude <= 0.001f)
         {
             return;
         }
 
-        float angle =
-            Mathf.Atan2(
-                direction.y,
-                direction.x
-            ) * Mathf.Rad2Deg;
-
-        transform.rotation =
-            Quaternion.Euler(
-                0f,
-                0f,
-                angle
-            );
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, angle);
     }
-
 
     protected Vector2 GetSeparationDirection()
     {
-        Collider2D[] monsters =
-            Physics2D.OverlapCircleAll(
-                transform.position,
-                _separationRadius
-            );
+        if (_normalIsDead || _separationRadius <= 0f)
+        {
+            return Vector2.zero;
+        }
 
-        Vector2 separationDirection =
-            Vector2.zero;
+        Collider2D[] monsters = Physics2D.OverlapCircleAll(
+            transform.position,
+            _separationRadius
+        );
+
+        Vector2 separationDirection = Vector2.zero;
+        _normalSeparationTargets.Clear();
 
         foreach (Collider2D target in monsters)
         {
-            if (target.gameObject == gameObject)
-            {
-                continue;
-            }
+            NormalMonster otherMonster = target.GetComponentInParent<NormalMonster>();
 
-            NormalMonster otherMonster =
-                target.GetComponent<NormalMonster>();
-
-            if (otherMonster == null)
+            if (otherMonster == null || otherMonster == this || otherMonster._normalIsDead ||
+                !_normalSeparationTargets.Add(otherMonster))
             {
                 continue;
             }
@@ -144,247 +203,221 @@ public class NormalMonster : MonoBehaviour
                 (Vector2)transform.position -
                 (Vector2)otherMonster.transform.position;
 
-            float distance =
-                direction.magnitude;
+            float distance = direction.magnitude;
 
             if (distance <= 0.001f)
             {
-                direction =
-                    Random.insideUnitCircle.normalized;
-
+                direction = Random.insideUnitCircle.normalized;
                 distance = 0.001f;
             }
 
-            float strength =
-                1f -
-                Mathf.Clamp01(
-                    distance / _separationRadius
-                );
-
-            separationDirection +=
-                direction.normalized * strength;
+            float strength = 1f - Mathf.Clamp01(distance / _separationRadius);
+            separationDirection += direction.normalized * strength;
         }
 
         return separationDirection.normalized;
     }
 
-
     protected void ApplySeparation()
     {
-        Vector2 separationDirection =
-            GetSeparationDirection();
+        Vector2 separationDirection = GetSeparationDirection();
 
-        if (separationDirection == Vector2.zero)
+        if (separationDirection.sqrMagnitude <= Mathf.Epsilon)
         {
             return;
         }
 
-        transform.position +=
-            (Vector3)(
-                separationDirection *
-                _separationStrength *
-                Time.deltaTime
-            );
+        MoveWithCollisionCheck(
+            separationDirection * _separationStrength * Time.deltaTime
+        );
     }
-
 
     protected bool CanMoveTo(Vector2 targetPosition)
     {
-        Collider2D hit =
-            Physics2D.OverlapCircle(
-                targetPosition,
-                _collisionCheckRadius,
-                _obstacleLayer
-            );
+        if (_obstacleLayer.value == 0)
+        {
+            return true;
+        }
 
-        return hit == null;
+        ContactFilter2D filter = new ContactFilter2D();
+        filter.SetLayerMask(_obstacleLayer);
+        filter.useTriggers = false;
+
+        _normalMovementHits.Clear();
+
+        int count = Physics2D.OverlapCircle(
+            targetPosition,
+            Mathf.Max(0f, _collisionCheckRadius),
+            filter,
+            _normalMovementHits
+        );
+
+        for (int i = 0; i < count; i++)
+        {
+            Collider2D hit = _normalMovementHits[i];
+
+            if (hit == null || !hit.enabled || hit.isTrigger)
+            {
+                continue;
+            }
+
+            // 자기 몸과 자식 콜라이더는 장애물에서 제외합니다.
+            if (hit.transform == transform || hit.transform.IsChildOf(transform))
+            {
+                continue;
+            }
+
+            if (hit.GetComponentInParent<NormalMonster>() != null)
+            {
+                continue;
+            }
+
+            if (IsPlayerCollider(hit))
+            {
+                continue;
+            }
+
+            return false;
+        }
+
+        return true;
     }
 
+    private bool IsPlayerCollider(Collider2D target)
+    {
+        if (_player != null &&
+            (target.transform == _player || target.transform.IsChildOf(_player)))
+        {
+            return true;
+        }
+
+        for (Transform current = target.transform; current != null; current = current.parent)
+        {
+            if (current.CompareTag("Player"))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     protected void MoveWithCollisionCheck(Vector2 movement)
     {
-        if (movement.sqrMagnitude <= 0.0001f)
+        // 프레임률이 높아도 작은 이동량을 취소하지 않습니다.
+        if (_normalIsDead || movement.sqrMagnitude <= Mathf.Epsilon)
         {
             return;
         }
 
-        Vector2 targetPosition =
-            (Vector2)transform.position +
-            movement;
+        Vector3 targetPosition = transform.position + (Vector3)movement;
 
-        if (CanMoveTo(targetPosition))
+        if (CanMoveTo((Vector2)targetPosition))
         {
-            transform.position =
-                targetPosition;
+            transform.position = targetPosition;
         }
     }
-
-
-    // =========================================================
-    // DAMAGE
-    // =========================================================
 
     public virtual void TakeDamage(float damage)
     {
-        if (damage <= 0f)
+        if (_normalIsDead || _normalHitCooldownTimer > 0f ||
+            damage <= 0f || float.IsNaN(damage) || float.IsInfinity(damage))
         {
             return;
         }
 
-        if (_isDead)
-        {
-            return;
-        }
-
-        if (_hitCooldownTimer > 0f)
-        {
-            return;
-        }
-
-
-        _hitCooldownTimer =
-            _hitCooldown;
-
-        _currentHealth -= damage;
-
+        _normalHitCooldownTimer = Mathf.Max(0f, _hitCooldown);
+        _currentHealth = Mathf.Max(0f, _currentHealth - damage);
 
         Debug.Log(
-            $"{gameObject.name} 피격! " +
-            $"받은 데미지: {damage}, " +
-            $"현재 체력: {_currentHealth}"
+            $"{name} 피격! 받은 데미지: {damage}, 현재 체력: {_currentHealth}",
+            this
         );
 
-
-        /*
-         * 죽는 공격이면 Hit을 거치지 않고
-         * 바로 사망 처리합니다.
-         */
         if (_currentHealth <= 0f)
         {
-            _currentHealth = 0f;
-
             Die();
-
             return;
         }
 
+        if (_normalHitFlashRoutine != null)
+        {
+            StopCoroutine(_normalHitFlashRoutine);
+        }
 
-        // 기존 붉은색 피격 연출
-        StartCoroutine(
-            HitFlashRoutine()
-        );
-
-
-        // MeleeMonster에서 Hit 애니메이션 실행
+        _normalHitFlashRoutine = StartCoroutine(HitFlashRoutine());
         OnHit();
     }
 
-
-    // =========================================================
-    // HIT HOOK
-    // =========================================================
-
     protected virtual void OnHit()
     {
-        // 기본 NormalMonster는 별도 Hit Animation 없음.
-        // MeleeMonster에서 Override합니다.
     }
-
 
     private IEnumerator HitFlashRoutine()
     {
-        for (int i = 0; i < _spriteRenderers.Length; i++)
+        for (int i = 0; i < _normalSpriteRenderers.Length; i++)
         {
-            if (_spriteRenderers[i] != null)
+            if (_normalSpriteRenderers[i] != null)
             {
-                _spriteRenderers[i].color =
-                    Color.red;
+                _normalSpriteRenderers[i].color = Color.red;
             }
         }
 
+        yield return new WaitForSeconds(Mathf.Max(0f, _hitFlashDuration));
 
-        yield return new WaitForSeconds(
-            _hitFlashDuration
-        );
-
-
-        if (_isDead)
+        if (!_normalIsDead)
         {
-            yield break;
+            RestoreOriginalColors();
         }
 
+        _normalHitFlashRoutine = null;
+    }
 
-        for (int i = 0; i < _spriteRenderers.Length; i++)
+    private void RestoreOriginalColors()
+    {
+        for (int i = 0; i < _normalSpriteRenderers.Length; i++)
         {
-            if (_spriteRenderers[i] != null)
+            if (_normalSpriteRenderers[i] != null)
             {
-                _spriteRenderers[i].color =
-                    _originalColors[i];
+                _normalSpriteRenderers[i].color = _normalOriginalColors[i];
             }
         }
     }
 
-
-    // =========================================================
-    // DEATH
-    // 현재는 기존 방식.
-    // Death Animation은 다음 단계에서 변경.
-    // =========================================================
-
     protected virtual void Die()
     {
-        if (_isDead)
+        if (_normalIsDead)
         {
             return;
         }
 
+        StopMovementForDeath();
+        _currentHealth = 0f;
+        StopAllCoroutines();
+        _normalHitFlashRoutine = null;
+        RestoreOriginalColors();
 
-        _isDead = true;
+        foreach (Collider2D bodyCollider in GetComponentsInChildren<Collider2D>(true))
+        {
+            bodyCollider.enabled = false;
+        }
 
+        foreach (Rigidbody2D body in GetComponentsInChildren<Rigidbody2D>(true))
+        {
+            body.simulated = false;
+        }
 
-        Debug.Log(
-            $"{gameObject.name} 사망!"
-        );
-
-
-        StartCoroutine(
-            DeathRoutine()
-        );
+        Debug.Log($"{name} 사망!", this);
+        StartCoroutine(DeathRoutine());
     }
-
 
     private IEnumerator DeathRoutine()
     {
-        Vector3 startScale =
-            transform.localScale;
-
-        Vector3 targetScale =
-            startScale * _deathScale;
-
-        float timer = 0f;
-
-
-        while (timer < _deathDelay)
+        // 사망할 때 몬스터의 크기를 변경하지 않습니다.
+        if (_deathDelay > 0f)
         {
-            timer += Time.deltaTime;
-
-            float progress =
-                timer / _deathDelay;
-
-            transform.localScale =
-                Vector3.Lerp(
-                    startScale,
-                    targetScale,
-                    progress
-                );
-
-            yield return null;
+            yield return new WaitForSeconds(_deathDelay);
         }
-
-
-        transform.localScale =
-            targetScale;
-
 
         Destroy(gameObject);
     }

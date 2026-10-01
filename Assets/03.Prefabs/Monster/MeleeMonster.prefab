@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a0d91a31eeb9994d90ed8efe7a2423e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeMonster
-  _maxHealth: 100
+  _maxHealth: 15
   _moveSpeed: 2
   _contactDamage: 10
   _separationRadius: 0.8
@@ -119,13 +119,21 @@ MonoBehaviour:
   _hitCooldown: 0.1
   _hitFlashDuration: 0.08
   _deathDelay: 0.2
-  _deathScale: 0
   _directionAnimator: {fileID: 4648255640607117109}
   _directionChangeAngle: 30
+  _facingLockDistance: 1.7
   _attackRange: 1.5
   _attackAngle: 90
   _attackCooldown: 1
   _attackHitNormalizedTime: 0.5
+  _walkAnimationSpeed: 1.6
+  _attackAnimationSpeed: 1.8
+  _attackEffectPrefab: {fileID: 0}
+  _attackEffectLifetime: 0.4
+  _attackEffectColor: {r: 1, g: 0.8, b: 0.25, a: 1}
+  _maximumAttackTime: 3
+  _maximumHitTime: 1.5
+  _maximumDeathTime: 3
 --- !u!60 &7007430183231636224
 PolygonCollider2D:
   m_ObjectHideFlags: 0
