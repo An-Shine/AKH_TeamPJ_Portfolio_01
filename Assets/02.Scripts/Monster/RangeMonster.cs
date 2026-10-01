@@ -93,7 +93,10 @@ public class RangeMonster : NormalMonster
     {
         if (_hasDied)
         {
-            if (_ready) UpdateAction();
+            if (_ready)
+            {
+                UpdateAction();
+            }
             return;
         }
 
@@ -117,9 +120,13 @@ public class RangeMonster : NormalMonster
         float distance = toPlayer.magnitude;
         Vector2 movement = Vector2.zero;
         if (distance > _attackRange)
+        {
             movement = toPlayer.normalized * Mathf.Min(_moveSpeed * Time.deltaTime, distance - _attackRange);
+        }
         else if (distance < _keepDistance)
+        {
             movement = -toPlayer.normalized * Mathf.Min(_moveSpeed * Time.deltaTime, _keepDistance - distance);
+        }
         else if (_cooldown <= 0f && _projectilePrefab != null && distance > 0.001f)
         {
             _shotDirection = toPlayer.normalized;
@@ -160,11 +167,23 @@ public class RangeMonster : NormalMonster
         _currentHealth = 0f;
         StopAllCoroutines();
         for (int i = 0; i < _renderers.Length; i++)
-            if (_renderers[i] != null) _renderers[i].color = _colors[i];
+        {
+            if (_renderers[i] != null)
+            {
+                _renderers[i].color = _colors[i];
+            }
+        }
         foreach (Collider2D bodyCollider in _colliders)
-            if (bodyCollider != null) bodyCollider.enabled = false;
+        {
+            if (bodyCollider != null)
+            {
+                bodyCollider.enabled = false;
+            }
+        }
         foreach (Rigidbody2D body in GetComponentsInChildren<Rigidbody2D>())
+        {
             body.simulated = false;
+        }
 
         if (!_ready)
         {
@@ -221,7 +240,10 @@ public class RangeMonster : NormalMonster
             _shotFired = true;
             FireProjectile();
         }
-        if (state.normalizedTime >= 1f) FinishAction();
+        if (state.normalizedTime >= 1f)
+        {
+            FinishAction();
+        }
     }
 
     private void FinishAction()
@@ -248,9 +270,15 @@ public class RangeMonster : NormalMonster
 
         // 생성 직후 발사자 자신의 콜라이더에 닿아 사라지는 것을 방지합니다.
         foreach (Collider2D projectileCollider in projectile.GetComponentsInChildren<Collider2D>())
+        {
             foreach (Collider2D ownerCollider in _colliders)
+            {
                 if (ownerCollider != null && ownerCollider.enabled)
+                {
                     Physics2D.IgnoreCollision(projectileCollider, ownerCollider);
+                }
+            }
+        }
     }
 
     private bool ValidateAnimator()
@@ -268,7 +296,12 @@ public class RangeMonster : NormalMonster
                 ? AnimatorControllerParameterType.Int : AnimatorControllerParameterType.Bool;
             bool found = false;
             foreach (AnimatorControllerParameter parameter in _animator.parameters)
-                if (parameter.nameHash == ids[i] && parameter.type == type) found = true;
+            {
+                if (parameter.nameHash == ids[i] && parameter.type == type)
+                {
+                    found = true;
+                }
+            }
             if (!found)
             {
                 Debug.LogError($"{name}: Animator에 {names[i]} ({type}) 파라미터가 필요합니다.", this);
@@ -278,6 +311,7 @@ public class RangeMonster : NormalMonster
 
         string[] motions = { "idle", "walk", "attack", "hit", "death" };
         for (int row = 0; row < motions.Length; row++)
+        {
             for (int direction = 0; direction < Directions.Length; direction++)
             {
                 string path = $"Base Layer.RangeMonster_{motions[row]}_{Directions[direction]}";
@@ -288,6 +322,7 @@ public class RangeMonster : NormalMonster
                     return false;
                 }
             }
+        }
         return true;
     }
 }

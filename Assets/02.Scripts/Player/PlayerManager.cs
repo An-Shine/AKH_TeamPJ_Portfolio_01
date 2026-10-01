@@ -16,6 +16,8 @@ public class PlayerManager : MonoBehaviour
     private float _appliedAngle;
     private float _appliedRange;
 
+    public PlayerController Player;
+
     private void Awake()
     {
         if (_instance != null && _instance != this)
