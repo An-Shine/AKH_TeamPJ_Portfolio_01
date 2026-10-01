@@ -123,7 +123,9 @@ public class KamikazeMonster : NormalMonster
         _ready = ValidateAnimator();
 
         if (!_ready)
+        {
             return;
+        }
 
         _direction = 0;
         _animator.SetInteger(DirectionId, _direction);
@@ -135,14 +137,19 @@ public class KamikazeMonster : NormalMonster
         if (_hasDied)
         {
             if (_ready)
+            {
                 UpdateAction();
+            }
+
             return;
         }
 
         base.Update();
 
         if (!_ready)
+        {
             return;
+        }
 
         if (_action != ActionState.None)
         {
@@ -164,7 +171,9 @@ public class KamikazeMonster : NormalMonster
             // 가까운 거리에서 처음 생성된 경우에만 방향을 정합니다.
             // 보통은 직전까지의 접근 방향을 유지합니다.
             if (!_directionInitialized)
+            {
                 SetDirection(toPlayer);
+            }
 
             BeginKamikazeAttack();
             return;
@@ -179,7 +188,9 @@ public class KamikazeMonster : NormalMonster
         Vector2 movement = toPlayer.normalized * moveDistance;
 
         if (!charging)
+        {
             movement += GetSeparationDirection() * (_crowdAvoidanceSpeed * Time.deltaTime);
+        }
 
         Vector2 previousPosition = transform.position;
         MoveWithCollisionCheck(movement);
@@ -187,7 +198,9 @@ public class KamikazeMonster : NormalMonster
 
         // 군집 회피나 접촉에 의한 작은 이동량으로 바라보는 방향을 바꾸지 않습니다.
         if (!_directionInitialized || distance > _facingLockDistance)
+        {
             SetDirection(toPlayer);
+        }
 
         PlayLocomotion(actualMovement.sqrMagnitude > 0.000001f, charging);
     }
@@ -201,7 +214,9 @@ public class KamikazeMonster : NormalMonster
     public override void TakeDamage(float damage)
     {
         if (_hasDied || _explosionTriggered)
+        {
             return;
+        }
 
         base.TakeDamage(damage);
     }
@@ -209,7 +224,9 @@ public class KamikazeMonster : NormalMonster
     protected override void OnHit()
     {
         if (_hasDied || !_ready || _action == ActionState.Attack)
+        {
             return;
+        }
 
         // 자폭 준비 중에는 체력 피해는 받되 Hit으로 준비 시간을 다시 시작하지 않습니다.
         // 폭발 전에 체력이 0이 되면 부모 TakeDamage가 Die를 호출합니다.
@@ -224,10 +241,14 @@ public class KamikazeMonster : NormalMonster
     private bool ResolvePlayer()
     {
         if (_player != null && _player.gameObject.activeInHierarchy)
+        {
             return true;
+        }
 
         if (Time.time < _nextPlayerSearchTime)
+        {
             return false;
+        }
 
         _nextPlayerSearchTime = Time.time + 1f;
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
@@ -252,7 +273,9 @@ public class KamikazeMonster : NormalMonster
     private float GetPlayerDistanceSquared(Vector2 position)
     {
         if (_player == null || !_player.gameObject.activeInHierarchy)
+        {
             return float.PositiveInfinity;
+        }
 
         float nearest = float.PositiveInfinity;
 
@@ -263,11 +286,15 @@ public class KamikazeMonster : NormalMonster
                 // 넓은 감지용 Trigger는 몸의 거리 판정에서 제외합니다.
                 if (playerCollider == null || !playerCollider.enabled ||
                     playerCollider.isTrigger || !playerCollider.gameObject.activeInHierarchy)
+                {
                     continue;
+                }
 
                 Rigidbody2D body = playerCollider.attachedRigidbody;
                 if (body != null && !body.simulated)
+                {
                     continue;
+                }
 
                 Vector2 closestPoint = playerCollider.ClosestPoint(position);
                 nearest = Mathf.Min(nearest, (closestPoint - position).sqrMagnitude);
@@ -276,7 +303,9 @@ public class KamikazeMonster : NormalMonster
 
         // 몸의 Collider가 없거나 비활성화된 경우 Transform 위치를 사용합니다.
         if (float.IsPositiveInfinity(nearest))
+        {
             nearest = ((Vector2)_player.position - position).sqrMagnitude;
+        }
 
         return nearest;
     }
@@ -284,7 +313,9 @@ public class KamikazeMonster : NormalMonster
     private void SetDirection(Vector2 direction)
     {
         if (direction.sqrMagnitude < 0.000001f)
+        {
             return;
+        }
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         int candidate = (Mathf.RoundToInt((angle + 90f) / 45f) + 8) % 8;
@@ -293,7 +324,9 @@ public class KamikazeMonster : NormalMonster
         {
             float currentAngle = _direction * 45f - 90f;
             if (Mathf.Abs(Mathf.DeltaAngle(currentAngle, angle)) <= 22.5f + _directionHysteresis)
+            {
                 return;
+            }
         }
 
         _direction = candidate;
@@ -334,7 +367,9 @@ public class KamikazeMonster : NormalMonster
     private void BeginKamikazeAttack()
     {
         if (_hasDied || _action != ActionState.None)
+        {
             return;
+        }
 
         _explosionTriggered = false;
         BeginAction(ActionState.Attack, 2);
@@ -356,7 +391,9 @@ public class KamikazeMonster : NormalMonster
     private void UpdateAction()
     {
         if (_action == ActionState.None || Time.frameCount == _actionStartFrame)
+        {
             return;
+        }
 
         float elapsed = Time.time - _actionStartTime;
         AnimatorStateInfo state = _animator.GetCurrentAnimatorStateInfo(0);
@@ -368,7 +405,9 @@ public class KamikazeMonster : NormalMonster
                 state.normalizedTime >= _explodeNormalizedTime;
 
             if (!_explosionTriggered && (animationReachedExplosion || elapsed >= _maximumFuseTime))
+            {
                 TriggerExplosion();
+            }
 
             if (_explosionTriggered &&
                 ((matching && state.normalizedTime >= 1f) ||
@@ -411,7 +450,9 @@ public class KamikazeMonster : NormalMonster
     private void TriggerExplosion()
     {
         if (_hasDied || _explosionTriggered)
+        {
             return;
+        }
 
         _explosionTriggered = true;
         _explosionTime = Time.time;
@@ -425,7 +466,9 @@ public class KamikazeMonster : NormalMonster
         float squaredDistance = MonsterCombat.GetPlayerDistanceSquared(
             _player, _playerColliders, explosionPosition, out Vector2 hitPoint);
         if (squaredDistance > _explosionDamageRadius * _explosionDamageRadius)
+        {
             return;
+        }
 
         // 데미지 판정은 폭발당 한 번입니다.
         // 대시/피격 무적과 HP 감소는 기존 PlayerManager가 처리합니다.
@@ -441,7 +484,10 @@ public class KamikazeMonster : NormalMonster
         {
             GameObject effect = Instantiate(_explosionEffectPrefab, position, Quaternion.identity);
             if (_explosionEffectLifetime > 0f)
+            {
                 Destroy(effect, _explosionEffectLifetime);
+            }
+
             return;
         }
 
@@ -461,7 +507,9 @@ public class KamikazeMonster : NormalMonster
     private void BeginDeath()
     {
         if (_hasDied)
+        {
             return;
+        }
 
         _hasDied = true;
         StopMovementForDeath();
@@ -471,7 +519,9 @@ public class KamikazeMonster : NormalMonster
         for (int i = 0; i < _renderers.Length; i++)
         {
             if (_renderers[i] != null)
+            {
                 _renderers[i].color = _kamikazeOriginalColors[i];
+            }
         }
 
         DisablePhysics();
@@ -491,13 +541,17 @@ public class KamikazeMonster : NormalMonster
         foreach (Collider2D bodyCollider in _colliders)
         {
             if (bodyCollider != null)
+            {
                 bodyCollider.enabled = false;
+            }
         }
 
         foreach (Rigidbody2D body in _bodies)
         {
             if (body != null)
+            {
                 body.simulated = false;
+            }
         }
     }
 

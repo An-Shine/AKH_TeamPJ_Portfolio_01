@@ -14,22 +14,30 @@ internal sealed class MonsterVisualLock
         _scales = new Vector3[_transforms.Length];
 
         for (int i = 0; i < _transforms.Length; i++)
+        {
             _scales[i] = _transforms[i].localScale;
+        }
 
         foreach (Rigidbody2D body in root.GetComponentsInChildren<Rigidbody2D>(true))
+        {
             body.constraints |= RigidbodyConstraints2D.FreezeRotation;
+        }
     }
 
     public void Restore()
     {
         if (_root == null)
+        {
             return;
+        }
 
         _root.rotation = Quaternion.identity;
         for (int i = 0; i < _transforms.Length; i++)
         {
             if (_transforms[i] != null)
+            {
                 _transforms[i].localScale = _scales[i];
+            }
         }
     }
 }

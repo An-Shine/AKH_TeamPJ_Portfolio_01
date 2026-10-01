@@ -34,7 +34,10 @@ public class RangeProjectile : MonoBehaviour
         _body = GetComponent<Rigidbody2D>();
         _colliders = GetComponentsInChildren<Collider2D>(true);
         foreach (Collider2D bodyCollider in _colliders)
+        {
             bodyCollider.isTrigger = true;
+        }
+
         if (_body != null)
         {
             _body.bodyType = RigidbodyType2D.Kinematic;
@@ -52,28 +55,47 @@ public class RangeProjectile : MonoBehaviour
         _player = player;
         CachePlayerColliders();
         SetDirection(direction);
-        if (_owner == null) return;
+        if (_owner == null)
+        {
+            return;
+        }
+
         foreach (Collider2D ownerCollider in _owner.GetComponentsInChildren<Collider2D>(true))
+        {
             foreach (Collider2D projectileCollider in _colliders)
+            {
                 if (ownerCollider.enabled && projectileCollider.enabled &&
                     ownerCollider.gameObject.activeInHierarchy && projectileCollider.gameObject.activeInHierarchy)
+                {
                     Physics2D.IgnoreCollision(projectileCollider, ownerCollider);
+                }
+            }
+        }
     }
 
     // 기존 발사 코드에서 사용하던 API도 유지합니다.
     public void SetDirection(Vector2 direction)
     {
         _direction = direction.normalized;
-        if (_direction.sqrMagnitude < 0.000001f) return;
+        if (_direction.sqrMagnitude < 0.000001f)
+        {
+            return;
+        }
+
         float angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, angle);
-        if (_body != null) _body.rotation = angle;
+        if (_body != null)
+        {
+            _body.rotation = angle;
+        }
     }
 
     private void Start()
     {
         if (_player == null)
+        {
             _player = MonsterCombat.FindPlayer(transform);
+        }
         CachePlayerColliders();
         Destroy(gameObject, Mathf.Max(0.1f, _lifeTime));
     }
@@ -85,17 +107,27 @@ public class RangeProjectile : MonoBehaviour
 
     private void Update()
     {
-        if (_body == null) MoveProjectile(Time.deltaTime);
+        if (_body == null)
+        {
+            MoveProjectile(Time.deltaTime);
+        }
     }
 
     private void FixedUpdate()
     {
-        if (_body != null && _body.simulated) MoveProjectile(Time.fixedDeltaTime);
+        if (_body != null && _body.simulated)
+        {
+            MoveProjectile(Time.fixedDeltaTime);
+        }
     }
 
     private void MoveProjectile(float deltaTime)
     {
-        if (_hasImpacted || deltaTime <= 0f || _direction.sqrMagnitude < 0.000001f) return;
+        if (_hasImpacted || deltaTime <= 0f || _direction.sqrMagnitude < 0.000001f)
+        {
+            return;
+        }
+
         Vector2 origin = _body != null ? _body.position : (Vector2)transform.position;
         float distance = Mathf.Max(0f, _moveSpeed) * deltaTime;
         int count = Physics2D.CircleCast(origin, Mathf.Max(0.01f, _sweepRadius),
@@ -107,7 +139,11 @@ public class RangeProjectile : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             RaycastHit2D hit = _castHits[i];
-            if (!CanImpact(hit.collider) || hit.distance >= nearestDistance) continue;
+            if (!CanImpact(hit.collider) || hit.distance >= nearestDistance)
+            {
+                continue;
+            }
+
             found = true;
             nearest = hit;
             nearestDistance = hit.distance;
@@ -124,18 +160,42 @@ public class RangeProjectile : MonoBehaviour
     private void SetPosition(Vector2 position)
     {
         if (_body != null)
+        {
             _body.position = position;
+        }
         else
+        {
             transform.position = new Vector3(position.x, position.y, transform.position.z);
+        }
     }
 
     private bool CanImpact(Collider2D other)
     {
-        if (other == null || !other.enabled || !other.gameObject.activeInHierarchy) return false;
-        if ((_hitLayers.value & (1 << other.gameObject.layer)) == 0) return false;
-        if (other.transform == transform || other.transform.IsChildOf(transform)) return false;
-        if (_owner != null && (other.transform == _owner || other.transform.IsChildOf(_owner))) return false;
-        if (other.GetComponentInParent<NormalMonster>() != null) return false;
+        if (other == null || !other.enabled || !other.gameObject.activeInHierarchy)
+        {
+            return false;
+        }
+
+        if ((_hitLayers.value & (1 << other.gameObject.layer)) == 0)
+        {
+            return false;
+        }
+
+        if (other.transform == transform || other.transform.IsChildOf(transform))
+        {
+            return false;
+        }
+
+        if (_owner != null && (other.transform == _owner || other.transform.IsChildOf(_owner)))
+        {
+            return false;
+        }
+
+        if (other.GetComponentInParent<NormalMonster>() != null)
+        {
+            return false;
+        }
+
         if (MonsterCombat.ResolvePlayerCollider(other, _player) != null)
         {
             // 몸의 콜라이더가 있다면 넓은 감지용 Trigger에서는 적중시키지 않습니다.
@@ -147,12 +207,18 @@ public class RangeProjectile : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!_hasImpacted && Time.timeScale > 0f && CanImpact(other))
+        {
             Impact(other, other.ClosestPoint(transform.position));
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (_hasImpacted || Time.timeScale <= 0f || !CanImpact(collision.collider)) return;
+        if (_hasImpacted || Time.timeScale <= 0f || !CanImpact(collision.collider))
+        {
+            return;
+        }
+
         Vector2 point = collision.contactCount > 0
             ? collision.GetContact(0).point : collision.collider.ClosestPoint(transform.position);
         Impact(collision.collider, point);
@@ -160,12 +226,23 @@ public class RangeProjectile : MonoBehaviour
 
     private void Impact(Collider2D other, Vector2 point)
     {
-        if (_hasImpacted) return;
+        if (_hasImpacted)
+        {
+            return;
+        }
         // 파괴가 프레임 끝에 실행되어도 추가 콜라이더로 피해를 중복 적용하지 않습니다.
         _hasImpacted = true;
         foreach (Collider2D bodyCollider in _colliders)
-            if (bodyCollider != null) bodyCollider.enabled = false;
-        if (_body != null) _body.simulated = false;
+        {
+            if (bodyCollider != null)
+            {
+                bodyCollider.enabled = false;
+            }
+        }
+        if (_body != null)
+        {
+            _body.simulated = false;
+        }
 
         Vector3 hitPosition = new Vector3(point.x, point.y, transform.position.z);
         Transform player = MonsterCombat.ResolvePlayerCollider(other, _player);
@@ -173,13 +250,20 @@ public class RangeProjectile : MonoBehaviour
         {
             bool damaged = MonsterCombat.TryTakePlayerDamage(player, _damage, hitPosition,
                 _direction, _impactColor, _impactEffectPrefab == null);
-            if (damaged && _impactEffectPrefab != null) SpawnCustomImpact(hitPosition);
+            if (damaged && _impactEffectPrefab != null)
+            {
+                SpawnCustomImpact(hitPosition);
+            }
         }
         else if (_impactEffectPrefab != null)
+        {
             SpawnCustomImpact(hitPosition);
+        }
         else
+        {
             MonsterCombatEffect.SpawnImpact(hitPosition, _direction, _impactColor, transform);
-        Destroy(gameObject);
+            Destroy(gameObject);
+        }
     }
 
     private void SpawnCustomImpact(Vector3 position)

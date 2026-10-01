@@ -37,7 +37,9 @@ public sealed class KamikazeExplosionEffect : MonoBehaviour
     {
         // Spawn은 생성 직후 초기화합니다. 프리팹으로 생성한 경우에만 보충합니다.
         if (_initialized)
+        {
             return;
+        }
 
         // 몬스터에 잘못 붙었을 때 이펙트의 수명 처리로 본체를 삭제하지 않습니다.
         if (GetComponentInParent<NormalMonster>() != null)
@@ -58,12 +60,19 @@ public sealed class KamikazeExplosionEffect : MonoBehaviour
     private void Initialize(float radius, Color color, int sortingLayerId, int sortingOrder)
     {
         if (_initialized)
+        {
             return;
+        }
 
         if (_ringSprite == null)
+        {
             _ringSprite = CreateSprite(false);
+        }
+
         if (_flashSprite == null)
+        {
             _flashSprite = CreateSprite(true);
+        }
 
         _color = color;
         _maximumScale = Mathf.Max(0.1f, radius) * 2.4f;
@@ -80,7 +89,9 @@ public sealed class KamikazeExplosionEffect : MonoBehaviour
     private void Update()
     {
         if (!_initialized)
+        {
             return;
+        }
 
         if (_ring == null || _flash == null)
         {
@@ -92,13 +103,17 @@ public sealed class KamikazeExplosionEffect : MonoBehaviour
         RefreshVisual();
 
         if (_age >= Duration)
+        {
             Destroy(gameObject);
+        }
     }
 
     private void RefreshVisual()
     {
         if (!_initialized || _ring == null || _flash == null)
+        {
             return;
+        }
 
         float progress = Mathf.Clamp01(_age / Duration);
         float expansion = 1f - (1f - progress) * (1f - progress);
@@ -154,7 +169,9 @@ public sealed class KamikazeExplosionEffect : MonoBehaviour
                     : squaredRadius <= 400f && squaredRadius >= 289f;
 
                 if (visible)
+                {
                     pixels[y * TextureSize + x] = white;
+                }
             }
         }
 

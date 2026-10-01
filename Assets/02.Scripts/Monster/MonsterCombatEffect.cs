@@ -33,7 +33,10 @@ public sealed class MonsterCombatEffect : MonoBehaviour
     public static void SpawnImpact(Vector3 position, Vector2 direction, Color color, Transform source)
     {
         if (_impactSprite == null)
+        {
             _impactSprite = CreateImpact();
+        }
+
         Create(position, direction, _impactSprite, color, source, 0.18f, 0.28f, 0.5f);
     }
 
@@ -71,7 +74,9 @@ public sealed class MonsterCombatEffect : MonoBehaviour
         _age += Time.deltaTime;
         RefreshVisual();
         if (_age >= _duration)
+        {
             Destroy(gameObject);
+        }
     }
 
     private void RefreshVisual()
@@ -98,7 +103,9 @@ public sealed class MonsterCombatEffect : MonoBehaviour
                 float pixelAngle = Mathf.Atan2(dy, dx) * Mathf.Rad2Deg;
                 if (squaredRadius <= 900f && squaredRadius >= 625f &&
                     Mathf.Abs(pixelAngle) <= angle * 0.5f)
+                {
                     pixels[y * SlashTextureSize + x] = white;
+                }
             }
         }
         return CreateSprite("MonsterMeleeSlash", SlashTextureSize, pixels);
@@ -120,7 +127,9 @@ public sealed class MonsterCombatEffect : MonoBehaviour
                     (Mathf.Abs(dx) <= 1.5f && Mathf.Abs(dy) <= 10f) ||
                     (Mathf.Abs(dy) <= 1.5f && Mathf.Abs(dx) <= 10f);
                 if (visible)
+                {
                     pixels[y * size + x] = white;
+                }
             }
         }
         return CreateSprite("MonsterHitImpact", size, pixels);

@@ -93,9 +93,15 @@ public class RangeMonster : NormalMonster
     {
         base.Start();
         if (_player != null && (_player == transform || _player.IsChildOf(transform)))
+        {
             _player = null;
+        }
         _ready = ValidateAnimator();
-        if (!_ready) return;
+        if (!_ready)
+        {
+            return;
+        }
+
         _animator.SetInteger(DirectionId, 0);
         PlayLocomotion(false);
     }
@@ -104,11 +110,18 @@ public class RangeMonster : NormalMonster
     {
         if (_hasDied)
         {
-            if (_ready) UpdateAction();
+            if (_ready)
+            {
+                UpdateAction();
+            }
             return;
         }
         base.Update();
-        if (!_ready) return;
+        if (!_ready)
+        {
+            return;
+        }
+
         _cooldown = Mathf.Max(0f, _cooldown - Time.deltaTime);
         if (_action != ActionState.None)
         {
@@ -124,26 +137,39 @@ public class RangeMonster : NormalMonster
         Vector2 toPlayer = (Vector2)_player.position - (Vector2)transform.position;
         float distance = toPlayer.magnitude;
         if (!_directionInitialized || distance > _facingLockDistance)
+        {
             SetDirection(toPlayer);
+        }
 
         Vector2 movement = Vector2.zero;
         if (distance > _attackRange + _distanceTolerance)
+        {
             movement = toPlayer.normalized * Mathf.Min(Mathf.Max(0f, _moveSpeed) * Time.deltaTime,
                 distance - _attackRange);
+        }
         else if (distance < _keepDistance - _distanceTolerance)
+        {
             movement = -toPlayer.normalized * Mathf.Min(Mathf.Max(0f, _moveSpeed) * Time.deltaTime,
                 _keepDistance - distance);
+        }
         else if (TryAttack(toPlayer, distance))
+        {
             return;
+        }
 
         if (distance > _facingLockDistance)
+        {
             movement += GetSeparationDirection() * (_crowdAvoidanceSpeed * Time.deltaTime);
+        }
         Vector2 previous = transform.position;
         MoveWithCollisionCheck(movement);
         bool moving = ((Vector2)transform.position - previous).sqrMagnitude > 0.000001f;
 
         // 벽에 막혀 후퇴하지 못하는 경우에도 사거리 안이면 공격할 수 있습니다.
-        if (!moving && TryAttack(toPlayer, distance)) return;
+        if (!moving && TryAttack(toPlayer, distance))
+        {
+            return;
+        }
 
         // 후퇴하거나 옆으로 밀려도 시선은 플레이어 쪽을 유지합니다.
         PlayLocomotion(moving);
@@ -157,29 +183,56 @@ public class RangeMonster : NormalMonster
 
     public override void TakeDamage(float damage)
     {
-        if (_hasDied) return;
+        if (_hasDied)
+        {
+            return;
+        }
+
         base.TakeDamage(damage);
     }
 
     protected override void OnHit()
     {
-        if (_hasDied || !_ready || _action == ActionState.Hit) return;
+        if (_hasDied || !_ready || _action == ActionState.Hit)
+        {
+            return;
+        }
+
         BeginAction(ActionState.Hit, 3);
     }
 
     protected override void Die()
     {
-        if (_hasDied) return;
+        if (_hasDied)
+        {
+            return;
+        }
+
         _hasDied = true;
         StopMovementForDeath();
         _currentHealth = 0f;
         StopAllCoroutines();
         for (int i = 0; i < _renderers.Length; i++)
-            if (_renderers[i] != null) _renderers[i].color = _colors[i];
+        {
+            if (_renderers[i] != null)
+            {
+                _renderers[i].color = _colors[i];
+            }
+        }
         foreach (Collider2D bodyCollider in _colliders)
-            if (bodyCollider != null) bodyCollider.enabled = false;
+        {
+            if (bodyCollider != null)
+            {
+                bodyCollider.enabled = false;
+            }
+        }
         foreach (Rigidbody2D body in _bodies)
-            if (body != null) body.simulated = false;
+        {
+            if (body != null)
+            {
+                body.simulated = false;
+            }
+        }
 
         // 이동은 멈추고 기존 Death 애니메이션을 재생합니다.
         if (!_ready)
@@ -192,8 +245,14 @@ public class RangeMonster : NormalMonster
 
     private bool ResolvePlayer()
     {
-        if (_player != null && _player.gameObject.activeInHierarchy) return true;
-        if (Time.time < _nextPlayerSearch) return false;
+        if (_player != null && _player.gameObject.activeInHierarchy)
+        {
+            return true;
+        }
+        if (Time.time < _nextPlayerSearch)
+        {
+            return false;
+        }
         _nextPlayerSearch = Time.time + 1f;
         _player = MonsterCombat.FindPlayer(transform);
         return _player != null;
@@ -201,12 +260,18 @@ public class RangeMonster : NormalMonster
 
     private void SetDirection(Vector2 direction, bool force = false)
     {
-        if (direction.sqrMagnitude < 0.000001f) return;
+        if (direction.sqrMagnitude < 0.000001f)
+        {
+            return;
+        }
+
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         int candidate = MonsterCombat.GetDirectionIndex(direction);
         if (!force && _directionInitialized && candidate != _direction &&
             Mathf.Abs(Mathf.DeltaAngle(_direction * 45f - 90f, angle)) <= 22.5f + _directionHysteresis)
+        {
             return;
+        }
         _direction = candidate;
         _directionInitialized = true;
         _animator.SetInteger(DirectionId, _direction);
@@ -216,7 +281,9 @@ public class RangeMonster : NormalMonster
     {
         if (_cooldown > 0f || _projectilePrefab == null ||
             distance > _attackRange + _distanceTolerance || toPlayer.sqrMagnitude < 0.000001f)
+        {
             return false;
+        }
         _shotDirection = toPlayer.normalized;
         // 실제 발사 방향을 공격 시작 시에만 확정하고 모션 중에는 유지합니다.
         SetDirection(_shotDirection);
@@ -241,8 +308,10 @@ public class RangeMonster : NormalMonster
         int desiredHash = _states[moving ? 1 : 0, _direction];
         AnimatorStateInfo info = _animator.GetCurrentAnimatorStateInfo(0);
         if (info.fullPathHash != desiredHash)
+        {
             _animator.Play(desiredHash, 0,
                 moving && _wasMoving ? Mathf.Repeat(info.normalizedTime, 1f) : 0f);
+        }
         _wasMoving = moving;
     }
 
@@ -261,7 +330,11 @@ public class RangeMonster : NormalMonster
 
     private void UpdateAction()
     {
-        if (_action == ActionState.None || Time.frameCount == _actionStartFrame) return;
+        if (_action == ActionState.None || Time.frameCount == _actionStartFrame)
+        {
+            return;
+        }
+
         float elapsed = Time.time - _actionStartTime;
         AnimatorStateInfo info = _animator.GetCurrentAnimatorStateInfo(0);
         bool matching = info.fullPathHash == _actionHash;
@@ -301,7 +374,10 @@ public class RangeMonster : NormalMonster
     private void FireProjectile()
     {
         if (_hasDied || _action != ActionState.Attack || _projectilePrefab == null || _player == null)
+        {
             return;
+        }
+
         Vector2 reference = _firePointReferenceDirection.sqrMagnitude > 0.0001f
             ? _firePointReferenceDirection.normalized : Vector2.down;
         float rotation = Vector2.SignedAngle(reference, _shotDirection);
@@ -312,19 +388,24 @@ public class RangeMonster : NormalMonster
 
     private bool ValidateAnimator()
     {
-        if (!MonsterCombat.ValidateAnimatorParameters(_animator)) return false;
+        if (!MonsterCombat.ValidateAnimatorParameters(_animator))
+        {
+            return false;
+        }
         string[] motions = { "idle", "walk", "attack", "hit", "death" };
         for (int row = 0; row < motions.Length; row++)
+        {
             for (int direction = 0; direction < 8; direction++)
             {
                 if (!MonsterCombat.TryGetDirectionalState(_animator, "RangeMonster",
-                    motions[row], direction, out _states[row, direction]))
+                        motions[row], direction, out _states[row, direction]))
                 {
                     Debug.LogError($"{name}: RangeMonster_{motions[row]}_" +
-                        $"{MonsterCombat.DirectionNames[direction]} 상태를 찾을 수 없습니다.", this);
+                                   $"{MonsterCombat.DirectionNames[direction]} 상태를 찾을 수 없습니다.", this);
                     return false;
                 }
             }
+        }
         return true;
     }
 

@@ -64,7 +64,10 @@ public class MeleeMonster : NormalMonster
         ClampSettings();
         _visualLock = new MonsterVisualLock(transform);
         if (_directionAnimator == null)
+        {
             _directionAnimator = GetComponent<Animator>();
+        }
+
         _renderers = GetComponentsInChildren<SpriteRenderer>(true);
         _colliders = GetComponentsInChildren<Collider2D>(true);
         _bodies = GetComponentsInChildren<Rigidbody2D>(true);
@@ -88,13 +91,20 @@ public class MeleeMonster : NormalMonster
         base.Start();
         CachePlayer();
         _ready = MonsterCombat.ValidateAnimatorParameters(_directionAnimator);
-        if (!_ready) return;
+        if (!_ready)
+        {
+            return;
+        }
 
         string[] motions = { "idle", "walk", "attack", "hit", "death" };
         for (int row = 0; row < motions.Length; row++)
+        {
             for (int direction = 0; direction < 8; direction++)
+            {
                 MonsterCombat.TryGetDirectionalState(_directionAnimator, "MeleeMonster",
                     motions[row], direction, out _states[row, direction]);
+            }
+        }
 
         // 상태 이름이 다른 기존 컨트롤러는 Attack / Hit / Death 태그로도 동작합니다.
         _directionAnimator.SetInteger(DirectionId, 0);
@@ -105,11 +115,19 @@ public class MeleeMonster : NormalMonster
     {
         if (_deathStarted)
         {
-            if (_ready) UpdateAction();
+            if (_ready)
+            {
+                UpdateAction();
+            }
+
             return;
         }
         base.Update();
-        if (!_ready) return;
+        if (!_ready)
+        {
+            return;
+        }
+
         _attackCooldownTimer = Mathf.Max(0f, _attackCooldownTimer - Time.deltaTime);
         if (_action != ActionState.None)
         {
@@ -126,7 +144,9 @@ public class MeleeMonster : NormalMonster
         float distance = Mathf.Sqrt(MonsterCombat.GetPlayerDistanceSquared(
             _player, _playerColliders, transform.position, out Vector2 closestPoint));
         if (!_directionInitialized || distance > _facingLockDistance)
+        {
             SetDirection(toPlayer);
+        }
 
         if (distance <= _attackRange)
         {
@@ -139,7 +159,10 @@ public class MeleeMonster : NormalMonster
         Vector2 movement = toPlayer.normalized * Mathf.Min(
             Mathf.Max(0f, _moveSpeed) * Time.deltaTime, distance - _attackRange);
         if (distance > _facingLockDistance)
+        {
             movement += GetSeparationDirection() * (1.5f * Time.deltaTime);
+        }
+
         Vector2 previous = transform.position;
         MoveWithCollisionCheck(movement);
         PlayLocomotion(((Vector2)transform.position - previous).sqrMagnitude > 0.000001f);
@@ -153,30 +176,58 @@ public class MeleeMonster : NormalMonster
 
     public override void TakeDamage(float damage)
     {
-        if (_deathStarted) return;
+        if (_deathStarted)
+        {
+            return;
+        }
+
         base.TakeDamage(damage);
     }
 
     protected override void OnHit()
     {
-        if (_deathStarted || !_ready || _action == ActionState.Hit) return;
+        if (_deathStarted || !_ready || _action == ActionState.Hit)
+        {
+            return;
+        }
         // 피해를 받으면 아직 판정하지 않은 근접 공격을 취소합니다.
         BeginAction(ActionState.Hit, 3);
     }
 
     protected override void Die()
     {
-        if (_deathStarted) return;
+        if (_deathStarted)
+        {
+            return;
+        }
+
         _deathStarted = true;
         StopMovementForDeath();
         _currentHealth = 0f;
         StopAllCoroutines();
         for (int i = 0; i < _renderers.Length; i++)
-            if (_renderers[i] != null) _renderers[i].color = _colors[i];
+        {
+            if (_renderers[i] != null)
+            {
+                _renderers[i].color = _colors[i];
+            }
+        }
+
         foreach (Collider2D bodyCollider in _colliders)
-            if (bodyCollider != null) bodyCollider.enabled = false;
+        {
+            if (bodyCollider != null)
+            {
+                bodyCollider.enabled = false;
+            }
+        }
+
         foreach (Rigidbody2D body in _bodies)
-            if (body != null) body.simulated = false;
+        {
+            if (body != null)
+            {
+                body.simulated = false;
+            }
+        }
 
         // 이동은 멈추고 기존 Death 애니메이션을 재생합니다.
         if (!_ready)
@@ -190,14 +241,25 @@ public class MeleeMonster : NormalMonster
     private void CachePlayer()
     {
         if (_player != null && (_player == transform || _player.IsChildOf(transform)))
+        {
             _player = null;
+        }
+
         _playerColliders = _player != null ? _player.GetComponentsInChildren<Collider2D>(true) : null;
     }
 
     private bool ResolvePlayer()
     {
-        if (_player != null && _player.gameObject.activeInHierarchy) return true;
-        if (Time.time < _nextPlayerSearch) return false;
+        if (_player != null && _player.gameObject.activeInHierarchy)
+        {
+            return true;
+        }
+
+        if (Time.time < _nextPlayerSearch)
+        {
+            return false;
+        }
+
         _nextPlayerSearch = Time.time + 1f;
         _player = MonsterCombat.FindPlayer(transform);
         CachePlayer();
@@ -206,12 +268,19 @@ public class MeleeMonster : NormalMonster
 
     private void SetDirection(Vector2 direction, bool force = false)
     {
-        if (direction.sqrMagnitude < 0.000001f) return;
+        if (direction.sqrMagnitude < 0.000001f)
+        {
+            return;
+        }
+
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         int candidate = MonsterCombat.GetDirectionIndex(direction);
         if (!force && _directionInitialized && candidate != _direction &&
             Mathf.Abs(Mathf.DeltaAngle(_direction * 45f - 90f, angle)) <= _directionChangeAngle)
+        {
             return;
+        }
+
         _direction = candidate;
         _directionInitialized = true;
         _directionAnimator.SetInteger(DirectionId, _direction);
@@ -219,21 +288,33 @@ public class MeleeMonster : NormalMonster
 
     private void TryAttack(Vector2 toPlayer, Vector2 closestPoint)
     {
-        if (_attackCooldownTimer > 0f || _player == null) return;
+        if (_attackCooldownTimer > 0f || _player == null)
+        {
+            return;
+        }
+
         Vector2 facing = MonsterCombat.GetDirectionVector(_direction);
         Vector2 targetDirection = closestPoint - (Vector2)transform.position;
-        if (targetDirection.sqrMagnitude < 0.000001f) targetDirection = toPlayer;
+        if (targetDirection.sqrMagnitude < 0.000001f)
+        {
+            targetDirection = toPlayer;
+        }
         // 플레이어가 확실히 뒤로 이동했을 때만 다음 공격 시작 시 방향을 바꿉니다.
         if (toPlayer.sqrMagnitude > 0.0625f &&
             Vector2.Angle(facing, targetDirection) > _attackAngle * 0.5f)
+        {
             SetDirection(targetDirection, true);
+        }
 
         _attackDirection = MonsterCombat.GetDirectionVector(_direction);
-        if (targetDirection.sqrMagnitude > 0.000001f &&
-            Vector2.Angle(_attackDirection, targetDirection) > _attackAngle * 0.5f)
+        if (targetDirection.sqrMagnitude > 0.000001f && Vector2.Angle(_attackDirection, targetDirection) > _attackAngle * 0.5f)
+        {
             return;
+        }
         if (!MonsterCombat.HasClearAttackPath(transform.position, closestPoint, transform, _player))
+        {
             return;
+        }
 
         _attackCooldownTimer = _attackCooldown;
         _attackHitApplied = false;
@@ -246,15 +327,26 @@ public class MeleeMonster : NormalMonster
         Vector2 origin = transform.position;
         float squaredDistance = MonsterCombat.GetPlayerDistanceSquared(
             _player, _playerColliders, origin, out Vector2 closestPoint);
-        if (squaredDistance > _attackRange * _attackRange) return;
+        if (squaredDistance > _attackRange * _attackRange)
+        {
+            return;
+        }
 
         Vector2 targetDirection = closestPoint - origin;
         if (targetDirection.sqrMagnitude < 0.000001f && _player != null)
+        {
             targetDirection = (Vector2)_player.position - origin;
+        }
+
         if (targetDirection.sqrMagnitude > 0.000001f &&
             Vector2.Angle(_attackDirection, targetDirection) > _attackAngle * 0.5f)
+        {
             return;
-        if (!MonsterCombat.HasClearAttackPath(origin, closestPoint, transform, _player)) return;
+        }
+        if (!MonsterCombat.HasClearAttackPath(origin, closestPoint, transform, _player))
+        {
+            return;
+        }
 
         Vector3 hitPosition = new Vector3(closestPoint.x, closestPoint.y, transform.position.z);
         MonsterCombat.TryTakePlayerDamage(_player, _contactDamage, hitPosition,
@@ -290,8 +382,11 @@ public class MeleeMonster : NormalMonster
         int desiredHash = _states[moving ? 1 : 0, _direction];
         AnimatorStateInfo info = _directionAnimator.GetCurrentAnimatorStateInfo(0);
         if (desiredHash != 0 && info.fullPathHash != desiredHash)
+        {
             _directionAnimator.Play(desiredHash, 0,
-                moving && _wasMoving ? Mathf.Repeat(info.normalizedTime, 1f) : 0f);
+                        moving && _wasMoving ? Mathf.Repeat(info.normalizedTime, 1f) : 0f);
+        }
+
         _wasMoving = moving;
     }
 
@@ -305,12 +400,19 @@ public class MeleeMonster : NormalMonster
         _wasMoving = false;
         _directionAnimator.speed = action == ActionState.Attack ? _attackAnimationSpeed : 1f;
         SetAnimationFlags(false);
-        if (_actionHash != 0) _directionAnimator.Play(_actionHash, 0, 0f);
+        if (_actionHash != 0)
+        {
+            _directionAnimator.Play(_actionHash, 0, 0f);
+        }
     }
 
     private void UpdateAction()
     {
-        if (_action == ActionState.None || Time.frameCount == _actionStartFrame) return;
+        if (_action == ActionState.None || Time.frameCount == _actionStartFrame)
+        {
+            return;
+        }
+
         float elapsed = Time.time - _actionStartTime;
         string tag = _action.ToString();
         AnimatorStateInfo info = _directionAnimator.GetCurrentAnimatorStateInfo(0);
