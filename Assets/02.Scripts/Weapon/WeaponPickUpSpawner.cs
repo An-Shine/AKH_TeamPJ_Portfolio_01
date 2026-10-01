@@ -2,10 +2,10 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class WeaponSpawner : MonoBehaviour
+public class WeaponPickUpSpawner : MonoBehaviour
 {
-    private static WeaponSpawner _instance;
-    public static WeaponSpawner Instance => _instance;
+    private static WeaponPickUpSpawner _instance;
+    public static WeaponPickUpSpawner Instance => _instance;
 
     [SerializeField] private List<WeaponPickup> _weaponPickups;
     private Dictionary<string, WeaponPickup> _weaponPickUpDictionary;
