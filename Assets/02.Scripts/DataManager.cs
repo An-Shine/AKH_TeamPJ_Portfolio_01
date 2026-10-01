@@ -38,7 +38,7 @@ public class DataManager : MonoBehaviour
         for (int i = 1; i < datas.Length; i++) //pass Header
         {
             var row = datas[i].Split(',');
-            WeaponDatas[row[0]] = new WeaponData
+            WeaponDatas[IdPrefix.WeaponPrefix + row[0]] = new WeaponData
             {
                 Name = row[1],
                 BehaviourType = (FireBehaviourType)Enum.Parse(typeof(FireBehaviourType), row[2]),
@@ -105,9 +105,9 @@ public class DataManager : MonoBehaviour
             effectList.Add(row[7]);
             effectList.Add(row[8]);
 
-            ItemDatas[row[0]] = new ItemData
+            ItemDatas[IdPrefix.ItemPrefix + row[0]] = new ItemData
             {
-                ItemId = row[0],
+                ItemId = int.Parse(row[0]),
                 Name = row[1],
                 Description = row[2],
                 EffectIdList = effectList

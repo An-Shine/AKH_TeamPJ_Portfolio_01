@@ -4,8 +4,9 @@ public class Weapon : MonoBehaviour
 {
     [SerializeField] private SFXType _fireSoundType;
     [SerializeField] private GameObject _fireEffectPrefab;
-    [SerializeField] Transform _firePoint;
-    [SerializeField] Transform _effectPoint;
+    [SerializeField] private Transform _originPoint;
+    [SerializeField] private Transform _firePoint;
+    [SerializeField] private Transform _effectPoint;
     public WeaponData Data { get; private set; }
     public WeaponModifier Modifier { get; private set; }
 
@@ -18,13 +19,33 @@ public class Weapon : MonoBehaviour
     private int _remainingAmmo;
     private float _timer;
     private float _reloadTimer;
-    private float FireRate => (Data.FireRate + Modifier.FireRate.Flat) * (1f + Modifier.FireRate.Rate);
+
+    private int Damage => (int)(Modifier.Damage.Flat * (1f + Modifier.Damage.Rate));
+
+    private float FireRate =>
+        (Data.FireRate + Modifier.FireRate.Flat + ItemManager.Instance.WeaponStat.FireSpeedModifier)
+        * (1f + Modifier.FireRate.Rate + ItemManager.Instance.WeaponStat.FireSpeedMultiplier);
+
     private float ReloadSpeed => (1 + Modifier.ReloadSpeed.Flat) * (1f + Modifier.ReloadSpeed.Rate);
     public float ChargeSpeed => (1 + Modifier.ChargeSpeed.Flat) * (1f + Modifier.ChargeSpeed.Rate);
-    private int MagazineSize => Data.MagazineSize + Modifier.MagazineSize;
-    private int ProjectileCount => Data.ProjectileCount + Modifier.ProjectileCount;
-    private float Angle => Data.Angle + Modifier.Angle;
-    private float Range => Data.Range + Modifier.Range;
+
+    private int MagazineSize =>
+        (int)((Data.MagazineSize + Modifier.MagazineSize)
+              * (1f + ItemManager.Instance.WeaponStat.MagazineSizeMultiplier));
+
+    private int ProjectileCount =>
+        Data.ProjectileCount + Modifier.ProjectileCount + ItemManager.Instance.WeaponStat.ProjectileCountModifier;
+
+    private float Angle =>
+        (Data.Angle + Modifier.Angle + ItemManager.Instance.WeaponStat.SpreadAngleModifier)
+        * (1f + ItemManager.Instance.WeaponStat.SpreadAngleMultiplier);
+
+    private float Range =>
+        (Data.Range + Modifier.Range + ItemManager.Instance.WeaponStat.RangeModifier)
+        * (1f + ItemManager.Instance.WeaponStat.RangeMultiplier);
+
+    private Vector3 _targetDirection;
+    private Vector3 _effectDirection;
 
     private void Awake()
     {
@@ -34,6 +55,7 @@ public class Weapon : MonoBehaviour
     private void Start()
     {
         _timer = CoolTime;
+        RefreshDirection();
     }
 
     private void Update()
@@ -88,16 +110,26 @@ public class Weapon : MonoBehaviour
 
     private void Fire()
     {
-        FireContext context = new FireContext(Data.ProjectileType, _firePoint.transform.position, transform.right,
+        FireContext context = new FireContext(Data.ProjectileType, _firePoint.transform.position, _targetDirection,
             Range, ProjectileCount, Angle);
-        _firePattern.Fire(context);
+        _firePattern.Fire(context, Damage);
         AudioManager.Instance.PlaySFX(_fireSoundType);
         if (_fireEffectPrefab != null)
         {
-            Quaternion additionalRotation = Quaternion.Euler(0f, 0f, 180f);
-            Quaternion finalRotation = transform.rotation * additionalRotation;
-            Instantiate(_fireEffectPrefab, _effectPoint.transform.position, finalRotation);
+            GameObject effectObject =
+                Instantiate(_fireEffectPrefab, _effectPoint.transform.position, Quaternion.identity);
+            effectObject.transform.eulerAngles = _effectDirection;
         }
+    }
+
+    public void RefreshDirection()
+    {
+        _targetDirection = _firePoint.position - _originPoint.position;
+        float angle = Mathf.Atan2(_targetDirection.y, _targetDirection.x) * Mathf.Rad2Deg + 180f;
+        _effectDirection = new Vector3(
+            _fireEffectPrefab.transform.eulerAngles.x,
+            _fireEffectPrefab.transform.eulerAngles.y,
+            angle);
     }
 
     public bool CheckRemainingAmmo()

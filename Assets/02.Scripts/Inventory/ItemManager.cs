@@ -8,13 +8,17 @@ public class ItemManager : MonoBehaviour
 
     [SerializeField] private List<ItemEntry> _itemEntryList;
     [SerializeField] private Transform _itemContainer;
+    [SerializeField] private Transform _playerTransform;
 
     private Dictionary<string, Item> _unobtainedItemDictionary;
     private List<Item> _gainedItemList;
 
-    public ItemPlayerStat PlayerStat { get; private set; }
-    public ItemWeaponStat WeaponStat { get; private set; }
-    public ItemProjectileStat ProjectileStat { get; private set; }
+    private ItemPlayerStat _playerStat = new ItemPlayerStat();
+    public ItemPlayerStat PlayerStat => _playerStat;
+    private ItemWeaponStat _weaponStat = new ItemWeaponStat();
+    public ItemWeaponStat WeaponStat => _weaponStat;
+    private ItemProjectileStat _projectileStat = new ItemProjectileStat();
+    public ItemProjectileStat ProjectileStat => _projectileStat;
 
     private void Awake()
     {
@@ -30,23 +34,21 @@ public class ItemManager : MonoBehaviour
     private void Start()
     {
         _gainedItemList = new List<Item>();
-        PlayerStat = new ItemPlayerStat();
-        WeaponStat = new ItemWeaponStat();
-        ProjectileStat = new ItemProjectileStat();
-
         _unobtainedItemDictionary = new Dictionary<string, Item>();
+        string id = string.Empty;
         foreach (ItemEntry itemEntry in _itemEntryList)
         {
-            _unobtainedItemDictionary[itemEntry.ItemId] = Instantiate(itemEntry.ItemPrefab, _itemContainer);
-            _unobtainedItemDictionary[itemEntry.ItemId].Initialize(itemEntry.ItemId);
-            _unobtainedItemDictionary[itemEntry.ItemId].gameObject.SetActive(false);
+            id = IdPrefix.ItemPrefix + itemEntry.ItemId;
+            _unobtainedItemDictionary[id] = Instantiate(itemEntry.ItemPrefab, _itemContainer);
+            _unobtainedItemDictionary[id].Initialize(itemEntry.ItemId);
+            _unobtainedItemDictionary[id].gameObject.SetActive(false);
         }
     }
 
     public void GainItem(Item item)
     {
         _gainedItemList.Add(item);
-        _unobtainedItemDictionary.Remove(item.Data.ItemId);
+        _unobtainedItemDictionary.Remove(IdPrefix.ItemPrefix + item.Data.ItemId);
 
         foreach (ItemEffectData effect in item.Effects)
         {
@@ -65,6 +67,8 @@ public class ItemManager : MonoBehaviour
             }
         }
 
+        Instantiate(item.GainEffectPrefab, _playerTransform);
+        AudioManager.Instance.PlaySFX(item.GainEffectSFX);
         item.gameObject.SetActive(false);
     }
 }

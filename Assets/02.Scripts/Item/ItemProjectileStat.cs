@@ -9,4 +9,16 @@ public class ItemProjectileStat
     public bool IsExplosive;
     public float ExplosionRadius;
     public bool IsHoming;
+
+    public ItemProjectileStat()
+    {
+        DamageModifier = 0;
+        DamageMultiplier = 0;
+        MoveSpeedMultiplier = 0;
+        SizeMultiplier = 0;
+        PierceCount = 0;
+        KnockbackDistance = 0;
+        IsExplosive = false;
+        IsHoming = false;
+    }
 }

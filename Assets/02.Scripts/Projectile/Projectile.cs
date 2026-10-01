@@ -4,11 +4,16 @@ public abstract class Projectile : MonoBehaviour
 {
     protected ProjectileType _type;
     protected int _damage;
+    private int _bonusDamage;
+    public int Damage =>
+        (int)((_damage + _bonusDamage + ItemManager.Instance.ProjectileStat.DamageModifier)
+              * (1f + ItemManager.Instance.ProjectileStat.DamageMultiplier));
     protected float _range;
     private int _initialDurability;
     private int _durability;
     protected Vector3 _direction;
     protected float _speedScalar;
+    public float SpeedScalar => _speedScalar * (1f + ItemManager.Instance.ProjectileStat.MoveSpeedMultiplier);
     protected Vector3 _initialPosition;
 
     private void Update()
@@ -21,20 +26,23 @@ public abstract class Projectile : MonoBehaviour
     {
         _type = type;
         _damage = damage;
+        _bonusDamage = 0;
         _initialDurability = durability;
         _durability = _initialDurability;
         _direction = Vector3.zero;
         _speedScalar = speedScalar;
     }
 
-    public virtual void OnSpawn(Vector3 position, Vector3 direction, float range)
+    public virtual void OnSpawn(Vector3 position, Vector3 direction, float range, int damage)
     {
         _durability = _initialDurability;
         _direction = direction;
         _range = range;
         gameObject.transform.position = position;
         _initialPosition = position;
+        _bonusDamage = damage;
 
+        Resize();
         Rotation();
     }
 
@@ -51,6 +59,12 @@ public abstract class Projectile : MonoBehaviour
         transform.eulerAngles = targetAngle;
     }
 
+    private void Resize()
+    {
+        Vector3 scale = Vector3.one * (1f + ItemManager.Instance.ProjectileStat.SizeMultiplier);
+        transform.localScale = scale;
+    }
+
     protected abstract void Move();
 
     protected virtual void CheckRange()
@@ -64,8 +78,10 @@ public abstract class Projectile : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            //if(other.TryGetComponent(out Enemy enemy))
-            //enemy.TakeDamage(_damage);
+            if (other.TryGetComponent(out NormalMonster monster))
+            {
+                monster.TakeDamage(Damage);
+            }
         }
     }
 
