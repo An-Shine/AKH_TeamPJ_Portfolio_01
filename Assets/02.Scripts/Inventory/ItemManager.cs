@@ -62,7 +62,7 @@ public class ItemManager : MonoBehaviour
                 }
                 case ItemEffectApplyType.Immediate:
                 {
-                    ItemEffectApplier.ApplyImmediateEffect(effect);
+                    ItemEffectApplier.ApplyImmediateEffect(effect, _playerTransform);
                     break;
                 }
             }

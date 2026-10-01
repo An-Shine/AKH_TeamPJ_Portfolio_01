@@ -1,6 +1,6 @@
 public class ImmediateEffectContext
 {
-    public Player Player; //status management instance
+    public UnityEngine.Transform PlayerTransform;
     public string Id;
     public float Value;
 }
