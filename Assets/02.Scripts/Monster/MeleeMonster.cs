@@ -1,1005 +1,371 @@
-using System.Collections;
 using UnityEngine;
 
 public class MeleeMonster : NormalMonster
 {
     [Header("방향 애니메이션")]
     [SerializeField] private Animator _directionAnimator;
-
-    [Header("방향 전환 안정화")]
-    [SerializeField] private float _directionChangeAngle = 30f;
+    [Tooltip("현재 8방향의 중심에서 이 각도 이상 벗어나야 방향을 바꿉니다.")]
+    [SerializeField, Range(22.5f, 45f)] private float _directionChangeAngle = 30f;
+    [SerializeField, Min(0.1f)] private float _facingLockDistance = 1.7f;
 
     [Header("근접 공격")]
-    [SerializeField] private float _attackRange = 1.5f;
-    [SerializeField] private float _attackAngle = 90f;
-    [SerializeField] private float _attackCooldown = 1f;
+    [SerializeField, Min(0.1f)] private float _attackRange = 1.5f;
+    [SerializeField, Range(1f, 360f)] private float _attackAngle = 90f;
+    [SerializeField, Min(0f)] private float _attackCooldown = 0.8f;
+    [SerializeField, Range(0f, 0.95f)] private float _attackHitNormalizedTime = 0.45f;
 
-    [Header("공격 판정")]
-    [Range(0f, 1f)]
-    [SerializeField] private float _attackHitNormalizedTime = 0.5f;
+    [Header("애니메이션 속도")]
+    [SerializeField, Min(0.1f)] private float _walkAnimationSpeed = 1.6f;
+    [SerializeField, Min(0.1f)] private float _attackAnimationSpeed = 1.8f;
 
+    [Header("근접 공격 효과")]
+    [Tooltip("비워 두면 기본 픽셀 베기 효과를 표시합니다. 프리팹의 앞 방향은 +X입니다.")]
+    [SerializeField] private GameObject _attackEffectPrefab;
+    [SerializeField, Min(0.1f)] private float _attackEffectLifetime = 0.4f;
+    [SerializeField] private Color _attackEffectColor = new Color(1f, 0.8f, 0.25f, 1f);
 
-    // =========================================================
-    // Animator Parameters
-    // =========================================================
+    [Header("동작 대기 제한")]
+    [SerializeField, Min(0.1f)] private float _maximumAttackTime = 3f;
+    [SerializeField, Min(0.1f)] private float _maximumHitTime = 1.5f;
+    [SerializeField, Min(0.1f)] private float _maximumDeathTime = 3f;
 
-    private static readonly int DirectionHash =
-        Animator.StringToHash("Direction");
+    private enum ActionState { None, Attack, Hit, Death }
+    private static readonly int DirectionId = Animator.StringToHash("Direction");
+    private static readonly int MovingId = Animator.StringToHash("IsMoving");
+    private static readonly int AttackingId = Animator.StringToHash("IsAttacking");
+    private static readonly int HitId = Animator.StringToHash("IsHit");
+    private static readonly int DeadId = Animator.StringToHash("IsDead");
+    private readonly int[,] _states = new int[5, 8];
 
-    private static readonly int IsMovingHash =
-        Animator.StringToHash("IsMoving");
-
-    private static readonly int IsAttackingHash =
-        Animator.StringToHash("IsAttacking");
-
-    private static readonly int IsHitHash =
-        Animator.StringToHash("IsHit");
-
-    private static readonly int IsDeadHash =
-        Animator.StringToHash("IsDead");
-
-
-    // =========================================================
-    // 방향 번호
-    // =========================================================
-
-    /*
-     * Animator Direction
-     *
-     * 0 = South
-     * 1 = South-East
-     * 2 = East
-     * 3 = North-East
-     * 4 = North
-     * 5 = North-West
-     * 6 = West
-     * 7 = South-West
-     *
-     *
-     * Atan2 Sector
-     *
-     * 0 = East
-     * 1 = North-East
-     * 2 = North
-     * 3 = North-West
-     * 4 = West
-     * 5 = South-West
-     * 6 = South
-     * 7 = South-East
-     */
-
-    private static readonly int[] DirectionNumbers =
-    {
-        2, // East
-        3, // North-East
-        4, // North
-        5, // North-West
-        6, // West
-        7, // South-West
-        0, // South
-        1  // South-East
-    };
-
-
-    // =========================================================
-    // 내부 상태
-    // =========================================================
-
-    private float _attackCooldownTimer;
-
-    private Vector2 _facingDirection =
-        Vector2.down;
-
-    // Atan2 기준 South = 6
-    private int _currentSector = 6;
-
-    private bool _isAttacking;
-    private bool _isHit;
+    private SpriteRenderer[] _renderers;
+    private Color[] _colors;
+    private Collider2D[] _colliders;
+    private Rigidbody2D[] _bodies;
+    private Collider2D[] _playerColliders;
+    private MonsterVisualLock _visualLock;
+    private ActionState _action;
+    private bool _ready;
     private bool _deathStarted;
-
-    private Coroutine _attackRoutine;
-    private Coroutine _hitRoutine;
-
-
-    // =========================================================
-    // Awake
-    // =========================================================
+    private bool _directionInitialized;
+    private bool _attackHitApplied;
+    private bool _wasMoving;
+    private int _direction;
+    private int _actionHash;
+    private int _actionStartFrame;
+    private float _actionStartTime;
+    private float _nextAnimationRetry;
+    private float _attackCooldownTimer;
+    private float _nextPlayerSearch;
+    private Vector2 _attackDirection;
 
     protected override void Awake()
     {
         base.Awake();
-
-        // MeleeMonster 자기 자신의 Animator 사용
-        _directionAnimator =
-            GetComponent<Animator>();
-
-        // 8방향 Sprite를 사용하므로
-        // Transform 자체를 회전시키지 않음
-        transform.rotation =
-            Quaternion.identity;
-
-
+        ClampSettings();
+        _visualLock = new MonsterVisualLock(transform);
         if (_directionAnimator == null)
+            _directionAnimator = GetComponent<Animator>();
+        _renderers = GetComponentsInChildren<SpriteRenderer>(true);
+        _colliders = GetComponentsInChildren<Collider2D>(true);
+        _bodies = GetComponentsInChildren<Rigidbody2D>(true);
+        _colors = new Color[_renderers.Length];
+        for (int i = 0; i < _renderers.Length; i++)
         {
-            Debug.LogError(
-                $"{gameObject.name}: Animator 컴포넌트가 없습니다.",
-                this
-            );
-
-            return;
+            _colors[i] = _renderers[i].color;
+            _renderers[i].flipX = false;
+            _renderers[i].flipY = false;
         }
-
-
-        if (_directionAnimator.runtimeAnimatorController == null)
+        transform.rotation = Quaternion.identity;
+        if (_directionAnimator != null)
         {
-            Debug.LogError(
-                $"{gameObject.name}: Animator Controller가 연결되어 있지 않습니다.",
-                this
-            );
-
-            return;
+            _directionAnimator.applyRootMotion = false;
+            _directionAnimator.cullingMode = AnimatorCullingMode.AlwaysAnimate;
         }
-
-
-        // 처음에는 South Idle
-        _directionAnimator.SetInteger(
-            DirectionHash,
-            0
-        );
-
-        _directionAnimator.SetBool(
-            IsMovingHash,
-            false
-        );
-
-        _directionAnimator.SetBool(
-            IsAttackingHash,
-            false
-        );
-
-        _directionAnimator.SetBool(
-            IsHitHash,
-            false
-        );
-
-        _directionAnimator.SetBool(
-            IsDeadHash,
-            false
-        );
     }
 
+    protected override void Start()
+    {
+        base.Start();
+        CachePlayer();
+        _ready = MonsterCombat.ValidateAnimatorParameters(_directionAnimator);
+        if (!_ready) return;
 
-    // =========================================================
-    // Update
-    // =========================================================
+        string[] motions = { "idle", "walk", "attack", "hit", "death" };
+        for (int row = 0; row < motions.Length; row++)
+            for (int direction = 0; direction < 8; direction++)
+                MonsterCombat.TryGetDirectionalState(_directionAnimator, "MeleeMonster",
+                    motions[row], direction, out _states[row, direction]);
+
+        // 상태 이름이 다른 기존 컨트롤러는 Attack / Hit / Death 태그로도 동작합니다.
+        _directionAnimator.SetInteger(DirectionId, 0);
+        PlayLocomotion(false);
+    }
 
     protected override void Update()
     {
-        base.Update();
-
-
-        // 사망 시작 후 행동 중지
         if (_deathStarted)
         {
-            SetMoving(false);
+            if (_ready) UpdateAction();
+            return;
+        }
+        base.Update();
+        if (!_ready) return;
+        _attackCooldownTimer = Mathf.Max(0f, _attackCooldownTimer - Time.deltaTime);
+        if (_action != ActionState.None)
+        {
+            UpdateAction();
+            return;
+        }
+        if (!ResolvePlayer())
+        {
+            PlayLocomotion(false);
             return;
         }
 
+        Vector2 toPlayer = (Vector2)_player.position - (Vector2)transform.position;
+        float distance = Mathf.Sqrt(MonsterCombat.GetPlayerDistanceSquared(
+            _player, _playerColliders, transform.position, out Vector2 closestPoint));
+        if (!_directionInitialized || distance > _facingLockDistance)
+            SetDirection(toPlayer);
 
-        // Player를 찾지 못했다면 행동 중지
-        if (_player == null)
+        if (distance <= _attackRange)
         {
-            SetMoving(false);
+            // 붙은 상태에서는 밀어내기와 매 프레임 방향 갱신을 멈춥니다.
+            PlayLocomotion(false);
+            TryAttack(toPlayer, closestPoint);
             return;
         }
 
-
-        // 공격 쿨타임
-        if (_attackCooldownTimer > 0f)
-        {
-            _attackCooldownTimer -=
-                Time.deltaTime;
-        }
-
-
-        // =====================================================
-        // Hit 중
-        // =====================================================
-
-        /*
-         * 피격 중에는:
-         *
-         * 이동 X
-         * 공격 X
-         * 방향전환 X
-         */
-        if (_isHit)
-        {
-            SetMoving(false);
-            return;
-        }
-
-
-        // =====================================================
-        // Attack 중
-        // =====================================================
-
-        /*
-         * 공격 중에는:
-         *
-         * 이동 X
-         * 방향전환 X
-         */
-        if (_isAttacking)
-        {
-            SetMoving(false);
-            return;
-        }
-
-
-        // 공격/피격 상태가 아닐 때만 방향 갱신
-        UpdateFacingDirection();
-
-
-        // 몬스터끼리 겹치는 현상 완화
-        ApplySeparation();
-
-
-        float distanceToPlayer =
-            Vector2.Distance(
-                transform.position,
-                _player.position
-            );
-
-
-        // 공격 범위보다 멀면 추적
-        if (distanceToPlayer > _attackRange)
-        {
-            MoveToPlayer();
-        }
-        // 공격 범위 안이면 멈추고 공격
-        else
-        {
-            SetMoving(false);
-
-            TryAttack();
-        }
+        Vector2 movement = toPlayer.normalized * Mathf.Min(
+            Mathf.Max(0f, _moveSpeed) * Time.deltaTime, distance - _attackRange);
+        if (distance > _facingLockDistance)
+            movement += GetSeparationDirection() * (1.5f * Time.deltaTime);
+        Vector2 previous = transform.position;
+        MoveWithCollisionCheck(movement);
+        PlayLocomotion(((Vector2)transform.position - previous).sqrMagnitude > 0.000001f);
     }
 
-
-    // =========================================================
-    // Animator 상태 확인
-    // =========================================================
-
-    private bool IsAnimatorReady()
+    private void LateUpdate()
     {
-        return
-            _directionAnimator != null &&
-            _directionAnimator.isActiveAndEnabled &&
-            _directionAnimator.runtimeAnimatorController != null;
+        _visualLock.Restore();
     }
 
-
-    // =========================================================
-    // 8방향 처리
-    // =========================================================
-
-    private void UpdateFacingDirection()
+    public override void TakeDamage(float damage)
     {
-        if (_player == null)
-        {
-            return;
-        }
-
-
-        Vector2 direction =
-            (Vector2)(
-                _player.position -
-                transform.position
-            );
-
-
-        if (direction.sqrMagnitude <= 0.0001f)
-        {
-            return;
-        }
-
-
-        _facingDirection =
-            direction.normalized;
-
-
-        /*
-         * East  = 0도
-         * North = 90도
-         * West  = 180도
-         * South = 270도
-         */
-        float angle =
-            Mathf.Atan2(
-                direction.y,
-                direction.x
-            ) * Mathf.Rad2Deg;
-
-
-        if (angle < 0f)
-        {
-            angle += 360f;
-        }
-
-
-        // 가장 가까운 45도 방향
-        int candidateSector =
-            Mathf.RoundToInt(
-                angle / 45f
-            ) % 8;
-
-
-        // 현재 바라보는 방향의 중심 각도
-        float currentSectorAngle =
-            _currentSector * 45f;
-
-
-        float difference =
-            Mathf.Abs(
-                Mathf.DeltaAngle(
-                    currentSectorAngle,
-                    angle
-                )
-            );
-
-
-        /*
-         * 방향 경계에서
-         *
-         * E → NE → E → NE
-         *
-         * 식으로 계속 튀는 현상 방지
-         */
-        if (
-            candidateSector != _currentSector &&
-            difference >= _directionChangeAngle
-        )
-        {
-            _currentSector =
-                candidateSector;
-        }
-
-
-        if (!IsAnimatorReady())
-        {
-            return;
-        }
-
-
-        int animatorDirection =
-            DirectionNumbers[_currentSector];
-
-
-        _directionAnimator.SetInteger(
-            DirectionHash,
-            animatorDirection
-        );
+        if (_deathStarted) return;
+        base.TakeDamage(damage);
     }
-
-
-    // =========================================================
-    // 이동
-    // =========================================================
-
-    private void MoveToPlayer()
-    {
-        /*
-         * 공격 / 피격 / 사망 중이면
-         * 절대 이동하지 않음
-         */
-        if (
-            _isAttacking ||
-            _isHit ||
-            _deathStarted
-        )
-        {
-            SetMoving(false);
-            return;
-        }
-
-
-        if (_player == null)
-        {
-            SetMoving(false);
-            return;
-        }
-
-
-        Vector2 direction =
-            (Vector2)(
-                _player.position -
-                transform.position
-            );
-
-
-        if (direction.sqrMagnitude <= 0.0001f)
-        {
-            SetMoving(false);
-            return;
-        }
-
-
-        direction.Normalize();
-
-
-        // Walk Animation
-        SetMoving(true);
-
-
-        /*
-         * 중요:
-         *
-         * MoveWithCollisionCheck() 사용하지 않음.
-         *
-         * 이전에 잘 움직이던 방식으로
-         * 직접 Transform 이동.
-         *
-         * Player 코드는 전혀 건드리지 않습니다.
-         */
-        transform.position +=
-            (Vector3)(
-                direction *
-                _moveSpeed *
-                Time.deltaTime
-            );
-    }
-
-
-    private void SetMoving(bool value)
-    {
-        if (!IsAnimatorReady())
-        {
-            return;
-        }
-
-
-        _directionAnimator.SetBool(
-            IsMovingHash,
-            value
-        );
-    }
-
-
-    // =========================================================
-    // 공격 시작 판정
-    // =========================================================
-
-    private void TryAttack()
-    {
-        if (_attackCooldownTimer > 0f)
-        {
-            return;
-        }
-
-
-        if (
-            _isAttacking ||
-            _isHit ||
-            _deathStarted
-        )
-        {
-            return;
-        }
-
-
-        if (_player == null)
-        {
-            return;
-        }
-
-
-        Vector2 directionToPlayer =
-            (Vector2)(
-                _player.position -
-                transform.position
-            );
-
-
-        if (directionToPlayer.sqrMagnitude <= 0.0001f)
-        {
-            directionToPlayer =
-                _facingDirection;
-        }
-        else
-        {
-            directionToPlayer.Normalize();
-        }
-
-
-        float angle =
-            Vector2.Angle(
-                _facingDirection,
-                directionToPlayer
-            );
-
-
-        // 공격 가능 각도 밖
-        if (angle > _attackAngle * 0.5f)
-        {
-            return;
-        }
-
-
-        _attackCooldownTimer =
-            _attackCooldown;
-
-
-        _attackRoutine =
-            StartCoroutine(
-                AttackRoutine()
-            );
-    }
-
-
-    // =========================================================
-    // 공격 Animation
-    // =========================================================
-
-    private IEnumerator AttackRoutine()
-    {
-        _isAttacking = true;
-
-
-        SetMoving(false);
-
-        SetAttacking(true);
-
-
-        /*
-         * Animator가 Any State → Attack
-         * Transition을 처리할 시간
-         */
-        yield return null;
-
-
-        float timeout = 0f;
-
-
-        // 실제 Attack State 진입 대기
-        while (IsAnimatorReady())
-        {
-            AnimatorStateInfo info =
-                _directionAnimator
-                    .GetCurrentAnimatorStateInfo(0);
-
-
-            if (info.IsTag("Attack"))
-            {
-                break;
-            }
-
-
-            timeout +=
-                Time.deltaTime;
-
-
-            if (timeout >= 0.5f)
-            {
-                Debug.LogError(
-                    $"{gameObject.name}: " +
-                    "Attack 상태 진입 실패. " +
-                    "Attack Tag 또는 Transition을 확인하세요.",
-                    this
-                );
-
-
-                SetAttacking(false);
-
-                _isAttacking = false;
-                _attackRoutine = null;
-
-                yield break;
-            }
-
-
-            yield return null;
-        }
-
-
-        bool damageApplied =
-            false;
-
-
-        // =====================================================
-        // 실제 Attack Clip 끝까지 재생
-        // =====================================================
-
-        while (IsAnimatorReady())
-        {
-            AnimatorStateInfo info =
-                _directionAnimator
-                    .GetCurrentAnimatorStateInfo(0);
-
-
-            if (!info.IsTag("Attack"))
-            {
-                yield return null;
-                continue;
-            }
-
-
-            /*
-             * 기본값 0.5
-             *
-             * 애니메이션 절반쯤에서
-             * 실제 공격 판정
-             */
-            if (
-                !damageApplied &&
-                info.normalizedTime >=
-                _attackHitNormalizedTime
-            )
-            {
-                damageApplied = true;
-
-                ApplyAttackHit();
-            }
-
-
-            /*
-             * normalizedTime >= 1
-             *
-             * Attack Animation 100% 완료
-             */
-            if (info.normalizedTime >= 1f)
-            {
-                break;
-            }
-
-
-            yield return null;
-        }
-
-
-        // 공격 종료
-        SetAttacking(false);
-
-
-        _isAttacking = false;
-        _attackRoutine = null;
-    }
-
-
-    private void ApplyAttackHit()
-    {
-        Collider2D[] targets =
-            Physics2D.OverlapCircleAll(
-                transform.position,
-                _attackRange
-            );
-
-
-        foreach (Collider2D target in targets)
-        {
-            if (!target.CompareTag("Player"))
-            {
-                continue;
-            }
-
-
-            Debug.Log(
-                $"{gameObject.name}: " +
-                $"플레이어 근접 공격 적중! " +
-                $"데미지: {_contactDamage}"
-            );
-
-
-            /*
-             * Player 쪽 코드는 팀원 작업물이므로
-             * 여기서 수정하거나 직접 호출하지 않습니다.
-             */
-
-
-            break;
-        }
-    }
-
-
-    private void SetAttacking(bool value)
-    {
-        if (!IsAnimatorReady())
-        {
-            return;
-        }
-
-
-        _directionAnimator.SetBool(
-            IsAttackingHash,
-            value
-        );
-    }
-
-
-    // =========================================================
-    // HIT
-    // =========================================================
 
     protected override void OnHit()
     {
-        if (_deathStarted)
-        {
-            return;
-        }
-
-
-        /*
-         * 이미 Hit 중이면
-         * 현재 Hit 애니메이션을 그대로 끝까지 재생.
-         */
-        if (_isHit)
-        {
-            return;
-        }
-
-
-        /*
-         * Attack 중 총알 맞으면
-         * 공격 Coroutine 즉시 중단
-         */
-        if (_attackRoutine != null)
-        {
-            StopCoroutine(
-                _attackRoutine
-            );
-
-            _attackRoutine = null;
-        }
-
-
-        _isAttacking =
-            false;
-
-
-        SetAttacking(false);
-
-        SetMoving(false);
-
-
-        _hitRoutine =
-            StartCoroutine(
-                HitRoutine()
-            );
+        if (_deathStarted || !_ready || _action == ActionState.Hit) return;
+        // 피해를 받으면 아직 판정하지 않은 근접 공격을 취소합니다.
+        BeginAction(ActionState.Hit, 3);
     }
-
-
-    private IEnumerator HitRoutine()
-    {
-        _isHit = true;
-
-
-        SetMoving(false);
-
-        SetHit(true);
-
-
-        /*
-         * Any State → Hit으로 넘어갈
-         * 한 프레임의 시간
-         */
-        yield return null;
-
-
-        float timeout = 0f;
-
-
-        // =====================================================
-        // 실제 Hit State 진입 확인
-        // =====================================================
-
-        while (IsAnimatorReady())
-        {
-            AnimatorStateInfo info =
-                _directionAnimator
-                    .GetCurrentAnimatorStateInfo(0);
-
-
-            if (info.IsTag("Hit"))
-            {
-                break;
-            }
-
-
-            timeout +=
-                Time.deltaTime;
-
-
-            if (timeout >= 0.5f)
-            {
-                Debug.LogError(
-                    $"{gameObject.name}: " +
-                    "Hit 상태 진입 실패. " +
-                    "Hit Tag / Direction / Transition을 확인하세요.",
-                    this
-                );
-
-
-                SetHit(false);
-
-                _isHit = false;
-                _hitRoutine = null;
-
-                yield break;
-            }
-
-
-            yield return null;
-        }
-
-
-        // =====================================================
-        // Hit Animation 실제 끝까지 대기
-        // =====================================================
-
-        while (IsAnimatorReady())
-        {
-            AnimatorStateInfo info =
-                _directionAnimator
-                    .GetCurrentAnimatorStateInfo(0);
-
-
-            if (!info.IsTag("Hit"))
-            {
-                yield return null;
-                continue;
-            }
-
-
-            /*
-             * Hit Clip 100% 완료
-             */
-            if (info.normalizedTime >= 1f)
-            {
-                break;
-            }
-
-
-            yield return null;
-        }
-
-
-        // =====================================================
-        // Hit 종료
-        // =====================================================
-
-        SetHit(false);
-
-
-        _isHit = false;
-        _hitRoutine = null;
-
-
-        /*
-         * 여기서 Update가 다시 실행됨.
-         *
-         * 플레이어가 멀다
-         * → 다시 Walk
-         *
-         * 플레이어가 공격 범위 안
-         * → 다시 Attack
-         */
-    }
-
-
-    private void SetHit(bool value)
-    {
-        if (!IsAnimatorReady())
-        {
-            return;
-        }
-
-
-        _directionAnimator.SetBool(
-            IsHitHash,
-            value
-        );
-    }
-
-
-    // =========================================================
-    // DEATH
-    // 현재 Death Animation은 아직 다음 단계
-    // =========================================================
 
     protected override void Die()
     {
-        if (_deathStarted)
+        if (_deathStarted) return;
+        _deathStarted = true;
+        _currentHealth = 0f;
+        StopAllCoroutines();
+        for (int i = 0; i < _renderers.Length; i++)
+            if (_renderers[i] != null) _renderers[i].color = _colors[i];
+        foreach (Collider2D bodyCollider in _colliders)
+            if (bodyCollider != null) bodyCollider.enabled = false;
+        foreach (Rigidbody2D body in _bodies)
+            if (body != null) body.simulated = false;
+
+        // base.Die()의 크기 축소 처리는 사용하지 않습니다.
+        if (!_ready)
         {
+            Destroy(gameObject, 0.2f);
             return;
         }
-
-
-        _deathStarted =
-            true;
-
-
-        // 이동 중지
-        SetMoving(false);
-
-
-        // =====================================================
-        // Attack 중이면 취소
-        // =====================================================
-
-        if (_attackRoutine != null)
-        {
-            StopCoroutine(
-                _attackRoutine
-            );
-
-            _attackRoutine = null;
-        }
-
-
-        // =====================================================
-        // Hit 중이면 취소
-        // =====================================================
-
-        if (_hitRoutine != null)
-        {
-            StopCoroutine(
-                _hitRoutine
-            );
-
-            _hitRoutine = null;
-        }
-
-
-        _isAttacking =
-            false;
-
-        _isHit =
-            false;
-
-
-        SetAttacking(false);
-
-        SetHit(false);
-
-
-        /*
-         * 기존 Idle / Walk / Attack / Hit Transition에
-         * IsDead = false를 넣어놨기 때문에
-         * true가 되면 그쪽으로 다시 못 들어갑니다.
-         */
-        if (IsAnimatorReady())
-        {
-            _directionAnimator.SetBool(
-                IsDeadHash,
-                true
-            );
-        }
-
-
-        /*
-         * Death Animation은 아직 연결 전이므로
-         * 현재는 NormalMonster의 기존 사망 처리 실행.
-         *
-         * 다음 단계에서
-         * Death 8방향 Animation으로 교체합니다.
-         */
-        base.Die();
+        BeginAction(ActionState.Death, 4);
     }
 
-
-    // =========================================================
-    // 공격 범위 Gizmo
-    // =========================================================
-
-    private void OnDrawGizmosSelected()
+    private void CachePlayer()
     {
-        Gizmos.color =
-            Color.red;
+        if (_player != null && (_player == transform || _player.IsChildOf(transform)))
+            _player = null;
+        _playerColliders = _player != null ? _player.GetComponentsInChildren<Collider2D>(true) : null;
+    }
 
+    private bool ResolvePlayer()
+    {
+        if (_player != null && _player.gameObject.activeInHierarchy) return true;
+        if (Time.time < _nextPlayerSearch) return false;
+        _nextPlayerSearch = Time.time + 1f;
+        _player = MonsterCombat.FindPlayer(transform);
+        CachePlayer();
+        return _player != null;
+    }
 
-        Gizmos.DrawWireSphere(
-            transform.position,
-            _attackRange
-        );
+    private void SetDirection(Vector2 direction, bool force = false)
+    {
+        if (direction.sqrMagnitude < 0.000001f) return;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        int candidate = MonsterCombat.GetDirectionIndex(direction);
+        if (!force && _directionInitialized && candidate != _direction &&
+            Mathf.Abs(Mathf.DeltaAngle(_direction * 45f - 90f, angle)) <= _directionChangeAngle)
+            return;
+        _direction = candidate;
+        _directionInitialized = true;
+        _directionAnimator.SetInteger(DirectionId, _direction);
+    }
+
+    private void TryAttack(Vector2 toPlayer, Vector2 closestPoint)
+    {
+        if (_attackCooldownTimer > 0f || _player == null) return;
+        Vector2 facing = MonsterCombat.GetDirectionVector(_direction);
+        Vector2 targetDirection = closestPoint - (Vector2)transform.position;
+        if (targetDirection.sqrMagnitude < 0.000001f) targetDirection = toPlayer;
+        // 플레이어가 확실히 뒤로 이동했을 때만 다음 공격 시작 시 방향을 바꿉니다.
+        if (toPlayer.sqrMagnitude > 0.0625f &&
+            Vector2.Angle(facing, targetDirection) > _attackAngle * 0.5f)
+            SetDirection(targetDirection, true);
+
+        _attackDirection = MonsterCombat.GetDirectionVector(_direction);
+        if (targetDirection.sqrMagnitude > 0.000001f &&
+            Vector2.Angle(_attackDirection, targetDirection) > _attackAngle * 0.5f)
+            return;
+        if (!MonsterCombat.HasClearAttackPath(transform.position, closestPoint, transform, _player))
+            return;
+
+        _attackCooldownTimer = _attackCooldown;
+        _attackHitApplied = false;
+        BeginAction(ActionState.Attack, 2);
+    }
+
+    private void ApplyAttackHit()
+    {
+        SpawnAttackEffect();
+        Vector2 origin = transform.position;
+        float squaredDistance = MonsterCombat.GetPlayerDistanceSquared(
+            _player, _playerColliders, origin, out Vector2 closestPoint);
+        if (squaredDistance > _attackRange * _attackRange) return;
+
+        Vector2 targetDirection = closestPoint - origin;
+        if (targetDirection.sqrMagnitude < 0.000001f && _player != null)
+            targetDirection = (Vector2)_player.position - origin;
+        if (targetDirection.sqrMagnitude > 0.000001f &&
+            Vector2.Angle(_attackDirection, targetDirection) > _attackAngle * 0.5f)
+            return;
+        if (!MonsterCombat.HasClearAttackPath(origin, closestPoint, transform, _player)) return;
+
+        Vector3 hitPosition = new Vector3(closestPoint.x, closestPoint.y, transform.position.z);
+        MonsterCombat.TryTakePlayerDamage(_player, _contactDamage, hitPosition,
+            _attackDirection, _attackEffectColor);
+    }
+
+    private void SpawnAttackEffect()
+    {
+        if (_attackEffectPrefab != null)
+        {
+            float angle = Mathf.Atan2(_attackDirection.y, _attackDirection.x) * Mathf.Rad2Deg;
+            GameObject effect = Instantiate(_attackEffectPrefab, transform.position,
+                Quaternion.Euler(0f, 0f, angle));
+            Destroy(effect, _attackEffectLifetime);
+            return;
+        }
+        MonsterCombatEffect.SpawnSlash(transform.position, _attackDirection,
+            _attackRange, _attackAngle, _attackEffectColor, transform);
+    }
+
+    private void SetAnimationFlags(bool moving)
+    {
+        _directionAnimator.SetBool(MovingId, moving && _action == ActionState.None && !_deathStarted);
+        _directionAnimator.SetBool(AttackingId, _action == ActionState.Attack);
+        _directionAnimator.SetBool(HitId, _action == ActionState.Hit);
+        _directionAnimator.SetBool(DeadId, _deathStarted);
+    }
+
+    private void PlayLocomotion(bool moving)
+    {
+        SetAnimationFlags(moving);
+        _directionAnimator.speed = moving ? _walkAnimationSpeed : 1f;
+        int desiredHash = _states[moving ? 1 : 0, _direction];
+        AnimatorStateInfo info = _directionAnimator.GetCurrentAnimatorStateInfo(0);
+        if (desiredHash != 0 && info.fullPathHash != desiredHash)
+            _directionAnimator.Play(desiredHash, 0,
+                moving && _wasMoving ? Mathf.Repeat(info.normalizedTime, 1f) : 0f);
+        _wasMoving = moving;
+    }
+
+    private void BeginAction(ActionState action, int row)
+    {
+        _action = action;
+        _actionHash = _states[row, _direction];
+        _actionStartFrame = Time.frameCount;
+        _actionStartTime = Time.time;
+        _nextAnimationRetry = Time.time + 0.2f;
+        _wasMoving = false;
+        _directionAnimator.speed = action == ActionState.Attack ? _attackAnimationSpeed : 1f;
+        SetAnimationFlags(false);
+        if (_actionHash != 0) _directionAnimator.Play(_actionHash, 0, 0f);
+    }
+
+    private void UpdateAction()
+    {
+        if (_action == ActionState.None || Time.frameCount == _actionStartFrame) return;
+        float elapsed = Time.time - _actionStartTime;
+        string tag = _action.ToString();
+        AnimatorStateInfo info = _directionAnimator.GetCurrentAnimatorStateInfo(0);
+        bool matching = MonsterCombat.IsActionState(info, _actionHash, tag);
+        float maximum = _action == ActionState.Attack ? _maximumAttackTime :
+            (_action == ActionState.Hit ? _maximumHitTime : _maximumDeathTime);
+
+        if (matching && _action == ActionState.Attack && !_attackHitApplied &&
+            info.normalizedTime >= _attackHitNormalizedTime)
+        {
+            _attackHitApplied = true;
+            ApplyAttackHit();
+        }
+        if ((matching && info.normalizedTime >= 1f) || elapsed >= maximum)
+        {
+            FinishAction();
+            return;
+        }
+        if (!matching && _actionHash != 0 && Time.time >= _nextAnimationRetry)
+        {
+            SetAnimationFlags(false);
+            _directionAnimator.Play(_actionHash, 0, Mathf.Clamp(elapsed / maximum, 0f, 0.95f));
+            _nextAnimationRetry = Time.time + 0.2f;
+        }
+        else if (!matching && _actionHash == 0 && elapsed >= 0.75f)
+        {
+            Debug.LogWarning($"{name}: {_action} 상태의 이름 또는 {tag} 태그와 전환 조건을 확인하세요.", this);
+            FinishAction();
+        }
+    }
+
+    private void FinishAction()
+    {
+        if (_action == ActionState.Death)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        _action = ActionState.None;
+        PlayLocomotion(false);
+    }
+
+    private void OnValidate() { ClampSettings(); }
+
+    private void ClampSettings()
+    {
+        _attackRange = Mathf.Max(0.1f, _attackRange);
+        _attackAngle = Mathf.Clamp(_attackAngle, 1f, 360f);
+        _attackCooldown = Mathf.Max(0f, _attackCooldown);
+        _attackHitNormalizedTime = Mathf.Clamp(_attackHitNormalizedTime, 0f, 0.95f);
+        _directionChangeAngle = Mathf.Clamp(_directionChangeAngle, 22.5f, 45f);
+        _facingLockDistance = Mathf.Max(_attackRange, _facingLockDistance);
+        _walkAnimationSpeed = Mathf.Max(0.1f, _walkAnimationSpeed);
+        _attackAnimationSpeed = Mathf.Max(0.1f, _attackAnimationSpeed);
+        _attackEffectLifetime = Mathf.Max(0.1f, _attackEffectLifetime);
+        _maximumAttackTime = Mathf.Max(0.1f, _maximumAttackTime);
+        _maximumHitTime = Mathf.Max(0.1f, _maximumHitTime);
+        _maximumDeathTime = Mathf.Max(0.1f, _maximumDeathTime);
     }
 }

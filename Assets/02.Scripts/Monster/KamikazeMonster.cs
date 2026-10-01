@@ -69,6 +69,7 @@ public class KamikazeMonster : NormalMonster
     private Collider2D[] _colliders;
     private Collider2D[] _playerColliders;
     private Rigidbody2D[] _bodies;
+    private MonsterVisualLock _visualLock;
 
     private ActionState _action;
     private bool _ready;
@@ -87,6 +88,7 @@ public class KamikazeMonster : NormalMonster
     protected override void Awake()
     {
         base.Awake();
+        _visualLock = new MonsterVisualLock(transform);
 
         ClampSettings();
         _animator = GetComponent<Animator>();
@@ -192,7 +194,7 @@ public class KamikazeMonster : NormalMonster
 
     private void LateUpdate()
     {
-        transform.rotation = Quaternion.identity;
+        _visualLock.Restore();
     }
 
     public override void TakeDamage(float damage)
@@ -260,9 +262,7 @@ public class KamikazeMonster : NormalMonster
                 // 넓은 감지용 Trigger는 몸의 거리 판정에서 제외합니다.
                 if (playerCollider == null || !playerCollider.enabled ||
                     playerCollider.isTrigger || !playerCollider.gameObject.activeInHierarchy)
-                {
                     continue;
-                }
 
                 Rigidbody2D body = playerCollider.attachedRigidbody;
                 if (body != null && !body.simulated)
@@ -420,22 +420,17 @@ public class KamikazeMonster : NormalMonster
         DisablePhysics();
         SpawnExplosionEffect(explosionPosition);
 
-        if (GetPlayerDistanceSquared(explosionPosition) >
-            _explosionDamageRadius * _explosionDamageRadius)
-        {
+        float squaredDistance = MonsterCombat.GetPlayerDistanceSquared(
+            _player, _playerColliders, explosionPosition, out Vector2 hitPoint);
+        if (squaredDistance > _explosionDamageRadius * _explosionDamageRadius)
             return;
-        }
-
-        PlayerManager playerManager = PlayerManager.Instance;
-        if (playerManager == null)
-        {
-            Debug.LogWarning($"{name}: PlayerManager가 없어 폭발 피해를 전달하지 못했습니다.", this);
-            return;
-        }
 
         // 데미지 판정은 폭발당 한 번입니다.
         // 대시/피격 무적과 HP 감소는 기존 PlayerManager가 처리합니다.
-        playerManager.TryTakeDamage(_explosionDamage);
+        Vector2 hitDirection = _player != null
+            ? ((Vector2)_player.position - (Vector2)explosionPosition).normalized : Vector2.zero;
+        MonsterCombat.TryTakePlayerDamage(_player, _explosionDamage,
+            new Vector3(hitPoint.x, hitPoint.y, explosionPosition.z), hitDirection, _explosionColor);
     }
 
     private void SpawnExplosionEffect(Vector3 position)
@@ -480,7 +475,8 @@ public class KamikazeMonster : NormalMonster
 
         if (!_ready)
         {
-            base.Die();
+            // 부모의 크기 축소 사망 처리는 호출하지 않습니다.
+            Destroy(gameObject, 0.2f);
             return;
         }
 
@@ -549,15 +545,8 @@ public class KamikazeMonster : NormalMonster
             for (int direction = 0; direction < Directions.Length; direction++)
             {
                 string path = $"Base Layer.KamikazeMonster_{motions[row]}_{Directions[direction]}";
-                int hash = Animator.StringToHash(path);
-
-                if (row == 3 && !_animator.HasState(0, hash))
-                {
-                    path = $"Base Layer.KamikazeMonster_Hit_{Directions[direction]}";
-                    hash = Animator.StringToHash(path);
-                }
-
-                if (!_animator.HasState(0, hash))
+                if (!MonsterCombat.TryGetDirectionalState(_animator, "KamikazeMonster",
+                    motions[row], direction, out int hash))
                 {
                     Debug.LogError($"{name}: Animator 상태를 찾을 수 없습니다: {path}", this);
                     return false;
