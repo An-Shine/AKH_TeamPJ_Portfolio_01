@@ -19,6 +19,7 @@ public class Weapon : MonoBehaviour
 
     private bool _isReloading;
     private int _remainingAmmo;
+    public int RemainingAmmo => _remainingAmmo;
     private float _timer;
     private float _reloadTimer;
 
@@ -31,7 +32,7 @@ public class Weapon : MonoBehaviour
     private float ReloadSpeed => (1 + Modifier.ReloadSpeed.Flat) * (1f + Modifier.ReloadSpeed.Rate);
     public float ChargeSpeed => (1 + Modifier.ChargeSpeed.Flat) * (1f + Modifier.ChargeSpeed.Rate);
 
-    private int MagazineSize =>
+    public int MagazineSize =>
         (int)((Data.MagazineSize + Modifier.MagazineSize)
               * (1f + ItemManager.Instance.WeaponStat.MagazineSizeMultiplier));
 
