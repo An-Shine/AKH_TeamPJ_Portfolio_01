@@ -38,7 +38,6 @@ public class DataManager : MonoBehaviour
         for (int i = 1; i < datas.Length; i++) //pass Header
         {
             var row = datas[i].Split(',');
-            Debug.Log(IdPrefix.WeaponPrefix + row[0]);
             WeaponDatas[IdPrefix.WeaponPrefix + row[0]] = new WeaponData
             {
                 Name = row[1],
