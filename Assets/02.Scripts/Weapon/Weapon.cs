@@ -4,9 +4,11 @@ public class Weapon : MonoBehaviour
 {
     [SerializeField] private SFXType _fireSoundType;
     [SerializeField] private GameObject _fireEffectPrefab;
-    [SerializeField] public Transform _originPoint;
-    [SerializeField] public Transform _firePoint;
-    [SerializeField] public Transform _effectPoint;
+    [SerializeField] public Transform OriginPoint;
+
+    [SerializeField] public Transform FirePoint;
+
+    //[SerializeField] public Transform EffectPoint;
     public WeaponData Data { get; private set; }
     public WeaponModifier Modifier { get; private set; }
 
@@ -114,21 +116,21 @@ public class Weapon : MonoBehaviour
 
     private void Fire()
     {
-        FireContext context = new FireContext(Data.ProjectileType, _firePoint.transform.position, _targetDirection,
+        FireContext context = new FireContext(Data.ProjectileType, FirePoint.transform.position, _targetDirection,
             Range, ProjectileCount, Angle);
         _firePattern.Fire(context, Damage);
         AudioManager.Instance.PlaySFX(_fireSoundType);
         if (_fireEffectPrefab != null)
         {
             GameObject effectObject =
-                Instantiate(_fireEffectPrefab, _effectPoint.transform.position, Quaternion.identity);
+                Instantiate(_fireEffectPrefab, FirePoint.transform.position, Quaternion.identity);
             effectObject.transform.eulerAngles = _effectDirection;
         }
     }
 
     public void RefreshDirection()
     {
-        _targetDirection = _firePoint.position - _originPoint.position;
+        _targetDirection = FirePoint.position - OriginPoint.position;
         float angle = Mathf.Atan2(_targetDirection.y, _targetDirection.x) * Mathf.Rad2Deg + 180f;
         _effectDirection = new Vector3(
             _fireEffectPrefab.transform.eulerAngles.x,
