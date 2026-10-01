@@ -149,8 +149,9 @@ public class RangeMonster : NormalMonster
         PlayLocomotion(moving);
     }
 
-    private void LateUpdate()
+    protected override void LateUpdate()
     {
+        base.LateUpdate();
         _visualLock.Restore();
     }
 
@@ -170,6 +171,7 @@ public class RangeMonster : NormalMonster
     {
         if (_hasDied) return;
         _hasDied = true;
+        StopMovementForDeath();
         _currentHealth = 0f;
         StopAllCoroutines();
         for (int i = 0; i < _renderers.Length; i++)
@@ -179,7 +181,7 @@ public class RangeMonster : NormalMonster
         foreach (Rigidbody2D body in _bodies)
             if (body != null) body.simulated = false;
 
-        // 부모의 크기 축소 사망 처리를 호출하지 않습니다.
+        // 이동은 멈추고 기존 Death 애니메이션을 재생합니다.
         if (!_ready)
         {
             Destroy(gameObject, 0.2f);

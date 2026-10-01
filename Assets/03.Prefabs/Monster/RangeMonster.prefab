@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f499990db5c84b24da3e79a02000ecf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangeMonster
-  _maxHealth: 100
+  _maxHealth: 10
   _moveSpeed: 2
   _contactDamage: 10
   _separationRadius: 0.8
@@ -120,7 +120,6 @@ MonoBehaviour:
   _hitCooldown: 0.1
   _hitFlashDuration: 0.08
   _deathDelay: 0.2
-  _deathScale: 0
   _attackRange: 6
   _keepDistance: 4
   _attackCooldown: 1
@@ -129,6 +128,13 @@ MonoBehaviour:
   _fireNormalizedTime: 0.5
   _firePointReferenceDirection: {x: 0, y: -1}
   _crowdAvoidanceSpeed: 1.5
+  _distanceTolerance: 0.1
+  _directionHysteresis: 7
+  _facingLockDistance: 1.5
+  _walkAnimationSpeed: 1.6
+  _maximumAttackTime: 3
+  _maximumHitTime: 1.5
+  _maximumDeathTime: 3
 --- !u!50 &1041100582857538942
 Rigidbody2D:
   serializedVersion: 5

@@ -145,8 +145,9 @@ public class MeleeMonster : NormalMonster
         PlayLocomotion(((Vector2)transform.position - previous).sqrMagnitude > 0.000001f);
     }
 
-    private void LateUpdate()
+    protected override void LateUpdate()
     {
+        base.LateUpdate();
         _visualLock.Restore();
     }
 
@@ -167,6 +168,7 @@ public class MeleeMonster : NormalMonster
     {
         if (_deathStarted) return;
         _deathStarted = true;
+        StopMovementForDeath();
         _currentHealth = 0f;
         StopAllCoroutines();
         for (int i = 0; i < _renderers.Length; i++)
@@ -176,7 +178,7 @@ public class MeleeMonster : NormalMonster
         foreach (Rigidbody2D body in _bodies)
             if (body != null) body.simulated = false;
 
-        // base.Die()의 크기 축소 처리는 사용하지 않습니다.
+        // 이동은 멈추고 기존 Death 애니메이션을 재생합니다.
         if (!_ready)
         {
             Destroy(gameObject, 0.2f);

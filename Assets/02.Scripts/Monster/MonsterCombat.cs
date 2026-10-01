@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 internal static class MonsterCombat
@@ -6,6 +7,40 @@ internal static class MonsterCombat
         { "S", "SE", "E", "NE", "N", "NW", "W", "SW" };
 
     private static bool _reportedMissingPlayerManager;
+    private static readonly List<Collider2D> MovementOverlaps = new List<Collider2D>(16);
+
+    public static bool CanMoveTo(
+        Transform owner, Transform player, Vector2 position, float radius, LayerMask obstacleLayers)
+    {
+        if (owner == null)
+            return false;
+
+        ContactFilter2D filter = new ContactFilter2D();
+        filter.SetLayerMask(obstacleLayers);
+        filter.useTriggers = false;
+
+        MovementOverlaps.Clear();
+        int count = Physics2D.OverlapCircle(position, Mathf.Max(0f, radius), filter, MovementOverlaps);
+        for (int i = 0; i < count; i++)
+        {
+            Collider2D hit = MovementOverlaps[i];
+            if (hit == null || !hit.enabled || hit.isTrigger)
+                continue;
+
+            // 자신과 자식 콜라이더는 이동을 막는 장애물이 아닙니다.
+            if (hit.transform == owner || hit.transform.IsChildOf(owner))
+                continue;
+            if (hit.GetComponentInParent<NormalMonster>() != null)
+                continue;
+            if (ResolvePlayerCollider(hit, player) != null)
+                continue;
+
+            // 지정한 장애물 Layer의 일반 콜라이더만 이동을 막습니다.
+            return false;
+        }
+
+        return true;
+    }
 
     public static int GetDirectionIndex(Vector2 direction)
     {

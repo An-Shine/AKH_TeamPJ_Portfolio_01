@@ -65,7 +65,7 @@ public class KamikazeMonster : NormalMonster
 
     private Animator _animator;
     private SpriteRenderer[] _renderers;
-    private Color[] _originalColors;
+    private Color[] _kamikazeOriginalColors;
     private Collider2D[] _colliders;
     private Collider2D[] _playerColliders;
     private Rigidbody2D[] _bodies;
@@ -95,11 +95,11 @@ public class KamikazeMonster : NormalMonster
         _renderers = GetComponentsInChildren<SpriteRenderer>(true);
         _colliders = GetComponentsInChildren<Collider2D>(true);
         _bodies = GetComponentsInChildren<Rigidbody2D>(true);
-        _originalColors = new Color[_renderers.Length];
+        _kamikazeOriginalColors = new Color[_renderers.Length];
 
         for (int i = 0; i < _renderers.Length; i++)
         {
-            _originalColors[i] = _renderers[i].color;
+            _kamikazeOriginalColors[i] = _renderers[i].color;
             _renderers[i].flipX = false;
             _renderers[i].flipY = false;
         }
@@ -192,8 +192,9 @@ public class KamikazeMonster : NormalMonster
         PlayLocomotion(actualMovement.sqrMagnitude > 0.000001f, charging);
     }
 
-    private void LateUpdate()
+    protected override void LateUpdate()
     {
+        base.LateUpdate();
         _visualLock.Restore();
     }
 
@@ -416,6 +417,7 @@ public class KamikazeMonster : NormalMonster
         _explosionTime = Time.time;
         Vector3 explosionPosition = transform.position;
 
+        StopMovementForDeath();
         // 폭발한 몸이 다시 밀리거나 추가 충돌을 만들지 않게 합니다.
         DisablePhysics();
         SpawnExplosionEffect(explosionPosition);
@@ -462,20 +464,21 @@ public class KamikazeMonster : NormalMonster
             return;
 
         _hasDied = true;
+        StopMovementForDeath();
         _currentHealth = 0f;
         StopAllCoroutines();
 
         for (int i = 0; i < _renderers.Length; i++)
         {
             if (_renderers[i] != null)
-                _renderers[i].color = _originalColors[i];
+                _renderers[i].color = _kamikazeOriginalColors[i];
         }
 
         DisablePhysics();
 
         if (!_ready)
         {
-            // 부모의 크기 축소 사망 처리는 호출하지 않습니다.
+            // Animator 설정이 없는 경우에도 위치와 크기를 유지합니다.
             Destroy(gameObject, 0.2f);
             return;
         }
