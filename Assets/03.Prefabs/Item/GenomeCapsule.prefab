@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2963944265821290789}
   - component: {fileID: 1527189082185625316}
-  - component: {fileID: 5026259335527411976}
   - component: {fileID: 6584528331630658663}
+  - component: {fileID: 5026259335527411976}
   m_Layer: 0
   m_Name: GenomeCapsule
   m_TagString: Untagged
@@ -93,20 +93,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &5026259335527411976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2230449474807157035}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ed8de1ada934d4eb76728ed185ba546, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Item
-  _gainEffectPrefab: {fileID: 0}
-  _gainEffectSFX: 13
 --- !u!95 &6584528331630658663
 Animator:
   serializedVersion: 7
@@ -129,3 +115,17 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5026259335527411976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2230449474807157035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ed8de1ada934d4eb76728ed185ba546, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Item
+  _gainEffectPrefab: {fileID: 207533826550086198, guid: 49c44e811823276408412ea4277a8e8e, type: 3}
+  _gainEffectSFX: 13
