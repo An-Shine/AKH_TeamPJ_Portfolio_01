@@ -3,6 +3,8 @@ public enum EffectType
     // Player
     HealHealth,
     DamageHealth,
+    CombatDrone,
+    GuardDrone,
     MaxHealthModifier,
 
     // Weapon
