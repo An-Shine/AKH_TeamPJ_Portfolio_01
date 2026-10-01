@@ -245,6 +245,33 @@ TextureImporter:
   - first:
       213: 5931157443938717607
     second: HandGun_80
+  - first:
+      213: -3845859981703204837
+    second: HandGun_81
+  - first:
+      213: -4584163334014751598
+    second: HandGun_82
+  - first:
+      213: 3336949884778232032
+    second: HandGun_83
+  - first:
+      213: 3941769363197508444
+    second: HandGun_84
+  - first:
+      213: -7116880900601420574
+    second: HandGun_85
+  - first:
+      213: 8767488733997511731
+    second: HandGun_86
+  - first:
+      213: 5430219045265449747
+    second: HandGun_87
+  - first:
+      213: 3180889644798517195
+    second: HandGun_88
+  - first:
+      213: -151815903537779558
+    second: HandGun_89
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -369,9 +396,9 @@ TextureImporter:
       name: HandGun_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 30
         y: 444
-        width: 443
+        width: 436
         height: 443
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -391,9 +418,9 @@ TextureImporter:
       name: HandGun_1
       rect:
         serializedVersion: 2
-        x: 443
+        x: 466
         y: 444
-        width: 443
+        width: 436
         height: 443
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -413,9 +440,9 @@ TextureImporter:
       name: HandGun_2
       rect:
         serializedVersion: 2
-        x: 886
+        x: 902
         y: 444
-        width: 443
+        width: 436
         height: 443
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -435,9 +462,9 @@ TextureImporter:
       name: HandGun_3
       rect:
         serializedVersion: 2
-        x: 1329
+        x: 1338
         y: 444
-        width: 443
+        width: 436
         height: 443
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -457,9 +484,9 @@ TextureImporter:
       name: HandGun_4
       rect:
         serializedVersion: 2
-        x: 0
+        x: 30
         y: 1
-        width: 443
+        width: 436
         height: 443
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -479,9 +506,9 @@ TextureImporter:
       name: HandGun_5
       rect:
         serializedVersion: 2
-        x: 443
+        x: 466
         y: 1
-        width: 443
+        width: 436
         height: 443
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -501,9 +528,9 @@ TextureImporter:
       name: HandGun_6
       rect:
         serializedVersion: 2
-        x: 886
+        x: 902
         y: 1
-        width: 443
+        width: 436
         height: 443
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -523,9 +550,9 @@ TextureImporter:
       name: HandGun_7
       rect:
         serializedVersion: 2
-        x: 1329
+        x: 1338
         y: 1
-        width: 443
+        width: 436
         height: 443
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -545,7 +572,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: bb2987ea70d9a4149baa3013b3559479
+    spriteID: ece505f6a596f884eaa05e75fd0473e5
     internalID: 0
     vertices: []
     indices: 
@@ -555,7 +582,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":4.0,"y":2.0},"gridSpriteSize":{"x":443.0,"y":443.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":4.0,"y":2.0},"gridSpriteSize":{"x":436.0,"y":443.0},"gridSpriteOffset":{"x":30.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       HandGun_0: 4512714918657851343
       HandGun_1: -2100020025919925453
