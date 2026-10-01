@@ -16,4 +16,9 @@ public enum SFXType
     ItemGain01,
     ItemGain02,
     ItemGain03,
+    ItemGain04,
+    ItemGain05,
+    ItemGain06,
+    ItemGain07,
+    FailFire,
 }
