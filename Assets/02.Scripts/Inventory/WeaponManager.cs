@@ -48,6 +48,11 @@ public class WeaponManager : MonoBehaviour
 
             _unobtainedWeapons[id].gameObject.SetActive(false);
         }
+
+        _gainedWeaponList.Add(_unobtainedWeapons[id]);
+        EquipByIndex(0);
+        CurrentWeapon._firePoint = PlayerManager.Instance.Player._weapon.Muzzle;
+        CurrentWeapon._originPoint = PlayerManager.Instance.Player._weapon.Origin;
     }
 
     public void EquipByIndex(int targetIndex)

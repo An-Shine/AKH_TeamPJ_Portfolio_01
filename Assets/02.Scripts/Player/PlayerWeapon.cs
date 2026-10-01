@@ -15,6 +15,8 @@ public class PlayerWeapon : MonoBehaviour
     public int ShotSequence { get; private set; }
     public AimDisplayMode AimMode => _aimDisplayMode;
     public Transform Muzzle => _muzzle;
+    [SerializeField] private Transform _origin;
+    public Transform Origin => _origin;
 
     public void Tick(bool fireHeld, bool isDashing, Vector2 aimDirection)
     {

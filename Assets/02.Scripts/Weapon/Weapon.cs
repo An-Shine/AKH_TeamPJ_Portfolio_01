@@ -4,9 +4,9 @@ public class Weapon : MonoBehaviour
 {
     [SerializeField] private SFXType _fireSoundType;
     [SerializeField] private GameObject _fireEffectPrefab;
-    [SerializeField] private Transform _originPoint;
-    [SerializeField] private Transform _firePoint;
-    [SerializeField] private Transform _effectPoint;
+    [SerializeField] public Transform _originPoint;
+    [SerializeField] public Transform _firePoint;
+    [SerializeField] public Transform _effectPoint;
     public WeaponData Data { get; private set; }
     public WeaponModifier Modifier { get; private set; }
 
@@ -59,7 +59,6 @@ public class Weapon : MonoBehaviour
     private void Start()
     {
         _timer = CoolTime;
-        RefreshDirection();
     }
 
     private void Update()
@@ -104,6 +103,7 @@ public class Weapon : MonoBehaviour
         if (_timer < CoolTime)
             return false;
 
+        RefreshDirection();
         Fire();
         _timer = 0;
 
