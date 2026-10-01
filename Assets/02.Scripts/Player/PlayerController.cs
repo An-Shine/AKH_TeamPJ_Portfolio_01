@@ -14,11 +14,6 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        if (FindFirstObjectByType<PlayerManager>() == null)
-        {
-            gameObject.AddComponent<PlayerManager>();
-        }
-
         _motor = GetComponent<PlayerMotor>();
         _fsm = GetComponent<PlayerStateMachine>();
         _aim = GetComponent<PlayerAim>();

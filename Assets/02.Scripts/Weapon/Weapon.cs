@@ -4,11 +4,13 @@ public class Weapon : MonoBehaviour
 {
     [SerializeField] private SFXType _fireSoundType;
     [SerializeField] private GameObject _fireEffectPrefab;
-    [SerializeField] public Transform OriginPoint;
+    [SerializeField] public Transform _originPoint;
+    [SerializeField] public Transform _firePoint;
+    [SerializeField] public Transform _effectPoint;
+    [SerializeField] private Sprite _hudIcon;
 
-    [SerializeField] public Transform FirePoint;
-
-    //[SerializeField] public Transform EffectPoint;
+    public Sprite HudIcon => _hudIcon;
+    public int RemainingAmmo => _remainingAmmo;
     public WeaponData Data { get; private set; }
     public WeaponModifier Modifier { get; private set; }
 
@@ -173,10 +175,7 @@ public class Weapon : MonoBehaviour
     public void SetFirePose(Vector2 origin, Vector2 direction)
     {
         _fireOrigin = origin;
-        if (direction.sqrMagnitude > 0.000001f)
-        {
-            _fireDirection = direction.normalized;
-        }
+        if (direction.sqrMagnitude > 0.000001f) _fireDirection = direction.normalized;
 
         _hasFirePose = true;
     }
