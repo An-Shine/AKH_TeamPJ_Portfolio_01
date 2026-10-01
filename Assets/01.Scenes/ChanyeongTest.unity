@@ -321,6 +321,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   _animation: {fileID: 1956045946}
+  _interactionRadius: 1.5
+  _interactionDuration: 0.5
 --- !u!114 &32498127
 MonoBehaviour:
   m_ObjectHideFlags: 0
