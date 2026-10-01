@@ -1,8 +1,7 @@
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
 using Michsky.UI.Shift;
-using Unity.VisualScripting;
+using UnityEngine.UI;
 
 public class AcceptQuest : MonoBehaviour
 {
@@ -18,9 +17,9 @@ public class AcceptQuest : MonoBehaviour
     [SerializeField] private GameObject _emptyAcceptedQuestView;
     [SerializeField] private GameObject _acceptedQuestView;
 
-    [SerializeField] private Image _acceptedQuestImage;
     [SerializeField] private TMP_Text _acceptedQuestTitleText;
-    [SerializeField] private TMP_Text _acceptedQuestDescriptionText;
+    [SerializeField] private Image _acceptedQuestBackground;
+    [SerializeField] private Sprite _launchingShipImage;
 
     [SerializeField] private BlurManager _blurManager;
 
@@ -36,12 +35,8 @@ public class AcceptQuest : MonoBehaviour
     public void ConfirmAcceptQuest()
     {
         _acceptedQuest = _selectedQuest;
-
-        _acceptedQuestImage.sprite = _acceptedQuest.QuestImage;
         _acceptedQuestTitleText.text = _acceptedQuest.QuestTitle;
-        _acceptedQuestDescriptionText.text = $"{_acceptedQuest.QuestDescription}\n" +
-                                             $"난이도: {_acceptedQuest.DifficultyText}\n" +
-                                             $"보상: {_acceptedQuest.RewardText}";
+        _acceptedQuestBackground.sprite = _launchingShipImage;
 
         _emptyAcceptedQuestView.SetActive(false);
         _acceptedQuestView.SetActive(true);

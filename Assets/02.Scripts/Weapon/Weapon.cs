@@ -7,6 +7,10 @@ public class Weapon : MonoBehaviour
     [SerializeField] public Transform _originPoint;
     [SerializeField] public Transform _firePoint;
     [SerializeField] public Transform _effectPoint;
+    [SerializeField] private Sprite _hudIcon;
+
+    public Sprite HudIcon => _hudIcon;
+    public int RemainingAmmo => _remainingAmmo;
     public WeaponData Data { get; private set; }
     public WeaponModifier Modifier { get; private set; }
 
@@ -29,7 +33,7 @@ public class Weapon : MonoBehaviour
     private float ReloadSpeed => (1 + Modifier.ReloadSpeed.Flat) * (1f + Modifier.ReloadSpeed.Rate);
     public float ChargeSpeed => (1 + Modifier.ChargeSpeed.Flat) * (1f + Modifier.ChargeSpeed.Rate);
 
-    private int MagazineSize =>
+    public int MagazineSize =>
         (int)((Data.MagazineSize + Modifier.MagazineSize)
               * (1f + ItemManager.Instance.WeaponStat.MagazineSizeMultiplier));
 
@@ -114,13 +118,13 @@ public class Weapon : MonoBehaviour
 
     private void Fire()
     {
-        FireContext context = new FireContext(Data.ProjectileType, _firePoint.transform.position, _targetDirection,
+        var context = new FireContext(Data.ProjectileType, _firePoint.transform.position, _targetDirection,
             Range, ProjectileCount, Angle);
         _firePattern.Fire(context, Damage);
         AudioManager.Instance.PlaySFX(_fireSoundType);
         if (_fireEffectPrefab != null)
         {
-            GameObject effectObject =
+            var effectObject =
                 Instantiate(_fireEffectPrefab, _effectPoint.transform.position, Quaternion.identity);
             effectObject.transform.eulerAngles = _effectDirection;
         }
@@ -129,7 +133,7 @@ public class Weapon : MonoBehaviour
     public void RefreshDirection()
     {
         _targetDirection = _firePoint.position - _originPoint.position;
-        float angle = Mathf.Atan2(_targetDirection.y, _targetDirection.x) * Mathf.Rad2Deg + 180f;
+        var angle = Mathf.Atan2(_targetDirection.y, _targetDirection.x) * Mathf.Rad2Deg + 180f;
         _effectDirection = new Vector3(
             _fireEffectPrefab.transform.eulerAngles.x,
             _fireEffectPrefab.transform.eulerAngles.y,
@@ -138,10 +142,7 @@ public class Weapon : MonoBehaviour
 
     public bool CheckRemainingAmmo()
     {
-        if (_remainingAmmo <= 0)
-        {
-            return false;
-        }
+        if (_remainingAmmo <= 0) return false;
 
         return true;
     }
@@ -169,10 +170,7 @@ public class Weapon : MonoBehaviour
     public void SetFirePose(Vector2 origin, Vector2 direction)
     {
         _fireOrigin = origin;
-        if (direction.sqrMagnitude > 0.000001f)
-        {
-            _fireDirection = direction.normalized;
-        }
+        if (direction.sqrMagnitude > 0.000001f) _fireDirection = direction.normalized;
 
         _hasFirePose = true;
     }
