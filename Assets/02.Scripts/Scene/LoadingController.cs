@@ -33,6 +33,7 @@ public class LoadingController : MonoBehaviour
             await UniTask.Yield(PlayerLoopTiming.Update); // 다음 업데이트 프레임까지 대기
         }
 
+        SceneFlowManager.Instance.UpdateBackgroundForTargetScene(targetSceneName);
         // 다음씬 전환요청 받을수있도록 전환상태 초기화
         SceneFlowManager.Instance.CompleteTransition();
 
