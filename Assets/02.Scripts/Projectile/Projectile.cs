@@ -78,8 +78,10 @@ public abstract class Projectile : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            //if(other.TryGetComponent(out Enemy enemy))
-            //enemy.TakeDamage(Damage);
+            if (other.TryGetComponent(out NormalMonster monster))
+            {
+                monster.TakeDamage(Damage);
+            }
         }
     }
 
