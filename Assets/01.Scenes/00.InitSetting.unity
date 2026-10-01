@@ -150,6 +150,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SceneFlowManager
   _pressAnyKeySceneName: 01.PressAnyKey
   _loadingSceneName: 02.Loading
+  _mainMenuSceneName: 03.MainMenu
+  _gameplaySceneName: 04.GameScene
+  _backgroundCanvas: {fileID: 1335550950}
 --- !u!4 &280574408
 Transform:
   m_ObjectHideFlags: 0

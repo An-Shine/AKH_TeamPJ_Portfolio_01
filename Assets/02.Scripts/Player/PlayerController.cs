@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     private PlayerMotor _motor;
     private PlayerStateMachine _fsm;
     private PlayerAim _aim;
-    private PlayerWeapon _weapon;
+    public PlayerWeapon _weapon;
     private Vector2 _moveInput;
     private bool _dashQueued;
 
