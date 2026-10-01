@@ -35,18 +35,20 @@ public class ItemManager : MonoBehaviour
     {
         _gainedItemList = new List<Item>();
         _unobtainedItemDictionary = new Dictionary<string, Item>();
+        string id = string.Empty;
         foreach (ItemEntry itemEntry in _itemEntryList)
         {
-            _unobtainedItemDictionary[itemEntry.ItemId] = Instantiate(itemEntry.ItemPrefab, _itemContainer);
-            _unobtainedItemDictionary[itemEntry.ItemId].Initialize(itemEntry.ItemId);
-            _unobtainedItemDictionary[itemEntry.ItemId].gameObject.SetActive(false);
+            id = IdPrefix.ItemPrefix + itemEntry.ItemId;
+            _unobtainedItemDictionary[id] = Instantiate(itemEntry.ItemPrefab, _itemContainer);
+            _unobtainedItemDictionary[id].Initialize(itemEntry.ItemId);
+            _unobtainedItemDictionary[id].gameObject.SetActive(false);
         }
     }
 
     public void GainItem(Item item)
     {
         _gainedItemList.Add(item);
-        _unobtainedItemDictionary.Remove(item.Data.ItemId);
+        _unobtainedItemDictionary.Remove(IdPrefix.ItemPrefix + item.Data.ItemId);
 
         foreach (ItemEffectData effect in item.Effects)
         {

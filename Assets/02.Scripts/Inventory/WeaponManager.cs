@@ -30,21 +30,23 @@ public class WeaponManager : MonoBehaviour
     {
         _unobtainedWeapons = new Dictionary<string, Weapon>();
         _gainedWeaponList = new List<Weapon>();
+        string id = string.Empty;
         foreach (var weaponSlot in _weaponEntryList)
         {
-            _unobtainedWeapons[weaponSlot.WeaponId] = Instantiate(weaponSlot.WeaponPrefab, _weaponContainer);
-            if (DataManager.Instance.WeaponDatas.TryGetValue(weaponSlot.WeaponId, out WeaponData weaponData))
+            id = IdPrefix.WeaponPrefix + weaponSlot.WeaponId;
+            _unobtainedWeapons[id] = Instantiate(weaponSlot.WeaponPrefab, _weaponContainer);
+            if (DataManager.Instance.WeaponDatas.TryGetValue(id, out WeaponData weaponData))
             {
-                _unobtainedWeapons[weaponSlot.WeaponId].Initialize(weaponData);
+                _unobtainedWeapons[id].Initialize(weaponData);
             }
             else
             {
-                Destroy(_unobtainedWeapons[weaponSlot.WeaponId]);
-                _unobtainedWeapons.Remove(weaponSlot.WeaponId);
+                Destroy(_unobtainedWeapons[id]);
+                _unobtainedWeapons.Remove(id);
                 continue;
             }
 
-            _unobtainedWeapons[weaponSlot.WeaponId].gameObject.SetActive(false);
+            _unobtainedWeapons[id].gameObject.SetActive(false);
         }
     }
 
@@ -102,16 +104,17 @@ public class WeaponManager : MonoBehaviour
         CurrentWeapon.gameObject.SetActive(true);
     }
 
-    public bool GainWeapon(string weaponId)
+    public bool GainWeapon(int weaponId)
     {
-        if (_unobtainedWeapons.TryGetValue(weaponId, out var targetWeapon))
+        string id = IdPrefix.WeaponPrefix + weaponId;
+        if (_unobtainedWeapons.TryGetValue(id, out var targetWeapon))
         {
             _gainedWeaponList.Add(targetWeapon);
-            _unobtainedWeapons.Remove(weaponId);
+            _unobtainedWeapons.Remove(id);
             return true;
         }
 
-        Debug.LogWarning($"{weaponId} is not found");
+        Debug.LogWarning($"{id} is not found");
         return false;
     }
 }
