@@ -371,6 +371,12 @@ MonoBehaviour:
   - {fileID: 898446150}
   - {fileID: 1865195394}
   _spawnCount: 3
+  _spawnInterval: 3
+  _spawnOnStart: 1
+  _maxAliveMonsters: 20
+  _player: {fileID: 0}
+  _minPlayerDistance: 5
+  _blockNearSpawnerRoot: 1
 --- !u!1 &1209961611
 GameObject:
   m_ObjectHideFlags: 0
