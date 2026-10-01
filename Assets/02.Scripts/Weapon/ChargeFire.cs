@@ -6,6 +6,7 @@ public class ChargeFire : FireBehaviour
 
     public override void OnMouseDown(Weapon weapon)
     {
+        AudioManager.Instance.PlayLoopSFX(SFXType.Charging);
         _chargeTimer = 0f;
     }
 
@@ -16,6 +17,7 @@ public class ChargeFire : FireBehaviour
 
     public override void OnMouseUp(Weapon weapon)
     {
+        AudioManager.Instance.StopLoopSFX();
         if (_chargeTimer >= weapon.Data.ChargeTime)
         {
             weapon.TryFire();

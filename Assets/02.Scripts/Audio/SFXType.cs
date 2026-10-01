@@ -21,4 +21,6 @@ public enum SFXType
     ItemGain06,
     ItemGain07,
     FailFire,
+    Charging,
+    ChargeComplete,
 }
