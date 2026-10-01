@@ -47,6 +47,10 @@ public class Weapon : MonoBehaviour
     private Vector3 _targetDirection;
     private Vector3 _effectDirection;
 
+    private Vector2 _fireOrigin;
+    private Vector2 _fireDirection = Vector2.right;
+    private bool _hasFirePose;
+
     private void Awake()
     {
         Modifier = new WeaponModifier();
@@ -160,5 +164,16 @@ public class Weapon : MonoBehaviour
         }
 
         if (_reloadTimer >= Data.ReloadTime) _isReloading = false;
+    }
+
+    public void SetFirePose(Vector2 origin, Vector2 direction)
+    {
+        _fireOrigin = origin;
+        if (direction.sqrMagnitude > 0.000001f)
+        {
+            _fireDirection = direction.normalized;
+        }
+
+        _hasFirePose = true;
     }
 }

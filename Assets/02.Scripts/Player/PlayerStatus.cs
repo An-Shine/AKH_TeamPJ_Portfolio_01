@@ -1,5 +1,11 @@
+using System;
+using UnityEngine;
+
+[Serializable]
 public class PlayerStatus
 {
+    private readonly float _baseMaxHP;
+    private readonly float _baseMoveSpeed;
     public float CurrentHP;
     public float MaxHP;
     public float MoveSpeed;
@@ -19,5 +25,29 @@ public class PlayerStatus
     public PlayerStatus(float maxHP, float moveSpeed, float dashDistance, float dashDuration,
         float dashInvulnerableDuration, float dashCooldown, float hitInvulnerableDuration, int upgradeCurrency)
     {
+        _baseMaxHP = maxHP;
+        _baseMoveSpeed = moveSpeed;
+        MaxHP = maxHP;
+        CurrentHP = maxHP;
+        MoveSpeed = moveSpeed;
+        DashDistance = dashDistance;
+        DashDuration = dashDuration;
+        DashInvulnerableDuration = dashInvulnerableDuration;
+        DashCooldown = dashCooldown;
+        HitInvulnerableDuration = hitInvulnerableDuration;
+        UpgradeCurrency = upgradeCurrency;
+        IsVulnerable = true;
+    }
+
+    public void ApplyItemStats(ItemPlayerStat stat)
+    {
+        MaxHP = Mathf.Max(1f, _baseMaxHP + (stat != null ? stat.MaxHealthModifier : 0));
+        MoveSpeed = Mathf.Max(0f, _baseMoveSpeed * (1f + (stat != null ? stat.MoveSpeedMultiplier : 0f)));
+        CurrentHP = Mathf.Clamp(CurrentHP, 0f, MaxHP);
+    }
+
+    public void ModifyHealth(float amount)
+    {
+        CurrentHP = Mathf.Clamp(CurrentHP + amount, 0f, MaxHP);
     }
 }
