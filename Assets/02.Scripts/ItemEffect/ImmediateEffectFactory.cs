@@ -15,6 +15,16 @@ public static class ImmediateEffectFactory
                 immediateEffect = new DamageEffect();
                 break;
             }
+            case EffectType.CombatDrone:
+            {
+                immediateEffect = new CombatDroneSpawnEffect();
+                break;
+            }
+            case EffectType.GuardDrone:
+            {
+                immediateEffect = new GuardDroneSpawnEffect();
+                break;
+            }
         }
 
         return immediateEffect;
