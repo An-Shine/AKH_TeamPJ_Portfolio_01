@@ -3,8 +3,6 @@ using UnityEngine;
 public class CombatDrone : Follower
 {
     [SerializeField] private ProjectileType _projectileType;
-
-    [SerializeField] private Projectile _projectilePrefab;
     [SerializeField] private float _projectileRangeBonus;
     [SerializeField] private int _projectileDamageBonus;
     [SerializeField] private float _fireCoolTime;
