@@ -42,8 +42,26 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Monster
+    uniqueID: 2925022039
+    locked: 0
   - name: Player
     uniqueID: 68427715
+    locked: 0
+  - name: Weapon
+    uniqueID: 3062807499
+    locked: 0
+  - name: Obstacle
+    uniqueID: 563802219
+    locked: 0
+  - name: Item
+    uniqueID: 2390281143
+    locked: 0
+  - name: Projectile
+    uniqueID: 1496129411
+    locked: 0
+  - name: Effect
+    uniqueID: 1633969471
     locked: 0
   m_RenderingLayers:
   - Default

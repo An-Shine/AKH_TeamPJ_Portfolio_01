@@ -5,12 +5,15 @@ public abstract class Follower : MonoBehaviour
     protected Transform _playerTransform;
     protected PlayerAim _playerAim;
 
+    protected float _startAngle;
+    protected float _radius;
+
     protected virtual void Update()
     {
         Move();
     }
 
-    private void Initialize(Transform playerTransform)
+    public virtual void Initiaize(Transform playerTransform, float startAngle, float radius)
     {
         if (playerTransform == null)
         {
@@ -23,7 +26,13 @@ public abstract class Follower : MonoBehaviour
         {
             Debug.LogWarning("Follower: can not find player aim!");
         }
+
+        _startAngle = startAngle;
+        _radius = radius;
+
+        SetInitialPosition();
     }
 
     protected abstract void Move();
+    protected abstract void SetInitialPosition();
 }
