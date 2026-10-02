@@ -373,8 +373,8 @@ MonoBehaviour:
   _spawnCount: 3
   _spawnInterval: 3
   _spawnOnStart: 1
-  _maxAliveMonsters: 20
-  _player: {fileID: 0}
+  _maxAliveMonsters: 10
+  _player: {fileID: 9074837142586714173, guid: b5f335e30d5aa2344bc4adefae59483a, type: 3}
   _minPlayerDistance: 5
   _blockNearSpawnerRoot: 1
 --- !u!1 &1209961611
