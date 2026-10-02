@@ -2,15 +2,11 @@ using UnityEngine;
 
 public class PlayerStateMachine : MonoBehaviour
 {
-    [SerializeField] private float _dashDuration = 0.2f;
-
-    //대시가 끝난 뒤 다음 대시까지의 대기 시간
-    [SerializeField] private float _dashCooldown = 0.5f;
+    // 순간이동을 사용한 뒤 다음 사용까지의 대기 시간
+    [SerializeField, Min(0f)] private float _dashCooldown = 0.5f;
 
     private float _interactionRemaining;
-    private float _dashRemaining;
     private float _cooldownRemaining;
-    private Vector2 _dashDirection;
 
     public PlayerState CurrentState { get; private set; } = PlayerState.Idle;
     public Vector2 MovementDirection { get; private set; }
@@ -42,24 +38,15 @@ public class PlayerStateMachine : MonoBehaviour
 
         if (IsDashing)
         {
-            _dashRemaining -= deltaTime;
-            if (_dashRemaining > 0.00001f)
-            {
-                MovementDirection = _dashDirection;
-                return;
-            }
-
             ChangeState(moveInput.sqrMagnitude > 0f ? PlayerState.Run : PlayerState.Idle);
         }
 
         if (dashRequested && CanDash)
         {
-            // 이동 중에는 이동 방향, 정지 중에는 마우스 방향으로 대시.
-            _dashDirection = (moveInput.sqrMagnitude > 0f ? moveInput : aimDirection).normalized;
-            _dashRemaining = _dashDuration;
-            _cooldownRemaining = _dashDuration + _dashCooldown;
+            // 순간이동은 한 물리 프레임만 처리하며 항상 조준 방향을 사용합니다.
+            _cooldownRemaining = _dashCooldown;
             ChangeState(PlayerState.Dash);
-            MovementDirection = _dashDirection;
+            MovementDirection = aimDirection.normalized;
             return;
         }
 
@@ -91,7 +78,6 @@ public class PlayerStateMachine : MonoBehaviour
         CurrentState = PlayerState.Idle;
         MovementDirection = Vector2.zero;
         _interactionRemaining = 0f;
-        _dashRemaining = 0f;
         _cooldownRemaining = 0f;
     }
 }

@@ -98,8 +98,7 @@ public class PlayerAnimation : MonoBehaviour
     {
         RefreshGunSprite(facing);
 
-        Motion locomotion = state == PlayerState.Dash ? Motion.Dash
-            : state == PlayerState.Run ? Motion.Run : Motion.Idle;
+        Motion locomotion = state == PlayerState.Run ? Motion.Run : Motion.Idle;
         Motion motion = locomotion;
         if (state == PlayerState.Interact)
         {
