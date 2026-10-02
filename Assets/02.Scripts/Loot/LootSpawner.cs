@@ -40,6 +40,7 @@ public class LootSpawner : MonoBehaviour
         }
 
         _lootSpawnInfoDictionary = new Dictionary<string, GridPos[]>();
+        _gridInfoDictionary = new Dictionary<string, List<GridPos>>();
         foreach (LootSpawnInfo lootSpawnInfo in _lootSpawnInfos)
         {
             _lootSpawnInfoDictionary[lootSpawnInfo.RoomId] = new GridPos[2]
@@ -146,7 +147,6 @@ public class LootSpawner : MonoBehaviour
             WeaponPickup weaponPickup = Instantiate(targetPickUp, spawnPosition, Quaternion.identity);
             return true;
         }
-
         return false;
     }
 
