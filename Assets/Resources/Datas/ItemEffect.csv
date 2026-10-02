@@ -27,3 +27,5 @@ IncreaseProjectileSpeed,Projectile,MoveSpeedMultiplier,Stat,0.25
 DecreaseProjectileSpeed,Projectile,MoveSpeedMultiplier,Stat,-0.25
 IncreaseProjectileSize,Projectile,ProjectileSizeMultiplier,Stat,0.2
 DecreaseProjectileSize,Projectile,ProjectileSizeMultiplier,Stat,-0.2
+SpawnCombatDrone,Player,CombatDrone,Immediate,1
+SpawnGuardDrone,Player,GuardDrone,Immediate,3
