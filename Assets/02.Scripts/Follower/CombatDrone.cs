@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class CombatDrone : Follower
 {
+    [SerializeField] private ProjectileType _projectileType;
     [SerializeField] private Projectile _projectilePrefab;
     [SerializeField] private float _projectileRangeBonus;
     [SerializeField] private int _projectileDamageBonus;
@@ -40,7 +41,7 @@ public class CombatDrone : Follower
         if (_timer < _fireCoolTime) return;
         _timer = 0f;
         ProjectileSpawner.Instance.Spawn(
-            ProjectileType.Normal,
+            _projectileType,
             transform.position,
             _playerAim.AimDirection,
             _projectileRangeBonus,
