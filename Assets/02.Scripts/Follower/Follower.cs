@@ -10,7 +10,7 @@ public abstract class Follower : MonoBehaviour
         Move();
     }
 
-    private void Initialize(Transform playerTransform)
+    public virtual void Initiaize(Transform playerTransform)
     {
         if (playerTransform == null)
         {
@@ -23,7 +23,10 @@ public abstract class Follower : MonoBehaviour
         {
             Debug.LogWarning("Follower: can not find player aim!");
         }
+
+        SetInitialPosition();
     }
 
     protected abstract void Move();
+    protected abstract void SetInitialPosition();
 }

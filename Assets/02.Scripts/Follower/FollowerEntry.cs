@@ -1,3 +1,4 @@
+[System.Serializable]
 public class FollowerEntry
 {
     public FollowerType Type;

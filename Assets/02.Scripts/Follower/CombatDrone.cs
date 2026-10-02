@@ -3,10 +3,13 @@ using UnityEngine;
 public class CombatDrone : Follower
 {
     [SerializeField] private ProjectileType _projectileType;
+
     [SerializeField] private Projectile _projectilePrefab;
     [SerializeField] private float _projectileRangeBonus;
     [SerializeField] private int _projectileDamageBonus;
     [SerializeField] private float _fireCoolTime;
+
+    [SerializeField] private float _speedScalar;
     [SerializeField] private Vector3 _adjustPosition;
 
     private float _timer;
@@ -26,11 +29,19 @@ public class CombatDrone : Follower
 
     protected override void Move()
     {
+        if (_playerTransform == null) return;
+        Vector3 direction = _playerTransform.position - transform.position + _adjustPosition;
+        transform.position += direction * _speedScalar * Time.deltaTime;
+    }
+
+    protected override void SetInitialPosition()
+    {
         transform.position = _playerTransform.position + _adjustPosition;
     }
 
     private void Rotation()
     {
+        if (_playerAim == null) return;
         float angle = Mathf.Atan2(_playerAim.AimDirection.y, _playerAim.AimDirection.x) * Mathf.Rad2Deg;
         Vector3 targetAngle = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, angle);
         transform.eulerAngles = targetAngle;
@@ -38,6 +49,7 @@ public class CombatDrone : Follower
 
     private void Fire()
     {
+        if (_playerTransform == null || _playerAim == null) return;
         if (_timer < _fireCoolTime) return;
         _timer = 0f;
         ProjectileSpawner.Instance.Spawn(
