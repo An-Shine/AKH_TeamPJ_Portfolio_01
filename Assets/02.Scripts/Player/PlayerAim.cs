@@ -14,6 +14,7 @@ public class PlayerAim : MonoBehaviour
     public Vector2 AimDirection { get; private set; } = Vector2.down;
     public Camera WorldCamera => _worldCamera;
     public FacingDirection Facing { get; private set; } = FacingDirection.Down;
+    [SerializeField] public GameObject FireDirectionPoint;
 
     private void Awake()
     {
@@ -103,6 +104,7 @@ public class PlayerAim : MonoBehaviour
         }
 
         worldPosition = ray.GetPoint(distance);
+        FireDirectionPoint.transform.position = worldPosition;
         return true;
     }
 

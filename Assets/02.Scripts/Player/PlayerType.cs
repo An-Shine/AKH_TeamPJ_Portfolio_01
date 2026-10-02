@@ -29,7 +29,6 @@ public enum Motion
 {
     Idle,
     Run,
-    Dash,
     Attack,
     RunAttack,
     Reload,

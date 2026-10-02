@@ -62,7 +62,7 @@ public class PlayerAimVisual : MonoBehaviour
     {
         if (_weapon == null || _aim == null) return;
         // bool showLine = _weapon.AimMode == AimDisplayMode.AimLine;
-        bool showLine = true;
+        bool showLine = false;
         // GameObject나 CrosshairFollowMouse를 끄지 않습니다.
         // 원래 스크립트의 위치 갱신과 기본 커서 숨김 동작을 유지합니다.
         if (_crosshairImage != null)
