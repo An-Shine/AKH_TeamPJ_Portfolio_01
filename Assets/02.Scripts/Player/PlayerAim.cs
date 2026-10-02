@@ -46,9 +46,15 @@ public class PlayerAim : MonoBehaviour
         float angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
 
         // 현재 방향의 범위를 여유 각도만큼 더 벗어나야 방향을 변경합니다.
-        if (_hasFacing && Mathf.Abs(Mathf.DeltaAngle(CenterAngle(Facing), angle)) <= 22.5f + _directionHysteresis)
+        // if (_hasFacing && Mathf.Abs(Mathf.DeltaAngle(CenterAngle(Facing), angle)) <= 22.5f + _directionHysteresis)
+        // {
+        //     return;
+        // }
+
+        // -22.5도 이상 337.5도 미만으로 맞춰 모든 방향을 같은 범위 조건으로 비교합니다.
+        if (angle < -22.5f)
         {
-            return;
+            angle += 360f;
         }
 
         if (angle >= -22.5f && angle < 22.5f)
@@ -67,19 +73,19 @@ public class PlayerAim : MonoBehaviour
         {
             Facing = FacingDirection.LeftUp;
         }
-        else if (angle >= 157.5f || angle < -157.5f)
+        else if (angle >= 157.5f && angle < 202.5f)
         {
             Facing = FacingDirection.Left;
         }
-        else if (angle < -112.5f)
+        else if (angle >= 202.5f && angle < 247.5f)
         {
             Facing = FacingDirection.LeftDown;
         }
-        else if (angle < -67.5f)
+        else if (angle >= 247.5f && angle < 292.5f)
         {
             Facing = FacingDirection.Down;
         }
-        else
+        else if (angle >= 292.5f && angle < 337.5f)
         {
             Facing = FacingDirection.RightDown;
         }
