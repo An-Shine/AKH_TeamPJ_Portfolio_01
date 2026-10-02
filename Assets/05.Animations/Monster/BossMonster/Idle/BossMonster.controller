@@ -286,7 +286,7 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 6
     m_ConditionEvent: Direction
-    m_EventTreshold: 0
+    m_EventTreshold: 2
   - m_ConditionMode: 1
     m_ConditionEvent: IsAttacking
     m_EventTreshold: 0
@@ -1041,7 +1041,7 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 6
     m_ConditionEvent: Direction
-    m_EventTreshold: 0
+    m_EventTreshold: 3
   - m_ConditionMode: 1
     m_ConditionEvent: IsAttacking
     m_EventTreshold: 0
@@ -1651,7 +1651,7 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 6
     m_ConditionEvent: Direction
-    m_EventTreshold: 0
+    m_EventTreshold: 4
   - m_ConditionMode: 1
     m_ConditionEvent: IsAttacking
     m_EventTreshold: 0
@@ -2111,7 +2111,7 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 6
     m_ConditionEvent: Direction
-    m_EventTreshold: 0
+    m_EventTreshold: 7
   - m_ConditionMode: 1
     m_ConditionEvent: IsAttacking
     m_EventTreshold: 0
@@ -2174,7 +2174,7 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 6
     m_ConditionEvent: Direction
-    m_EventTreshold: 0
+    m_EventTreshold: 1
   - m_ConditionMode: 1
     m_ConditionEvent: IsAttacking
     m_EventTreshold: 0
@@ -2491,7 +2491,7 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 6
     m_ConditionEvent: Direction
-    m_EventTreshold: 0
+    m_EventTreshold: 5
   - m_ConditionMode: 1
     m_ConditionEvent: IsAttacking
     m_EventTreshold: 0
@@ -2827,28 +2827,28 @@ AnimatorStateMachine:
     m_Position: {x: 510, y: -980, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1326092977668099679}
-    m_Position: {x: 1870, y: 670, z: 0}
+    m_Position: {x: 10, y: 730, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7608491382733398512}
-    m_Position: {x: 1900, y: 730, z: 0}
+    m_Position: {x: 40, y: 790, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4292634440866395997}
-    m_Position: {x: 1940, y: 800, z: 0}
+    m_Position: {x: 80, y: 860, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1654185254815371915}
-    m_Position: {x: 1970, y: 860, z: 0}
+    m_Position: {x: 110, y: 920, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8033513582220486337}
-    m_Position: {x: 2010, y: 930, z: 0}
+    m_Position: {x: 150, y: 990, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3176543276668874780}
-    m_Position: {x: 2040, y: 990, z: 0}
+    m_Position: {x: 180, y: 1050, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3355525267589078649}
-    m_Position: {x: 2080, y: 1060, z: 0}
+    m_Position: {x: 220, y: 1120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3271671430861325503}
-    m_Position: {x: 2130, y: 1120, z: 0}
+    m_Position: {x: 270, y: 1180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5816611671029445241}
     m_Position: {x: -420, y: -110, z: 0}
@@ -3338,7 +3338,7 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 6
     m_ConditionEvent: Direction
-    m_EventTreshold: 0
+    m_EventTreshold: 6
   - m_ConditionMode: 1
     m_ConditionEvent: IsAttacking
     m_EventTreshold: 0

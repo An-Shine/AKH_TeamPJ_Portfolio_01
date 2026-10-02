@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b1719c92019fe146b041476b4b3c680, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KamikazeMonster
-  _maxHealth: 5
+  _maxHealth: 40
   _moveSpeed: 2
   _contactDamage: 10
   _separationRadius: 0.8
