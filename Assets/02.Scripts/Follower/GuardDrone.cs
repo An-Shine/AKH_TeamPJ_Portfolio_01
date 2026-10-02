@@ -3,9 +3,7 @@ using UnityEngine;
 public class GuardDrone : Follower
 {
     [SerializeField] private int _maxHealth = 100;
-    [SerializeField] private float _radius;
     [SerializeField] private float _rotaionSpeedScalar;
-    [SerializeField] private float _startAngle;
 
     private int _health;
     private float _angle;
@@ -28,9 +26,9 @@ public class GuardDrone : Follower
         transform.position = _playerTransform.position + offset;
     }
 
-    public override void Initiaize(Transform playerTransform)
+    public override void Initiaize(Transform playerTransform, float startAngle, float radius)
     {
-        base.Initiaize(playerTransform);
+        base.Initiaize(playerTransform, startAngle, radius);
         _health = _maxHealth;
         _angle = _startAngle;
     }

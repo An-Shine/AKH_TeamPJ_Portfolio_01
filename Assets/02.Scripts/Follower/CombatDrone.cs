@@ -8,10 +8,9 @@ public class CombatDrone : Follower
     [SerializeField] private float _projectileRangeBonus;
     [SerializeField] private int _projectileDamageBonus;
     [SerializeField] private float _fireCoolTime;
-
     [SerializeField] private float _speedScalar;
-    [SerializeField] private Vector3 _adjustPosition;
 
+    private Vector3 _adjustPosition;
     private float _timer;
 
     private void Start()
@@ -36,6 +35,8 @@ public class CombatDrone : Follower
 
     protected override void SetInitialPosition()
     {
+        float radian = _startAngle * Mathf.Deg2Rad;
+        _adjustPosition = new Vector3(Mathf.Cos(radian), Mathf.Sin(radian), 0f) * _radius;
         transform.position = _playerTransform.position + _adjustPosition;
     }
 
