@@ -16,7 +16,8 @@ public class PlayerManager : MonoBehaviour
     private float _appliedAngle;
     private float _appliedRange;
 
-    public PlayerController Player;
+    public PlayerController PlayerControllerObj;
+    public PlayerAim PlayerAimObj;
 
     private void Awake()
     {

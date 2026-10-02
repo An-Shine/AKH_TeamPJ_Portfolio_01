@@ -14,7 +14,7 @@ public class PlayerAim : MonoBehaviour
     public Vector2 AimDirection { get; private set; } = Vector2.down;
     public Camera WorldCamera => _worldCamera;
     public FacingDirection Facing { get; private set; } = FacingDirection.Down;
-    [SerializeField] public GameObject FireDirectionPoint;
+    public GameObject FireDirectionPoint;
 
     private void Awake()
     {
