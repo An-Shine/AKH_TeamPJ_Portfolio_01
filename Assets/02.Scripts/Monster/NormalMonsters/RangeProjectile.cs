@@ -19,6 +19,9 @@ public class RangeProjectile : MonoBehaviour
     [SerializeField, Min(0.1f)] private float _impactEffectLifetime = 0.5f;
     [SerializeField] private Color _impactColor = new Color(0.25f, 0.85f, 1f, 1f);
 
+    // 보스가 소환한 몬스터의 탄만 골라 정리할 수 있게 소유자를 제공합니다.
+    public Transform Owner => _owner;
+
     private readonly List<RaycastHit2D> _castHits = new List<RaycastHit2D>(16);
     private Vector2 _direction;
     private Transform _owner;

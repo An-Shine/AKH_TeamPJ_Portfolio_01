@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3949794852990193840}
   - component: {fileID: 7118849845410916409}
   - component: {fileID: 8017428273598027548}
+  - component: {fileID: 3819265829258752211}
   m_Layer: 0
   m_Name: BossMonster
   m_TagString: Untagged
@@ -114,3 +115,50 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3819265829258752211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8966176280612309948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30ded81f85a04cc46b778878b6cb1e04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossMonster
+  _maxHealth: 1200
+  _moveSpeed: 0
+  _contactDamage: 0
+  _separationRadius: 0.8
+  _separationStrength: 1.5
+  _collisionCheckRadius: 0.25
+  _obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  _hitCooldown: 0.1
+  _hitFlashDuration: 0.08
+  _deathDelay: 0.2
+  _room: {fileID: 0}
+  _directionAnimator: {fileID: 8017428273598027548}
+  _directionChangeAngle: 30
+  _gunMuzzles:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _patterns: []
+  _rangeMonsterPrefab: {fileID: 3752560541776440137, guid: e4c67777cc259704d84123501921468b, type: 3}
+  _maxLiveSummons: 4
+  _maxActiveBullets: 240
+  _maxActiveHazards: 32
+  _initialAttackDelay: 1.5
+  _interruptAttacksOnHit: 0
+  _hitReactionCooldown: 0.6
+  _maximumAttackTime: 30
+  _maximumHitTime: 3
+  _maximumDeathTime: 6
