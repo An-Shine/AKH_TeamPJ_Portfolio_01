@@ -12,6 +12,7 @@ public class ItemManager : MonoBehaviour
 
     private Dictionary<string, Item> _unobtainedItemDictionary;
     private List<Item> _gainedItemList;
+    public List<Item> GainedItemList => _gainedItemList;
 
     private ItemPlayerStat _playerStat = new ItemPlayerStat();
     public ItemPlayerStat PlayerStat => _playerStat;
@@ -61,7 +62,7 @@ public class ItemManager : MonoBehaviour
                 }
                 case ItemEffectApplyType.Immediate:
                 {
-                    ItemEffectApplier.ApplyImmediateEffect(effect);
+                    ItemEffectApplier.ApplyImmediateEffect(effect, _playerTransform);
                     break;
                 }
             }

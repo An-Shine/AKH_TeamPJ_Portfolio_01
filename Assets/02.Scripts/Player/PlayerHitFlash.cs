@@ -12,8 +12,7 @@ public class PlayerHitFlash : MonoBehaviour
 
     private void Awake()
     {
-        Transform visual = transform.Find("PlayerVisual");
-        _renderers = (visual != null ? visual : transform).GetComponentsInChildren<SpriteRenderer>(true);
+        _renderers = transform.GetComponentsInChildren<SpriteRenderer>(true);
         _properties = new MaterialPropertyBlock();
     }
 

@@ -14,6 +14,7 @@ public class PlayerAim : MonoBehaviour
     public Vector2 AimDirection { get; private set; } = Vector2.down;
     public Camera WorldCamera => _worldCamera;
     public FacingDirection Facing { get; private set; } = FacingDirection.Down;
+    [SerializeField] public GameObject FireDirectionPoint;
 
     private void Awake()
     {
@@ -45,34 +46,48 @@ public class PlayerAim : MonoBehaviour
         float angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
 
         // 현재 방향의 범위를 여유 각도만큼 더 벗어나야 방향을 변경합니다.
-        if (_hasFacing && Mathf.Abs(Mathf.DeltaAngle(CenterAngle(Facing), angle)) <= 30f + _directionHysteresis)
+        // if (_hasFacing && Mathf.Abs(Mathf.DeltaAngle(CenterAngle(Facing), angle)) <= 22.5f + _directionHysteresis)
+        // {
+        //     return;
+        // }
+
+        // -22.5도 이상 337.5도 미만으로 맞춰 모든 방향을 같은 범위 조건으로 비교합니다.
+        if (angle < -22.5f)
         {
-            return;
+            angle += 360f;
         }
 
-        if (angle >= 60f && angle < 120f)
+        if (angle >= -22.5f && angle < 22.5f)
+        {
+            Facing = FacingDirection.Right;
+        }
+        else if (angle >= 22.5f && angle < 67.5f)
+        {
+            Facing = FacingDirection.RightUp;
+        }
+        else if (angle >= 67.5f && angle < 112.5f)
         {
             Facing = FacingDirection.Up;
         }
-        else if (angle >= 120f && angle < 180f)
+        else if (angle >= 112.5f && angle < 157.5f)
         {
             Facing = FacingDirection.LeftUp;
         }
-        else if (angle <= -120f || angle >= 180f)
+        else if (angle >= 157.5f && angle < 202.5f)
+        {
+            Facing = FacingDirection.Left;
+        }
+        else if (angle >= 202.5f && angle < 247.5f)
         {
             Facing = FacingDirection.LeftDown;
         }
-        else if (angle <= -60f)
+        else if (angle >= 247.5f && angle < 292.5f)
         {
             Facing = FacingDirection.Down;
         }
-        else if (angle <= 0f)
+        else if (angle >= 292.5f && angle < 337.5f)
         {
             Facing = FacingDirection.RightDown;
-        }
-        else
-        {
-            Facing = FacingDirection.RightUp;
         }
 
         _hasFacing = true;
@@ -95,6 +110,7 @@ public class PlayerAim : MonoBehaviour
         }
 
         worldPosition = ray.GetPoint(distance);
+        FireDirectionPoint.transform.position = worldPosition;
         return true;
     }
 
@@ -124,19 +140,27 @@ public class PlayerAim : MonoBehaviour
             }
             case FacingDirection.RightUp:
             {
-                return 30f;
+                return 45f;
             }
             case FacingDirection.RightDown:
             {
-                return -30f;
+                return -45f;
             }
             case FacingDirection.LeftUp:
             {
-                return 150f;
+                return 135f;
+            }
+            case FacingDirection.Right:
+            {
+                return 0f;
+            }
+            case FacingDirection.Left:
+            {
+                return 180f;
             }
             default:
             {
-                return -150f;
+                return -135f;
             }
         }
     }
