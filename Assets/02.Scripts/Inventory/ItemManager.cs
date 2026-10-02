@@ -11,7 +11,9 @@ public class ItemManager : MonoBehaviour
     [SerializeField] private Transform _playerTransform;
 
     private Dictionary<string, Item> _unobtainedItemDictionary;
+    public IReadOnlyDictionary<string, Item> UnobtainedItemDictionary => _unobtainedItemDictionary;
     private List<Item> _gainedItemList;
+    public IReadOnlyList<Item> GainedItemList => _gainedItemList;
 
     private ItemPlayerStat _playerStat = new ItemPlayerStat();
     public ItemPlayerStat PlayerStat => _playerStat;
@@ -61,7 +63,7 @@ public class ItemManager : MonoBehaviour
                 }
                 case ItemEffectApplyType.Immediate:
                 {
-                    ItemEffectApplier.ApplyImmediateEffect(effect);
+                    ItemEffectApplier.ApplyImmediateEffect(effect, _playerTransform);
                     break;
                 }
             }

@@ -7,6 +7,7 @@ public class AudioManager : MonoBehaviour
     private static AudioManager _instance;
     public static AudioManager Instance => _instance;
     [SerializeField] private AudioSource _bgmSource;
+    [SerializeField] private AudioSource _loopSfxSource;
     [SerializeField] private List<AudioSource> _sfxSources;
     [SerializeField] private List<BGMClip> _bgmEntries;
     [SerializeField] private List<SFXClip> _sfxEntries;
@@ -56,6 +57,28 @@ public class AudioManager : MonoBehaviour
 
         source.clip = clip;
         source.Play();
+    }
+
+    public void PlayLoopSFX(SFXType type)
+    {
+        if (!_sfxDictionary.TryGetValue(type, out var clip))
+        {
+            Debug.LogWarning("SFX Clip: " + type + " is not found!");
+            return;
+        }
+
+        var source = _sfxSources.FirstOrDefault(x => !x.isPlaying);
+
+        if (_loopSfxSource == null)
+            return;
+
+        _loopSfxSource.clip = clip;
+        _loopSfxSource.Play();
+    }
+
+    public void StopLoopSFX()
+    {
+        _loopSfxSource.Stop();
     }
 
     public void StopBGM()

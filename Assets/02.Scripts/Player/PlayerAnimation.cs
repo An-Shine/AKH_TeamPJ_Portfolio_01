@@ -14,6 +14,8 @@ public class PlayerAnimation : MonoBehaviour
         public Sprite RightDown;
         public Sprite LeftUp;
         public Sprite LeftDown;
+        public Sprite Right;
+        public Sprite Left;
 
         public Sprite Get(FacingDirection facing)
         {
@@ -25,6 +27,8 @@ public class PlayerAnimation : MonoBehaviour
                 case FacingDirection.RightDown: return RightDown;
                 case FacingDirection.LeftUp: return LeftUp;
                 case FacingDirection.LeftDown: return LeftDown;
+                case FacingDirection.Right: return Right;
+                case FacingDirection.Left: return Left;
                 default: return null;
             }
         }
@@ -34,7 +38,7 @@ public class PlayerAnimation : MonoBehaviour
     [SerializeField] private SpriteRenderer _gunRenderer;
     [SerializeField] private List<GunSpriteSet> _gunSprites = new List<GunSpriteSet>();
     private Animator _animator;
-    private readonly int[,] _hashes = new int[System.Enum.GetValues(typeof(Motion)).Length, 6];
+    private readonly int[,] _hashes = new int[System.Enum.GetValues(typeof(Motion)).Length, System.Enum.GetValues(typeof(FacingDirection)).Length];
     private int _lastHash;
     private int _lastShotSequence;
     private Motion _lastMotion;
@@ -59,7 +63,7 @@ public class PlayerAnimation : MonoBehaviour
 
         for (int m = 0; m < _hashes.GetLength(0); m++)
         {
-            for (int d = 0; d < 6; d++)
+            for (int d = 0; d < _hashes.GetLength(1); d++)
             {
                 _hashes[m, d] = Animator.StringToHash($"{_layerName}.{(Motion)m}_{(FacingDirection)d}");
             }
@@ -94,8 +98,7 @@ public class PlayerAnimation : MonoBehaviour
     {
         RefreshGunSprite(facing);
 
-        Motion locomotion = state == PlayerState.Dash ? Motion.Dash
-            : state == PlayerState.Run ? Motion.Run : Motion.Idle;
+        Motion locomotion = state == PlayerState.Run ? Motion.Run : Motion.Idle;
         Motion motion = locomotion;
         if (state == PlayerState.Interact)
         {

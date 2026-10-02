@@ -1,34 +1,19 @@
 fileFormatVersion: 2
-guid: 7ff3c57550638214fbeb3e14a7799a02
+guid: f2623817186c5b041bdc5424ce4cfc36
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5479729290226421386
-    second: Idle_LeftDown_0
+      213: -6404334794508865926
+    second: CombatDrone_0
   - first:
-      213: 7763607402000706597
-    second: Idle_LeftDown_1
+      213: 7837634348409835348
+    second: CombatDrone_1
   - first:
-      213: 2877316817351467158
-    second: Idle_LeftDown_2
+      213: -4319336304718684192
+    second: CombatDrone_2
   - first:
-      213: 5502708568196766301
-    second: Idle_LeftDown_3
-  - first:
-      213: -1454064192729952130
-    second: Idle_LeftDown_4
-  - first:
-      213: 3081215845196095241
-    second: Idle_LeftDown_5
-  - first:
-      213: 1263550376372205554
-    second: Idle_LeftDown_6
-  - first:
-      213: 6440142413724890332
-    second: Idle_LeftDown_7
-  - first:
-      213: -1607581810195433436
-    second: Idle_LeftDown_8
+      213: -344286874039507396
+    second: CombatDrone_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -75,7 +60,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 35
+  spritePixelsToUnits: 320
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -99,7 +84,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -150,13 +135,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Idle_LeftDown_0
+      name: CombatDrone_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 48
-        height: 64
+        width: 250
+        height: 259
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -165,20 +150,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 67130ce4e3714f3b0800000000000000
-      internalID: -5479729290226421386
+      spriteID: a7eef9e9f6b3f17a0800000000000000
+      internalID: -6404334794508865926
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_LeftDown_1
+      name: CombatDrone_1
       rect:
         serializedVersion: 2
-        x: 48
+        x: 250
         y: 0
-        width: 48
-        height: 64
+        width: 250
+        height: 259
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,20 +172,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 52c68db7ccfddbb60800000000000000
-      internalID: 7763607402000706597
+      spriteID: 45f4e501aeed4cc60800000000000000
+      internalID: 7837634348409835348
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_LeftDown_2
+      name: CombatDrone_2
       rect:
         serializedVersion: 2
-        x: 96
+        x: 500
         y: 0
-        width: 48
-        height: 64
+        width: 250
+        height: 259
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -209,20 +194,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 690ed7496684ee720800000000000000
-      internalID: 2877316817351467158
+      spriteID: 0ef5bc30482ae04c0800000000000000
+      internalID: -4319336304718684192
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_LeftDown_3
+      name: CombatDrone_3
       rect:
         serializedVersion: 2
-        x: 144
+        x: 750
         y: 0
-        width: 48
-        height: 64
+        width: 250
+        height: 259
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -231,118 +216,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d5addd5c94c8d5c40800000000000000
-      internalID: 5502708568196766301
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Idle_LeftDown_4
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 48
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e7057b7125022dbe0800000000000000
-      internalID: -1454064192729952130
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Idle_LeftDown_5
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 0
-        width: 48
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 90fd7397c7da2ca20800000000000000
-      internalID: 3081215845196095241
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Idle_LeftDown_6
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 0
-        width: 48
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2f7f97b6f58098110800000000000000
-      internalID: 1263550376372205554
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Idle_LeftDown_7
-      rect:
-        serializedVersion: 2
-        x: 336
-        y: 0
-        width: 48
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cd4bff8676bff5950800000000000000
-      internalID: 6440142413724890332
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Idle_LeftDown_8
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 0
-        width: 48
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 428fbe76cd8b0b9e0800000000000000
-      internalID: -1607581810195433436
+      spriteID: c36ab0489e8d83bf0800000000000000
+      internalID: -344286874039507396
       vertices: []
       indices: 
       edges: []
@@ -351,7 +226,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 2bdc5dd5c233199458ad10adb88becbd
+    spriteID: 4eba61b04a4329a418ab7df3ae3bf463
     internalID: 0
     vertices: []
     indices: 
@@ -361,17 +236,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":48.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":4.0,"y":1.0},"gridSpriteSize":{"x":250.0,"y":259.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Idle_LeftDown_0: -5479729290226421386
-      Idle_LeftDown_1: 7763607402000706597
-      Idle_LeftDown_2: 2877316817351467158
-      Idle_LeftDown_3: 5502708568196766301
-      Idle_LeftDown_4: -1454064192729952130
-      Idle_LeftDown_5: 3081215845196095241
-      Idle_LeftDown_6: 1263550376372205554
-      Idle_LeftDown_7: 6440142413724890332
-      Idle_LeftDown_8: -1607581810195433436
+      CombatDrone_0: -6404334794508865926
+      CombatDrone_1: 7837634348409835348
+      CombatDrone_2: -4319336304718684192
+      CombatDrone_3: -344286874039507396
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

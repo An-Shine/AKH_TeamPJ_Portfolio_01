@@ -25,12 +25,12 @@ public static class ItemEffectApplier
         }
     }
 
-    public static void ApplyImmediateEffect(ItemEffectData effect)
+    public static void ApplyImmediateEffect(ItemEffectData effect, UnityEngine.Transform playerTransform)
     {
         IItemImmediateEffect immediateEffect = ImmediateEffectFactory.Create(effect.EffectType);
         ImmediateEffectContext immediateEffectContext = new ImmediateEffectContext
         {
-            Player = null,
+            PlayerTransform = playerTransform,
             Id = string.Empty,
             Value = effect.Value,
         };

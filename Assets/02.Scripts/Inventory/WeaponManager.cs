@@ -10,6 +10,7 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] private Transform _weaponContainer;
 
     private Dictionary<string, Weapon> _unobtainedWeapons;
+    public IReadOnlyDictionary<string, Weapon> UnobtainedWeapons => _unobtainedWeapons;
     private List<Weapon> _gainedWeaponList;
 
     public Weapon CurrentWeapon { get; private set; }
@@ -51,8 +52,8 @@ public class WeaponManager : MonoBehaviour
 
         _gainedWeaponList.Add(_unobtainedWeapons[id]);
         EquipByIndex(0);
-        CurrentWeapon._firePoint = PlayerManager.Instance.Player._weapon.Muzzle;
-        CurrentWeapon._originPoint = PlayerManager.Instance.Player._weapon.Origin;
+        CurrentWeapon.FirePoint = PlayerManager.Instance.Player._weapon.Muzzle;
+        CurrentWeapon.OriginPoint = PlayerManager.Instance.Player._weapon.Origin;
     }
 
     public void EquipByIndex(int targetIndex)

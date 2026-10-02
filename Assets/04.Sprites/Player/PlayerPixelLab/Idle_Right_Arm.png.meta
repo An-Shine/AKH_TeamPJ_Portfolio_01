@@ -1,34 +1,34 @@
 fileFormatVersion: 2
-guid: d9228ea23e1106144b39b3c3c694e8d7
+guid: d1b4ea8cf9d20da418755b3bd5176551
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2151203410603405675
-    second: Idle_RightDown_0
+      213: -850522946409397299
+    second: Idle_Right_Arm_0
   - first:
-      213: -1649794504948776053
-    second: Idle_RightDown_1
+      213: -6254943443273303633
+    second: Idle_Right_Arm_1
   - first:
-      213: -9012486776147346687
-    second: Idle_RightDown_2
+      213: -1009429785892725143
+    second: Idle_Right_Arm_2
   - first:
-      213: 8932040900314038767
-    second: Idle_RightDown_3
+      213: 7771220338145333073
+    second: Idle_Right_Arm_3
   - first:
-      213: -1852985686979263356
-    second: Idle_RightDown_4
+      213: -677956989316707965
+    second: Idle_Right_Arm_4
   - first:
-      213: 1080252599652515657
-    second: Idle_RightDown_5
+      213: -3164233239612977735
+    second: Idle_Right_Arm_5
   - first:
-      213: -6818099197946268034
-    second: Idle_RightDown_6
+      213: -4525829513639102448
+    second: Idle_Right_Arm_6
   - first:
-      213: 221938365626450390
-    second: Idle_RightDown_7
+      213: 7491797506387206002
+    second: Idle_Right_Arm_7
   - first:
-      213: -894598723158608808
-    second: Idle_RightDown_8
+      213: -8772496439947927727
+    second: Idle_Right_Arm_8
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -150,7 +150,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Idle_RightDown_0
+      name: Idle_Right_Arm_0
       rect:
         serializedVersion: 2
         x: 0
@@ -165,14 +165,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b61ff98ba1c9add10800000000000000
-      internalID: 2151203410603405675
+      spriteID: dc303f1f2e55234f0800000000000000
+      internalID: -850522946409397299
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_RightDown_1
+      name: Idle_Right_Arm_1
       rect:
         serializedVersion: 2
         x: 48
@@ -187,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b83032483a0ca19e0800000000000000
-      internalID: -1649794504948776053
+      spriteID: fa93985141af139a0800000000000000
+      internalID: -6254943443273303633
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_RightDown_2
+      name: Idle_Right_Arm_2
       rect:
         serializedVersion: 2
         x: 96
@@ -209,14 +209,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 10bf4dcf6073de280800000000000000
-      internalID: -9012486776147346687
+      spriteID: 96e5a2a35f8cdf1f0800000000000000
+      internalID: -1009429785892725143
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_RightDown_3
+      name: Idle_Right_Arm_3
       rect:
         serializedVersion: 2
         x: 144
@@ -231,14 +231,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fe18a76ffdbf4fb70800000000000000
-      internalID: 8932040900314038767
+      spriteID: 15f817e49bbe8db60800000000000000
+      internalID: 7771220338145333073
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_RightDown_4
+      name: Idle_Right_Arm_4
       rect:
         serializedVersion: 2
         x: 192
@@ -253,14 +253,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 484c7b1d55fd846e0800000000000000
-      internalID: -1852985686979263356
+      spriteID: 389c8cec5b96796f0800000000000000
+      internalID: -677956989316707965
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_RightDown_5
+      name: Idle_Right_Arm_5
       rect:
         serializedVersion: 2
         x: 240
@@ -275,14 +275,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 94ffaf51404ddfe00800000000000000
-      internalID: 1080252599652515657
+      spriteID: 9bd826622a26614d0800000000000000
+      internalID: -3164233239612977735
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_RightDown_6
+      name: Idle_Right_Arm_6
       rect:
         serializedVersion: 2
         x: 288
@@ -297,14 +297,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e76790f37ee3161a0800000000000000
-      internalID: -6818099197946268034
+      spriteID: 018ff8549060131c0800000000000000
+      internalID: -4525829513639102448
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_RightDown_7
+      name: Idle_Right_Arm_7
       rect:
         serializedVersion: 2
         x: 336
@@ -319,14 +319,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6d1023584cb741300800000000000000
-      internalID: 221938365626450390
+      spriteID: 27fdd59832638f760800000000000000
+      internalID: 7491797506387206002
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_RightDown_8
+      name: Idle_Right_Arm_8
       rect:
         serializedVersion: 2
         x: 384
@@ -341,8 +341,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 854fc99733fb593f0800000000000000
-      internalID: -894598723158608808
+      spriteID: 15f568f67f4d14680800000000000000
+      internalID: -8772496439947927727
       vertices: []
       indices: 
       edges: []
@@ -351,7 +351,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 6dd8287414acf594ca4d90b10bd3f3f0
+    spriteID: 8a4f2a4c2b06ca849a27782856e3b492
     internalID: 0
     vertices: []
     indices: 
@@ -363,15 +363,15 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":48.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Idle_RightDown_0: 2151203410603405675
-      Idle_RightDown_1: -1649794504948776053
-      Idle_RightDown_2: -9012486776147346687
-      Idle_RightDown_3: 8932040900314038767
-      Idle_RightDown_4: -1852985686979263356
-      Idle_RightDown_5: 1080252599652515657
-      Idle_RightDown_6: -6818099197946268034
-      Idle_RightDown_7: 221938365626450390
-      Idle_RightDown_8: -894598723158608808
+      Idle_Right_Arm_0: -850522946409397299
+      Idle_Right_Arm_1: -6254943443273303633
+      Idle_Right_Arm_2: -1009429785892725143
+      Idle_Right_Arm_3: 7771220338145333073
+      Idle_Right_Arm_4: -677956989316707965
+      Idle_Right_Arm_5: -3164233239612977735
+      Idle_Right_Arm_6: -4525829513639102448
+      Idle_Right_Arm_7: 7491797506387206002
+      Idle_Right_Arm_8: -8772496439947927727
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

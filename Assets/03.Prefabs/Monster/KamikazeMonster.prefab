@@ -81,8 +81,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1369945257
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2135585597343286014, guid: 5aa8b770bc43046bc8d993d0d5b7f4a5, type: 3}
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b1719c92019fe146b041476b4b3c680, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KamikazeMonster
-  _maxHealth: 100
+  _maxHealth: 5
   _moveSpeed: 2
   _contactDamage: 10
   _separationRadius: 0.8
@@ -119,15 +119,26 @@ MonoBehaviour:
   _hitCooldown: 0.1
   _hitFlashDuration: 0.08
   _deathDelay: 0.2
-  _deathScale: 0
   _explodeRange: 1.2
+  _attackTriggerTolerance: 0.05
   _explodeNormalizedTime: 0.6
-  _chargeRange: 6
+  _maximumFuseTime: 1.5
+  _postExplosionDelay: 0.5
+  _explosionDamage: 30
+  _explosionDamageRadius: 2
+  _chargeRange: 10
   _chaseSpeedMultiplier: 1.2
   _chargeSpeedMultiplier: 3
   _crowdAvoidanceSpeed: 1.5
+  _facingLockDistance: 1.5
+  _directionHysteresis: 7
+  _walkAnimationSpeed: 1.8
+  _chargeAnimationSpeed: 2.2
   _explosionEffectPrefab: {fileID: 0}
   _explosionEffectLifetime: 1
+  _explosionColor: {r: 0.54901963, g: 0.08627451, b: 0, a: 1}
+  _maximumHitTime: 1.2
+  _maximumDeathTime: 3
 --- !u!60 &4766278627352796448
 PolygonCollider2D:
   m_ObjectHideFlags: 0

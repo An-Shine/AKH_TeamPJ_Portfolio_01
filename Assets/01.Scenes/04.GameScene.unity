@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000574b58ae831f2d596bf09a21cbbb8eb6b7cb788e3f656461
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -303,7 +303,7 @@ MonoBehaviour:
   m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000574b58ae831f2d596bf09a21cbbb8eb6b7cb788e3f656461
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -420,7 +420,7 @@ MonoBehaviour:
   m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000574b58ae831f2d596bf09a21cbbb8eb6b7cb788e3f656461
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -1537,7 +1537,7 @@ MonoBehaviour:
   m_Intensity: 3
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000574b58ae831f2d596bf09a21cbbb8eb6b7cb788e3f656461
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -1861,7 +1861,7 @@ MonoBehaviour:
   m_Intensity: 0.3
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000574b58ae831f2d596bf09a21cbbb8eb6b7cb788e3f656461
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -1945,7 +1945,7 @@ MonoBehaviour:
   m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000574b58ae831f2d596bf09a21cbbb8eb6b7cb788e3f656461
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -1994,6 +1994,7 @@ GameObject:
   - component: {fileID: 408124212}
   - component: {fileID: 408124211}
   - component: {fileID: 408124210}
+  - component: {fileID: 408124219}
   m_Layer: 0
   m_Name: AudioManger
   m_TagString: Untagged
@@ -2693,6 +2694,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManger
   _bgmSource: {fileID: 408124216}
+  _loopSfxSource: {fileID: 408124219}
   _sfxSources:
   - {fileID: 408124215}
   - {fileID: 408124214}
@@ -2708,6 +2710,12 @@ MonoBehaviour:
     Clip: {fileID: 8300000, guid: 03ffeebf426343449a51def9203e5f7b, type: 3}
   - Type: 5
     Clip: {fileID: 8300000, guid: abe61e228dce7e641b218e351a0c5bc8, type: 3}
+  - Type: 13
+    Clip: {fileID: 8300000, guid: 79ddc6e1d1f94914f8ea08bb43bf4476, type: 3}
+  - Type: 20
+    Clip: {fileID: 8300000, guid: 52470e8c25ce2f64e8001b8fed042276, type: 3}
+  - Type: 21
+    Clip: {fileID: 8300000, guid: fbf702813b7a64247aa3474fbca16632, type: 3}
 --- !u!4 &408124218
 Transform:
   m_ObjectHideFlags: 0
@@ -2723,6 +2731,103 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1151817735}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &408124219
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 408124209}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &419756917
 GameObject:
   m_ObjectHideFlags: 0
@@ -2775,7 +2880,7 @@ MonoBehaviour:
   m_Intensity: 3
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000574b58ae831f2d596bf09a21cbbb8eb6b7cb788e3f656461
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -3107,7 +3212,7 @@ MonoBehaviour:
   m_Intensity: 3
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000574b58ae831f2d596bf09a21cbbb8eb6b7cb788e3f656461
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -99464,6 +99569,37 @@ Transform:
   - {fileID: 690228346}
   m_Father: {fileID: 1151817735}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &521312344
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 521312345}
+  m_Layer: 0
+  m_Name: FireDirectionPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &521312345
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521312344}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &530042359
 GameObject:
   m_ObjectHideFlags: 0
@@ -99501,7 +99637,7 @@ MonoBehaviour:
   m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000574b58ae831f2d596bf09a21cbbb8eb6b7cb788e3f656461
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -99586,6 +99722,12 @@ MonoBehaviour:
   - {fileID: 247909902}
   - {fileID: 1182690747}
   _spawnCount: 3
+  _spawnInterval: 3
+  _spawnOnStart: 1
+  _maxAliveMonsters: 0
+  _player: {fileID: 0}
+  _minPlayerDistance: 5
+  _blockNearSpawnerRoot: 1
 --- !u!4 &547094296
 Transform:
   m_ObjectHideFlags: 0
@@ -99882,7 +100024,7 @@ MonoBehaviour:
   m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000574b58ae831f2d596bf09a21cbbb8eb6b7cb788e3f656461
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -99967,7 +100109,7 @@ MonoBehaviour:
   m_Intensity: 3
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000574b58ae831f2d596bf09a21cbbb8eb6b7cb788e3f656461
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -100125,7 +100267,7 @@ MonoBehaviour:
   m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000574b58ae831f2d596bf09a21cbbb8eb6b7cb788e3f656461
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -100307,7 +100449,7 @@ MonoBehaviour:
   m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000574b58ae831f2d596bf09a21cbbb8eb6b7cb788e3f656461
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -100423,7 +100565,7 @@ MonoBehaviour:
   m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000574b58ae831f2d596bf09a21cbbb8eb6b7cb788e3f656461
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -100602,7 +100744,7 @@ MonoBehaviour:
   m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000574b58ae831f2d596bf09a21cbbb8eb6b7cb788e3f656461
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -100686,7 +100828,7 @@ MonoBehaviour:
   m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000574b58ae831f2d596bf09a21cbbb8eb6b7cb788e3f656461
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -100770,7 +100912,7 @@ MonoBehaviour:
   m_Intensity: 0.5
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000574b58ae831f2d596bf09a21cbbb8eb6b7cb788e3f656461
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -100854,7 +100996,7 @@ MonoBehaviour:
   m_Intensity: 0.5
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000574b58ae831f2d596bf09a21cbbb8eb6b7cb788e3f656461
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -100939,7 +101081,7 @@ MonoBehaviour:
   m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000574b58ae831f2d596bf09a21cbbb8eb6b7cb788e3f656461
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -101416,7 +101558,7 @@ MonoBehaviour:
   m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000574b58ae831f2d596bf09a21cbbb8eb6b7cb788e3f656461
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -101611,7 +101753,7 @@ MonoBehaviour:
   m_Intensity: 3
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000574b58ae831f2d596bf09a21cbbb8eb6b7cb788e3f656461
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -101694,7 +101836,7 @@ MonoBehaviour:
   m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000574b58ae831f2d596bf09a21cbbb8eb6b7cb788e3f656461
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -101770,7 +101912,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f6cbc45654a4ef396bbd826d73ed0fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
-  Player: {fileID: 1409805387}
+  PlayerControllerObj: {fileID: 1409805387}
+  PlayerAimObj: {fileID: 1409805401}
 --- !u!4 &1265351957
 Transform:
   m_ObjectHideFlags: 0
@@ -101838,7 +101981,7 @@ MonoBehaviour:
   m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000574b58ae831f2d596bf09a21cbbb8eb6b7cb788e3f656461
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -101922,7 +102065,7 @@ MonoBehaviour:
   m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000574b58ae831f2d596bf09a21cbbb8eb6b7cb788e3f656461
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -101978,6 +102121,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3018855717279147715, guid: b5f335e30d5aa2344bc4adefae59483a, type: 3}
+      propertyPath: FireDirectionPoint
+      value: 
+      objectReference: {fileID: 521312344}
+    - target: {fileID: 3018855717279147715, guid: b5f335e30d5aa2344bc4adefae59483a, type: 3}
+      propertyPath: _fireDirectionPoint
+      value: 
+      objectReference: {fileID: 521312344}
     - target: {fileID: 3852817395504386140, guid: b5f335e30d5aa2344bc4adefae59483a, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -102095,6 +102246,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9074837142586714173, guid: b5f335e30d5aa2344bc4adefae59483a, type: 3}
   m_PrefabInstance: {fileID: 1409805386}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1409805401 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3018855717279147715, guid: b5f335e30d5aa2344bc4adefae59483a, type: 3}
+  m_PrefabInstance: {fileID: 1409805386}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 747d5992a2c64ff691b3d732b1d1ddc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAim
 --- !u!1 &1418482436
 GameObject:
   m_ObjectHideFlags: 0
@@ -102276,7 +102438,7 @@ MonoBehaviour:
   m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000574b58ae831f2d596bf09a21cbbb8eb6b7cb788e3f656461
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -102340,8 +102502,28 @@ MonoBehaviour:
   _itemEntryList:
   - ItemId: 0
     ItemPrefab: {fileID: 4220967996708444725, guid: 58ed5222bc1f3814baf4b53ae8d9f792, type: 3}
-  - ItemId: 0
+  - ItemId: 1
     ItemPrefab: {fileID: 5158470827918489186, guid: fec5fa7daa50d5049b8b3be7c750a03b, type: 3}
+  - ItemId: 2
+    ItemPrefab: {fileID: 2881585295263553560, guid: b700618286991164394c50638c3d8456, type: 3}
+  - ItemId: 3
+    ItemPrefab: {fileID: 1999943091658586458, guid: 154b410946f72be46a6f7d7d47f4e711, type: 3}
+  - ItemId: 4
+    ItemPrefab: {fileID: 670094435488806455, guid: 09efb38b9d1838347855d74a26aeae7d, type: 3}
+  - ItemId: 5
+    ItemPrefab: {fileID: 7369551286898498312, guid: 50bcac24e55de5a499c789940547b697, type: 3}
+  - ItemId: 6
+    ItemPrefab: {fileID: 751336301646340192, guid: c93ef105bed638143a680affa2d9f611, type: 3}
+  - ItemId: 7
+    ItemPrefab: {fileID: 5026259335527411976, guid: 1c0bea44d5476404ca51ea7bcda9fdde, type: 3}
+  - ItemId: 8
+    ItemPrefab: {fileID: -6975915289467254642, guid: f8c86f80e4dbfcc43be56d49b622c288, type: 3}
+  - ItemId: 9
+    ItemPrefab: {fileID: 2411266119045533921, guid: e814ff20b6516bf46b56cc75a2b7e9e0, type: 3}
+  - ItemId: 10
+    ItemPrefab: {fileID: 2357346322809958285, guid: bef8fd8342c3c104d8cb3f15c206f8d1, type: 3}
+  - ItemId: 11
+    ItemPrefab: {fileID: 4774372976703885782, guid: 2f161534cd61e7648a93aa422b63952d, type: 3}
   _itemContainer: {fileID: 1808580149}
   _playerTransform: {fileID: 1409805389}
 --- !u!4 &1459045303
@@ -102522,7 +102704,7 @@ MonoBehaviour:
   m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000574b58ae831f2d596bf09a21cbbb8eb6b7cb788e3f656461
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -102591,7 +102773,7 @@ MonoBehaviour:
   m_Intensity: 0.3
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000574b58ae831f2d596bf09a21cbbb8eb6b7cb788e3f656461
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -102690,7 +102872,7 @@ MonoBehaviour:
   m_Intensity: 0.5
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000574b58ae831f2d596bf09a21cbbb8eb6b7cb788e3f656461
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -102771,7 +102953,7 @@ MonoBehaviour:
   m_Intensity: 0.15
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000c31f1404
+  m_ApplyToSortingLayers: 00000000c31f1404574b58ae831f2d596bf09a21cbbb8eb6b7cb788e3f656461
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -102870,7 +103052,7 @@ MonoBehaviour:
   m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000574b58ae831f2d596bf09a21cbbb8eb6b7cb788e3f656461
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -102991,7 +103173,7 @@ MonoBehaviour:
   m_Intensity: 3
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000574b58ae831f2d596bf09a21cbbb8eb6b7cb788e3f656461
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -103120,7 +103302,7 @@ MonoBehaviour:
   m_Intensity: 0.5
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000574b58ae831f2d596bf09a21cbbb8eb6b7cb788e3f656461
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -103399,7 +103581,7 @@ MonoBehaviour:
   m_Intensity: 3
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000574b58ae831f2d596bf09a21cbbb8eb6b7cb788e3f656461
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -103526,8 +103708,8 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 563802219
+  m_SortingLayer: 4
   m_SortingOrder: 10
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
@@ -107323,7 +107505,7 @@ MonoBehaviour:
   m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000574b58ae831f2d596bf09a21cbbb8eb6b7cb788e3f656461
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -112855,7 +113037,7 @@ MonoBehaviour:
   m_Intensity: 0.3
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000574b58ae831f2d596bf09a21cbbb8eb6b7cb788e3f656461
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -112954,7 +113136,7 @@ MonoBehaviour:
   m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000574b58ae831f2d596bf09a21cbbb8eb6b7cb788e3f656461
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -113195,8 +113377,8 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 563802219
+  m_SortingLayer: 4
   m_SortingOrder: 15
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
@@ -113665,7 +113847,7 @@ MonoBehaviour:
   m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000574b58ae831f2d596bf09a21cbbb8eb6b7cb788e3f656461
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -113830,7 +114012,7 @@ MonoBehaviour:
   m_Intensity: 3
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000574b58ae831f2d596bf09a21cbbb8eb6b7cb788e3f656461
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -113928,7 +114110,7 @@ MonoBehaviour:
   m_Intensity: 0.3
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000574b58ae831f2d596bf09a21cbbb8eb6b7cb788e3f656461
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -114151,7 +114333,7 @@ MonoBehaviour:
   m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000574b58ae831f2d596bf09a21cbbb8eb6b7cb788e3f656461
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -114962,3 +115144,4 @@ SceneRoots:
   - {fileID: 1151817735}
   - {fileID: 1954974086}
   - {fileID: 1506741756}
+  - {fileID: 521312345}

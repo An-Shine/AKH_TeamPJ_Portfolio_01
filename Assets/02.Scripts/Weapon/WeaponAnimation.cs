@@ -5,7 +5,7 @@ public class WeaponAnimation : MonoBehaviour
 {
     [SerializeField] private string _layerName = "Base";
     private Animator _animator;
-    private readonly int[] _hashes = new int[6];
+    private readonly int[] _hashes = new int[System.Enum.GetValues(typeof(FacingDirection)).Length];
     private int _lastHash;
     private bool _hasPlayed;
 
@@ -13,7 +13,7 @@ public class WeaponAnimation : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _animator.applyRootMotion = false;
-        for (int direction = 0; direction < 6; direction++)
+        for (int direction = 0; direction < _hashes.Length; direction++)
         {
             _hashes[direction] = Animator.StringToHash($"{_layerName}.{(FacingDirection)direction}");
         }
@@ -34,18 +34,6 @@ public class WeaponAnimation : MonoBehaviour
 
         if (_hasPlayed && hash == _lastHash) return;
 
-        /*
-        float normalizedTime = 0f;
-        if (_hasPlayed)
-        {
-            AnimatorStateInfo info = _animator.GetCurrentAnimatorStateInfo(0);
-            normalizedTime = info.loop
-                ? Mathf.Repeat(info.normalizedTime, 1f)
-                : Mathf.Clamp01(info.normalizedTime);
-        }
-
-        _animator.Play(hash, 0, normalizedTime);
-        */
         _animator.Play(hash, 0);
         _lastHash = hash;
         _hasPlayed = true;
