@@ -114,7 +114,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -6470319020034500756, guid: e60d54a1530ed554fb42592e13077284, type: 3}
+  m_Sprite: {fileID: 2684942373273267066, guid: d9335292d953ac54bbcceae9040899e2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -203,6 +203,8 @@ MonoBehaviour:
     RightDown: {fileID: -2100020025919925453, guid: db04e9d30814d6443b5ff87dc90da699, type: 3}
     LeftUp: {fileID: 8270445906858281231, guid: db04e9d30814d6443b5ff87dc90da699, type: 3}
     LeftDown: {fileID: 532952625515318942, guid: db04e9d30814d6443b5ff87dc90da699, type: 3}
+    Right: {fileID: 4512714918657851343, guid: db04e9d30814d6443b5ff87dc90da699, type: 3}
+    Left: {fileID: 2999253056055592484, guid: db04e9d30814d6443b5ff87dc90da699, type: 3}
   - WeaponId: 1
     Up: {fileID: 6102361263206916926, guid: e60d54a1530ed554fb42592e13077284, type: 3}
     Down: {fileID: -5341961696509113586, guid: e60d54a1530ed554fb42592e13077284, type: 3}
@@ -210,13 +212,17 @@ MonoBehaviour:
     RightDown: {fileID: -6934976629734404245, guid: e60d54a1530ed554fb42592e13077284, type: 3}
     LeftUp: {fileID: -3319349901526857257, guid: e60d54a1530ed554fb42592e13077284, type: 3}
     LeftDown: {fileID: 70111152348249244, guid: e60d54a1530ed554fb42592e13077284, type: 3}
+    Right: {fileID: 7631219046128225658, guid: e60d54a1530ed554fb42592e13077284, type: 3}
+    Left: {fileID: -5282252909996908158, guid: e60d54a1530ed554fb42592e13077284, type: 3}
   - WeaponId: 3
     Up: {fileID: -7507561068165266195, guid: d9335292d953ac54bbcceae9040899e2, type: 3}
     Down: {fileID: -1971459806825377246, guid: d9335292d953ac54bbcceae9040899e2, type: 3}
     RightUp: {fileID: -8747429418807873516, guid: d9335292d953ac54bbcceae9040899e2, type: 3}
     RightDown: {fileID: 3437734438292792811, guid: d9335292d953ac54bbcceae9040899e2, type: 3}
     LeftUp: {fileID: -3984853408296311564, guid: d9335292d953ac54bbcceae9040899e2, type: 3}
-    LeftDown: {fileID: 3437734438292792811, guid: d9335292d953ac54bbcceae9040899e2, type: 3}
+    LeftDown: {fileID: -1402078292944132184, guid: d9335292d953ac54bbcceae9040899e2, type: 3}
+    Right: {fileID: -3904855737101524119, guid: d9335292d953ac54bbcceae9040899e2, type: 3}
+    Left: {fileID: 2684942373273267066, guid: d9335292d953ac54bbcceae9040899e2, type: 3}
 --- !u!1 &3852817395504386140
 GameObject:
   m_ObjectHideFlags: 0

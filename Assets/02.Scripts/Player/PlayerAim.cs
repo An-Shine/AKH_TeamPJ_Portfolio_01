@@ -45,34 +45,42 @@ public class PlayerAim : MonoBehaviour
         float angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
 
         // 현재 방향의 범위를 여유 각도만큼 더 벗어나야 방향을 변경합니다.
-        if (_hasFacing && Mathf.Abs(Mathf.DeltaAngle(CenterAngle(Facing), angle)) <= 30f + _directionHysteresis)
+        if (_hasFacing && Mathf.Abs(Mathf.DeltaAngle(CenterAngle(Facing), angle)) <= 22.5f + _directionHysteresis)
         {
             return;
         }
 
-        if (angle >= 60f && angle < 120f)
+        if (angle >= -22.5f && angle < 22.5f)
+        {
+            Facing = FacingDirection.Right;
+        }
+        else if (angle >= 22.5f && angle < 67.5f)
+        {
+            Facing = FacingDirection.RightUp;
+        }
+        else if (angle >= 67.5f && angle < 112.5f)
         {
             Facing = FacingDirection.Up;
         }
-        else if (angle >= 120f && angle < 180f)
+        else if (angle >= 112.5f && angle < 157.5f)
         {
             Facing = FacingDirection.LeftUp;
         }
-        else if (angle <= -120f || angle >= 180f)
+        else if (angle >= 157.5f || angle < -157.5f)
+        {
+            Facing = FacingDirection.Left;
+        }
+        else if (angle < -112.5f)
         {
             Facing = FacingDirection.LeftDown;
         }
-        else if (angle <= -60f)
+        else if (angle < -67.5f)
         {
             Facing = FacingDirection.Down;
         }
-        else if (angle <= 0f)
-        {
-            Facing = FacingDirection.RightDown;
-        }
         else
         {
-            Facing = FacingDirection.RightUp;
+            Facing = FacingDirection.RightDown;
         }
 
         _hasFacing = true;
@@ -124,19 +132,27 @@ public class PlayerAim : MonoBehaviour
             }
             case FacingDirection.RightUp:
             {
-                return 30f;
+                return 45f;
             }
             case FacingDirection.RightDown:
             {
-                return -30f;
+                return -45f;
             }
             case FacingDirection.LeftUp:
             {
-                return 150f;
+                return 135f;
+            }
+            case FacingDirection.Right:
+            {
+                return 0f;
+            }
+            case FacingDirection.Left:
+            {
+                return 180f;
             }
             default:
             {
-                return -150f;
+                return -135f;
             }
         }
     }

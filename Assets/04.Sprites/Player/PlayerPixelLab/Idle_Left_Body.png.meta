@@ -58,7 +58,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -72,7 +72,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 35
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -96,7 +96,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -150,12 +150,12 @@ TextureImporter:
       name: Idle_Left_Body_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 13
-        width: 24
-        height: 43
+        x: 0
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -172,12 +172,12 @@ TextureImporter:
       name: Idle_Left_Body_1
       rect:
         serializedVersion: 2
-        x: 58
-        y: 13
-        width: 24
-        height: 42
+        x: 48
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -194,12 +194,12 @@ TextureImporter:
       name: Idle_Left_Body_2
       rect:
         serializedVersion: 2
-        x: 107
-        y: 13
-        width: 23
-        height: 42
+        x: 96
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -216,12 +216,12 @@ TextureImporter:
       name: Idle_Left_Body_3
       rect:
         serializedVersion: 2
-        x: 156
-        y: 13
-        width: 23
-        height: 42
+        x: 144
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -238,12 +238,12 @@ TextureImporter:
       name: Idle_Left_Body_4
       rect:
         serializedVersion: 2
-        x: 204
-        y: 13
-        width: 23
-        height: 43
+        x: 192
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -260,12 +260,12 @@ TextureImporter:
       name: Idle_Left_Body_5
       rect:
         serializedVersion: 2
-        x: 253
-        y: 13
-        width: 23
-        height: 42
+        x: 240
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -282,12 +282,12 @@ TextureImporter:
       name: Idle_Left_Body_6
       rect:
         serializedVersion: 2
-        x: 299
-        y: 13
-        width: 24
-        height: 43
+        x: 288
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -304,12 +304,12 @@ TextureImporter:
       name: Idle_Left_Body_7
       rect:
         serializedVersion: 2
-        x: 347
-        y: 13
-        width: 24
-        height: 43
+        x: 336
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -326,7 +326,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 75f9196afc0b9df4bb9c91dc9d323ae6
     internalID: 0
     vertices: []
     indices: 
@@ -334,7 +334,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":48.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       Idle_Left_Body_0: -5995024438248506967
       Idle_Left_Body_1: 3957958862402903272

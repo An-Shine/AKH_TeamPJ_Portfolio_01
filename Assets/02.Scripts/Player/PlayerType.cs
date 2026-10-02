@@ -14,7 +14,9 @@ public enum FacingDirection
     RightUp,
     RightDown,
     LeftUp,
-    LeftDown
+    LeftDown,
+    Right,
+    Left
 }
 
 public enum AimDisplayMode
