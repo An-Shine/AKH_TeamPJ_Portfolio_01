@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f499990db5c84b24da3e79a02000ecf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangeMonster
-  _maxHealth: 10
+  _maxHealth: 50
   _moveSpeed: 2
   _contactDamage: 10
   _separationRadius: 0.8

@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a0d91a31eeb9994d90ed8efe7a2423e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeMonster
-  _maxHealth: 15
+  _maxHealth: 60
   _moveSpeed: 2
   _contactDamage: 10
   _separationRadius: 0.8

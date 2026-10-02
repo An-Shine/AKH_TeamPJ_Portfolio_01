@@ -118,14 +118,15 @@ public class Weapon : MonoBehaviour
 
     private void Fire()
     {
-        FireContext context = new FireContext(Data.ProjectileType, FirePoint.transform.position,
+        FireContext context = new FireContext(Data.ProjectileType, OriginPoint.transform.position,
             _targetDirection.normalized, Range, ProjectileCount, Angle);
         _firePattern.Fire(context, Damage);
         AudioManager.Instance.PlaySFX(_fireSoundType);
         if (_fireEffectPrefab != null)
         {
             GameObject effectObject =
-                Instantiate(_fireEffectPrefab, FirePoint.transform.position + _targetDirection.normalized * 3f, Quaternion.identity);
+                Instantiate(_fireEffectPrefab, OriginPoint.transform.position + _targetDirection.normalized * 0.3f,
+                    Quaternion.identity);
             effectObject.transform.eulerAngles = _effectDirection;
         }
     }
