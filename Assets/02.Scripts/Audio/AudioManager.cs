@@ -14,6 +14,8 @@ public class AudioManager : MonoBehaviour
     private Dictionary<BGMType, AudioClip> _bgmDictionary;
     private Dictionary<SFXType, AudioClip> _sfxDictionary;
 
+    public float MasterVolume => AudioListener.volume;
+
     private void Awake()
     {
         if (_instance != null)
@@ -70,6 +72,11 @@ public class AudioManager : MonoBehaviour
     {
         StopBGM();
         StopSFX();
+    }
+
+    public void SetMasterVolume(float volume)
+    {
+        AudioListener.volume = Mathf.Clamp01(volume);
     }
 
     public void PlayButtonPressed()
