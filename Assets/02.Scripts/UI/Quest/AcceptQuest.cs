@@ -22,6 +22,8 @@ public class AcceptQuest : MonoBehaviour
     [SerializeField] private Sprite _launchingShipImage;
 
     [SerializeField] private BlurManager _blurManager;
+    [SerializeField] private LobbyTutorialController _lobbyTutorialController;
+    private bool _isStartingQuest;
 
     public void SelectQuest(QuestData questData)
     {
@@ -45,9 +47,19 @@ public class AcceptQuest : MonoBehaviour
         _blurManager.BlurOutAnim();
     }
 
-    public void StartAcceptedQuest()
+    public async void StartAcceptedQuest()
     {
-        if (_acceptedQuest == null) return;
+        if (_acceptedQuest == null || _isStartingQuest) return;
+
+        _isStartingQuest = true;
+
+        var canDepart = await _lobbyTutorialController.PlayDepartureGuideAsync();
+
+        if (!canDepart)
+        {
+            _isStartingQuest = false;
+            return;
+        }
 
         SceneFlowManager.Instance.LoadScene(_gameplaySceneName);
     }
