@@ -80,8 +80,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1496129411
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -145,6 +145,13 @@ MonoBehaviour:
   _moveSpeed: 8
   _lifeTime: 3
   _damage: 10
+  _sweepRadius: 0.08
+  _hitLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  _impactEffectPrefab: {fileID: 0}
+  _impactEffectLifetime: 0.5
+  _impactColor: {r: 0.25, g: 0.85, b: 1, a: 1}
 --- !u!50 &5467120278089081892
 Rigidbody2D:
   serializedVersion: 5

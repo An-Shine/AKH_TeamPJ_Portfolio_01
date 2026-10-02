@@ -83,8 +83,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1232159797
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 6102361263206916926, guid: e60d54a1530ed554fb42592e13077284, type: 3}
@@ -111,9 +111,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Weapon
   _fireSoundType: 1
   _fireEffectPrefab: {fileID: 6329166320805473627, guid: 784d62d8c9c501049a983b73489d94b6, type: 3}
-  _originPoint: {fileID: 3500044708787501851}
-  _firePoint: {fileID: 8038809410558299891}
-  _effectPoint: {fileID: 2966960931177600051}
+  OriginPoint: {fileID: 0}
+  FirePoint: {fileID: 0}
+  EffectPoint: {fileID: 0}
   _hudIcon: {fileID: 7631219046128225658, guid: e60d54a1530ed554fb42592e13077284, type: 3}
 --- !u!95 &2612502528665866373
 Animator:
