@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 905744162f169c047b061ba71cd84598, type: 3}
+  m_Name: LobbyTutorialDialogue_03
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  _dialogueId: lobby_tutorial_03
+  _lines:
+  - _speakerName: "\uC81C\uB85C"
+    _portrait: {fileID: 3651158108210696409, guid: 37ef2a97b62b8754b8095bfc97519cf6, type: 3}
+    _text: "\uBAA9\uC801\uC9C0 \uD655\uC778\uB418\uC5C8\uC2B5\uB2C8\uB2E4.\n\uCD9C\uBC1C\uC744
+      \uC900\uBE44\uD558\uC138\uC694."
