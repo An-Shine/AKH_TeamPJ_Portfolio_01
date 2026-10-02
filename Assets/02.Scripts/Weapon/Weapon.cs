@@ -125,7 +125,7 @@ public class Weapon : MonoBehaviour
         if (_fireEffectPrefab != null)
         {
             GameObject effectObject =
-                Instantiate(_fireEffectPrefab, FirePoint.transform.position, Quaternion.identity);
+                Instantiate(_fireEffectPrefab, FirePoint.transform.position + _targetDirection.normalized * 3f, Quaternion.identity);
             effectObject.transform.eulerAngles = _effectDirection;
         }
     }
