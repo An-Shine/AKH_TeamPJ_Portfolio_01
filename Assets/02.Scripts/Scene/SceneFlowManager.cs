@@ -40,6 +40,11 @@ public class SceneFlowManager : MonoBehaviour
         SceneManager.LoadScene(_pressAnyKeySceneName, LoadSceneMode.Single);
     }
 
+    public void LoadMainMenu()
+    {
+        LoadScene(_mainMenuSceneName);
+    }
+
     public void LoadScene(string targetSceneName)
     {
         if (_isTransitioning) return;
