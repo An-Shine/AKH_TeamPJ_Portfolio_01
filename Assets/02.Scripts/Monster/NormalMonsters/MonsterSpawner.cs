@@ -171,19 +171,34 @@ public class MonsterSpawner : MonoBehaviour
 
     private void SpawnMonster(List<Transform> availableSpawnPoints)
     {
+        if (availableSpawnPoints.Count == 0)
+        {
+            return;
+        }
+
         int monsterIndex = Random.Range(0, _availablePrefabs.Count);
-        int spawnPointIndex = Random.Range(0, availableSpawnPoints.Count);
         NormalMonster monsterPrefab = _availablePrefabs[monsterIndex];
-        Transform spawnPoint = availableSpawnPoints[spawnPointIndex];
 
-        NormalMonster monster = Instantiate(
-            monsterPrefab,
-            spawnPoint.position,
-            Quaternion.identity
-        );
+        while (availableSpawnPoints.Count > 0)
+        {
+            int spawnPointIndex = Random.Range(0, availableSpawnPoints.Count);
+            Transform spawnPoint = availableSpawnPoints[spawnPointIndex];
+            availableSpawnPoints.RemoveAt(spawnPointIndex);
 
-        _aliveMonsters.Add(monster);
-        availableSpawnPoints.RemoveAt(spawnPointIndex);
+            if (!monsterPrefab.IsSpawnPositionClear(spawnPoint.position))
+            {
+                continue;
+            }
+
+            NormalMonster monster = Instantiate(
+                monsterPrefab,
+                spawnPoint.position,
+                Quaternion.identity
+            );
+
+            _aliveMonsters.Add(monster);
+            return;
+        }
     }
 
     private int CountAliveMonsters()
