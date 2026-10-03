@@ -1,0 +1,585 @@
+fileFormatVersion: 2
+guid: 3dcd6c2a1e5bb7a4a91dfa56e8080760
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5591809472460964958
+    second: SpaceBase_Tileset_Draft_v2_0
+  - first:
+      213: -137604616864461163
+    second: SpaceBase_Tileset_Draft_v2_1
+  - first:
+      213: -8038598481109849674
+    second: SpaceBase_Tileset_Draft_v2_2
+  - first:
+      213: 6596504656947171146
+    second: SpaceBase_Tileset_Draft_v2_3
+  - first:
+      213: -270745819636070626
+    second: SpaceBase_Tileset_Draft_v2_4
+  - first:
+      213: 4382812361857645681
+    second: SpaceBase_Tileset_Draft_v2_5
+  - first:
+      213: -6218285629525125948
+    second: SpaceBase_Tileset_Draft_v2_6
+  - first:
+      213: -1761025534985903069
+    second: SpaceBase_Tileset_Draft_v2_7
+  - first:
+      213: -1824754176494896161
+    second: SpaceBase_Tileset_Draft_v2_8
+  - first:
+      213: 367609866791158503
+    second: SpaceBase_Tileset_Draft_v2_9
+  - first:
+      213: -8616042715429837969
+    second: SpaceBase_Tileset_Draft_v2_10
+  - first:
+      213: -7632143593669285635
+    second: SpaceBase_Tileset_Draft_v2_11
+  - first:
+      213: -8523238056390246475
+    second: SpaceBase_Tileset_Draft_v2_12
+  - first:
+      213: -8325478647090195596
+    second: SpaceBase_Tileset_Draft_v2_13
+  - first:
+      213: 606874412483877527
+    second: SpaceBase_Tileset_Draft_v2_14
+  - first:
+      213: -8046525301170803078
+    second: SpaceBase_Tileset_Draft_v2_15
+  - first:
+      213: 5161046264796224622
+    second: SpaceBase_Tileset_Draft_v2_16
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SpaceBase_Tileset_Draft_v2_0
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 67
+        width: 896
+        height: 1187
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 46}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2abbc4659e6e562b0800000000000000
+      internalID: -5591809472460964958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpaceBase_Tileset_Draft_v2_1
+      rect:
+        serializedVersion: 2
+        x: 1036
+        y: 1052
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59e075c7451271ef0800000000000000
+      internalID: -137604616864461163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpaceBase_Tileset_Draft_v2_2
+      rect:
+        serializedVersion: 2
+        x: 1220
+        y: 923
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b9e3719549217090800000000000000
+      internalID: -8038598481109849674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpaceBase_Tileset_Draft_v2_3
+      rect:
+        serializedVersion: 2
+        x: 958
+        y: 630
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4fcb84290e7b8b50800000000000000
+      internalID: 6596504656947171146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpaceBase_Tileset_Draft_v2_4
+      rect:
+        serializedVersion: 2
+        x: 1149
+        y: 473
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e178b2c8c1e1e3cf0800000000000000
+      internalID: -270745819636070626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpaceBase_Tileset_Draft_v2_5
+      rect:
+        serializedVersion: 2
+        x: 1051
+        y: 439
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17c37b93f90e2dc30800000000000000
+      internalID: 4382812361857645681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpaceBase_Tileset_Draft_v2_6
+      rect:
+        serializedVersion: 2
+        x: 1003
+        y: 407
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c41d347a2634b9a0800000000000000
+      internalID: -6218285629525125948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpaceBase_Tileset_Draft_v2_7
+      rect:
+        serializedVersion: 2
+        x: 1003
+        y: 387
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 324e5c23b949f87e0800000000000000
+      internalID: -1761025534985903069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpaceBase_Tileset_Draft_v2_8
+      rect:
+        serializedVersion: 2
+        x: 1045
+        y: 360
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fdb7c939ebb2da6e0800000000000000
+      internalID: -1824754176494896161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpaceBase_Tileset_Draft_v2_9
+      rect:
+        serializedVersion: 2
+        x: 934
+        y: 216
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e20406e9330a1500800000000000000
+      internalID: 367609866791158503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpaceBase_Tileset_Draft_v2_10
+      rect:
+        serializedVersion: 2
+        x: 938
+        y: 199
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f636631dccaad6880800000000000000
+      internalID: -8616042715429837969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpaceBase_Tileset_Draft_v2_11
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 128
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df8a190a6dd251690800000000000000
+      internalID: -7632143593669285635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpaceBase_Tileset_Draft_v2_12
+      rect:
+        serializedVersion: 2
+        x: 940
+        y: 87
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bfb4c0552067b980800000000000000
+      internalID: -8523238056390246475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpaceBase_Tileset_Draft_v2_13
+      rect:
+        serializedVersion: 2
+        x: 949
+        y: 87
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 473d61fd745f57c80800000000000000
+      internalID: -8325478647090195596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpaceBase_Tileset_Draft_v2_14
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 53
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79a1063101d0c6800800000000000000
+      internalID: 606874412483877527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpaceBase_Tileset_Draft_v2_15
+      rect:
+        serializedVersion: 2
+        x: 899
+        y: 51
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7e6583fedff45090800000000000000
+      internalID: -8046525301170803078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpaceBase_Tileset_Draft_v2_16
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 17
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6c1982cb38bf9740800000000000000
+      internalID: 5161046264796224622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 74b10fe73aba23c40b1ae3774541f70b
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      SpaceBase_Tileset_Draft_v2_0: -5591809472460964958
+      SpaceBase_Tileset_Draft_v2_1: -137604616864461163
+      SpaceBase_Tileset_Draft_v2_10: -8616042715429837969
+      SpaceBase_Tileset_Draft_v2_11: -7632143593669285635
+      SpaceBase_Tileset_Draft_v2_12: -8523238056390246475
+      SpaceBase_Tileset_Draft_v2_13: -8325478647090195596
+      SpaceBase_Tileset_Draft_v2_14: 606874412483877527
+      SpaceBase_Tileset_Draft_v2_15: -8046525301170803078
+      SpaceBase_Tileset_Draft_v2_16: 5161046264796224622
+      SpaceBase_Tileset_Draft_v2_2: -8038598481109849674
+      SpaceBase_Tileset_Draft_v2_3: 6596504656947171146
+      SpaceBase_Tileset_Draft_v2_4: -270745819636070626
+      SpaceBase_Tileset_Draft_v2_5: 4382812361857645681
+      SpaceBase_Tileset_Draft_v2_6: -6218285629525125948
+      SpaceBase_Tileset_Draft_v2_7: -1761025534985903069
+      SpaceBase_Tileset_Draft_v2_8: -1824754176494896161
+      SpaceBase_Tileset_Draft_v2_9: 367609866791158503
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
