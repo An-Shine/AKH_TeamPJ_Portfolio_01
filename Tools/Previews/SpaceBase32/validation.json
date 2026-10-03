@@ -1,0 +1,23 @@
+{
+  "sheet": "C:\\Users\\akh10\\Documents\\2d-team02\\Assets\\04.Sprites\\Tilemaps\\Map\\SpaceBase_Tileset_32px_v1.png",
+  "size": [
+    256,
+    160
+  ],
+  "cellSize": 32,
+  "occupiedCells": 28,
+  "checks": [
+    "native 32px cells",
+    "32x96 north walls",
+    "identical north joining edges",
+    "north corner join edges",
+    "side repetition edges",
+    "lower corner join edges",
+    "exact 6px axis-aligned lower corner alpha masks",
+    "opaque floors and north walls",
+    "matching boundaries on all six floor cells",
+    "no sprite overlap",
+    "opaque assembled room"
+  ],
+  "result": "PASS"
+}

@@ -1,0 +1,150 @@
+{
+  "cellSize": 32,
+  "sheetSize": [
+    256,
+    160
+  ],
+  "origin": "top-left",
+  "sprites": [
+    {
+      "name": "North_Light_0_0",
+      "column": 0,
+      "row": 0
+    },
+    {
+      "name": "North_Light_1_0",
+      "column": 0,
+      "row": 1
+    },
+    {
+      "name": "North_Light_2_0",
+      "column": 0,
+      "row": 2
+    },
+    {
+      "name": "North_Electrical_0_0",
+      "column": 1,
+      "row": 0
+    },
+    {
+      "name": "North_Electrical_1_0",
+      "column": 1,
+      "row": 1
+    },
+    {
+      "name": "North_Electrical_2_0",
+      "column": 1,
+      "row": 2
+    },
+    {
+      "name": "North_Divider_0_0",
+      "column": 2,
+      "row": 0
+    },
+    {
+      "name": "North_Divider_1_0",
+      "column": 2,
+      "row": 1
+    },
+    {
+      "name": "North_Divider_2_0",
+      "column": 2,
+      "row": 2
+    },
+    {
+      "name": "Corner_NW_0_0",
+      "column": 3,
+      "row": 0
+    },
+    {
+      "name": "Corner_NW_1_0",
+      "column": 3,
+      "row": 1
+    },
+    {
+      "name": "Corner_NW_2_0",
+      "column": 3,
+      "row": 2
+    },
+    {
+      "name": "Corner_NE_0_0",
+      "column": 4,
+      "row": 0
+    },
+    {
+      "name": "Corner_NE_1_0",
+      "column": 4,
+      "row": 1
+    },
+    {
+      "name": "Corner_NE_2_0",
+      "column": 4,
+      "row": 2
+    },
+    {
+      "name": "Floor_Plain",
+      "column": 0,
+      "row": 3
+    },
+    {
+      "name": "Floor_Drain",
+      "column": 1,
+      "row": 3
+    },
+    {
+      "name": "Floor_Dust_0_0",
+      "column": 2,
+      "row": 3
+    },
+    {
+      "name": "Floor_Dust_0_1",
+      "column": 3,
+      "row": 3
+    },
+    {
+      "name": "Floor_Dust_1_0",
+      "column": 2,
+      "row": 4
+    },
+    {
+      "name": "Floor_Dust_1_1",
+      "column": 3,
+      "row": 4
+    },
+    {
+      "name": "West_Plain",
+      "column": 4,
+      "row": 3
+    },
+    {
+      "name": "West_Vent",
+      "column": 5,
+      "row": 3
+    },
+    {
+      "name": "Corner_SW",
+      "column": 6,
+      "row": 3
+    },
+    {
+      "name": "Corner_SE",
+      "column": 7,
+      "row": 3
+    },
+    {
+      "name": "East_Plain",
+      "column": 4,
+      "row": 4
+    },
+    {
+      "name": "East_Vent",
+      "column": 5,
+      "row": 4
+    },
+    {
+      "name": "South_Plain",
+      "column": 6,
+      "row": 4
+    }
+  ]
+}
