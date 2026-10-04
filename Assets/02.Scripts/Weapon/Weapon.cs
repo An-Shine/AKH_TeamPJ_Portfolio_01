@@ -195,4 +195,12 @@ public class Weapon : MonoBehaviour
 
         _hasFirePose = true;
     }
+
+    public void StopFire()
+    {
+        if (Data.BehaviourType == FireBehaviourType.Continuous)
+        {
+            ProjectilePoolManager.Instance.Release(_currentProjectile, Data.ProjectileType);
+        }
+    }
 }
