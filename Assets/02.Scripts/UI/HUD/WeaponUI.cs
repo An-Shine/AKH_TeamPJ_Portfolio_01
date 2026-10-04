@@ -12,13 +12,50 @@ public class WeaponUI : MonoBehaviour
         public Sprite Icon;
     }
 
+    [System.Serializable]
+    private class ProjectileIconEntry
+    {
+        public ProjectileType Type;
+        public Projectile ProjectilePrefab;
+    }
+    
+    [SerializeField] private List<ProjectileIconEntry> _projectileIcons;
     [SerializeField] private List<WeaponIconEntry> _weaponIcons;
     [SerializeField] private Image _weaponIcon;
     [SerializeField] private TMP_Text _ammoText;
+    [SerializeField] private RectTransform _projectileIconContainer;
+    [SerializeField] private Image _projectileIconPrefab;
+    [SerializeField] private Color _availableAmmoColor = Color.white;
+    [SerializeField] private Color _usedAmmoColor = Color.gray;
 
     private Sprite _lastWeaponIcon;
     private int _lastRemainingAmmo = -1;
     private int _lastMagazineSize = -1;
+    private ProjectileType? _lastProjectileType;
+    
+    private readonly List<Image> _projectileIconImages = new List<Image>();
+
+    private const int ProjectileIconCount = 10;
+
+    private void Awake()
+    {
+        CreateProjectileIcons();
+    }
+
+    private void CreateProjectileIcons()
+    {
+        if (_projectileIconPrefab == null || _projectileIconContainer == null)
+        {
+            return;
+        }
+
+        for (int i = 0; i < ProjectileIconCount; i++)
+        {
+            Image icon = Instantiate(_projectileIconPrefab, _projectileIconContainer);
+            icon.enabled = false;
+            _projectileIconImages.Add(icon);
+        }
+    }
 
     private Sprite FindWeaponIcon(string weaponName)
     {
@@ -37,7 +74,31 @@ public class WeaponUI : MonoBehaviour
         return null;
     }
 
-    public void SetWeaponData(string weaponName, int remainingAmmo, int magazineSize)
+    private Sprite FindProjectileIcon(ProjectileType projectileType)
+    {
+        if (_projectileIcons == null)
+        {
+            return null;
+        }
+
+        foreach (ProjectileIconEntry entry in _projectileIcons)
+        {
+            if (entry == null || entry.Type != projectileType || entry.ProjectilePrefab == null)
+            {
+                continue;
+            }
+            
+            SpriteRenderer spriteRenderer = entry.ProjectilePrefab.GetComponent<SpriteRenderer>();
+
+            if (spriteRenderer != null)
+            {
+                return spriteRenderer.sprite;
+            }
+        }
+        return null;
+    }
+
+    public void SetWeaponData(string weaponName, ProjectileType projectileType, int remainingAmmo, int magazineSize)
     {
         Sprite weaponIcon = FindWeaponIcon(weaponName);
         
@@ -47,6 +108,8 @@ public class WeaponUI : MonoBehaviour
             _weaponIcon.sprite = weaponIcon;
             _weaponIcon.enabled = weaponIcon != null;
         }
+        
+        RefreshProjectileIcons(projectileType);
 
         if (_lastRemainingAmmo == remainingAmmo && _lastMagazineSize == magazineSize)
         {
@@ -55,5 +118,53 @@ public class WeaponUI : MonoBehaviour
         _lastRemainingAmmo = remainingAmmo;
         _lastMagazineSize = magazineSize;
         _ammoText.text = $"{remainingAmmo} / {magazineSize}";
+        RefreshAmmoIcons(remainingAmmo, magazineSize);
+    }
+
+    private void RefreshProjectileIcons(ProjectileType projectileType)
+    {
+        if (_lastProjectileType == projectileType)
+        {
+            return;
+        }
+
+        _lastProjectileType = projectileType;
+        Sprite projectileSprite = FindProjectileIcon(projectileType);
+
+        foreach (Image icon in _projectileIconImages)
+        {
+            if (icon == null)
+            {
+                continue;
+            }
+            icon.sprite = projectileSprite;
+            icon.enabled = projectileSprite != null;
+        }
+    }
+
+    private void RefreshAmmoIcons(int remainingAmmo, int magazineSize)
+    {
+        if (magazineSize <= 0)
+        {
+            return;
+        }
+
+        int clampedRemainingAmmo = Mathf.Clamp(remainingAmmo, 0, magazineSize);
+        int usedAmmo = magazineSize - clampedRemainingAmmo;
+
+        int usedIconCount = usedAmmo * ProjectileIconCount / magazineSize;
+
+        for (int i = 0; i < _projectileIconImages.Count; i++)
+        {
+            Image icon = _projectileIconImages[i];
+
+            if (icon == null)
+            {
+                continue;
+            }
+
+            bool isUsed = i < usedIconCount;
+            icon.color = isUsed ? _usedAmmoColor : _availableAmmoColor;
+        }
     }
 }

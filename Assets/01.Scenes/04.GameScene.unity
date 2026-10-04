@@ -115055,6 +115055,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1359968433061275058, guid: fe2599a142614e04e81c44ff77a6c5bc, type: 3}
+      propertyPath: _projectileIcons.Array.data[0].ProjectilePrefab
+      value: 
+      objectReference: {fileID: 3578378478379548358, guid: 805c23898e16f5e4d9c2b8a1be1507d7, type: 3}
+    - target: {fileID: 1359968433061275058, guid: fe2599a142614e04e81c44ff77a6c5bc, type: 3}
+      propertyPath: _projectileIcons.Array.data[1].ProjectilePrefab
+      value: 
+      objectReference: {fileID: 8485128781540672698, guid: 91621783e3927f240b534d6ced9ef9a6, type: 3}
+    - target: {fileID: 1359968433061275058, guid: fe2599a142614e04e81c44ff77a6c5bc, type: 3}
+      propertyPath: _projectileIcons.Array.data[2].ProjectilePrefab
+      value: 
+      objectReference: {fileID: 7688034501499318360, guid: d5254145c6c4722489f91ab007edf530, type: 3}
     - target: {fileID: 1867433545440787959, guid: fe2599a142614e04e81c44ff77a6c5bc, type: 3}
       propertyPath: m_Name
       value: BulletCountUI
