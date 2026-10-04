@@ -22,6 +22,7 @@ public class Weapon : MonoBehaviour
     private int _remainingAmmo;
     public int RemainingAmmo => _remainingAmmo;
     private float _timer;
+    private float _fireTimer;
     private float _reloadTimer;
 
     private int Damage => (int)(Modifier.Damage.Flat * (1f + Modifier.Damage.Rate));
@@ -62,12 +63,13 @@ public class Weapon : MonoBehaviour
 
     private void Start()
     {
-        _timer = CoolTime;
+        _fireTimer = CoolTime;
+        _timer = 0f;
     }
 
     private void Update()
     {
-        _timer += Time.deltaTime * FireRate;
+        _fireTimer += Time.deltaTime * FireRate;
         Reloading();
     }
 
@@ -88,6 +90,8 @@ public class Weapon : MonoBehaviour
 
     public void OnMouseHeld()
     {
+        _timer += Time.deltaTime;
+        ContinousDecreaseAmmo();
         _fireBehaviour.OnMouseHeld(this);
     }
 
@@ -104,7 +108,7 @@ public class Weapon : MonoBehaviour
         if (!CheckRemainingAmmo())
             return false;
 
-        if (_timer < CoolTime)
+        if (_fireTimer < CoolTime)
             return false;
 
         return true;
@@ -123,7 +127,7 @@ public class Weapon : MonoBehaviour
 
         RefreshDirection();
         _currentProjectile = Fire();
-        _timer = 0;
+        _fireTimer = 0;
 
         _remainingAmmo--;
 
@@ -189,6 +193,18 @@ public class Weapon : MonoBehaviour
         }
 
         if (_reloadTimer >= Data.ReloadTime) _isReloading = false;
+    }
+
+    private void ContinousDecreaseAmmo()
+    {
+        if (_fireBehaviour is ContinuousFireBehaviour fireBehaviour)
+        {
+            if (fireBehaviour.IsFiring && _timer >= 1f)
+            {
+                _remainingAmmo -= 1;
+                _timer = 0f;
+            }
+        }
     }
 
     public void SetFirePose(Vector2 origin, Vector2 direction)

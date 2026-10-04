@@ -1,6 +1,7 @@
 public class ContinuousFireBehaviour : FireBehaviour
 {
     private bool _isFiring;
+    public bool IsFiring => _isFiring;
 
     public override void OnMouseDown(Weapon weapon)
     {
