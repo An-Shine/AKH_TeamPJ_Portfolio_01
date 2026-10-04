@@ -35,6 +35,8 @@ public class GameUIManager : MonoBehaviour
     {
         var weapon = _weaponManager.CurrentWeapon;
 
+        if (weapon == null || weapon.Data == null) return;
+
         _weaponUI.SetWeaponData(weapon.Data.Name, weapon.Data.ProjectileType, weapon.RemainingAmmo,
             weapon.MagazineSize);
     }
