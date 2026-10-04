@@ -1,6 +1,6 @@
 weapon_id,Name,FireBehaviourType,FirePatternType,type_of_projectile,FireRate(10/period),projectile_count,rebound,magazine_size,reloading_time(sec),charge_time(sec),Angle(Max80),range
 0,핸드건,Normal,Normal,Normal,60,1,0,68,0.8,0,0,25
 1,메테오 런처,Charge,Normal,BigExplosion,8,1,0.4,12,2.5,2,0,16
-2,레이저건,Continuous,Normal,Laser,5000,1,0,128,1.6,0,0,80
+2,레이저건,Continuous,Normal,Laser,5000,1,0,40,1.6,0,0,80
 3,플라즈마 샷건,Normal,Spread,Shot,16,8,0.15,22,1.8,0,30,12
-4,에너지 라이플,Normal,Normal,Penetration,45,1,0.1,42,1.4,0,0,40
+4,에너지 라이플,Normal,Normal,Penetration,45,1,0.1,42,1.4,0,0,35
