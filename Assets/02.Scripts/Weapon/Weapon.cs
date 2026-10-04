@@ -4,9 +4,8 @@ public class Weapon : MonoBehaviour
 {
     [SerializeField] private SFXType _fireSoundType;
     [SerializeField] private GameObject _fireEffectPrefab;
-    [SerializeField] public Transform OriginPoint;
-    [SerializeField] public Transform FirePoint;
-    [SerializeField] public Transform EffectPoint;
+    public Transform OriginPoint { get; set; }
+    public Transform FirePoint { get; set; }
     [SerializeField] private Sprite _hudIcon;
 
     public Sprite HudIcon => _hudIcon;
