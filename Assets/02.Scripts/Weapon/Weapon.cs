@@ -157,7 +157,7 @@ public class Weapon : MonoBehaviour
 
         if (_currentProjectile != null && _currentProjectile is LaserProjectile laser)
         {
-            laser.UpdateDirection(_targetDirection);
+            laser.UpdateLaserShape(OriginPoint.position, _targetDirection);
         }
 
         if (_fireEffectPrefab == null) return;

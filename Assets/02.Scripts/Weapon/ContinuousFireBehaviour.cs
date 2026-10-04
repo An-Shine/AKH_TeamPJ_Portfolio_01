@@ -16,6 +16,8 @@ public class ContinuousFireBehaviour : FireBehaviour
         if (!_isFiring)
             return;
 
+        weapon.RefreshDirection();
+
         if (!weapon.CanFire())
         {
             StopFire(weapon);

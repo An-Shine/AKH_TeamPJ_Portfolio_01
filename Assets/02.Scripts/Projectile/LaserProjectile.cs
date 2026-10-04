@@ -19,8 +19,9 @@ public class LaserProjectile : Projectile
     {
     }
 
-    public void UpdateDirection(Vector3 direction)
+    public void UpdateLaserShape(Vector3 position, Vector3 direction)
     {
+        transform.position = position;
         _direction = direction;
     }
 
