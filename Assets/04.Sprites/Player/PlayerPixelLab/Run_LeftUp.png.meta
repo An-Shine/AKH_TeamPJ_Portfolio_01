@@ -1,31 +1,25 @@
 fileFormatVersion: 2
-guid: 737d8fde52429b347b26e849254fe9d4
+guid: 3670972ad38b0f940ad38c9315b5ec49
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8148451470896505139
-    second: holding_an_invisible_v3_running_south-west_0
+      213: 3163874168156307245
+    second: Run_LeftUp_0
   - first:
-      213: -1005535173403333073
-    second: holding_an_invisible_v3_running_south-west_1
+      213: 8752137777170478372
+    second: Run_LeftUp_1
   - first:
-      213: 3835268931614452959
-    second: holding_an_invisible_v3_running_south-west_2
+      213: -2285196329139181977
+    second: Run_LeftUp_2
   - first:
-      213: -5363568285025844511
-    second: holding_an_invisible_v3_running_south-west_3
+      213: 5224379256683397700
+    second: Run_LeftUp_3
   - first:
-      213: 9135124309007943071
-    second: holding_an_invisible_v3_running_south-west_4
+      213: -4456554881916784969
+    second: Run_LeftUp_4
   - first:
-      213: -5759803342938134254
-    second: holding_an_invisible_v3_running_south-west_5
-  - first:
-      213: 7304821976031341853
-    second: holding_an_invisible_v3_running_south-west_6
-  - first:
-      213: -7042909881342769965
-    second: holding_an_invisible_v3_running_south-west_7
+      213: -6930210433536023325
+    second: Run_LeftUp_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -134,13 +128,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: holding_an_invisible_v3_running_south-west_0
+      name: Run_LeftUp_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 68
-        height: 68
+        width: 48
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -149,20 +143,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dce54bf3f82eaee80800000000000000
-      internalID: -8148451470896505139
+      spriteID: d2fbdf20bc658eb20800000000000000
+      internalID: 3163874168156307245
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: holding_an_invisible_v3_running_south-west_1
+      name: Run_LeftUp_1
       rect:
         serializedVersion: 2
-        x: 68
+        x: 48
         y: 0
-        width: 68
-        height: 68
+        width: 48
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,20 +165,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f2e222c561f9b02f0800000000000000
-      internalID: -1005535173403333073
+      spriteID: 425f58100f6d57970800000000000000
+      internalID: 8752137777170478372
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: holding_an_invisible_v3_running_south-west_2
+      name: Run_LeftUp_2
       rect:
         serializedVersion: 2
-        x: 136
+        x: 96
         y: 0
-        width: 68
-        height: 68
+        width: 48
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,20 +187,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fdca8fee5cc993530800000000000000
-      internalID: 3835268931614452959
+      spriteID: 766e1afcb0a5940e0800000000000000
+      internalID: -2285196329139181977
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: holding_an_invisible_v3_running_south-west_3
+      name: Run_LeftUp_3
       rect:
         serializedVersion: 2
-        x: 204
+        x: 144
         y: 0
-        width: 68
-        height: 68
+        width: 48
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,20 +209,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1e2cb7aef07c095b0800000000000000
-      internalID: -5363568285025844511
+      spriteID: 44288860149b08840800000000000000
+      internalID: 5224379256683397700
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: holding_an_invisible_v3_running_south-west_4
+      name: Run_LeftUp_4
       rect:
         serializedVersion: 2
-        x: 272
+        x: 192
         y: 0
-        width: 68
-        height: 68
+        width: 48
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,20 +231,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f954479b82b76ce70800000000000000
-      internalID: 9135124309007943071
+      spriteID: 7be215d52f22722c0800000000000000
+      internalID: -4456554881916784969
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: holding_an_invisible_v3_running_south-west_5
+      name: Run_LeftUp_5
       rect:
         serializedVersion: 2
-        x: 340
+        x: 240
         y: 0
-        width: 68
-        height: 68
+        width: 48
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -259,52 +253,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 219a01850611110b0800000000000000
-      internalID: -5759803342938134254
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: holding_an_invisible_v3_running_south-west_6
-      rect:
-        serializedVersion: 2
-        x: 408
-        y: 0
-        width: 68
-        height: 68
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d1da0d472e0ff5560800000000000000
-      internalID: 7304821976031341853
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: holding_an_invisible_v3_running_south-west_7
-      rect:
-        serializedVersion: 2
-        x: 476
-        y: 0
-        width: 68
-        height: 68
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3d4c97127ce824e90800000000000000
-      internalID: -7042909881342769965
+      spriteID: 3e4216a1452f2df90800000000000000
+      internalID: -6930210433536023325
       vertices: []
       indices: 
       edges: []
@@ -313,7 +263,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: e3c546088708d09439c9896c8b9d3270
+    spriteID: 76e4b5194e58452468a39bf25085c936
     internalID: 0
     vertices: []
     indices: 
@@ -323,16 +273,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":68.0,"y":68.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":48.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      holding_an_invisible_v3_running_south-west_0: -8148451470896505139
-      holding_an_invisible_v3_running_south-west_1: -1005535173403333073
-      holding_an_invisible_v3_running_south-west_2: 3835268931614452959
-      holding_an_invisible_v3_running_south-west_3: -5363568285025844511
-      holding_an_invisible_v3_running_south-west_4: 9135124309007943071
-      holding_an_invisible_v3_running_south-west_5: -5759803342938134254
-      holding_an_invisible_v3_running_south-west_6: 7304821976031341853
-      holding_an_invisible_v3_running_south-west_7: -7042909881342769965
+      Run_LeftUp_0: 3163874168156307245
+      Run_LeftUp_1: 8752137777170478372
+      Run_LeftUp_2: -2285196329139181977
+      Run_LeftUp_3: 5224379256683397700
+      Run_LeftUp_4: -4456554881916784969
+      Run_LeftUp_5: -6930210433536023325
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
