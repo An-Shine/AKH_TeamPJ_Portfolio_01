@@ -108,7 +108,7 @@ public class Weapon : MonoBehaviour
         if (!CheckRemainingAmmo())
             return false;
 
-        if (_fireTimer < CoolTime)
+        if (_fireTimer < CoolTime && Data.BehaviourType != FireBehaviourType.Continuous)
             return false;
 
         return true;
