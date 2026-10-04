@@ -113,7 +113,13 @@ public class Weapon : MonoBehaviour
     public bool TryFire()
     {
         if (!CanFire())
+        {
+            if (!CheckRemainingAmmo())
+            {
+                AudioManager.Instance.PlaySFX(SFXType.FailFire);
+            }
             return false;
+        }
 
         RefreshDirection();
         _currentProjectile = Fire();
@@ -160,10 +166,7 @@ public class Weapon : MonoBehaviour
     public bool CheckRemainingAmmo()
     {
         if (_remainingAmmo <= 0)
-        {
-            AudioManager.Instance.PlaySFX(SFXType.FailFire);
             return false;
-        }
 
         return true;
     }
