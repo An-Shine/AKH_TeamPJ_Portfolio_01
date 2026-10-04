@@ -95,7 +95,7 @@ public class Weapon : MonoBehaviour
         _fireBehaviour.OnMouseUp(this);
     }
 
-    public bool TryFire()
+    public bool CanFire()
     {
         if (_isReloading)
             return false;
@@ -104,6 +104,14 @@ public class Weapon : MonoBehaviour
             return false;
 
         if (_timer < CoolTime)
+            return false;
+
+        return true;
+    }
+
+    public bool TryFire()
+    {
+        if (!CanFire())
             return false;
 
         RefreshDirection();
