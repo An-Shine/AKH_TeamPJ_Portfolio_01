@@ -14,6 +14,7 @@ public class Weapon : MonoBehaviour
 
     private FireBehaviour _fireBehaviour;
     private IFirePattern _firePattern;
+    private Projectile _currentProjectile;
 
     private const float CoolTime = 10f;
 
@@ -115,7 +116,7 @@ public class Weapon : MonoBehaviour
             return false;
 
         RefreshDirection();
-        Fire();
+        _currentProjectile = Fire();
         _timer = 0;
 
         _remainingAmmo--;
@@ -123,11 +124,11 @@ public class Weapon : MonoBehaviour
         return true;
     }
 
-    private void Fire()
+    private Projectile Fire()
     {
         FireContext context = new FireContext(Data.ProjectileType, OriginPoint.transform.position,
             _targetDirection.normalized, Range, ProjectileCount, Angle);
-        _firePattern.Fire(context, Damage);
+        Projectile projectile = _firePattern.Fire(context, Damage);
         AudioManager.Instance.PlaySFX(_fireSoundType);
         if (_fireEffectPrefab != null)
         {
@@ -135,12 +136,16 @@ public class Weapon : MonoBehaviour
                 Instantiate(_fireEffectPrefab, OriginPoint.transform.position, Quaternion.identity);
             effectObject.transform.eulerAngles = _effectDirection;
         }
+
+        return projectile;
     }
 
     public void RefreshDirection()
     {
         _targetDirection = FirePoint.position - OriginPoint.position;
         float angle = Mathf.Atan2(_targetDirection.y, _targetDirection.x) * Mathf.Rad2Deg + 180f;
+
+        if (_fireEffectPrefab == null) return;
         _effectDirection = new Vector3(
             _fireEffectPrefab.transform.eulerAngles.x,
             _fireEffectPrefab.transform.eulerAngles.y,

@@ -1,4 +1,4 @@
 ﻿public interface IFirePattern
 {
-    public void Fire(FireContext context, int damage);
+    public Projectile Fire(FireContext context, int damage);
 }
