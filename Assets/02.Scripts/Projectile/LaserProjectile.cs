@@ -1,9 +1,20 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class LaserProjectile : Projectile
 {
     [SerializeField] private LineRenderer _lineRenderer;
-    [SerializeField] private LayerMask _targetLayer;
+    [SerializeField] private List<LayerMask> _targetLayers;
+    private int _combinedLayerMask;
+
+    private void Start()
+    {
+        _combinedLayerMask = 0;
+        foreach (LayerMask mask in _targetLayers)
+        {
+            _combinedLayerMask |= mask.value;
+        }
+    }
 
     protected override void Update()
     {
@@ -35,7 +46,7 @@ public class LaserProjectile : Projectile
             transform.position,
             _direction,
             _range,
-            _targetLayer);
+            _combinedLayerMask);
 
         Vector2 endPosition;
         if (hit.collider != null)
