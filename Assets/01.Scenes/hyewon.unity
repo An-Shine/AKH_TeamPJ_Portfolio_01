@@ -41200,6 +41200,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8362892312594355892, guid: b5f335e30d5aa2344bc4adefae59483a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8910268917954700399, guid: b5f335e30d5aa2344bc4adefae59483a, type: 3}
       propertyPath: m_SortingLayer
       value: 0
@@ -41278,17 +41282,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3930185727995116649, guid: b5f335e30d5aa2344bc4adefae59483a, type: 3}
   m_PrefabInstance: {fileID: 565723845}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &565723849 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7799158211837625566, guid: b5f335e30d5aa2344bc4adefae59483a, type: 3}
-  m_PrefabInstance: {fileID: 565723845}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 329aaa2277ca4b54bbdb70f569a03471, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
 --- !u!1 &624472595
 GameObject:
   m_ObjectHideFlags: 0
@@ -51082,7 +51075,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f6cbc45654a4ef396bbd826d73ed0fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
-  Player: {fileID: 565723849}
+  PlayerControllerObj: {fileID: 0}
+  PlayerAimObj: {fileID: 0}
 --- !u!1 &1969899165
 GameObject:
   m_ObjectHideFlags: 0

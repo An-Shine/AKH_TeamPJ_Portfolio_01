@@ -97,6 +97,10 @@ public class PlayerController : MonoBehaviour
     {
         _fsm.Act(_moveInput, _aim.AimDirection, _dashQueued, Time.fixedDeltaTime);
         _dashQueued = false;
+        if (_fsm.IsDashing && PlayerManager.Instance != null)
+        {
+            PlayerManager.Instance.BeginDashInvulnerability();
+        }
         _motor.Move(_fsm.MovementDirection, _fsm.IsDashing);
     }
 

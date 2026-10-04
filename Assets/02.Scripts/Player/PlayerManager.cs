@@ -8,6 +8,7 @@ public class PlayerManager : MonoBehaviour
 
     public PlayerStatus PlayerStatusData { get; private set; }
     private float _hitInvulnerableUntil;
+    private float _dashInvulnerableUntil;
     private Weapon _modifiedWeapon;
     private float _appliedFireFlat;
     private float _appliedFireRate;
@@ -198,12 +199,24 @@ public class PlayerManager : MonoBehaviour
             PlayerStatusData.ModifyHealth(amount);
     }
 
+    public void BeginDashInvulnerability()
+    {
+        EnsureStatus();
+        if (PlayerStatusData == null || Time.timeScale <= 0f) return;
+
+        float duration = PlayerStatusData.DashInvulnerableDuration;
+        if (duration <= 0f || float.IsNaN(duration) || float.IsInfinity(duration)) return;
+
+        // 기존 무적 시간을 줄이지 않고, 대시 상태가 끝나도 지정 시간 동안 유지합니다.
+        _dashInvulnerableUntil = Mathf.Max(_dashInvulnerableUntil, Time.time + duration);
+    }
+
     public bool TryTakeDamage(float damage)
     {
         EnsureStatus();
         if (PlayerStatusData == null || !PlayerStatusData.IsVulnerable ||
             PlayerStatusData.CurrentHP <= 0f || Time.timeScale <= 0f ||
-            Time.time < _hitInvulnerableUntil || damage <= 0f ||
+            Time.time < _hitInvulnerableUntil || Time.time < _dashInvulnerableUntil || damage <= 0f ||
             float.IsNaN(damage) || float.IsInfinity(damage))
         {
             return false;
