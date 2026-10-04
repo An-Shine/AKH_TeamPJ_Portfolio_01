@@ -7,9 +7,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] public Transform OriginPoint;
     [SerializeField] public Transform FirePoint;
     [SerializeField] public Transform EffectPoint;
-    [SerializeField] private Sprite _hudIcon;
-
-    public Sprite HudIcon => _hudIcon;
+    
     public WeaponData Data { get; private set; }
     public WeaponModifier Modifier { get; private set; }
 
