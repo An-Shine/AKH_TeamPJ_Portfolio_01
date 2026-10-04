@@ -7,7 +7,6 @@ public class Weapon : MonoBehaviour
     [SerializeField] public Transform OriginPoint;
     [SerializeField] public Transform FirePoint;
     [SerializeField] public Transform EffectPoint;
-    
     public WeaponData Data { get; private set; }
     public WeaponModifier Modifier { get; private set; }
 
