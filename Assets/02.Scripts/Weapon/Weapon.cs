@@ -145,6 +145,11 @@ public class Weapon : MonoBehaviour
         _targetDirection = FirePoint.position - OriginPoint.position;
         float angle = Mathf.Atan2(_targetDirection.y, _targetDirection.x) * Mathf.Rad2Deg + 180f;
 
+        if (_currentProjectile != null && _currentProjectile is LaserProjectile laser)
+        {
+            laser.UpdateDirection(_targetDirection);
+        }
+
         if (_fireEffectPrefab == null) return;
         _effectDirection = new Vector3(
             _fireEffectPrefab.transform.eulerAngles.x,
