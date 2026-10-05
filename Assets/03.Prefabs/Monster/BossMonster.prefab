@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -3334640104070496448}
   m_Layer: 0
   m_Name: BossMonster
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -132,12 +132,31 @@ MonoBehaviour:
   _maxHealth: 1200
   _moveSpeed: 0
   _contactDamage: 0
+  _contactDamageCooldown: 0.5
+  _contactKnockbackDistance: 0.2
+  _contactKnockbackDuration: 0.12
   _separationRadius: 0.8
   _separationStrength: 1.5
+  _preventMonsterOverlap: 1
+  _minimumMonsterDistance: 1.1
+  _useSpriteSizeForSpacing: 1
+  _spriteSpacingFactor: 0.8
+  _overlapSeparationSpeed: 2.5
   _collisionCheckRadius: 0.25
   _obstacleLayer:
     serializedVersion: 2
     m_Bits: 0
+  _detectSolidCollidersAutomatically: 1
+  _ignoredObstacleLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  _blockObstacleTriggers: 0
+  _useObstaclePathfinding: 1
+  _pathCellSize: 0.5
+  _pathRepathInterval: 0.5
+  _pathSearchMargin: 12
+  _pathMaxVisitedNodes: 2048
+  _pathWaypointTolerance: 0.1
   _hitCooldown: 0.1
   _hitFlashDuration: 0.08
   _deathDelay: 0.2
@@ -153,6 +172,19 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  _enableSlowChase: 1
+  _slowMoveSpeed: 0.25
+  _chaseRadius: 2
+  _stopDistance: 3
+  _roomEdgePadding: 0.75
+  _walkAnimationSpeed: 0.8
+  _hitSparkColor: {r: 1, g: 0.9, b: 0.5, a: 1}
+  _hitSound: {fileID: 0}
+  _hitSoundVolume: 0.5
+  _hitSoundCooldown: 0.06
+  _showHealthBar: 1
+  _bossDisplayName: BOSS
+  _healthBarColor: {r: 0.85, g: 0.12, b: 0.2, a: 1}
   _patterns:
   - {fileID: 0}
   - {fileID: 0}

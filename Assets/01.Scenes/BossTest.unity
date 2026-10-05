@@ -453,6 +453,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 66998677}
     - target: {fileID: 3819265829258752211, guid: 8cfefe87713ae9742a22215d33616cf0, type: 3}
+      propertyPath: _contactDamage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3819265829258752211, guid: 8cfefe87713ae9742a22215d33616cf0, type: 3}
+      propertyPath: _slowMoveSpeed
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3819265829258752211, guid: 8cfefe87713ae9742a22215d33616cf0, type: 3}
       propertyPath: _patterns.Array.size
       value: 6
       objectReference: {fileID: 0}
