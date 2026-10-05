@@ -23,4 +23,5 @@ public enum SFXType
     FailFire,
     Charging,
     ChargeComplete,
+    FiringLaser,
 }

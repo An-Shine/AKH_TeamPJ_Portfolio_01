@@ -8,6 +8,7 @@ public class ContinuousFireBehaviour : FireBehaviour
         if (weapon.TryFire())
         {
             _isFiring = true;
+            AudioManager.Instance.PlayLoopSFX(SFXType.FiringLaser);
         }
     }
 
@@ -36,6 +37,7 @@ public class ContinuousFireBehaviour : FireBehaviour
 
         _isFiring = false;
 
+        AudioManager.Instance.StopLoopSFX();
         weapon.StopFire();
     }
 }
