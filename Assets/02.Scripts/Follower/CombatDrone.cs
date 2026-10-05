@@ -56,6 +56,7 @@ public class CombatDrone : Follower
         _timer = 0f;
         Vector3 direction = _target.position - transform.position;
         direction.Normalize();
+        AudioManager.Instance.PlaySFX(SFXType.FollowerAttack);
         ProjectileSpawner.Instance.Spawn(
             _projectileType,
             transform.position,
