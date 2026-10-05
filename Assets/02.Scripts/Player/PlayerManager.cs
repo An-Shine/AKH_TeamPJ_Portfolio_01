@@ -19,6 +19,7 @@ public class PlayerManager : MonoBehaviour
 
     public PlayerController PlayerControllerObj;
     public PlayerAim PlayerAimObj;
+    [SerializeField] private PlayerHitFlash _hitFlash;
 
     private void Awake()
     {
@@ -224,7 +225,27 @@ public class PlayerManager : MonoBehaviour
 
         PlayerStatusData.ModifyHealth(-damage);
         _hitInvulnerableUntil = Time.time + Mathf.Max(0f, PlayerStatusData.HitInvulnerableDuration);
+        PlayHitFlash();
         return true;
+    }
+
+    private void PlayHitFlash()
+    {
+        if (_hitFlash == null)
+        {
+            PlayerController player = PlayerControllerObj != null
+                ? PlayerControllerObj
+                : FindFirstObjectByType<PlayerController>();
+            if (player != null)
+            {
+                _hitFlash = player.GetComponent<PlayerHitFlash>();
+            }
+        }
+
+        if (_hitFlash != null)
+        {
+            _hitFlash.Play();
+        }
     }
 
     public void MonsterHit()
