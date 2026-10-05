@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class LaserProjectile : Projectile
@@ -24,6 +25,11 @@ public class LaserProjectile : Projectile
 
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        GiveDamage(other);
     }
 
     public void UpdateLaserShape(Vector3 position, Vector3 direction)
@@ -53,7 +59,7 @@ public class LaserProjectile : Projectile
         if (hit.collider != null)
         {
             endPosition = hit.point;
-            GiveDamage(hit.collider);
+            //GiveDamage(hit.collider);
         }
         else
         {
