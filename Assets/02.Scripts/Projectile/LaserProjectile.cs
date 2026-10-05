@@ -8,6 +8,9 @@ public class LaserProjectile : Projectile
     [SerializeField] private Transform _endEffect;
     [SerializeField] private LayerMask _targetLayer;
 
+    [SerializeField] private BoxCollider2D _laserCollider;
+    [SerializeField] private float _colliderWidth = 1.5f;
+
     private const string EndAnimationTrigger = "Stop";
 
     protected override void Update()
@@ -57,9 +60,6 @@ public class LaserProjectile : Projectile
             endPosition = origin + (Vector2)_direction * _range;
         }
 
-        Debug.Log($"direction : {_direction}");
-        Debug.Log($"endPosition : {endPosition}");
-
         UpdateLaserEffect(origin, endPosition);
     }
 
@@ -67,7 +67,6 @@ public class LaserProjectile : Projectile
     {
         Vector2 direction = end - start;
         float distance = direction.magnitude;
-        Debug.Log(distance);
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
@@ -75,14 +74,22 @@ public class LaserProjectile : Projectile
         transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
         // Body
-        //_laserRenderer.size =  new Vector2(distance, _laserRenderer.size.y);
         _bodyEffect.localScale = new Vector3(distance, _bodyEffect.localScale.y, _bodyEffect.localScale.z);
         float bodyPositionX = distance / 2f + 0.75f;
         _bodyEffect.localPosition = new Vector3(bodyPositionX, 0f, 0f);
 
-        // 충돌 지점
+        // impact point
         float endPositionX = distance + 1.25f;
         _endEffect.localPosition = new Vector3(endPositionX, 0f, 0f);
+
+        //adjust collider
+        UpdateCollider(distance + 2f);
+    }
+
+    private void UpdateCollider(float length)
+    {
+        _laserCollider.size = new Vector2(length, _colliderWidth);
+        _laserCollider.offset = new Vector2(length * 0.5f, 0f);
     }
 
     protected override void GiveDamage(Collider2D other)
