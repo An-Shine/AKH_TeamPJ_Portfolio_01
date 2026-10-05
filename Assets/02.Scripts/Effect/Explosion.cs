@@ -2,10 +2,12 @@ using UnityEngine;
 
 public class Explosion : Effect
 {
+    [SerializeField] private SFXType _sfxType;
     private float _damage;
 
     public void Initialize(float damage)
     {
+        AudioManager.Instance.PlaySFX(_sfxType);
         _damage = damage;
     }
 
@@ -13,8 +15,10 @@ public class Explosion : Effect
     {
         if (other.CompareTag("Enemy"))
         {
-            //GetComponent
-            //damage Process
+            if (other.TryGetComponent(out NormalMonster monster))
+            {
+                monster.TakeDamage(_damage);
+            }
         }
     }
 }

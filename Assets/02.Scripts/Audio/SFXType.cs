@@ -24,4 +24,5 @@ public enum SFXType
     Charging,
     ChargeComplete,
     FiringLaser,
+    ExplosionEffectBig,
 }

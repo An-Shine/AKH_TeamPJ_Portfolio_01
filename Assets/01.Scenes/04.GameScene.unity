@@ -2720,6 +2720,8 @@ MonoBehaviour:
     Clip: {fileID: 8300000, guid: a9e3fee688cf000499bded40dd54ff48, type: 3}
   - Type: 3
     Clip: {fileID: 8300000, guid: a094d8a7e13ece64382f13d4f441d2b7, type: 3}
+  - Type: 24
+    Clip: {fileID: 8300000, guid: ea66d6def01d2444fb5d72582b855595, type: 3}
 --- !u!4 &408124218
 Transform:
   m_ObjectHideFlags: 0
@@ -102145,6 +102147,46 @@ PrefabInstance:
       propertyPath: _fireDirectionPoint
       value: 
       objectReference: {fileID: 521312344}
+    - target: {fileID: 3603634642599122488, guid: b5f335e30d5aa2344bc4adefae59483a, type: 3}
+      propertyPath: _gunSprites.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3603634642599122488, guid: b5f335e30d5aa2344bc4adefae59483a, type: 3}
+      propertyPath: _gunSprites.Array.data[3].Up
+      value: 
+      objectReference: {fileID: 6102361263206916926, guid: e60d54a1530ed554fb42592e13077284, type: 3}
+    - target: {fileID: 3603634642599122488, guid: b5f335e30d5aa2344bc4adefae59483a, type: 3}
+      propertyPath: _gunSprites.Array.data[3].Down
+      value: 
+      objectReference: {fileID: -5341961696509113586, guid: e60d54a1530ed554fb42592e13077284, type: 3}
+    - target: {fileID: 3603634642599122488, guid: b5f335e30d5aa2344bc4adefae59483a, type: 3}
+      propertyPath: _gunSprites.Array.data[3].Left
+      value: 
+      objectReference: {fileID: -5282252909996908158, guid: e60d54a1530ed554fb42592e13077284, type: 3}
+    - target: {fileID: 3603634642599122488, guid: b5f335e30d5aa2344bc4adefae59483a, type: 3}
+      propertyPath: _gunSprites.Array.data[3].Right
+      value: 
+      objectReference: {fileID: 7631219046128225658, guid: e60d54a1530ed554fb42592e13077284, type: 3}
+    - target: {fileID: 3603634642599122488, guid: b5f335e30d5aa2344bc4adefae59483a, type: 3}
+      propertyPath: _gunSprites.Array.data[3].LeftUp
+      value: 
+      objectReference: {fileID: -3319349901526857257, guid: e60d54a1530ed554fb42592e13077284, type: 3}
+    - target: {fileID: 3603634642599122488, guid: b5f335e30d5aa2344bc4adefae59483a, type: 3}
+      propertyPath: _gunSprites.Array.data[3].RightUp
+      value: 
+      objectReference: {fileID: -6470319020034500756, guid: e60d54a1530ed554fb42592e13077284, type: 3}
+    - target: {fileID: 3603634642599122488, guid: b5f335e30d5aa2344bc4adefae59483a, type: 3}
+      propertyPath: _gunSprites.Array.data[3].LeftDown
+      value: 
+      objectReference: {fileID: 70111152348249244, guid: e60d54a1530ed554fb42592e13077284, type: 3}
+    - target: {fileID: 3603634642599122488, guid: b5f335e30d5aa2344bc4adefae59483a, type: 3}
+      propertyPath: _gunSprites.Array.data[3].WeaponId
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3603634642599122488, guid: b5f335e30d5aa2344bc4adefae59483a, type: 3}
+      propertyPath: _gunSprites.Array.data[3].RightDown
+      value: 
+      objectReference: {fileID: -6934976629734404245, guid: e60d54a1530ed554fb42592e13077284, type: 3}
     - target: {fileID: 3852817395504386140, guid: b5f335e30d5aa2344bc4adefae59483a, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -115074,6 +115116,10 @@ PrefabInstance:
     - target: {fileID: 1867433545440787959, guid: fe2599a142614e04e81c44ff77a6c5bc, type: 3}
       propertyPath: m_Name
       value: BulletCountUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978938228247588076, guid: fe2599a142614e04e81c44ff77a6c5bc, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

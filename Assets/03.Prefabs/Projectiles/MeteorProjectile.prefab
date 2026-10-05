@@ -129,7 +129,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34eb0e0464954284b768fcd2fd5f379f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExplosionProjectile
-  _explosionEffect: {fileID: 1630804127347482785, guid: ce6f766f084eb2f4e9b9833c763f4ed0, type: 3}
+  _explosionEffect: {fileID: 233643166561870216, guid: ce6f766f084eb2f4e9b9833c763f4ed0, type: 3}
+  _adjustExplosionPosition: {x: 0, y: 2, z: 0}
 --- !u!70 &1237593117003784088
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
