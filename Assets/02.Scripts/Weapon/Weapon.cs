@@ -217,9 +217,10 @@ public class Weapon : MonoBehaviour
 
     public void StopFire()
     {
-        if (Data.BehaviourType == FireBehaviourType.Continuous)
+        if (_currentProjectile is LaserProjectile laser)
         {
-            ProjectilePoolManager.Instance.Release(_currentProjectile, Data.ProjectileType);
+            //ProjectilePoolManager.Instance.Release(laser, Data.ProjectileType);
+            laser.SetEnd();
         }
     }
 }

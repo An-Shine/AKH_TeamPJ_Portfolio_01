@@ -8,6 +8,8 @@ public class LaserProjectile : Projectile
     [SerializeField] private Transform _endEffect;
     [SerializeField] private LayerMask _targetLayer;
 
+    private const string EndAnimationTrigger = "Stop";
+
     protected override void Update()
     {
         CreateLaser();
@@ -100,5 +102,29 @@ public class LaserProjectile : Projectile
 
     protected override void Resize()
     {
+    }
+
+    public void SetEnd()
+    {
+        Animator animator;
+        if (_startEffect.TryGetComponent(out animator))
+        {
+            animator.SetTrigger(EndAnimationTrigger);
+        }
+
+        if (_bodyEffect.TryGetComponent(out animator))
+        {
+            animator.SetTrigger(EndAnimationTrigger);
+        }
+
+        if (_endEffect.TryGetComponent(out animator))
+        {
+            animator.SetTrigger(EndAnimationTrigger);
+        }
+    }
+
+    public void OnEndAnimationFinished()
+    {
+        ProjectilePoolManager.Instance.Release(this, _type);
     }
 }
