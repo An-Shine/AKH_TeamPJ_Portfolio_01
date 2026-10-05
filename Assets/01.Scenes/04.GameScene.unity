@@ -103699,7 +103699,7 @@ GameObject:
   - component: {fileID: 1669535732}
   - component: {fileID: 1669535731}
   - component: {fileID: 1669535730}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Obstacles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103767,7 +103767,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 563802219
-  m_SortingLayer: 4
+  m_SortingLayer: 2
   m_SortingOrder: 10
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
@@ -107736,7 +107736,7 @@ GameObject:
   - component: {fileID: 1770693485}
   - component: {fileID: 1770693484}
   - component: {fileID: 1770693483}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113436,7 +113436,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 563802219
-  m_SortingLayer: 4
+  m_SortingLayer: 2
   m_SortingOrder: 15
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
