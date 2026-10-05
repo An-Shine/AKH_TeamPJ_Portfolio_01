@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class PlayerMotor : MonoBehaviour
 {
-    [SerializeField, Min(0f)] private float _moveSpeed = 5f;
-    [SerializeField, Min(0f)] private float _blinkDistance = 3f;
+    [SerializeField] private float _moveSpeed;
+    [SerializeField] private float _blinkDistance = 3f;
     [SerializeField] private GameObject _dashEffectPrefab;
-    [SerializeField, Min(0f)] private float _dashEffectLifetime = 0.75f;
+    [SerializeField] private float _dashEffectLifetime = 0.75f;
     private Rigidbody2D _body;
     private readonly List<RaycastHit2D> _blinkHits = new List<RaycastHit2D>();
     private readonly List<Collider2D> _landingOverlaps = new List<Collider2D>();

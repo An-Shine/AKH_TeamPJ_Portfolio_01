@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         _moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
-        if (Input.GetKeyDown(KeyCode.Space) && !_fsm.IsInteracting)
+        if (Input.GetKeyDown(KeyCode.Space) && !_fsm.IsInteracting && !_weapon.IsReloading)
         {
             _dashQueued = true;
         }
@@ -50,6 +50,11 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R) && !_fsm.IsInteracting)
         {
             float reloadDuration = _weapon.Reload();
+            if (_weapon.IsReloading)
+            {
+                _dashQueued = false;
+                _motor.Stop();
+            }
             if (_animation != null)
             {
                 _animation.PlayReload(reloadDuration);
@@ -95,7 +100,9 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _fsm.Act(_moveInput, _aim.AimDirection, _dashQueued, Time.fixedDeltaTime);
+        bool isReloading = _weapon.IsReloading;
+        _fsm.Act(isReloading ? Vector2.zero : _moveInput, _aim.AimDirection,
+            !isReloading && _dashQueued, Time.fixedDeltaTime);
         _dashQueued = false;
         if (_fsm.IsDashing && PlayerManager.Instance != null)
         {
