@@ -3,7 +3,7 @@ using UnityEngine;
 public class CombatDrone : Follower
 {
     [SerializeField] private ProjectileType _projectileType;
-    [SerializeField] private float _projectileRangeBonus;
+    [SerializeField] private float _projectileRange;
     [SerializeField] private int _projectileDamageBonus;
     [SerializeField] private float _fireCoolTime;
     [SerializeField] private float _speedScalar;
@@ -11,9 +11,13 @@ public class CombatDrone : Follower
     private Vector3 _adjustPosition;
     private float _timer;
 
+    private Vector3 _fireDirection;
+    private Transform _target;
+
     private void Start()
     {
         _timer = 0f;
+        _target = PlayerManager.Instance.PlayerAimObj.FireDirectionPoint.transform;
     }
 
     protected override void Update()
@@ -40,22 +44,23 @@ public class CombatDrone : Follower
 
     private void Rotation()
     {
-        if (_playerAim == null) return;
-        float angle = Mathf.Atan2(_playerAim.AimDirection.y, _playerAim.AimDirection.x) * Mathf.Rad2Deg;
+        Vector3 direction = _target.position - transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         Vector3 targetAngle = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, angle);
         transform.eulerAngles = targetAngle;
     }
 
     private void Fire()
     {
-        if (_playerTransform == null || _playerAim == null) return;
         if (_timer < _fireCoolTime) return;
         _timer = 0f;
+        Vector3 direction = _target.position - transform.position;
+        direction.Normalize();
         ProjectileSpawner.Instance.Spawn(
             _projectileType,
             transform.position,
-            _playerAim.AimDirection,
-            _projectileRangeBonus,
+            direction,
+            _projectileRange,
             _projectileDamageBonus);
     }
 }

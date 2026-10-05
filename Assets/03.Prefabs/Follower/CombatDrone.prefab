@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CombatDrone
   _projectileType: 0
-  _projectileRangeBonus: -5
+  _projectileRange: 15
   _projectileDamageBonus: -5
-  _fireCoolTime: 0.35
+  _fireCoolTime: 0.75
   _speedScalar: 10
