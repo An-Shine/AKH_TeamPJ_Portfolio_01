@@ -3091,6 +3091,14 @@ MonoBehaviour:
     ProjectilePrefab: {fileID: 8485128781540672698, guid: 91621783e3927f240b534d6ced9ef9a6, type: 3}
     InitialAmount: 10
     MaxAmount: 50
+  - Type: 3
+    ProjectilePrefab: {fileID: 6582822090221169872, guid: e509cdb196d995b47b25ec7d40a7760d, type: 3}
+    InitialAmount: 1
+    MaxAmount: 5
+  - Type: 5
+    ProjectilePrefab: {fileID: 4752986816317147858, guid: f54605a9b8dfe154f845ac9cc764690e, type: 3}
+    InitialAmount: 15
+    MaxAmount: 75
   _projectileContainer: {fileID: 1628144047}
 --- !u!4 &454858256
 Transform:
@@ -99550,8 +99558,12 @@ MonoBehaviour:
     WeaponPrefab: {fileID: 6606847433493368030, guid: e51ccd48ca97ad844b962dfdd0e33a70, type: 3}
   - WeaponId: 1
     WeaponPrefab: {fileID: 6523284694682147680, guid: 4bb660ba3a877fa489194a29e59508a1, type: 3}
+  - WeaponId: 2
+    WeaponPrefab: {fileID: 849455980497084533, guid: 3faf3cc9fde63f4438bafc096cfa6e74, type: 3}
   - WeaponId: 3
     WeaponPrefab: {fileID: 9206546841673037142, guid: 81de85618f997d04c9819b2a59784e3c, type: 3}
+  - WeaponId: 4
+    WeaponPrefab: {fileID: 1429331584275535722, guid: 9516195794157fb4f869de0da4a0a883, type: 3}
   _weaponContainer: {fileID: 1409805388}
 --- !u!4 &513253848
 Transform:
