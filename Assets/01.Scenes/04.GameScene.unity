@@ -102031,6 +102031,57 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1 &1337042837
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1337042838}
+  - component: {fileID: 1337042839}
+  m_Layer: 0
+  m_Name: FollowerSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1337042838
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337042837}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -223.28575, y: -503.194, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1506741756}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1337042839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337042837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a898724bfcd44b47899440440300c8ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FollowerSpawner
+  _followerEntries:
+  - Type: 0
+    FollowerPrefab: {fileID: 6846401428052013220, guid: 2766278d2145a9843bfd38da1d71bb47, type: 3}
+    Count: 1
+  - Type: 1
+    FollowerPrefab: {fileID: 7565449848379363434, guid: 9807488f1748e1641b4e6d0b20d19dc6, type: 3}
+    Count: 3
 --- !u!1 &1405734115
 GameObject:
   m_ObjectHideFlags: 0
@@ -102635,6 +102686,7 @@ Transform:
   - {fileID: 247909902}
   - {fileID: 1182690747}
   - {fileID: 550362715}
+  - {fileID: 1337042838}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1511589815
