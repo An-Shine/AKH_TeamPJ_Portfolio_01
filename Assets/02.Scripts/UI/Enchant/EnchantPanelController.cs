@@ -14,6 +14,6 @@ public class EnchantPanelController : MonoBehaviour
 
     private void OnEnable()
     {
-        _animator.Play(WindowInHash, 0, 1f);
+        _animator.Play(WindowInHash, 0, 0f);
     }
 }
