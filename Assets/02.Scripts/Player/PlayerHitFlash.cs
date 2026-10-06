@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerHitFlash : MonoBehaviour
 {
-    [SerializeField, Min(0.01f)] private float _duration = 0.12f;
+    [SerializeField] private float _duration = 0.2f;
     private static readonly int FlashAmountId = Shader.PropertyToID("_FlashAmount");
     private SpriteRenderer[] _renderers;
     private MaterialPropertyBlock _properties;
