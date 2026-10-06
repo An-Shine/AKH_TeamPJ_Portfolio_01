@@ -102,6 +102,7 @@ public class MeleeMonster : NormalMonster
         base.Start();
         CachePlayer();
         _ready = MonsterCombat.ValidateAnimatorParameters(_directionAnimator);
+
         if (!_ready)
         {
             return;
@@ -136,6 +137,7 @@ public class MeleeMonster : NormalMonster
         }
 
         base.Update();
+
         if (!_ready)
         {
             return;
@@ -158,13 +160,15 @@ public class MeleeMonster : NormalMonster
         Vector2 toPlayer = (Vector2)_player.position - (Vector2)transform.position;
         float distance = Mathf.Sqrt(MonsterCombat.GetPlayerDistanceSquared(
             _player, _playerColliders, transform.position, out Vector2 closestPoint));
+        bool clearAttackPath = MonsterCombat.HasClearAttackPath(
+            transform.position, closestPoint, transform, _player);
 
         if (!_directionInitialized || distance > _facingLockDistance)
         {
             SetDirection(toPlayer);
         }
 
-        if (distance <= _attackRange)
+        if (distance <= _attackRange && clearAttackPath)
         {
             // 붙은 상태에서는 밀어내기와 매 프레임 방향 갱신을 멈춥니다.
             PlayLocomotion(false);
@@ -172,8 +176,14 @@ public class MeleeMonster : NormalMonster
             return;
         }
 
-        Vector2 movement = toPlayer.normalized * Mathf.Min(
-            Mathf.Max(0f, _moveSpeed) * Time.deltaTime, distance - _attackRange);
+        float moveDistance = Mathf.Max(0f, _moveSpeed) * Time.deltaTime;
+
+        if (clearAttackPath)
+        {
+            moveDistance = Mathf.Min(moveDistance, Mathf.Max(0f, distance - _attackRange));
+        }
+
+        Vector2 movement = GetNavigationMovement(_player.position, moveDistance);
 
         if (distance > _facingLockDistance)
         {
@@ -207,6 +217,7 @@ public class MeleeMonster : NormalMonster
         {
             return;
         }
+
         // 피해를 받으면 아직 판정하지 않은 근접 공격을 취소합니다.
         BeginAction(ActionState.Hit, 3);
     }
@@ -315,10 +326,12 @@ public class MeleeMonster : NormalMonster
 
         Vector2 facing = MonsterCombat.GetDirectionVector(_direction);
         Vector2 targetDirection = closestPoint - (Vector2)transform.position;
+
         if (targetDirection.sqrMagnitude < 0.000001f)
         {
             targetDirection = toPlayer;
         }
+
         // 플레이어가 확실히 뒤로 이동했을 때만 다음 공격 시작 시 방향을 바꿉니다.
         if (toPlayer.sqrMagnitude > 0.0625f &&
             Vector2.Angle(facing, targetDirection) > _attackAngle * 0.5f)
@@ -350,6 +363,7 @@ public class MeleeMonster : NormalMonster
         Vector2 origin = transform.position;
         float squaredDistance = MonsterCombat.GetPlayerDistanceSquared(
             _player, _playerColliders, origin, out Vector2 closestPoint);
+
         if (squaredDistance > _attackRange * _attackRange)
         {
             return;
@@ -367,6 +381,7 @@ public class MeleeMonster : NormalMonster
         {
             return;
         }
+
         if (!MonsterCombat.HasClearAttackPath(origin, closestPoint, transform, _player))
         {
             return;
@@ -426,6 +441,7 @@ public class MeleeMonster : NormalMonster
         _wasMoving = false;
         _directionAnimator.speed = action == ActionState.Attack ? _attackAnimationSpeed : 1f;
         SetAnimationFlags(false);
+
         if (_actionHash != 0)
         {
             _directionAnimator.Play(_actionHash, 0, 0f);

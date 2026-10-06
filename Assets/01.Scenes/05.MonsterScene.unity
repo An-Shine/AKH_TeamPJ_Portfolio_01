@@ -481,6 +481,34 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3819265829258752211, guid: 8cfefe87713ae9742a22215d33616cf0, type: 3}
+      propertyPath: _patterns.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3819265829258752211, guid: 8cfefe87713ae9742a22215d33616cf0, type: 3}
+      propertyPath: '_patterns.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: e87edd0e1c647a44c9a77b75be118a83, type: 2}
+    - target: {fileID: 3819265829258752211, guid: 8cfefe87713ae9742a22215d33616cf0, type: 3}
+      propertyPath: '_patterns.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 333635d2e8770d64097f3874c4945f84, type: 2}
+    - target: {fileID: 3819265829258752211, guid: 8cfefe87713ae9742a22215d33616cf0, type: 3}
+      propertyPath: '_patterns.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 38b3c0dc774c91b408700a9351880c8d, type: 2}
+    - target: {fileID: 3819265829258752211, guid: 8cfefe87713ae9742a22215d33616cf0, type: 3}
+      propertyPath: '_patterns.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 1fbba4e6fabfbdf43855464342cecd7a, type: 2}
+    - target: {fileID: 3819265829258752211, guid: 8cfefe87713ae9742a22215d33616cf0, type: 3}
+      propertyPath: '_patterns.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: b28140987a1c9d948bb289466af9dfce, type: 2}
+    - target: {fileID: 3819265829258752211, guid: 8cfefe87713ae9742a22215d33616cf0, type: 3}
+      propertyPath: '_patterns.Array.data[5]'
+      value: 
+      objectReference: {fileID: 11400000, guid: bdc70531bc6a773439c1853267af0879, type: 2}
+    - target: {fileID: 3819265829258752211, guid: 8cfefe87713ae9742a22215d33616cf0, type: 3}
       propertyPath: '_gunMuzzles.Array.data[0]'
       value: 
       objectReference: {fileID: 1803006018}
