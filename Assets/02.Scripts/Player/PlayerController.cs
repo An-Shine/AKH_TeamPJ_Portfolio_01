@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -22,6 +24,7 @@ public class PlayerController : MonoBehaviour
         {
             _animation = GetComponentInChildren<PlayerAnimation>();
         }
+
         if (_animation == null)
         {
             Debug.LogError("PlayerAnimation을 Visual 자식에 추가하고 연결하세요.", this);
@@ -35,6 +38,7 @@ public class PlayerController : MonoBehaviour
         {
             _dashQueued = true;
         }
+
         _aim.Refresh();
         if (Input.GetKeyDown(KeyCode.G))
         {
@@ -55,6 +59,7 @@ public class PlayerController : MonoBehaviour
                 _dashQueued = false;
                 _motor.Stop();
             }
+
             if (_animation != null)
             {
                 _animation.PlayReload(reloadDuration);
@@ -70,19 +75,27 @@ public class PlayerController : MonoBehaviour
             return false;
         }
 
-        ItemManager items = ItemManager.Instance;
-        if (items == null || items.PlayerStat == null) return false;
-
-        Item nearest = null;
+        List<GameObject> interactableItems = new List<GameObject>();
+        IInteractable nearest = null;
+        interactableItems = GameObject.FindGameObjectsWithTag("Interactable").ToList();
         float nearestDistance = _interactionRadius * _interactionRadius;
         // G 입력 때만 탐색합니다. 아이템에 Collider가 없어도 획득할 수 있습니다.
-        foreach (Item item in FindObjectsByType<Item>(FindObjectsSortMode.None))
+        foreach (GameObject obj in interactableItems)
         {
-            if (!item.isActiveAndEnabled || item.Data == null || item.Effects == null) continue;
-            float distance = ((Vector2)(item.transform.position - transform.position)).sqrMagnitude;
-            if (distance > nearestDistance) continue;
+            var interactScript = obj.gameObject.GetComponent<IInteractable>();
+            if (interactScript == null)
+            {
+                continue;
+            }
+
+            float distance = ((Vector2)(obj.transform.position - transform.position)).sqrMagnitude;
+            if (distance > nearestDistance)
+            {
+                continue;
+            }
+
             nearestDistance = distance;
-            nearest = item;
+            nearest = interactScript;
         }
 
         if (nearest == null || !_fsm.TryStartInteraction(_interactionDuration)) return false;
@@ -93,7 +106,9 @@ public class PlayerController : MonoBehaviour
         {
             _animation.BeginInteraction();
         }
-        items.GainItem(nearest);
+
+        nearest.Interact(gameObject);
+
         PlayerManager.Instance.GetItem();
         return true;
     }
@@ -108,6 +123,7 @@ public class PlayerController : MonoBehaviour
         {
             PlayerManager.Instance.BeginDashInvulnerability();
         }
+
         _motor.Move(_fsm.MovementDirection, _fsm.IsDashing);
     }
 
