@@ -52,8 +52,6 @@ public class WeaponManager : MonoBehaviour
 
         GainWeapon(0);
         EquipByIndex(0);
-        CurrentWeapon.FirePoint = PlayerManager.Instance.PlayerAimObj.FireDirectionPoint.transform;
-        CurrentWeapon.OriginPoint = PlayerManager.Instance.PlayerControllerObj._weapon.Muzzle;
     }
 
     public void EquipByIndex(int targetIndex)
@@ -73,6 +71,8 @@ public class WeaponManager : MonoBehaviour
 
         CurrentWeaponIndex = targetIndex;
         CurrentWeapon = _gainedWeaponList[CurrentWeaponIndex];
+        CurrentWeapon.FirePoint = PlayerManager.Instance.PlayerAimObj.FireDirectionPoint.transform;
+        CurrentWeapon.OriginPoint = PlayerManager.Instance.PlayerControllerObj._weapon.Muzzle;
         CurrentWeapon.gameObject.SetActive(true);
     }
 
@@ -90,6 +90,8 @@ public class WeaponManager : MonoBehaviour
 
         CurrentWeaponIndex = index;
         CurrentWeapon = _gainedWeaponList[CurrentWeaponIndex];
+        CurrentWeapon.FirePoint = PlayerManager.Instance.PlayerAimObj.FireDirectionPoint.transform;
+        CurrentWeapon.OriginPoint = PlayerManager.Instance.PlayerControllerObj._weapon.Muzzle;
         CurrentWeapon.gameObject.SetActive(true);
     }
 
@@ -107,6 +109,8 @@ public class WeaponManager : MonoBehaviour
 
         CurrentWeaponIndex = index;
         CurrentWeapon = _gainedWeaponList[CurrentWeaponIndex];
+        CurrentWeapon.FirePoint = PlayerManager.Instance.PlayerAimObj.FireDirectionPoint.transform;
+        CurrentWeapon.OriginPoint = PlayerManager.Instance.PlayerControllerObj._weapon.Muzzle;
         CurrentWeapon.gameObject.SetActive(true);
     }
 
