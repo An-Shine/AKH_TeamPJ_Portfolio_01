@@ -3,7 +3,6 @@ using UnityEngine;
 public abstract class Follower : MonoBehaviour
 {
     protected Transform _playerTransform;
-    protected PlayerAim _playerAim;
 
     protected float _startAngle;
     protected float _radius;
@@ -22,11 +21,6 @@ public abstract class Follower : MonoBehaviour
         }
 
         _playerTransform = playerTransform;
-        if (!playerTransform.gameObject.TryGetComponent(out _playerAim))
-        {
-            Debug.LogWarning("Follower: can not find player aim!");
-        }
-
         _startAngle = startAngle;
         _radius = radius;
 

@@ -12,6 +12,9 @@ public class PlayerWeapon : MonoBehaviour
     private float _attackVisualUntil;
 
     public bool IsAttacking => Time.time < _attackVisualUntil;
+    public bool IsReloading => WeaponManager.Instance != null &&
+                               WeaponManager.Instance.CurrentWeapon != null &&
+                               WeaponManager.Instance.CurrentWeapon.IsReloading;
     public int ShotSequence { get; private set; }
     public AimDisplayMode AimMode => _aimDisplayMode;
     public Transform Muzzle => _muzzle;
@@ -42,7 +45,8 @@ public class PlayerWeapon : MonoBehaviour
         Vector2 fireOrigin = _muzzle != null ? _muzzle.position : transform.position;
         _activeWeapon.SetFirePose(fireOrigin, aimDirection);
 
-        if (_activeWeapon.Data.BehaviourType == FireBehaviourType.Charge)
+        if (_activeWeapon.Data.BehaviourType == FireBehaviourType.Charge ||
+            _activeWeapon.Data.BehaviourType == FireBehaviourType.Continuous)
         {
             TickCharge(fireHeld);
         }

@@ -114,7 +114,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 5
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -5282252909996908158, guid: e60d54a1530ed554fb42592e13077284, type: 3}
+  m_Sprite: {fileID: 6102361263206916926, guid: e60d54a1530ed554fb42592e13077284, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -135,8 +135,6 @@ GameObject:
   - component: {fileID: 8695968812168754858}
   - component: {fileID: 5800438111184696313}
   - component: {fileID: 3603634642599122488}
-  - component: {fileID: 7468789265679544932}
-  - component: {fileID: 7788938959280055293}
   m_Layer: 3
   m_Name: PlayerVisual
   m_TagString: Untagged
@@ -225,32 +223,6 @@ MonoBehaviour:
     LeftDown: {fileID: 70111152348249244, guid: e60d54a1530ed554fb42592e13077284, type: 3}
     Right: {fileID: 7631219046128225658, guid: e60d54a1530ed554fb42592e13077284, type: 3}
     Left: {fileID: -5282252909996908158, guid: e60d54a1530ed554fb42592e13077284, type: 3}
---- !u!114 &7468789265679544932
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2411654276867574531}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2c27d04260c2664a8562c6df6a11462, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerHitFlash
-  _duration: 0.12
---- !u!114 &7788938959280055293
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2411654276867574531}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f628d9c449f1fc54eb12a9a9c9154a23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerDamageReceiver
-  _testDamage: 5
 --- !u!1 &3590785110035637095
 GameObject:
   m_ObjectHideFlags: 0
@@ -388,7 +360,6 @@ GameObject:
   - component: {fileID: 7799158211837625566}
   - component: {fileID: 1396133464694114942}
   - component: {fileID: 4285497294300338000}
-  - component: {fileID: 3522999443501275409}
   - component: {fileID: 8910268917954700399}
   - component: {fileID: 4127322058917208100}
   - component: {fileID: 5590970781170162700}
@@ -509,19 +480,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStateMachine
   _dashCooldown: 0.5
---- !u!114 &3522999443501275409
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5819182594994543154}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f628d9c449f1fc54eb12a9a9c9154a23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerDamageReceiver
-  _testDamage: 10
 --- !u!120 &8910268917954700399
 LineRenderer:
   serializedVersion: 3

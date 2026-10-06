@@ -84,15 +84,15 @@ SpriteRenderer:
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -3543423074375989210, guid: 8977fb7fa3800bf4db559ac966cce168, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.13, y: 0.13}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
 --- !u!58 &332901982987525893
 CircleCollider2D:
@@ -149,9 +149,14 @@ MonoBehaviour:
   _hitLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  _impactEffectPrefab: {fileID: 0}
+  _impactEffectPrefab: {fileID: 1047540098795845241}
   _impactEffectLifetime: 0.5
   _impactColor: {r: 0.25, g: 0.85, b: 1, a: 1}
+  _fireSound: {fileID: 8300000, guid: 3ef18d07cb50d6e4d9da82d48d3fe0da, type: 3}
+  _playerHitSound: {fileID: 8300000, guid: a7573ad03723afd4d8bf254eba04465c, type: 3}
+  _obstacleHitSound: {fileID: 8300000, guid: fe9db2e856e5646478d20b7ec9be8f86, type: 3}
+  _soundVolume: 0.75
+  _soundMixerGroup: {fileID: 0}
 --- !u!50 &5467120278089081892
 Rigidbody2D:
   serializedVersion: 5

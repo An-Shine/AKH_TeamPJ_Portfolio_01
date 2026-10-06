@@ -111,21 +111,43 @@ MonoBehaviour:
   _maxHealth: 50
   _moveSpeed: 2
   _contactDamage: 10
+  _contactDamageCooldown: 0.5
+  _contactKnockbackDistance: 0.2
+  _contactKnockbackDuration: 0.12
   _separationRadius: 0.8
   _separationStrength: 1.5
+  _preventMonsterOverlap: 1
+  _minimumMonsterDistance: 1.1
+  _useSpriteSizeForSpacing: 1
+  _spriteSpacingFactor: 0.8
+  _overlapSeparationSpeed: 2.5
   _collisionCheckRadius: 0.25
   _obstacleLayer:
     serializedVersion: 2
     m_Bits: 0
+  _detectSolidCollidersAutomatically: 1
+  _ignoredObstacleLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  _blockObstacleTriggers: 0
+  _useObstaclePathfinding: 1
+  _pathCellSize: 0.5
+  _pathRepathInterval: 0.5
+  _pathSearchMargin: 12
+  _pathMaxVisitedNodes: 2048
+  _pathWaypointTolerance: 0.1
   _hitCooldown: 0.1
   _hitFlashDuration: 0.08
   _deathDelay: 0.2
   _attackRange: 6
   _keepDistance: 4
   _attackCooldown: 1
-  _projectilePrefab: {fileID: 1382666949138593085, guid: 827b514e89826434996ab90f9150eb4a, type: 3}
+  _projectilePrefab: {fileID: 8389031745213755128, guid: d4a4dfec680482b478e40bf70a2f9ecf, type: 3}
   _firePoint: {fileID: 7992452664774812113}
   _fireNormalizedTime: 0.5
+  _attackFallbackDuration: 0.8
+  _showMuzzleFlash: 1
+  _muzzleFlashColor: {r: 0.25, g: 0.85, b: 1, a: 1}
   _firePointReferenceDirection: {x: 0, y: -1}
   _crowdAvoidanceSpeed: 1.5
   _distanceTolerance: 0.1
