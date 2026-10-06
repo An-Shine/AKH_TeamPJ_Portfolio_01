@@ -149,11 +149,11 @@ public class LootSpawner : MonoBehaviour
 
     private bool SpawnWeapon(Vector3 spawnPosition)
     {
-        int count = WeaponManager.Instance.UnobtainedWeapons.Count;
+        int count = _weaponPickUpDictionary.Count;//WeaponManager.Instance.UnobtainedWeapons.Count;
         if (count <= 0) return false;
 
         int index = UnityEngine.Random.Range(0, count);
-        string weaponId = WeaponManager.Instance.UnobtainedWeapons.Keys.ElementAt(index);
+        string weaponId = _weaponPickUpDictionary.Keys.ElementAt(index);//WeaponManager.Instance.UnobtainedWeapons.Keys.ElementAt(index);
         if (_weaponPickUpDictionary.TryGetValue(weaponId, out WeaponPickup targetPickUp))
         {
             WeaponPickup weaponPickup = Instantiate(targetPickUp, spawnPosition, Quaternion.identity);
