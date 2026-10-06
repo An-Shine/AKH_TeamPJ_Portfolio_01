@@ -4,7 +4,7 @@ public class PlayerWeapon : MonoBehaviour
 {
     private AimDisplayMode _aimDisplayMode = AimDisplayMode.Crosshair;
     [SerializeField] private Transform _muzzle;
-    [SerializeField, Min(0f)] private float _attackVisualDuration = 0.15f;
+    private float _attackVisualDuration = 0.7f; // 공격 애니메이션 길이로 맞추기
 
     private Weapon _activeWeapon;
     private bool _wasFireHeld;
