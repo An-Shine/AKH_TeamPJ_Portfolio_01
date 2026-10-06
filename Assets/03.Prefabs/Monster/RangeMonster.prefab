@@ -84,9 +84,9 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1369945257
   m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2135585597343286014, guid: 5aa8b770bc43046bc8d993d0d5b7f4a5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 52051d447d5b78447a0b4e40f0ca0b05, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -121,10 +121,10 @@ MonoBehaviour:
   _useSpriteSizeForSpacing: 1
   _spriteSpacingFactor: 0.8
   _overlapSeparationSpeed: 2.5
-  _collisionCheckRadius: 0.25
+  _collisionCheckRadius: 0.4
   _obstacleLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   _detectSolidCollidersAutomatically: 1
   _ignoredObstacleLayers:
     serializedVersion: 2
@@ -222,7 +222,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.8828125, y: 1}
+    oldSize: {x: 2.6666667, y: 2.6666667}
     newSize: {x: 0.8828125, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -230,12 +230,25 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.43359375, y: 0.25}
-      - {x: -0.43359375, y: -0.25}
+    - - {x: -0.624668, y: 1.0971583}
+      - {x: -0.71183956, y: 0.397484}
+      - {x: -1.005993, y: -0.13526875}
+      - {x: -1.0170007, y: -0.6462764}
+      - {x: -0.79771906, y: -0.89121187}
+      - {x: -0.58148015, y: -1.3119348}
+      - {x: -0.32490027, y: -1.2552361}
       - {x: 0, y: -0.5}
-      - {x: 0.43359375, y: -0.25}
-      - {x: 0.43359375, y: 0.25}
-      - {x: 0, y: 0.5}
+      - {x: 0.23618126, y: -1.2083784}
+      - {x: 0.4830359, y: -1.3314835}
+      - {x: 0.5509113, y: -0.85546863}
+      - {x: 0.85206723, y: -0.7847515}
+      - {x: 1.0148196, y: -0.5035151}
+      - {x: 1.0170007, y: -0.08488482}
+      - {x: 0.74180865, y: 0.61325336}
+      - {x: 0.51008594, y: 0.79401696}
+      - {x: 0.37038195, y: 1.1320981}
+      - {x: 0.2012851, y: 1.029514}
+      - {x: -0.15410751, y: 0.9843378}
   m_UseDelaunayMesh: 1
 --- !u!95 &4001296727413696537
 Animator:

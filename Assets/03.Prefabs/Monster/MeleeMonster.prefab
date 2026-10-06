@@ -83,9 +83,9 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1369945257
   m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2135585597343286014, guid: 5aa8b770bc43046bc8d993d0d5b7f4a5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1f442c2d90bb9d449a091ab1f2e3dfc4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -120,10 +120,10 @@ MonoBehaviour:
   _useSpriteSizeForSpacing: 1
   _spriteSpacingFactor: 0.8
   _overlapSeparationSpeed: 2.5
-  _collisionCheckRadius: 0.25
+  _collisionCheckRadius: 0.4
   _obstacleLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   _detectSolidCollidersAutomatically: 1
   _ignoredObstacleLayers:
     serializedVersion: 2
@@ -191,7 +191,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.8828125, y: 1}
+    oldSize: {x: 2.6666667, y: 2.6666667}
     newSize: {x: 0.8828125, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -199,12 +199,23 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.43359375, y: 0.25}
-      - {x: -0.43359375, y: -0.25}
-      - {x: 0, y: -0.5}
-      - {x: 0.43359375, y: -0.25}
-      - {x: 0.43359375, y: 0.25}
-      - {x: 0, y: 0.5}
+    - - {x: -0.75731015, y: 0.5913961}
+      - {x: -0.8450494, y: 0.25}
+      - {x: -1.1683357, y: -0.42633808}
+      - {x: -1.0388346, y: -0.72608066}
+      - {x: -0.8512716, y: -0.8704541}
+      - {x: -0.52402806, y: -0.8857075}
+      - {x: -0.03918624, y: -1.1759627}
+      - {x: 0.3798895, y: -1.002212}
+      - {x: 0.7466366, y: -1.0009923}
+      - {x: 1.0481623, y: -0.6314862}
+      - {x: 1.1645422, y: -0.2290816}
+      - {x: 1.0507771, y: 0.14186242}
+      - {x: 0.7764733, y: 0.59287965}
+      - {x: 0.51575434, y: 0.93129075}
+      - {x: 0.020052195, y: 0.9730754}
+      - {x: -0.38516092, y: 0.92260695}
+      - {x: -0.53881073, y: 0.72532094}
   m_UseDelaunayMesh: 1
 --- !u!50 &7013926720832336473
 Rigidbody2D:
