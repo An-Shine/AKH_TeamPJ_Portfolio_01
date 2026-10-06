@@ -204,7 +204,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 4512714918657851343, guid: db04e9d30814d6443b5ff87dc90da699, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -305,22 +305,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponUI
   _projectileIcons:
   - Type: 0
-    ProjectilePrefab: {fileID: 0}
+    ProjectilePrefab: {fileID: 3578378478379548358, guid: 805c23898e16f5e4d9c2b8a1be1507d7, type: 3}
   - Type: 2
-    ProjectilePrefab: {fileID: 0}
-  - Type: 4
-    ProjectilePrefab: {fileID: 0}
+    ProjectilePrefab: {fileID: 8485128781540672698, guid: 91621783e3927f240b534d6ced9ef9a6, type: 3}
+  - Type: 3
+    ProjectilePrefab: {fileID: 6582822090221169872, guid: e509cdb196d995b47b25ec7d40a7760d, type: 3}
+  - Type: 5
+    ProjectilePrefab: {fileID: 4752986816317147858, guid: f54605a9b8dfe154f845ac9cc764690e, type: 3}
+  - Type: 1
+    ProjectilePrefab: {fileID: 7688034501499318360, guid: d5254145c6c4722489f91ab007edf530, type: 3}
   _weaponIcons:
   - WeaponName: "\uD578\uB4DC\uAC74"
     Icon: {fileID: 4512714918657851343, guid: db04e9d30814d6443b5ff87dc90da699, type: 3}
   - WeaponName: "\uBA54\uD14C\uC624 \uB7F0\uCC98"
     Icon: {fileID: -3904855737101524119, guid: d9335292d953ac54bbcceae9040899e2, type: 3}
+  - WeaponName: "\uB808\uC774\uC800\uAC74"
+    Icon: {fileID: 1297108270181015463, guid: a37d23e4f627b804c9a258afcd729045, type: 3}
   - WeaponName: "\uD50C\uB77C\uC988\uB9C8 \uC0F7\uAC74"
     Icon: {fileID: 7631219046128225658, guid: e60d54a1530ed554fb42592e13077284, type: 3}
+  - WeaponName: "\uC5D0\uB108\uC9C0 \uB77C\uC774\uD50C"
+    Icon: {fileID: 5532368291998157131, guid: 579ae10ac2fb3e647b21eb23126350a9, type: 3}
   _weaponIcon: {fileID: 6978938228247588076}
   _ammoText: {fileID: 6188858675505894294}
   _projectileIconContainer: {fileID: 8464900363232151820}
   _projectileIconPrefab: {fileID: 5879280516674363581, guid: fcf3490d9cbdd8a44aca7eafa737c1f0, type: 3}
+  _availableAmmoColor: {r: 1, g: 1, b: 1, a: 1}
+  _usedAmmoColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
 --- !u!1 &3980220695619002237
 GameObject:
   m_ObjectHideFlags: 0
