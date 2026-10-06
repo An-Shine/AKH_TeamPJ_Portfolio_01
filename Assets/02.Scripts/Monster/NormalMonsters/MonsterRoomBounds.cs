@@ -16,6 +16,21 @@ namespace _02.Scripts.Monster.NormalMonsters
 
         public bool IsConfigured => TryGetHalfSize(0f, out _);
 
+        public bool ContainsRoomPosition(Vector2 worldPosition)
+        {
+            if (!IsConfigured)
+            {
+                return false;
+            }
+
+            Vector3 worldPoint = new Vector3(worldPosition.x, worldPosition.y, transform.position.z);
+            Vector2 localPoint = transform.InverseTransformPoint(worldPoint);
+            Vector2 offset = localPoint - _center;
+            // 방 입장은 몬스터 이동 여유를 제외하지 않은 전체 방 범위로 판정합니다.
+            return Mathf.Abs(offset.x) <= _size.x * 0.5f &&
+                Mathf.Abs(offset.y) <= _size.y * 0.5f;
+        }
+
         public bool Contains(Vector2 worldPosition, float clearance = 0f)
         {
             if (!TryGetHalfSize(clearance, out Vector2 halfSize))

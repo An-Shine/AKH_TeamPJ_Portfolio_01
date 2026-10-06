@@ -164,7 +164,7 @@ public class KamikazeMonster : NormalMonster
             return;
         }
 
-        if (!ResolvePlayer())
+        if (!ResolvePlayer() || !CanTrackPlayer())
         {
             PlayLocomotion(false, false);
             return;
