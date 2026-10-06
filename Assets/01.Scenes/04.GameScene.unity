@@ -30569,6 +30569,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BulletCountUI
       objectReference: {fileID: 0}
+    - target: {fileID: 4746166922249621563, guid: fe2599a142614e04e81c44ff77a6c5bc, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4746166922249621563, guid: fe2599a142614e04e81c44ff77a6c5bc, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4746166922249621563, guid: fe2599a142614e04e81c44ff77a6c5bc, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4746166922249621563, guid: fe2599a142614e04e81c44ff77a6c5bc, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7385890032579215695, guid: fe2599a142614e04e81c44ff77a6c5bc, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7385890032579215695, guid: fe2599a142614e04e81c44ff77a6c5bc, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7385890032579215695, guid: fe2599a142614e04e81c44ff77a6c5bc, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
