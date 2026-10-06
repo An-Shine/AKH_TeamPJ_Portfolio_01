@@ -50,7 +50,7 @@ public class WeaponManager : MonoBehaviour
             _unobtainedWeapons[id].gameObject.SetActive(false);
         }
 
-        _gainedWeaponList.Add(_unobtainedWeapons[id]);
+        GainWeapon(2);
         EquipByIndex(0);
         CurrentWeapon.FirePoint = PlayerManager.Instance.PlayerAimObj.FireDirectionPoint.transform;
         CurrentWeapon.OriginPoint = PlayerManager.Instance.PlayerControllerObj._weapon.Muzzle;

@@ -23,4 +23,8 @@ public enum SFXType
     FailFire,
     Charging,
     ChargeComplete,
+    FiringLaser,
+    ExplosionEffectBig,
+    ExplosionEffectSmall,
+    FollowerAttack,
 }

@@ -5,9 +5,11 @@ public abstract class Projectile : MonoBehaviour
     protected ProjectileType _type;
     protected int _damage;
     private int _bonusDamage;
+
     public int Damage =>
         (int)((_damage + _bonusDamage + ItemManager.Instance.ProjectileStat.DamageModifier)
               * (1f + ItemManager.Instance.ProjectileStat.DamageMultiplier));
+
     protected float _range;
     private int _initialDurability;
     private int _durability;
@@ -16,7 +18,7 @@ public abstract class Projectile : MonoBehaviour
     public float SpeedScalar => _speedScalar * (1f + ItemManager.Instance.ProjectileStat.MoveSpeedMultiplier);
     protected Vector3 _initialPosition;
 
-    private void Update()
+    protected virtual void Update()
     {
         Move();
         CheckRange();
@@ -52,14 +54,14 @@ public abstract class Projectile : MonoBehaviour
         DecreaseDurability(other);
     }
 
-    private void Rotation()
+    protected virtual void Rotation()
     {
         float angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
         Vector3 targetAngle = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, angle);
         transform.eulerAngles = targetAngle;
     }
 
-    private void Resize()
+    protected virtual void Resize()
     {
         Vector3 scale = Vector3.one * (1f + ItemManager.Instance.ProjectileStat.SizeMultiplier);
         transform.localScale = scale;

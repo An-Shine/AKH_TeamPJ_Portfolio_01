@@ -15,6 +15,11 @@
                 fireBehaviour = new ChargeFire();
                 break;
             }
+            case FireBehaviourType.Continuous:
+            {
+                fireBehaviour = new ContinuousFireBehaviour();
+                break;
+            }
         }
 
         return fireBehaviour;

@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class SpreadFirePattern : IFirePattern
 {
-    public void Fire(FireContext context, int damage)
+    public Projectile Fire(FireContext context, int damage)
     {
         var projectileCount = context.ProjectileCount;
 
         if (projectileCount <= 1)
         {
             ProjectileSpawner.Instance.Spawn(context.Type, context.Position, context.Direction, context.Range, damage);
-            return;
+            return null;
         }
 
         var intervalOfAngle = context.SpreadAngle / (projectileCount - 1);
@@ -24,5 +24,7 @@ public class SpreadFirePattern : IFirePattern
 
             ProjectileSpawner.Instance.Spawn(context.Type, context.Position, direction, context.Range, damage);
         }
+
+        return null;
     }
 }

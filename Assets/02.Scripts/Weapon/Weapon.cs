@@ -4,14 +4,17 @@ public class Weapon : MonoBehaviour
 {
     [SerializeField] private SFXType _fireSoundType;
     [SerializeField] private GameObject _fireEffectPrefab;
-    [SerializeField] public Transform OriginPoint;
-    [SerializeField] public Transform FirePoint;
-    [SerializeField] public Transform EffectPoint;
+    public Transform OriginPoint { get; set; }
+    public Transform FirePoint { get; set; }
+    [SerializeField] private Sprite _hudIcon;
+
+    public Sprite HudIcon => _hudIcon;
     public WeaponData Data { get; private set; }
     public WeaponModifier Modifier { get; private set; }
 
     private FireBehaviour _fireBehaviour;
     private IFirePattern _firePattern;
+    private Projectile _currentProjectile;
 
     private const float CoolTime = 10f;
 
@@ -20,6 +23,7 @@ public class Weapon : MonoBehaviour
     private int _remainingAmmo;
     public int RemainingAmmo => _remainingAmmo;
     private float _timer;
+    private float _fireTimer;
     private float _reloadTimer;
 
     private int Damage => (int)(Modifier.Damage.Flat * (1f + Modifier.Damage.Rate));
@@ -60,12 +64,13 @@ public class Weapon : MonoBehaviour
 
     private void Start()
     {
-        _timer = CoolTime;
+        _fireTimer = CoolTime;
+        _timer = 0f;
     }
 
     private void Update()
     {
-        _timer += Time.deltaTime * FireRate;
+        _fireTimer += Time.deltaTime * FireRate;
         Reloading();
     }
 
@@ -86,6 +91,8 @@ public class Weapon : MonoBehaviour
 
     public void OnMouseHeld()
     {
+        _timer += Time.deltaTime;
+        ContinousDecreaseAmmo();
         _fireBehaviour.OnMouseHeld(this);
     }
 
@@ -94,7 +101,7 @@ public class Weapon : MonoBehaviour
         _fireBehaviour.OnMouseUp(this);
     }
 
-    public bool TryFire()
+    public bool CanFire()
     {
         if (_isReloading)
             return false;
@@ -102,37 +109,59 @@ public class Weapon : MonoBehaviour
         if (!CheckRemainingAmmo())
             return false;
 
-        if (_timer < CoolTime)
+        if (_fireTimer < CoolTime && Data.BehaviourType != FireBehaviourType.Continuous)
             return false;
 
+        return true;
+    }
+
+    public bool TryFire()
+    {
+        if (!CanFire())
+        {
+            if (!CheckRemainingAmmo())
+            {
+                AudioManager.Instance.PlaySFX(SFXType.FailFire);
+            }
+            return false;
+        }
+
         RefreshDirection();
-        Fire();
-        _timer = 0;
+        _currentProjectile = Fire();
+        _fireTimer = 0;
 
         _remainingAmmo--;
 
         return true;
     }
 
-    private void Fire()
+    private Projectile Fire()
     {
         FireContext context = new FireContext(Data.ProjectileType, OriginPoint.transform.position,
             _targetDirection.normalized, Range, ProjectileCount, Angle);
-        _firePattern.Fire(context, Damage);
+        Projectile projectile = _firePattern.Fire(context, Damage);
         AudioManager.Instance.PlaySFX(_fireSoundType);
         if (_fireEffectPrefab != null)
         {
             GameObject effectObject =
-                Instantiate(_fireEffectPrefab, OriginPoint.transform.position + _targetDirection.normalized * 0.3f,
-                    Quaternion.identity);
+                Instantiate(_fireEffectPrefab, OriginPoint.transform.position, Quaternion.identity);
             effectObject.transform.eulerAngles = _effectDirection;
         }
+
+        return projectile;
     }
 
     public void RefreshDirection()
     {
         _targetDirection = FirePoint.position - OriginPoint.position;
         float angle = Mathf.Atan2(_targetDirection.y, _targetDirection.x) * Mathf.Rad2Deg + 180f;
+
+        if (_currentProjectile != null && _currentProjectile is LaserProjectile laser)
+        {
+            laser.UpdateLaserShape(OriginPoint.position, _targetDirection);
+        }
+
+        if (_fireEffectPrefab == null) return;
         _effectDirection = new Vector3(
             _fireEffectPrefab.transform.eulerAngles.x,
             _fireEffectPrefab.transform.eulerAngles.y,
@@ -142,10 +171,7 @@ public class Weapon : MonoBehaviour
     public bool CheckRemainingAmmo()
     {
         if (_remainingAmmo <= 0)
-        {
-            AudioManager.Instance.PlaySFX(SFXType.FailFire);
             return false;
-        }
 
         return true;
     }
@@ -170,11 +196,32 @@ public class Weapon : MonoBehaviour
         if (_reloadTimer >= Data.ReloadTime) _isReloading = false;
     }
 
+    private void ContinousDecreaseAmmo()
+    {
+        if (_fireBehaviour is ContinuousFireBehaviour fireBehaviour)
+        {
+            if (fireBehaviour.IsFiring && _timer >= 1f)
+            {
+                _remainingAmmo -= 1;
+                _timer = 0f;
+            }
+        }
+    }
+
     public void SetFirePose(Vector2 origin, Vector2 direction)
     {
         _fireOrigin = origin;
         if (direction.sqrMagnitude > 0.000001f) _fireDirection = direction.normalized;
 
         _hasFirePose = true;
+    }
+
+    public void StopFire()
+    {
+        if (_currentProjectile is LaserProjectile laser)
+        {
+            //ProjectilePoolManager.Instance.Release(laser, Data.ProjectileType);
+            laser.SetEnd();
+        }
     }
 }
