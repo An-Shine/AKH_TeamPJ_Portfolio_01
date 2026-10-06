@@ -3,6 +3,7 @@ using UnityEngine;
 public abstract class Projectile : MonoBehaviour
 {
     protected ProjectileType _type;
+    public ProjectileType Type => _type;
     protected int _damage;
     private int _bonusDamage;
 
@@ -73,7 +74,7 @@ public abstract class Projectile : MonoBehaviour
     {
         var distanceVector = transform.position - _initialPosition;
         var distance = distanceVector.magnitude;
-        if (distance > _range) ProjectilePoolManager.Instance.Release(this, _type);
+        if (distance > _range) ProjectilePoolManager.Instance.Release(this);
     }
 
     protected virtual void GiveDamage(Collider2D other)
@@ -102,6 +103,6 @@ public abstract class Projectile : MonoBehaviour
 
     protected virtual void OnDestroySelf()
     {
-        ProjectilePoolManager.Instance.Release(this, _type);
+        ProjectilePoolManager.Instance.Release(this);
     }
 }

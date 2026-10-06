@@ -138,6 +138,6 @@ public class LaserProjectile : Projectile
 
     public void OnEndAnimationFinished()
     {
-        ProjectilePoolManager.Instance.Release(this, _type);
+        ProjectilePoolManager.Instance.Release(this);
     }
 }

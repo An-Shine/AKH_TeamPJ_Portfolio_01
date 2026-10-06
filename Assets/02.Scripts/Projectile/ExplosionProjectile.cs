@@ -12,7 +12,7 @@ public class ExplosionProjectile : Projectile
 
     protected override void OnDestroySelf()
     {
-        ProjectilePoolManager.Instance.Release(this, _type);
+        ProjectilePoolManager.Instance.Release(this);
         Explosion explosion = Instantiate(
             _explosionEffect, transform.position + _adjustExplosionPosition, Quaternion.identity);
         explosion.Initialize(_damage);
