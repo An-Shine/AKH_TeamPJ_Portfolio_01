@@ -70,10 +70,13 @@ public class LootSpawner : MonoBehaviour
     {
         List<GridPos> gridInfo = new List<GridPos>();
 
-        int indexOfX = _lootSpawnInfoDictionary[roomId][0].X;
-        int indexOfY = _lootSpawnInfoDictionary[roomId][0].Y;
+        int startOfX = _lootSpawnInfoDictionary[roomId][0].X;
+        int startOfY = _lootSpawnInfoDictionary[roomId][0].Y;
         int endOfX = _lootSpawnInfoDictionary[roomId][1].X;
         int endOfY = _lootSpawnInfoDictionary[roomId][1].Y;
+
+        int indexOfX = startOfX;
+        int indexOfY = startOfY;
 
         GridPos grid;
         while (indexOfY >= endOfY)
@@ -85,6 +88,7 @@ public class LootSpawner : MonoBehaviour
                 indexOfX += 1;
             }
 
+            indexOfX = startOfX;
             indexOfY -= 1;
         }
 
@@ -142,6 +146,10 @@ public class LootSpawner : MonoBehaviour
             {
                 break;
             }
+            else
+            {
+                Debug.Log(hit.gameObject.name);
+            }
         }
 
         return targetPosition;
@@ -149,11 +157,13 @@ public class LootSpawner : MonoBehaviour
 
     private bool SpawnWeapon(Vector3 spawnPosition)
     {
-        int count = _weaponPickUpDictionary.Count;//WeaponManager.Instance.UnobtainedWeapons.Count;
+        int count = _weaponPickUpDictionary.Count; //WeaponManager.Instance.UnobtainedWeapons.Count;
         if (count <= 0) return false;
 
         int index = UnityEngine.Random.Range(0, count);
-        string weaponId = _weaponPickUpDictionary.Keys.ElementAt(index);//WeaponManager.Instance.UnobtainedWeapons.Keys.ElementAt(index);
+        string
+            weaponId = _weaponPickUpDictionary.Keys
+                .ElementAt(index); //WeaponManager.Instance.UnobtainedWeapons.Keys.ElementAt(index);
         if (_weaponPickUpDictionary.TryGetValue(weaponId, out WeaponPickup targetPickUp))
         {
             WeaponPickup weaponPickup = Instantiate(targetPickUp, spawnPosition, Quaternion.identity);
