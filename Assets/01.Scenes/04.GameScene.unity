@@ -4097,7 +4097,7 @@ MonoBehaviour:
   _itemSpawnCount: 1
   _nonTargetLayerMask:
     serializedVersion: 2
-    m_Bits: 896
+    m_Bits: 768
 --- !u!224 &587852301 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 766050181582345212, guid: fe2599a142614e04e81c44ff77a6c5bc, type: 3}
@@ -18337,7 +18337,7 @@ GameObject:
   - component: {fileID: 1349903631}
   - component: {fileID: 1349903630}
   - component: {fileID: 1349903629}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26487,7 +26487,7 @@ GameObject:
   - component: {fileID: 1992693363}
   - component: {fileID: 1992693362}
   - component: {fileID: 1992693361}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Obstacles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
