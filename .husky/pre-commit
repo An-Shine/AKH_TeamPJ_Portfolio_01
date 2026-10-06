@@ -18,5 +18,5 @@
 
 ## or put your custom commands -------------------
 #echo 'Husky.Net is awesome!'
-
+# check
 dotnet format 2d-team02.sln --verify-no-changes --severity warn --include Assets/02.Scripts/
