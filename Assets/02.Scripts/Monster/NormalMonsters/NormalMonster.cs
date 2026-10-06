@@ -271,6 +271,13 @@ public class NormalMonster : MonoBehaviour
         _normalHasTrackingTarget = difference.sqrMagnitude <= range * range;
         return _normalHasTrackingTarget;
     }
+    public void ConfigureRoomDetection(float detectionRange, float loseTargetRange)
+    {
+        _detectionMode = PlayerDetectionMode.RoomAndDistance;
+        _detectionRange = Mathf.Max(0.1f, detectionRange);
+        _loseTargetRange = Mathf.Max(_detectionRange, loseTargetRange);
+        ResetPlayerTracking();
+    }
     private void ResetPlayerTracking()
     {
         _normalTrackingPlayer = null;
