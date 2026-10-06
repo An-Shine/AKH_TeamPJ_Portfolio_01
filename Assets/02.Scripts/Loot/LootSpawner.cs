@@ -157,6 +157,7 @@ public class LootSpawner : MonoBehaviour
         if (_weaponPickUpDictionary.TryGetValue(weaponId, out WeaponPickup targetPickUp))
         {
             WeaponPickup weaponPickup = Instantiate(targetPickUp, spawnPosition, Quaternion.identity);
+            _weaponPickUpDictionary.Remove(weaponId);
             return true;
         }
 
