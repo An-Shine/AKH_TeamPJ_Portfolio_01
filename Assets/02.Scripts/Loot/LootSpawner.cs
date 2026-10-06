@@ -185,6 +185,7 @@ public class LootSpawner : MonoBehaviour
         {
             targetItem.transform.position = spawnPosition;
             targetItem.gameObject.SetActive(true);
+            ItemManager.Instance.RemoveUnobtainItem(targetItem);
             return true;
         }
 
