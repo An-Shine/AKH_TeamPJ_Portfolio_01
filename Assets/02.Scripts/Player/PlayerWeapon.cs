@@ -45,7 +45,8 @@ public class PlayerWeapon : MonoBehaviour
         Vector2 fireOrigin = _muzzle != null ? _muzzle.position : transform.position;
         _activeWeapon.SetFirePose(fireOrigin, aimDirection);
 
-        if (_activeWeapon.Data.BehaviourType == FireBehaviourType.Charge)
+        if (_activeWeapon.Data.BehaviourType == FireBehaviourType.Charge ||
+            _activeWeapon.Data.BehaviourType == FireBehaviourType.Continuous)
         {
             TickCharge(fireHeld);
         }
