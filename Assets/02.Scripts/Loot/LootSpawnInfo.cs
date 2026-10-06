@@ -3,7 +3,7 @@ using UnityEngine;
 [System.Serializable]
 public class LootSpawnInfo
 {
-    public string RoomId;
+    public RoomId RoomId;
     public Transform SpawnPointLeftUp;
     public Transform SpawnPointRightDown;
 }

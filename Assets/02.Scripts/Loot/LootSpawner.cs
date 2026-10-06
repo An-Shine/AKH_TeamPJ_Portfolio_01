@@ -11,14 +11,17 @@ public class LootSpawner : MonoBehaviour
     private Dictionary<string, WeaponPickup> _weaponPickUpDictionary;
 
     [SerializeField] private List<LootSpawnInfo> _lootSpawnInfos;
-    private Dictionary<string, GridPos[]> _lootSpawnInfoDictionary;
+    private Dictionary<RoomId, GridPos[]> _lootSpawnInfoDictionary;
 
     [SerializeField] private Vector2 _unitSize;
-    private Dictionary<string, List<GridPos>> _gridInfoDictionary;
+    private Dictionary<RoomId, List<GridPos>> _gridInfoDictionary;
 
     [Header("Spawn Count")]
     [SerializeField] private int _weaponSpawnCount;
     [SerializeField] private int _itemSpawnCount;
+
+    [Header("Evade Layer")]
+    [SerializeField] private LayerMask _nonTargetLayerMask;
 
     private void Awake()
     {
@@ -39,8 +42,8 @@ public class LootSpawner : MonoBehaviour
             _weaponPickUpDictionary[IdPrefix.WeaponPrefix + weaponPickup.WeaponId] = weaponPickup;
         }
 
-        _lootSpawnInfoDictionary = new Dictionary<string, GridPos[]>();
-        _gridInfoDictionary = new Dictionary<string, List<GridPos>>();
+        _lootSpawnInfoDictionary = new Dictionary<RoomId, GridPos[]>();
+        _gridInfoDictionary = new Dictionary<RoomId, List<GridPos>>();
         foreach (LootSpawnInfo lootSpawnInfo in _lootSpawnInfos)
         {
             _lootSpawnInfoDictionary[lootSpawnInfo.RoomId] = new GridPos[2]
@@ -52,9 +55,18 @@ public class LootSpawner : MonoBehaviour
             };
             _gridInfoDictionary[lootSpawnInfo.RoomId] = CreateGridInfo(lootSpawnInfo.RoomId);
         }
+
+        Invoke("SpawnTest", 1f);
     }
 
-    private List<GridPos> CreateGridInfo(string roomId)
+    public void SpawnTest()
+    {
+        SpawnLoot(RoomId.Room1);
+        SpawnLoot(RoomId.Room2);
+        SpawnLoot(RoomId.Room3);
+    }
+
+    private List<GridPos> CreateGridInfo(RoomId roomId)
     {
         List<GridPos> gridInfo = new List<GridPos>();
 
@@ -64,7 +76,7 @@ public class LootSpawner : MonoBehaviour
         int endOfY = _lootSpawnInfoDictionary[roomId][1].Y;
 
         GridPos grid;
-        while (indexOfY <= endOfY)
+        while (indexOfY >= endOfY)
         {
             while (indexOfX <= endOfX)
             {
@@ -73,13 +85,13 @@ public class LootSpawner : MonoBehaviour
                 indexOfX += 1;
             }
 
-            indexOfY += 1;
+            indexOfY -= 1;
         }
 
         return gridInfo;
     }
 
-    public void SpawnLoot(string roomId)
+    public void SpawnLoot(RoomId roomId)
     {
         int repeat;
         Vector3 spawnPosition;
@@ -101,7 +113,7 @@ public class LootSpawner : MonoBehaviour
         }
     }
 
-    private Vector3 GetPosition(string roomId)
+    private Vector3 GetPosition(RoomId roomId)
     {
         int targetIndex;
         int count;
@@ -124,7 +136,7 @@ public class LootSpawner : MonoBehaviour
                 targetPosition,
                 _unitSize,
                 0,
-                LayerMask.GetMask("Obstacle", "Enemy", "Player", "Item"));
+                _nonTargetLayerMask);
 
             if (hit == null)
             {
@@ -147,6 +159,7 @@ public class LootSpawner : MonoBehaviour
             WeaponPickup weaponPickup = Instantiate(targetPickUp, spawnPosition, Quaternion.identity);
             return true;
         }
+
         return false;
     }
 
