@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f77ed9c9ed0aa9647b63e65e84f903db, type: 3}
+  m_Name: 03_RandomEdgeBarrage
+  m_EditorClassIdentifier: Assembly-CSharp::BossAttackPattern
+  _patternKind: 3
+  _selectionWeight: 1
+  _cooldown: 8
+  _recoveryTime: 2
+  _animationSpeed: 1
+  _releaseNormalizedTime: 0.53
+  _duration: 5
+  _emitInterval: 0.1
+  _waveCount: 3
+  _countPerWave: 3
+  _warningTime: 1
+  _areaRadius: 0.65
+  _areaDamage: 12
+  _warningColor: {r: 1, g: 0.12, b: 0.12, a: 1}
+  _projectileSprite: {fileID: 0}
+  _projectileColor: {r: 0.3, g: 0.85, b: 1, a: 1}
+  _projectileSize: 0.28
+  _projectileCollisionRadius: 0.1
+  _projectileDamage: 8
+  _projectileSpeed: 4.3
+  _projectileLifetime: 6
+  _fallHeight: 5
+  _fallDuration: 0.4
+  _summonCount: 2
+  _orbitRadius: 1.8
+  _orbitDuration: 1.2
+  _orbitAngularSpeed: 180
+  _shockwaveInitialRadius: 0.5
+  _shockwaveMaximumRadius: 5.5
+  _shockwaveExpandTime: 2.5
+  _shockwaveThickness: 0.25
+  _bombFuse: 0.8
+  _bossCueRadius: 1.3

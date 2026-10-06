@@ -19,6 +19,7 @@ public class Weapon : MonoBehaviour
     private const float CoolTime = 10f;
 
     private bool _isReloading;
+    public bool IsReloading => _isReloading;
     private int _remainingAmmo;
     public int RemainingAmmo => _remainingAmmo;
     private float _timer;

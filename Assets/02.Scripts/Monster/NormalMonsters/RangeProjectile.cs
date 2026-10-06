@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class RangeProjectile : MonoBehaviour
 {
@@ -19,6 +20,17 @@ public class RangeProjectile : MonoBehaviour
     [SerializeField, Min(0.1f)] private float _impactEffectLifetime = 0.5f;
     [SerializeField] private Color _impactColor = new Color(0.25f, 0.85f, 1f, 1f);
 
+    [Header("사운드")]
+    [Tooltip("투사체가 처음 발사될 때 재생합니다.")]
+    [SerializeField] private AudioClip _fireSound;
+    [Tooltip("플레이어에게 피해가 실제로 적용됐을 때 재생합니다.")]
+    [SerializeField] private AudioClip _playerHitSound;
+    [Tooltip("벽이나 장애물에 충돌했을 때 재생합니다.")]
+    [SerializeField] private AudioClip _obstacleHitSound;
+    [SerializeField, Range(0f, 1f)] private float _soundVolume = 0.75f;
+    [Tooltip("SFX 믹서 그룹이 있으면 연결합니다. 비워 둬도 재생됩니다.")]
+    [SerializeField] private AudioMixerGroup _soundMixerGroup;
+
     // 보스가 소환한 몬스터의 탄만 골라 정리할 수 있게 소유자를 제공합니다.
     public Transform Owner => _owner;
 
@@ -31,6 +43,7 @@ public class RangeProjectile : MonoBehaviour
     private Collider2D[] _playerColliders;
     private ContactFilter2D _filter;
     private bool _hasImpacted;
+    private bool _hasPlayedFireSound;
 
     private void Awake()
     {
@@ -60,6 +73,7 @@ public class RangeProjectile : MonoBehaviour
         _player = player;
         CachePlayerColliders();
         SetDirection(direction);
+
         if (_owner == null)
         {
             return;
@@ -82,6 +96,7 @@ public class RangeProjectile : MonoBehaviour
     public void SetDirection(Vector2 direction)
     {
         _direction = direction.normalized;
+
         if (_direction.sqrMagnitude < 0.000001f)
         {
             return;
@@ -89,9 +104,16 @@ public class RangeProjectile : MonoBehaviour
 
         float angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, angle);
+
         if (_body != null)
         {
             _body.rotation = angle;
+        }
+
+        if (!_hasPlayedFireSound && !_hasImpacted)
+        {
+            _hasPlayedFireSound = true;
+            PlaySound(_fireSound, transform.position);
         }
     }
 
@@ -101,6 +123,7 @@ public class RangeProjectile : MonoBehaviour
         {
             _player = MonsterCombat.FindPlayer(transform);
         }
+
         CachePlayerColliders();
         Destroy(gameObject, Mathf.Max(0.1f, _lifeTime));
     }
@@ -239,6 +262,7 @@ public class RangeProjectile : MonoBehaviour
         {
             return;
         }
+
         // 파괴가 프레임 끝에 실행되어도 추가 콜라이더로 피해를 중복 적용하지 않습니다.
         _hasImpacted = true;
 
@@ -249,6 +273,7 @@ public class RangeProjectile : MonoBehaviour
                 bodyCollider.enabled = false;
             }
         }
+
         if (_body != null)
         {
             _body.simulated = false;
@@ -261,18 +286,29 @@ public class RangeProjectile : MonoBehaviour
         {
             bool damaged = MonsterCombat.TryTakePlayerDamage(player, _damage, hitPosition,
                 _direction, _impactColor, _impactEffectPrefab == null);
-            if (damaged && _impactEffectPrefab != null)
+
+            if (damaged)
             {
-                SpawnCustomImpact(hitPosition);
+                PlaySound(_playerHitSound, hitPosition);
+
+                if (_impactEffectPrefab != null)
+                {
+                    SpawnCustomImpact(hitPosition);
+                }
             }
-        }
-        else if (_impactEffectPrefab != null)
-        {
-            SpawnCustomImpact(hitPosition);
         }
         else
         {
-            MonsterCombatEffect.SpawnImpact(hitPosition, _direction, _impactColor, transform);
+            PlaySound(_obstacleHitSound, hitPosition);
+
+            if (_impactEffectPrefab != null)
+            {
+                SpawnCustomImpact(hitPosition);
+            }
+            else
+            {
+                MonsterCombatEffect.SpawnImpact(hitPosition, _direction, _impactColor, transform);
+            }
         }
 
         Destroy(gameObject);
@@ -283,5 +319,28 @@ public class RangeProjectile : MonoBehaviour
         float angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
         GameObject effect = Instantiate(_impactEffectPrefab, position, Quaternion.Euler(0f, 0f, angle));
         Destroy(effect, Mathf.Max(0.1f, _impactEffectLifetime));
+    }
+
+    private void PlaySound(AudioClip clip, Vector3 position)
+    {
+        if (clip == null || _soundVolume <= 0f)
+        {
+            return;
+        }
+
+        // 투사체가 파괴돼도 재생 중인 사운드는 끝까지 유지합니다.
+        GameObject soundObject = new GameObject("RangeProjectileSound");
+        soundObject.transform.position = position;
+
+        AudioSource source = soundObject.AddComponent<AudioSource>();
+        source.playOnAwake = false;
+        source.loop = false;
+        source.spatialBlend = 0f;
+        source.volume = Mathf.Clamp01(_soundVolume);
+        source.outputAudioMixerGroup = _soundMixerGroup;
+        source.clip = clip;
+        source.Play();
+
+        Destroy(soundObject, clip.length + 0.1f);
     }
 }

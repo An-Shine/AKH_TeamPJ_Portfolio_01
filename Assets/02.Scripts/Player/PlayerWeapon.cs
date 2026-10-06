@@ -12,6 +12,9 @@ public class PlayerWeapon : MonoBehaviour
     private float _attackVisualUntil;
 
     public bool IsAttacking => Time.time < _attackVisualUntil;
+    public bool IsReloading => WeaponManager.Instance != null &&
+                               WeaponManager.Instance.CurrentWeapon != null &&
+                               WeaponManager.Instance.CurrentWeapon.IsReloading;
     public int ShotSequence { get; private set; }
     public AimDisplayMode AimMode => _aimDisplayMode;
     public Transform Muzzle => _muzzle;

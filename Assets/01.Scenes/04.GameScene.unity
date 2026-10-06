@@ -498,6 +498,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameUIManager
   _healthUI: {fileID: 1660060287}
   _weaponUI: {fileID: 587852304}
+  _itemUI: {fileID: 1475971263746718385}
 --- !u!1 &144721194
 GameObject:
   m_ObjectHideFlags: 0
@@ -115038,9 +115039,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4212087568448954882, guid: a93e286aa94d10343bfa64df441335df, type: 3}
+      propertyPath: m_Name
+      value: ItemUI
+      objectReference: {fileID: 0}
     - target: {fileID: 6243385656406420168, guid: a93e286aa94d10343bfa64df441335df, type: 3}
       propertyPath: m_Name
-      value: HpBarUI
+      value: PlayerUI
       objectReference: {fileID: 0}
     - target: {fileID: 6508742464050080877, guid: a93e286aa94d10343bfa64df441335df, type: 3}
       propertyPath: m_AnchorMax.x
@@ -115074,11 +115079,30 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -23
       objectReference: {fileID: 0}
+    - target: {fileID: 8230412007404052093, guid: a93e286aa94d10343bfa64df441335df, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 285
+      objectReference: {fileID: 0}
+    - target: {fileID: 8230412007404052093, guid: a93e286aa94d10343bfa64df441335df, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a93e286aa94d10343bfa64df441335df, type: 3}
+--- !u!114 &1475971263746718385 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6286212859755274643, guid: a93e286aa94d10343bfa64df441335df, type: 3}
+  m_PrefabInstance: {fileID: 1475971263746718384}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53d6944b4f4b59648bea2f0f25701df8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemUI
 --- !u!1001 &1515544274348169284
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -115167,6 +115191,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1359968433061275058, guid: fe2599a142614e04e81c44ff77a6c5bc, type: 3}
+      propertyPath: _projectileIcons.Array.data[0].ProjectilePrefab
+      value: 
+      objectReference: {fileID: 3578378478379548358, guid: 805c23898e16f5e4d9c2b8a1be1507d7, type: 3}
+    - target: {fileID: 1359968433061275058, guid: fe2599a142614e04e81c44ff77a6c5bc, type: 3}
+      propertyPath: _projectileIcons.Array.data[1].ProjectilePrefab
+      value: 
+      objectReference: {fileID: 8485128781540672698, guid: 91621783e3927f240b534d6ced9ef9a6, type: 3}
+    - target: {fileID: 1359968433061275058, guid: fe2599a142614e04e81c44ff77a6c5bc, type: 3}
+      propertyPath: _projectileIcons.Array.data[2].ProjectilePrefab
+      value: 
+      objectReference: {fileID: 7688034501499318360, guid: d5254145c6c4722489f91ab007edf530, type: 3}
     - target: {fileID: 1867433545440787959, guid: fe2599a142614e04e81c44ff77a6c5bc, type: 3}
       propertyPath: m_Name
       value: BulletCountUI

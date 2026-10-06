@@ -12,9 +12,11 @@ GameObject:
   - component: {fileID: 7118849845410916409}
   - component: {fileID: 8017428273598027548}
   - component: {fileID: 3819265829258752211}
+  - component: {fileID: -3828042150112525157}
+  - component: {fileID: -3334640104070496448}
   m_Layer: 0
   m_Name: BossMonster
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -130,12 +132,31 @@ MonoBehaviour:
   _maxHealth: 1200
   _moveSpeed: 0
   _contactDamage: 0
+  _contactDamageCooldown: 0.5
+  _contactKnockbackDistance: 0.2
+  _contactKnockbackDuration: 0.12
   _separationRadius: 0.8
   _separationStrength: 1.5
+  _preventMonsterOverlap: 1
+  _minimumMonsterDistance: 1.1
+  _useSpriteSizeForSpacing: 1
+  _spriteSpacingFactor: 0.8
+  _overlapSeparationSpeed: 2.5
   _collisionCheckRadius: 0.25
   _obstacleLayer:
     serializedVersion: 2
     m_Bits: 0
+  _detectSolidCollidersAutomatically: 1
+  _ignoredObstacleLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  _blockObstacleTriggers: 0
+  _useObstaclePathfinding: 1
+  _pathCellSize: 0.5
+  _pathRepathInterval: 0.5
+  _pathSearchMargin: 12
+  _pathMaxVisitedNodes: 2048
+  _pathWaypointTolerance: 0.1
   _hitCooldown: 0.1
   _hitFlashDuration: 0.08
   _deathDelay: 0.2
@@ -151,7 +172,23 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  _patterns: []
+  _enableSlowChase: 1
+  _slowMoveSpeed: 0.25
+  _chaseRadius: 2
+  _stopDistance: 3
+  _roomEdgePadding: 0.75
+  _walkAnimationSpeed: 0.8
+  _hitSparkColor: {r: 1, g: 0.9, b: 0.5, a: 1}
+  _hitSound: {fileID: 0}
+  _hitSoundVolume: 0.5
+  _hitSoundCooldown: 0.06
+  _showHealthBar: 1
+  _bossDisplayName: BOSS
+  _healthBarColor: {r: 0.85, g: 0.12, b: 0.2, a: 1}
+  _patterns:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _rangeMonsterPrefab: {fileID: 3752560541776440137, guid: e4c67777cc259704d84123501921468b, type: 3}
   _maxLiveSummons: 4
   _maxActiveBullets: 240
@@ -162,3 +199,107 @@ MonoBehaviour:
   _maximumAttackTime: 30
   _maximumHitTime: 3
   _maximumDeathTime: 6
+--- !u!50 &-3828042150112525157
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8966176280612309948}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!60 &-3334640104070496448
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8966176280612309948}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.6363637, y: 3.6363637}
+    newSize: {x: 3.6363637, y: 3.6363637}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 1.5, y: -0.72727275}
+      - {x: 1.409091, y: -0.045454547}
+      - {x: 1.1363636, y: 0.40909094}
+      - {x: 1.5, y: 0.8636364}
+      - {x: 1.5, y: 1.1818182}
+      - {x: 0.90909094, y: 1.5454546}
+      - {x: 0.5, y: 1.5454546}
+      - {x: -0.36363637, y: 1.1363636}
+      - {x: -0.90909094, y: 0.6363636}
+      - {x: -1.2272727, y: -0.09090909}
+      - {x: -1.6818182, y: -0.90909094}
+      - {x: -1.8181819, y: -1.2727273}
+      - {x: -1.8181819, y: -1.6818182}
+      - {x: -1.409091, y: -1.5454546}
+      - {x: -1.0454546, y: -1.409091}
+      - {x: -0.5, y: -1.5909091}
+      - {x: -0.22727273, y: -1.3636364}
+      - {x: -0.13636364, y: -1.0909091}
+      - {x: 0.09090909, y: -0.7727273}
+      - {x: 0.18181819, y: -1.4545455}
+      - {x: 0.36363637, y: -1.7272727}
+      - {x: 0.9545455, y: -1.7272727}
+      - {x: 1.2272727, y: -1.5909091}
+      - {x: 1.2272727, y: -1.409091}
+      - {x: 1.5, y: -0.9545455}
+    - - {x: 0.5909091, y: -0.13636364}
+      - {x: 0.5909091, y: -0.18181819}
+      - {x: 0.6363636, y: -0.3181818}
+      - {x: 0.8181819, y: -0.5}
+      - {x: 0.8636364, y: -0.5}
+  m_UseDelaunayMesh: 1

@@ -110,12 +110,31 @@ MonoBehaviour:
   _maxHealth: 60
   _moveSpeed: 2
   _contactDamage: 10
+  _contactDamageCooldown: 0.5
+  _contactKnockbackDistance: 0.2
+  _contactKnockbackDuration: 0.12
   _separationRadius: 0.8
   _separationStrength: 1.5
+  _preventMonsterOverlap: 1
+  _minimumMonsterDistance: 1.1
+  _useSpriteSizeForSpacing: 1
+  _spriteSpacingFactor: 0.8
+  _overlapSeparationSpeed: 2.5
   _collisionCheckRadius: 0.25
   _obstacleLayer:
     serializedVersion: 2
     m_Bits: 0
+  _detectSolidCollidersAutomatically: 1
+  _ignoredObstacleLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  _blockObstacleTriggers: 0
+  _useObstaclePathfinding: 1
+  _pathCellSize: 0.5
+  _pathRepathInterval: 0.5
+  _pathSearchMargin: 12
+  _pathMaxVisitedNodes: 2048
+  _pathWaypointTolerance: 0.1
   _hitCooldown: 0.1
   _hitFlashDuration: 0.08
   _deathDelay: 0.2
@@ -128,8 +147,8 @@ MonoBehaviour:
   _attackHitNormalizedTime: 0.5
   _walkAnimationSpeed: 1.6
   _attackAnimationSpeed: 1.8
-  _attackEffectPrefab: {fileID: 0}
-  _attackEffectLifetime: 0.4
+  _attackEffectPrefab: {fileID: 2501765251154968091, guid: eef2ddccee5bf40448286e65732a257f, type: 3}
+  _attackEffectLifetime: 0.35
   _attackEffectColor: {r: 1, g: 0.8, b: 0.25, a: 1}
   _maximumAttackTime: 3
   _maximumHitTime: 1.5

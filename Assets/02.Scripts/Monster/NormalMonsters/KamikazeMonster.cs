@@ -172,8 +172,9 @@ public class KamikazeMonster : NormalMonster
 
         Vector2 toPlayer = (Vector2)_player.position - (Vector2)transform.position;
         float distance = Mathf.Sqrt(GetPlayerDistanceSquared(transform.position));
+        bool clearAttackPath = HasObstacleLineOfSight(transform.position, _player.position);
 
-        if (distance <= _explodeRange + _attackTriggerTolerance)
+        if (distance <= _explodeRange + _attackTriggerTolerance && clearAttackPath)
         {
             // 가까운 거리에서 처음 생성된 경우에만 방향을 정합니다.
             // 보통은 직전까지의 접근 방향을 유지합니다.
@@ -186,13 +187,16 @@ public class KamikazeMonster : NormalMonster
             return;
         }
 
-        bool charging = distance <= _chargeRange;
+        bool charging = distance <= _chargeRange && clearAttackPath;
         float multiplier = charging ? _chargeSpeedMultiplier : _chaseSpeedMultiplier;
-        float moveDistance = Mathf.Min(
-            Mathf.Max(0f, _moveSpeed) * multiplier * Time.deltaTime,
-            Mathf.Max(0f, distance - _explodeRange));
+        float moveDistance = Mathf.Max(0f, _moveSpeed) * multiplier * Time.deltaTime;
 
-        Vector2 movement = toPlayer.normalized * moveDistance;
+        if (clearAttackPath)
+        {
+            moveDistance = Mathf.Min(moveDistance, Mathf.Max(0f, distance - _explodeRange));
+        }
+
+        Vector2 movement = GetNavigationMovement(_player.position, moveDistance);
 
         if (!charging)
         {
