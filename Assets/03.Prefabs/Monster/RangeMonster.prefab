@@ -111,6 +111,10 @@ MonoBehaviour:
   _maxHealth: 50
   _moveSpeed: 2
   _contactDamage: 10
+  _homeRoom: {fileID: 0}
+  _detectionMode: 2
+  _detectionRange: 4
+  _loseTargetRange: 9
   _contactDamageCooldown: 0.5
   _contactKnockbackDistance: 0.2
   _contactKnockbackDuration: 0.12
@@ -222,7 +226,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.6666667, y: 2.6666667}
+    oldSize: {x: 1.3333334, y: 1.3333334}
     newSize: {x: 0.8828125, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
