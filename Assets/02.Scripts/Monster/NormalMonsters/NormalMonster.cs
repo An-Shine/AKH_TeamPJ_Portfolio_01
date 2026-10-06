@@ -1,3 +1,4 @@
+using _02.Scripts.Monster.NormalMonsters;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,9 @@ public class NormalMonster : MonoBehaviour
     [SerializeField] protected float _maxHealth = 100f;
     [SerializeField] protected float _moveSpeed = 2f;
     [SerializeField] protected int _contactDamage = 10;
+    [Header("소속 방")]
+    [Tooltip("스포너가 생성한 몬스터는 자동으로 연결됩니다. 직접 배치한 몬스터는 방을 지정하세요.")]
+    [SerializeField] private MonsterRoomBounds _homeRoom;
     [Header("플레이어 접촉")]
     [SerializeField, Min(0.05f)] private float _contactDamageCooldown = 0.5f;
     [SerializeField, Range(0f, 0.5f)] private float _contactKnockbackDistance = 0.2f;
@@ -89,6 +93,8 @@ public class NormalMonster : MonoBehaviour
     private Vector3[] _normalDeathLocalPositions;
     #endregion
     public bool IsDead => _normalIsDead;
+    public MonsterRoomBounds HomeRoom => _homeRoom;
+    private float RoomClearance => Mathf.Max(0.01f, _collisionCheckRadius);
     protected bool IsContactKnockbackActive =>
         _normalContactKnockbackActive ||
         _normalKnockbackMoveFrame == Time.frameCount;
@@ -422,7 +428,8 @@ public class NormalMonster : MonoBehaviour
             other.isActiveAndEnabled &&
             !other._normalIsDead &&
             other._preventMonsterOverlap &&
-            other.gameObject.scene == gameObject.scene;
+            other.gameObject.scene == gameObject.scene &&
+            (_homeRoom == null || other._homeRoom == null || _homeRoom == other._homeRoom);
     }
     private static Vector2 GetCoincidentSeparationDirection(
         NormalMonster first,
@@ -578,6 +585,21 @@ public class NormalMonster : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, angle);
     }
+    public bool TryAssignHomeRoom(MonsterRoomBounds room)
+    {
+        if (room == null || !room.Contains(transform.position, RoomClearance))
+        {
+            return false;
+        }
+        _homeRoom = room;
+        _normalPathfinder = null;
+        return true;
+    }
+    public bool IsSpawnPositionClear(Vector2 position, MonsterRoomBounds room)
+    {
+        return room != null && room.Contains(position, RoomClearance) &&
+            IsObstaclePositionClear(position);
+    }
     public bool IsSpawnPositionClear(Vector2 position)
     {
         return CanMoveTo(position);
@@ -587,6 +609,10 @@ public class NormalMonster : MonoBehaviour
         if (_normalIsDead || IsContactKnockbackActive || maxDistance <= 0f)
         {
             return Vector2.zero;
+        }
+        if (_homeRoom != null)
+        {
+            target = _homeRoom.ClampPosition(target, RoomClearance);
         }
         Vector2 origin = _normalControlledPosition;
         if (!TryCreateMovementFilter(out _))
@@ -621,6 +647,11 @@ public class NormalMonster : MonoBehaviour
         return IsObstacleCastClear(origin, target, 0f);
     }
     protected bool CanMoveTo(Vector2 targetPosition)
+    {
+        return (_homeRoom == null || _homeRoom.Contains(targetPosition, RoomClearance)) &&
+            IsObstaclePositionClear(targetPosition);
+    }
+    private bool IsObstaclePositionClear(Vector2 targetPosition)
     {
         if (!TryCreateMovementFilter(out ContactFilter2D filter))
         {

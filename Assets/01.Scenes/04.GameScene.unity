@@ -407,6 +407,94 @@ Transform:
   - {fileID: 1523154629}
   m_Father: {fileID: 1660343324}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &75857481
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 75857482}
+  m_Layer: 0
+  m_Name: Spawn_melee
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &75857482
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75857481}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.73, y: 0.79, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1215241322}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &77877847
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 77877848}
+  - component: {fileID: 77877849}
+  m_Layer: 0
+  m_Name: MonsterSpawner secondroom
+  m_TagString: Untagged
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &77877848
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 77877847}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -228.32, y: -466.45, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1506741756}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &77877849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 77877847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77a821e1216d0354c938f3db96efe611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MonsterSpawner
+  _monsterPrefabs:
+  - {fileID: 639612782717581268, guid: 06ddf9934d5082e439abaf345b510719, type: 3}
+  - {fileID: 3752560541776440137, guid: e4c67777cc259704d84123501921468b, type: 3}
+  - {fileID: 8326424469708161978, guid: 5c49daa289ab3474e8046744413410ab, type: 3}
+  _room: {fileID: 444469511}
+  _spawnPoints:
+  - {fileID: 1596242219}
+  _maxSpawnCount: 3
+  _spawnInterval: 3
+  _spawnOnStart: 1
+  _player: {fileID: 1409805389}
+  _minPlayerDistance: 3
+  _blockNearSpawnerRoot: 1
 --- !u!1 &118105270
 GameObject:
   m_ObjectHideFlags: 0
@@ -794,7 +882,7 @@ Transform:
   m_GameObject: {fileID: 247909901}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -218.95575, y: -501.914, z: 0}
+  m_LocalPosition: {x: -221.55, y: -500.64, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -905,6 +993,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 31838233}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &275531974
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 275531975}
+  m_Layer: 0
+  m_Name: Spawn kamikaze
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &275531975
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275531974}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.35, y: -1.28, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1215241322}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &316702732
 GameObject:
@@ -2530,6 +2649,53 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1 &444469509
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 444469510}
+  - component: {fileID: 444469511}
+  m_Layer: 0
+  m_Name: SecondMonsterRoom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &444469510
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 444469509}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.1, y: 35.8, z: 0}
+  m_LocalScale: {x: 1.5875, y: 1.7125, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1585730386}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &444469511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 444469509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49d54af9cf054348be8544832d0ccd08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_02.Scripts.Monster.NormalMonsters.MonsterRoomBounds
+  _center: {x: 0, y: 0}
+  _size: {x: 12, y: 8}
+  _edgePadding: 0.35
 --- !u!1 &449865803
 GameObject:
   m_ObjectHideFlags: 0
@@ -4461,16 +4627,14 @@ MonoBehaviour:
   - {fileID: 639612782717581268, guid: 06ddf9934d5082e439abaf345b510719, type: 3}
   - {fileID: 3752560541776440137, guid: e4c67777cc259704d84123501921468b, type: 3}
   - {fileID: 8326424469708161978, guid: 5c49daa289ab3474e8046744413410ab, type: 3}
+  _room: {fileID: 2093442479}
   _spawnPoints:
-  - {fileID: 1596242219}
   - {fileID: 247909902}
-  - {fileID: 1182690747}
-  _spawnCount: 3
+  _maxSpawnCount: 3
   _spawnInterval: 3
   _spawnOnStart: 1
-  _maxAliveMonsters: 0
   _player: {fileID: 1409805389}
-  _minPlayerDistance: 5
+  _minPlayerDistance: 3
   _blockNearSpawnerRoot: 1
 --- !u!4 &547094296
 Transform:
@@ -4518,6 +4682,7 @@ Transform:
   m_Children:
   - {fileID: 2118982878}
   - {fileID: 356763524}
+  - {fileID: 1585730386}
   m_Father: {fileID: 1506741756}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &556243453
@@ -5588,6 +5753,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1897281828}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &795115245
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 795115246}
+  m_Layer: 0
+  m_Name: Spawn range
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &795115246
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 795115245}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.69, y: -3.27, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1215241322}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &804588386
 GameObject:
   m_ObjectHideFlags: 0
@@ -6372,6 +6568,37 @@ MonoBehaviour:
   - {x: 17.292099, y: -13.313932, z: 0}
   - {x: 17.360867, y: 11.462753, z: 0}
   - {x: -17.324228, y: 11.497139, z: 0}
+--- !u!1 &955414279
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 955414280}
+  m_Layer: 0
+  m_Name: Spawn_melee
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &955414280
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 955414279}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.09, y: 0.79, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1219239115}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &980021880
 GameObject:
   m_ObjectHideFlags: 0
@@ -6839,7 +7066,7 @@ Transform:
   m_GameObject: {fileID: 1182690746}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -257.47574, y: -503.434, z: 0}
+  m_LocalPosition: {x: -229.09, y: -490.24, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18890,6 +19117,78 @@ Transform:
   m_Children: []
   m_Father: {fileID: 234042408}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1215241321
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1215241322}
+  - component: {fileID: 1215241324}
+  - component: {fileID: 1215241323}
+  m_Layer: 0
+  m_Name: ItemMonsterRoom Right
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1215241322
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215241321}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 13.74, y: 35.85, z: 0}
+  m_LocalScale: {x: 0.775, y: 1.4287499, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 75857482}
+  - {fileID: 795115246}
+  - {fileID: 275531975}
+  m_Father: {fileID: 1585730386}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1215241323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215241321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84cc495078ac4b27a898bc3d3dd4fdcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_02.Scripts.Monster.NormalMonsters.ItemRoomMonsterSpawner
+  _room: {fileID: 1215241324}
+  _meleePrefab: {fileID: 639612782717581268, guid: 06ddf9934d5082e439abaf345b510719, type: 3}
+  _rangePrefab: {fileID: 3752560541776440137, guid: e4c67777cc259704d84123501921468b, type: 3}
+  _kamikazePrefab: {fileID: 8326424469708161978, guid: 5c49daa289ab3474e8046744413410ab, type: 3}
+  _meleeSpawnPoint: {fileID: 75857482}
+  _rangeSpawnPoint: {fileID: 795115246}
+  _kamikazeSpawnPoint: {fileID: 275531975}
+  _spawnOnStart: 1
+  _retryInterval: 0.5
+--- !u!114 &1215241324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215241321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49d54af9cf054348be8544832d0ccd08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_02.Scripts.Monster.NormalMonsters.MonsterRoomBounds
+  _center: {x: 0, y: 0}
+  _size: {x: 12, y: 8}
+  _edgePadding: 0.35
 --- !u!1 &1217574550
 GameObject:
   m_ObjectHideFlags: 0
@@ -18989,6 +19288,78 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RotatingWarningLight2D
   _rotationSpeed: 90
   _clockwise: 1
+--- !u!1 &1219239114
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1219239115}
+  - component: {fileID: 1219239117}
+  - component: {fileID: 1219239116}
+  m_Layer: 0
+  m_Name: ItemMonsterRoom Left
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1219239115
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219239114}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -23.88, y: 35.4, z: 0}
+  m_LocalScale: {x: 0.775, y: 1.4287499, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 955414280}
+  - {fileID: 1315842854}
+  - {fileID: 1773544925}
+  m_Father: {fileID: 1585730386}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1219239116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219239114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84cc495078ac4b27a898bc3d3dd4fdcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_02.Scripts.Monster.NormalMonsters.ItemRoomMonsterSpawner
+  _room: {fileID: 1219239117}
+  _meleePrefab: {fileID: 639612782717581268, guid: 06ddf9934d5082e439abaf345b510719, type: 3}
+  _rangePrefab: {fileID: 3752560541776440137, guid: e4c67777cc259704d84123501921468b, type: 3}
+  _kamikazePrefab: {fileID: 8326424469708161978, guid: 5c49daa289ab3474e8046744413410ab, type: 3}
+  _meleeSpawnPoint: {fileID: 955414280}
+  _rangeSpawnPoint: {fileID: 1315842854}
+  _kamikazeSpawnPoint: {fileID: 1773544925}
+  _spawnOnStart: 1
+  _retryInterval: 0.5
+--- !u!114 &1219239117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219239114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49d54af9cf054348be8544832d0ccd08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_02.Scripts.Monster.NormalMonsters.MonsterRoomBounds
+  _center: {x: 0, y: 0}
+  _size: {x: 12, y: 8}
+  _edgePadding: 0.35
 --- !u!1 &1235885575
 GameObject:
   m_ObjectHideFlags: 0
@@ -19399,6 +19770,37 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1 &1315842853
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1315842854}
+  m_Layer: 0
+  m_Name: Spawn range
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1315842854
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1315842853}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.13, y: -2.84, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1219239115}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1320803848
 GameObject:
   m_ObjectHideFlags: 0
@@ -24539,6 +24941,7 @@ Transform:
   m_Children:
   - {fileID: 588415689}
   - {fileID: 547094296}
+  - {fileID: 77877848}
   - {fileID: 1596242219}
   - {fileID: 247909902}
   - {fileID: 1182690747}
@@ -25083,6 +25486,41 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1 &1585730385
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1585730386}
+  m_Layer: 0
+  m_Name: MonsterRoom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1585730386
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1585730385}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2093442478}
+  - {fileID: 444469510}
+  - {fileID: 1215241322}
+  - {fileID: 1219239115}
+  m_Father: {fileID: 550362715}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1587153541
 GameObject:
   m_ObjectHideFlags: 0
@@ -25243,7 +25681,7 @@ Transform:
   m_GameObject: {fileID: 1596242218}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -228.09575, y: -502.024, z: 0}
+  m_LocalPosition: {x: -228.43, y: -466.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -26135,6 +26573,37 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 6.032507, y: 4.99006}
   m_EdgeRadius: 0
+--- !u!1 &1773544924
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1773544925}
+  m_Layer: 0
+  m_Name: Spawn kamikaze
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1773544925
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773544924}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.5, y: -0.93, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1219239115}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1802549249
 GameObject:
   m_ObjectHideFlags: 0
@@ -30266,6 +30735,53 @@ MonoBehaviour:
   - {x: 3.3101482, y: -7.168251, z: 0}
   - {x: 3.2745237, y: 3.2791138, z: 0}
   - {x: -4.1166916, y: 3.3679066, z: 0}
+--- !u!1 &2093442477
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2093442478}
+  - component: {fileID: 2093442479}
+  m_Layer: 0
+  m_Name: FirstMonsterRoom
+  m_TagString: Untagged
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2093442478
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2093442477}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.8, y: 2.83, z: 0}
+  m_LocalScale: {x: 1.7024587, y: 3.3054483, z: 1.5303}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1585730386}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2093442479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2093442477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49d54af9cf054348be8544832d0ccd08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_02.Scripts.Monster.NormalMonsters.MonsterRoomBounds
+  _center: {x: 0, y: 0}
+  _size: {x: 12, y: 8}
+  _edgePadding: 0.35
 --- !u!1 &2109030682
 GameObject:
   m_ObjectHideFlags: 0
