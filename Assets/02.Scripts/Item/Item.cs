@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public class Item : MonoBehaviour, IInteractable
 {
     [SerializeField] private GameObject _gainEffectPrefab;
     public GameObject GainEffectPrefab => _gainEffectPrefab;
@@ -31,5 +31,10 @@ public class Item : MonoBehaviour
                 _effects.Add(effectData);
             }
         }
+    }
+
+    public void Interact(GameObject actor)
+    {
+        ItemManager.Instance.GainItem(this);
     }
 }
