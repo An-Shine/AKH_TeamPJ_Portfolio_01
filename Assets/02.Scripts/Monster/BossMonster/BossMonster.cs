@@ -196,6 +196,12 @@ public class BossMonster : NormalMonster
             return;
         }
         ResolvePlayer();
+        if (AudioManager.Instance != null)
+        {
+            bool inBattle = _targetPlayer != null && _targetPlayer.gameObject.activeInHierarchy &&
+                            _room.Contains(_targetPlayer.position, 0f) && !PlayerManager.IsInputBlocked;
+            AudioManager.Instance.SetBossBattle(this, inBattle);
+        }
         if (_action == ActionState.Attack)
         {
             UpdateAttack();
@@ -319,6 +325,7 @@ public class BossMonster : NormalMonster
             return;
         }
         _deathStarted = true;
+        if (AudioManager.Instance != null) AudioManager.Instance.SetBossBattle(this, false);
         StopMovementForDeath();
         _currentHealth = 0f;
         StopAllCoroutines();
@@ -1234,6 +1241,7 @@ public class BossMonster : NormalMonster
     }
     protected override void OnDisable()
     {
+        if (AudioManager.Instance != null) AudioManager.Instance.SetBossBattle(this, false);
         base.OnDisable();
         _isWalking = false;
         _pendingHitFeedback = false;

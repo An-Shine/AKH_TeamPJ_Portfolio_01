@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 _moveInput;
     private bool _dashQueued;
 
+    public InteractDisplayObj InteractDisplayObject;
+
     private void Awake()
     {
         _motor = GetComponent<PlayerMotor>();
@@ -117,7 +119,8 @@ public class PlayerController : MonoBehaviour
             _animation.BeginInteraction();
         }
 
-        nearest.Interact(gameObject);
+        Sprite objectSprite = nearest.Interact(gameObject);
+        InteractDisplayObject.Display(objectSprite, gameObject.transform.position);
 
         PlayerManager.Instance.GetItem();
         return true;

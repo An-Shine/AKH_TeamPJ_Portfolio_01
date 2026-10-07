@@ -407,6 +407,7 @@ Transform:
   m_Children:
   - {fileID: 8695968812168754858}
   - {fileID: 3557440893167192607}
+  - {fileID: 3632502075349721064}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3018855717279147715
@@ -470,6 +471,7 @@ MonoBehaviour:
   _interactionRadius: 1.5
   _interactionDuration: 0.5
   _weapon: {fileID: 0}
+  InteractDisplayObject: {fileID: 9081532808713828684}
 --- !u!114 &1396133464694114942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -505,7 +507,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5819182594994543154}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -778,7 +780,7 @@ MonoBehaviour:
   _material: {fileID: 2100000, guid: 7a0a93862c6c75449b4f65611f5efa9e, type: 2}
   _imageCount: 6
   _duration: 0.45
-  _tint: {r: 0.25, g: 0.85, b: 1, a: 0.55}
+  _tint: {r: 0.2509804, g: 0.89411765, b: 0.9019608, a: 0.54901963}
 --- !u!1 &7945017015239307636
 GameObject:
   m_ObjectHideFlags: 0
@@ -961,3 +963,76 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1001 &2952476838804142484
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 9074837142586714173}
+    m_Modifications:
+    - target: {fileID: 1519338622925806096, guid: d3939043495d01642ba3a98f6f0e7023, type: 3}
+      propertyPath: m_Name
+      value: InteractDisplayObj
+      objectReference: {fileID: 0}
+    - target: {fileID: 1914156760188053116, guid: d3939043495d01642ba3a98f6f0e7023, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.26356983
+      objectReference: {fileID: 0}
+    - target: {fileID: 1914156760188053116, guid: d3939043495d01642ba3a98f6f0e7023, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.2783599
+      objectReference: {fileID: 0}
+    - target: {fileID: 1914156760188053116, guid: d3939043495d01642ba3a98f6f0e7023, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1914156760188053116, guid: d3939043495d01642ba3a98f6f0e7023, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1914156760188053116, guid: d3939043495d01642ba3a98f6f0e7023, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1914156760188053116, guid: d3939043495d01642ba3a98f6f0e7023, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1914156760188053116, guid: d3939043495d01642ba3a98f6f0e7023, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1914156760188053116, guid: d3939043495d01642ba3a98f6f0e7023, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1914156760188053116, guid: d3939043495d01642ba3a98f6f0e7023, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1914156760188053116, guid: d3939043495d01642ba3a98f6f0e7023, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d3939043495d01642ba3a98f6f0e7023, type: 3}
+--- !u!4 &3632502075349721064 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1914156760188053116, guid: d3939043495d01642ba3a98f6f0e7023, type: 3}
+  m_PrefabInstance: {fileID: 2952476838804142484}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &9081532808713828684 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6264889660029026520, guid: d3939043495d01642ba3a98f6f0e7023, type: 3}
+  m_PrefabInstance: {fileID: 2952476838804142484}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4269d79776a7a4478e2b0339105425d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractDisplayObj
