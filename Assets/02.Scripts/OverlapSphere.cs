@@ -27,7 +27,7 @@ public class OverlapSphere : MonoBehaviour
     {
         Collider2D result = null;
 
-        if (_targets.Length <= 0) return null;
+        if (_targets == null || _targets.Length <= 0) return null;
 
         float shortestDistance = Vector3.Distance(transform.position, _targets[0].transform.position);
         float tempDistance;
