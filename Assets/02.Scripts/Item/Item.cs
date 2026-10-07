@@ -70,13 +70,16 @@ public class Item : MonoBehaviour, IInteractable
 
     private void DisplayTooltip()
     {
+        ToolTipManager manager = ToolTipManager.Instance;
+        if (manager == null) return;
+
         if (!_overlapSphere.ExistTarget())
         {
             if (_tooltipFlag)
             {
                 _tooltipFlag = false;
                 DeactivateOutline();
-                ToolTipManager.Instance.CloseItemTooltip();
+                manager.CloseItemTooltip();
             }
 
             return;
@@ -85,7 +88,7 @@ public class Item : MonoBehaviour, IInteractable
         if (_tooltipFlag) return;
 
         ActivateOutline();
-        ToolTipManager.Instance.OpenItemTooltip(transform, _tooltipOffset, Data.Description);
+        manager.OpenItemTooltip(transform, _tooltipOffset, Data.Description);
         _tooltipFlag = true;
     }
 
