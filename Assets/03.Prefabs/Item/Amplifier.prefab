@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6184856723820504884}
   - component: {fileID: 9181887681008582295}
   - component: {fileID: 5158470827918489186}
+  - component: {fileID: 4680263359446533248}
   m_Layer: 0
   m_Name: Amplifier
   m_TagString: Interactable
@@ -129,3 +130,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Item
   _gainEffectPrefab: {fileID: 207533826550086198, guid: 49c44e811823276408412ea4277a8e8e, type: 3}
   _gainEffectSFX: 13
+--- !u!114 &4680263359446533248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489144083060144373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d2931a7e1e44e418b727544e731ab14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OverlapSphere
+  _radius: 1
+  _targetMask:
+    serializedVersion: 2
+    m_Bits: 8
+  _findInterval: 0.1

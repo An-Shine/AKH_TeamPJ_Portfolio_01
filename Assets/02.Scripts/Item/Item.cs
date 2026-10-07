@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(OverlapSphere))]
 public class Item : MonoBehaviour, IInteractable
 {
     [SerializeField] private GameObject _gainEffectPrefab;
@@ -12,6 +13,23 @@ public class Item : MonoBehaviour, IInteractable
 
     private List<ItemEffectData> _effects;
     public List<ItemEffectData> Effects => _effects;
+
+    private OverlapSphere _overlapSphere;
+
+    private void Awake()
+    {
+        _overlapSphere = GetComponent<OverlapSphere>();
+    }
+
+    private void Update()
+    {
+        DisplayTooltip();
+    }
+
+    private void OnDisable()
+    {
+        ToolTipManager.Instance.SetActiveTooltip(false);
+    }
 
     public void Initialize(int itemId)
     {
@@ -31,6 +49,14 @@ public class Item : MonoBehaviour, IInteractable
                 _effects.Add(effectData);
             }
         }
+    }
+
+    private void DisplayTooltip()
+    {
+        Collider2D player = _overlapSphere.GetNearestTarget();
+        if (player == null) return;
+
+        ToolTipManager.Instance.OpenItemTooltip(transform.position, Data.Description);
     }
 
     public void Interact(GameObject actor)

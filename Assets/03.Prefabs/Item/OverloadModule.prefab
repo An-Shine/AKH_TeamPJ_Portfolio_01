@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1853164262049143104}
   - component: {fileID: 1734759159775955896}
   - component: {fileID: 7369551286898498312}
+  - component: {fileID: 8744410527234372229}
   m_Layer: 0
   m_Name: OverloadModule
   m_TagString: Interactable
@@ -129,3 +130,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Item
   _gainEffectPrefab: {fileID: 207533826550086198, guid: 49c44e811823276408412ea4277a8e8e, type: 3}
   _gainEffectSFX: 13
+--- !u!114 &8744410527234372229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3319475802263443804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d2931a7e1e44e418b727544e731ab14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OverlapSphere
+  _radius: 1
+  _targetMask:
+    serializedVersion: 2
+    m_Bits: 8
+  _findInterval: 0.1

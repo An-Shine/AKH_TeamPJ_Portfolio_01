@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 723370637435433501}
   - component: {fileID: 4793117015678365791}
   - component: {fileID: 1999943091658586458}
+  - component: {fileID: 9221007563684137586}
   m_Layer: 0
   m_Name: AccelaratorCoil
   m_TagString: Interactable
@@ -129,3 +130,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Item
   _gainEffectPrefab: {fileID: 207533826550086198, guid: 49c44e811823276408412ea4277a8e8e, type: 3}
   _gainEffectSFX: 13
+--- !u!114 &9221007563684137586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2161890859649952198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d2931a7e1e44e418b727544e731ab14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OverlapSphere
+  _radius: 1
+  _targetMask:
+    serializedVersion: 2
+    m_Bits: 8
+  _findInterval: 0.1
