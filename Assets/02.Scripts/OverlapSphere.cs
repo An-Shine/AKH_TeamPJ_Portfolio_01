@@ -20,6 +20,7 @@ public class OverlapSphere : MonoBehaviour
         {
             _timer = 0f;
             _targets = Physics2D.OverlapCircleAll(transform.position, _radius, _targetMask);
+            Debug.Log($"target count : {_targets.Length}");
         }
     }
 
@@ -42,6 +43,12 @@ public class OverlapSphere : MonoBehaviour
         }
 
         return result;
+    }
+
+    public bool ExistTarget()
+    {
+        if (_targets == null || _targets.Length <= 0) return false;
+        return true;
     }
 
     private void OnDrawGizmos()

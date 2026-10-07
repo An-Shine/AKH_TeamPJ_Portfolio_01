@@ -53,9 +53,7 @@ public class Item : MonoBehaviour, IInteractable
 
     private void DisplayTooltip()
     {
-        Collider2D player = _overlapSphere.GetNearestTarget();
-        if (player == null) return;
-
+        if (!_overlapSphere.ExistTarget()) return;
         ToolTipManager.Instance.OpenItemTooltip(transform.position, Data.Description);
     }
 
