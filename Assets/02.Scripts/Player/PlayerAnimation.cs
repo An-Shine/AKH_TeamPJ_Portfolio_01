@@ -40,7 +40,6 @@ public class PlayerAnimation : MonoBehaviour
     private Animator _animator;
     private readonly int[,] _hashes = new int[System.Enum.GetValues(typeof(Motion)).Length, System.Enum.GetValues(typeof(FacingDirection)).Length];
     private int _lastHash;
-    private int _lastShotSequence;
     private Motion _lastMotion;
     private bool _hasPlayed;
     private float _reloadUntil;
@@ -110,7 +109,7 @@ public class PlayerAnimation : MonoBehaviour
         }
         else if (isAttacking && state != PlayerState.Dash)
         {
-            motion = state == PlayerState.Run ? Motion.RunAttack : Motion.Attack;
+            motion = state == PlayerState.Run ? Motion.RunAttack : Motion.IdleAttack;
         }
 
         int hash = _hashes[(int)motion, (int)facing];
@@ -131,13 +130,14 @@ public class PlayerAnimation : MonoBehaviour
             return;
         }
 
-        bool attackMotion = motion == Motion.Attack || motion == Motion.RunAttack;
-        bool newShot = shotSequence != _lastShotSequence;
-        _lastShotSequence = shotSequence;
-        if (_hasPlayed && hash == _lastHash && !(attackMotion && newShot)) return;
+        bool attackMotion = motion == Motion.IdleAttack || motion == Motion.RunAttack;
+        // 추가 발사는 공격 유지 시간만 연장하고 현재 애니메이션은 계속 재생합니다.
+        if (_hasPlayed && hash == _lastHash) return;
 
         float normalizedTime = 0f;
-        if (_hasPlayed && motion == _lastMotion && !(attackMotion && newShot))
+        bool wasAttackMotion = _lastMotion == Motion.IdleAttack || _lastMotion == Motion.RunAttack;
+        // 정지 공격과 이동 공격 사이에서도 현재 재생 진행도를 유지합니다.
+        if (_hasPlayed && (motion == _lastMotion || (attackMotion && wasAttackMotion)))
         {
             AnimatorStateInfo info = _animator.GetCurrentAnimatorStateInfo(0);
             normalizedTime = info.loop

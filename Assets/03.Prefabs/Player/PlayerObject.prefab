@@ -419,7 +419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerWeapon
   _muzzle: {fileID: 3226002579121709957}
-  _attackVisualDuration: 1
+  _attackVisualDuration: 0.7
   _origin: {fileID: 4242759625333975747}
 --- !u!114 &9147032869833001549
 MonoBehaviour:

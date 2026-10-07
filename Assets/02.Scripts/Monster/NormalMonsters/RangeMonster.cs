@@ -125,7 +125,7 @@ public class RangeMonster : NormalMonster
             UpdateAction();
             return;
         }
-        if (!ResolvePlayer())
+        if (!ResolvePlayer() || !CanTrackPlayer())
         {
             PlayLocomotion(false);
             return;

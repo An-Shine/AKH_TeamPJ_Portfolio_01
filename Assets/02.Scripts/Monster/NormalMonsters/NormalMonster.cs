@@ -1,8 +1,15 @@
+using _02.Scripts.Monster.NormalMonsters;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public class NormalMonster : MonoBehaviour
 {
+    private enum PlayerDetectionMode
+    {
+        Room,
+        Distance,
+        RoomAndDistance
+    }
     private const float NormalContactTolerance = 0.02f;
     private const float MonsterSpacingTolerance = 0.002f;
     private static readonly List<NormalMonster> ActiveMonsters =
@@ -12,6 +19,16 @@ public class NormalMonster : MonoBehaviour
     [SerializeField] protected float _maxHealth = 100f;
     [SerializeField] protected float _moveSpeed = 2f;
     [SerializeField] protected int _contactDamage = 10;
+    [Header("소속 방")]
+    [Tooltip("스포너가 생성한 몬스터는 자동으로 연결됩니다. 직접 배치한 몬스터는 방을 지정하세요.")]
+    [SerializeField] private MonsterRoomBounds _homeRoom;
+    [Header("플레이어 감지")]
+    [Tooltip("Room: 같은 방에 있을 때 추적. Distance: 거리로 감지. Room And Distance: 같은 방에서 거리로 감지. Home Room이 없으면 거리 감지를 사용합니다.")]
+    [SerializeField] private PlayerDetectionMode _detectionMode = PlayerDetectionMode.Room;
+    [Tooltip("거리 감지 모드에서 추적을 시작하는 거리입니다. 월드 단위입니다.")]
+    [SerializeField, Min(0.1f)] private float _detectionRange = 5f;
+    [Tooltip("거리 감지 모드에서 추적을 멈추는 거리입니다. Detection Range 이상으로 적용됩니다.")]
+    [SerializeField, Min(0.1f)] private float _loseTargetRange = 7f;
     [Header("플레이어 접촉")]
     [SerializeField, Min(0.05f)] private float _contactDamageCooldown = 0.5f;
     [SerializeField, Range(0f, 0.5f)] private float _contactKnockbackDistance = 0.2f;
@@ -53,6 +70,8 @@ public class NormalMonster : MonoBehaviour
     #region 실행 상태와 캐시
     protected float _currentHealth;
     protected Transform _player;
+    private Transform _normalTrackingPlayer;
+    private bool _normalHasTrackingTarget;
     // 컴포넌트와 이 스크립트가 관리하는 위치
     private SpriteRenderer[] _normalSpriteRenderers;
     private Color[] _normalOriginalColors;
@@ -89,6 +108,8 @@ public class NormalMonster : MonoBehaviour
     private Vector3[] _normalDeathLocalPositions;
     #endregion
     public bool IsDead => _normalIsDead;
+    public MonsterRoomBounds HomeRoom => _homeRoom;
+    private float RoomClearance => Mathf.Max(0.01f, _collisionCheckRadius);
     protected bool IsContactKnockbackActive =>
         _normalContactKnockbackActive ||
         _normalKnockbackMoveFrame == Time.frameCount;
@@ -111,6 +132,7 @@ public class NormalMonster : MonoBehaviour
     protected virtual void OnDisable()
     {
         ActiveMonsters.Remove(this);
+        ResetPlayerTracking();
     }
     protected virtual void Start()
     {
@@ -214,6 +236,52 @@ public class NormalMonster : MonoBehaviour
                 $"{name}: Player 태그가 붙은 실제 플레이어를 찾을 수 없습니다.",
                 this);
         }
+    }
+    protected bool CanTrackPlayer()
+    {
+        if (_normalIsDead || _player == null || !_player.gameObject.activeInHierarchy)
+        {
+            ResetPlayerTracking();
+            return false;
+        }
+        if (_normalTrackingPlayer != _player)
+        {
+            _normalTrackingPlayer = _player;
+            _normalHasTrackingTarget = false;
+        }
+        bool hasRoom = _homeRoom != null;
+        bool requiresRoom = _detectionMode != PlayerDetectionMode.Distance;
+        if (requiresRoom && hasRoom &&
+            (!_homeRoom.isActiveAndEnabled || !_homeRoom.ContainsRoomPosition(_player.position)))
+        {
+            _normalHasTrackingTarget = false;
+            return false;
+        }
+        bool requiresDistance = _detectionMode != PlayerDetectionMode.Room || !hasRoom;
+        if (!requiresDistance)
+        {
+            _normalHasTrackingTarget = true;
+            return true;
+        }
+        float detectionRange = Mathf.Max(0.1f, _detectionRange);
+        float range = _normalHasTrackingTarget
+            ? Mathf.Max(detectionRange, _loseTargetRange)
+            : detectionRange;
+        Vector2 difference = (Vector2)_player.position - (Vector2)transform.position;
+        _normalHasTrackingTarget = difference.sqrMagnitude <= range * range;
+        return _normalHasTrackingTarget;
+    }
+    public void ConfigureRoomDetection(float detectionRange, float loseTargetRange)
+    {
+        _detectionMode = PlayerDetectionMode.RoomAndDistance;
+        _detectionRange = Mathf.Max(0.1f, detectionRange);
+        _loseTargetRange = Mathf.Max(_detectionRange, loseTargetRange);
+        ResetPlayerTracking();
+    }
+    private void ResetPlayerTracking()
+    {
+        _normalTrackingPlayer = null;
+        _normalHasTrackingTarget = false;
     }
     #endregion
     #region 플레이어 접촉
@@ -422,7 +490,8 @@ public class NormalMonster : MonoBehaviour
             other.isActiveAndEnabled &&
             !other._normalIsDead &&
             other._preventMonsterOverlap &&
-            other.gameObject.scene == gameObject.scene;
+            other.gameObject.scene == gameObject.scene &&
+            (_homeRoom == null || other._homeRoom == null || _homeRoom == other._homeRoom);
     }
     private static Vector2 GetCoincidentSeparationDirection(
         NormalMonster first,
@@ -578,6 +647,22 @@ public class NormalMonster : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, angle);
     }
+    public bool TryAssignHomeRoom(MonsterRoomBounds room)
+    {
+        if (room == null || !room.Contains(transform.position, RoomClearance))
+        {
+            return false;
+        }
+        _homeRoom = room;
+        _normalPathfinder = null;
+        ResetPlayerTracking();
+        return true;
+    }
+    public bool IsSpawnPositionClear(Vector2 position, MonsterRoomBounds room)
+    {
+        return room != null && room.Contains(position, RoomClearance) &&
+            IsObstaclePositionClear(position);
+    }
     public bool IsSpawnPositionClear(Vector2 position)
     {
         return CanMoveTo(position);
@@ -587,6 +672,10 @@ public class NormalMonster : MonoBehaviour
         if (_normalIsDead || IsContactKnockbackActive || maxDistance <= 0f)
         {
             return Vector2.zero;
+        }
+        if (_homeRoom != null)
+        {
+            target = _homeRoom.ClampPosition(target, RoomClearance);
         }
         Vector2 origin = _normalControlledPosition;
         if (!TryCreateMovementFilter(out _))
@@ -621,6 +710,11 @@ public class NormalMonster : MonoBehaviour
         return IsObstacleCastClear(origin, target, 0f);
     }
     protected bool CanMoveTo(Vector2 targetPosition)
+    {
+        return (_homeRoom == null || _homeRoom.Contains(targetPosition, RoomClearance)) &&
+            IsObstaclePositionClear(targetPosition);
+    }
+    private bool IsObstaclePositionClear(Vector2 targetPosition)
     {
         if (!TryCreateMovementFilter(out ContactFilter2D filter))
         {

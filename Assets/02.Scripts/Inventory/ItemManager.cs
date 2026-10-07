@@ -50,7 +50,6 @@ public class ItemManager : MonoBehaviour
     public void GainItem(Item item)
     {
         _gainedItemList.Add(item);
-        _unobtainedItemDictionary.Remove(IdPrefix.ItemPrefix + item.Data.ItemId);
 
         foreach (ItemEffectData effect in item.Effects)
         {
@@ -72,5 +71,10 @@ public class ItemManager : MonoBehaviour
         Instantiate(item.GainEffectPrefab, _playerTransform);
         AudioManager.Instance.PlaySFX(item.GainEffectSFX);
         item.gameObject.SetActive(false);
+    }
+
+    public void RemoveUnobtainItem(Item item)
+    {
+        _unobtainedItemDictionary.Remove(IdPrefix.ItemPrefix + item.Data.ItemId);
     }
 }
