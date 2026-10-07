@@ -10,18 +10,24 @@ public class Item : MonoBehaviour, IInteractable
     public SFXType GainEffectSFX => _gainEffectSFX;
 
     public ItemData Data { get; private set; }
-
     private List<ItemEffectData> _effects;
     public List<ItemEffectData> Effects => _effects;
 
+    [SerializeField] private Vector3 _tooltipOffset;
     private OverlapSphere _overlapSphere;
     private bool _tooltipFlag;
 
-    [SerializeField] private Vector3 _tooltipOffset;
+    [SerializeField] private Material _shaderMaterial;
+    private Material _runtimeMaterial;
+
+    private const string OutlineShaderKey = "_OuterOutlineFade";
 
     private void Awake()
     {
         _overlapSphere = GetComponent<OverlapSphere>();
+        _runtimeMaterial = Instantiate(_shaderMaterial);
+        gameObject.GetComponent<SpriteRenderer>().material = _runtimeMaterial;
+        DeactivateOutline();
     }
 
     private void Start()
@@ -69,6 +75,7 @@ public class Item : MonoBehaviour, IInteractable
             if (_tooltipFlag)
             {
                 _tooltipFlag = false;
+                DeactivateOutline();
                 ToolTipManager.Instance.CloseItemTooltip();
             }
 
@@ -77,8 +84,19 @@ public class Item : MonoBehaviour, IInteractable
 
         if (_tooltipFlag) return;
 
+        ActivateOutline();
         ToolTipManager.Instance.OpenItemTooltip(transform, _tooltipOffset, Data.Description);
         _tooltipFlag = true;
+    }
+
+    private void ActivateOutline()
+    {
+        _runtimeMaterial.SetFloat(OutlineShaderKey, 1f);
+    }
+
+    private void DeactivateOutline()
+    {
+        _runtimeMaterial.SetFloat(OutlineShaderKey, 0f);
     }
 
     public void Interact(GameObject actor)

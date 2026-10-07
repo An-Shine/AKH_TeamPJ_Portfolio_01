@@ -60,7 +60,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 19af4abf9cc99464db749509ef738230, type: 2}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -107,7 +107,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Item
   _gainEffectPrefab: {fileID: 207533826550086198, guid: 49c44e811823276408412ea4277a8e8e, type: 3}
   _gainEffectSFX: 13
-  _tooltipOffset: {x: 0, y: 0.5, z: 0}
+  _tooltipOffset: {x: 0, y: 1, z: 0}
+  _shaderMaterial: {fileID: 2100000, guid: 19af4abf9cc99464db749509ef738230, type: 2}
 --- !u!114 &1508373866568231094
 MonoBehaviour:
   m_ObjectHideFlags: 0
