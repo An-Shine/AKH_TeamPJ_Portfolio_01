@@ -132,7 +132,7 @@ public class PlayerController : MonoBehaviour
         }
 
         bool isReloading = _weapon.IsReloading;
-        _fsm.Act(isReloading ? Vector2.zero : _moveInput, _aim.AimDirection,
+        _fsm.Act(isReloading ? Vector2.zero : _moveInput,
             !isReloading && _dashQueued, Time.fixedDeltaTime);
         _dashQueued = false;
         if (_fsm.IsDashing && PlayerManager.Instance != null)

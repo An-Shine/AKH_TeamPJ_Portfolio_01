@@ -8,12 +8,16 @@ public class PlayerMotor : MonoBehaviour
     [SerializeField] private GameObject _dashEffectPrefab;
     [SerializeField] private float _dashEffectLifetime = 0.75f;
     private Rigidbody2D _body;
+    private PlayerHitFlash _hitFlash;
+    private PlayerDashAfterimage _afterimage;
     private readonly List<RaycastHit2D> _blinkHits = new List<RaycastHit2D>();
     private readonly List<Collider2D> _landingOverlaps = new List<Collider2D>();
 
     private void Awake()
     {
         _body = GetComponent<Rigidbody2D>();
+        _hitFlash = GetComponent<PlayerHitFlash>();
+        _afterimage = GetComponent<PlayerDashAfterimage>();
         _body.gravityScale = 0f;
         _body.freezeRotation = true;
     }
@@ -55,7 +59,7 @@ public class PlayerMotor : MonoBehaviour
         if (CanLandAt(destination, filter))
         {
             // 도착 지점에 몸 전체가 들어가면 경로의 얇은 장애물을 넘습니다.
-            SpawnDashEffect(start);
+            SpawnDashEffect(start, destination);
             _body.position = destination;
             return;
         }
@@ -69,12 +73,14 @@ public class PlayerMotor : MonoBehaviour
         }
 
         // 속도로 이동하지 않고 충돌 가능한 지점 앞까지 즉시 위치를 변경합니다.
-        SpawnDashEffect(start);
+        SpawnDashEffect(start, start + direction * distance);
         _body.position += direction * distance;
     }
 
-    private void SpawnDashEffect(Vector2 position)
+    private void SpawnDashEffect(Vector2 position, Vector2 destination)
     {
+        if (_afterimage != null) _afterimage.Play(position, destination);
+        if (_hitFlash != null) _hitFlash.PlayDashGlow();
         if (_dashEffectPrefab == null) return;
 
         Vector3 worldPosition = new Vector3(position.x, position.y, transform.position.z);
