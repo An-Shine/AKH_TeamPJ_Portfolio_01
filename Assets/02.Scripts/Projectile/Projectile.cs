@@ -51,6 +51,10 @@ public abstract class Projectile : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.CompareTag("Wall") || other.CompareTag("Obstacle"))
+        {
+            ProjectilePoolManager.Instance.Release(this);
+        }
         GiveDamage(other);
         DecreaseDurability(other);
     }
