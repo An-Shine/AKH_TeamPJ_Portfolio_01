@@ -101,7 +101,7 @@ public class PlayerAnimation : MonoBehaviour
         if (state == PlayerState.Die) PlayDie();
         if (_isDead) return;
         // 상호작용 클립의 무기 숨김은 유지하고, 종료 후에는 선택한 스프라이트를 복원합니다.
-        if (state != PlayerState.Interact) RefreshGunSprite(facing);
+        RefreshGunSprite(facing);
 
         Motion locomotion = state == PlayerState.Run ? Motion.Run : Motion.Idle;
         Motion motion = locomotion;
@@ -180,16 +180,17 @@ public class PlayerAnimation : MonoBehaviour
         if (_hasGunSelection && _lastGunWeapon == weapon && _lastGunFacing == facing)
         {
             // Animator의 Sprite 키/Write Defaults가 덮어써도 무기 선택 결과는 유지합니다.
-            if (_gunRenderer.sprite != _lastGunSprite)
-            {
-                _gunRenderer.sprite = _lastGunSprite;
-            }
+            // if (_gunRenderer.sprite != _lastGunSprite)
+            // {
+            //     _gunRenderer.sprite = _lastGunSprite;
+            // }
 
             return;
         }
 
         _lastGunWeapon = weapon;
         _lastGunFacing = facing;
+        _hasGunSelection = true;
 
         Sprite sprite = null;
         DataManager dataManager = DataManager.Instance;
@@ -209,9 +210,9 @@ public class PlayerAnimation : MonoBehaviour
             }
         }
 
-        _lastGunSprite = sprite;
+        // _lastGunSprite = sprite;
         // 데이터 초기화 전의 null을 캐시하면 같은 무기/방향에서 다시 찾지 못합니다.
-        _hasGunSelection = weapon == null || sprite != null;
+        // _hasGunSelection = weapon == null || sprite != null;
         _gunRenderer.sprite = sprite;
     }
 }

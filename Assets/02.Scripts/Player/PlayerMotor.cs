@@ -4,9 +4,9 @@ using UnityEngine;
 public class PlayerMotor : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed;
-    [SerializeField] private float _blinkDistance = 3f;
+    [SerializeField] private float _blinkDistance;
     [SerializeField] private GameObject _dashEffectPrefab;
-    [SerializeField] private float _dashEffectLifetime = 0.75f;
+    private float _dashEffectLifetime = 0.2f;
     private Rigidbody2D _body;
     private PlayerHitFlash _hitFlash;
     private PlayerDashAfterimage _afterimage;
