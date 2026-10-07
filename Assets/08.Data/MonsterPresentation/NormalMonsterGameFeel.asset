@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05e25e4a804d5bcdbe83a705ffb69a60, type: 3}
+  m_Name: NormalMonsterGameFeel
+  m_EditorClassIdentifier: 
+  _meleeColor: {r: 1, g: 0.12, b: 0.58, a: 1}
+  _rangeColor: {r: 0.08, g: 0.82, b: 1, a: 1}
+  _accentColor: {r: 1, g: 0.65, b: 0.12, a: 1}
+  _outlineOpacity: 0.28
+  _decorationScale: 1.3
+  _meleeSparks: 22
+  _impactSparks: 26
+  _trailInterval: 0.035
+  _cameraShake: 0.09
+  _meleeChargeSounds:
+  - {fileID: 8300000, guid: 05ff1b32a1bd56c0936a05ed22a5206e, type: 3}
+  - {fileID: 8300000, guid: 737612df20f55e1cbf286b023d777985, type: 3}
+  - {fileID: 8300000, guid: d4be2b061f6b5282bbc451bb60305c99, type: 3}
+  _meleeSlashSounds:
+  - {fileID: 8300000, guid: f34a6f0bf0385cdcb1e46197661bbae0, type: 3}
+  - {fileID: 8300000, guid: ccc8af165a2555f797d45fc18025d614, type: 3}
+  - {fileID: 8300000, guid: 22f8e4ead2245c1290254a007ad413bc, type: 3}
+  - {fileID: 8300000, guid: 04b416e98c1259ae829a36a8fec2e448, type: 3}
+  _meleeImpactSounds:
+  - {fileID: 8300000, guid: 699c473a719c508caf0b67b7942c3aa7, type: 3}
+  - {fileID: 8300000, guid: d2a1bb156be35107a99ffd6dede4f13a, type: 3}
+  - {fileID: 8300000, guid: 0dc554628e9858a9a5bb78a3cf068399, type: 3}
+  - {fileID: 8300000, guid: 11b54768688e5eecb87183d204f4be38, type: 3}
+  _rangeChargeSounds:
+  - {fileID: 8300000, guid: 568a157fdfd654d2b9baacaf274962fb, type: 3}
+  - {fileID: 8300000, guid: cafec86968b05a0e83cca561935cb30f, type: 3}
+  - {fileID: 8300000, guid: 70fe778c50e45f3c84913a53e5ae8d76, type: 3}
+  _rangeShotSounds:
+  - {fileID: 8300000, guid: 4b15399acbb35daba1da5a7b9679914c, type: 3}
+  - {fileID: 8300000, guid: ccf8330b426e56c5ac04bf456ea7b1b9, type: 3}
+  - {fileID: 8300000, guid: 035f56646b315ab1bebfae077763551e, type: 3}
+  - {fileID: 8300000, guid: 37a736a21d375e3f8510ac39a21be241, type: 3}
+  _rangeImpactSounds:
+  - {fileID: 8300000, guid: 1ddb4ccdda8a5b40be26c69b7f1a3089, type: 3}
+  - {fileID: 8300000, guid: 77657ad2e52a548daefbb7949cf2c2de, type: 3}
+  - {fileID: 8300000, guid: c918b19625dc52d786ac9707aeca6904, type: 3}
+  - {fileID: 8300000, guid: aa54de253e8950318729af8c96693eca, type: 3}
+  _attackVolume: 0.75
+  _impactVolume: 0.82
+  _soundMixerGroup: {fileID: 0}
