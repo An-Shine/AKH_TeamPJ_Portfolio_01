@@ -27,6 +27,8 @@ public class WeaponUI : MonoBehaviour
     [SerializeField] private Image _projectileIconPrefab;
     [SerializeField] private Color _availableAmmoColor = Color.white;
     [SerializeField] private Color _usedAmmoColor = Color.gray;
+    [SerializeField] private GameObject _laserAmmoGaugeRoot;
+    [SerializeField] private Slider _laserAmmoGaugeSlider;
 
     private Sprite _lastWeaponIcon;
     private int _lastRemainingAmmo = -1;
@@ -94,13 +96,17 @@ public class WeaponUI : MonoBehaviour
             _weaponIcon.enabled = weaponIcon != null;
         }
 
+        RefreshAmmoDisplayMode(projectileType);
         RefreshProjectileIcons(projectileType);
 
         if (_lastRemainingAmmo == remainingAmmo && _lastMagazineSize == magazineSize) return;
         _lastRemainingAmmo = remainingAmmo;
         _lastMagazineSize = magazineSize;
         _ammoText.text = $"{remainingAmmo} / {magazineSize}";
-        RefreshAmmoIcons(remainingAmmo, magazineSize);
+        if (projectileType == ProjectileType.Laser)
+            RefreshLaserAmmoGauge(remainingAmmo, magazineSize);
+        else
+            RefreshAmmoIcons(remainingAmmo, magazineSize);
     }
 
     private void RefreshProjectileIcons(ProjectileType projectileType)
@@ -136,5 +142,20 @@ public class WeaponUI : MonoBehaviour
             var isUsed = i < usedIconCount;
             icon.color = isUsed ? _usedAmmoColor : _availableAmmoColor;
         }
+    }
+
+    private void RefreshAmmoDisplayMode(ProjectileType projectileType)
+    {
+        var isLaser = projectileType == ProjectileType.Laser;
+
+        _projectileIconContainer.gameObject.SetActive(!isLaser);
+        _laserAmmoGaugeSlider.gameObject.SetActive(isLaser);
+    }
+
+    private void RefreshLaserAmmoGauge(int remainingAmmo, int magazineSize)
+    {
+        var ratio = magazineSize > 0 ? Mathf.Clamp01(remainingAmmo / (float)magazineSize) : 0f;
+
+        _laserAmmoGaugeSlider.SetValueWithoutNotify(ratio);
     }
 }
