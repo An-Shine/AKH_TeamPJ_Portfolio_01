@@ -17,6 +17,8 @@ public class Item : MonoBehaviour, IInteractable
     private OverlapSphere _overlapSphere;
     private bool _tooltipFlag;
 
+    [SerializeField] private Vector3 _tooltipOffset;
+
     private void Awake()
     {
         _overlapSphere = GetComponent<OverlapSphere>();
@@ -27,14 +29,17 @@ public class Item : MonoBehaviour, IInteractable
         _tooltipFlag = false;
     }
 
+    private void OnDisable()
+    {
+        if (_tooltipFlag)
+        {
+            ToolTipManager.Instance.CloseItemTooltip();
+        }
+    }
+
     private void Update()
     {
         DisplayTooltip();
-    }
-
-    private void OnDisable()
-    {
-        ToolTipManager.Instance.SetActiveTooltip(false);
     }
 
     public void Initialize(int itemId)
@@ -64,7 +69,7 @@ public class Item : MonoBehaviour, IInteractable
             if (_tooltipFlag)
             {
                 _tooltipFlag = false;
-                ToolTipManager.Instance.SetActiveTooltip(false);
+                ToolTipManager.Instance.CloseItemTooltip();
             }
 
             return;
@@ -72,7 +77,7 @@ public class Item : MonoBehaviour, IInteractable
 
         if (_tooltipFlag) return;
 
-        ToolTipManager.Instance.OpenItemTooltip(transform.position, Data.Description);
+        ToolTipManager.Instance.OpenItemTooltip(transform, _tooltipOffset, Data.Description);
         _tooltipFlag = true;
     }
 

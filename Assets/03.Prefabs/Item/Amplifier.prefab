@@ -130,6 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Item
   _gainEffectPrefab: {fileID: 207533826550086198, guid: 49c44e811823276408412ea4277a8e8e, type: 3}
   _gainEffectSFX: 13
+  _tooltipOffset: {x: 0, y: 0.5, z: 0}
 --- !u!114 &4680263359446533248
 MonoBehaviour:
   m_ObjectHideFlags: 0

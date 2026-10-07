@@ -20,7 +20,6 @@ public class OverlapSphere : MonoBehaviour
         {
             _timer = 0f;
             _targets = Physics2D.OverlapCircleAll(transform.position, _radius, _targetMask);
-            Debug.Log($"target count : {_targets.Length}");
         }
     }
 
