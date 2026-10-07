@@ -15,6 +15,7 @@ public class Item : MonoBehaviour, IInteractable
     public List<ItemEffectData> Effects => _effects;
 
     private OverlapSphere _overlapSphere;
+    private bool _tooltipFlag;
 
     private void Awake()
     {
@@ -23,6 +24,7 @@ public class Item : MonoBehaviour, IInteractable
 
     private void Update()
     {
+        _tooltipFlag = false;
         DisplayTooltip();
     }
 
@@ -53,7 +55,18 @@ public class Item : MonoBehaviour, IInteractable
 
     private void DisplayTooltip()
     {
-        if (!_overlapSphere.ExistTarget()) return;
+        if (!_overlapSphere.ExistTarget())
+        {
+            if (_tooltipFlag)
+            {
+                _tooltipFlag = false;
+                ToolTipManager.Instance.SetActiveTooltip(false);
+            }
+
+            return;
+        }
+
+        _tooltipFlag = true;
         ToolTipManager.Instance.OpenItemTooltip(transform.position, Data.Description);
     }
 
