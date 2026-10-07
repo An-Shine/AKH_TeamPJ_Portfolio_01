@@ -112,8 +112,8 @@ MonoBehaviour:
   _contactDamage: 10
   _homeRoom: {fileID: 0}
   _detectionMode: 2
-  _detectionRange: 5
-  _loseTargetRange: 7
+  _detectionRange: 12
+  _loseTargetRange: 20
   _contactDamageCooldown: 0.5
   _contactKnockbackDistance: 0.2
   _contactKnockbackDuration: 0.12

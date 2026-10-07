@@ -4630,6 +4630,7 @@ MonoBehaviour:
   _room: {fileID: 2093442479}
   _spawnPoints:
   - {fileID: 247909902}
+  - {fileID: 1182690747}
   _maxSpawnCount: 10
   _spawnInterval: 3
   _spawnOnStart: 1
@@ -5881,6 +5882,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 722226110}
     - target: {fileID: 3819265829258752211, guid: 8cfefe87713ae9742a22215d33616cf0, type: 3}
+      propertyPath: _detectionMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3819265829258752211, guid: 8cfefe87713ae9742a22215d33616cf0, type: 3}
       propertyPath: _patterns.Array.size
       value: 6
       objectReference: {fileID: 0}
@@ -5979,6 +5984,18 @@ PrefabInstance:
     - target: {fileID: 3949794852990193840, guid: 8cfefe87713ae9742a22215d33616cf0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7118849845410916409, guid: 8cfefe87713ae9742a22215d33616cf0, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7118849845410916409, guid: 8cfefe87713ae9742a22215d33616cf0, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7118849845410916409, guid: 8cfefe87713ae9742a22215d33616cf0, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1369945257
       objectReference: {fileID: 0}
     - target: {fileID: 8966176280612309948, guid: 8cfefe87713ae9742a22215d33616cf0, type: 3}
       propertyPath: m_Name
@@ -19172,6 +19189,10 @@ MonoBehaviour:
   _meleeSpawnPoint: {fileID: 75857482}
   _rangeSpawnPoint: {fileID: 795115246}
   _kamikazeSpawnPoint: {fileID: 275531975}
+  _additionalSpawnPoints: []
+  _overridePlayerDetection: 1
+  _detectionRange: 2
+  _loseTargetRange: 7
   _spawnOnStart: 1
   _retryInterval: 0.5
 --- !u!114 &1215241324
@@ -19343,6 +19364,10 @@ MonoBehaviour:
   _meleeSpawnPoint: {fileID: 955414280}
   _rangeSpawnPoint: {fileID: 1315842854}
   _kamikazeSpawnPoint: {fileID: 1773544925}
+  _additionalSpawnPoints: []
+  _overridePlayerDetection: 1
+  _detectionRange: 2
+  _loseTargetRange: 7
   _spawnOnStart: 1
   _retryInterval: 0.5
 --- !u!114 &1219239117
@@ -24944,7 +24969,6 @@ Transform:
   - {fileID: 77877848}
   - {fileID: 1596242219}
   - {fileID: 247909902}
-  - {fileID: 1629052576}
   - {fileID: 1182690747}
   - {fileID: 550362715}
   - {fileID: 1337042838}
@@ -25814,37 +25838,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 454858256}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1629052575
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1629052576}
-  m_Layer: 0
-  m_Name: SpawnPoint_02 (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1629052576
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1629052575}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -228.82, y: -495.67, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1506741756}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1645078898
 GameObject:
