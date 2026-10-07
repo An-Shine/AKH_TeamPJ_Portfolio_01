@@ -85,14 +85,7 @@ public class WeaponManager : MonoBehaviour
             if (index == CurrentWeaponIndex) return;
         }
 
-        if (CurrentWeapon != null)
-            CurrentWeapon.gameObject.SetActive(false);
-
-        CurrentWeaponIndex = index;
-        CurrentWeapon = _gainedWeaponList[CurrentWeaponIndex];
-        CurrentWeapon.FirePoint = PlayerManager.Instance.PlayerAimObj.FireDirectionPoint.transform;
-        CurrentWeapon.OriginPoint = PlayerManager.Instance.PlayerControllerObj._weapon.Muzzle;
-        CurrentWeapon.gameObject.SetActive(true);
+        EquipByIndex(index);
     }
 
     public void PreviousWeapon()

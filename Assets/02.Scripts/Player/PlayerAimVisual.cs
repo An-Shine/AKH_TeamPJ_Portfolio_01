@@ -60,6 +60,12 @@ public class PlayerAimVisual : MonoBehaviour
 
     private void RefreshVisual()
     {
+        if (PlayerManager.IsInputBlocked)
+        {
+            if (_crosshairImage != null) _crosshairImage.enabled = false;
+            if (_aimLine != null) _aimLine.enabled = false;
+            return;
+        }
         if (_weapon == null || _aim == null) return;
         // bool showLine = _weapon.AimMode == AimDisplayMode.AimLine;
         bool showLine = false;

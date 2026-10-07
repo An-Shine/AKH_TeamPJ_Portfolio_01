@@ -5,6 +5,7 @@ public enum PlayerState
     Dash,
     Attack,
     Interact,
+    Die,
 }
 
 public enum FacingDirection

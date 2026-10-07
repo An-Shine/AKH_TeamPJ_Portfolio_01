@@ -216,6 +216,17 @@ public class Weapon : MonoBehaviour
         _hasFirePose = true;
     }
 
+    public void CancelActions()
+    {
+        // 차지 무기는 OnMouseUp 호출 시 발사되므로 입력 해제 대신 동작 자체를 취소합니다.
+        StopFire();
+        if (AudioManager.Instance != null) AudioManager.Instance.StopLoopSFX();
+        _isReloading = false;
+        _reloadTimer = 0f;
+        _timer = 0f;
+        if (Data != null) _fireBehaviour = FireFactory.CreateBehaviour(Data.BehaviourType);
+    }
+
     public void StopFire()
     {
         if (_currentProjectile is LaserProjectile laser)
