@@ -151,7 +151,7 @@ public class MeleeMonster : NormalMonster
             return;
         }
 
-        if (!ResolvePlayer())
+        if (!ResolvePlayer() || !CanTrackPlayer())
         {
             PlayLocomotion(false);
             return;

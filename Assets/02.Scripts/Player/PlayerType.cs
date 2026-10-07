@@ -29,7 +29,7 @@ public enum Motion
 {
     Idle,
     Run,
-    Attack,
+    IdleAttack,
     RunAttack,
     Reload,
     Interact

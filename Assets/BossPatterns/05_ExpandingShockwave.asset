@@ -19,17 +19,17 @@ MonoBehaviour:
   _animationSpeed: 1
   _releaseNormalizedTime: 0.53
   _duration: 5
-  _emitInterval: 0.65
-  _waveCount: 3
-  _countPerWave: 4
+  _emitInterval: 1
+  _waveCount: 5
+  _countPerWave: 6
   _warningTime: 1
-  _areaRadius: 0.65
+  _areaRadius: 3
   _areaDamage: 20
   _warningColor: {r: 1, g: 0.12, b: 0.12, a: 1}
-  _projectileSprite: {fileID: 0}
-  _projectileColor: {r: 0.3, g: 0.85, b: 1, a: 1}
-  _projectileSize: 0.28
-  _projectileCollisionRadius: 0.1
+  _projectileSprite: {fileID: 21300000, guid: 8c270910450666142892b1cb1ec9cb99, type: 3}
+  _projectileColor: {r: 1, g: 0.023529412, b: 0.023529412, a: 1}
+  _projectileSize: 1
+  _projectileCollisionRadius: 1
   _projectileDamage: 10
   _projectileSpeed: 4.5
   _projectileLifetime: 6
