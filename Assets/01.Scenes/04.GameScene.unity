@@ -208,6 +208,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Room04_Door1
       objectReference: {fileID: 0}
+    - target: {fileID: 5115532543901623924, guid: c5ff4c2d02c73fc428841d4e80bbaa96, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5599,8 +5603,8 @@ MonoBehaviour:
   _room: {fileID: 787143460}
   _spawnPoints:
   - {fileID: 1595006571}
-  _maxSpawnCount: 10
-  _spawnInterval: 3
+  _maxSpawnCount: 3
+  _spawnInterval: 1
   _spawnOnStart: 1
   _player: {fileID: 1409805389}
   _minPlayerDistance: 3
@@ -6167,8 +6171,8 @@ MonoBehaviour:
   _room: {fileID: 607853936}
   _spawnPoints:
   - {fileID: 35545744}
-  _maxSpawnCount: 10
-  _spawnInterval: 3
+  _maxSpawnCount: 3
+  _spawnInterval: 1
   _spawnOnStart: 1
   _player: {fileID: 1409805389}
   _minPlayerDistance: 3
@@ -50264,8 +50268,8 @@ MonoBehaviour:
   _room: {fileID: 2093442479}
   _spawnPoints:
   - {fileID: 247909902}
-  _maxSpawnCount: 10
-  _spawnInterval: 3
+  _maxSpawnCount: 3
+  _spawnInterval: 1
   _spawnOnStart: 1
   _player: {fileID: 1409805389}
   _minPlayerDistance: 3
@@ -51014,8 +51018,8 @@ MonoBehaviour:
   _room: {fileID: 480414177}
   _spawnPoints:
   - {fileID: 1301407408}
-  _maxSpawnCount: 10
-  _spawnInterval: 3
+  _maxSpawnCount: 3
+  _spawnInterval: 1
   _spawnOnStart: 1
   _player: {fileID: 1409805389}
   _minPlayerDistance: 3
@@ -55876,8 +55880,8 @@ MonoBehaviour:
   _room: {fileID: 75196801}
   _spawnPoints:
   - {fileID: 1184711618}
-  _maxSpawnCount: 10
-  _spawnInterval: 3
+  _maxSpawnCount: 3
+  _spawnInterval: 1
   _spawnOnStart: 1
   _player: {fileID: 1409805389}
   _minPlayerDistance: 3
@@ -56693,6 +56697,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Room03_Door2
       objectReference: {fileID: 0}
+    - target: {fileID: 5115532543901623924, guid: c5ff4c2d02c73fc428841d4e80bbaa96, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -56953,8 +56961,8 @@ MonoBehaviour:
   _room: {fileID: 1795162395}
   _spawnPoints:
   - {fileID: 1202701556}
-  _maxSpawnCount: 10
-  _spawnInterval: 3
+  _maxSpawnCount: 3
+  _spawnInterval: 1
   _spawnOnStart: 1
   _player: {fileID: 1409805389}
   _minPlayerDistance: 3
@@ -57832,8 +57840,8 @@ MonoBehaviour:
   _room: {fileID: 444469511}
   _spawnPoints:
   - {fileID: 1829361903}
-  _maxSpawnCount: 10
-  _spawnInterval: 3
+  _maxSpawnCount: 3
+  _spawnInterval: 1
   _spawnOnStart: 1
   _player: {fileID: 1409805389}
   _minPlayerDistance: 3
@@ -79576,8 +79584,8 @@ MonoBehaviour:
   _room: {fileID: 1863305483}
   _spawnPoints:
   - {fileID: 977504287}
-  _maxSpawnCount: 10
-  _spawnInterval: 3
+  _maxSpawnCount: 3
+  _spawnInterval: 1
   _spawnOnStart: 1
   _player: {fileID: 1409805389}
   _minPlayerDistance: 3
@@ -84224,6 +84232,10 @@ PrefabInstance:
     - target: {fileID: 8230412007404052093, guid: a93e286aa94d10343bfa64df441335df, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8230412007404052093, guid: a93e286aa94d10343bfa64df441335df, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

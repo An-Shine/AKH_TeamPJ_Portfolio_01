@@ -210,7 +210,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.25, y: 1}
+  m_Size: {x: 0.25, y: 0.82}
   m_EdgeRadius: 0
 --- !u!1 &2164054260299818089
 GameObject:
@@ -460,6 +460,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemRoomDoorController
   _doorController: {fileID: 3842294025853685519}
+  _monsterSpawner: {fileID: 0}
+  _startLocked: 0
 --- !u!1 &5448170049648223708
 GameObject:
   m_ObjectHideFlags: 0
@@ -720,5 +722,5 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.16, y: 1}
+  m_Size: {x: 0.16, y: 0.88}
   m_EdgeRadius: 0
