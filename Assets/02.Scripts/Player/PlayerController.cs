@@ -45,6 +45,15 @@ public class PlayerController : MonoBehaviour
             TryInteract();
         }
 
+        if (Input.GetMouseButtonDown(1) &&
+            Time.timeScale > 0f &&
+            !_fsm.IsInteracting &&
+            !_weapon.IsReloading &&
+            WeaponManager.Instance != null)
+        {
+            WeaponManager.Instance.NextWeapon();
+        }
+
         // FixedUpdate 전에 들어온 대시 입력도 즉시 사격 제한에 반영합니다.
         bool dashStarting = _dashQueued && _fsm.CanDash;
         Vector2 fireDirection = _weapon.Muzzle != null

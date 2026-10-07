@@ -56,15 +56,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1666053433102001330}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.226, y: -0.204, z: -0.07}
+  m_LocalRotation: {x: -0, y: -0, z: -0.13283089, w: 0.99113876}
+  m_LocalPosition: {x: -0.254, y: -0.082, z: -0.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3226002579121709957}
   - {fileID: 4242759625333975747}
   m_Father: {fileID: 8695968812168754858}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -15.266}
 --- !u!212 &1313276590831294669
 SpriteRenderer:
   serializedVersion: 2
@@ -114,7 +114,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 5
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 6102361263206916926, guid: e60d54a1530ed554fb42592e13077284, type: 3}
+  m_Sprite: {fileID: -6934976629734404245, guid: e60d54a1530ed554fb42592e13077284, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -419,7 +419,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerWeapon
   _muzzle: {fileID: 3226002579121709957}
-  _attackVisualDuration: 0.7
   _origin: {fileID: 4242759625333975747}
 --- !u!114 &9147032869833001549
 MonoBehaviour:
