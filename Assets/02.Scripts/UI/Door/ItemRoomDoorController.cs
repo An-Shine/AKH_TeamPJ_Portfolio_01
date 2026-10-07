@@ -10,6 +10,29 @@ public class ItemRoomDoorController : MonoBehaviour
     }
 
     [SerializeField] private DoorController _doorController;
+    [SerializeField] private MonsterSpawner _monsterSpawner;
+    [SerializeField] private bool _startLocked;
+
+    private void Start()
+    {
+        if (!_startLocked)
+        {
+            _state = DoorState.CombatLocked;
+            _doorController.Close();
+        }
+    }
+
+    private void Update()
+    {
+        if (_state != DoorState.CombatLocked) return;
+        if (_monsterSpawner == null) return;
+
+        if (!_monsterSpawner.IsComplete) return;
+        if (_monsterSpawner.RemainingMonsterCount != 0) return;
+
+        _state = DoorState.Cleared;
+        _doorController.Open();
+    }
 
     private DoorState _state = DoorState.WaitingForEntry;
 

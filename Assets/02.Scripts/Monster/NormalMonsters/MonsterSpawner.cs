@@ -31,8 +31,10 @@ public class MonsterSpawner : MonoBehaviour
 
     private readonly List<NormalMonster> _availablePrefabs = new List<NormalMonster>();
     private readonly List<Transform> _availableSpawnPoints = new List<Transform>();
+    private readonly HashSet<NormalMonster> _spawnedMonsters = new();
 
     private int _totalSpawned;
+    private int _remainingMonsterCount;
     private bool _isComplete;
     private bool _warnedMissingRoom;
     private bool _warnedSpawnPosition;
@@ -43,11 +45,13 @@ public class MonsterSpawner : MonoBehaviour
     private bool _warnedMissingSpawnPoints;
 
     public int TotalSpawned => _totalSpawned;
+    public int RemainingMonsterCount => _remainingMonsterCount;
     public bool IsComplete => _isComplete;
 
     private void Start()
     {
         ClampSettings();
+        _remainingMonsterCount = _maxSpawnCount;
 
         if (_spawnOnStart && Time.timeScale > 0f)
         {
@@ -243,6 +247,9 @@ public class MonsterSpawner : MonoBehaviour
                 continue;
             }
 
+            monster.SetOwnerSpawner(this);
+            _spawnedMonsters.Add(monster);
+
             _warnedSpawnPosition = false;
             return true;
         }
@@ -344,5 +351,13 @@ public class MonsterSpawner : MonoBehaviour
                 Gizmos.DrawWireSphere(point.position, Mathf.Max(0f, _minPlayerDistance));
             }
         }
+    }
+
+    public void OnMonsterDied(NormalMonster monster)
+    {
+        if (!_spawnedMonsters.Remove(monster)) return;
+
+        _remainingMonsterCount--;
+        Debug.Log($"{name}: 남은 처치 수 {_remainingMonsterCount}", this);
     }
 }

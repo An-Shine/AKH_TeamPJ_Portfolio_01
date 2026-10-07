@@ -109,6 +109,7 @@ public class NormalMonster : MonoBehaviour
     #endregion
     public bool IsDead => _normalIsDead;
     public MonsterRoomBounds HomeRoom => _homeRoom;
+    private MonsterSpawner _ownerSpawner;
     private float RoomClearance => Mathf.Max(0.01f, _collisionCheckRadius);
     protected bool IsContactKnockbackActive =>
         _normalContactKnockbackActive ||
@@ -282,6 +283,10 @@ public class NormalMonster : MonoBehaviour
     {
         _normalTrackingPlayer = null;
         _normalHasTrackingTarget = false;
+    }
+    public void SetOwnerSpawner(MonsterSpawner spawner)
+    {
+        _ownerSpawner = spawner;
     }
     #endregion
     #region 플레이어 접촉
@@ -995,6 +1000,8 @@ public class NormalMonster : MonoBehaviour
             ClearBodyVelocity(body);
             body.constraints = RigidbodyConstraints2D.FreezeAll;
         }
+
+        _ownerSpawner?.OnMonsterDied(this);
     }
     private void RestoreDeathPosition()
     {
