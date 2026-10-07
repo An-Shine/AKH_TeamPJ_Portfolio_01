@@ -73,7 +73,11 @@ public class PlayerHitFlash : MonoBehaviour
         _amount = amount;
         foreach (SpriteRenderer sprite in _renderers)
         {
-            if (sprite == null) continue;
+            if (sprite == null)
+            {
+                continue;
+            }
+
             sprite.GetPropertyBlock(_properties);
             _properties.SetFloat(_flashAmountId, amount);
             sprite.SetPropertyBlock(_properties);
