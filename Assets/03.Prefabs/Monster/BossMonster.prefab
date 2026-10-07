@@ -105,7 +105,7 @@ Animator:
   m_GameObject: {fileID: 8966176280612309948}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ff8fb9f7f742ffd429d6aa874807b92a, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1f9487673f48b614fa002039ee7992ec, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -132,6 +132,10 @@ MonoBehaviour:
   _maxHealth: 1200
   _moveSpeed: 0
   _contactDamage: 20
+  _homeRoom: {fileID: 0}
+  _detectionMode: 0
+  _detectionRange: 5
+  _loseTargetRange: 7
   _contactDamageCooldown: 0.5
   _contactKnockbackDistance: 0.3
   _contactKnockbackDuration: 0.12
@@ -160,48 +164,24 @@ MonoBehaviour:
   _hitCooldown: 0.1
   _hitFlashDuration: 0.08
   _deathDelay: 0.2
+  _encounterProfile: {fileID: 11400000, guid: 79e0e635250d51ec8de22683a91ed3ec, type: 2}
   _room: {fileID: 0}
   _directionAnimator: {fileID: 8017428273598027548}
-  _directionChangeAngle: 30
-  _gunMuzzles:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  _initialAttackDelay: 1.5
+  _fallbackArenaSize: {x: 18, y: 12}
+  _shakeCamera: {fileID: 0}
   _enableSlowChase: 1
-  _slowMoveSpeed: 0.25
-  _chaseRadius: 2
+  _slowMoveSpeed: 0.8
   _stopDistance: 3
-  _roomEdgePadding: 0.75
-  _walkAnimationSpeed: 0.8
+  _roomEdgePadding: 1.1
   _hitSparkColor: {r: 1, g: 0.9, b: 0.5, a: 1}
   _hitSound: {fileID: 0}
   _hitSoundVolume: 0.5
   _hitSoundCooldown: 0.06
+  _hitReactionCooldown: 0.6
   _showHealthBar: 1
   _bossDisplayName: BOSS
   _healthBarColor: {r: 0.85, g: 0.12, b: 0.2, a: 1}
-  _patterns:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  _rangeMonsterPrefab: {fileID: 3752560541776440137, guid: e4c67777cc259704d84123501921468b, type: 3}
-  _maxLiveSummons: 4
-  _maxActiveBullets: 240
-  _maxActiveHazards: 32
-  _initialAttackDelay: 1.5
-  _interruptAttacksOnHit: 0
-  _hitReactionCooldown: 0.6
-  _maximumAttackTime: 30
-  _maximumHitTime: 3
-  _maximumDeathTime: 6
 --- !u!50 &-3828042150112525157
 Rigidbody2D:
   serializedVersion: 5
