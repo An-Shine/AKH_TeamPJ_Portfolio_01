@@ -49,9 +49,9 @@ public class ProjectilePoolManager : MonoBehaviour
         return _projectilePools[type].Get();
     }
 
-    public void Release(Projectile projectile, ProjectileType type)
+    public void Release(Projectile projectile)
     {
-        _projectilePools[type].Release(projectile);
+        _projectilePools[projectile.Type].Release(projectile);
     }
 
     private void ActivateProjectile(Projectile projectile)
