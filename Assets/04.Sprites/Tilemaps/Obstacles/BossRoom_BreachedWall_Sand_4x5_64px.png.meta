@@ -1,0 +1,634 @@
+fileFormatVersion: 2
+guid: a9ce9682a4564e6dbbe89d13ee83f67a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: BossRoom_BreachedWall_Sand_4x5_64px_r00_c00
+  - first:
+      213: 21300002
+    second: BossRoom_BreachedWall_Sand_4x5_64px_r00_c01
+  - first:
+      213: 21300004
+    second: BossRoom_BreachedWall_Sand_4x5_64px_r00_c02
+  - first:
+      213: 21300006
+    second: BossRoom_BreachedWall_Sand_4x5_64px_r00_c03
+  - first:
+      213: 21300008
+    second: BossRoom_BreachedWall_Sand_4x5_64px_r01_c00
+  - first:
+      213: 21300010
+    second: BossRoom_BreachedWall_Sand_4x5_64px_r01_c01
+  - first:
+      213: 21300012
+    second: BossRoom_BreachedWall_Sand_4x5_64px_r01_c02
+  - first:
+      213: 21300014
+    second: BossRoom_BreachedWall_Sand_4x5_64px_r01_c03
+  - first:
+      213: 21300016
+    second: BossRoom_BreachedWall_Sand_4x5_64px_r02_c00
+  - first:
+      213: 21300018
+    second: BossRoom_BreachedWall_Sand_4x5_64px_r02_c01
+  - first:
+      213: 21300020
+    second: BossRoom_BreachedWall_Sand_4x5_64px_r02_c02
+  - first:
+      213: 21300022
+    second: BossRoom_BreachedWall_Sand_4x5_64px_r02_c03
+  - first:
+      213: 21300024
+    second: BossRoom_BreachedWall_Sand_4x5_64px_r03_c00
+  - first:
+      213: 21300026
+    second: BossRoom_BreachedWall_Sand_4x5_64px_r03_c01
+  - first:
+      213: 21300028
+    second: BossRoom_BreachedWall_Sand_4x5_64px_r03_c02
+  - first:
+      213: 21300030
+    second: BossRoom_BreachedWall_Sand_4x5_64px_r03_c03
+  - first:
+      213: 21300032
+    second: BossRoom_BreachedWall_Sand_4x5_64px_r04_c00
+  - first:
+      213: 21300034
+    second: BossRoom_BreachedWall_Sand_4x5_64px_r04_c01
+  - first:
+      213: 21300036
+    second: BossRoom_BreachedWall_Sand_4x5_64px_r04_c02
+  - first:
+      213: 21300038
+    second: BossRoom_BreachedWall_Sand_4x5_64px_r04_c03
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: BossRoom_BreachedWall_Sand_4x5_64px_r00_c00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ea1c6b261f94abf8ea1b0155d9becb6
+      internalID: 21300000
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BossRoom_BreachedWall_Sand_4x5_64px_r00_c01
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 107a185dea214f928ceae56c1cc00bc4
+      internalID: 21300002
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BossRoom_BreachedWall_Sand_4x5_64px_r00_c02
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6cdab95a4d90488a9f228d54c4ad3a98
+      internalID: 21300004
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BossRoom_BreachedWall_Sand_4x5_64px_r00_c03
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bab9476a5a3346a48d711ffe98134351
+      internalID: 21300006
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BossRoom_BreachedWall_Sand_4x5_64px_r01_c00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0fe35e7ead043d4bd497a3a4e81b9f9
+      internalID: 21300008
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BossRoom_BreachedWall_Sand_4x5_64px_r01_c01
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1254d951224046ccb2d4d8c637d34ca7
+      internalID: 21300010
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BossRoom_BreachedWall_Sand_4x5_64px_r01_c02
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6ec2335afe84b688151a1ded9ae4f3d
+      internalID: 21300012
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BossRoom_BreachedWall_Sand_4x5_64px_r01_c03
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9b7ee9bdf5145adbd7bf6fd29bf2c11
+      internalID: 21300014
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BossRoom_BreachedWall_Sand_4x5_64px_r02_c00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 020ca2738528435a91a9a0972d6e8324
+      internalID: 21300016
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BossRoom_BreachedWall_Sand_4x5_64px_r02_c01
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01a23e9c126f4e56922040e95878920e
+      internalID: 21300018
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BossRoom_BreachedWall_Sand_4x5_64px_r02_c02
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac52d2aba0be430698db9630d86023f1
+      internalID: 21300020
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BossRoom_BreachedWall_Sand_4x5_64px_r02_c03
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0e6a156a94e416d9d6e20f4b5b13b6c
+      internalID: 21300022
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BossRoom_BreachedWall_Sand_4x5_64px_r03_c00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3aa66d0f226c4af3b6c35794922b17b1
+      internalID: 21300024
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BossRoom_BreachedWall_Sand_4x5_64px_r03_c01
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efcc82d9dcd44eb69016db17da74fc5c
+      internalID: 21300026
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BossRoom_BreachedWall_Sand_4x5_64px_r03_c02
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee98a6a8ff314f9c911a9e1bcc22cd33
+      internalID: 21300028
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BossRoom_BreachedWall_Sand_4x5_64px_r03_c03
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f033b5e8ee64574a7ec3b553ec0d867
+      internalID: 21300030
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BossRoom_BreachedWall_Sand_4x5_64px_r04_c00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63fb32914bb94cf7888cce21cab04bea
+      internalID: 21300032
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BossRoom_BreachedWall_Sand_4x5_64px_r04_c01
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db19bf15e0994309a95e0dff038ade9a
+      internalID: 21300034
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BossRoom_BreachedWall_Sand_4x5_64px_r04_c02
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ec4921b500b4ebaa9ea923c9bd7ed0e
+      internalID: 21300036
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BossRoom_BreachedWall_Sand_4x5_64px_r04_c03
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc08c1e39753454f969c59e8aaeb125a
+      internalID: 21300038
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    outline: []
+    customData:
+    physicsShape: []
+    bones: []
+    spriteID: 134fdd13cb094788a899799c35734270
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      BossRoom_BreachedWall_Sand_4x5_64px_r00_c00: 21300000
+      BossRoom_BreachedWall_Sand_4x5_64px_r00_c01: 21300002
+      BossRoom_BreachedWall_Sand_4x5_64px_r00_c02: 21300004
+      BossRoom_BreachedWall_Sand_4x5_64px_r00_c03: 21300006
+      BossRoom_BreachedWall_Sand_4x5_64px_r01_c00: 21300008
+      BossRoom_BreachedWall_Sand_4x5_64px_r01_c01: 21300010
+      BossRoom_BreachedWall_Sand_4x5_64px_r01_c02: 21300012
+      BossRoom_BreachedWall_Sand_4x5_64px_r01_c03: 21300014
+      BossRoom_BreachedWall_Sand_4x5_64px_r02_c00: 21300016
+      BossRoom_BreachedWall_Sand_4x5_64px_r02_c01: 21300018
+      BossRoom_BreachedWall_Sand_4x5_64px_r02_c02: 21300020
+      BossRoom_BreachedWall_Sand_4x5_64px_r02_c03: 21300022
+      BossRoom_BreachedWall_Sand_4x5_64px_r03_c00: 21300024
+      BossRoom_BreachedWall_Sand_4x5_64px_r03_c01: 21300026
+      BossRoom_BreachedWall_Sand_4x5_64px_r03_c02: 21300028
+      BossRoom_BreachedWall_Sand_4x5_64px_r03_c03: 21300030
+      BossRoom_BreachedWall_Sand_4x5_64px_r04_c00: 21300032
+      BossRoom_BreachedWall_Sand_4x5_64px_r04_c01: 21300034
+      BossRoom_BreachedWall_Sand_4x5_64px_r04_c02: 21300036
+      BossRoom_BreachedWall_Sand_4x5_64px_r04_c03: 21300038
+  userData:
+  assetBundleName:
+  assetBundleVariant:
+
