@@ -5,6 +5,13 @@ using UnityEngine;
 
 public class NormalMonster : MonoBehaviour
 {
+    private enum PlayerDetectionMode
+    {
+        Room,
+        Distance,
+        RoomAndDistance
+    }
+
     private const float NormalContactTolerance = 0.02f;
     private const float MonsterSpacingTolerance = 0.002f;
     private static readonly List<NormalMonster> ActiveMonsters = new List<NormalMonster>(64);
@@ -19,6 +26,14 @@ public class NormalMonster : MonoBehaviour
     [Header("소속 방")]
     [Tooltip("스포너가 생성한 몬스터는 자동으로 연결됩니다. 직접 배치한 몬스터는 방을 지정하세요.")]
     [SerializeField] private MonsterRoomBounds _homeRoom;
+
+    [Header("플레이어 감지")]
+    [Tooltip("Room: 같은 방에 있을 때 추적. Distance: 거리로 감지. Room And Distance: 같은 방에서 거리로 감지. Home Room이 없으면 거리 감지를 사용합니다.")]
+    [SerializeField] private PlayerDetectionMode _detectionMode = PlayerDetectionMode.Room;
+    [Tooltip("거리 감지 모드에서 추적을 시작하는 거리입니다. 월드 단위입니다.")]
+    [SerializeField, Min(0.1f)] private float _detectionRange = 5f;
+    [Tooltip("거리 감지 모드에서 추적을 멈추는 거리입니다. Detection Range 이상으로 적용됩니다.")]
+    [SerializeField, Min(0.1f)] private float _loseTargetRange = 7f;
 
     [Header("플레이어 접촉")]
     [SerializeField, Min(0.05f)] private float _contactDamageCooldown = 0.5f;
@@ -70,6 +85,8 @@ public class NormalMonster : MonoBehaviour
 
     protected float _currentHealth;
     protected Transform _player;
+    private Transform _normalTrackingPlayer;
+    private bool _normalHasTrackingTarget;
     // 컴포넌트와 이 스크립트가 관리하는 위치
     private SpriteRenderer[] _normalSpriteRenderers;
     private Color[] _normalOriginalColors;
@@ -134,6 +151,7 @@ public class NormalMonster : MonoBehaviour
     protected virtual void OnDisable()
     {
         ActiveMonsters.Remove(this);
+        ResetPlayerTracking();
     }
 
     protected virtual void Start()
@@ -157,6 +175,7 @@ public class NormalMonster : MonoBehaviour
         if (RequiresRoomEntry && !_homeRoom.TryGetDetectedPlayer(out _))
         {
             _normalRoomAlertActive = false;
+            ResetPlayerTracking();
         }
 
         CheckPlayerContact();
@@ -258,6 +277,62 @@ public class NormalMonster : MonoBehaviour
         }
     }
 
+    protected bool CanTrackPlayer()
+    {
+        if (_normalIsDead || _player == null || !_player.gameObject.activeInHierarchy)
+        {
+            ResetPlayerTracking();
+            return false;
+        }
+
+        if (_normalTrackingPlayer != _player)
+        {
+            _normalTrackingPlayer = _player;
+            _normalHasTrackingTarget = false;
+        }
+
+        if (RequiresRoomEntry)
+        {
+            _normalHasTrackingTarget = _homeRoom.TryGetDetectedPlayer(out _);
+            return _normalHasTrackingTarget;
+        }
+
+        bool hasRoom = _homeRoom != null;
+        bool requiresRoom = _detectionMode != PlayerDetectionMode.Distance;
+        if (requiresRoom && hasRoom && (!_homeRoom.isActiveAndEnabled || !_homeRoom.ContainsRoomPosition(_player.position)))
+        {
+            _normalHasTrackingTarget = false;
+            return false;
+        }
+
+        bool requiresDistance = _detectionMode != PlayerDetectionMode.Room || !hasRoom;
+        if (!requiresDistance)
+        {
+            _normalHasTrackingTarget = true;
+            return true;
+        }
+
+        float detectionRange = Mathf.Max(0.1f, _detectionRange);
+        float range = _normalHasTrackingTarget ? Mathf.Max(detectionRange, _loseTargetRange) : detectionRange;
+        Vector2 difference = (Vector2)_player.position - (Vector2)transform.position;
+        _normalHasTrackingTarget = difference.sqrMagnitude <= range * range;
+        return _normalHasTrackingTarget;
+    }
+
+    public void ConfigureRoomDetection(float detectionRange, float loseTargetRange)
+    {
+        _detectionMode = PlayerDetectionMode.RoomAndDistance;
+        _detectionRange = Mathf.Max(0.1f, detectionRange);
+        _loseTargetRange = Mathf.Max(_detectionRange, loseTargetRange);
+        ResetPlayerTracking();
+    }
+
+    private void ResetPlayerTracking()
+    {
+        _normalTrackingPlayer = null;
+        _normalHasTrackingTarget = false;
+    }
+
     #endregion
 
     #region 플레이어 접촉
@@ -284,9 +359,7 @@ public class NormalMonster : MonoBehaviour
 
     private bool CanProcessPlayerContact()
     {
-        return !_normalIsDead &&
-            (!RequiresRoomEntry || _homeRoom.TryGetDetectedPlayer(out _)) &&
-            Time.timeScale > 0f && Time.time >= _normalNextContactTime;
+        return !_normalIsDead && (!RequiresRoomEntry || _homeRoom.TryGetDetectedPlayer(out _)) && Time.timeScale > 0f && Time.time >= _normalNextContactTime;
     }
 
     private void CacheContactPlayer(Transform player)
@@ -367,10 +440,7 @@ public class NormalMonster : MonoBehaviour
 
     private static bool AreContactBoundsSeparated(Bounds bodyBounds, Bounds playerBounds)
     {
-        return Mathf.Abs(bodyBounds.center.x - playerBounds.center.x) >
-            bodyBounds.extents.x + playerBounds.extents.x + NormalContactTolerance ||
-            Mathf.Abs(bodyBounds.center.y - playerBounds.center.y) >
-            bodyBounds.extents.y + playerBounds.extents.y + NormalContactTolerance;
+        return Mathf.Abs(bodyBounds.center.x - playerBounds.center.x) > bodyBounds.extents.x + playerBounds.extents.x + NormalContactTolerance || Mathf.Abs(bodyBounds.center.y - playerBounds.center.y) > bodyBounds.extents.y + playerBounds.extents.y + NormalContactTolerance;
     }
 
     private void HandlePlayerContact(Transform player, ColliderDistance2D contact)
@@ -477,10 +547,7 @@ public class NormalMonster : MonoBehaviour
 
     private bool IsSpacingTarget(NormalMonster other)
     {
-        return other != null && other != this && other.isActiveAndEnabled &&
-            !other._normalIsDead && other._preventMonsterOverlap &&
-            other.gameObject.scene == gameObject.scene &&
-            (_homeRoom == null || other._homeRoom == null || _homeRoom == other._homeRoom);
+        return other != null && other != this && other.isActiveAndEnabled && !other._normalIsDead && other._preventMonsterOverlap && other.gameObject.scene == gameObject.scene && (_homeRoom == null || other._homeRoom == null || _homeRoom == other._homeRoom);
     }
 
     private static Vector2 GetCoincidentSeparationDirection(NormalMonster first, NormalMonster second)
@@ -653,6 +720,7 @@ public class NormalMonster : MonoBehaviour
         _homeRoom = room;
         _normalPathfinder = null;
         _normalRoomAlertActive = false;
+        ResetPlayerTracking();
         return true;
     }
 
@@ -774,9 +842,7 @@ public class NormalMonster : MonoBehaviour
         {
             if (!_normalReportedObstacleConfiguration)
             {
-                Debug.LogError($"{name}: 장애물 설정이 비어 있어 이동을 멈춥니다. " +
-                    "Detect Solid Colliders Automatically를 켜거나 Obstacle Layer를 지정하세요. " +
-                    "Block Obstacle Triggers를 켰다면 Trigger 벽의 Layer도 지정해야 합니다.", this);
+                Debug.LogError($"{name}: 장애물 설정이 비어 있어 이동을 멈춥니다. " + "Detect Solid Colliders Automatically를 켜거나 Obstacle Layer를 지정하세요. " + "Block Obstacle Triggers를 켰다면 Trigger 벽의 Layer도 지정해야 합니다.", this);
                 _normalReportedObstacleConfiguration = true;
             }
 
@@ -838,9 +904,7 @@ public class NormalMonster : MonoBehaviour
         }
 
         _normalMovementCastHits.Clear();
-        int count = radius > 0f
-            ? Physics2D.CircleCast(origin, radius, difference / distance, filter, _normalMovementCastHits, distance)
-            : Physics2D.Raycast(origin, difference / distance, filter, _normalMovementCastHits, distance);
+        int count = radius > 0f ? Physics2D.CircleCast(origin, radius, difference / distance, filter, _normalMovementCastHits, distance) : Physics2D.Raycast(origin, difference / distance, filter, _normalMovementCastHits, distance);
         for (int i = 0; i < count; i++)
         {
             if (IsMovementObstacle(_normalMovementCastHits[i].collider))

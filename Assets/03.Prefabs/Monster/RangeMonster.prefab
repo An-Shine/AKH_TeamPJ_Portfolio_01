@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 1041100582857538942}
   - component: {fileID: 8807473177661448989}
   - component: {fileID: 4001296727413696537}
+  - component: {fileID: 7090127584927941704}
+  - component: {fileID: 8452185963844912455}
   m_Layer: 0
   m_Name: RangeMonster
   m_TagString: Enemy
@@ -108,13 +110,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f499990db5c84b24da3e79a02000ecf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangeMonster
-  _maxHealth: 50
+  _maxHealth: 130
   _moveSpeed: 2
-  _contactDamage: 10
+  _contactDamage: 20
   _homeRoom: {fileID: 0}
-  _detectionMode: 2
-  _detectionRange: 9
-  _loseTargetRange: 15
+  _detectionMode: 0
+  _detectionRange: 5
+  _loseTargetRange: 7
   _contactDamageCooldown: 0.5
   _contactKnockbackDistance: 0.2
   _contactKnockbackDuration: 0.12
@@ -128,7 +130,7 @@ MonoBehaviour:
   _collisionCheckRadius: 0.4
   _obstacleLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   _detectSolidCollidersAutomatically: 1
   _ignoredObstacleLayers:
     serializedVersion: 2
@@ -158,6 +160,8 @@ MonoBehaviour:
   _directionHysteresis: 7
   _facingLockDistance: 1.5
   _walkAnimationSpeed: 1.6
+  _attackAnimationSpeed: 1
+  _attackSpeedMultiplier: 2
   _maximumAttackTime: 3
   _maximumHitTime: 1.5
   _maximumDeathTime: 3
@@ -272,6 +276,36 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7090127584927941704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3084556249662808746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c7cb10390c65bf7b1a0e2a4cfd7470b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_02.Scripts.Monster.Presentation.NormalMonsterGameFeel
+  _profile: {fileID: 11400000, guid: 9575b2432bb455f5b2c0c96b34464bb5, type: 2}
+  _bodyRenderer: {fileID: 407633750960660241}
+--- !u!114 &8452185963844912455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3084556249662808746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a8a19c553bd5a8b88a32120d01308be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_02.Scripts.Monster.Presentation.MonsterGroundPresentation
+  _profile: {fileID: 11400000, guid: 32af03df939157449cf5c235bfdfb471, type: 2}
+  _bodyRenderer: {fileID: 407633750960660241}
+  _animator: {fileID: 4001296727413696537}
+  _feetAnchor: {fileID: 0}
 --- !u!1 &8140287152644180069
 GameObject:
   m_ObjectHideFlags: 0

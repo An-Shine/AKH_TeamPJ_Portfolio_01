@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 4766278627352796448}
   - component: {fileID: 4306590552315301659}
   - component: {fileID: 4475873238172789714}
+  - component: {fileID: 3617829572999112047}
+  - component: {fileID: 4083838888333599627}
   m_Layer: 0
   m_Name: KamikazeMonster
   m_TagString: Enemy
@@ -107,13 +109,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b1719c92019fe146b041476b4b3c680, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KamikazeMonster
-  _maxHealth: 40
+  _maxHealth: 100
   _moveSpeed: 2
-  _contactDamage: 10
+  _contactDamage: 50
   _homeRoom: {fileID: 0}
-  _detectionMode: 2
-  _detectionRange: 8
-  _loseTargetRange: 12
+  _detectionMode: 0
+  _detectionRange: 5
+  _loseTargetRange: 7
   _contactDamageCooldown: 0.5
   _contactKnockbackDistance: 0.2
   _contactKnockbackDuration: 0.12
@@ -127,7 +129,7 @@ MonoBehaviour:
   _collisionCheckRadius: 0.4
   _obstacleLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   _detectSolidCollidersAutomatically: 1
   _ignoredObstacleLayers:
     serializedVersion: 2
@@ -271,3 +273,33 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3617829572999112047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6636468909261587316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c7cb10390c65bf7b1a0e2a4cfd7470b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_02.Scripts.Monster.Presentation.NormalMonsterGameFeel
+  _profile: {fileID: 11400000, guid: 9575b2432bb455f5b2c0c96b34464bb5, type: 2}
+  _bodyRenderer: {fileID: 6390778655577362066}
+--- !u!114 &4083838888333599627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6636468909261587316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a8a19c553bd5a8b88a32120d01308be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_02.Scripts.Monster.Presentation.MonsterGroundPresentation
+  _profile: {fileID: 11400000, guid: 32af03df939157449cf5c235bfdfb471, type: 2}
+  _bodyRenderer: {fileID: 6390778655577362066}
+  _animator: {fileID: 4475873238172789714}
+  _feetAnchor: {fileID: 0}

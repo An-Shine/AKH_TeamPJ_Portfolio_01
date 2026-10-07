@@ -1,3 +1,4 @@
+using _02.Scripts.Monster.Presentation;
 using UnityEngine;
 
 public class MeleeMonster : NormalMonster
@@ -18,6 +19,8 @@ public class MeleeMonster : NormalMonster
     [Header("애니메이션 속도")]
     [SerializeField, Min(0.1f)] private float _walkAnimationSpeed = 1.6f;
     [SerializeField, Min(0.1f)] private float _attackAnimationSpeed = 1.8f;
+    [Tooltip("공격 모션과 실제 공격 빈도를 같은 배율로 변경합니다. 2이면 원래의 2배입니다.")]
+    [SerializeField, Min(0.1f)] private float _attackSpeedMultiplier = 2f;
 
     [Header("근접 공격 효과")]
     [Tooltip("비워 두면 기본 픽셀 베기 효과를 표시합니다. 프리팹의 앞 방향은 +X입니다.")]
@@ -48,10 +51,11 @@ public class MeleeMonster : NormalMonster
     private Collider2D[] _colliders;
     private Rigidbody2D[] _bodies;
     private Collider2D[] _playerColliders;
-    private Transform _roomPlayer;
     private MonsterVisualLock _visualLock;
+    private NormalMonsterGameFeel _gameFeel;
     private ActionState _action;
     private bool _ready;
+    private Transform _roomPlayer;
     private bool _deathStarted;
     private bool _directionInitialized;
     private bool _attackHitApplied;
@@ -68,6 +72,7 @@ public class MeleeMonster : NormalMonster
     {
         base.Awake();
         ClampSettings();
+        _gameFeel = GetComponent<NormalMonsterGameFeel>();
         _visualLock = new MonsterVisualLock(transform);
         if (_directionAnimator == null)
         {
@@ -142,7 +147,7 @@ public class MeleeMonster : NormalMonster
             return;
         }
 
-        if (!ResolvePlayer())
+        if (!ResolvePlayer() || !CanTrackPlayer())
         {
             PlayLocomotion(false);
             return;
@@ -347,7 +352,7 @@ public class MeleeMonster : NormalMonster
             return;
         }
 
-        _attackCooldownTimer = _attackCooldown;
+        _attackCooldownTimer = _attackCooldown / _attackSpeedMultiplier;
         _attackHitApplied = false;
         BeginAction(ActionState.Attack, 2);
     }
@@ -379,11 +384,22 @@ public class MeleeMonster : NormalMonster
         }
 
         Vector3 hitPosition = new Vector3(closestPoint.x, closestPoint.y, transform.position.z);
-        MonsterCombat.TryTakePlayerDamage(_player, _contactDamage, hitPosition, _attackDirection, _attackEffectColor);
+        bool enhanced = _gameFeel != null && _gameFeel.IsConfigured;
+        bool damaged = MonsterCombat.TryTakePlayerDamage(_player, _contactDamage, hitPosition, _attackDirection, _attackEffectColor, !enhanced);
+        if (damaged && enhanced)
+        {
+            _gameFeel.MeleeImpact(hitPosition, _attackDirection);
+        }
     }
 
     private void SpawnAttackEffect()
     {
+        if (_gameFeel != null && _gameFeel.IsConfigured)
+        {
+            _gameFeel.MeleeRelease(_attackDirection, _attackRange, _attackAngle);
+            return;
+        }
+
         if (_attackEffectPrefab != null)
         {
             float angle = Mathf.Atan2(_attackDirection.y, _attackDirection.x) * Mathf.Rad2Deg;
@@ -425,7 +441,19 @@ public class MeleeMonster : NormalMonster
         _actionStartTime = Time.time;
         _nextAnimationRetry = Time.time + 0.2f;
         _wasMoving = false;
-        _directionAnimator.speed = action == ActionState.Attack ? _attackAnimationSpeed : 1f;
+        _directionAnimator.speed = action == ActionState.Attack ? _attackAnimationSpeed * _attackSpeedMultiplier : 1f;
+        if (_gameFeel != null && _gameFeel.IsConfigured)
+        {
+            if (action == ActionState.Attack)
+            {
+                _gameFeel.BeginMeleeAttack(_attackDirection, _attackRange);
+            }
+            else
+            {
+                _gameFeel.CancelAttackVisual();
+            }
+        }
+
         SetAnimationFlags(false);
         if (_actionHash != 0)
         {
@@ -444,7 +472,7 @@ public class MeleeMonster : NormalMonster
         string tag = _action.ToString();
         AnimatorStateInfo info = _directionAnimator.GetCurrentAnimatorStateInfo(0);
         bool matching = MonsterCombat.IsActionState(info, _actionHash, tag);
-        float maximum = _action == ActionState.Attack ? _maximumAttackTime : (_action == ActionState.Hit ? _maximumHitTime : _maximumDeathTime);
+        float maximum = _action == ActionState.Attack ? _maximumAttackTime / _attackSpeedMultiplier : (_action == ActionState.Hit ? _maximumHitTime : _maximumDeathTime);
         if (matching && _action == ActionState.Attack && !_attackHitApplied && info.normalizedTime >= _attackHitNormalizedTime)
         {
             _attackHitApplied = true;
@@ -479,6 +507,11 @@ public class MeleeMonster : NormalMonster
         }
 
         _action = ActionState.None;
+        if (_gameFeel != null)
+        {
+            _gameFeel.CancelAttackVisual();
+        }
+
         PlayLocomotion(false);
     }
 
@@ -497,6 +530,7 @@ public class MeleeMonster : NormalMonster
         _facingLockDistance = Mathf.Max(_attackRange, _facingLockDistance);
         _walkAnimationSpeed = Mathf.Max(0.1f, _walkAnimationSpeed);
         _attackAnimationSpeed = Mathf.Max(0.1f, _attackAnimationSpeed);
+        _attackSpeedMultiplier = Mathf.Max(0.1f, _attackSpeedMultiplier);
         _attackEffectLifetime = Mathf.Max(0.1f, _attackEffectLifetime);
         _maximumAttackTime = Mathf.Max(0.1f, _maximumAttackTime);
         _maximumHitTime = Mathf.Max(0.1f, _maximumHitTime);

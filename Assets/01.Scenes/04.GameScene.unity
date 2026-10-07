@@ -19278,6 +19278,10 @@ MonoBehaviour:
   _meleeSpawnPoint: {fileID: 75857482}
   _rangeSpawnPoint: {fileID: 795115246}
   _kamikazeSpawnPoint: {fileID: 275531975}
+  _additionalSpawnPoints: []
+  _overridePlayerDetection: 1
+  _detectionRange: 2
+  _loseTargetRange: 7
   _spawnOnStart: 1
   _retryInterval: 0.5
 --- !u!114 &1215241324
@@ -19452,6 +19456,10 @@ MonoBehaviour:
   _meleeSpawnPoint: {fileID: 955414280}
   _rangeSpawnPoint: {fileID: 1315842854}
   _kamikazeSpawnPoint: {fileID: 1773544925}
+  _additionalSpawnPoints: []
+  _overridePlayerDetection: 1
+  _detectionRange: 2
+  _loseTargetRange: 7
   _spawnOnStart: 1
   _retryInterval: 0.5
 --- !u!114 &1219239117
@@ -30951,7 +30959,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.8, y: 2.83, z: 0}
-  m_LocalScale: {x: 1.7024587, y: 3.3054483, z: 1.5303}
+  m_LocalScale: {x: 2.5324073, y: 3.3054483, z: 1.5303}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1585730386}
@@ -31928,6 +31936,14 @@ PrefabInstance:
     - target: {fileID: 6978938228247588076, guid: fe2599a142614e04e81c44ff77a6c5bc, type: 3}
       propertyPath: m_PreserveAspect
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7385890032579215695, guid: fe2599a142614e04e81c44ff77a6c5bc, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7385890032579215695, guid: fe2599a142614e04e81c44ff77a6c5bc, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

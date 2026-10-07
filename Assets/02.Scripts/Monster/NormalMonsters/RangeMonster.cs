@@ -1,3 +1,4 @@
+using _02.Scripts.Monster.Presentation;
 using UnityEngine;
 
 public class RangeMonster : NormalMonster
@@ -35,6 +36,9 @@ public class RangeMonster : NormalMonster
 
     [Header("걷기 애니메이션")]
     [SerializeField, Min(0.1f)] private float _walkAnimationSpeed = 1.6f;
+    [SerializeField, Min(0.1f)] private float _attackAnimationSpeed = 1f;
+    [Tooltip("공격 모션과 실제 공격 빈도를 같은 배율로 변경합니다. 2이면 원래의 2배입니다.")]
+    [SerializeField, Min(0.1f)] private float _attackSpeedMultiplier = 2f;
 
     [Header("동작 대기 제한")]
     [SerializeField, Min(0.1f)] private float _maximumAttackTime = 3f;
@@ -60,6 +64,7 @@ public class RangeMonster : NormalMonster
     private Collider2D[] _colliders;
     private Rigidbody2D[] _bodies;
     private MonsterVisualLock _visualLock;
+    private NormalMonsterGameFeel _gameFeel;
     private ActionState _action;
     private bool _ready;
     private bool _hasDied;
@@ -81,6 +86,7 @@ public class RangeMonster : NormalMonster
     {
         base.Awake();
         ClampSettings();
+        _gameFeel = GetComponent<NormalMonsterGameFeel>();
         _visualLock = new MonsterVisualLock(transform);
         _animator = GetComponent<Animator>();
         _renderers = GetComponentsInChildren<SpriteRenderer>(true);
@@ -148,7 +154,7 @@ public class RangeMonster : NormalMonster
             return;
         }
 
-        if (!ResolvePlayer())
+        if (!ResolvePlayer() || !CanTrackPlayer())
         {
             PlayLocomotion(false);
             return;
@@ -326,7 +332,7 @@ public class RangeMonster : NormalMonster
         _shotDirection = toPlayer.normalized;
         // 실제 발사 방향을 공격 시작 시에만 확정하고 모션 중에는 유지합니다.
         SetDirection(_shotDirection);
-        _cooldown = _attackCooldown;
+        _cooldown = _attackCooldown / _attackSpeedMultiplier;
         _shotFired = false;
         BeginAction(ActionState.Attack, 2);
         return true;
@@ -363,12 +369,24 @@ public class RangeMonster : NormalMonster
         _nextAnimationRetry = Time.time + 0.2f;
         if (action == ActionState.Attack)
         {
-            _attackDuration = _attackFallbackDuration;
+            _attackDuration = _attackFallbackDuration / (_attackAnimationSpeed * _attackSpeedMultiplier);
             _attackDurationResolved = false;
         }
 
         _wasMoving = false;
-        _animator.speed = 1f;
+        _animator.speed = action == ActionState.Attack ? _attackAnimationSpeed * _attackSpeedMultiplier : 1f;
+        if (_gameFeel != null && _gameFeel.IsConfigured)
+        {
+            if (action == ActionState.Attack)
+            {
+                _gameFeel.BeginRangeAttack(_shotDirection, GetMuzzlePosition());
+            }
+            else
+            {
+                _gameFeel.CancelAttackVisual();
+            }
+        }
+
         SetAnimationFlags(false);
         _animator.Play(_actionHash, 0, 0f);
     }
@@ -395,7 +413,7 @@ public class RangeMonster : NormalMonster
             }
         }
 
-        float maximum = _action == ActionState.Attack ? _maximumAttackTime : (_action == ActionState.Hit ? _maximumHitTime : _maximumDeathTime);
+        float maximum = _action == ActionState.Attack ? _maximumAttackTime / _attackSpeedMultiplier : (_action == ActionState.Hit ? _maximumHitTime : _maximumDeathTime);
         float fallbackDuration = maximum;
         if (_action == ActionState.Attack)
         {
@@ -452,7 +470,7 @@ public class RangeMonster : NormalMonster
             return;
         }
 
-        _attackDuration = Mathf.Clamp(duration, 0.1f, _maximumAttackTime);
+        _attackDuration = Mathf.Clamp(duration, 0.025f, _maximumAttackTime / _attackSpeedMultiplier);
         _attackDurationResolved = true;
     }
 
@@ -465,7 +483,19 @@ public class RangeMonster : NormalMonster
         }
 
         _action = ActionState.None;
+        if (_gameFeel != null)
+        {
+            _gameFeel.CancelAttackVisual();
+        }
+
         PlayLocomotion(false);
+    }
+
+    private Vector3 GetMuzzlePosition()
+    {
+        Vector2 reference = _firePointReferenceDirection.sqrMagnitude > 0.0001f ? _firePointReferenceDirection.normalized : Vector2.down;
+        float rotation = Vector2.SignedAngle(reference, _shotDirection);
+        return transform.TransformPoint(Quaternion.Euler(0f, 0f, rotation) * _fireOffset);
     }
 
     private void FireProjectile()
@@ -475,14 +505,16 @@ public class RangeMonster : NormalMonster
             return;
         }
 
-        Vector2 reference = _firePointReferenceDirection.sqrMagnitude > 0.0001f ? _firePointReferenceDirection.normalized : Vector2.down;
-        float rotation = Vector2.SignedAngle(reference, _shotDirection);
-        Vector3 position = transform.TransformPoint(Quaternion.Euler(0f, 0f, rotation) * _fireOffset);
+        Vector3 position = GetMuzzlePosition();
         _shotFired = true;
         RangeProjectile projectile = Instantiate(_projectilePrefab, position, Quaternion.identity);
         projectile.gameObject.SetActive(true);
         projectile.Initialize(_shotDirection, transform, _player);
-        if (_showMuzzleFlash)
+        if (_gameFeel != null && _gameFeel.IsConfigured)
+        {
+            _gameFeel.RangeRelease(position, _shotDirection);
+        }
+        else if (_showMuzzleFlash)
         {
             MonsterCombatEffect.SpawnImpact(position, _shotDirection, _muzzleFlashColor, transform);
         }
@@ -527,6 +559,8 @@ public class RangeMonster : NormalMonster
         _directionHysteresis = Mathf.Clamp(_directionHysteresis, 0f, 20f);
         _facingLockDistance = Mathf.Max(0.1f, _facingLockDistance);
         _walkAnimationSpeed = Mathf.Max(0.1f, _walkAnimationSpeed);
+        _attackAnimationSpeed = Mathf.Max(0.1f, _attackAnimationSpeed);
+        _attackSpeedMultiplier = Mathf.Max(0.1f, _attackSpeedMultiplier);
         _maximumAttackTime = Mathf.Max(0.1f, _maximumAttackTime);
         _attackFallbackDuration = Mathf.Clamp(_attackFallbackDuration, 0.1f, _maximumAttackTime);
         _maximumHitTime = Mathf.Max(0.1f, _maximumHitTime);

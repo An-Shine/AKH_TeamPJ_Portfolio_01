@@ -129,14 +129,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30ded81f85a04cc46b778878b6cb1e04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossMonster
-  _maxHealth: 1200
+  _maxHealth: 2000
   _moveSpeed: 0
-  _contactDamage: 20
+  _contactDamage: 30
   _homeRoom: {fileID: 0}
   _detectionMode: 0
   _detectionRange: 5
   _loseTargetRange: 7
-  _contactDamageCooldown: 0.5
+  _contactDamageCooldown: 1
   _contactKnockbackDistance: 0.3
   _contactKnockbackDuration: 0.12
   _separationRadius: 0.8
@@ -146,10 +146,10 @@ MonoBehaviour:
   _useSpriteSizeForSpacing: 1
   _spriteSpacingFactor: 0.8
   _overlapSeparationSpeed: 2.5
-  _collisionCheckRadius: 0.25
+  _collisionCheckRadius: 0.5
   _obstacleLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   _detectSolidCollidersAutomatically: 1
   _ignoredObstacleLayers:
     serializedVersion: 2

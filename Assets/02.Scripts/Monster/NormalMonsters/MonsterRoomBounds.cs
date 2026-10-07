@@ -155,6 +155,19 @@ namespace _02.Scripts.Monster.NormalMonsters
             return !hasActiveCollider && _activationArea.OverlapPoint(_cachedPlayer.position);
         }
 
+        public bool ContainsRoomPosition(Vector2 worldPosition)
+        {
+            if (!IsConfigured)
+            {
+                return false;
+            }
+
+            Vector3 worldPoint = new Vector3(worldPosition.x, worldPosition.y, transform.position.z);
+            Vector2 localPoint = transform.InverseTransformPoint(worldPoint);
+            Vector2 offset = localPoint - _center;
+            return Mathf.Abs(offset.x) <= _size.x * 0.5f && Mathf.Abs(offset.y) <= _size.y * 0.5f;
+        }
+
         public bool Contains(Vector2 worldPosition, float clearance = 0f)
         {
             if (!TryGetHalfSize(clearance, out Vector2 halfSize))

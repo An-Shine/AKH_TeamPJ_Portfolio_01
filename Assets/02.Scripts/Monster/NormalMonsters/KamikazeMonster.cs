@@ -66,11 +66,11 @@ public class KamikazeMonster : NormalMonster
     private Color[] _kamikazeOriginalColors;
     private Collider2D[] _colliders;
     private Collider2D[] _playerColliders;
-    private Transform _roomPlayer;
     private Rigidbody2D[] _bodies;
     private MonsterVisualLock _visualLock;
     private ActionState _action;
     private bool _ready;
+    private Transform _roomPlayer;
     private bool _hasDied;
     private bool _explosionTriggered;
     private bool _directionInitialized;
@@ -150,7 +150,7 @@ public class KamikazeMonster : NormalMonster
             return;
         }
 
-        if (!ResolvePlayer())
+        if (!ResolvePlayer() || !CanTrackPlayer())
         {
             PlayLocomotion(false, false);
             return;
