@@ -1,10 +1,19 @@
 using UnityEngine;
+using System.Collections.Generic;
+using UnityEngine.EventSystems;
+using Michsky.UI.Shift;
 
 public class PlayerManager : MonoBehaviour
 {
     private const float WeaponCooldownUnits = 10f;
     private static PlayerManager _instance;
     public static PlayerManager Instance => _instance;
+    public bool IsGameOver { get; private set; }
+    public static bool IsInputBlocked => Instance != null &&
+                                         (Instance.IsGameOver || (Instance.PlayerStatusData != null &&
+                                                                  Instance.PlayerStatusData.CurrentHP <= 0f));
+    private readonly List<EventSystem> _blockedEventSystems = new List<EventSystem>();
+    private readonly List<MonoBehaviour> _blockedUIInputs = new List<MonoBehaviour>();
 
     public PlayerStatus PlayerStatusData { get; private set; }
     private float _hitInvulnerableUntil;
@@ -44,6 +53,16 @@ public class PlayerManager : MonoBehaviour
 
     private void OnDestroy()
     {
+        foreach (MonoBehaviour input in _blockedUIInputs)
+        {
+            if (input != null) input.enabled = true;
+        }
+
+        foreach (EventSystem eventSystem in _blockedEventSystems)
+        {
+            if (eventSystem != null) eventSystem.enabled = true;
+        }
+
         ApplyModifierDelta(_modifiedWeapon, 0f, 0f, 0, 0, 0f, 0f);
         if (_instance == this)
         {
@@ -193,13 +212,6 @@ public class PlayerManager : MonoBehaviour
         RefreshFromManagers();
     }
 
-    public void ModifyHealth(float amount)
-    {
-        EnsureStatus();
-        if (PlayerStatusData != null)
-            PlayerStatusData.ModifyHealth(amount);
-    }
-
     public void BeginDashInvulnerability()
     {
         EnsureStatus();
@@ -215,7 +227,7 @@ public class PlayerManager : MonoBehaviour
     public bool TryTakeDamage(float damage)
     {
         EnsureStatus();
-        if (PlayerStatusData == null || !PlayerStatusData.IsVulnerable ||
+        if (IsGameOver || PlayerStatusData == null || !PlayerStatusData.IsVulnerable ||
             PlayerStatusData.CurrentHP <= 0f || Time.timeScale <= 0f ||
             Time.time < _hitInvulnerableUntil || Time.time < _dashInvulnerableUntil || damage <= 0f ||
             float.IsNaN(damage) || float.IsInfinity(damage))
@@ -224,10 +236,34 @@ public class PlayerManager : MonoBehaviour
         }
 
         PlayerStatusData.ModifyHealth(-damage);
+
+        if (PlayerStatusData != null && PlayerStatusData.CurrentHP <= 0f)
+        {
+            GameOver();
+        }
+
         _hitInvulnerableUntil = Time.time + Mathf.Max(0f, PlayerStatusData.HitInvulnerableDuration);
         PlayHitFlash();
         return true;
     }
+
+
+    public void GameOver()
+    {
+        if (IsGameOver) return;
+        IsGameOver = true;
+        if (PlayerStatusData != null)
+        {
+            PlayerStatusData.CurrentHP = 0f;
+            PlayerStatusData.IsVulnerable = false;
+        }
+
+        PlayerController player = PlayerControllerObj != null
+            ? PlayerControllerObj
+            : FindFirstObjectByType<PlayerController>();
+        if (player != null) player.Die();
+    }
+
 
     private void PlayHitFlash()
     {
@@ -246,23 +282,5 @@ public class PlayerManager : MonoBehaviour
         {
             _hitFlash.Play();
         }
-    }
-
-    public void MonsterHit()
-    {
-        // TODO: Damage is supplied by the monster combat system.
-    }
-
-    public void BulletHit()
-    {
-        // TODO: Damage is supplied by the projectile combat system.
-    }
-
-    private void Save()
-    {
-    }
-
-    private void Load()
-    {
     }
 }

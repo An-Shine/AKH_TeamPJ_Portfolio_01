@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerStateMachine : MonoBehaviour
 {
     // 순간이동을 사용한 뒤 다음 사용까지의 대기 시간
-    [SerializeField, Min(0f)] private float _dashCooldown = 0.5f;
+    private readonly float _dashCooldown = 2f;
 
     private float _interactionRemaining;
     private float _cooldownRemaining;
@@ -12,8 +12,9 @@ public class PlayerStateMachine : MonoBehaviour
     public Vector2 MovementDirection { get; private set; }
     public bool IsDashing => CurrentState == PlayerState.Dash;
     public bool IsInteracting => CurrentState == PlayerState.Interact;
-    public bool CanInteract => !IsDashing && !IsInteracting;
-    public bool CanDash => !IsDashing && !IsInteracting && _cooldownRemaining <= 0f;
+    public bool IsDead => CurrentState == PlayerState.Die;
+    public bool CanInteract => !IsDead && !IsDashing && !IsInteracting;
+    public bool CanDash => !IsDead && !IsDashing && !IsInteracting && _cooldownRemaining <= 0f;
 
     public bool TryStartInteraction(float duration)
     {
@@ -26,6 +27,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     public void Act(Vector2 moveInput, Vector2 aimDirection, bool dashRequested, float deltaTime)
     {
+        if (IsDead) return;
         _cooldownRemaining = Mathf.Max(0f, _cooldownRemaining - deltaTime);
 
         if (IsInteracting)
@@ -75,7 +77,16 @@ public class PlayerStateMachine : MonoBehaviour
 
     public void ResetState()
     {
+        if (IsDead) return;
         CurrentState = PlayerState.Idle;
+        MovementDirection = Vector2.zero;
+        _interactionRemaining = 0f;
+        _cooldownRemaining = 0f;
+    }
+
+    public void Die()
+    {
+        CurrentState = PlayerState.Die;
         MovementDirection = Vector2.zero;
         _interactionRemaining = 0f;
         _cooldownRemaining = 0f;

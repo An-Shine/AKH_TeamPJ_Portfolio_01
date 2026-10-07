@@ -32,6 +32,7 @@ public class CrosshairFollowMouse : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (PlayerManager.IsInputBlocked) return;
         Camera uiCamera = _canvas.renderMode == RenderMode.ScreenSpaceOverlay
             ? null
             : _canvas.worldCamera;

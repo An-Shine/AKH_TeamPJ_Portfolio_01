@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (_fsm.IsDead || PlayerManager.IsInputBlocked) return;
         _moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
         if (Input.GetKeyDown(KeyCode.Space) && !_fsm.IsInteracting && !_weapon.IsReloading)
         {
@@ -78,7 +79,7 @@ public class PlayerController : MonoBehaviour
 
     public bool TryInteract()
     {
-        if (!isActiveAndEnabled || Time.timeScale <= 0f || !_fsm.CanInteract ||
+        if (PlayerManager.IsInputBlocked || !isActiveAndEnabled || Time.timeScale <= 0f || !_fsm.CanInteract ||
             (_dashQueued && _fsm.CanDash))
         {
             return false;
@@ -124,6 +125,12 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (_fsm.IsDead || PlayerManager.IsInputBlocked)
+        {
+            _motor.Stop();
+            return;
+        }
+
         bool isReloading = _weapon.IsReloading;
         _fsm.Act(isReloading ? Vector2.zero : _moveInput, _aim.AimDirection,
             !isReloading && _dashQueued, Time.fixedDeltaTime);
@@ -141,6 +148,20 @@ public class PlayerController : MonoBehaviour
         if (_animation != null)
         {
             _animation.Refresh(_fsm.CurrentState, _aim.Facing, _weapon.IsAttacking, _weapon.ShotSequence);
+        }
+    }
+
+    public void Die()
+    {
+        if (_fsm.IsDead) return;
+        _fsm.Die();
+        _moveInput = Vector2.zero;
+        _dashQueued = false;
+        _motor.Stop();
+        _weapon.CancelActions();
+        if (_animation != null)
+        {
+            _animation.PlayDie();
         }
     }
 

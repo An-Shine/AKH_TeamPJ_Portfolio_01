@@ -23,6 +23,7 @@ public class PlayerWeapon : MonoBehaviour
 
     public void Tick(bool fireHeld, bool isDashing, Vector2 aimDirection)
     {
+        if (PlayerManager.IsInputBlocked) return;
         WeaponManager weaponManager = WeaponManager.Instance;
         Weapon equippedWeapon = weaponManager.CurrentWeapon;
         if (_activeWeapon != equippedWeapon)
@@ -89,6 +90,7 @@ public class PlayerWeapon : MonoBehaviour
 
     public float Reload()
     {
+        if (PlayerManager.IsInputBlocked) return 0f;
         if (_activeWeapon == null)
         {
             return 0f;
@@ -98,6 +100,13 @@ public class PlayerWeapon : MonoBehaviour
         WeaponStatModifier modifier = _activeWeapon.Modifier.ReloadSpeed;
         float reloadSpeed = (1f + modifier.Flat) * (1f + modifier.Rate);
         return reloadSpeed > 0f ? _activeWeapon.Data.ReloadTime / reloadSpeed : 0f;
+    }
+
+    public void CancelActions()
+    {
+        CancelAttackVisual();
+        Weapon weapon = WeaponManager.Instance != null ? WeaponManager.Instance.CurrentWeapon : _activeWeapon;
+        if (weapon != null) weapon.CancelActions();
     }
 
     public void CancelAttackVisual()

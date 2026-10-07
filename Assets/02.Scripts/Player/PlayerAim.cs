@@ -97,6 +97,7 @@ public class PlayerAim : MonoBehaviour
     public bool TryGetMouseWorldPosition(out Vector3 worldPosition)
     {
         worldPosition = default;
+        if (PlayerManager.IsInputBlocked) return false;
         if (_worldCamera == null || _aimOrigin == null)
         {
             return false;
