@@ -383,6 +383,7 @@ GameObject:
   - component: {fileID: 5590970781170162700}
   - component: {fileID: 3957558499064253009}
   - component: {fileID: 8362892312594355892}
+  - component: {fileID: 7449468793716505890}
   m_Layer: 3
   m_Name: PlayerObject
   m_TagString: Player
@@ -496,7 +497,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b931c8f1ddf14cca8a23efa13488f8c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStateMachine
-  _dashCooldown: 0.5
 --- !u!120 &8910268917954700399
 LineRenderer:
   serializedVersion: 3
@@ -745,6 +745,24 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &7449468793716505890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5819182594994543154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47fa9e29dc39d234ab6903a040c99a4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerFootprints
+  _pool: {fileID: 0}
+  _stepDistance: 0.35
+  _footSeparation: 0.1
+  _groundOffset: {x: 0, y: -0.35}
+  _spriteAngleOffset: 0
+  _teleportThreshold: 1.5
 --- !u!1 &7945017015239307636
 GameObject:
   m_ObjectHideFlags: 0
