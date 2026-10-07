@@ -214,6 +214,15 @@ MonoBehaviour:
     LeftDown: {fileID: -1402078292944132184, guid: d9335292d953ac54bbcceae9040899e2, type: 3}
     Right: {fileID: -3904855737101524119, guid: d9335292d953ac54bbcceae9040899e2, type: 3}
     Left: {fileID: 2684942373273267066, guid: d9335292d953ac54bbcceae9040899e2, type: 3}
+  - WeaponId: 2
+    Up: {fileID: -9156727878042701860, guid: a37d23e4f627b804c9a258afcd729045, type: 3}
+    Down: {fileID: -5614753156110621073, guid: a37d23e4f627b804c9a258afcd729045, type: 3}
+    RightUp: {fileID: -209044294825725116, guid: a37d23e4f627b804c9a258afcd729045, type: 3}
+    RightDown: {fileID: 8414127768732306668, guid: a37d23e4f627b804c9a258afcd729045, type: 3}
+    LeftUp: {fileID: -7607158518566523486, guid: a37d23e4f627b804c9a258afcd729045, type: 3}
+    LeftDown: {fileID: 5289306910258404247, guid: a37d23e4f627b804c9a258afcd729045, type: 3}
+    Right: {fileID: 1297108270181015463, guid: a37d23e4f627b804c9a258afcd729045, type: 3}
+    Left: {fileID: 3131239766889588512, guid: a37d23e4f627b804c9a258afcd729045, type: 3}
   - WeaponId: 3
     Up: {fileID: 6102361263206916926, guid: e60d54a1530ed554fb42592e13077284, type: 3}
     Down: {fileID: -5341961696509113586, guid: e60d54a1530ed554fb42592e13077284, type: 3}
@@ -223,6 +232,15 @@ MonoBehaviour:
     LeftDown: {fileID: 70111152348249244, guid: e60d54a1530ed554fb42592e13077284, type: 3}
     Right: {fileID: 7631219046128225658, guid: e60d54a1530ed554fb42592e13077284, type: 3}
     Left: {fileID: -5282252909996908158, guid: e60d54a1530ed554fb42592e13077284, type: 3}
+  - WeaponId: 4
+    Up: {fileID: 3133638176295709812, guid: 579ae10ac2fb3e647b21eb23126350a9, type: 3}
+    Down: {fileID: -6504443907245125127, guid: 579ae10ac2fb3e647b21eb23126350a9, type: 3}
+    RightUp: {fileID: 3479924691639906475, guid: 579ae10ac2fb3e647b21eb23126350a9, type: 3}
+    RightDown: {fileID: 7248462687934256261, guid: 579ae10ac2fb3e647b21eb23126350a9, type: 3}
+    LeftUp: {fileID: -4366849957617733891, guid: 579ae10ac2fb3e647b21eb23126350a9, type: 3}
+    LeftDown: {fileID: -7559124094093698396, guid: 579ae10ac2fb3e647b21eb23126350a9, type: 3}
+    Right: {fileID: 5532368291998157131, guid: 579ae10ac2fb3e647b21eb23126350a9, type: 3}
+    Left: {fileID: -899654301173852083, guid: 579ae10ac2fb3e647b21eb23126350a9, type: 3}
 --- !u!1 &3590785110035637095
 GameObject:
   m_ObjectHideFlags: 0

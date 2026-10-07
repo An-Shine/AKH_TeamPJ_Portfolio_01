@@ -46,6 +46,7 @@ public class PlayerAnimation : MonoBehaviour
     private Weapon _lastGunWeapon;
     private FacingDirection _lastGunFacing;
     private bool _hasGunSelection;
+    private bool _isDead;
 
     private void Awake()
     {
@@ -95,6 +96,8 @@ public class PlayerAnimation : MonoBehaviour
 
     public void Refresh(PlayerState state, FacingDirection facing, bool isAttacking, int shotSequence)
     {
+        if (state == PlayerState.Die) PlayDie();
+        if (_isDead) return;
         RefreshGunSprite(facing);
 
         Motion locomotion = state == PlayerState.Run ? Motion.Run : Motion.Idle;
@@ -149,6 +152,17 @@ public class PlayerAnimation : MonoBehaviour
         _lastHash = hash;
         _lastMotion = motion;
         _hasPlayed = true;
+    }
+
+    public void PlayDie()
+    {
+        if (_isDead) return;
+        _isDead = true;
+        _reloadUntil = 0f;
+        if (_gunRenderer != null) _gunRenderer.enabled = false;
+        _animator.updateMode = AnimatorUpdateMode.UnscaledTime;
+        _animator.speed = 1f;
+        _animator.Play(Animator.StringToHash($"{_layerName}.Die"), 0, 0f);
     }
 
     private void RefreshGunSprite(FacingDirection facing)
