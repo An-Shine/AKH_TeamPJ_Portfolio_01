@@ -6,6 +6,7 @@ namespace _02.Scripts.Monster.NormalMonsters
     [DisallowMultipleComponent]
     public sealed class ItemRoomMonsterSpawner : MonoBehaviour
     {
+
         [Header("아이템 방")]
         [SerializeField] private MonsterRoomBounds _room;
 
@@ -32,7 +33,6 @@ namespace _02.Scripts.Monster.NormalMonsters
         [Header("생성 설정")]
         [SerializeField] private bool _spawnOnStart = true;
         [SerializeField, Min(0.1f)] private float _retryInterval = 0.5f;
-
         private bool _meleeSpawned;
         private bool _rangeSpawned;
         private bool _kamikazeSpawned;
@@ -41,10 +41,25 @@ namespace _02.Scripts.Monster.NormalMonsters
         private float _nextSpawnTime;
         private readonly List<Transform> _spawnCandidates = new List<Transform>();
         private readonly HashSet<Transform> _usedSpawnPoints = new HashSet<Transform>();
-
-        public int TotalSpawned => (_meleeSpawned ? 1 : 0) +
-            (_rangeSpawned ? 1 : 0) + (_kamikazeSpawned ? 1 : 0);
+        public int TotalSpawned => (_meleeSpawned ? 1 : 0) + (_rangeSpawned ? 1 : 0) + (_kamikazeSpawned ? 1 : 0);
         public bool IsComplete => _meleeSpawned && _rangeSpawned && _kamikazeSpawned;
+        private void Awake()
+        {
+            ResolveRoom();
+        }
+
+        private void ResolveRoom()
+        {
+            if (_room == null)
+            {
+                _room = GetComponentInParent<MonsterRoomBounds>();
+            }
+
+            if (_room != null)
+            {
+                _room.EnablePlayerEntryDetection();
+            }
+        }
 
         private void Start()
         {
@@ -92,25 +107,13 @@ namespace _02.Scripts.Monster.NormalMonsters
 
         private bool ValidateConfiguration()
         {
-            if (_room == null)
-            {
-                _room = GetComponentInParent<MonsterRoomBounds>();
-            }
-
+            ResolveRoom();
             CollectSpawnCandidates();
-            bool validSpawnPoints = HasAdditionalSpawnPoints()
-                ? _spawnCandidates.Count >= 3
-                : _meleeSpawnPoint != null && _rangeSpawnPoint != null && _kamikazeSpawnPoint != null &&
-                    _meleeSpawnPoint != _rangeSpawnPoint && _meleeSpawnPoint != _kamikazeSpawnPoint &&
-                    _rangeSpawnPoint != _kamikazeSpawnPoint;
-            bool isValid = _room != null && _room.IsConfigured &&
-                _meleePrefab != null && _rangePrefab != null && _kamikazePrefab != null &&
-                validSpawnPoints;
-
+            bool validSpawnPoints = HasAdditionalSpawnPoints() ? _spawnCandidates.Count >= 3 : _meleeSpawnPoint != null && _rangeSpawnPoint != null && _kamikazeSpawnPoint != null && _meleeSpawnPoint != _rangeSpawnPoint && _meleeSpawnPoint != _kamikazeSpawnPoint && _rangeSpawnPoint != _kamikazeSpawnPoint;
+            bool isValid = _room != null && _room.IsConfigured && _meleePrefab != null && _rangePrefab != null && _kamikazePrefab != null && validSpawnPoints;
             if (!isValid && !_warnedConfiguration)
             {
-                Debug.LogWarning(
-                    $"{name}: Room, 세 종류의 Prefab, 서로 다른 Spawn Point를 최소 세 개 설정하세요.", this);
+                Debug.LogWarning($"{name}: Room, 세 종류의 Prefab, 서로 다른 Spawn Point를 최소 세 개 설정하세요.", this);
                 _warnedConfiguration = true;
             }
 
@@ -141,11 +144,9 @@ namespace _02.Scripts.Monster.NormalMonsters
             }
 
             int startIndex = Random.Range(0, _spawnCandidates.Count);
-
             for (int i = 0; i < _spawnCandidates.Count; i++)
             {
                 Transform candidate = _spawnCandidates[(startIndex + i) % _spawnCandidates.Count];
-
                 if (TrySpawnAt(prefab, candidate))
                 {
                     return true;
@@ -158,15 +159,12 @@ namespace _02.Scripts.Monster.NormalMonsters
 
         private bool TrySpawnAt(NormalMonster prefab, Transform spawnPoint)
         {
-            if (spawnPoint == null || _usedSpawnPoints.Contains(spawnPoint) ||
-                !spawnPoint.gameObject.activeInHierarchy ||
-                !prefab.IsSpawnPositionClear(spawnPoint.position, _room))
+            if (spawnPoint == null || _usedSpawnPoints.Contains(spawnPoint) || !spawnPoint.gameObject.activeInHierarchy || !prefab.IsSpawnPositionClear(spawnPoint.position, _room))
             {
                 return false;
             }
 
             NormalMonster monster = Instantiate(prefab, spawnPoint.position, Quaternion.identity);
-
             if (!monster.TryAssignHomeRoom(_room))
             {
                 monster.gameObject.SetActive(false);
@@ -208,7 +206,6 @@ namespace _02.Scripts.Monster.NormalMonsters
             AddSpawnCandidate(_meleeSpawnPoint);
             AddSpawnCandidate(_rangeSpawnPoint);
             AddSpawnCandidate(_kamikazeSpawnPoint);
-
             if (_additionalSpawnPoints == null)
             {
                 return;
@@ -235,8 +232,7 @@ namespace _02.Scripts.Monster.NormalMonsters
                 return;
             }
 
-            Debug.LogWarning(
-                $"{name}: 아이템 방의 Spawn Point를 방 안쪽의 벽과 겹치지 않는 위치로 옮기세요.", this);
+            Debug.LogWarning($"{name}: 아이템 방의 Spawn Point를 방 안쪽의 벽과 겹치지 않는 위치로 옮기세요.", this);
             _warnedSpawnPosition = true;
         }
 
