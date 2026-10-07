@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private PlayerAnimation _animation;
-    [SerializeField, Min(0f)] private float _interactionRadius = 1.5f;
-    [SerializeField, Min(0.01f)] private float _interactionDuration = 0.5f;
+    private float _interactionRadius = 1.5f;
+    private float _interactionDuration = 1.5f;
     private PlayerMotor _motor;
     private PlayerStateMachine _fsm;
     private PlayerAim _aim;
@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
         _moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
         if (Input.GetKeyDown(KeyCode.Space) && !_fsm.IsInteracting && !_weapon.IsReloading)
         {
+            _fsm.DashCooldown = PlayerManager.Instance.PlayerStatusData.DashCooldown;
             _dashQueued = true;
         }
 

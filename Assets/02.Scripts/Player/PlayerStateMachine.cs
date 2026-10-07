@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerStateMachine : MonoBehaviour
 {
     // 순간이동을 사용한 뒤 다음 사용까지의 대기 시간
-    private readonly float _dashCooldown = 2f;
+    public float DashCooldown = 1f;
 
     private float _interactionRemaining;
     private float _cooldownRemaining;
@@ -52,7 +52,7 @@ public class PlayerStateMachine : MonoBehaviour
         if (dashRequested && CanDash)
         {
             // 정지 중에도 마지막 이동 방향을 유지해 순간이동합니다.
-            _cooldownRemaining = _dashCooldown;
+            _cooldownRemaining = DashCooldown;
             ChangeState(PlayerState.Dash);
             MovementDirection = _lastMoveDirection;
             return;
