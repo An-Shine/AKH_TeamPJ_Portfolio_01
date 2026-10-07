@@ -22,9 +22,13 @@ public class Item : MonoBehaviour, IInteractable
         _overlapSphere = GetComponent<OverlapSphere>();
     }
 
-    private void Update()
+    private void Start()
     {
         _tooltipFlag = false;
+    }
+
+    private void Update()
+    {
         DisplayTooltip();
     }
 
@@ -66,8 +70,10 @@ public class Item : MonoBehaviour, IInteractable
             return;
         }
 
-        _tooltipFlag = true;
+        if (_tooltipFlag) return;
+
         ToolTipManager.Instance.OpenItemTooltip(transform.position, Data.Description);
+        _tooltipFlag = true;
     }
 
     public void Interact(GameObject actor)
