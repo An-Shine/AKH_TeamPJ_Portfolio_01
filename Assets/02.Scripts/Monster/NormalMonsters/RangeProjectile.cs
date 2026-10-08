@@ -1,9 +1,11 @@
+using _02.Scripts.Monster.Presentation;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
 public class RangeProjectile : MonoBehaviour
 {
+
     [Header("투사체 설정")]
     [SerializeField, Min(0f)] private float _moveSpeed = 8f;
     [SerializeField, Min(0.1f)] private float _lifeTime = 3f;
@@ -30,10 +32,8 @@ public class RangeProjectile : MonoBehaviour
     [SerializeField, Range(0f, 1f)] private float _soundVolume = 0.75f;
     [Tooltip("SFX 믹서 그룹이 있으면 연결합니다. 비워 둬도 재생됩니다.")]
     [SerializeField] private AudioMixerGroup _soundMixerGroup;
-
     // 보스가 소환한 몬스터의 탄만 골라 정리할 수 있게 소유자를 제공합니다.
     public Transform Owner => _owner;
-
     private readonly List<RaycastHit2D> _castHits = new List<RaycastHit2D>(16);
     private Vector2 _direction;
     private Transform _owner;
@@ -44,12 +44,14 @@ public class RangeProjectile : MonoBehaviour
     private ContactFilter2D _filter;
     private bool _hasImpacted;
     private bool _hasPlayedFireSound;
-
+    private NormalMonsterGameFeel _gameFeel;
+    private SpriteRenderer _trailRenderer;
+    private float _nextTrailTime;
     private void Awake()
     {
         _body = GetComponent<Rigidbody2D>();
+        _trailRenderer = GetComponentInChildren<SpriteRenderer>(true);
         _colliders = GetComponentsInChildren<Collider2D>(true);
-
         foreach (Collider2D bodyCollider in _colliders)
         {
             bodyCollider.isTrigger = true;
@@ -70,10 +72,10 @@ public class RangeProjectile : MonoBehaviour
     public void Initialize(Vector2 direction, Transform owner, Transform player)
     {
         _owner = owner;
+        _gameFeel = owner != null ? owner.GetComponent<NormalMonsterGameFeel>() : null;
         _player = player;
         CachePlayerColliders();
         SetDirection(direction);
-
         if (_owner == null)
         {
             return;
@@ -83,8 +85,7 @@ public class RangeProjectile : MonoBehaviour
         {
             foreach (Collider2D projectileCollider in _colliders)
             {
-                if (ownerCollider.enabled && projectileCollider.enabled &&
-                    ownerCollider.gameObject.activeInHierarchy && projectileCollider.gameObject.activeInHierarchy)
+                if (ownerCollider.enabled && projectileCollider.enabled && ownerCollider.gameObject.activeInHierarchy && projectileCollider.gameObject.activeInHierarchy)
                 {
                     Physics2D.IgnoreCollision(projectileCollider, ownerCollider);
                 }
@@ -96,7 +97,6 @@ public class RangeProjectile : MonoBehaviour
     public void SetDirection(Vector2 direction)
     {
         _direction = direction.normalized;
-
         if (_direction.sqrMagnitude < 0.000001f)
         {
             return;
@@ -104,7 +104,6 @@ public class RangeProjectile : MonoBehaviour
 
         float angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, angle);
-
         if (_body != null)
         {
             _body.rotation = angle;
@@ -113,7 +112,10 @@ public class RangeProjectile : MonoBehaviour
         if (!_hasPlayedFireSound && !_hasImpacted)
         {
             _hasPlayedFireSound = true;
-            PlaySound(_fireSound, transform.position);
+            if (_gameFeel == null || !_gameFeel.IsConfigured)
+            {
+                PlaySound(_fireSound, transform.position);
+            }
         }
     }
 
@@ -158,13 +160,10 @@ public class RangeProjectile : MonoBehaviour
 
         Vector2 origin = _body != null ? _body.position : (Vector2)transform.position;
         float distance = Mathf.Max(0f, _moveSpeed) * deltaTime;
-        int count = Physics2D.CircleCast(origin, Mathf.Max(0.01f, _sweepRadius),
-            _direction, _filter, _castHits, distance);
-
+        int count = Physics2D.CircleCast(origin, Mathf.Max(0.01f, _sweepRadius), _direction, _filter, _castHits, distance);
         bool found = false;
         RaycastHit2D nearest = default(RaycastHit2D);
         float nearestDistance = float.PositiveInfinity;
-
         for (int i = 0; i < count; i++)
         {
             RaycastHit2D hit = _castHits[i];
@@ -197,6 +196,12 @@ public class RangeProjectile : MonoBehaviour
         else
         {
             transform.position = new Vector3(position.x, position.y, transform.position.z);
+        }
+
+        if (!_hasImpacted && _gameFeel != null && _gameFeel.IsConfigured && Time.time >= _nextTrailTime)
+        {
+            _nextTrailTime = Time.time + _gameFeel.TrailInterval;
+            _gameFeel.ProjectileTrail(_trailRenderer, new Vector3(position.x, position.y, transform.position.z), _direction);
         }
     }
 
@@ -251,8 +256,7 @@ public class RangeProjectile : MonoBehaviour
             return;
         }
 
-        Vector2 point = collision.contactCount > 0
-            ? collision.GetContact(0).point : collision.collider.ClosestPoint(transform.position);
+        Vector2 point = collision.contactCount > 0 ? collision.GetContact(0).point : collision.collider.ClosestPoint(transform.position);
         Impact(collision.collider, point);
     }
 
@@ -265,7 +269,6 @@ public class RangeProjectile : MonoBehaviour
 
         // 파괴가 프레임 끝에 실행되어도 추가 콜라이더로 피해를 중복 적용하지 않습니다.
         _hasImpacted = true;
-
         foreach (Collider2D bodyCollider in _colliders)
         {
             if (bodyCollider != null)
@@ -281,26 +284,30 @@ public class RangeProjectile : MonoBehaviour
 
         Vector3 hitPosition = new Vector3(point.x, point.y, transform.position.z);
         Transform player = MonsterCombat.ResolvePlayerCollider(other, _player);
-
+        bool enhanced = _gameFeel != null && _gameFeel.IsConfigured;
         if (player != null)
         {
-            bool damaged = MonsterCombat.TryTakePlayerDamage(player, _damage, hitPosition,
-                _direction, _impactColor, _impactEffectPrefab == null);
-
-            if (damaged)
+            bool damaged = MonsterCombat.TryTakePlayerDamage(player, _damage, hitPosition, _direction, _impactColor, !enhanced && _impactEffectPrefab == null);
+            if (enhanced)
+            {
+                _gameFeel.ProjectileImpact(hitPosition, _direction, damaged);
+            }
+            else if (damaged)
             {
                 PlaySound(_playerHitSound, hitPosition);
-
                 if (_impactEffectPrefab != null)
                 {
                     SpawnCustomImpact(hitPosition);
                 }
             }
         }
+        else if (enhanced)
+        {
+            _gameFeel.ProjectileImpact(hitPosition, _direction, true);
+        }
         else
         {
             PlaySound(_obstacleHitSound, hitPosition);
-
             if (_impactEffectPrefab != null)
             {
                 SpawnCustomImpact(hitPosition);
@@ -331,7 +338,6 @@ public class RangeProjectile : MonoBehaviour
         // 투사체가 파괴돼도 재생 중인 사운드는 끝까지 유지합니다.
         GameObject soundObject = new GameObject("RangeProjectileSound");
         soundObject.transform.position = position;
-
         AudioSource source = soundObject.AddComponent<AudioSource>();
         source.playOnAwake = false;
         source.loop = false;
@@ -340,7 +346,6 @@ public class RangeProjectile : MonoBehaviour
         source.outputAudioMixerGroup = _soundMixerGroup;
         source.clip = clip;
         source.Play();
-
         Destroy(soundObject, clip.length + 0.1f);
     }
 }
