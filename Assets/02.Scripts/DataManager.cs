@@ -52,7 +52,8 @@ public class DataManager : MonoBehaviour
                 ReloadTime = float.Parse(row[9]),
                 ChargeTime = float.Parse(row[10]),
                 Angle = float.Parse(row[11]),
-                Range = float.Parse(row[12])
+                Range = float.Parse(row[12]),
+                Description = row[13],
             };
         }
     }
