@@ -6,7 +6,7 @@ public class HealEffect : IItemImmediateEffect
         if (manager != null)
         {
             int healAmount = (int)context.Value;
-            //manager.Heal(healAmount);
+            manager.Heal(healAmount);
         }
     }
 }
