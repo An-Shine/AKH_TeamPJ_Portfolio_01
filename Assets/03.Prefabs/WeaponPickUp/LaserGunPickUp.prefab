@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 660676495206251199}
   - component: {fileID: 9076854754055700793}
   - component: {fileID: 7907171186982131526}
+  - component: {fileID: 4204727845589333871}
   m_Layer: 0
   m_Name: LaserGunPickUp
   m_TagString: Interactable
@@ -128,3 +129,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponPickup
   _weaponId: 2
+  _tooltipOffset: {x: 0, y: 1, z: 0}
+  _shaderMaterial: {fileID: 2100000, guid: 19af4abf9cc99464db749509ef738230, type: 2}
+--- !u!114 &4204727845589333871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4668028777199861536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d2931a7e1e44e418b727544e731ab14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OverlapSphere
+  _radius: 1.2
+  _targetMask:
+    serializedVersion: 2
+    m_Bits: 8
+  _findInterval: 0.1

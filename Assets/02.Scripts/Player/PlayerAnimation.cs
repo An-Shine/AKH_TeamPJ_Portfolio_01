@@ -108,7 +108,7 @@ public class PlayerAnimation : MonoBehaviour
         }
         else if (state != PlayerState.Dash && Time.time < _reloadUntil)
         {
-            motion = Motion.Reload;
+            motion = state == PlayerState.Run ? Motion.RunReload : Motion.Reload;
         }
         else if (isAttacking && state != PlayerState.Dash)
         {
@@ -116,7 +116,7 @@ public class PlayerAnimation : MonoBehaviour
         }
 
         int hash = _hashes[(int)motion, (int)facing];
-        if ((motion == Motion.Reload || motion == Motion.Interact) && !_animator.HasState(0, hash))
+        if ((motion == Motion.Reload || motion == Motion.RunReload || motion == Motion.Interact) && !_animator.HasState(0, hash))
         {
             hash = _hashes[(int)motion, (int)FacingDirection.Down];
         }
@@ -139,8 +139,11 @@ public class PlayerAnimation : MonoBehaviour
 
         float normalizedTime = 0f;
         bool wasAttackMotion = _lastMotion == Motion.IdleAttack || _lastMotion == Motion.RunAttack;
-        // 정지 공격과 이동 공격 사이에서도 현재 재생 진행도를 유지합니다.
-        if (_hasPlayed && (motion == _lastMotion || (attackMotion && wasAttackMotion)))
+        bool reloadMotion = motion == Motion.Reload || motion == Motion.RunReload;
+        bool wasReloadMotion = _lastMotion == Motion.Reload || _lastMotion == Motion.RunReload;
+        // 공격/재장전 중 이동 여부가 바뀌어도 현재 재생 진행도를 유지합니다.
+        if (_hasPlayed && (motion == _lastMotion || (attackMotion && wasAttackMotion) ||
+                          (reloadMotion && wasReloadMotion)))
         {
             AnimatorStateInfo info = _animator.GetCurrentAnimatorStateInfo(0);
             normalizedTime = info.loop
