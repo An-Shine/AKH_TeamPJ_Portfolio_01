@@ -3,17 +3,15 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class KamikazeMonster : NormalMonster
 {
+
     [Header("자폭 시작")]
     [Tooltip("플레이어 몸의 Collider2D와 이 거리 안에 들어오면 자폭 준비를 시작합니다.")]
     [SerializeField, Min(0.1f)] private float _explodeRange = 1.2f;
     [SerializeField, Min(0f)] private float _attackTriggerTolerance = 0.05f;
-
     [Tooltip("Attack 애니메이션에서 폭발하는 시점입니다. 0.8이면 80% 지점입니다.")]
     [SerializeField, Range(0f, 0.95f)] private float _explodeNormalizedTime = 0.8f;
-
     [Tooltip("Animator가 공격 상태를 반복하거나 벗어나도 이 시간이 지나면 폭발합니다.")]
     [SerializeField, Min(0.1f)] private float _maximumFuseTime = 1.5f;
-
     [Tooltip("폭발 후 Attack 애니메이션이 끝나지 않을 때 Death로 넘어가는 대기 시간입니다.")]
     [SerializeField, Min(0.1f)] private float _postExplosionDelay = 0.5f;
 
@@ -30,7 +28,6 @@ public class KamikazeMonster : NormalMonster
     [Header("방향 안정화")]
     [Tooltip("이 거리 안에서는 마지막 접근 방향을 유지합니다. 공격 중에는 항상 방향을 고정합니다.")]
     [SerializeField, Min(0.1f)] private float _facingLockDistance = 1.5f;
-
     [Tooltip("8방향 경계에서 작은 각도 변화 때문에 자세가 왕복하는 것을 줄입니다.")]
     [SerializeField, Range(0f, 20f)] private float _directionHysteresis = 7f;
 
@@ -48,7 +45,6 @@ public class KamikazeMonster : NormalMonster
     [Header("애니메이션 종료 보정")]
     [SerializeField, Min(0.1f)] private float _maximumHitTime = 1.2f;
     [SerializeField, Min(0.1f)] private float _maximumDeathTime = 3f;
-
     private enum ActionState
     {
         None,
@@ -62,15 +58,9 @@ public class KamikazeMonster : NormalMonster
     private static readonly int AttackingId = Animator.StringToHash("IsAttacking");
     private static readonly int HitId = Animator.StringToHash("IsHit");
     private static readonly int DeadId = Animator.StringToHash("IsDead");
-
-    private static readonly string[] Directions =
-    {
-        "S", "SE", "E", "NE", "N", "NW", "W", "SW"
-    };
-
+    private static readonly string[] Directions = { "S", "SE", "E", "NE", "N", "NW", "W", "SW" };
     // Idle / Walk / Attack / Hit / Death, 각 8방향.
     private readonly int[,] _states = new int[5, 8];
-
     private Animator _animator;
     private SpriteRenderer[] _renderers;
     private Color[] _kamikazeOriginalColors;
@@ -78,9 +68,9 @@ public class KamikazeMonster : NormalMonster
     private Collider2D[] _playerColliders;
     private Rigidbody2D[] _bodies;
     private MonsterVisualLock _visualLock;
-
     private ActionState _action;
     private bool _ready;
+    private Transform _roomPlayer;
     private bool _hasDied;
     private bool _explosionTriggered;
     private bool _directionInitialized;
@@ -92,19 +82,16 @@ public class KamikazeMonster : NormalMonster
     private float _nextAnimationRetryTime;
     private float _nextPlayerSearchTime;
     private float _explosionTime;
-
     protected override void Awake()
     {
         base.Awake();
         _visualLock = new MonsterVisualLock(transform);
-
         ClampSettings();
         _animator = GetComponent<Animator>();
         _renderers = GetComponentsInChildren<SpriteRenderer>(true);
         _colliders = GetComponentsInChildren<Collider2D>(true);
         _bodies = GetComponentsInChildren<Rigidbody2D>(true);
         _kamikazeOriginalColors = new Color[_renderers.Length];
-
         for (int i = 0; i < _renderers.Length; i++)
         {
             _kamikazeOriginalColors[i] = _renderers[i].color;
@@ -129,7 +116,6 @@ public class KamikazeMonster : NormalMonster
         base.Start();
         CachePlayerColliders();
         _ready = ValidateAnimator();
-
         if (!_ready)
         {
             return;
@@ -148,11 +134,11 @@ public class KamikazeMonster : NormalMonster
             {
                 UpdateAction();
             }
+
             return;
         }
 
         base.Update();
-
         if (!_ready)
         {
             return;
@@ -173,7 +159,6 @@ public class KamikazeMonster : NormalMonster
         Vector2 toPlayer = (Vector2)_player.position - (Vector2)transform.position;
         float distance = Mathf.Sqrt(GetPlayerDistanceSquared(transform.position));
         bool clearAttackPath = HasObstacleLineOfSight(transform.position, _player.position);
-
         if (distance <= _explodeRange + _attackTriggerTolerance && clearAttackPath)
         {
             // 가까운 거리에서 처음 생성된 경우에만 방향을 정합니다.
@@ -190,14 +175,12 @@ public class KamikazeMonster : NormalMonster
         bool charging = distance <= _chargeRange && clearAttackPath;
         float multiplier = charging ? _chargeSpeedMultiplier : _chaseSpeedMultiplier;
         float moveDistance = Mathf.Max(0f, _moveSpeed) * multiplier * Time.deltaTime;
-
         if (clearAttackPath)
         {
             moveDistance = Mathf.Min(moveDistance, Mathf.Max(0f, distance - _explodeRange));
         }
 
         Vector2 movement = GetNavigationMovement(_player.position, moveDistance);
-
         if (!charging)
         {
             movement += GetSeparationDirection() * (_crowdAvoidanceSpeed * Time.deltaTime);
@@ -206,7 +189,6 @@ public class KamikazeMonster : NormalMonster
         Vector2 previousPosition = transform.position;
         MoveWithCollisionCheck(movement);
         Vector2 actualMovement = (Vector2)transform.position - previousPosition;
-
         // 군집 회피나 접촉에 의한 작은 이동량으로 바라보는 방향을 바꾸지 않습니다.
         if (!_directionInitialized || distance > _facingLockDistance)
         {
@@ -251,6 +233,22 @@ public class KamikazeMonster : NormalMonster
 
     private bool ResolvePlayer()
     {
+        if (RequiresRoomEntry)
+        {
+            if (!TryGetRoomPlayer(out Transform roomPlayer))
+            {
+                return false;
+            }
+
+            if (_roomPlayer != roomPlayer)
+            {
+                _roomPlayer = roomPlayer;
+                CachePlayerColliders();
+            }
+
+            return _player != null;
+        }
+
         if (_player != null && _player.gameObject.activeInHierarchy)
         {
             return true;
@@ -276,9 +274,7 @@ public class KamikazeMonster : NormalMonster
             _player = null;
         }
 
-        _playerColliders = _player != null
-            ? _player.GetComponentsInChildren<Collider2D>(true)
-            : null;
+        _playerColliders = _player != null ? _player.GetComponentsInChildren<Collider2D>(true) : null;
     }
 
     private float GetPlayerDistanceSquared(Vector2 position)
@@ -289,14 +285,12 @@ public class KamikazeMonster : NormalMonster
         }
 
         float nearest = float.PositiveInfinity;
-
         if (_playerColliders != null)
         {
             foreach (Collider2D playerCollider in _playerColliders)
             {
                 // 넓은 감지용 Trigger는 몸의 거리 판정에서 제외합니다.
-                if (playerCollider == null || !playerCollider.enabled ||
-                    playerCollider.isTrigger || !playerCollider.gameObject.activeInHierarchy)
+                if (playerCollider == null || !playerCollider.enabled || playerCollider.isTrigger || !playerCollider.gameObject.activeInHierarchy)
                 {
                     continue;
                 }
@@ -330,7 +324,6 @@ public class KamikazeMonster : NormalMonster
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         int candidate = (Mathf.RoundToInt((angle + 90f) / 45f) + 8) % 8;
-
         if (_directionInitialized && candidate != _direction)
         {
             float currentAngle = _direction * 45f - 90f;
@@ -356,19 +349,13 @@ public class KamikazeMonster : NormalMonster
     private void PlayLocomotion(bool moving, bool charging)
     {
         SetAnimationFlags(moving);
-        _animator.speed = moving
-            ? (charging ? _chargeAnimationSpeed : _walkAnimationSpeed)
-            : 1f;
-
+        _animator.speed = moving ? (charging ? _chargeAnimationSpeed : _walkAnimationSpeed) : 1f;
         int desiredHash = _states[moving ? 1 : 0, _direction];
         AnimatorStateInfo state = _animator.GetCurrentAnimatorStateInfo(0);
-
         if (state.fullPathHash != desiredHash)
         {
             // 방향이 바뀌어도 진행 중이던 걸음의 위상을 유지합니다.
-            float phase = moving && _locomotionWasMoving
-                ? Mathf.Repeat(state.normalizedTime, 1f)
-                : 0f;
+            float phase = moving && _locomotionWasMoving ? Mathf.Repeat(state.normalizedTime, 1f) : 0f;
             _animator.Play(desiredHash, 0, phase);
         }
 
@@ -409,20 +396,15 @@ public class KamikazeMonster : NormalMonster
         float elapsed = Time.time - _actionStartTime;
         AnimatorStateInfo state = _animator.GetCurrentAnimatorStateInfo(0);
         bool matching = state.fullPathHash == _actionHash;
-
         if (_action == ActionState.Attack)
         {
-            bool animationReachedExplosion = matching &&
-                state.normalizedTime >= _explodeNormalizedTime;
-
+            bool animationReachedExplosion = matching && state.normalizedTime >= _explodeNormalizedTime;
             if (!_explosionTriggered && (animationReachedExplosion || elapsed >= _maximumFuseTime))
             {
                 TriggerExplosion();
             }
 
-            if (_explosionTriggered &&
-                ((matching && state.normalizedTime >= 1f) ||
-                 Time.time - _explosionTime >= _postExplosionDelay))
+            if (_explosionTriggered && ((matching && state.normalizedTime >= 1f) || Time.time - _explosionTime >= _postExplosionDelay))
             {
                 BeginDeath();
                 return;
@@ -448,9 +430,7 @@ public class KamikazeMonster : NormalMonster
         if (!matching && Time.time >= _nextAnimationRetryTime)
         {
             // 잘못된 전환으로 빠져나온 경우 같은 방향의 액션으로 복귀합니다.
-            float duration = _action == ActionState.Attack
-                ? _maximumFuseTime
-                : (_action == ActionState.Hit ? _maximumHitTime : _maximumDeathTime);
+            float duration = _action == ActionState.Attack ? _maximumFuseTime : (_action == ActionState.Hit ? _maximumHitTime : _maximumDeathTime);
             float progress = Mathf.Clamp(elapsed / duration, 0f, 0.95f);
             SetAnimationFlags(false);
             _animator.Play(_actionHash, 0, progress);
@@ -468,14 +448,11 @@ public class KamikazeMonster : NormalMonster
         _explosionTriggered = true;
         _explosionTime = Time.time;
         Vector3 explosionPosition = transform.position;
-
         StopMovementForDeath();
         // 폭발한 몸이 다시 밀리거나 추가 충돌을 만들지 않게 합니다.
         DisablePhysics();
         SpawnExplosionEffect(explosionPosition);
-
-        float squaredDistance = MonsterCombat.GetPlayerDistanceSquared(
-            _player, _playerColliders, explosionPosition, out Vector2 hitPoint);
+        float squaredDistance = MonsterCombat.GetPlayerDistanceSquared(_player, _playerColliders, explosionPosition, out Vector2 hitPoint);
         if (squaredDistance > _explosionDamageRadius * _explosionDamageRadius)
         {
             return;
@@ -483,10 +460,8 @@ public class KamikazeMonster : NormalMonster
 
         // 데미지 판정은 폭발당 한 번입니다.
         // 대시/피격 무적과 HP 감소는 기존 PlayerManager가 처리합니다.
-        Vector2 hitDirection = _player != null
-            ? ((Vector2)_player.position - (Vector2)explosionPosition).normalized : Vector2.zero;
-        MonsterCombat.TryTakePlayerDamage(_player, _explosionDamage,
-            new Vector3(hitPoint.x, hitPoint.y, explosionPosition.z), hitDirection, _explosionColor);
+        Vector2 hitDirection = _player != null ? ((Vector2)_player.position - (Vector2)explosionPosition).normalized : Vector2.zero;
+        MonsterCombat.TryTakePlayerDamage(_player, _explosionDamage, new Vector3(hitPoint.x, hitPoint.y, explosionPosition.z), hitDirection, _explosionColor);
     }
 
     private void SpawnExplosionEffect(Vector3 position)
@@ -498,6 +473,7 @@ public class KamikazeMonster : NormalMonster
             {
                 Destroy(effect, _explosionEffectLifetime);
             }
+
             return;
         }
 
@@ -509,9 +485,7 @@ public class KamikazeMonster : NormalMonster
             sortingOrder = _renderers[0].sortingOrder + 1;
         }
 
-        KamikazeExplosionEffect.Spawn(
-            position, _explosionDamageRadius, _explosionColor,
-            gameObject.layer, sortingLayer, sortingOrder);
+        KamikazeExplosionEffect.Spawn(position, _explosionDamageRadius, _explosionColor, gameObject.layer, sortingLayer, sortingOrder);
     }
 
     private void BeginDeath()
@@ -525,7 +499,6 @@ public class KamikazeMonster : NormalMonster
         StopMovementForDeath();
         _currentHealth = 0f;
         StopAllCoroutines();
-
         for (int i = 0; i < _renderers.Length; i++)
         {
             if (_renderers[i] != null)
@@ -535,7 +508,6 @@ public class KamikazeMonster : NormalMonster
         }
 
         DisablePhysics();
-
         if (!_ready)
         {
             // Animator 설정이 없는 경우에도 위치와 크기를 유지합니다.
@@ -582,14 +554,10 @@ public class KamikazeMonster : NormalMonster
         int[] ids = { DirectionId, MovingId, AttackingId, HitId, DeadId };
         string[] names = { "Direction", "IsMoving", "IsAttacking", "IsHit", "IsDead" };
         AnimatorControllerParameter[] parameters = _animator.parameters;
-
         for (int i = 0; i < ids.Length; i++)
         {
-            AnimatorControllerParameterType expected = i == 0
-                ? AnimatorControllerParameterType.Int
-                : AnimatorControllerParameterType.Bool;
+            AnimatorControllerParameterType expected = i == 0 ? AnimatorControllerParameterType.Int : AnimatorControllerParameterType.Bool;
             bool found = false;
-
             foreach (AnimatorControllerParameter parameter in parameters)
             {
                 if (parameter.nameHash == ids[i] && parameter.type == expected)
@@ -612,8 +580,7 @@ public class KamikazeMonster : NormalMonster
             for (int direction = 0; direction < Directions.Length; direction++)
             {
                 string path = $"Base Layer.KamikazeMonster_{motions[row]}_{Directions[direction]}";
-                if (!MonsterCombat.TryGetDirectionalState(_animator, "KamikazeMonster",
-                    motions[row], direction, out int hash))
+                if (!MonsterCombat.TryGetDirectionalState(_animator, "KamikazeMonster", motions[row], direction, out int hash))
                 {
                     Debug.LogError($"{name}: Animator 상태를 찾을 수 없습니다: {path}", this);
                     return false;

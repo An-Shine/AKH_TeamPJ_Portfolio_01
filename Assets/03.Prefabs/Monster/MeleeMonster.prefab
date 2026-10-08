@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 7007430183231636224}
   - component: {fileID: 7013926720832336473}
   - component: {fileID: 4648255640607117109}
+  - component: {fileID: 7624356623831807452}
+  - component: {fileID: 7381447570106348220}
   m_Layer: 0
   m_Name: MeleeMonster
   m_TagString: Enemy
@@ -83,7 +85,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1369945257
   m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 1f442c2d90bb9d449a091ab1f2e3dfc4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -107,13 +109,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a0d91a31eeb9994d90ed8efe7a2423e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeMonster
-  _maxHealth: 60
+  _maxHealth: 150
   _moveSpeed: 2
-  _contactDamage: 10
+  _contactDamage: 30
   _homeRoom: {fileID: 0}
-  _detectionMode: 2
-  _detectionRange: 12
-  _loseTargetRange: 20
+  _detectionMode: 0
+  _detectionRange: 5
+  _loseTargetRange: 7
   _contactDamageCooldown: 0.5
   _contactKnockbackDistance: 0.2
   _contactKnockbackDuration: 0.12
@@ -124,7 +126,7 @@ MonoBehaviour:
   _useSpriteSizeForSpacing: 1
   _spriteSpacingFactor: 0.8
   _overlapSeparationSpeed: 2.5
-  _collisionCheckRadius: 0.25
+  _collisionCheckRadius: 0.4
   _obstacleLayer:
     serializedVersion: 2
     m_Bits: 0
@@ -151,6 +153,7 @@ MonoBehaviour:
   _attackHitNormalizedTime: 0.5
   _walkAnimationSpeed: 1.6
   _attackAnimationSpeed: 1.8
+  _attackSpeedMultiplier: 2
   _attackEffectPrefab: {fileID: 2501765251154968091, guid: eef2ddccee5bf40448286e65732a257f, type: 3}
   _attackEffectLifetime: 0.35
   _attackEffectColor: {r: 1, g: 0.8, b: 0.25, a: 1}
@@ -265,3 +268,33 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7624356623831807452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9050073270099259043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c7cb10390c65bf7b1a0e2a4cfd7470b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_02.Scripts.Monster.Presentation.NormalMonsterGameFeel
+  _profile: {fileID: 11400000, guid: 9575b2432bb455f5b2c0c96b34464bb5, type: 2}
+  _bodyRenderer: {fileID: 31609183969577465}
+--- !u!114 &7381447570106348220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9050073270099259043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a8a19c553bd5a8b88a32120d01308be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_02.Scripts.Monster.Presentation.MonsterGroundPresentation
+  _profile: {fileID: 11400000, guid: 32af03df939157449cf5c235bfdfb471, type: 2}
+  _bodyRenderer: {fileID: 31609183969577465}
+  _animator: {fileID: 4648255640607117109}
+  _feetAnchor: {fileID: 0}

@@ -1,0 +1,773 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffcee9c7a7a650cbb22f7749f1fd861a, type: 3}
+  m_Name: BossEncounter
+  m_EditorClassIdentifier: Assembly-CSharp::_02.Scripts.Monster.BossMonster.BossEncounterProfile
+  _moves:
+  - _kind: 0
+    _enabled: 1
+    _weight: 1
+    _cooldown: 7
+    _warning: 0.8
+    _duration: 0.16
+    _interval: 0.95
+    _waves: 3
+    _count: 4
+    _damage: 12
+    _damageInterval: 0.5
+    _effectScale: 1.4
+    _radius: 3.6
+    _width: 0.65
+    _speed: 4.8
+    _recovery: 1.1
+    _impactShake: 0.18
+    _sustainShake: 0.025
+    _minimumPhase: 1
+    _color: {r: 1, g: 0.12, b: 0.2, a: 1}
+    _animationMotion: attack_crescentcleave
+    _loopMotion: 
+    _endMotion: 
+    _releaseNormalizedTime: 0.53
+    _impactPrefab: {fileID: 0}
+    _impactPrefabLifetime: 3
+    _sound:
+      _start: {fileID: 8300000, guid: f39661ac49175fc8bc9a0499766d0e3e, type: 3}
+      _loop: {fileID: 8300000, guid: 78d0b45590595280b238c8185ae37f06, type: 3}
+      _impact: {fileID: 8300000, guid: 51ed147e20495b178f307868e0afd21d, type: 3}
+      _end: {fileID: 8300000, guid: 8bf361355fb45865a5a4dcefef46d3a1, type: 3}
+  - _kind: 1
+    _enabled: 1
+    _weight: 1
+    _cooldown: 7
+    _warning: 1.15
+    _duration: 0.55
+    _interval: 0.6
+    _waves: 3
+    _count: 4
+    _damage: 12
+    _damageInterval: 0.5
+    _effectScale: 1.4
+    _radius: 0.8
+    _width: 0.7
+    _speed: 4.8
+    _recovery: 1.1
+    _impactShake: 0.18
+    _sustainShake: 0.025
+    _minimumPhase: 1
+    _color: {r: 1, g: 0.28, b: 0.1, a: 1}
+    _animationMotion: attack_riftlanes
+    _loopMotion: 
+    _endMotion: 
+    _releaseNormalizedTime: 0.53
+    _impactPrefab: {fileID: 0}
+    _impactPrefabLifetime: 3
+    _sound:
+      _start: {fileID: 8300000, guid: 06f079702e1952be84f07be3e1572516, type: 3}
+      _loop: {fileID: 8300000, guid: 3bfeed27264e57d0813c8d7ae7e5c6cb, type: 3}
+      _impact: {fileID: 8300000, guid: eaa13b61a21c54a5bfdbaea17fbd7e01, type: 3}
+      _end: {fileID: 8300000, guid: e3e46cb52d855df6b8e99e7adce5c26e, type: 3}
+  - _kind: 2
+    _enabled: 1
+    _weight: 1
+    _cooldown: 7
+    _warning: 1.0
+    _duration: 0.8
+    _interval: 0.75
+    _waves: 3
+    _count: 3
+    _damage: 10
+    _damageInterval: 0.5
+    _effectScale: 1.4
+    _radius: 0.7
+    _width: 0.65
+    _speed: 4.8
+    _recovery: 1.1
+    _impactShake: 0.13
+    _sustainShake: 0.025
+    _minimumPhase: 1
+    _color: {r: 1, g: 0.16, b: 0.1, a: 1}
+    _animationMotion: attack_hellfirerain
+    _loopMotion: 
+    _endMotion: 
+    _releaseNormalizedTime: 0.53
+    _impactPrefab: {fileID: 0}
+    _impactPrefabLifetime: 3
+    _sound:
+      _start: {fileID: 8300000, guid: 3628d64602955f0a9b160b5d5fc8fa8e, type: 3}
+      _loop: {fileID: 8300000, guid: 1f5695ce27f650b6bf79f0572b355abf, type: 3}
+      _impact: {fileID: 8300000, guid: 69a1d1ed21f95547b4abd2926488ed4b, type: 3}
+      _end: {fileID: 8300000, guid: 650fd4eaf8e25b39b87e49d2920d4688, type: 3}
+  - _kind: 3
+    _enabled: 1
+    _weight: 1
+    _cooldown: 7
+    _warning: 1.15
+    _duration: 2.8
+    _interval: 0.43
+    _waves: 5
+    _count: 10
+    _damage: 8
+    _damageInterval: 0.5
+    _effectScale: 1.4
+    _radius: 0.12
+    _width: 0.3
+    _speed: 4.5
+    _recovery: 1.1
+    _impactShake: 0.075
+    _sustainShake: 0.025
+    _minimumPhase: 2
+    _color: {r: 1, g: 0.12, b: 0.2, a: 1}
+    _animationMotion: attack_spiralbarrage
+    _loopMotion: 
+    _endMotion: 
+    _releaseNormalizedTime: 0.53
+    _impactPrefab: {fileID: 0}
+    _impactPrefabLifetime: 3
+    _sound:
+      _start: {fileID: 8300000, guid: f06b74b5b0a4559c9873cbf1420af6d5, type: 3}
+      _loop: {fileID: 8300000, guid: fe5a3d6aa64a5c8693f54f958984145a, type: 3}
+      _impact: {fileID: 8300000, guid: 0c04504ae07c5debac36b07d6f08a3fd, type: 3}
+      _end: {fileID: 8300000, guid: 6c5c5004e18754adb4e2f5fd971fbd3a, type: 3}
+  - _kind: 4
+    _enabled: 1
+    _weight: 1
+    _cooldown: 7
+    _warning: 1.3
+    _duration: 3.2
+    _interval: 0.6
+    _waves: 3
+    _count: 4
+    _damage: 10
+    _damageInterval: 0.5
+    _effectScale: 1.4
+    _radius: 0.8
+    _width: 0.55
+    _speed: 4.8
+    _recovery: 1.1
+    _impactShake: 0.18
+    _sustainShake: 0.055
+    _minimumPhase: 3
+    _color: {r: 1, g: 0.15, b: 0.55, a: 1}
+    _animationMotion: attack_crosssweep
+    _loopMotion: 
+    _endMotion: 
+    _releaseNormalizedTime: 0.53
+    _impactPrefab: {fileID: 0}
+    _impactPrefabLifetime: 3
+    _sound:
+      _start: {fileID: 8300000, guid: 64bd0fa87d2c550ea0eca9518de6f01d, type: 3}
+      _loop: {fileID: 8300000, guid: cf9ee624895f5e959b1bb9b006ab364a, type: 3}
+      _impact: {fileID: 8300000, guid: 19a9de1902a353c5a26132e88dc8e94d, type: 3}
+      _end: {fileID: 8300000, guid: fe001f6dde9653d7a0c26b789794dacb, type: 3}
+  - _kind: 5
+    _enabled: 1
+    _weight: 1
+    _cooldown: 14
+    _warning: 1.5
+    _duration: 3.5
+    _interval: 0.6
+    _waves: 3
+    _count: 4
+    _damage: 18
+    _damageInterval: 0.5
+    _effectScale: 1.4
+    _radius: 0.8
+    _width: 0.48
+    _speed: 4.8
+    _recovery: 1.6
+    _impactShake: 0.3
+    _sustainShake: 0.06
+    _minimumPhase: 3
+    _color: {r: 0.65, g: 0.25, b: 1, a: 1}
+    _animationMotion: attack_cataclysm
+    _loopMotion: 
+    _endMotion: 
+    _releaseNormalizedTime: 0.53
+    _impactPrefab: {fileID: 0}
+    _impactPrefabLifetime: 3
+    _sound:
+      _start: {fileID: 8300000, guid: b30fcc35f6b9590cb024e0fecff1d736, type: 3}
+      _loop: {fileID: 8300000, guid: eb8db505c39f586587f849e5ff522c7b, type: 3}
+      _impact: {fileID: 8300000, guid: a4e01812bd9952c396daf0fd27645b9e, type: 3}
+      _end: {fileID: 8300000, guid: bd6559439ff95b61bbffb16c2da244d3, type: 3}
+  - _kind: 6
+    _enabled: 1
+    _weight: 1
+    _cooldown: 7
+    _warning: 0.75
+    _duration: 0.18
+    _interval: 0.8
+    _waves: 2
+    _count: 4
+    _damage: 12
+    _damageInterval: 0.5
+    _effectScale: 1.4
+    _radius: 3.2
+    _width: 0.65
+    _speed: 4.8
+    _recovery: 1.1
+    _impactShake: 0.19
+    _sustainShake: 0.025
+    _minimumPhase: 1
+    _color: {r: 1, g: 0.12, b: 0.2, a: 1}
+    _animationMotion: attack_doubleclaw
+    _loopMotion: 
+    _endMotion: 
+    _releaseNormalizedTime: 0.53
+    _impactPrefab: {fileID: 0}
+    _impactPrefabLifetime: 3
+    _sound:
+      _start: {fileID: 8300000, guid: eed4f0e5a95757f795d220523664c340, type: 3}
+      _loop: {fileID: 8300000, guid: b9deddc8732d56a5a3ba5dc6ac905380, type: 3}
+      _impact: {fileID: 8300000, guid: d253a18565c75000b5a7f5935ed643e5, type: 3}
+      _end: {fileID: 8300000, guid: 16a2a9ec6bcf5e088b48cb666c9250b4, type: 3}
+  - _kind: 7
+    _enabled: 1
+    _weight: 1
+    _cooldown: 7
+    _warning: 0.95
+    _duration: 0.22
+    _interval: 1.4
+    _waves: 2
+    _count: 4
+    _damage: 14
+    _damageInterval: 0.5
+    _effectScale: 1.4
+    _radius: 2.0
+    _width: 0.4
+    _speed: 4.8
+    _recovery: 1.1
+    _impactShake: 0.25
+    _sustainShake: 0.025
+    _minimumPhase: 1
+    _color: {r: 1, g: 0.38, b: 0.08, a: 1}
+    _animationMotion: attack_groundslam
+    _loopMotion: 
+    _endMotion: 
+    _releaseNormalizedTime: 0.53
+    _impactPrefab: {fileID: 0}
+    _impactPrefabLifetime: 3
+    _sound:
+      _start: {fileID: 8300000, guid: 4b6d19d3719658408eb7c974e8c21844, type: 3}
+      _loop: {fileID: 8300000, guid: 586bcc068b99550db36694d48f5016d6, type: 3}
+      _impact: {fileID: 8300000, guid: eb2fe65595bb53cbbbffcc4e3b27ec8b, type: 3}
+      _end: {fileID: 8300000, guid: 2f22814727b3522080e157b1d93f0bd8, type: 3}
+  - _kind: 8
+    _enabled: 1
+    _weight: 1
+    _cooldown: 7
+    _warning: 0.9
+    _duration: 2
+    _interval: 0.85
+    _waves: 3
+    _count: 2
+    _damage: 12
+    _damageInterval: 0.5
+    _effectScale: 1.4
+    _radius: 0.7
+    _width: 0.52
+    _speed: 4.8
+    _recovery: 1.1
+    _impactShake: 0.18
+    _sustainShake: 0.025
+    _minimumPhase: 1
+    _color: {r: 1, g: 0.1, b: 0.28, a: 1}
+    _animationMotion: attack_serpentwave
+    _loopMotion: 
+    _endMotion: 
+    _releaseNormalizedTime: 0.53
+    _impactPrefab: {fileID: 0}
+    _impactPrefabLifetime: 3
+    _sound:
+      _start: {fileID: 8300000, guid: 349de60467da5ffeb890220d63f80f2b, type: 3}
+      _loop: {fileID: 8300000, guid: 191aa459b3845e77839e6e981fa4086b, type: 3}
+      _impact: {fileID: 8300000, guid: eb33a75871325eb7962fc2f160c8bda0, type: 3}
+      _end: {fileID: 8300000, guid: ddff9e1af9cd5ecd80e125e601967659, type: 3}
+  - _kind: 9
+    _enabled: 1
+    _weight: 1
+    _cooldown: 7
+    _warning: 0.85
+    _duration: 0.2
+    _interval: 1.2
+    _waves: 2
+    _count: 5
+    _damage: 11
+    _damageInterval: 0.5
+    _effectScale: 1.4
+    _radius: 0.48
+    _width: 0.55
+    _speed: 4.8
+    _recovery: 1.1
+    _impactShake: 0.18
+    _sustainShake: 0.025
+    _minimumPhase: 1
+    _color: {r: 1, g: 0.22, b: 0.1, a: 1}
+    _animationMotion: attack_thornfan
+    _loopMotion: 
+    _endMotion: 
+    _releaseNormalizedTime: 0.53
+    _impactPrefab: {fileID: 0}
+    _impactPrefabLifetime: 3
+    _sound:
+      _start: {fileID: 8300000, guid: 24cff0704dbf5fd0967169691c9cd6a0, type: 3}
+      _loop: {fileID: 8300000, guid: 19ca4e27fd5259938be88b9482ea7a52, type: 3}
+      _impact: {fileID: 8300000, guid: 44db777ad4f25184976a1f7a5de3e0ca, type: 3}
+      _end: {fileID: 8300000, guid: f26b78cd75d65b59b6b20161f1b27074, type: 3}
+  - _kind: 10
+    _enabled: 1
+    _weight: 1
+    _cooldown: 7
+    _warning: 0.85
+    _duration: 0.28
+    _interval: 1.7
+    _waves: 2
+    _count: 8
+    _damage: 12
+    _damageInterval: 0.5
+    _effectScale: 1.4
+    _radius: 0.55
+    _width: 0.5
+    _speed: 4.8
+    _recovery: 1.1
+    _impactShake: 0.18
+    _sustainShake: 0.025
+    _minimumPhase: 2
+    _color: {r: 1, g: 0.12, b: 0.2, a: 1}
+    _animationMotion: attack_radialspikes
+    _loopMotion: 
+    _endMotion: 
+    _releaseNormalizedTime: 0.53
+    _impactPrefab: {fileID: 0}
+    _impactPrefabLifetime: 3
+    _sound:
+      _start: {fileID: 8300000, guid: 232e248337f453d0ace921ed60c651e7, type: 3}
+      _loop: {fileID: 8300000, guid: ff5b82e519155f978bcf97828058c5f1, type: 3}
+      _impact: {fileID: 8300000, guid: 5523a54232d55505ba5149611444bd68, type: 3}
+      _end: {fileID: 8300000, guid: 109d17d78ae35d55ba0c31f581c1a52a, type: 3}
+  - _kind: 11
+    _enabled: 1
+    _weight: 1
+    _cooldown: 7
+    _warning: 0.95
+    _duration: 1.9
+    _interval: 1.3
+    _waves: 3
+    _count: 4
+    _damage: 13
+    _damageInterval: 0.5
+    _effectScale: 1.4
+    _radius: 0.65
+    _width: 0.5
+    _speed: 4.8
+    _recovery: 1.1
+    _impactShake: 0.23
+    _sustainShake: 0.025
+    _minimumPhase: 2
+    _color: {r: 0.8, g: 0.12, b: 1, a: 1}
+    _animationMotion: attack_expandingnova
+    _loopMotion: 
+    _endMotion: 
+    _releaseNormalizedTime: 0.53
+    _impactPrefab: {fileID: 0}
+    _impactPrefabLifetime: 3
+    _sound:
+      _start: {fileID: 8300000, guid: 3753f726bdac5bd0aaeeeaa3498d0c99, type: 3}
+      _loop: {fileID: 8300000, guid: fe563a3fcc2a542a88563c1acc268051, type: 3}
+      _impact: {fileID: 8300000, guid: 069ec823b9e955228c4f2f2399a4aba6, type: 3}
+      _end: {fileID: 8300000, guid: 1d3e88a4e9e25472b7891983d7a37dca, type: 3}
+  - _kind: 12
+    _enabled: 1
+    _weight: 1
+    _cooldown: 12
+    _warning: 1.25
+    _duration: 1.6
+    _interval: 2.2
+    _waves: 2
+    _count: 4
+    _damage: 14
+    _damageInterval: 0.5
+    _effectScale: 1.4
+    _radius: 0.7
+    _width: 0.4
+    _speed: 4.8
+    _recovery: 1.1
+    _impactShake: 0.18
+    _sustainShake: 0.025
+    _minimumPhase: 3
+    _color: {r: 0.6, g: 0.3, b: 1, a: 1}
+    _animationMotion: attack_twinnova
+    _loopMotion: 
+    _endMotion: 
+    _releaseNormalizedTime: 0.53
+    _impactPrefab: {fileID: 0}
+    _impactPrefabLifetime: 3
+    _sound:
+      _start: {fileID: 8300000, guid: 46d4214827d851e797a8f6d5ec56b635, type: 3}
+      _loop: {fileID: 8300000, guid: dd8cbb58188b59b68a71a75185d21f05, type: 3}
+      _impact: {fileID: 8300000, guid: 29e7828ae2815af8ba0571fa17749dea, type: 3}
+      _end: {fileID: 8300000, guid: 8f68495b202a5a999d6faf4edd9d3ee3, type: 3}
+  - _kind: 13
+    _enabled: 1
+    _weight: 1
+    _cooldown: 7
+    _warning: 0.75
+    _duration: 0.25
+    _interval: 0.45
+    _waves: 6
+    _count: 4
+    _damage: 10
+    _damageInterval: 0.5
+    _effectScale: 1.4
+    _radius: 0.65
+    _width: 0.65
+    _speed: 4.8
+    _recovery: 1.1
+    _impactShake: 0.12
+    _sustainShake: 0.025
+    _minimumPhase: 1
+    _color: {r: 1, g: 0.12, b: 0.2, a: 1}
+    _animationMotion: attack_trackingeruption
+    _loopMotion: 
+    _endMotion: 
+    _releaseNormalizedTime: 0.53
+    _impactPrefab: {fileID: 0}
+    _impactPrefabLifetime: 3
+    _sound:
+      _start: {fileID: 8300000, guid: 1f282a380b915267afcb85027304be71, type: 3}
+      _loop: {fileID: 8300000, guid: c3518d9ee4365c9b8488f31c7f9be7e2, type: 3}
+      _impact: {fileID: 8300000, guid: 421cca6774835425887a6bf4906a670a, type: 3}
+      _end: {fileID: 8300000, guid: 2cc8e9330f0b5d698d5a8853c880ff60, type: 3}
+  - _kind: 14
+    _enabled: 1
+    _weight: 1
+    _cooldown: 12
+    _warning: 1.1
+    _duration: 0.3
+    _interval: 1.2
+    _waves: 3
+    _count: 4
+    _damage: 12
+    _damageInterval: 0.5
+    _effectScale: 1.4
+    _radius: 0.6
+    _width: 0.65
+    _speed: 4.8
+    _recovery: 1.1
+    _impactShake: 0.18
+    _sustainShake: 0.025
+    _minimumPhase: 2
+    _color: {r: 1, g: 0.45, b: 0.12, a: 1}
+    _animationMotion: attack_meteorlattice
+    _loopMotion: 
+    _endMotion: 
+    _releaseNormalizedTime: 0.53
+    _impactPrefab: {fileID: 0}
+    _impactPrefabLifetime: 3
+    _sound:
+      _start: {fileID: 8300000, guid: 1d6fe2319c0750a0a16034abc07d048c, type: 3}
+      _loop: {fileID: 8300000, guid: 74de5a5f67ac515d991db0f754a5cad7, type: 3}
+      _impact: {fileID: 8300000, guid: 53b651185daa5f0f8a16d1fc11d2e641, type: 3}
+      _end: {fileID: 8300000, guid: 2129f5b52e8e5c008c066a00648d924f, type: 3}
+  - _kind: 15
+    _enabled: 1
+    _weight: 1
+    _cooldown: 7
+    _warning: 1.1
+    _duration: 3.6
+    _interval: 1.1
+    _waves: 2
+    _count: 4
+    _damage: 8
+    _damageInterval: 0.5
+    _effectScale: 1.4
+    _radius: 0.85
+    _width: 0.65
+    _speed: 4.8
+    _recovery: 1.1
+    _impactShake: 0.1
+    _sustainShake: 0.02
+    _minimumPhase: 1
+    _color: {r: 0.75, g: 0.04, b: 0.18, a: 1}
+    _animationMotion: attack_bloodpools
+    _loopMotion: 
+    _endMotion: 
+    _releaseNormalizedTime: 0.53
+    _impactPrefab: {fileID: 0}
+    _impactPrefabLifetime: 3
+    _sound:
+      _start: {fileID: 8300000, guid: 2bac5fab39b95fd4915be37953b15929, type: 3}
+      _loop: {fileID: 8300000, guid: ffea103455755386adbc2616f580da39, type: 3}
+      _impact: {fileID: 8300000, guid: 05eda48924dd5628891bf57f8ce5f7ab, type: 3}
+      _end: {fileID: 8300000, guid: 87960f60e3cc575684a1e32b7db39311, type: 3}
+  - _kind: 16
+    _enabled: 1
+    _weight: 1
+    _cooldown: 7
+    _warning: 0.85
+    _duration: 3
+    _interval: 0.6
+    _waves: 5
+    _count: 5
+    _damage: 8
+    _damageInterval: 0.5
+    _effectScale: 1.4
+    _radius: 0.11
+    _width: 0.27
+    _speed: 5
+    _recovery: 1.1
+    _impactShake: 0.08
+    _sustainShake: 0.025
+    _minimumPhase: 1
+    _color: {r: 1, g: 0.12, b: 0.2, a: 1}
+    _animationMotion: attack_targetedvolley
+    _loopMotion: 
+    _endMotion: 
+    _releaseNormalizedTime: 0.53
+    _impactPrefab: {fileID: 0}
+    _impactPrefabLifetime: 3
+    _sound:
+      _start: {fileID: 8300000, guid: dfd0198749c65a68950bf9ea354b8dae, type: 3}
+      _loop: {fileID: 8300000, guid: 00a7597ac7d25eb59d724d8e420bc2ce, type: 3}
+      _impact: {fileID: 8300000, guid: 0b17951241915d3381bc96cf13dd6941, type: 3}
+      _end: {fileID: 8300000, guid: 5428b9e8a3fb54fca5418533bfde6701, type: 3}
+  - _kind: 17
+    _enabled: 1
+    _weight: 1
+    _cooldown: 7
+    _warning: 1.1
+    _duration: 3.4
+    _interval: 0.95
+    _waves: 3
+    _count: 3
+    _damage: 9
+    _damageInterval: 0.5
+    _effectScale: 1.4
+    _radius: 0.14
+    _width: 0.32
+    _speed: 3.3
+    _recovery: 1.1
+    _impactShake: 0.1
+    _sustainShake: 0.025
+    _minimumPhase: 2
+    _color: {r: 0.6, g: 0.25, b: 1, a: 1}
+    _animationMotion: attack_homingorbs
+    _loopMotion: 
+    _endMotion: 
+    _releaseNormalizedTime: 0.53
+    _impactPrefab: {fileID: 0}
+    _impactPrefabLifetime: 3
+    _sound:
+      _start: {fileID: 8300000, guid: 155111c26a9e5d5f9e2ff9571ab09978, type: 3}
+      _loop: {fileID: 8300000, guid: b9f426594b56566bae10779149837824, type: 3}
+      _impact: {fileID: 8300000, guid: 7e5ce68335495636b2d7920fa449cac2, type: 3}
+      _end: {fileID: 8300000, guid: 273b52ce2d6a59b18d605d4f85c5ac72, type: 3}
+  - _kind: 18
+    _enabled: 1
+    _weight: 1
+    _cooldown: 13
+    _warning: 1.1
+    _duration: 2.8
+    _interval: 0.65
+    _waves: 4
+    _count: 3
+    _damage: 8
+    _damageInterval: 0.5
+    _effectScale: 1.4
+    _radius: 0.12
+    _width: 0.3
+    _speed: 4
+    _recovery: 1.1
+    _impactShake: 0.18
+    _sustainShake: 0.03
+    _minimumPhase: 2
+    _color: {r: 0.65, g: 0.35, b: 1, a: 1}
+    _animationMotion: attack_echoturrets
+    _loopMotion: 
+    _endMotion: 
+    _releaseNormalizedTime: 0.53
+    _impactPrefab: {fileID: 0}
+    _impactPrefabLifetime: 3
+    _sound:
+      _start: {fileID: 8300000, guid: ab2195a2649c50808f3663fdabfae57a, type: 3}
+      _loop: {fileID: 8300000, guid: aff0a480a73e5609a39523149951a0fd, type: 3}
+      _impact: {fileID: 8300000, guid: 7fead68e18d450d5bb060450cae3a9bd, type: 3}
+      _end: {fileID: 8300000, guid: 7d75e51ea5725543878d705c116d4ea7, type: 3}
+  - _kind: 19
+    _enabled: 1
+    _weight: 1
+    _cooldown: 10
+    _warning: 1.2
+    _duration: 2.6
+    _interval: 1.4
+    _waves: 2
+    _count: 8
+    _damage: 8
+    _damageInterval: 0.5
+    _effectScale: 1.4
+    _radius: 0.11
+    _width: 0.28
+    _speed: 4
+    _recovery: 1.1
+    _impactShake: 0.18
+    _sustainShake: 0.025
+    _minimumPhase: 2
+    _color: {r: 0.35, g: 0.75, b: 1, a: 1}
+    _animationMotion: attack_orbitrelease
+    _loopMotion: 
+    _endMotion: 
+    _releaseNormalizedTime: 0.53
+    _impactPrefab: {fileID: 0}
+    _impactPrefabLifetime: 3
+    _sound:
+      _start: {fileID: 8300000, guid: 7c76bb2016ea58aa9011c567c34ab246, type: 3}
+      _loop: {fileID: 8300000, guid: c967b0f547d655ffb83acb06638b508a, type: 3}
+      _impact: {fileID: 8300000, guid: 771491d5c4ce51d494eed5bc13797533, type: 3}
+      _end: {fileID: 8300000, guid: 968ae77254c35674b3f4a843ad70f5bd, type: 3}
+  - _kind: 20
+    _enabled: 1
+    _weight: 1
+    _cooldown: 13
+    _warning: 1.05
+    _duration: 2.8
+    _interval: 0.85
+    _waves: 4
+    _count: 6
+    _damage: 8
+    _damageInterval: 0.5
+    _effectScale: 1.4
+    _radius: 0.12
+    _width: 0.28
+    _speed: 4.8
+    _recovery: 1.1
+    _impactShake: 0.18
+    _sustainShake: 0.025
+    _minimumPhase: 3
+    _color: {r: 1, g: 0.2, b: 0.45, a: 1}
+    _animationMotion: attack_perimeterbarrage
+    _loopMotion: 
+    _endMotion: 
+    _releaseNormalizedTime: 0.53
+    _impactPrefab: {fileID: 0}
+    _impactPrefabLifetime: 3
+    _sound:
+      _start: {fileID: 8300000, guid: da66c6c4cb8c57e4aaf4344930d0ca68, type: 3}
+      _loop: {fileID: 8300000, guid: b8a9f3ef0bf25e12a1e80c335da7a6f7, type: 3}
+      _impact: {fileID: 8300000, guid: 0826b691fef65520b17988fcbdabb2d5, type: 3}
+      _end: {fileID: 8300000, guid: e726d3c6309357bfab9fd060ebd58c4a, type: 3}
+  - _kind: 21
+    _enabled: 1
+    _weight: 1
+    _cooldown: 11
+    _warning: 1.05
+    _duration: 0.65
+    _interval: 0.6
+    _waves: 1
+    _count: 4
+    _damage: 15
+    _damageInterval: 0.5
+    _effectScale: 1.4
+    _radius: 1.5
+    _width: 1.2
+    _speed: 10
+    _recovery: 1.1
+    _impactShake: 0.25
+    _sustainShake: 0.045
+    _minimumPhase: 2
+    _color: {r: 1, g: 0.12, b: 0.2, a: 1}
+    _animationMotion: attack_dashrend
+    _loopMotion: 
+    _endMotion: 
+    _releaseNormalizedTime: 0.53
+    _impactPrefab: {fileID: 0}
+    _impactPrefabLifetime: 3
+    _sound:
+      _start: {fileID: 8300000, guid: 168f4ef4a71d5a9b86e885bb12ce1571, type: 3}
+      _loop: {fileID: 8300000, guid: 3440499db10b547abfa14784f4378e6f, type: 3}
+      _impact: {fileID: 8300000, guid: d75b7760455a511393ee42206389a012, type: 3}
+      _end: {fileID: 8300000, guid: eaaa093eae68507881f102110f9fcea4, type: 3}
+  - _kind: 22
+    _enabled: 1
+    _weight: 1
+    _cooldown: 14
+    _warning: 1.6
+    _duration: 0.7
+    _interval: 0.6
+    _waves: 1
+    _count: 4
+    _damage: 18
+    _damageInterval: 0.5
+    _effectScale: 1.4
+    _radius: 2
+    _width: 0.65
+    _speed: 7
+    _recovery: 1.4
+    _impactShake: 0.28
+    _sustainShake: 0.025
+    _minimumPhase: 3
+    _color: {r: 0.6, g: 0.2, b: 1, a: 1}
+    _animationMotion: attack_burrowambush
+    _loopMotion: 
+    _endMotion: 
+    _releaseNormalizedTime: 0.53
+    _impactPrefab: {fileID: 0}
+    _impactPrefabLifetime: 3
+    _sound:
+      _start: {fileID: 8300000, guid: 2557fa49db925e38b5b34bf945b8e779, type: 3}
+      _loop: {fileID: 8300000, guid: f05987d250c05dd1bf16b346efac8b2c, type: 3}
+      _impact: {fileID: 8300000, guid: 80650d9137d1541ea63996488de95498, type: 3}
+      _end: {fileID: 8300000, guid: f62057ea0b1850a6a465d5a3cf07b66d, type: 3}
+  - _kind: 23
+    _enabled: 1
+    _weight: 1
+    _cooldown: 22
+    _warning: 1.4
+    _duration: 1.8
+    _interval: 1.4
+    _waves: 3
+    _count: 6
+    _damage: 12
+    _damageInterval: 0.5
+    _effectScale: 1.8
+    _radius: 0.75
+    _width: 0.5
+    _speed: 4.8
+    _recovery: 1.8
+    _impactShake: 0.3
+    _sustainShake: 0.055
+    _minimumPhase: 3
+    _color: {r: 1, g: 0.13, b: 0.4, a: 1}
+    _animationMotion: attack_apocalypsesequence
+    _loopMotion: 
+    _endMotion: 
+    _releaseNormalizedTime: 0.53
+    _impactPrefab: {fileID: 0}
+    _impactPrefabLifetime: 3
+    _sound:
+      _start: {fileID: 8300000, guid: 84dfbd0197c7573cae3fabf765a4a3b7, type: 3}
+      _loop: {fileID: 8300000, guid: ced91cbb9abb58bea0c6ac1d00cbb5ec, type: 3}
+      _impact: {fileID: 8300000, guid: 5add49cda74552ada4109bbff5b7865b, type: 3}
+      _end: {fileID: 8300000, guid: ecca6da0566e5e868b3f3a77aafcd264, type: 3}
+  _secondPhaseHealth: 0.6
+  _thirdPhaseHealth: 0.25
+  _phaseWarningMultiplier: 0.92
+  _phaseDamageBonus: 0.08
+  _introducePatterns: 1
+  _soundVolume: 0.7
+  _mixerGroup: {fileID: 0}
+  _shakeMultiplier: 1
+  _maximumProjectiles: 320
+  _maximumZones: 96
+  _maximumParticles: 512
+  _effectShader: {fileID: 4800000, guid: 98feb4b2b5dc523bac9330b2ba7148ca, type: 3}
+  _phaseSound: {fileID: 8300000, guid: b30fcc35f6b9590cb024e0fecff1d736, type: 3}
+  _deathSound: {fileID: 8300000, guid: bd6559439ff95b61bbffb16c2da244d3, type: 3}
