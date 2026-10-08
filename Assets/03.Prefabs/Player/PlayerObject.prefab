@@ -114,7 +114,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 5
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 2999253056055592484, guid: db04e9d30814d6443b5ff87dc90da699, type: 3}
+  m_Sprite: {fileID: 5532368291998157131, guid: 579ae10ac2fb3e647b21eb23126350a9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -694,7 +694,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHitFlash
   _dashGlowColor: {r: 1.5, g: 2.5, b: 3, a: 1}
-  _hitGlowColor: {r: 3.438457, g: 0.30816352, b: 0.30816352, a: 1}
 --- !u!114 &8362892312594355892
 MonoBehaviour:
   m_ObjectHideFlags: 0
