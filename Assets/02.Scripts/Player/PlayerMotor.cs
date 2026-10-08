@@ -61,7 +61,19 @@ public class PlayerMotor : MonoBehaviour
         filter.useTriggers = false;
 
         Vector2 start = _body.position;
-        Vector2 destination = start + direction * _blinkDistance;
+        float distance = _blinkDistance;
+        _body.Cast(direction, filter, _blinkHits, distance);
+        foreach (RaycastHit2D hit in _blinkHits)
+        {
+            // 문과 문틀은 도착 지점이 비어 있어도 뛰어넘지 않습니다.
+            // 열린 문의 비활성 충돌체와 감지용 트리거는 Cast 대상에서 제외됩니다.
+            if (hit.collider != null && hit.collider.GetComponentInParent<DoorController>() != null)
+            {
+                distance = Mathf.Min(distance, Mathf.Max(0f, hit.distance - 0.02f));
+            }
+        }
+
+        Vector2 destination = start + direction * distance;
         if (CanLandAt(destination, filter))
         {
             // 도착 지점에 몸 전체가 들어가면 경로의 얇은 장애물을 넘습니다.
@@ -71,8 +83,6 @@ public class PlayerMotor : MonoBehaviour
         }
 
         // 도착 지점도 막혀 있으면 처음 만나는 장애물 앞에서 멈춥니다.
-        float distance = _blinkDistance;
-        _body.Cast(direction, filter, _blinkHits, distance);
         foreach (RaycastHit2D hit in _blinkHits)
         {
             distance = Mathf.Min(distance, Mathf.Max(0f, hit.distance - 0.02f));
