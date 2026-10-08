@@ -8,12 +8,16 @@ namespace _02.Scripts.Monster.Presentation
     public sealed class NormalMonsterGameFeel : MonoBehaviour
     {
         private static readonly int UvBoundsId = Shader.PropertyToID("_UvBounds");
-        [SerializeField] private NormalMonsterFeelProfile _profile;
-        [SerializeField] private SpriteRenderer _bodyRenderer;
+        [SerializeField]
+        private NormalMonsterFeelProfile _profile;
+        [SerializeField]
+        private SpriteRenderer _bodyRenderer;
         private NormalMonsterFeelEffects _effects;
+        private MonsterNeonVfx _neon;
         private SpriteRenderer _outline;
         private SpriteRenderer _chargeGlow;
         private SpriteRenderer _chargeCore;
+        private SpriteRenderer _fuseRing;
         private MaterialPropertyBlock _outlineProperties;
         private Sprite _outlinedSprite;
         private Vector2 _chargeDirection;
@@ -24,14 +28,23 @@ namespace _02.Scripts.Monster.Presentation
         private bool _rangedCharge;
         private bool _ready;
         private bool _isMelee;
+        private bool _isKamikaze;
+        private bool _fusing;
+        private float _fuseRadius;
+        private float _fuseProgress;
+        private float _nextChargeParticles;
+        private float _nextFuseTick;
+        private int _previousExplosion = -1;
         private int _previousMeleeSlash = -1;
         private int _previousRangeShot = -1;
         public bool IsConfigured => enabled && _profile != null;
         public float TrailInterval => _profile != null ? _profile.TrailInterval : 0.035f;
+
         private void Awake()
         {
             _outlineProperties = new MaterialPropertyBlock();
             _isMelee = GetComponent<MeleeMonster>() != null;
+            _isKamikaze = GetComponent<KamikazeMonster>() != null;
             if (_bodyRenderer == null)
             {
                 _bodyRenderer = GetComponentInChildren<SpriteRenderer>(true);
@@ -56,9 +69,13 @@ namespace _02.Scripts.Monster.Presentation
             }
 
             _effects = NormalMonsterFeelEffects.ForScene(gameObject.scene);
+            _neon = MonsterNeonVfx.ForScene(gameObject.scene);
             _outline = _effects.CreatePersistentRenderer(name + "_PixelRim", true);
             _chargeGlow = _effects.CreatePersistentRenderer(name + "_ChargeGlow");
             _chargeCore = _effects.CreatePersistentRenderer(name + "_ChargeCore");
+            _fuseRing = _effects.CreatePersistentRenderer(name + "_FuseWarning");
+            _fuseRing.sprite = _effects.Shape(NormalFeelShape.Ring);
+            _fuseRing.enabled = false;
             _chargeGlow.sprite = _effects.Shape(NormalFeelShape.Glow);
             _chargeCore.sprite = _effects.Shape(NormalFeelShape.Star);
             _referenceWidth = Mathf.Max(0.3f, _bodyRenderer.bounds.size.x);
@@ -95,11 +112,49 @@ namespace _02.Scripts.Monster.Presentation
             _chargeDirection = direction.normalized;
             _chargeOffset = position - transform.position;
             _chargeStartedAt = Time.time;
+            _nextChargeParticles = 0f;
+        }
+
+        public void BeginKamikazeFuse(float damageRadius)
+        {
+            if (!EnsureReady())
+                return;
+            BeginCharge(Vector2.up, transform.position, false);
+            _fusing = true;
+            _fuseProgress = 0f;
+            _fuseRadius = Mathf.Max(0.1f, damageRadius);
+            _nextFuseTick = Time.time + 0.28f;
+            Play(_profile.KamikazeChargeSounds, transform.position, _profile.AttackVolume * 0.55f);
+        }
+
+        public void UpdateKamikazeFuse(float progress)
+        {
+            if (_fusing)
+                _fuseProgress = Mathf.Clamp01(progress);
+        }
+
+        public void KamikazeExplosion(Vector3 point, float radius)
+        {
+            if (!EnsureReady())
+                return;
+            CancelAttackVisual();
+            Color color = _profile.KamikazeColor;
+            if (_neon != null)
+                _neon.Burst(point, Mathf.Max(0.2f, radius * 0.7f), color, _bodyRenderer.sortingLayerID, _bodyRenderer.sortingOrder + 3, 38, true);
+            Ring(point, color, radius * 0.25f, radius * 2.1f, 0.35f);
+            Glow(point, Color.Lerp(color, Color.white, 0.4f), radius * 0.7f, 0.1f);
+            int index = Choose(_profile.KamikazeExplosionSounds, _previousExplosion);
+            _previousExplosion = index;
+            PlayIndex(_profile.KamikazeExplosionSounds, index, point, Mathf.Min(1f, _profile.ImpactVolume * 1.1f));
+            NormalMonsterCameraShake.Request(point, _profile.CameraShake * 1.65f, 0.24f);
         }
 
         public void CancelAttackVisual()
         {
             _charging = false;
+            _fusing = false;
+            if (_fuseRing != null)
+                _fuseRing.enabled = false;
             if (_chargeGlow != null)
             {
                 _chargeGlow.enabled = false;
@@ -129,6 +184,8 @@ namespace _02.Scripts.Monster.Presentation
             trail.a = 0.32f;
             Emit(slash, transform.position, rotation - 7f, Vector2.one * width * 0.92f, Vector2.one * width, -direction * 0.4f, trail, 0.24f, 3);
             Vector3 strike = transform.position + new Vector3(direction.x, direction.y, 0f) * range * 0.73f;
+            if (_neon != null)
+                _neon.Slash(transform.position, range * 0.95f, rotation, color, _bodyRenderer.sortingLayerID, _bodyRenderer.sortingOrder + 3);
             Ring(strike, color, 0.16f, 0.65f * _profile.DecorationScale, 0.16f);
             Burst(strike, direction, color, _profile.MeleeSparks, 0.85f, false);
             Afterimages(direction, color, 3);
@@ -158,6 +215,8 @@ namespace _02.Scripts.Monster.Presentation
 
             CancelAttackVisual();
             Color color = _profile.RangeColor;
+            if (_neon != null)
+                _neon.PlasmaShot(muzzle, direction, 0.45f * _profile.DecorationScale, color, _bodyRenderer.sortingLayerID, _bodyRenderer.sortingOrder + 3);
             Glow(muzzle, color, 1.1f * _profile.DecorationScale, 0.12f);
             Emit(_effects.Shape(NormalFeelShape.Star), muzzle, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg, new Vector2(0.6f, 0.35f), new Vector2(0.9f, 0.12f), direction * 1.4f, Color.white, 0.085f, 6);
             Ring(muzzle, color, 0.16f, 0.8f * _profile.DecorationScale, 0.18f);
@@ -187,6 +246,8 @@ namespace _02.Scripts.Monster.Presentation
             }
 
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            if (_neon != null)
+                _neon.Trail(position, direction, Mathf.Max(0.18f, size.x * 1.3f), _profile.RangeColor, _bodyRenderer.sortingLayerID, _bodyRenderer.sortingOrder + 3);
             if (source != null && source.sprite != null)
             {
                 Emit(source.sprite, position, source.transform.eulerAngles.z, size * 1.25f, size * 0.35f, -direction * 0.2f, color, 0.14f, 2, source.flipX, source.flipY);
@@ -223,6 +284,12 @@ namespace _02.Scripts.Monster.Presentation
 
         private void Burst(Vector3 position, Vector2 direction, Color color, int count, float scale, bool fullCircle)
         {
+            if (_neon != null)
+            {
+                _neon.Burst(position, Mathf.Max(0.1f, scale * (fullCircle ? 0.4f : 0.24f)), color, _bodyRenderer.sortingLayerID, _bodyRenderer.sortingOrder + 3, count);
+                return;
+            }
+
             float heading = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             for (int i = 0; i < count; i++)
             {
@@ -319,11 +386,28 @@ namespace _02.Scripts.Monster.Presentation
             }
 
             Vector3 position = transform.position + _chargeOffset;
-            Color color = _rangedCharge ? _profile.RangeColor : _profile.MeleeColor;
-            float pulse = 0.5f + 0.5f * Mathf.Sin((Time.time - _chargeStartedAt) * 47f);
+            Color color = _fusing ? _profile.KamikazeColor : _rangedCharge ? _profile.RangeColor : _profile.MeleeColor;
+            float pulse = 0.5f + 0.5f * Mathf.Sin((Time.time - _chargeStartedAt) * (_fusing ? 12f + _fuseProgress * 35f : 36f));
             float width = Mathf.Clamp(_referenceWidth * 0.5f, 0.3f, 0.9f) * (0.8f + pulse * 0.4f);
             UpdateChargeRenderer(_chargeGlow, position, color, width, 2);
             UpdateChargeRenderer(_chargeCore, position, Color.Lerp(color, Color.white, 0.65f), width * 0.28f, 3);
+            if (_neon != null && Time.time >= _nextChargeParticles)
+            {
+                _nextChargeParticles = Time.time + 0.06f;
+                _neon.Charge(position, width * 0.6f, _fusing ? _fuseProgress : 0.5f, color, _bodyRenderer.sortingLayerID, _bodyRenderer.sortingOrder + 2);
+            }
+
+            if (_fusing)
+            {
+                Color warning = color;
+                warning.a = 0.28f + _fuseProgress * 0.35f + pulse * 0.12f;
+                UpdateChargeRenderer(_fuseRing, transform.position, warning, _fuseRadius * 2f / 0.95f, -1);
+                if (Time.time >= _nextFuseTick)
+                {
+                    _nextFuseTick = Time.time + Mathf.Lerp(0.38f, 0.14f, _fuseProgress);
+                    Play(_profile.KamikazeTickSounds, transform.position, _profile.AttackVolume * 0.4f);
+                }
+            }
         }
 
         private void UpdateChargeRenderer(SpriteRenderer renderer, Vector3 position, Color color, float width, int order)
@@ -356,7 +440,7 @@ namespace _02.Scripts.Monster.Presentation
             _outline.transform.position = _bodyRenderer.transform.position;
             _outline.transform.rotation = _bodyRenderer.transform.rotation;
             _outline.transform.localScale = _bodyRenderer.transform.lossyScale;
-            Color color = _isMelee ? _profile.MeleeColor : _profile.RangeColor;
+            Color color = _isKamikaze ? _profile.KamikazeColor : _isMelee ? _profile.MeleeColor : _profile.RangeColor;
             color.a = _profile.OutlineOpacity;
             _outline.color = color;
             if (_outlinedSprite == _bodyRenderer.sprite)
@@ -391,6 +475,7 @@ namespace _02.Scripts.Monster.Presentation
             DestroyOwnedRenderer(_outline);
             DestroyOwnedRenderer(_chargeGlow);
             DestroyOwnedRenderer(_chargeCore);
+            DestroyOwnedRenderer(_fuseRing);
         }
 
         private static void DestroyOwnedRenderer(SpriteRenderer renderer)

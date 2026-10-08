@@ -2,5 +2,5 @@ using UnityEngine;
 
 public interface IInteractable
 {
-    Sprite Interact(GameObject actor);
+    void Interact(GameObject actor);
 }

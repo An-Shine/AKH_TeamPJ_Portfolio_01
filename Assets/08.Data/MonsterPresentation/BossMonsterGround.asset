@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cf35f21fb04556fab8aec2ef72c8070, type: 3}
+  m_Name: BossMonsterGround
+  m_EditorClassIdentifier: 
+  _groundOffsetFactor: 0.35
+  _footSeparationFactor: 0.085
+  _stepDistanceFactor: 0.19
+  _useAnimationEvents: 0
+  _showShadow: 1
+  _shadowColor: {r: 0.01, g: 0.02, b: 0.04, a: 0.55}
+  _shadowWidthFactor: 0.69
+  _shadowHeightFactor: 0.18
+  _shadowPulse: 0.06
+  _deadShadowOpacity: 0.6
+  _showFootprints: 1
+  _footprintColor: {r: 0.08, g: 0.24, b: 0.3, a: 0.58}
+  _footprintWidthFactor: 0.12
+  _footprintLifetime: 3.5
+  _showDust: 1
+  _dustColor: {r: 0.6, g: 0.8, b: 0.9, a: 0.42}
+  _dustWidthFactor: 0.13
+  _dustLifetime: 0.32
+  _dustPuffsPerStep: 3
+  _stepSounds:
+  - {fileID: 8300000, guid: c382611fbd2fb4943f8072ca0d6a3038, type: 3}
+  - {fileID: 8300000, guid: a8f289533e3d4b93c3b94efc19082e1f, type: 3}
+  - {fileID: 8300000, guid: 3aa9a71820bf452e808bc24e7d46ba53, type: 3}
+  - {fileID: 8300000, guid: b70f001a2f2041c8f3cfed37761741de, type: 3}
+  _stepVolume: 0.3
+  _minimumPitch: 0.92
+  _maximumPitch: 1.02
+  _soundMixerGroup: {fileID: 0}
+  _shadowOrderOffset: -2
+  _footprintOrderOffset: -3
+  _dustOrderOffset: 1

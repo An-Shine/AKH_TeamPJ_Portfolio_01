@@ -1,0 +1,362 @@
+[
+  {
+    "pattern": 0,
+    "prefix": "Cleave",
+    "sources": [
+      "thrusterFire_000",
+      "engineCircular_000",
+      "impactMetal_000",
+      "lowFrequency_explosion_000"
+    ],
+    "license": "CC0 1.0",
+    "processing": "layering, pitch, fades, limiting"
+  },
+  {
+    "pattern": 1,
+    "prefix": "Rift",
+    "sources": [
+      "thrusterFire_001",
+      "engineCircular_001",
+      "impactMetal_001",
+      "lowFrequency_explosion_001"
+    ],
+    "license": "CC0 1.0",
+    "processing": "layering, pitch, fades, limiting"
+  },
+  {
+    "pattern": 2,
+    "prefix": "Rain",
+    "sources": [
+      "forceField_002",
+      "spaceEngineLow_002",
+      "explosionCrunch_002",
+      "lowFrequency_explosion_000"
+    ],
+    "license": "CC0 1.0",
+    "processing": "layering, pitch, fades, limiting"
+  },
+  {
+    "pattern": 3,
+    "prefix": "Spiral",
+    "sources": [
+      "thrusterFire_003",
+      "spaceEngineLow_003",
+      "laserLarge_003",
+      "lowFrequency_explosion_001"
+    ],
+    "license": "CC0 1.0",
+    "processing": "layering, pitch, fades, limiting"
+  },
+  {
+    "pattern": 4,
+    "prefix": "Beam",
+    "sources": [
+      "thrusterFire_004",
+      "spaceEngineLow_004",
+      "laserLarge_004",
+      "lowFrequency_explosion_000"
+    ],
+    "license": "CC0 1.0",
+    "processing": "layering, pitch, fades, limiting"
+  },
+  {
+    "pattern": 5,
+    "prefix": "Doom",
+    "sources": [
+      "forceField_000",
+      "spaceEngineLow_000",
+      "explosionCrunch_000",
+      "lowFrequency_explosion_001"
+    ],
+    "license": "CC0 1.0",
+    "processing": "layering, pitch, fades, limiting"
+  },
+  {
+    "pattern": 6,
+    "prefix": "Claw",
+    "sources": [
+      "thrusterFire_001",
+      "engineCircular_001",
+      "impactMetal_001",
+      "lowFrequency_explosion_000"
+    ],
+    "license": "CC0 1.0",
+    "processing": "layering, pitch, fades, limiting"
+  },
+  {
+    "pattern": 7,
+    "prefix": "Slam",
+    "sources": [
+      "thrusterFire_002",
+      "engineCircular_002",
+      "impactMetal_002",
+      "lowFrequency_explosion_001"
+    ],
+    "license": "CC0 1.0",
+    "processing": "layering, pitch, fades, limiting"
+  },
+  {
+    "pattern": 8,
+    "prefix": "Serpent",
+    "sources": [
+      "thrusterFire_003",
+      "engineCircular_003",
+      "impactMetal_003",
+      "lowFrequency_explosion_000"
+    ],
+    "license": "CC0 1.0",
+    "processing": "layering, pitch, fades, limiting"
+  },
+  {
+    "pattern": 9,
+    "prefix": "Thorn",
+    "sources": [
+      "thrusterFire_004",
+      "engineCircular_004",
+      "impactMetal_004",
+      "lowFrequency_explosion_001"
+    ],
+    "license": "CC0 1.0",
+    "processing": "layering, pitch, fades, limiting"
+  },
+  {
+    "pattern": 10,
+    "prefix": "Spikes",
+    "sources": [
+      "forceField_000",
+      "spaceEngineLow_000",
+      "explosionCrunch_000",
+      "lowFrequency_explosion_000"
+    ],
+    "license": "CC0 1.0",
+    "processing": "layering, pitch, fades, limiting"
+  },
+  {
+    "pattern": 11,
+    "prefix": "Nova",
+    "sources": [
+      "forceField_001",
+      "spaceEngineLow_001",
+      "explosionCrunch_001",
+      "lowFrequency_explosion_001"
+    ],
+    "license": "CC0 1.0",
+    "processing": "layering, pitch, fades, limiting"
+  },
+  {
+    "pattern": 12,
+    "prefix": "Twin",
+    "sources": [
+      "forceField_002",
+      "spaceEngineLow_002",
+      "explosionCrunch_002",
+      "lowFrequency_explosion_000"
+    ],
+    "license": "CC0 1.0",
+    "processing": "layering, pitch, fades, limiting"
+  },
+  {
+    "pattern": 13,
+    "prefix": "Chase",
+    "sources": [
+      "forceField_003",
+      "spaceEngineLow_003",
+      "explosionCrunch_003",
+      "lowFrequency_explosion_001"
+    ],
+    "license": "CC0 1.0",
+    "processing": "layering, pitch, fades, limiting"
+  },
+  {
+    "pattern": 14,
+    "prefix": "Grid",
+    "sources": [
+      "forceField_004",
+      "spaceEngineLow_004",
+      "explosionCrunch_004",
+      "lowFrequency_explosion_000"
+    ],
+    "license": "CC0 1.0",
+    "processing": "layering, pitch, fades, limiting"
+  },
+  {
+    "pattern": 15,
+    "prefix": "Pools",
+    "sources": [
+      "forceField_000",
+      "spaceEngineLow_000",
+      "explosionCrunch_000",
+      "lowFrequency_explosion_001"
+    ],
+    "license": "CC0 1.0",
+    "processing": "layering, pitch, fades, limiting"
+  },
+  {
+    "pattern": 16,
+    "prefix": "Volley",
+    "sources": [
+      "thrusterFire_001",
+      "spaceEngineLow_001",
+      "laserLarge_001",
+      "lowFrequency_explosion_000"
+    ],
+    "license": "CC0 1.0",
+    "processing": "layering, pitch, fades, limiting"
+  },
+  {
+    "pattern": 17,
+    "prefix": "Homing",
+    "sources": [
+      "thrusterFire_002",
+      "spaceEngineLow_002",
+      "laserLarge_002",
+      "lowFrequency_explosion_001"
+    ],
+    "license": "CC0 1.0",
+    "processing": "layering, pitch, fades, limiting"
+  },
+  {
+    "pattern": 18,
+    "prefix": "Echo",
+    "sources": [
+      "thrusterFire_003",
+      "spaceEngineLow_003",
+      "laserLarge_003",
+      "lowFrequency_explosion_000"
+    ],
+    "license": "CC0 1.0",
+    "processing": "layering, pitch, fades, limiting"
+  },
+  {
+    "pattern": 19,
+    "prefix": "Orbit",
+    "sources": [
+      "thrusterFire_004",
+      "spaceEngineLow_004",
+      "laserLarge_004",
+      "lowFrequency_explosion_001"
+    ],
+    "license": "CC0 1.0",
+    "processing": "layering, pitch, fades, limiting"
+  },
+  {
+    "pattern": 20,
+    "prefix": "Edge",
+    "sources": [
+      "thrusterFire_000",
+      "spaceEngineLow_000",
+      "laserLarge_000",
+      "lowFrequency_explosion_000"
+    ],
+    "license": "CC0 1.0",
+    "processing": "layering, pitch, fades, limiting"
+  },
+  {
+    "pattern": 21,
+    "prefix": "Dash",
+    "sources": [
+      "thrusterFire_001",
+      "engineCircular_001",
+      "impactMetal_001",
+      "lowFrequency_explosion_001"
+    ],
+    "license": "CC0 1.0",
+    "processing": "layering, pitch, fades, limiting"
+  },
+  {
+    "pattern": 22,
+    "prefix": "Burrow",
+    "sources": [
+      "thrusterFire_002",
+      "engineCircular_002",
+      "impactMetal_002",
+      "lowFrequency_explosion_000"
+    ],
+    "license": "CC0 1.0",
+    "processing": "layering, pitch, fades, limiting"
+  },
+  {
+    "pattern": 23,
+    "prefix": "Finale",
+    "sources": [
+      "forceField_003",
+      "spaceEngineLow_003",
+      "explosionCrunch_003",
+      "lowFrequency_explosion_001"
+    ],
+    "license": "CC0 1.0",
+    "processing": "layering, pitch, fades, limiting"
+  },
+  {
+    "pattern": 24,
+    "prefix": "Lances",
+    "sources": [
+      "thrusterFire_004",
+      "engineCircular_004",
+      "impactMetal_004",
+      "lowFrequency_explosion_000"
+    ],
+    "license": "CC0 1.0",
+    "processing": "layering, pitch, fades, limiting"
+  },
+  {
+    "pattern": 25,
+    "prefix": "Storm",
+    "sources": [
+      "forceField_000",
+      "spaceEngineLow_000",
+      "explosionCrunch_000",
+      "lowFrequency_explosion_001"
+    ],
+    "license": "CC0 1.0",
+    "processing": "layering, pitch, fades, limiting"
+  },
+  {
+    "pattern": 26,
+    "prefix": "Scythes",
+    "sources": [
+      "thrusterFire_001",
+      "engineCircular_001",
+      "impactMetal_001",
+      "lowFrequency_explosion_000"
+    ],
+    "license": "CC0 1.0",
+    "processing": "layering, pitch, fades, limiting"
+  },
+  {
+    "pattern": 27,
+    "prefix": "Gravity",
+    "sources": [
+      "forceField_002",
+      "spaceEngineLow_002",
+      "explosionCrunch_002",
+      "lowFrequency_explosion_001"
+    ],
+    "license": "CC0 1.0",
+    "processing": "layering, pitch, fades, limiting"
+  },
+  {
+    "pattern": 28,
+    "prefix": "Maze",
+    "sources": [
+      "thrusterFire_003",
+      "engineCircular_003",
+      "impactMetal_003",
+      "lowFrequency_explosion_000"
+    ],
+    "license": "CC0 1.0",
+    "processing": "layering, pitch, fades, limiting"
+  },
+  {
+    "pattern": 29,
+    "prefix": "Execution",
+    "sources": [
+      "forceField_004",
+      "spaceEngineLow_004",
+      "explosionCrunch_004",
+      "lowFrequency_explosion_001"
+    ],
+    "license": "CC0 1.0",
+    "processing": "layering, pitch, fades, limiting"
+  }
+]

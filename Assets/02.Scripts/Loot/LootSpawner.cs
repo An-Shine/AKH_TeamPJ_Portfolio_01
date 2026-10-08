@@ -146,6 +146,10 @@ public class LootSpawner : MonoBehaviour
             {
                 break;
             }
+            else
+            {
+                Debug.Log(hit.gameObject.name);
+            }
         }
 
         return targetPosition;

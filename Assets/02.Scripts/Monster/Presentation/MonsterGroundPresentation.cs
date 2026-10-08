@@ -11,11 +11,15 @@ namespace _02.Scripts.Monster.Presentation
         private static readonly int AttackingId = Animator.StringToHash("IsAttacking");
         private static readonly int HitId = Animator.StringToHash("IsHit");
         private static readonly int DeadId = Animator.StringToHash("IsDead");
-        [SerializeField] private MonsterGroundProfile _profile;
-        [SerializeField] private SpriteRenderer _bodyRenderer;
-        [SerializeField] private Animator _animator;
+        [SerializeField]
+        private MonsterGroundProfile _profile;
+        [SerializeField]
+        private SpriteRenderer _bodyRenderer;
+        [SerializeField]
+        private Animator _animator;
         [Tooltip("선택 항목입니다. 비워 두면 프로필의 Ground Offset Factor로 발 위치를 계산합니다.")]
-        [SerializeField] private Transform _feetAnchor;
+        [SerializeField]
+        private Transform _feetAnchor;
         private NormalMonster _monster;
         private global::BossMonster _boss;
         private MonsterGroundEffects _effects;
@@ -278,6 +282,10 @@ namespace _02.Scripts.Monster.Presentation
                 return false;
             }
 
+            // Boss dashes move during a cast; actual distance still controls footsteps.
+            // Burrowing and teleport placement are filtered by visibility/distance above.
+            if (_boss != null)
+                return _boss.CurrentHealth > 0f;
             if (_animator == null || !_animator.isActiveAndEnabled)
             {
                 return true;

@@ -13,10 +13,9 @@ namespace _02.Scripts.Monster.BossMonster
         private readonly List<int> _triangles = new List<int>(450);
         private readonly List<Color> _colors = new List<Color>(300);
         private readonly List<Vector2> _uvs = new List<Vector2>(300);
+        private readonly List<float> _arenaAngles = new List<float>(80);
         private readonly float _z;
-
-        public BossShapeVisual(string name, Transform parent, Material material,
-            int layer, int sortingLayer, int order, float z)
+        public BossShapeVisual(string name, Transform parent, Material material, int layer, int sortingLayer, int order, float z)
         {
             _z = z;
             _root = new GameObject(name, typeof(MeshFilter), typeof(MeshRenderer));
@@ -34,8 +33,7 @@ namespace _02.Scripts.Monster.BossMonster
             renderer.sortingOrder = order;
         }
 
-        public void SetArc(Vector2 center, float innerRadius, float outerRadius,
-            float startDegrees, float spanDegrees, Color color)
+        public void SetArc(Vector2 center, float innerRadius, float outerRadius, float startDegrees, float spanDegrees, Color color)
         {
             Begin(center);
             int count = Mathf.Max(2, Mathf.CeilToInt(Segments * Mathf.Abs(spanDegrees) / 360f));
@@ -52,6 +50,7 @@ namespace _02.Scripts.Monster.BossMonster
                     AddTriangle(index - 1, index, index + 1);
                 }
             }
+
             Finish();
         }
 
@@ -66,6 +65,36 @@ namespace _02.Scripts.Monster.BossMonster
             AddVertex(forward - side, color);
             AddTriangle(0, 1, 2);
             AddTriangle(0, 2, 3);
+            Finish();
+        }
+
+        public void SetArenaOutsideCircle(Rect arena, Vector2 center, float safeRadius, Color color)
+        {
+            Begin(center);
+            _arenaAngles.Clear();
+            for (int i = 0; i < Segments; i++)
+                _arenaAngles.Add(i * 360f / Segments);
+            _arenaAngles.Add(Mathf.Repeat(BossBattleGeometry.Angle(new Vector2(arena.xMin, arena.yMin) - center), 360f));
+            _arenaAngles.Add(Mathf.Repeat(BossBattleGeometry.Angle(new Vector2(arena.xMax, arena.yMin) - center), 360f));
+            _arenaAngles.Add(Mathf.Repeat(BossBattleGeometry.Angle(new Vector2(arena.xMax, arena.yMax) - center), 360f));
+            _arenaAngles.Add(Mathf.Repeat(BossBattleGeometry.Angle(new Vector2(arena.xMin, arena.yMax) - center), 360f));
+            _arenaAngles.Sort();
+            for (int i = 0; i <= _arenaAngles.Count; i++)
+            {
+                Vector2 direction = BossBattleGeometry.Direction(_arenaAngles[i % _arenaAngles.Count]);
+                float x = Mathf.Abs(direction.x) < 0.00001f ? float.PositiveInfinity : ((direction.x > 0f ? arena.xMax : arena.xMin) - center.x) / direction.x;
+                float y = Mathf.Abs(direction.y) < 0.00001f ? float.PositiveInfinity : ((direction.y > 0f ? arena.yMax : arena.yMin) - center.y) / direction.y;
+                float wall = Mathf.Max(0f, Mathf.Min(x, y));
+                AddVertex(direction * Mathf.Min(safeRadius, wall), color);
+                AddVertex(direction * wall, color);
+                if (i > 0)
+                {
+                    int index = i * 2;
+                    AddTriangle(index - 2, index, index - 1);
+                    AddTriangle(index - 1, index, index + 1);
+                }
+            }
+
             Finish();
         }
 

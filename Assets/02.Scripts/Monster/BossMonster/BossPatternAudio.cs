@@ -18,7 +18,6 @@ namespace _02.Scripts.Monster.BossMonster
         private bool _paused;
         private bool _pausedLoop;
         private bool _retiring;
-
         public static BossPatternAudio Create(GameObject owner, BossEncounterProfile profile)
         {
             GameObject root = new GameObject(owner.name + "_BossAudio");
@@ -32,6 +31,7 @@ namespace _02.Scripts.Monster.BossMonster
             {
                 audio._voices[i] = audio.CreateSource();
             }
+
             return audio;
         }
 
@@ -59,8 +59,17 @@ namespace _02.Scripts.Monster.BossMonster
             {
                 return;
             }
+
             _nextImpact = Time.time + 0.1f;
             Play(_sound.Impact, volume);
+        }
+
+        public void Charge(float progress, bool ultimate)
+        {
+            if (_loop == null || _sound == null)
+                return;
+            _loop.pitch = Mathf.Lerp(ultimate ? 0.75f : 0.92f, ultimate ? 1.22f : 1.05f, Mathf.Clamp01(progress));
+            _targetLoopVolume = _profile.SoundVolume * Mathf.Lerp(0.32f, ultimate ? 0.68f : 0.52f, progress);
         }
 
         public void End(bool playTail)
@@ -70,6 +79,7 @@ namespace _02.Scripts.Monster.BossMonster
             {
                 Play(_sound.End, 0.85f);
             }
+
             _sound = null;
         }
 
@@ -79,11 +89,13 @@ namespace _02.Scripts.Monster.BossMonster
             {
                 return;
             }
+
             AudioSource source = _voices[_nextVoice];
             _pausedVoices[_nextVoice] = false;
             _nextVoice = (_nextVoice + 1) % VoiceCount;
             source.Stop();
             source.clip = clip;
+            source.pitch = 1f;
             source.volume = Mathf.Clamp01(_profile.SoundVolume * volume);
             source.Play();
         }
@@ -111,25 +123,30 @@ namespace _02.Scripts.Monster.BossMonster
             {
                 SetPaused(shouldPause);
             }
+
             if (_paused)
             {
                 return;
             }
+
             _loop.volume = Mathf.MoveTowards(_loop.volume, _targetLoopVolume, Time.deltaTime * 4f);
             if (_loop.volume <= 0f && _targetLoopVolume <= 0f && _loop.isPlaying)
             {
                 _loop.Stop();
             }
+
             if (!_retiring)
             {
                 return;
             }
+
             _retireAge += Time.deltaTime;
             bool busy = _loop.isPlaying;
             for (int i = 0; i < VoiceCount; i++)
             {
                 busy |= _voices[i].isPlaying;
             }
+
             if (!busy || _retireAge > 12f)
             {
                 Destroy(gameObject);
@@ -148,12 +165,15 @@ namespace _02.Scripts.Monster.BossMonster
                     _pausedVoices[i] = _voices[i].isPlaying;
                     _voices[i].Pause();
                 }
+
                 return;
             }
+
             if (_pausedLoop)
             {
                 _loop.UnPause();
             }
+
             for (int i = 0; i < VoiceCount; i++)
             {
                 if (_pausedVoices[i])
