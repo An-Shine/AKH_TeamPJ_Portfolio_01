@@ -114,7 +114,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 5
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2100020025919925453, guid: db04e9d30814d6443b5ff87dc90da699, type: 3}
+  m_Sprite: {fileID: -575199051887659565, guid: db04e9d30814d6443b5ff87dc90da699, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -973,10 +973,6 @@ PrefabInstance:
     - target: {fileID: 1519338622925806096, guid: d3939043495d01642ba3a98f6f0e7023, type: 3}
       propertyPath: m_Name
       value: InteractDisplayObj
-      objectReference: {fileID: 0}
-    - target: {fileID: 1519338622925806096, guid: d3939043495d01642ba3a98f6f0e7023, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1914156760188053116, guid: d3939043495d01642ba3a98f6f0e7023, type: 3}
       propertyPath: m_LocalPosition.x
