@@ -33,5 +33,6 @@ public enum Motion
     IdleAttack,
     RunAttack,
     Reload,
-    Interact
+    RunReload,
+    Interact,
 }
