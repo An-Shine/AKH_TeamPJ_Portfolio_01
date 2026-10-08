@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 9157315967507473545}
   - component: {fileID: 2658241678033018059}
-  - component: {fileID: 3970421539826843868}
   - component: {fileID: 751336301646340192}
+  - component: {fileID: 304079460700880085}
   m_Layer: 0
   m_Name: NanorobotCapsule
   m_TagString: Interactable
@@ -93,28 +93,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!95 &3970421539826843868
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8165537159971821105}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4a0e9004e43e6594283a53ea28d595e4, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &751336301646340192
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -27,4 +27,5 @@ public enum SFXType
     ExplosionEffectBig,
     ExplosionEffectSmall,
     FollowerAttack,
+    PlayerWalk,
 }

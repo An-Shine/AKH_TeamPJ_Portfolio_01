@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3007728186380858582}
   - component: {fileID: 5459554775700449906}
-  - component: {fileID: 4095898887804654110}
   - component: {fileID: 670094435488806455}
+  - component: {fileID: 2721194584266576445}
   m_Layer: 0
   m_Name: VitalCore
   m_TagString: Interactable
@@ -93,28 +93,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!95 &4095898887804654110
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8828293428258161850}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0120e7cb0ee96f043b2daf133fec5d8a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &670094435488806455
 MonoBehaviour:
   m_ObjectHideFlags: 0

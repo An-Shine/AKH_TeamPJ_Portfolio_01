@@ -39,6 +39,7 @@ public class PlayerWeapon : MonoBehaviour
 
         if (isDashing || Time.timeScale <= 0f)
         {
+            TickCharge(false);
             CancelAttackVisual();
             return;
         }

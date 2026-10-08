@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2799686340737561964}
   - component: {fileID: 1853164262049143104}
-  - component: {fileID: 1734759159775955896}
   - component: {fileID: 7369551286898498312}
+  - component: {fileID: 8744410527234372229}
   m_Layer: 0
   m_Name: OverloadModule
   m_TagString: Interactable
@@ -93,28 +93,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!95 &1734759159775955896
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3319475802263443804}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: bb4c3be2ee8641d41b1a5a41729d2196, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &7369551286898498312
 MonoBehaviour:
   m_ObjectHideFlags: 0

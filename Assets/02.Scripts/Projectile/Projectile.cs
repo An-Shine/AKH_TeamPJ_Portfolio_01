@@ -53,6 +53,10 @@ public abstract class Projectile : MonoBehaviour
     {
         GiveDamage(other);
         DecreaseDurability(other);
+        if (other.CompareTag("Wall") || other.CompareTag("Obstacle"))
+        {
+            OnDestroySelf();
+        }
     }
 
     protected virtual void Rotation()
