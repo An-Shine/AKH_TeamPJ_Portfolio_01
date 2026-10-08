@@ -106,5 +106,6 @@ public class Item : MonoBehaviour, IInteractable
     public Sprite Interact(GameObject actor)
     {
         ItemManager.Instance.GainItem(this);
+        return gameObject.GetComponent<SpriteRenderer>().sprite;
     }
 }
