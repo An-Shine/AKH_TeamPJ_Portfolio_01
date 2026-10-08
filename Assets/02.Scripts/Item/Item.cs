@@ -33,8 +33,9 @@ public class Item : MonoBehaviour, IInteractable
         }
     }
 
-    public void Interact(GameObject actor)
+    public Sprite Interact(GameObject actor)
     {
         ItemManager.Instance.GainItem(this);
+        return gameObject.GetComponent<SpriteRenderer>().sprite;
     }
 }
