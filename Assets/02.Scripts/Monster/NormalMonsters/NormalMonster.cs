@@ -128,6 +128,7 @@ public class NormalMonster : MonoBehaviour
     private MonsterSpawner _ownerSpawner;
     private float RoomClearance => Mathf.Max(0.01f, _collisionCheckRadius);
     protected bool IsContactKnockbackActive => _normalContactKnockbackActive || _normalKnockbackMoveFrame == Time.frameCount;
+    protected bool RequiresRoomEntry => _homeRoom != null && _homeRoom.RequiresPlayerEntry;
 
     #region Unity 생명주기
 
