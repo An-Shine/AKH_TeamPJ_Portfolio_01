@@ -468,8 +468,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   _animation: {fileID: 3603634642599122488}
-  _interactionRadius: 1.5
-  _interactionDuration: 0.5
   _weapon: {fileID: 0}
   InteractDisplayObject: {fileID: 9081532808713828684}
 --- !u!114 &1396133464694114942
@@ -499,6 +497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b931c8f1ddf14cca8a23efa13488f8c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStateMachine
+  DashCooldown: 1
 --- !u!120 &8910268917954700399
 LineRenderer:
   serializedVersion: 3
@@ -695,6 +694,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHitFlash
   _dashGlowColor: {r: 1.5, g: 2.5, b: 3, a: 1}
+  _hitGlowColor: {r: 3.438457, g: 0.30816352, b: 0.30816352, a: 1}
 --- !u!114 &8362892312594355892
 MonoBehaviour:
   m_ObjectHideFlags: 0

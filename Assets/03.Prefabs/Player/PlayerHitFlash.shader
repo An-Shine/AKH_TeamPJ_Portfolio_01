@@ -81,7 +81,7 @@ Shader "Player/Sprite Lit Hit Flash"
             {
                 half4 result = CommonLitFragment(input, input.color);
                 result.rgb = lerp(result.rgb, _DashGlowColor.rgb, saturate(_DashGlowAmount));
-                result.rgb = lerp(result.rgb, half3(1, 1, 1), saturate(_FlashAmount));
+                result.rgb = lerp(result.rgb, half3(1, 0, 0), saturate(_FlashAmount));
                 return result;
             }
             ENDHLSL
@@ -195,7 +195,7 @@ Shader "Player/Sprite Lit Hit Flash"
             {
                 half4 result = CommonUnlitFragment(input, input.color);
                 result.rgb = lerp(result.rgb, _DashGlowColor.rgb, saturate(_DashGlowAmount));
-                result.rgb = lerp(result.rgb, half3(1, 1, 1), saturate(_FlashAmount));
+                result.rgb = lerp(result.rgb, half3(1, 0, 0), saturate(_FlashAmount));
                 return result;
             }
             ENDHLSL
