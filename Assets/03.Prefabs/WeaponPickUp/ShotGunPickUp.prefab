@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6408359596672059305}
   - component: {fileID: 5865103704654035633}
   - component: {fileID: 503436305194543135}
+  - component: {fileID: 3211933389220464103}
   m_Layer: 0
   m_Name: ShotGunPickUp
   m_TagString: Interactable
@@ -49,6 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponPickup
   _weaponId: 3
+  _tooltipOffset: {x: 0, y: 1, z: 0}
 --- !u!212 &5721502373653025186
 SpriteRenderer:
   serializedVersion: 2
@@ -203,3 +205,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &3211933389220464103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 462388846166690416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d2931a7e1e44e418b727544e731ab14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OverlapSphere
+  _radius: 1.2
+  _targetMask:
+    serializedVersion: 2
+    m_Bits: 8
+  _findInterval: 0.1
