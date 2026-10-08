@@ -40,7 +40,8 @@ public class PlayerMotor : MonoBehaviour
         float moveSpeed = _moveSpeed;
         if (PlayerManager.Instance != null && PlayerManager.Instance.PlayerStatusData != null)
         {
-            moveSpeed = PlayerManager.Instance.PlayerStatusData.MoveSpeed;
+            PlayerStatus status = PlayerManager.Instance.PlayerStatusData;
+            moveSpeed = Input.GetMouseButton(0) ? status.ShootingMoveSpeed : status.MoveSpeed;
         }
         else if (ItemManager.Instance != null && ItemManager.Instance.PlayerStat != null)
         {

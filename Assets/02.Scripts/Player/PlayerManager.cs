@@ -80,7 +80,7 @@ public class PlayerManager : MonoBehaviour
         SavePlayerStatus saved = DataManager.Instance.PlayerStatusDatas;
         PlayerStatusData = new PlayerStatus(saved.MaxHP, saved.MoveSpeed, saved.DashDistance,
             saved.DashDuration, saved.DashInvulnerableDuration, saved.DashCooldown,
-            saved.HitInvulnerableDuration, 0);
+            saved.HitInvulnerableDuration, 0, saved.ShootingMoveSpeed);
     }
 
     private void RefreshFromManagers()

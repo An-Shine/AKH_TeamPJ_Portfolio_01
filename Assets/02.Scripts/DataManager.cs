@@ -163,7 +163,8 @@ public class DataManager : MonoBehaviour
             float.Parse(row[6]),
             int.Parse(row[7]),
             int.Parse(row[8]),
-            int.Parse(row[9])
+            int.Parse(row[9]),
+            float.Parse(row[10])
         );
     }
 }
