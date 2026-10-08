@@ -9374,6 +9374,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AudioManger
   _bgmSource: {fileID: 408124216}
   _loopSfxSource: {fileID: 408124219}
+  _footstepSource: {fileID: 0}
   _sfxSources:
   - {fileID: 408124215}
   - {fileID: 408124214}
