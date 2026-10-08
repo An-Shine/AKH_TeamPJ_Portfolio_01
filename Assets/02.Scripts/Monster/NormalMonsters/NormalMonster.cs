@@ -1,7 +1,7 @@
 using _02.Scripts.Monster.NormalMonsters;
-using _02.Scripts.Monster.Presentation;
 using System.Collections;
 using System.Collections.Generic;
+using _02.Scripts.Monster.Presentation;
 using UnityEngine;
 
 public class NormalMonster : MonoBehaviour
@@ -25,15 +25,13 @@ public class NormalMonster : MonoBehaviour
     [SerializeField] protected int _contactDamage = 10;
 
     [Header("소속 방")]
-    [Tooltip("스포너가 생성한 몬스터는 자동으로 연결됩니다. 직접 배치한 몬스터는 방을 지정하세요.")]
     [SerializeField] private MonsterRoomBounds _homeRoom;
 
     [Header("플레이어 감지")]
     [Tooltip("Room: 같은 방에 있을 때 추적. Distance: 거리로 감지. Room And Distance: 같은 방에서 거리로 감지. Home Room이 없으면 거리 감지를 사용합니다.")]
-    [SerializeField] private PlayerDetectionMode _detectionMode = PlayerDetectionMode.Room;
-    [Tooltip("거리 감지 모드에서 추적을 시작하는 거리입니다. 월드 단위입니다.")]
+    [SerializeField]
+    private PlayerDetectionMode _detectionMode = PlayerDetectionMode.Room;
     [SerializeField, Min(0.1f)] private float _detectionRange = 5f;
-    [Tooltip("거리 감지 모드에서 추적을 멈추는 거리입니다. Detection Range 이상으로 적용됩니다.")]
     [SerializeField, Min(0.1f)] private float _loseTargetRange = 7f;
 
     [Header("플레이어 접촉")]
@@ -47,22 +45,16 @@ public class NormalMonster : MonoBehaviour
 
     [Header("몬스터 몸통 겹침 방지")]
     [SerializeField] private bool _preventMonsterOverlap = true;
-    [Tooltip("같은 크기의 몬스터 두 마리가 유지할 최소 중심 간격입니다. 월드 단위입니다.")]
     [SerializeField, Min(0.1f)] private float _minimumMonsterDistance = 1.1f;
-    [Tooltip("PPU나 Transform Scale로 커진 몬스터의 실제 스프라이트 크기를 간격에 반영합니다.")]
     [SerializeField] private bool _useSpriteSizeForSpacing = true;
     [SerializeField, Range(0.1f, 1f)] private float _spriteSpacingFactor = 0.8f;
-    [Tooltip("이미 겹쳐서 생성된 몬스터가 서로 떨어지는 최대 속도입니다.")]
     [SerializeField, Min(0f)] private float _overlapSeparationSpeed = 2.5f;
 
     [Header("이동 충돌")]
     [SerializeField] private float _collisionCheckRadius = 0.25f;
     [SerializeField] private LayerMask _obstacleLayer;
-    [Tooltip("기존 벽의 Layer를 변경하지 않고 모든 일반 Collider 2D를 장애물로 검사합니다.")]
     [SerializeField] private bool _detectSolidCollidersAutomatically = true;
-    [Tooltip("충돌용이 아닌 바닥 등의 Layer를 자동 감지에서 제외합니다.")]
     [SerializeField] private LayerMask _ignoredObstacleLayers;
-    [Tooltip("Obstacle Layer에 지정한 Trigger도 장애물로 검사합니다. 방 전체 감지 Trigger는 지정하지 않습니다.")]
     [SerializeField] private bool _blockObstacleTriggers;
 
     [Header("장애물 우회")]
@@ -127,9 +119,11 @@ public class NormalMonster : MonoBehaviour
 
     public bool IsDead => _normalIsDead;
     public MonsterRoomBounds HomeRoom => _homeRoom;
-    protected bool RequiresRoomEntry => _homeRoom != null && _homeRoom.RequiresPlayerEntry;
+    private MonsterSpawner _ownerSpawner;
     private float RoomClearance => Mathf.Max(0.01f, _collisionCheckRadius);
-    protected bool IsContactKnockbackActive => _normalContactKnockbackActive || _normalKnockbackMoveFrame == Time.frameCount;
+    protected bool IsContactKnockbackActive =>
+        _normalContactKnockbackActive || _normalKnockbackMoveFrame == Time.frameCount;
+    protected bool RequiresRoomEntry => _homeRoom != null && _homeRoom.RequiresPlayerEntry;
 
     #region Unity 생명주기
 
@@ -302,7 +296,8 @@ public class NormalMonster : MonoBehaviour
 
         bool hasRoom = _homeRoom != null;
         bool requiresRoom = _detectionMode != PlayerDetectionMode.Distance;
-        if (requiresRoom && hasRoom && (!_homeRoom.isActiveAndEnabled || !_homeRoom.ContainsRoomPosition(_player.position)))
+        if (requiresRoom && hasRoom &&
+            (!_homeRoom.isActiveAndEnabled || !_homeRoom.ContainsRoomPosition(_player.position)))
         {
             _normalHasTrackingTarget = false;
             return false;
@@ -336,6 +331,11 @@ public class NormalMonster : MonoBehaviour
         _normalHasTrackingTarget = false;
     }
 
+    public void SetOwnerSpawner(MonsterSpawner spawner)
+    {
+        _ownerSpawner = spawner;
+    }
+
     #endregion
 
     #region 플레이어 접촉
@@ -362,7 +362,8 @@ public class NormalMonster : MonoBehaviour
 
     private bool CanProcessPlayerContact()
     {
-        return !_normalIsDead && (!RequiresRoomEntry || _homeRoom.TryGetDetectedPlayer(out _)) && Time.timeScale > 0f && Time.time >= _normalNextContactTime;
+        return !_normalIsDead && (!RequiresRoomEntry || _homeRoom.TryGetDetectedPlayer(out _)) && Time.timeScale > 0f &&
+               Time.time >= _normalNextContactTime;
     }
 
     private void CacheContactPlayer(Transform player)
@@ -443,7 +444,10 @@ public class NormalMonster : MonoBehaviour
 
     private static bool AreContactBoundsSeparated(Bounds bodyBounds, Bounds playerBounds)
     {
-        return Mathf.Abs(bodyBounds.center.x - playerBounds.center.x) > bodyBounds.extents.x + playerBounds.extents.x + NormalContactTolerance || Mathf.Abs(bodyBounds.center.y - playerBounds.center.y) > bodyBounds.extents.y + playerBounds.extents.y + NormalContactTolerance;
+        return Mathf.Abs(bodyBounds.center.x - playerBounds.center.x) >
+               bodyBounds.extents.x + playerBounds.extents.x + NormalContactTolerance ||
+               Mathf.Abs(bodyBounds.center.y - playerBounds.center.y) >
+               bodyBounds.extents.y + playerBounds.extents.y + NormalContactTolerance;
     }
 
     private void HandlePlayerContact(Transform player, ColliderDistance2D contact)
@@ -454,7 +458,8 @@ public class NormalMonster : MonoBehaviour
         BeginContactKnockback(player);
         Vector2 hitDirection = (Vector2)player.position - (Vector2)_normalControlledPosition;
         Vector3 hitPosition = new Vector3(contact.pointB.x, contact.pointB.y, _normalControlledPosition.z);
-        MonsterCombat.TryTakePlayerDamage(player, _contactDamage, hitPosition, hitDirection.normalized, new Color(1f, 0.5f, 0.2f, 1f));
+        MonsterCombat.TryTakePlayerDamage(player, _contactDamage, hitPosition, hitDirection.normalized,
+            new Color(1f, 0.5f, 0.2f, 1f));
     }
 
     private static bool IsActiveContactCollider(Collider2D target)
@@ -502,7 +507,8 @@ public class NormalMonster : MonoBehaviour
         float progress = Mathf.Clamp01((Time.time - _normalKnockbackStartTime) / duration);
         float easedProgress = 1f - (1f - progress) * (1f - progress);
         float distance = Mathf.Clamp(_contactKnockbackDistance, 0f, 0.5f);
-        Vector2 desiredPosition = _normalKnockbackStartPosition + _normalKnockbackDirection * (distance * easedProgress);
+        Vector2 desiredPosition =
+            _normalKnockbackStartPosition + _normalKnockbackDirection * (distance * easedProgress);
         _normalKnockbackMoveFrame = Time.frameCount;
         if (!TryMoveControlled(desiredPosition - (Vector2)_normalControlledPosition) || progress >= 1f)
         {
@@ -550,7 +556,9 @@ public class NormalMonster : MonoBehaviour
 
     private bool IsSpacingTarget(NormalMonster other)
     {
-        return other != null && other != this && other.isActiveAndEnabled && !other._normalIsDead && other._preventMonsterOverlap && other.gameObject.scene == gameObject.scene && (_homeRoom == null || other._homeRoom == null || _homeRoom == other._homeRoom);
+        return other != null && other != this && other.isActiveAndEnabled && !other._normalIsDead &&
+               other._preventMonsterOverlap && other.gameObject.scene == gameObject.scene &&
+               (_homeRoom == null || other._homeRoom == null || _homeRoom == other._homeRoom);
     }
 
     private static Vector2 GetCoincidentSeparationDirection(NormalMonster first, NormalMonster second)
@@ -588,7 +596,8 @@ public class NormalMonster : MonoBehaviour
                 continue;
             }
 
-            Vector2 direction = distance > 0.001f ? difference / distance : GetCoincidentSeparationDirection(this, other);
+            Vector2 direction =
+                distance > 0.001f ? difference / distance : GetCoincidentSeparationDirection(this, other);
             float strength = 1f - Mathf.Clamp01(distance / radius);
             separationDirection += direction * strength;
         }
@@ -609,7 +618,8 @@ public class NormalMonster : MonoBehaviour
 
     private void ResolveMonsterOverlap()
     {
-        if (_normalIsDead || !_preventMonsterOverlap || IsContactKnockbackActive || Time.deltaTime <= 0f || _overlapSeparationSpeed <= 0f)
+        if (_normalIsDead || !_preventMonsterOverlap || IsContactKnockbackActive || Time.deltaTime <= 0f ||
+            _overlapSeparationSpeed <= 0f)
         {
             return;
         }
@@ -633,7 +643,8 @@ public class NormalMonster : MonoBehaviour
                 continue;
             }
 
-            Vector2 direction = distance > 0.001f ? difference / distance : GetCoincidentSeparationDirection(this, other);
+            Vector2 direction =
+                distance > 0.001f ? difference / distance : GetCoincidentSeparationDirection(this, other);
             correction += direction * (overlap * 0.5f);
         }
 
@@ -667,12 +678,14 @@ public class NormalMonster : MonoBehaviour
             Vector2 otherPosition = other._normalControlledPosition;
             Vector2 difference = origin - otherPosition;
             float currentSquared = difference.sqrMagnitude;
-            float minimumDistance = Mathf.Max(0.01f, ownRadius + other.GetMonsterSpacingRadius() - MonsterSpacingTolerance);
+            float minimumDistance =
+                Mathf.Max(0.01f, ownRadius + other.GetMonsterSpacingRadius() - MonsterSpacingTolerance);
             float minimumSquared = minimumDistance * minimumDistance;
             if (currentSquared < minimumSquared)
             {
                 // 이미 겹친 상태에서는 상대에게서 멀어지는 이동을 허용합니다.
-                if (Vector2.Dot(difference, movement) < -0.000001f || (target - otherPosition).sqrMagnitude + 0.000001f < currentSquared)
+                if (Vector2.Dot(difference, movement) < -0.000001f ||
+                    (target - otherPosition).sqrMagnitude + 0.000001f < currentSquared)
                 {
                     return false;
                 }
@@ -787,7 +800,8 @@ public class NormalMonster : MonoBehaviour
             _normalPathfinder = new MonsterPathfinder(CanMoveTo, CanTravelBetween, HasObstacleLineOfSight);
         }
 
-        Vector2 direction = _normalPathfinder.GetDirection(origin, target, _pathCellSize, _pathRepathInterval, _pathSearchMargin, _pathMaxVisitedNodes, _pathWaypointTolerance);
+        Vector2 direction = _normalPathfinder.GetDirection(origin, target, _pathCellSize, _pathRepathInterval,
+            _pathSearchMargin, _pathMaxVisitedNodes, _pathWaypointTolerance);
         float distance = _normalPathfinder.GetRemainingStepDistance(origin, target);
         return direction * Mathf.Min(maxDistance, distance);
     }
@@ -799,7 +813,8 @@ public class NormalMonster : MonoBehaviour
 
     protected bool CanMoveTo(Vector2 targetPosition)
     {
-        return (_homeRoom == null || _homeRoom.Contains(targetPosition, RoomClearance)) && IsObstaclePositionClear(targetPosition);
+        return (_homeRoom == null || _homeRoom.Contains(targetPosition, RoomClearance)) &&
+               IsObstaclePositionClear(targetPosition);
     }
 
     private bool IsObstaclePositionClear(Vector2 targetPosition)
@@ -810,7 +825,8 @@ public class NormalMonster : MonoBehaviour
         }
 
         _normalMovementHits.Clear();
-        int count = Physics2D.OverlapCircle(targetPosition, Mathf.Max(0f, _collisionCheckRadius), filter, _normalMovementHits);
+        int count = Physics2D.OverlapCircle(targetPosition, Mathf.Max(0f, _collisionCheckRadius), filter,
+            _normalMovementHits);
         for (int i = 0; i < count; i++)
         {
             Collider2D hit = _normalMovementHits[i];
@@ -845,7 +861,10 @@ public class NormalMonster : MonoBehaviour
         {
             if (!_normalReportedObstacleConfiguration)
             {
-                Debug.LogError($"{name}: 장애물 설정이 비어 있어 이동을 멈춥니다. " + "Detect Solid Colliders Automatically를 켜거나 Obstacle Layer를 지정하세요. " + "Block Obstacle Triggers를 켰다면 Trigger 벽의 Layer도 지정해야 합니다.", this);
+                Debug.LogError(
+                    $"{name}: 장애물 설정이 비어 있어 이동을 멈춥니다. " +
+                    "Detect Solid Colliders Automatically를 켜거나 Obstacle Layer를 지정하세요. " +
+                    "Block Obstacle Triggers를 켰다면 Trigger 벽의 Layer도 지정해야 합니다.", this);
                 _normalReportedObstacleConfiguration = true;
             }
 
@@ -866,7 +885,8 @@ public class NormalMonster : MonoBehaviour
         }
 
         int layer = 1 << hit.gameObject.layer;
-        if ((GetMovementObstacleMask() & layer) == 0 || (hit.isTrigger && (!_blockObstacleTriggers || (_obstacleLayer.value & layer) == 0)))
+        if ((GetMovementObstacleMask() & layer) == 0 ||
+            (hit.isTrigger && (!_blockObstacleTriggers || (_obstacleLayer.value & layer) == 0)))
         {
             return false;
         }
@@ -907,7 +927,9 @@ public class NormalMonster : MonoBehaviour
         }
 
         _normalMovementCastHits.Clear();
-        int count = radius > 0f ? Physics2D.CircleCast(origin, radius, difference / distance, filter, _normalMovementCastHits, distance) : Physics2D.Raycast(origin, difference / distance, filter, _normalMovementCastHits, distance);
+        int count = radius > 0f
+            ? Physics2D.CircleCast(origin, radius, difference / distance, filter, _normalMovementCastHits, distance)
+            : Physics2D.Raycast(origin, difference / distance, filter, _normalMovementCastHits, distance);
         for (int i = 0; i < count; i++)
         {
             if (IsMovementObstacle(_normalMovementCastHits[i].collider))
@@ -953,7 +975,8 @@ public class NormalMonster : MonoBehaviour
 
     private bool TryApplyControlledStep(Vector2 origin, Vector2 movement)
     {
-        if (movement.sqrMagnitude <= Mathf.Epsilon || !IsMonsterSpacingStepClear(origin, origin + movement) || !CanTravelBetween(origin, origin + movement))
+        if (movement.sqrMagnitude <= Mathf.Epsilon || !IsMonsterSpacingStepClear(origin, origin + movement) ||
+            !CanTravelBetween(origin, origin + movement))
         {
             return false;
         }
@@ -988,15 +1011,14 @@ public class NormalMonster : MonoBehaviour
 
     public virtual void TakeDamage(float damage)
     {
-        if (_normalIsDead || _normalHitCooldownTimer > 0f || damage <= 0f || float.IsNaN(damage) || float.IsInfinity(damage))
+        if (_normalIsDead || _normalHitCooldownTimer > 0f || damage <= 0f || float.IsNaN(damage) ||
+            float.IsInfinity(damage))
         {
             return;
         }
 
         _normalHitCooldownTimer = Mathf.Max(0f, _hitCooldown);
         _currentHealth = Mathf.Max(0f, _currentHealth - damage);
-        Vector2 hitDirection = _player != null ? (Vector2)(transform.position - _player.position) : Vector2.up;
-        bool enhancedHit = _normalHitGameFeel != null && _normalHitGameFeel.ReceiveHit(hitDirection, _currentHealth <= 0f);
         Debug.Log($"{name} 피격! 받은 데미지: {damage}, 현재 체력: {_currentHealth}", this);
         if (_currentHealth <= 0f)
         {
@@ -1004,10 +1026,7 @@ public class NormalMonster : MonoBehaviour
             return;
         }
 
-        if (!enhancedHit)
-        {
-            PlayHitFlash();
-        }
+        PlayHitFlash();
         OnHit();
     }
 
@@ -1096,6 +1115,8 @@ public class NormalMonster : MonoBehaviour
             ClearBodyVelocity(body);
             body.constraints = RigidbodyConstraints2D.FreezeAll;
         }
+
+        _ownerSpawner?.OnMonsterDied(this);
     }
 
     private void RestoreDeathPosition()
@@ -1138,5 +1159,4 @@ public class NormalMonster : MonoBehaviour
     }
 
     #endregion
-
 }
