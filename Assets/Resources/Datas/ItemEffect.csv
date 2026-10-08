@@ -1,6 +1,6 @@
 Effect_Id,TargetType,EffectType,ApplyType,Value
 HealPlayer,Player,HealHealth,Immediate,50
-DamagePlayer,Player,DamageHealth,Immediate,50
+DamagePlayer,Player,DamageHealth,Immediate,100
 IncreaseMaxHealth,Player,MaxHealthModifier,Stat,150
 DecreaseMaxHealth,Player,MaxHealthModifier,Stat,-100
 IncreaseMoveSpeed,Player,MoveSpeedMultiplier,Stat,0.25
