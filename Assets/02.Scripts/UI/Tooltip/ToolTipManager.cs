@@ -43,7 +43,7 @@ public class ToolTipManager : MonoBehaviour
 
     private void Update()
     {
-        //RefreshTooltip();
+        RefreshTooltip();
     }
 
     public void OpenItemTooltip(Transform targetTransform, Vector3 offset, string description)
