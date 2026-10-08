@@ -4,6 +4,4 @@ public enum BGMType
     Stage1,
     Stage2,
     Stage3,
-    Normal,
-    Boss,
 }

@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4043354791239321929}
   - component: {fileID: 723370637435433501}
+  - component: {fileID: 4793117015678365791}
   - component: {fileID: 1999943091658586458}
-  - component: {fileID: 9221007563684137586}
   m_Layer: 0
   m_Name: AccelaratorCoil
   m_TagString: Interactable
@@ -93,6 +93,28 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!95 &4793117015678365791
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2161890859649952198}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f134928da66091c4a99e826ecc352128, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &1999943091658586458
 MonoBehaviour:
   m_ObjectHideFlags: 0

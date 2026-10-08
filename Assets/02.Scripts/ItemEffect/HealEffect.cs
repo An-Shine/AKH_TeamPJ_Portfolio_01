@@ -2,11 +2,10 @@ public class HealEffect : IItemImmediateEffect
 {
     public void Apply(ImmediateEffectContext context)
     {
-        PlayerManager manager = PlayerManager.Instance;
-        if (manager != null)
+        if (context.PlayerTransform.TryGetComponent(out PlayerManager playerManager))
         {
-            int healAmount = (int)context.Value;
-            manager.Heal(healAmount);
+            int healAmount = (-1) * (int)context.Value;
+            playerManager.TryTakeDamage(healAmount);
         }
     }
 }

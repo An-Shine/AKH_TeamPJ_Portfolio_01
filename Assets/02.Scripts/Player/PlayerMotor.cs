@@ -4,26 +4,16 @@ using UnityEngine;
 public class PlayerMotor : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed;
-    [SerializeField] private float _blinkDistance;
+    [SerializeField] private float _blinkDistance = 3f;
     [SerializeField] private GameObject _dashEffectPrefab;
-    private float _dashEffectLifetime = 0.2f;
+    [SerializeField] private float _dashEffectLifetime = 0.75f;
     private Rigidbody2D _body;
-    private PlayerHitFlash _hitFlash;
-    private PlayerDashAfterimage _afterimage;
-    private PlayerStateMachine _state;
-    private Vector2 _lastSoundPosition;
-    private bool _blinkSinceLastFrame;
-    private float _lastSoundFixedTime = -1f;
     private readonly List<RaycastHit2D> _blinkHits = new List<RaycastHit2D>();
     private readonly List<Collider2D> _landingOverlaps = new List<Collider2D>();
 
     private void Awake()
     {
         _body = GetComponent<Rigidbody2D>();
-        _hitFlash = GetComponent<PlayerHitFlash>();
-        _afterimage = GetComponent<PlayerDashAfterimage>();
-        _state = GetComponent<PlayerStateMachine>();
-        _lastSoundPosition = _body.position;
         _body.gravityScale = 0f;
         _body.freezeRotation = true;
     }
@@ -65,7 +55,7 @@ public class PlayerMotor : MonoBehaviour
         if (CanLandAt(destination, filter))
         {
             // 도착 지점에 몸 전체가 들어가면 경로의 얇은 장애물을 넘습니다.
-            SpawnDashEffect(start, destination);
+            SpawnDashEffect(start);
             _body.position = destination;
             return;
         }
@@ -79,19 +69,12 @@ public class PlayerMotor : MonoBehaviour
         }
 
         // 속도로 이동하지 않고 충돌 가능한 지점 앞까지 즉시 위치를 변경합니다.
-        SpawnDashEffect(start, start + direction * distance);
+        SpawnDashEffect(start);
         _body.position += direction * distance;
     }
 
-    private void SpawnDashEffect(Vector2 position, Vector2 destination)
+    private void SpawnDashEffect(Vector2 position)
     {
-        _blinkSinceLastFrame = true;
-        if ((destination - position).sqrMagnitude > 0.0001f && AudioManager.Instance != null)
-        {
-            AudioManager.Instance.PlaySFX(SFXType.PlayerDash);
-        }
-        if (_afterimage != null) _afterimage.Play(position, destination);
-        if (_hitFlash != null) _hitFlash.PlayDashGlow();
         if (_dashEffectPrefab == null) return;
 
         Vector3 worldPosition = new Vector3(position.x, position.y, transform.position.z);
@@ -115,29 +98,9 @@ public class PlayerMotor : MonoBehaviour
 
     public void Stop()
     {
-        if (AudioManager.Instance != null) AudioManager.Instance.SetPlayerWalking(false);
         if (_body != null)
         {
             _body.linearVelocity = Vector2.zero;
         }
-    }
-
-    private void LateUpdate()
-    {
-        // 렌더 프레임 사이에 물리가 갱신되지 않았다고 걷기 루프를 끊지 않습니다.
-        if (_lastSoundFixedTime == Time.fixedTime) return;
-        _lastSoundFixedTime = Time.fixedTime;
-        Vector2 position = _body.position;
-        bool moved = (position - _lastSoundPosition).sqrMagnitude > 0.000001f;
-        bool walking = moved && !_blinkSinceLastFrame && _state != null &&
-                       _state.CurrentState == PlayerState.Run && _body.linearVelocity.sqrMagnitude > 0.0001f;
-        if (AudioManager.Instance != null) AudioManager.Instance.SetPlayerWalking(walking);
-        _lastSoundPosition = position;
-        _blinkSinceLastFrame = false;
-    }
-
-    private void OnDisable()
-    {
-        if (AudioManager.Instance != null) AudioManager.Instance.SetPlayerWalking(false);
     }
 }

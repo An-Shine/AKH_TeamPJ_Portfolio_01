@@ -119,7 +119,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.872, y: 0.886}
+  m_Size: {x: 0.886, y: 0.886}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -384,7 +384,6 @@ GameObject:
   - component: {fileID: 3957558499064253009}
   - component: {fileID: 8362892312594355892}
   - component: {fileID: 7449468793716505890}
-  - component: {fileID: 1456884250926879959}
   m_Layer: 3
   m_Name: PlayerObject
   m_TagString: Player
@@ -407,7 +406,6 @@ Transform:
   m_Children:
   - {fileID: 8695968812168754858}
   - {fileID: 3557440893167192607}
-  - {fileID: 3632502075349721064}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3018855717279147715
@@ -468,8 +466,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   _animation: {fileID: 3603634642599122488}
+  _interactionRadius: 1.5
+  _interactionDuration: 0.5
   _weapon: {fileID: 0}
-  InteractDisplayObject: {fileID: 9081532808713828684}
 --- !u!114 &1396133464694114942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -483,8 +482,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMotor
   _moveSpeed: 5
-  _blinkDistance: 1.5
+  _blinkDistance: 3
   _dashEffectPrefab: {fileID: 7430092777275873676, guid: de7254c351f240041af2acb47b7482ae, type: 3}
+  _dashEffectLifetime: 0.75
 --- !u!114 &4285497294300338000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -497,7 +497,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b931c8f1ddf14cca8a23efa13488f8c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStateMachine
-  DashCooldown: 1
 --- !u!120 &8910268917954700399
 LineRenderer:
   serializedVersion: 3
@@ -506,7 +505,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5819182594994543154}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -764,22 +763,6 @@ MonoBehaviour:
   _groundOffset: {x: 0, y: -0.35}
   _spriteAngleOffset: 0
   _teleportThreshold: 1.5
---- !u!114 &1456884250926879959
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5819182594994543154}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bf70369ffe5e2e459d9eed3103c9e4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerDashAfterimage
-  _material: {fileID: 2100000, guid: 7a0a93862c6c75449b4f65611f5efa9e, type: 2}
-  _imageCount: 6
-  _duration: 0.45
-  _tint: {r: 0.2509804, g: 0.89411765, b: 0.9019608, a: 0.54901963}
 --- !u!1 &7945017015239307636
 GameObject:
   m_ObjectHideFlags: 0
@@ -962,76 +945,3 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!1001 &2952476838804142484
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 9074837142586714173}
-    m_Modifications:
-    - target: {fileID: 1519338622925806096, guid: d3939043495d01642ba3a98f6f0e7023, type: 3}
-      propertyPath: m_Name
-      value: InteractDisplayObj
-      objectReference: {fileID: 0}
-    - target: {fileID: 1914156760188053116, guid: d3939043495d01642ba3a98f6f0e7023, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.26356983
-      objectReference: {fileID: 0}
-    - target: {fileID: 1914156760188053116, guid: d3939043495d01642ba3a98f6f0e7023, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.2783599
-      objectReference: {fileID: 0}
-    - target: {fileID: 1914156760188053116, guid: d3939043495d01642ba3a98f6f0e7023, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1914156760188053116, guid: d3939043495d01642ba3a98f6f0e7023, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1914156760188053116, guid: d3939043495d01642ba3a98f6f0e7023, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1914156760188053116, guid: d3939043495d01642ba3a98f6f0e7023, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1914156760188053116, guid: d3939043495d01642ba3a98f6f0e7023, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1914156760188053116, guid: d3939043495d01642ba3a98f6f0e7023, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1914156760188053116, guid: d3939043495d01642ba3a98f6f0e7023, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1914156760188053116, guid: d3939043495d01642ba3a98f6f0e7023, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d3939043495d01642ba3a98f6f0e7023, type: 3}
---- !u!4 &3632502075349721064 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1914156760188053116, guid: d3939043495d01642ba3a98f6f0e7023, type: 3}
-  m_PrefabInstance: {fileID: 2952476838804142484}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &9081532808713828684 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6264889660029026520, guid: d3939043495d01642ba3a98f6f0e7023, type: 3}
-  m_PrefabInstance: {fileID: 2952476838804142484}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4269d79776a7a4478e2b0339105425d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InteractDisplayObj

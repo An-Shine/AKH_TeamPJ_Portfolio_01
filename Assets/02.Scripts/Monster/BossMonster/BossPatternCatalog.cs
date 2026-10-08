@@ -8,7 +8,6 @@ namespace _02.Scripts.Monster.BossMonster
             public readonly string Sound;
             public readonly int Phase;
             public readonly int Animation;
-
             public Definition(string name, string sound, int phase, int animation)
             {
                 Name = name;
@@ -43,9 +42,14 @@ namespace _02.Scripts.Monster.BossMonster
             new Definition("PERIMETER BARRAGE", "Edge", 3, 2),
             new Definition("DASH REND", "Dash", 2, 1),
             new Definition("BURROW AMBUSH", "Burrow", 3, 1),
-            new Definition("APOCALYPSE", "Finale", 3, 3)
+            new Definition("APOCALYPSE", "Finale", 3, 3),
+            new Definition("SANGUINE LANCES", "Lances", 1, 1),
+            new Definition("STORM PILLARS", "Storm", 2, 3),
+            new Definition("ROTATING SCYTHES", "Scythes", 2, 1),
+            new Definition("GRAVITY COLLAPSE", "Gravity", 2, 3),
+            new Definition("ALTERNATING MAZE", "Maze", 3, 1),
+            new Definition("EXECUTION NOVA", "Execution", 2, 3)
         };
-
         public static int Count => Definitions.Length;
 
         public static bool IsValid(BossEncounterPattern kind)

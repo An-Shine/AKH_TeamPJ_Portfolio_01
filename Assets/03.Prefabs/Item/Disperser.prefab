@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2687169838143804195}
   - component: {fileID: 8258523230544396986}
+  - component: {fileID: 1524142858245403606}
   - component: {fileID: 2881585295263553560}
-  - component: {fileID: 7939629959211416676}
   m_Layer: 0
   m_Name: Disperser
   m_TagString: Interactable
@@ -93,6 +93,28 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!95 &1524142858245403606
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5991071104394845619}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2e0e6b9cf5a796d4ab2c9b2d9fc24bd3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &2881585295263553560
 MonoBehaviour:
   m_ObjectHideFlags: 0

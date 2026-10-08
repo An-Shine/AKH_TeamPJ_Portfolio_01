@@ -18,6 +18,7 @@ namespace _02.Scripts.Monster.BossMonster
         private readonly BossBattleWorld _world;
         private readonly BossBattleEffects _effects;
         private readonly BossPatternAudio _audio;
+        private readonly BossEncounterProfile _profile;
         private readonly List<ScheduledEvent> _events = new List<ScheduledEvent>(48);
         private readonly List<BossShapeVisual> _echoShapes = new List<BossShapeVisual>();
         private readonly Vector2 _origin;
@@ -34,21 +35,24 @@ namespace _02.Scripts.Monster.BossMonster
         private float _plannedEnd;
         private int _eventIndex;
         private bool _moving;
-
+        private BossDamageZone _motionZone;
         public float Age => _age;
         public float PlannedEnd => _plannedEnd;
         public bool HasPendingEvents => _eventIndex < _events.Count;
-        private int Waves => Mathf.Clamp(_move.Waves + _phase, 1, 8);
+        private int Waves => Mathf.Clamp(_move.Waves + _phase + _profile.ExtraWaves, 1, 8);
+        private float AttackRadius => _move.Radius * _profile.AttackRangeMultiplier;
+        private float AttackWidth => _move.Width * _profile.AttackRangeMultiplier;
+        private float LeadTime => _profile.TargetLeadTime * (1f + _phase * 0.2f);
         private float ArenaRadius => Mathf.Min(_owner.Arena.width, _owner.Arena.height) * 0.45f;
 
-        public BossPatternExecutor(global::BossMonster owner, BossEncounterMove move, BossBattleWorld world,
-            BossBattleEffects effects, BossPatternAudio audio, int phase, float warning, float damage)
+        public BossPatternExecutor(global::BossMonster owner, BossEncounterMove move, BossBattleWorld world, BossBattleEffects effects, BossPatternAudio audio, BossEncounterProfile profile, int phase, float warning, float damage)
         {
             _owner = owner;
             _move = move;
             _world = world;
             _effects = effects;
             _audio = audio;
+            _profile = profile;
             _phase = phase;
             _warning = warning;
             _damage = damage;
@@ -63,16 +67,24 @@ namespace _02.Scripts.Monster.BossMonster
         public void Tick(float deltaTime)
         {
             _age += deltaTime;
+            UpdateMotionTarget(deltaTime);
             if (_moving)
             {
                 float available = Mathf.Max(0f, Mathf.Min(_age, _motionEnd) - Mathf.Max(_age - deltaTime, _motionStart));
-                _owner.MoveForPattern(_motionTarget, _motionSpeed * available);
+                // Integrate a cosine ease rather than stepping into full speed on release.
+                float duration = Mathf.Max(0.01f, _motionEnd - _motionStart);
+                float before = Mathf.Clamp01((_age - deltaTime - _motionStart) / duration);
+                float after = Mathf.Clamp01((_age - _motionStart) / duration);
+                float easedBefore = 0.5f - 0.5f * Mathf.Cos(before * Mathf.PI);
+                float easedAfter = 0.5f - 0.5f * Mathf.Cos(after * Mathf.PI);
+                _owner.MoveForPattern(_motionTarget, _motionSpeed * duration * (easedAfter - easedBefore));
                 if (available > 0f && _age >= _nextAfterimage)
                 {
                     _nextAfterimage = _age + 0.055f;
                     _owner.EmitPatternAfterimage(_effects, _move.Color);
                 }
             }
+
             ExecuteDueEvents();
         }
 
@@ -87,11 +99,7 @@ namespace _02.Scripts.Monster.BossMonster
 
         private void Schedule(float time, Action action)
         {
-            _events.Add(new ScheduledEvent
-            {
-                Time = Mathf.Max(0f, time),
-                Action = action
-            });
+            _events.Add(new ScheduledEvent { Time = Mathf.Max(0f, time), Action = action });
             _plannedEnd = Mathf.Max(_plannedEnd, time + 0.2f);
         }
 
@@ -109,7 +117,7 @@ namespace _02.Scripts.Monster.BossMonster
             switch (_move.Kind)
             {
                 case BossEncounterPattern.CrescentCleave:
-                    ScheduleWaves(0f, wave => Sector(_origin, AimFrom(_origin), 115f, _move.Radius, _warning));
+                    ScheduleWaves(0f, wave => Sector(_origin, AimFrom(_origin), 125f, AttackRadius, _warning));
                     break;
                 case BossEncounterPattern.RiftLanes:
                     Schedule(0f, RiftLanes);
@@ -128,8 +136,7 @@ namespace _02.Scripts.Monster.BossMonster
                     Schedule(_warning + _move.Duration, () => ReleaseBurst(_owner.Arena.center, 2.6f));
                     break;
                 case BossEncounterPattern.DoubleClaw:
-                    ScheduleWaves(0f, wave => Sector(_origin, _aim + (wave % 2 == 0 ? -38f : 38f),
-                        105f, _move.Radius, _warning));
+                    ScheduleWaves(0f, wave => Sector(_origin, AimFrom(_origin) + (wave % 2 == 0 ? -38f : 38f), 115f, AttackRadius, _warning));
                     break;
                 case BossEncounterPattern.GroundSlam:
                     ScheduleWaves(0f, GroundSlam);
@@ -144,14 +151,13 @@ namespace _02.Scripts.Monster.BossMonster
                     ScheduleWaves(0f, RadialSpikes);
                     break;
                 case BossEncounterPattern.ExpandingNova:
-                    ScheduleWaves(0f, wave => Ring(_origin, 0.7f, ArenaRadius * 1.7f,
-                        AimFrom(_origin), 86f, _warning, _move.Duration));
+                    ScheduleWaves(0f, wave => Ring(_origin, 0.7f, ArenaRadius * 1.7f, AimFrom(_origin), 86f, _warning, _move.Duration));
                     break;
                 case BossEncounterPattern.TwinNova:
                     ScheduleWaves(0f, TwinNova);
                     break;
                 case BossEncounterPattern.TrackingEruption:
-                    ScheduleWaves(0f, wave => Circle(PlayerPoint(), _move.Radius, _warning, _move.Duration));
+                    ScheduleWaves(0f, wave => Circle(PlayerPoint(), AttackRadius, _warning, _move.Duration, trackPlayer: true));
                     break;
                 case BossEncounterPattern.MeteorLattice:
                     ScheduleWaves(0f, MeteorLattice);
@@ -183,12 +189,30 @@ namespace _02.Scripts.Monster.BossMonster
                 case BossEncounterPattern.ApocalypseSequence:
                     Apocalypse();
                     break;
+                case BossEncounterPattern.SanguineLances:
+                    ScheduleWaves(0f, SanguineLances);
+                    break;
+                case BossEncounterPattern.StormPillars:
+                    ScheduleWaves(0f, StormPillars);
+                    break;
+                case BossEncounterPattern.RotatingScythes:
+                    Schedule(0f, RotatingScythes);
+                    break;
+                case BossEncounterPattern.GravityCollapse:
+                    ScheduleWaves(0f, GravityCollapse);
+                    break;
+                case BossEncounterPattern.AlternatingMaze:
+                    ScheduleWaves(0f, AlternatingMaze);
+                    break;
+                case BossEncounterPattern.ExecutionNova:
+                    ExecutionNova();
+                    break;
             }
         }
 
         private Vector2 PlayerPoint()
         {
-            return _owner.Player != null ? (Vector2)_owner.Player.position : _origin;
+            return _owner.PredictPlayerPosition(LeadTime);
         }
 
         private float AimFrom(Vector2 point)
@@ -196,14 +220,15 @@ namespace _02.Scripts.Monster.BossMonster
             return BossBattleGeometry.Angle(PlayerPoint() - point);
         }
 
-        private void Circle(Vector2 point, float radius, float warning, float duration,
-            bool spikes = false, bool once = true, bool clampToRoom = true)
+        private BossDamageZone Circle(Vector2 point, float radius, float warning, float duration, bool spikes = false, bool once = true, bool clampToRoom = true, bool trackPlayer = false)
         {
+            Vector2 offset = point - PlayerPoint();
             if (clampToRoom)
             {
                 point = BossBattleGeometry.ClampToRoom(point, _owner.Arena, radius + 0.1f);
             }
-            _world.AddZone(new BossDamageZone
+
+            BossDamageZone zone = new BossDamageZone
             {
                 Shape = BossZoneShape.Circle,
                 Move = _move,
@@ -215,12 +240,21 @@ namespace _02.Scripts.Monster.BossMonster
                 Once = once,
                 Pillar = !spikes,
                 Spikes = spikes
-            });
+            };
+            if (trackPlayer)
+            {
+                Track(zone, true, false);
+                zone.TargetOffset = offset;
+                zone.TrackingPadding = radius + 0.1f;
+            }
+
+            _world.AddZone(zone);
+            return zone;
         }
 
         private void Sector(Vector2 point, float angle, float span, float radius, float warning)
         {
-            _world.AddZone(new BossDamageZone
+            BossDamageZone zone = new BossDamageZone
             {
                 Shape = BossZoneShape.Sector,
                 Move = _move,
@@ -232,13 +266,15 @@ namespace _02.Scripts.Monster.BossMonster
                 Duration = _move.Duration,
                 Damage = _damage,
                 Once = true
-            });
+            };
+            Track(zone, false, true);
+            _world.AddZone(zone);
         }
 
-        private void Ring(Vector2 point, float start, float end, float gapAngle, float gapWidth,
-            float warning, float duration, float turn = 0f)
+        private void Ring(Vector2 point, float start, float end, float gapAngle, float gapWidth, float warning, float duration, float turn = 0f, bool trackPlayer = false)
         {
-            _world.AddZone(new BossDamageZone
+            float gap = gapWidth > 180f ? 360f - (360f - gapWidth) * 1.15f : Mathf.Max(70f, gapWidth * 0.88f);
+            BossDamageZone zone = new BossDamageZone
             {
                 Shape = BossZoneShape.ClosingRing,
                 Move = _move,
@@ -246,31 +282,54 @@ namespace _02.Scripts.Monster.BossMonster
                 Radius = start,
                 EndRadius = end,
                 Angle = gapAngle,
-                GapWidth = gapWidth,
+                GapWidth = gap,
                 SweepAngle = turn,
-                Width = _move.Width,
+                Width = AttackWidth,
                 Warning = warning,
                 Duration = duration,
                 Damage = _damage,
                 Once = true,
                 Spikes = true
-            });
+            };
+            Track(zone, trackPlayer, true);
+            _world.AddZone(zone);
         }
 
-        private void ProjectileHint(Vector2 origin, float angle, float span, float warning)
+        private BossDamageZone ProjectileHint(Vector2 origin, float angle, float span, float warning)
         {
-            _world.AddZone(new BossDamageZone
+            BossDamageZone zone = new BossDamageZone
             {
                 Shape = BossZoneShape.Sector,
                 Move = _move,
                 Center = origin,
                 Angle = angle,
                 Span = span,
-                Radius = 5f,
+                Radius = 5f * _profile.AttackRangeMultiplier,
                 Warning = warning,
                 Duration = 0.1f,
                 WarningOnly = true
-            });
+            };
+            Track(zone, false, true);
+            _world.AddZone(zone);
+            return zone;
+        }
+
+        private void Track(BossDamageZone zone, bool position, bool direction, Vector2? aimOrigin = null, bool forwardBeam = false)
+        {
+            Vector2 origin = aimOrigin ?? zone.Center;
+            zone.TrackPosition = position;
+            zone.TrackDirection = direction;
+            zone.DirectionFromCenter = !aimOrigin.HasValue;
+            zone.TrackingOrigin = origin;
+            zone.FollowAimRay = forwardBeam;
+            zone.AimDistance = zone.Length * 0.5f;
+            zone.TargetOffset = zone.Center - PlayerPoint();
+            zone.AimOffset = Mathf.DeltaAngle(AimFrom(origin), zone.Angle);
+            zone.TrackingSpeed = _profile.GroundTrackingSpeed * (1f + _phase * 0.08f);
+            zone.TrackingTurnRate = _profile.AimTrackingTurnRate * (1f + _phase * 0.08f);
+            zone.LockBeforeImpact = _profile.TargetLockTime;
+            zone.TargetLeadTime = LeadTime;
+            zone.TrackingPadding = 0.4f;
         }
 
         private void ReleaseBurst(Vector2 point, float radius)
@@ -284,29 +343,34 @@ namespace _02.Scripts.Monster.BossMonster
         private void RiftLanes()
         {
             int count = Mathf.Clamp(_move.Count + _phase, 3, 8);
-            int gap = Random.Range(0, count);
+            int gap = Mathf.Clamp(count / 2 + 1, 0, count - 1);
             Vector2 side = BossBattleGeometry.Direction(_aim + 90f);
-            float spacing = Mathf.Max(1.9f, _move.Width * 2.8f);
+            float spacing = Mathf.Max(1.9f, AttackWidth * 2.6f);
+            Vector2 target = PlayerPoint();
             for (int i = 0; i < count; i++)
             {
                 if (i == gap)
                 {
                     continue;
                 }
-                _world.AddZone(new BossDamageZone
+
+                Vector2 offset = side * ((i - count / 2) * spacing);
+                BossDamageZone zone = new BossDamageZone
                 {
                     Shape = BossZoneShape.Beam,
                     Move = _move,
-                    Center = _owner.Arena.center + side * ((i - (count - 1) * 0.5f) * spacing),
+                    Center = target + offset,
                     Angle = _aim,
-                    Width = _move.Width,
+                    Width = AttackWidth,
                     Length = _owner.Arena.size.magnitude,
                     Warning = _warning + i * 0.08f,
                     Duration = _move.Duration,
                     Damage = _damage,
                     Once = true,
                     Spikes = true
-                });
+                };
+                Track(zone, true, false);
+                _world.AddZone(zone);
             }
         }
 
@@ -317,20 +381,21 @@ namespace _02.Scripts.Monster.BossMonster
             count = Mathf.Clamp(count, 2, 8);
             for (int i = 0; i < count; i++)
             {
-                Vector2 offset = i == 0 ? Vector2.zero
-                    : BossBattleGeometry.Direction(rotation + (i - 1) * 360f / (count - 1)) * (_move.Radius * 3.3f);
-                Circle(target + offset, _move.Radius, _warning + i * 0.06f, _move.Duration, false, false);
+                Vector2 offset = i == 0 ? Vector2.zero : BossBattleGeometry.Direction(rotation + (i - 1) * 360f / (count - 1)) * (AttackRadius * 2.8f);
+                Circle(target + offset, AttackRadius, _warning + i * 0.06f, _move.Duration, false, false, trackPlayer: true);
             }
         }
 
         private void Spiral(int wave)
         {
             int count = Mathf.Clamp(_move.Count + _phase * 2, 6, 20);
-            float angle = _aim + wave * 17f;
+            float angle = AimFrom(_origin) + wave * 17f;
             for (int i = 1; i < count; i++)
             {
-                Shoot(_origin, angle + i * 360f / count);
+                Shoot(_origin, angle + i * 360f / count, _profile.ProjectileTurnRate * 0.35f);
             }
+
+            Shoot(_origin, AimFrom(_origin));
             ReleaseBurst(_origin, 0.6f);
         }
 
@@ -338,35 +403,36 @@ namespace _02.Scripts.Monster.BossMonster
         {
             for (int i = 0; i < 2; i++)
             {
-                _world.AddZone(new BossDamageZone
+                BossDamageZone zone = new BossDamageZone
                 {
                     Shape = BossZoneShape.Beam,
                     Move = _move,
                     Center = _origin,
                     Angle = _aim + i * 90f,
-                    SweepAngle = 32f + _phase * 10f,
-                    Width = _move.Width,
+                    SweepAngle = 38f + _phase * 12f,
+                    Width = AttackWidth,
                     Length = _owner.Arena.size.magnitude * 2f,
                     Warning = _warning,
                     Duration = _move.Duration,
                     Damage = _damage,
                     Once = false
-                });
+                };
+                Track(zone, false, true);
+                _world.AddZone(zone);
             }
         }
 
         private void Cataclysm()
         {
             Vector2 center = _owner.Arena.center;
-            Ring(center, ArenaRadius, 0.75f, AimFrom(center), 96f,
-                _warning, _move.Duration, _phase * 12f);
+            Ring(center, ArenaRadius, 0.75f, AimFrom(center), 96f, _warning, _move.Duration, _phase * 12f);
         }
 
         private void GroundSlam(int wave)
         {
-            Circle(_origin, _move.Radius, _warning, _move.Duration, true, true, false);
-            Ring(_origin, _move.Radius + 0.5f, ArenaRadius * 1.4f, _aim,
-                100f, _warning + 0.22f, 1.6f);
+            Circle(_origin, AttackRadius, _warning, _move.Duration, true, true, false);
+            Circle(PlayerPoint(), AttackRadius * 0.4f, _warning + 0.18f, _move.Duration, true, trackPlayer: true);
+            Ring(_origin, AttackRadius + 0.5f, ArenaRadius * 1.4f, AimFrom(_origin), 100f, _warning + 0.22f, 1.6f);
         }
 
         private void SerpentWave(int wave)
@@ -377,8 +443,7 @@ namespace _02.Scripts.Monster.BossMonster
             {
                 float offset = (i - (count - 1) * 0.5f) * 65f;
                 float turn = (wave % 2 == 0 ? 1f : -1f) * 45f;
-                Ring(_origin, _move.Radius, ArenaRadius * 1.8f, angle + offset + 180f,
-                    282f, _warning + i * 0.16f, _move.Duration, turn);
+                Ring(_origin, AttackRadius, ArenaRadius * 1.8f, angle + offset + 180f, 282f, _warning + i * 0.16f, _move.Duration, turn);
             }
         }
 
@@ -391,10 +456,14 @@ namespace _02.Scripts.Monster.BossMonster
                 float heading = angle - 55f + ray * 110f / (count - 1);
                 for (int step = 0; step < 5; step++)
                 {
-                    Vector2 point = _origin + BossBattleGeometry.Direction(heading) * (1.3f + step * 1.2f);
+                    Vector2 point = _origin + BossBattleGeometry.Direction(heading) * (1.3f + step * 1.2f) * _profile.AttackRangeMultiplier;
                     if (_owner.Arena.Contains(point))
                     {
-                        Circle(point, _move.Radius, _warning + step * 0.12f, _move.Duration, true);
+                        BossDamageZone zone = Circle(point, AttackRadius, _warning + step * 0.12f, _move.Duration, true);
+                        zone.Angle = heading;
+                        Track(zone, false, true, _origin);
+                        zone.FollowAimRay = true;
+                        zone.AimDistance = (point - _origin).magnitude;
                     }
                 }
             }
@@ -409,10 +478,14 @@ namespace _02.Scripts.Monster.BossMonster
                 Vector2 direction = BossBattleGeometry.Direction(angle + ray * 360f / count);
                 for (int step = 0; step < 4; step++)
                 {
-                    Vector2 point = _origin + direction * (1.5f + step * 1.15f);
+                    Vector2 point = _origin + direction * (1.5f + step * 1.15f) * _profile.AttackRangeMultiplier;
                     if (_owner.Arena.Contains(point))
                     {
-                        Circle(point, _move.Radius, _warning + step * 0.16f, _move.Duration, true);
+                        BossDamageZone zone = Circle(point, AttackRadius, _warning + step * 0.16f, _move.Duration, true);
+                        zone.Angle = BossBattleGeometry.Angle(direction);
+                        Track(zone, false, true, _origin);
+                        zone.FollowAimRay = true;
+                        zone.AimDistance = (point - _origin).magnitude;
                     }
                 }
             }
@@ -422,8 +495,7 @@ namespace _02.Scripts.Monster.BossMonster
         {
             float gap = AimFrom(_origin);
             Ring(_origin, 0.7f, ArenaRadius * 1.5f, gap, 110f, _warning, _move.Duration);
-            Ring(_origin, ArenaRadius * 1.5f, 0.7f, gap, 110f,
-                _warning + 0.65f, _move.Duration);
+            Ring(_origin, ArenaRadius * 1.5f, 0.7f, gap, 110f, _warning + 0.65f, _move.Duration);
         }
 
         private void MeteorLattice(int wave)
@@ -440,11 +512,13 @@ namespace _02.Scripts.Monster.BossMonster
                     {
                         continue;
                     }
-                    Vector2 point = new Vector2(area.xMin + (x + 0.5f) * area.width / cells,
-                        area.yMin + (y + 0.5f) * area.height / cells);
-                    Circle(point, _move.Radius, _warning + x * 0.05f, _move.Duration);
+
+                    Vector2 point = new Vector2(area.xMin + (x + 0.5f) * area.width / cells, area.yMin + (y + 0.5f) * area.height / cells);
+                    Circle(point, AttackRadius, _warning + x * 0.05f, _move.Duration);
                 }
             }
+
+            Circle(player, AttackRadius * 0.85f, _warning, _move.Duration, trackPlayer: true);
         }
 
         private void BloodPools(int wave)
@@ -453,9 +527,8 @@ namespace _02.Scripts.Monster.BossMonster
             int count = Mathf.Clamp(_move.Count + _phase, 2, 6);
             for (int i = 0; i < count; i++)
             {
-                Vector2 point = i == 0 ? PlayerPoint()
-                    : new Vector2(Random.Range(area.xMin, area.xMax), Random.Range(area.yMin, area.yMax));
-                Circle(point, _move.Radius, _warning, _move.Duration, false, false);
+                Vector2 point = i < 2 ? PlayerPoint() + (i == 0 ? Vector2.zero : Random.insideUnitCircle * AttackRadius * 2.2f) : new Vector2(Random.Range(area.xMin, area.xMax), Random.Range(area.yMin, area.yMax));
+                Circle(point, AttackRadius, _warning, _move.Duration, false, false, trackPlayer: i < 2);
             }
         }
 
@@ -463,31 +536,34 @@ namespace _02.Scripts.Monster.BossMonster
         {
             for (int i = 0; i < Waves; i++)
             {
-                float angle = _aim;
+                BossDamageZone hint = null;
                 Schedule(i * _move.Interval, () =>
                 {
-                    angle = AimFrom(_origin);
-                    ProjectileHint(_origin, angle, homing ? 65f : 52f, _warning);
+                    hint = ProjectileHint(_origin, AimFrom(_origin), homing ? 65f : 52f, _warning);
                 });
                 Schedule(i * _move.Interval + _warning, () =>
                 {
                     int count = Mathf.Clamp(_move.Count + (homing ? 0 : _phase), 2, 8);
                     float span = homing ? 50f : 40f;
+                    float angle = hint != null ? hint.Angle : AimFrom(_origin);
                     for (int shot = 0; shot < count; shot++)
                     {
                         float heading = angle - span * 0.5f + shot * span / (count - 1);
-                        Shoot(_origin, heading, homing ? 36f : 0f);
+                        Shoot(_origin, heading, _profile.ProjectileTurnRate * (homing ? 1.75f : 1f));
                     }
+
                     ReleaseBurst(_origin, 0.5f);
                 });
             }
         }
 
-        private void Shoot(Vector2 point, float angle, float homing = 0f)
+        private void Shoot(Vector2 point, float angle, float homing = -1f)
         {
             Vector2 origin = point + BossBattleGeometry.Direction(angle) * Mathf.Max(0.5f, _owner.BodyWidth * 0.4f);
-            origin = BossBattleGeometry.ClampToRoom(origin, _owner.Arena, _move.Radius + 0.1f);
-            _world.Shoot(origin, angle, _move, _damage, _move.Speed * (1f + _phase * 0.06f), homing, 1.15f);
+            origin = BossBattleGeometry.ClampToRoom(origin, _owner.Arena, AttackRadius + 0.1f);
+            float turn = (homing < 0f ? _profile.ProjectileTurnRate : homing) * (1f + _phase * 0.12f);
+            float until = Mathf.Min(_move.Duration - 0.35f, _profile.ProjectileHomingDuration + _phase * 0.15f);
+            _world.Shoot(origin, angle, _move, _damage, _move.Speed * (1f + _phase * 0.06f), turn, Mathf.Max(0f, until));
         }
 
         private void EchoTurrets()
@@ -500,25 +576,27 @@ namespace _02.Scripts.Monster.BossMonster
                 positions[i] = BossBattleGeometry.ClampToRoom(point, _owner.Arena, 1f);
                 CreateEchoGlyph(positions[i]);
             }
+
             for (int i = 0; i < Waves; i++)
             {
-                float[] angles = new float[count];
+                BossDamageZone[] hints = new BossDamageZone[count];
                 Schedule(i * _move.Interval, () =>
                 {
                     for (int head = 0; head < count; head++)
                     {
-                        angles[head] = AimFrom(positions[head]);
-                        ProjectileHint(positions[head], angles[head], 26f, _warning);
+                        hints[head] = ProjectileHint(positions[head], AimFrom(positions[head]), 26f, _warning);
                     }
                 });
                 Schedule(i * _move.Interval + _warning, () =>
                 {
                     for (int head = 0; head < count; head++)
                     {
-                        Shoot(positions[head], angles[head] - 7f);
-                        Shoot(positions[head], angles[head] + 7f);
+                        float angle = hints[head] != null ? hints[head].Angle : AimFrom(positions[head]);
+                        Shoot(positions[head], angle - 7f, _profile.ProjectileTurnRate * 0.7f);
+                        Shoot(positions[head], angle + 7f, _profile.ProjectileTurnRate * 0.7f);
                         _effects.Burst(positions[head], 0.65f, _move.Color, 8);
                     }
+
                     _audio.Impact();
                     _owner.PulsePatternAnimation(_move);
                 });
@@ -543,10 +621,9 @@ namespace _02.Scripts.Monster.BossMonster
             int count = Mathf.Clamp(_move.Count + _phase, 6, 12);
             for (int i = 1; i < count; i++)
             {
-                _world.ShootOrbit(_origin, _aim + i * 360f / count + wave * 22f, _move, _damage,
-                    _move.Speed, Mathf.Max(1.2f, _owner.BodyWidth * 0.65f), 1.05f,
-                    wave % 2 == 0 ? 150f : -150f);
+                _world.ShootOrbit(_origin, AimFrom(_origin) + i * 360f / count + wave * 22f, _move, _damage, _move.Speed * (1f + _phase * 0.06f), Mathf.Max(1.2f, _owner.BodyWidth * 0.65f) * _profile.AttackRangeMultiplier, 1.05f, wave % 2 == 0 ? 150f : -150f);
             }
+
             ReleaseBurst(_origin, 0.6f);
         }
 
@@ -554,57 +631,67 @@ namespace _02.Scripts.Monster.BossMonster
         {
             Rect area = _owner.Arena;
             int count = Mathf.Clamp(_move.Count + _phase, 4, 10);
-            Vector2 target = PlayerPoint();
             for (int wave = 0; wave < Waves; wave++)
             {
                 int edge = wave % 4;
                 bool vertical = edge % 2 == 0;
-                float coordinate = vertical ? (target.y - area.yMin) / area.height : (target.x - area.xMin) / area.width;
-                int gap = Mathf.Clamp(Mathf.FloorToInt(coordinate * count), 0, count - 1);
-                for (int i = 0; i < count; i++)
+                List<BossDamageZone> hints = new List<BossDamageZone>();
+                Schedule(wave * _move.Interval, () =>
                 {
-                    if (Mathf.Abs(i - gap) <= 1)
+                    Vector2 target = PlayerPoint();
+                    float coordinate = vertical ? (target.y - area.yMin) / area.height : (target.x - area.xMin) / area.width;
+                    int gap = Mathf.Clamp(Mathf.FloorToInt(coordinate * count), 0, count - 1);
+                    for (int i = 0; i < count; i++)
                     {
-                        continue;
+                        if (Mathf.Abs(i - gap) <= 1)
+                            continue;
+                        float fraction = (i + 0.5f) / count;
+                        Vector2 point = vertical ? new Vector2(edge == 0 ? area.xMin + 0.35f : area.xMax - 0.35f, area.yMin + area.height * fraction) : new Vector2(area.xMin + area.width * fraction, edge == 1 ? area.yMax - 0.35f : area.yMin + 0.35f);
+                        hints.Add(ProjectileHint(point, AimFrom(point), 14f, _warning));
                     }
-                    float fraction = (i + 0.5f) / count;
-                    Vector2 point = vertical
-                        ? new Vector2(edge == 0 ? area.xMin + 0.35f : area.xMax - 0.35f, area.yMin + area.height * fraction)
-                        : new Vector2(area.xMin + area.width * fraction, edge == 1 ? area.yMax - 0.35f : area.yMin + 0.35f);
-                    float angle = edge == 0 ? 0f : edge == 1 ? -90f : edge == 2 ? 180f : 90f;
-                    Schedule(wave * _move.Interval, () => ProjectileHint(point, angle, 9f, _warning));
-                    Schedule(wave * _move.Interval + _warning, () =>
+                });
+                Schedule(wave * _move.Interval + _warning, () =>
+                {
+                    foreach (BossDamageZone hint in hints)
                     {
-                        _world.Shoot(point, angle, _move, _damage, _move.Speed);
-                        _effects.Burst(point, 0.4f, _move.Color, 6);
-                        _audio.Impact(0.7f);
-                    });
-                }
+                        float until = Mathf.Min(_profile.ProjectileHomingDuration, Mathf.Max(0f, _move.Duration - 0.35f));
+                        _world.Shoot(hint.Center, hint.Angle, _move, _damage, _move.Speed * (1f + _phase * 0.06f), _profile.ProjectileTurnRate * 0.5f, until);
+                        _effects.Burst(hint.Center, 0.4f, _move.Color, 6);
+                    }
+
+                    _audio.Impact(0.7f);
+                });
             }
         }
 
         private void DashRend()
         {
-            Vector2 destination = _origin + BossBattleGeometry.Direction(_aim) * _move.Speed * _move.Duration;
+            Vector2 destination = _origin + BossBattleGeometry.Direction(_aim) * _move.Speed * _profile.ProjectileSpeedMultiplier * _move.Duration;
             _motionTarget = _owner.FindPatternDestination(destination);
             Vector2 delta = _motionTarget - _origin;
             _motionStart = _warning;
             _motionEnd = _warning + _move.Duration;
-            _motionSpeed = _move.Speed;
+            _motionSpeed = _move.Speed * _profile.ProjectileSpeedMultiplier;
             _moving = true;
-            Schedule(0f, () => _world.AddZone(new BossDamageZone
+            Schedule(0f, () =>
             {
-                Shape = BossZoneShape.Beam,
-                Move = _move,
-                Center = (_origin + _motionTarget) * 0.5f,
-                Angle = BossBattleGeometry.Angle(delta),
-                Length = Mathf.Max(0.5f, delta.magnitude),
-                Width = _move.Width,
-                Warning = _warning,
-                Duration = _move.Duration,
-                Damage = _damage,
-                Once = true
-            }));
+                _motionZone = new BossDamageZone
+                {
+                    Shape = BossZoneShape.Beam,
+                    Move = _move,
+                    Center = (_origin + _motionTarget) * 0.5f,
+                    Angle = BossBattleGeometry.Angle(delta),
+                    Length = Mathf.Max(0.5f, delta.magnitude),
+                    Width = AttackWidth,
+                    Warning = _warning,
+                    Duration = _move.Duration,
+                    Damage = _damage,
+                    Once = true,
+                    MotionTracking = true,
+                    LockBeforeImpact = _profile.TargetLockTime
+                };
+                _world.AddZone(_motionZone);
+            });
             Schedule(_motionEnd, () => ReleaseBurst(_owner.transform.position, 1.2f));
         }
 
@@ -613,13 +700,18 @@ namespace _02.Scripts.Monster.BossMonster
             Vector2 target = PlayerPoint() - BossBattleGeometry.Direction(_aim) * 1.2f;
             float moveTime = _warning - 0.4f;
             Vector2 delta = target - _origin;
-            float distance = Mathf.Min(delta.magnitude, _move.Speed * moveTime);
-            _motionTarget = _owner.FindPatternDestination(_origin + delta.normalized * distance, _move.Radius + 0.1f);
+            float distance = Mathf.Min(delta.magnitude, _move.Speed * _profile.ProjectileSpeedMultiplier * moveTime);
+            _motionTarget = _owner.FindPatternDestination(_origin + delta.normalized * distance, AttackRadius + 0.1f);
             _motionStart = 0.3f;
             _motionEnd = _warning;
-            _motionSpeed = _move.Speed;
+            _motionSpeed = _move.Speed * _profile.ProjectileSpeedMultiplier;
             _moving = true;
-            Schedule(0f, () => Circle(_motionTarget, _move.Radius, _warning, _move.Duration, true));
+            Schedule(0f, () =>
+            {
+                _motionZone = Circle(_motionTarget, AttackRadius, _warning, _move.Duration, true, clampToRoom: false);
+                _motionZone.MotionTracking = true;
+                _motionZone.LockBeforeImpact = _profile.TargetLockTime;
+            });
             Schedule(0.3f, () =>
             {
                 _effects.Burst(_origin, 1.5f, _move.Color, 24);
@@ -629,9 +721,37 @@ namespace _02.Scripts.Monster.BossMonster
             {
                 _owner.SetPatternHidden(false);
                 ReleaseBurst(_owner.transform.position, 1.8f);
-                Ring(_motionTarget, _move.Radius + 0.2f, ArenaRadius * 1.4f,
-                    AimFrom(_motionTarget), 125f, 0.65f, 1.4f);
+                Ring(_motionTarget, AttackRadius + 0.2f, ArenaRadius * 1.4f, AimFrom(_motionTarget), 125f, 0.75f, 1.4f);
             });
+        }
+
+        private void UpdateMotionTarget(float deltaTime)
+        {
+            if (_motionZone == null || _age - deltaTime >= _warning - _profile.TargetLockTime)
+                return;
+            float trackingTime = Mathf.Max(0f, Mathf.Min(deltaTime, _warning - _profile.TargetLockTime - (_age - deltaTime)));
+            if (_move.Kind == BossEncounterPattern.DashRend)
+            {
+                Vector2 direction = BossAttackTracking.Steer(_motionTarget - _origin, PlayerPoint() - _origin, _profile.AimTrackingTurnRate, trackingTime);
+                _motionTarget = _owner.FindPatternDestination(_origin + direction * _motionSpeed * _move.Duration);
+                Vector2 delta = _motionTarget - _origin;
+                _motionZone.Center = (_origin + _motionTarget) * 0.5f;
+                _motionZone.Angle = BossBattleGeometry.Angle(delta);
+                _motionZone.Length = Mathf.Max(0.5f, delta.magnitude);
+            }
+            else if (_move.Kind == BossEncounterPattern.BurrowAmbush)
+            {
+                Vector2 current = _owner.transform.position;
+                Vector2 desired = PlayerPoint() - (PlayerPoint() - current).normalized * 1.1f;
+                float duration = Mathf.Max(0.01f, _motionEnd - _motionStart);
+                float progress = Mathf.Clamp01((_age - _motionStart) / duration);
+                float remaining = _motionSpeed * duration * (0.5f + 0.5f * Mathf.Cos(progress * Mathf.PI));
+                Vector2 reachable = current + Vector2.ClampMagnitude(desired - current, remaining);
+                Vector2 candidate = Vector2.MoveTowards(_motionTarget, reachable, _profile.GroundTrackingSpeed * trackingTime);
+                candidate = current + Vector2.ClampMagnitude(candidate - current, remaining);
+                _motionTarget = _owner.FindPatternDestination(candidate, AttackRadius + 0.1f);
+                _motionZone.Center = _motionTarget;
+            }
         }
 
         private void Apocalypse()
@@ -640,18 +760,128 @@ namespace _02.Scripts.Monster.BossMonster
             {
                 Vector2 target = PlayerPoint();
                 float gap = AimFrom(_origin);
-                Circle(target, _move.Radius, _warning, 0.28f);
+                Circle(target, AttackRadius, _warning, 0.28f, trackPlayer: true);
                 Ring(_origin, 0.8f, ArenaRadius * 1.6f, gap, 150f, _warning, _move.Duration);
                 for (int i = 0; i < 3; i++)
                 {
                     Vector2 point = _origin + BossBattleGeometry.Direction(gap + 110f + i * 70f) * (2.2f + wave * 0.35f);
-                    Circle(point, _move.Radius, _warning + 0.15f, 0.3f, true);
+                    Circle(point, AttackRadius, _warning + 0.15f, 0.3f, true);
                 }
             });
             float finale = (Waves - 1) * _move.Interval;
-            Schedule(finale, () => Circle(_origin, Mathf.Min(2.8f, ArenaRadius * 0.5f),
-                _warning + _move.Duration, 0.25f, true, true, false));
+            Schedule(finale, () => Circle(_origin, Mathf.Min(2.8f * _profile.AttackRangeMultiplier, ArenaRadius * 0.65f), _warning + _move.Duration, 0.25f, true, true, false));
             Schedule(finale + _warning + _move.Duration, () => ReleaseBurst(_origin, 3.2f));
+        }
+
+        private void SanguineLances(int wave)
+        {
+            float aim = AimFrom(_origin);
+            for (int i = -1; i <= 1; i++)
+            {
+                float angle = aim + i * 28f + (wave % 2 == 0 ? -7f : 7f);
+                Vector2 direction = BossBattleGeometry.Direction(angle);
+                float length = 8f * _profile.AttackRangeMultiplier;
+                BossDamageZone zone = new BossDamageZone
+                {
+                    Shape = BossZoneShape.Beam,
+                    Move = _move,
+                    Center = _origin + direction * length * 0.5f,
+                    Angle = angle,
+                    Length = length,
+                    Width = AttackWidth,
+                    Warning = _warning + Mathf.Abs(i) * 0.12f,
+                    Duration = _move.Duration,
+                    Damage = _damage,
+                    Once = true,
+                    Spikes = true
+                };
+                Track(zone, false, true, _origin, true);
+                _world.AddZone(zone);
+            }
+        }
+
+        private void StormPillars(int wave)
+        {
+            Vector2 center = PlayerPoint();
+            Circle(center, AttackRadius, _warning, _move.Duration, trackPlayer: true);
+            for (int i = 0; i < 4; i++)
+            {
+                Vector2 offset = BossBattleGeometry.Direction(wave * 35f + i * 90f) * (2.4f * _profile.AttackRangeMultiplier);
+                Circle(center + offset, AttackRadius, _warning + i * 0.14f, _move.Duration, trackPlayer: true);
+            }
+        }
+
+        private void RotatingScythes()
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                BossDamageZone zone = new BossDamageZone
+                {
+                    Shape = BossZoneShape.Sector,
+                    Move = _move,
+                    Center = _origin,
+                    Radius = AttackRadius,
+                    Angle = _aim + i * 120f,
+                    Span = 36f,
+                    SweepAngle = 180f,
+                    Warning = _warning,
+                    Duration = _move.Duration,
+                    Damage = _damage,
+                    Once = false
+                };
+                Track(zone, false, true);
+                _world.AddZone(zone);
+            }
+        }
+
+        private void GravityCollapse(int wave)
+        {
+            Vector2 point = PlayerPoint() + (wave == 0 ? Vector2.zero : BossBattleGeometry.Direction(_aim + wave * 120f) * AttackRadius * 0.7f);
+            point = BossBattleGeometry.ClampToRoom(point, _owner.Arena, AttackRadius + 0.1f);
+            Circle(point, AttackRadius, _warning, _move.Duration, trackPlayer: true);
+            Ring(point, 3.5f * _profile.AttackRangeMultiplier, AttackRadius + 0.3f, AimFrom(point), 115f, _warning, 1.2f, trackPlayer: true);
+        }
+
+        private void AlternatingMaze(int wave)
+        {
+            Rect area = _owner.Arena;
+            bool horizontal = wave % 2 == 0;
+            int count = Mathf.Clamp(_move.Count + (_phase > 1 ? 1 : 0), 4, 6);
+            float playerFraction = horizontal ? (PlayerPoint().y - area.yMin) / area.height : (PlayerPoint().x - area.xMin) / area.width;
+            int playerLane = Mathf.Clamp(Mathf.FloorToInt(playerFraction * count), 0, count - 1);
+            int safe = playerLane + (wave % 2 == 0 ? 1 : -1);
+            if (safe < 0 || safe >= count)
+                safe = playerLane + (safe < 0 ? 1 : -1);
+            for (int i = 0; i < count; i++)
+            {
+                if (i == safe)
+                    continue;
+                Vector2 point = horizontal ? new Vector2(area.center.x, area.yMin + (i + 0.5f) * area.height / count) : new Vector2(area.xMin + (i + 0.5f) * area.width / count, area.center.y);
+                _world.AddZone(new BossDamageZone { Shape = BossZoneShape.Beam, Move = _move, Center = point, Angle = horizontal ? 0f : 90f, Length = horizontal ? area.width : area.height, Width = AttackWidth, Warning = _warning, Duration = _move.Duration, Damage = _damage, Once = true, Spikes = true });
+            }
+        }
+
+        private void ExecutionNova()
+        {
+            // Place a nearby reachable refuge, then lock it for the whole warning.
+            // If walls leave no clear route, the current player position is the fallback.
+            Vector2 player = _owner.Player != null ? (Vector2)_owner.Player.position : _origin;
+            Vector2 safe = BossBattleGeometry.ClampToRoom(player, _owner.Arena, 0.1f);
+            for (int i = 0; i < 8; i++)
+            {
+                Vector2 candidate = BossBattleGeometry.ClampToRoom(player + BossBattleGeometry.Direction(_aim + 130f + i * 45f) * 3.1f, _owner.Arena, _move.Radius + 0.2f);
+                float travel = (candidate - player).magnitude;
+                if (travel >= 1f && travel <= 3.8f && MonsterCombat.HasClearAttackPath(player, candidate, _owner.transform, _owner.Player))
+                {
+                    safe = candidate;
+                    break;
+                }
+            }
+
+            float damage = PlayerManager.Instance != null && PlayerManager.Instance.PlayerStatusData != null ? Mathf.Max(_damage, PlayerManager.Instance.PlayerStatusData.MaxHP * 10f) : _damage;
+            Schedule(0f, () => _world.AddZone(new BossDamageZone { Shape = BossZoneShape.ArenaOutsideSafeCircle, Move = _move, Center = _owner.Arena.center, SafeCenter = safe, SafeRadius = _move.Radius, Radius = _owner.Arena.size.magnitude, Warning = _warning, Duration = _move.Duration, Damage = damage, Once = true }));
+            Schedule(_warning, () => ReleaseBurst(_origin, 3.4f));
+            _plannedEnd = _warning + _move.Duration + 0.2f;
         }
 
         public void Dispose()
@@ -662,6 +892,7 @@ namespace _02.Scripts.Monster.BossMonster
             {
                 shape.Dispose();
             }
+
             _echoShapes.Clear();
             _events.Clear();
         }

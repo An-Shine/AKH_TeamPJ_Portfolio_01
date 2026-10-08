@@ -1,0 +1,867 @@
+[
+  {
+    "asset": "Resources/Monster/NormalGameFeel/Audio/MeleeCharge_01.wav",
+    "sources": [
+      "rpg/drawKnife1.ogg",
+      "scifi/forceField_000.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 0.48,
+    "peak": 0.88,
+    "rms": 0.2744
+  },
+  {
+    "asset": "Resources/Monster/NormalGameFeel/Audio/MeleeCharge_02.wav",
+    "sources": [
+      "rpg/drawKnife2.ogg",
+      "scifi/forceField_001.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 0.48,
+    "peak": 0.88,
+    "rms": 0.242
+  },
+  {
+    "asset": "Resources/Monster/NormalGameFeel/Audio/MeleeCharge_03.wav",
+    "sources": [
+      "rpg/drawKnife3.ogg",
+      "scifi/forceField_002.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 0.48,
+    "peak": 0.88,
+    "rms": 0.1277
+  },
+  {
+    "asset": "Resources/Monster/NormalGameFeel/Audio/MeleeSlash_01.wav",
+    "sources": [
+      "rpg/knifeSlice.ogg",
+      "scifi/laserSmall_000.ogg",
+      "impact/impactMetal_light_000.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 0.62,
+    "peak": 0.88,
+    "rms": 0.1553
+  },
+  {
+    "asset": "Resources/Monster/NormalGameFeel/Audio/MeleeSlash_02.wav",
+    "sources": [
+      "rpg/knifeSlice2.ogg",
+      "scifi/laserSmall_001.ogg",
+      "impact/impactMetal_light_001.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 0.62,
+    "peak": 0.88,
+    "rms": 0.154
+  },
+  {
+    "asset": "Resources/Monster/NormalGameFeel/Audio/MeleeSlash_03.wav",
+    "sources": [
+      "rpg/knifeSlice.ogg",
+      "scifi/laserSmall_002.ogg",
+      "impact/impactMetal_light_002.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 0.62,
+    "peak": 0.88,
+    "rms": 0.1454
+  },
+  {
+    "asset": "Resources/Monster/NormalGameFeel/Audio/MeleeSlash_04.wav",
+    "sources": [
+      "rpg/knifeSlice2.ogg",
+      "scifi/laserSmall_003.ogg",
+      "impact/impactMetal_light_003.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 0.62,
+    "peak": 0.88,
+    "rms": 0.1537
+  },
+  {
+    "asset": "Resources/Monster/NormalGameFeel/Audio/MeleeImpact_01.wav",
+    "sources": [
+      "impact/impactPunch_medium_000.ogg",
+      "impact/impactMetal_heavy_000.ogg",
+      "scifi/lowFrequency_explosion_000.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 0.7,
+    "peak": 0.88,
+    "rms": 0.1714
+  },
+  {
+    "asset": "Resources/Monster/NormalGameFeel/Audio/MeleeImpact_02.wav",
+    "sources": [
+      "impact/impactPunch_medium_001.ogg",
+      "impact/impactMetal_heavy_001.ogg",
+      "scifi/lowFrequency_explosion_001.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 0.7,
+    "peak": 0.88,
+    "rms": 0.1644
+  },
+  {
+    "asset": "Resources/Monster/NormalGameFeel/Audio/MeleeImpact_03.wav",
+    "sources": [
+      "impact/impactPunch_medium_002.ogg",
+      "impact/impactMetal_heavy_002.ogg",
+      "scifi/lowFrequency_explosion_000.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 0.7,
+    "peak": 0.88,
+    "rms": 0.1756
+  },
+  {
+    "asset": "Resources/Monster/NormalGameFeel/Audio/MeleeImpact_04.wav",
+    "sources": [
+      "impact/impactPunch_medium_003.ogg",
+      "impact/impactMetal_heavy_003.ogg",
+      "scifi/lowFrequency_explosion_001.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 0.7,
+    "peak": 0.88,
+    "rms": 0.1592
+  },
+  {
+    "asset": "Resources/Monster/NormalGameFeel/Audio/RangeCharge_01.wav",
+    "sources": [
+      "scifi/forceField_000.ogg",
+      "rpg/metalClick.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 0.45,
+    "peak": 0.88,
+    "rms": 0.3017
+  },
+  {
+    "asset": "Resources/Monster/NormalGameFeel/Audio/RangeCharge_02.wav",
+    "sources": [
+      "scifi/forceField_001.ogg",
+      "rpg/metalClick.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 0.45,
+    "peak": 0.88,
+    "rms": 0.3113
+  },
+  {
+    "asset": "Resources/Monster/NormalGameFeel/Audio/RangeCharge_03.wav",
+    "sources": [
+      "scifi/forceField_002.ogg",
+      "rpg/metalClick.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 0.45,
+    "peak": 0.88,
+    "rms": 0.3011
+  },
+  {
+    "asset": "Resources/Monster/NormalGameFeel/Audio/RangeShot_01.wav",
+    "sources": [
+      "scifi/laserLarge_000.ogg",
+      "impact/impactMetal_light_000.ogg",
+      "scifi/lowFrequency_explosion_000.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 0.65,
+    "peak": 0.88,
+    "rms": 0.1879
+  },
+  {
+    "asset": "Resources/Monster/NormalGameFeel/Audio/RangeShot_02.wav",
+    "sources": [
+      "scifi/laserLarge_001.ogg",
+      "impact/impactMetal_light_001.ogg",
+      "scifi/lowFrequency_explosion_001.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 0.65,
+    "peak": 0.88,
+    "rms": 0.1879
+  },
+  {
+    "asset": "Resources/Monster/NormalGameFeel/Audio/RangeShot_03.wav",
+    "sources": [
+      "scifi/laserLarge_002.ogg",
+      "impact/impactMetal_light_002.ogg",
+      "scifi/lowFrequency_explosion_000.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 0.65,
+    "peak": 0.88,
+    "rms": 0.1948
+  },
+  {
+    "asset": "Resources/Monster/NormalGameFeel/Audio/RangeShot_04.wav",
+    "sources": [
+      "scifi/laserLarge_003.ogg",
+      "impact/impactMetal_light_003.ogg",
+      "scifi/lowFrequency_explosion_001.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 0.65,
+    "peak": 0.88,
+    "rms": 0.1637
+  },
+  {
+    "asset": "Resources/Monster/NormalGameFeel/Audio/RangeImpact_01.wav",
+    "sources": [
+      "impact/impactMetal_medium_000.ogg",
+      "scifi/explosionCrunch_000.ogg",
+      "scifi/lowFrequency_explosion_000.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 0.8,
+    "peak": 0.88,
+    "rms": 0.1686
+  },
+  {
+    "asset": "Resources/Monster/NormalGameFeel/Audio/RangeImpact_02.wav",
+    "sources": [
+      "impact/impactMetal_medium_001.ogg",
+      "scifi/explosionCrunch_001.ogg",
+      "scifi/lowFrequency_explosion_001.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 0.8,
+    "peak": 0.88,
+    "rms": 0.1969
+  },
+  {
+    "asset": "Resources/Monster/NormalGameFeel/Audio/RangeImpact_03.wav",
+    "sources": [
+      "impact/impactMetal_medium_002.ogg",
+      "scifi/explosionCrunch_002.ogg",
+      "scifi/lowFrequency_explosion_000.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 0.8,
+    "peak": 0.88,
+    "rms": 0.1914
+  },
+  {
+    "asset": "Resources/Monster/NormalGameFeel/Audio/RangeImpact_04.wav",
+    "sources": [
+      "impact/impactMetal_medium_003.ogg",
+      "scifi/explosionCrunch_003.ogg",
+      "scifi/lowFrequency_explosion_001.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 0.8,
+    "peak": 0.88,
+    "rms": 0.1914
+  },
+  {
+    "asset": "Resources/Monster/NeonPolish/Audio/KamikazeCharge_01.wav",
+    "sources": [
+      "scifi/thrusterFire_000.ogg",
+      "scifi/forceField_000.ogg",
+      "rpg/metalClick.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 0.85,
+    "peak": 0.76,
+    "rms": 0.195
+  },
+  {
+    "asset": "Resources/Monster/NeonPolish/Audio/KamikazeCharge_02.wav",
+    "sources": [
+      "scifi/thrusterFire_001.ogg",
+      "scifi/forceField_001.ogg",
+      "rpg/metalClick.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 0.85,
+    "peak": 0.76,
+    "rms": 0.1896
+  },
+  {
+    "asset": "Resources/Monster/NeonPolish/Audio/KamikazeCharge_03.wav",
+    "sources": [
+      "scifi/thrusterFire_002.ogg",
+      "scifi/forceField_002.ogg",
+      "rpg/metalClick.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 0.85,
+    "peak": 0.76,
+    "rms": 0.1913
+  },
+  {
+    "asset": "Resources/Monster/NeonPolish/Audio/KamikazeTick_01.wav",
+    "sources": [
+      "scifi/laserSmall_000.ogg",
+      "rpg/metalClick.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 0.14,
+    "peak": 0.68,
+    "rms": 0.0982
+  },
+  {
+    "asset": "Resources/Monster/NeonPolish/Audio/KamikazeTick_02.wav",
+    "sources": [
+      "scifi/laserSmall_001.ogg",
+      "rpg/metalClick.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 0.14,
+    "peak": 0.68,
+    "rms": 0.0767
+  },
+  {
+    "asset": "Resources/Monster/NeonPolish/Audio/KamikazeTick_03.wav",
+    "sources": [
+      "scifi/laserSmall_002.ogg",
+      "rpg/metalClick.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 0.14,
+    "peak": 0.68,
+    "rms": 0.0998
+  },
+  {
+    "asset": "Resources/Monster/NeonPolish/Audio/KamikazeExplosion_01.wav",
+    "sources": [
+      "scifi/explosionCrunch_000.ogg",
+      "scifi/lowFrequency_explosion_000.ogg",
+      "impact/impactMetal_heavy_000.ogg",
+      "impact/impactSoft_heavy_000.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 1.45,
+    "peak": 0.9,
+    "rms": 0.241
+  },
+  {
+    "asset": "Resources/Monster/NeonPolish/Audio/KamikazeExplosion_02.wav",
+    "sources": [
+      "scifi/explosionCrunch_001.ogg",
+      "scifi/lowFrequency_explosion_001.ogg",
+      "impact/impactMetal_heavy_001.ogg",
+      "impact/impactSoft_heavy_001.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 1.45,
+    "peak": 0.9,
+    "rms": 0.2837
+  },
+  {
+    "asset": "Resources/Monster/NeonPolish/Audio/KamikazeExplosion_03.wav",
+    "sources": [
+      "scifi/explosionCrunch_002.ogg",
+      "scifi/lowFrequency_explosion_000.ogg",
+      "impact/impactMetal_heavy_002.ogg",
+      "impact/impactSoft_heavy_002.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 1.45,
+    "peak": 0.9,
+    "rms": 0.2558
+  },
+  {
+    "asset": "Resources/Monster/NeonPolish/Audio/KamikazeExplosion_04.wav",
+    "sources": [
+      "scifi/explosionCrunch_003.ogg",
+      "scifi/lowFrequency_explosion_001.ogg",
+      "impact/impactMetal_heavy_003.ogg",
+      "impact/impactSoft_heavy_003.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 1.45,
+    "peak": 0.9,
+    "rms": 0.2625
+  },
+  {
+    "asset": "Resources/Monster/NeonPolish/Audio/BossFootstep_01.wav",
+    "sources": [
+      "rpg/footstep00.ogg",
+      "impact/impactSoft_heavy_000.ogg",
+      "impact/impactMetal_light_000.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 0.42,
+    "peak": 0.68,
+    "rms": 0.1289
+  },
+  {
+    "asset": "Resources/Monster/NeonPolish/Audio/BossFootstep_02.wav",
+    "sources": [
+      "rpg/footstep01.ogg",
+      "impact/impactSoft_heavy_001.ogg",
+      "impact/impactMetal_light_001.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 0.42,
+    "peak": 0.68,
+    "rms": 0.1422
+  },
+  {
+    "asset": "Resources/Monster/NeonPolish/Audio/BossFootstep_03.wav",
+    "sources": [
+      "rpg/footstep02.ogg",
+      "impact/impactSoft_heavy_002.ogg",
+      "impact/impactMetal_light_002.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 0.42,
+    "peak": 0.68,
+    "rms": 0.1385
+  },
+  {
+    "asset": "Resources/Monster/NeonPolish/Audio/BossFootstep_04.wav",
+    "sources": [
+      "rpg/footstep03.ogg",
+      "impact/impactSoft_heavy_003.ogg",
+      "impact/impactMetal_light_003.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 0.42,
+    "peak": 0.68,
+    "rms": 0.1458
+  },
+  {
+    "asset": "Resources/Monster/BossOverhaul/Audio/Cleave_Impact.wav",
+    "sources": [
+      "impact/impactMetal_heavy_000.ogg",
+      "impact/impactPunch_medium_000.ogg",
+      "scifi/lowFrequency_explosion_000.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 1.25,
+    "peak": 0.9,
+    "rms": 0.1955
+  },
+  {
+    "asset": "Resources/Monster/BossOverhaul/Audio/Rift_Impact.wav",
+    "sources": [
+      "impact/impactMetal_heavy_001.ogg",
+      "impact/impactPunch_medium_001.ogg",
+      "scifi/lowFrequency_explosion_001.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 1.25,
+    "peak": 0.9,
+    "rms": 0.1849
+  },
+  {
+    "asset": "Resources/Monster/BossOverhaul/Audio/Rain_Impact.wav",
+    "sources": [
+      "scifi/explosionCrunch_002.ogg",
+      "impact/impactSoft_heavy_002.ogg",
+      "scifi/lowFrequency_explosion_000.ogg",
+      "impact/impactMetal_heavy_002.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 1.25,
+    "peak": 0.9,
+    "rms": 0.2962
+  },
+  {
+    "asset": "Resources/Monster/BossOverhaul/Audio/Spiral_Impact.wav",
+    "sources": [
+      "scifi/laserLarge_003.ogg",
+      "impact/impactMetal_medium_003.ogg",
+      "scifi/lowFrequency_explosion_001.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 1.25,
+    "peak": 0.9,
+    "rms": 0.1593
+  },
+  {
+    "asset": "Resources/Monster/BossOverhaul/Audio/Beam_Impact.wav",
+    "sources": [
+      "scifi/laserLarge_004.ogg",
+      "impact/impactMetal_medium_004.ogg",
+      "scifi/lowFrequency_explosion_000.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 1.25,
+    "peak": 0.9,
+    "rms": 0.1697
+  },
+  {
+    "asset": "Resources/Monster/BossOverhaul/Audio/Doom_Impact.wav",
+    "sources": [
+      "scifi/explosionCrunch_000.ogg",
+      "impact/impactSoft_heavy_000.ogg",
+      "scifi/lowFrequency_explosion_001.ogg",
+      "impact/impactMetal_heavy_000.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 1.25,
+    "peak": 0.9,
+    "rms": 0.2635
+  },
+  {
+    "asset": "Resources/Monster/BossOverhaul/Audio/Claw_Impact.wav",
+    "sources": [
+      "impact/impactMetal_heavy_001.ogg",
+      "impact/impactPunch_medium_001.ogg",
+      "scifi/lowFrequency_explosion_000.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 1.25,
+    "peak": 0.9,
+    "rms": 0.1941
+  },
+  {
+    "asset": "Resources/Monster/BossOverhaul/Audio/Slam_Impact.wav",
+    "sources": [
+      "impact/impactMetal_heavy_002.ogg",
+      "impact/impactPunch_medium_002.ogg",
+      "scifi/lowFrequency_explosion_001.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 1.25,
+    "peak": 0.9,
+    "rms": 0.1872
+  },
+  {
+    "asset": "Resources/Monster/BossOverhaul/Audio/Serpent_Impact.wav",
+    "sources": [
+      "impact/impactMetal_heavy_003.ogg",
+      "impact/impactPunch_medium_003.ogg",
+      "scifi/lowFrequency_explosion_000.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 1.25,
+    "peak": 0.9,
+    "rms": 0.2023
+  },
+  {
+    "asset": "Resources/Monster/BossOverhaul/Audio/Thorn_Impact.wav",
+    "sources": [
+      "impact/impactMetal_heavy_004.ogg",
+      "impact/impactPunch_medium_004.ogg",
+      "scifi/lowFrequency_explosion_001.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 1.25,
+    "peak": 0.9,
+    "rms": 0.1865
+  },
+  {
+    "asset": "Resources/Monster/BossOverhaul/Audio/Spikes_Impact.wav",
+    "sources": [
+      "scifi/explosionCrunch_000.ogg",
+      "impact/impactSoft_heavy_000.ogg",
+      "scifi/lowFrequency_explosion_000.ogg",
+      "impact/impactMetal_heavy_000.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 1.25,
+    "peak": 0.9,
+    "rms": 0.2748
+  },
+  {
+    "asset": "Resources/Monster/BossOverhaul/Audio/Nova_Impact.wav",
+    "sources": [
+      "scifi/explosionCrunch_001.ogg",
+      "impact/impactSoft_heavy_001.ogg",
+      "scifi/lowFrequency_explosion_001.ogg",
+      "impact/impactMetal_heavy_001.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 1.25,
+    "peak": 0.9,
+    "rms": 0.3254
+  },
+  {
+    "asset": "Resources/Monster/BossOverhaul/Audio/Twin_Impact.wav",
+    "sources": [
+      "scifi/explosionCrunch_002.ogg",
+      "impact/impactSoft_heavy_002.ogg",
+      "scifi/lowFrequency_explosion_000.ogg",
+      "impact/impactMetal_heavy_002.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 1.25,
+    "peak": 0.9,
+    "rms": 0.2962
+  },
+  {
+    "asset": "Resources/Monster/BossOverhaul/Audio/Chase_Impact.wav",
+    "sources": [
+      "scifi/explosionCrunch_003.ogg",
+      "impact/impactSoft_heavy_003.ogg",
+      "scifi/lowFrequency_explosion_001.ogg",
+      "impact/impactMetal_heavy_003.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 1.25,
+    "peak": 0.9,
+    "rms": 0.2975
+  },
+  {
+    "asset": "Resources/Monster/BossOverhaul/Audio/Grid_Impact.wav",
+    "sources": [
+      "scifi/explosionCrunch_004.ogg",
+      "impact/impactSoft_heavy_004.ogg",
+      "scifi/lowFrequency_explosion_000.ogg",
+      "impact/impactMetal_heavy_004.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 1.25,
+    "peak": 0.9,
+    "rms": 0.2825
+  },
+  {
+    "asset": "Resources/Monster/BossOverhaul/Audio/Pools_Impact.wav",
+    "sources": [
+      "scifi/explosionCrunch_000.ogg",
+      "impact/impactSoft_heavy_000.ogg",
+      "scifi/lowFrequency_explosion_001.ogg",
+      "impact/impactMetal_heavy_000.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 1.25,
+    "peak": 0.9,
+    "rms": 0.2635
+  },
+  {
+    "asset": "Resources/Monster/BossOverhaul/Audio/Volley_Impact.wav",
+    "sources": [
+      "scifi/laserLarge_001.ogg",
+      "impact/impactMetal_medium_001.ogg",
+      "scifi/lowFrequency_explosion_000.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 1.25,
+    "peak": 0.9,
+    "rms": 0.1965
+  },
+  {
+    "asset": "Resources/Monster/BossOverhaul/Audio/Homing_Impact.wav",
+    "sources": [
+      "scifi/laserLarge_002.ogg",
+      "impact/impactMetal_medium_002.ogg",
+      "scifi/lowFrequency_explosion_001.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 1.25,
+    "peak": 0.9,
+    "rms": 0.1744
+  },
+  {
+    "asset": "Resources/Monster/BossOverhaul/Audio/Echo_Impact.wav",
+    "sources": [
+      "scifi/laserLarge_003.ogg",
+      "impact/impactMetal_medium_003.ogg",
+      "scifi/lowFrequency_explosion_000.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 1.25,
+    "peak": 0.9,
+    "rms": 0.1648
+  },
+  {
+    "asset": "Resources/Monster/BossOverhaul/Audio/Orbit_Impact.wav",
+    "sources": [
+      "scifi/laserLarge_004.ogg",
+      "impact/impactMetal_medium_004.ogg",
+      "scifi/lowFrequency_explosion_001.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 1.25,
+    "peak": 0.9,
+    "rms": 0.1649
+  },
+  {
+    "asset": "Resources/Monster/BossOverhaul/Audio/Edge_Impact.wav",
+    "sources": [
+      "scifi/laserLarge_000.ogg",
+      "impact/impactMetal_medium_000.ogg",
+      "scifi/lowFrequency_explosion_000.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 1.25,
+    "peak": 0.9,
+    "rms": 0.1719
+  },
+  {
+    "asset": "Resources/Monster/BossOverhaul/Audio/Dash_Impact.wav",
+    "sources": [
+      "impact/impactMetal_heavy_001.ogg",
+      "impact/impactPunch_medium_001.ogg",
+      "scifi/lowFrequency_explosion_001.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 1.25,
+    "peak": 0.9,
+    "rms": 0.1849
+  },
+  {
+    "asset": "Resources/Monster/BossOverhaul/Audio/Burrow_Impact.wav",
+    "sources": [
+      "impact/impactMetal_heavy_002.ogg",
+      "impact/impactPunch_medium_002.ogg",
+      "scifi/lowFrequency_explosion_000.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 1.25,
+    "peak": 0.9,
+    "rms": 0.2031
+  },
+  {
+    "asset": "Resources/Monster/BossOverhaul/Audio/Finale_Impact.wav",
+    "sources": [
+      "scifi/explosionCrunch_003.ogg",
+      "impact/impactSoft_heavy_003.ogg",
+      "scifi/lowFrequency_explosion_001.ogg",
+      "impact/impactMetal_heavy_003.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 1.25,
+    "peak": 0.9,
+    "rms": 0.2975
+  },
+  {
+    "asset": "Resources/Monster/BossOverhaul/Audio/Lances_Impact.wav",
+    "sources": [
+      "impact/impactMetal_heavy_004.ogg",
+      "impact/impactPunch_medium_004.ogg",
+      "scifi/lowFrequency_explosion_000.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 1.25,
+    "peak": 0.9,
+    "rms": 0.2058
+  },
+  {
+    "asset": "Resources/Monster/BossOverhaul/Audio/Storm_Impact.wav",
+    "sources": [
+      "scifi/explosionCrunch_000.ogg",
+      "impact/impactSoft_heavy_000.ogg",
+      "scifi/lowFrequency_explosion_001.ogg",
+      "impact/impactMetal_heavy_000.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 1.25,
+    "peak": 0.9,
+    "rms": 0.2635
+  },
+  {
+    "asset": "Resources/Monster/BossOverhaul/Audio/Scythes_Impact.wav",
+    "sources": [
+      "impact/impactMetal_heavy_001.ogg",
+      "impact/impactPunch_medium_001.ogg",
+      "scifi/lowFrequency_explosion_000.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 1.25,
+    "peak": 0.9,
+    "rms": 0.1941
+  },
+  {
+    "asset": "Resources/Monster/BossOverhaul/Audio/Gravity_Impact.wav",
+    "sources": [
+      "scifi/explosionCrunch_002.ogg",
+      "impact/impactSoft_heavy_002.ogg",
+      "scifi/lowFrequency_explosion_001.ogg",
+      "impact/impactMetal_heavy_002.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 1.25,
+    "peak": 0.9,
+    "rms": 0.2904
+  },
+  {
+    "asset": "Resources/Monster/BossOverhaul/Audio/Maze_Impact.wav",
+    "sources": [
+      "impact/impactMetal_heavy_003.ogg",
+      "impact/impactPunch_medium_003.ogg",
+      "scifi/lowFrequency_explosion_000.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 1.25,
+    "peak": 0.9,
+    "rms": 0.2023
+  },
+  {
+    "asset": "Resources/Monster/BossOverhaul/Audio/Execution_Impact.wav",
+    "sources": [
+      "scifi/explosionCrunch_004.ogg",
+      "impact/impactSoft_heavy_004.ogg",
+      "scifi/lowFrequency_explosion_001.ogg",
+      "impact/impactMetal_heavy_004.ogg"
+    ],
+    "license": "CC0 1.0",
+    "processing": "pitch, transient layering, bass layering, short echo, fades, peak limiting",
+    "seconds": 2.1,
+    "peak": 0.9,
+    "rms": 0.2271
+  }
+]
