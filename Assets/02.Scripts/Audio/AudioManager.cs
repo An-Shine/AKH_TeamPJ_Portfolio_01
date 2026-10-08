@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -16,6 +17,7 @@ public class AudioManager : MonoBehaviour
     private Dictionary<BGMType, AudioClip> _bgmDictionary;
     private Dictionary<SFXType, AudioClip> _sfxDictionary;
     private readonly HashSet<BossMonster> _activeBossBattles = new HashSet<BossMonster>();
+    private Coroutine _bgmLoading;
 
     public float MasterVolume => AudioListener.volume;
 
@@ -85,8 +87,25 @@ public class AudioManager : MonoBehaviour
         }
 
         if (_bgmSource.clip == clip && _bgmSource.isPlaying) return;
+        StopBGM();
         _bgmSource.loop = true;
         _bgmSource.clip = clip;
+        if (clip.loadState == AudioDataLoadState.Loaded) _bgmSource.Play();
+        else _bgmLoading = StartCoroutine(PlayLoadedBGM(clip));
+    }
+
+    private IEnumerator PlayLoadedBGM(AudioClip clip)
+    {
+        clip.LoadAudioData();
+        yield return null;
+        while (clip.loadState == AudioDataLoadState.Loading) yield return null;
+        _bgmLoading = null;
+        if (_bgmSource == null || _bgmSource.clip != clip) yield break;
+        if (clip.loadState != AudioDataLoadState.Loaded)
+        {
+            Debug.LogWarning("BGM loading failed: " + clip.name, this);
+            yield break;
+        }
         _bgmSource.Play();
     }
 
@@ -130,6 +149,11 @@ public class AudioManager : MonoBehaviour
 
     public void StopBGM()
     {
+        if (_bgmLoading != null)
+        {
+            StopCoroutine(_bgmLoading);
+            _bgmLoading = null;
+        }
         if (_bgmSource != null) _bgmSource.Stop();
     }
 
@@ -156,6 +180,7 @@ public class AudioManager : MonoBehaviour
 
     private void OnDisable()
     {
+        StopBGM();
         if (_footstepSource != null) _footstepSource.Stop();
     }
 

@@ -201,6 +201,10 @@ public class BossMonster : NormalMonster
             return;
         }
         ResolvePlayer();
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.SetBossBattle(this, CanFight && !PlayerManager.IsInputBlocked);
+        }
         _director.Tick(Time.deltaTime);
         if (_director.IsCasting)
         {
@@ -456,6 +460,7 @@ public class BossMonster : NormalMonster
             return;
         }
         _deathStarted = true;
+        if (AudioManager.Instance != null) AudioManager.Instance.SetBossBattle(this, false);
         _deathStartTime = Time.time;
         _currentHealth = 0f;
         StopMovementForDeath();
@@ -575,6 +580,7 @@ public class BossMonster : NormalMonster
 
     protected override void OnDisable()
     {
+        if (AudioManager.Instance != null) AudioManager.Instance.SetBossBattle(this, false);
         base.OnDisable();
         if (_director != null)
         {
