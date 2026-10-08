@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerHitFlash : MonoBehaviour
 {
-    private float _duration = 0.2f;
+    private float _duration = 0.3f;
     private float _dashGlowDuration = 0.5f;
     [SerializeField, ColorUsage(false, true)]
     private Color _dashGlowColor = new Color(1.5f, 2.5f, 3f, 1f);
