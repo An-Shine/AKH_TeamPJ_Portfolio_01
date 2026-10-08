@@ -283,4 +283,19 @@ public class PlayerManager : MonoBehaviour
             _hitFlash.Play();
         }
     }
+
+    public bool Heal(float healAmount)
+    {
+        EnsureStatus();
+        if (IsGameOver || PlayerStatusData == null || !PlayerStatusData.IsVulnerable ||
+            PlayerStatusData.CurrentHP <= 0f || Time.timeScale <= 0f ||
+            Time.time < _hitInvulnerableUntil || Time.time < _dashInvulnerableUntil || healAmount <= 0f ||
+            float.IsNaN(healAmount) || float.IsInfinity(healAmount))
+        {
+            return false;
+        }
+
+        PlayerStatusData.ModifyHealth(healAmount);
+        return true;
+    }
 }
