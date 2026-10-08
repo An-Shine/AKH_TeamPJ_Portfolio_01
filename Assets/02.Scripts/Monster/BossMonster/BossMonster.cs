@@ -9,48 +9,28 @@ using TMPro;
 public class BossMonster : NormalMonster
 {
     [Header("새 보스 전투")]
-    [SerializeField]
-    private BossEncounterProfile _encounterProfile;
-    [SerializeField]
-    private BossRoom _room;
-    [SerializeField]
-    private Animator _directionAnimator;
-    [SerializeField, Min(0f)]
-    private float _initialAttackDelay = 1.5f;
-    [Tooltip("BossRoom이 없을 때만 사용하는 임시 전투 범위입니다. 중심은 보스의 시작 위치입니다.")]
-    [SerializeField]
-    private Vector2 _fallbackArenaSize = new Vector2(18f, 12f);
-    [SerializeField]
-    private Camera _shakeCamera = null;
+    [SerializeField] private BossEncounterProfile _encounterProfile;
+    [SerializeField] private BossRoom _room;
+    [SerializeField] private Animator _directionAnimator;
+    [SerializeField, Min(0f)] private float _initialAttackDelay = 1.5f;
+    [SerializeField] private Vector2 _fallbackArenaSize = new Vector2(18f, 12f);
+    [SerializeField] private Camera _shakeCamera = null;
     [Header("패턴 사이 이동")]
-    [SerializeField]
-    private bool _enableSlowChase = true;
-    [SerializeField, Min(0f)]
-    private float _slowMoveSpeed = 1.3f;
-    [SerializeField, Min(0f)]
-    private float _stopDistance = 2.3f;
-    [SerializeField, Min(0f)]
-    private float _roomEdgePadding = 1.1f;
+    [SerializeField] private bool _enableSlowChase = true;
+    [SerializeField, Min(0f)] private float _slowMoveSpeed = 1.3f;
+    [SerializeField, Min(0f)] private float _stopDistance = 2.3f;
+    [SerializeField, Min(0f)] private float _roomEdgePadding = 1.1f;
     [Header("보스 피격")]
-    [SerializeField]
-    private Color _hitSparkColor = new Color(1f, 0.9f, 0.5f, 1f);
-    [SerializeField]
-    private AudioClip _hitSound = null;
-    [SerializeField, Range(0f, 1f)]
-    private float _hitSoundVolume = 0.5f;
-    [SerializeField, Min(0f)]
-    private float _hitSoundCooldown = 0.08f;
-    [SerializeField, Min(0f)]
-    private float _hitReactionCooldown = 0.8f;
+    [SerializeField] private Color _hitSparkColor = new Color(1f, 0.9f, 0.5f, 1f);
+    [SerializeField] private AudioClip _hitSound = null;
+    [SerializeField, Range(0f, 1f)] private float _hitSoundVolume = 0.5f;
+    [SerializeField, Min(0f)] private float _hitSoundCooldown = 0.08f;
+    [SerializeField, Min(0f)] private float _hitReactionCooldown = 0.8f;
     [Header("체력 표시")]
-    [SerializeField]
-    private bool _showHealthBar = true;
-    [SerializeField]
-    private string _bossDisplayName = "BOSS";
-    [SerializeField]
-    private Color _healthBarColor = new Color(0.85f, 0.12f, 0.2f, 1f);
-    [SerializeField]
-    private TMP_FontAsset _healthFont;
+    [SerializeField] private bool _showHealthBar = true;
+    [SerializeField] private string _bossDisplayName = "BOSS";
+    [SerializeField] private Color _healthBarColor = new Color(0.85f, 0.12f, 0.2f, 1f);
+    [SerializeField] private TMP_FontAsset _healthFont;
     private Transform _targetPlayer;
     private readonly BossPlayerTracker _playerTracker = new BossPlayerTracker();
     private Collider2D[] _playerColliders = new Collider2D[0];
@@ -117,7 +97,10 @@ public class BossMonster : NormalMonster
         }
     }
 
-    public bool CanFight => !_deathStarted && _currentHealth > 0f && isActiveAndEnabled && _targetPlayer != null && _targetPlayer.gameObject.activeInHierarchy && Arena.Contains(_targetPlayer.position) && (PlayerManager.Instance == null || PlayerManager.Instance.PlayerStatusData == null || PlayerManager.Instance.PlayerStatusData.CurrentHP > 0f);
+    public bool CanFight => !_deathStarted && _currentHealth > 0f && isActiveAndEnabled && _targetPlayer != null &&
+                            _targetPlayer.gameObject.activeInHierarchy && Arena.Contains(_targetPlayer.position) &&
+                            (PlayerManager.Instance == null || PlayerManager.Instance.PlayerStatusData == null ||
+                             PlayerManager.Instance.PlayerStatusData.CurrentHP > 0f);
 
     public Transform AttackRoot
     {
@@ -233,6 +216,12 @@ public class BossMonster : NormalMonster
         }
 
         ResolvePlayer();
+
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.SetBossBattle(this, CanFight && !PlayerManager.IsInputBlocked);
+        }
+
         if (_targetPlayer != null)
             _playerTracker.Sample(_targetPlayer.position, Time.deltaTime);
         _director.Tick(Time.deltaTime);
@@ -290,7 +279,8 @@ public class BossMonster : NormalMonster
             }
         }
 
-        if (_room != null && (_room.transform == transform || _room.transform.IsChildOf(transform) || !_room.ValidateSetup()))
+        if (_room != null && (_room.transform == transform || _room.transform.IsChildOf(transform) ||
+                              !_room.ValidateSetup()))
         {
             _room = null;
         }
@@ -320,7 +310,9 @@ public class BossMonster : NormalMonster
 
     private void CachePlayer()
     {
-        _playerColliders = _targetPlayer != null ? _targetPlayer.GetComponentsInChildren<Collider2D>(true) : new Collider2D[0];
+        _playerColliders = _targetPlayer != null
+            ? _targetPlayer.GetComponentsInChildren<Collider2D>(true)
+            : new Collider2D[0];
         if (_targetPlayer != null)
             _playerTracker.Reset(_targetPlayer.position);
     }
@@ -352,12 +344,15 @@ public class BossMonster : NormalMonster
 
     public bool TryDealPlayerDamage(float damage, Vector2 point, Vector2 direction, Color color)
     {
-        return CanFight && MonsterCombat.TryTakePlayerDamage(_targetPlayer, damage, new Vector3(point.x, point.y, transform.position.z), direction, color);
+        return CanFight && MonsterCombat.TryTakePlayerDamage(_targetPlayer, damage,
+            new Vector3(point.x, point.y, transform.position.z), direction, color);
     }
 
     public Vector2 PredictPlayerPosition(float leadTime)
     {
-        return _targetPlayer != null ? _playerTracker.Predict(_targetPlayer.position, leadTime, Arena) : (Vector2)transform.position;
+        return _targetPlayer != null
+            ? _playerTracker.Predict(_targetPlayer.position, leadTime, Arena)
+            : (Vector2)transform.position;
     }
 
     public Vector2 FindPatternDestination(Vector2 target, float padding = 0f)
@@ -443,7 +438,11 @@ public class BossMonster : NormalMonster
             _nextStrikePulse = Time.time + 0.25f;
             _animations.PulseStrike(move);
             if (_visualPolish != null)
-                _visualPolish.Pulse(_targetPlayer != null ? (Vector2)(_targetPlayer.position - transform.position) : Vector2.up);
+            {
+                _visualPolish.Pulse(_targetPlayer != null
+                    ? (Vector2)(_targetPlayer.position - transform.position)
+                    : Vector2.up);
+            }
         }
     }
 
@@ -455,7 +454,8 @@ public class BossMonster : NormalMonster
             return;
         }
 
-        float squared = MonsterCombat.GetPlayerDistanceSquared(_targetPlayer, _playerColliders, center, out Vector2 point);
+        float squared =
+            MonsterCombat.GetPlayerDistanceSquared(_targetPlayer, _playerColliders, center, out Vector2 point);
         if (squared <= radius * radius && MonsterCombat.HasClearAttackPath(center, point, transform, _targetPlayer))
         {
             TryDealPlayerDamage(damage, point, (point - center).normalized, color);
@@ -476,7 +476,9 @@ public class BossMonster : NormalMonster
             return;
         }
 
-        Vector2 source = _targetPlayer != null ? (Vector2)_targetPlayer.position : (Vector2)transform.position + Vector2.down;
+        Vector2 source = _targetPlayer != null
+            ? (Vector2)_targetPlayer.position
+            : (Vector2)transform.position + Vector2.down;
         Vector2 point = transform.position;
         foreach (Collider2D collider in _bodyColliders)
         {
@@ -487,7 +489,8 @@ public class BossMonster : NormalMonster
             }
         }
 
-        MonsterCombatEffect.SpawnImpact(new Vector3(point.x, point.y, transform.position.z), ((Vector2)transform.position - source).normalized, _hitSparkColor, transform);
+        MonsterCombatEffect.SpawnImpact(new Vector3(point.x, point.y, transform.position.z),
+            ((Vector2)transform.position - source).normalized, _hitSparkColor, transform);
         if (_hitSound != null && Time.time >= _nextHitSound)
         {
             _nextHitSound = Time.time + _hitSoundCooldown;
@@ -523,6 +526,11 @@ public class BossMonster : NormalMonster
         }
 
         _deathStarted = true;
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.SetBossBattle(this, false);
+        }
+
         _deathStartTime = Time.time;
         _currentHealth = 0f;
         StopMovementForDeath();
@@ -654,6 +662,11 @@ public class BossMonster : NormalMonster
 
     protected override void OnDisable()
     {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.SetBossBattle(this, false);
+        }
+
         base.OnDisable();
         if (_director != null)
         {
@@ -701,7 +714,8 @@ public class BossMonster : NormalMonster
     {
         if (!_showHealthBar || _healthBarRoot != null)
             return;
-        _healthBarRoot = new GameObject(name + "_HealthBar", typeof(RectTransform), typeof(Canvas), typeof(CanvasScaler), typeof(CanvasGroup));
+        _healthBarRoot = new GameObject(name + "_HealthBar", typeof(RectTransform), typeof(Canvas),
+            typeof(CanvasScaler), typeof(CanvasGroup));
         Canvas canvas = _healthBarRoot.GetComponent<Canvas>();
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
         canvas.sortingOrder = 50;
@@ -712,7 +726,8 @@ public class BossMonster : NormalMonster
         scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
         scaler.referenceResolution = new Vector2(1280f, 720f);
         scaler.matchWidthOrHeight = 0.5f;
-        Image panel = CreateBarImage("NeonBossPanel", _healthBarRoot.transform, new Color(0.025f, 0.035f, 0.065f, 0.93f));
+        Image panel = CreateBarImage("NeonBossPanel", _healthBarRoot.transform,
+            new Color(0.025f, 0.035f, 0.065f, 0.93f));
         RectTransform rect = panel.rectTransform;
         rect.anchorMin = rect.anchorMax = new Vector2(0.5f, 1f);
         rect.pivot = new Vector2(0.5f, 1f);
@@ -770,7 +785,8 @@ public class BossMonster : NormalMonster
 
     private TMP_Text CreateBossText(string objectName, Transform parent, float size)
     {
-        GameObject child = new GameObject(objectName, typeof(RectTransform), typeof(CanvasRenderer), typeof(TextMeshProUGUI));
+        GameObject child = new GameObject(objectName, typeof(RectTransform), typeof(CanvasRenderer),
+            typeof(TextMeshProUGUI));
         child.transform.SetParent(parent, false);
         TMP_Text text = child.GetComponent<TextMeshProUGUI>();
         text.font = _healthFont != null ? _healthFont : TMP_Settings.defaultFontAsset;
@@ -800,14 +816,17 @@ public class BossMonster : NormalMonster
             return;
         }
 
-        bool playerInside = _targetPlayer != null && _targetPlayer.gameObject.activeInHierarchy && (_room == null || _room.Contains(_targetPlayer.position, 0f));
-        bool visible = _showHealthBar && isActiveAndEnabled && playerInside && (!_deathStarted || Time.time - _deathStartTime < 2f);
+        bool playerInside = _targetPlayer != null && _targetPlayer.gameObject.activeInHierarchy &&
+                            (_room == null || _room.Contains(_targetPlayer.position, 0f));
+        bool visible = _showHealthBar && isActiveAndEnabled && playerInside &&
+                       (!_deathStarted || Time.time - _deathStartTime < 2f);
         if (_healthBarRoot.activeSelf != visible)
         {
             _healthBarRoot.SetActive(visible);
         }
 
-        _healthCanvasGroup.alpha = Mathf.Lerp(_healthCanvasGroup.alpha, visible ? 1f : 0f, 1f - Mathf.Exp(-Time.deltaTime * 10f));
+        _healthCanvasGroup.alpha = Mathf.Lerp(_healthCanvasGroup.alpha, visible ? 1f : 0f,
+            1f - Mathf.Exp(-Time.deltaTime * 10f));
         float charge = _director != null && _director.IsCasting ? _director.ChargeProgress : 0f;
         bool executionCharge = _director != null && _director.IsExecutionCharging;
         SetBarWidth(_healthCastFill, charge);
@@ -834,7 +853,8 @@ public class BossMonster : NormalMonster
         _healthFillImage.color = Time.time < _healthTrailHoldUntil ? Color.white : _healthBarColor;
         int health = Mathf.CeilToInt(CurrentHealth);
         int maximum = Mathf.CeilToInt(MaximumHealth);
-        if (health != _displayedHealth || maximum != _displayedMaximumHealth || _displayedPhase != Phase || _displayedPattern != CurrentPattern || _displayedCharge != chargePercent)
+        if (health != _displayedHealth || maximum != _displayedMaximumHealth || _displayedPhase != Phase ||
+            _displayedPattern != CurrentPattern || _displayedCharge != chargePercent)
         {
             _displayedHealth = health;
             _displayedMaximumHealth = maximum;
@@ -842,7 +862,11 @@ public class BossMonster : NormalMonster
             _displayedPattern = CurrentPattern;
             _displayedCharge = chargePercent;
             _healthLabel.text = $"{_bossDisplayName}  <size=15>{health} / {maximum}   PHASE {Phase}</size>";
-            _healthDetail.text = executionCharge ? $"<color=#FF537A>EXECUTION  {_director.ChargeSecondsRemaining:0.0}s</color>  <color=#80FFE1>ENTER CYAN SAFE ZONE</color>" : string.IsNullOrEmpty(CurrentPattern) ? "<color=#8BA6BE>PREPARING NEXT ATTACK</color>" : CurrentPattern;
+            _healthDetail.text = executionCharge
+                ? $"<color=#FF537A>EXECUTION  {_director.ChargeSecondsRemaining:0.0}s</color>  <color=#80FFE1>ENTER CYAN SAFE ZONE</color>"
+                : string.IsNullOrEmpty(CurrentPattern)
+                    ? "<color=#8BA6BE>PREPARING NEXT ATTACK</color>"
+                    : CurrentPattern;
         }
     }
 
