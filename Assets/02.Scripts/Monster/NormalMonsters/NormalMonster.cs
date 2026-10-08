@@ -1,4 +1,5 @@
 using _02.Scripts.Monster.NormalMonsters;
+using _02.Scripts.Monster.Presentation;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -97,6 +98,7 @@ public class NormalMonster : MonoBehaviour
     // 피격
     private float _normalHitCooldownTimer;
     private Coroutine _normalHitFlashRoutine;
+    private NormalMonsterGameFeel _normalHitGameFeel;
     // 플레이어 접촉
     private Transform _normalContactPlayer;
     private Collider2D[] _normalContactPlayerColliders;
@@ -135,6 +137,7 @@ public class NormalMonster : MonoBehaviour
     {
         _currentHealth = Mathf.Max(1f, _maxHealth);
         CacheComponents();
+        _normalHitGameFeel = GetComponent<NormalMonsterGameFeel>();
         ConfigurePhysicsBodies();
         CacheOriginalColors();
         CacheSpriteSpacingRadius();
@@ -992,6 +995,8 @@ public class NormalMonster : MonoBehaviour
 
         _normalHitCooldownTimer = Mathf.Max(0f, _hitCooldown);
         _currentHealth = Mathf.Max(0f, _currentHealth - damage);
+        Vector2 hitDirection = _player != null ? (Vector2)(transform.position - _player.position) : Vector2.up;
+        bool enhancedHit = _normalHitGameFeel != null && _normalHitGameFeel.ReceiveHit(hitDirection, _currentHealth <= 0f);
         Debug.Log($"{name} 피격! 받은 데미지: {damage}, 현재 체력: {_currentHealth}", this);
         if (_currentHealth <= 0f)
         {
@@ -999,7 +1004,10 @@ public class NormalMonster : MonoBehaviour
             return;
         }
 
-        PlayHitFlash();
+        if (!enhancedHit)
+        {
+            PlayHitFlash();
+        }
         OnHit();
     }
 

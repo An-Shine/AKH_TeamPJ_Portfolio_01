@@ -22,6 +22,22 @@ MonoBehaviour:
   _impactSparks: 26
   _trailInterval: 0.035
   _cameraShake: 0.09
+  _hitFlashHold: 0.1
+  _hitFlashFade: 0.065
+  _hitPopDuration: 0.22
+  _hitPopAmount: 0.14
+  _hitRecoil: 0.035
+  _hitCameraShake: 0.026
+  _hitSparks: 12
+  _hitMetalShards: 5
+  _hitOilDrops: 7
+  _hitOilLifetime: 2.2
+  _hitSounds:
+  - {fileID: 8300000, guid: 6b98fcf0719446f98bcba5f72b66df41, type: 3}
+  - {fileID: 8300000, guid: c3b0251f2e014a46ae99fdb7acbeb5f2, type: 3}
+  - {fileID: 8300000, guid: fc1cdb9a271f455aa5a5d168f099ebd8, type: 3}
+  - {fileID: 8300000, guid: 174ffb4373444f0cad19175c410f3e20, type: 3}
+  _hitVolume: 0.62
   _meleeChargeSounds:
   - {fileID: 8300000, guid: 05ff1b32a1bd56c0936a05ed22a5206e, type: 3}
   - {fileID: 8300000, guid: 737612df20f55e1cbf286b023d777985, type: 3}

@@ -8,6 +8,7 @@ namespace _02.Scripts.Monster.Presentation
     public sealed class NormalMonsterGameFeel : MonoBehaviour
     {
         private static readonly int UvBoundsId = Shader.PropertyToID("_UvBounds");
+        private static readonly int HitFlashAmountId = Shader.PropertyToID("_HitFlashAmount");
         [SerializeField]
         private NormalMonsterFeelProfile _profile;
         [SerializeField]
@@ -18,6 +19,14 @@ namespace _02.Scripts.Monster.Presentation
         private SpriteRenderer _chargeGlow;
         private SpriteRenderer _chargeCore;
         private SpriteRenderer _fuseRing;
+        private SpriteRenderer _hitRenderer;
+        private MaterialPropertyBlock _hitProperties;
+        private Vector2 _hitDirection;
+        private float _hitAge;
+        private bool _hitActive;
+        private bool _bodyWasRenderingOff;
+        private bool _isNormalMonster;
+        private int _previousHitSound = -1;
         private MaterialPropertyBlock _outlineProperties;
         private Sprite _outlinedSprite;
         private Vector2 _chargeDirection;
@@ -43,8 +52,10 @@ namespace _02.Scripts.Monster.Presentation
         private void Awake()
         {
             _outlineProperties = new MaterialPropertyBlock();
+            _hitProperties = new MaterialPropertyBlock();
             _isMelee = GetComponent<MeleeMonster>() != null;
             _isKamikaze = GetComponent<KamikazeMonster>() != null;
+            _isNormalMonster = _isMelee || _isKamikaze || GetComponent<RangeMonster>() != null;
             if (_bodyRenderer == null)
             {
                 _bodyRenderer = GetComponentInChildren<SpriteRenderer>(true);
@@ -81,6 +92,101 @@ namespace _02.Scripts.Monster.Presentation
             _referenceWidth = Mathf.Max(0.3f, _bodyRenderer.bounds.size.x);
             _ready = true;
             return true;
+        }
+
+        // TakeDamage에서 실제로 피해가 적용된 경우에만 호출합니다. 마지막 타격도 포함합니다.
+        public bool ReceiveHit(Vector2 direction, bool lethal)
+        {
+            if (!_isNormalMonster || Time.timeScale <= 0f || !EnsureReady() || !_effects.HasHitMaterial)
+            {
+                return false;
+            }
+
+            if (_hitRenderer == null)
+            {
+                _hitRenderer = _effects.CreateHitRenderer(name + "_HitVisual");
+            }
+
+            if (!_hitActive)
+            {
+                _bodyWasRenderingOff = _bodyRenderer.forceRenderingOff;
+            }
+
+            _hitDirection = direction.sqrMagnitude > 0.001f ? direction.normalized : Vector2.up;
+            _hitAge = 0f;
+            _hitActive = true;
+            _bodyRenderer.forceRenderingOff = true;
+            RefreshHitVisual();
+
+            float width = Mathf.Clamp(_referenceWidth, 0.45f, 1.8f);
+            Vector3 point = _bodyRenderer.bounds.center;
+            Color accent = _isKamikaze ? _profile.KamikazeColor : _isMelee ? _profile.MeleeColor : _profile.RangeColor;
+            int sortingLayer = _bodyRenderer.sortingLayerID;
+            int order = _bodyRenderer.sortingOrder;
+            _effects.MechanicalHit(point, _hitDirection, width, accent, _profile, gameObject.layer, sortingLayer, order + 4, lethal);
+            Emit(_effects.Shape(NormalFeelShape.Star), point, Random.Range(0f, 90f), new Vector2(width * 0.32f, width * 0.2f), Vector2.one * width * 0.04f, _hitDirection * 0.12f, new Color(1f, 0.9f, 0.72f, 0.85f), 0.055f, 6, false, false, true);
+            Ring(point, new Color(1f, 0.4f, 0.18f, 0.65f), width * 0.15f, width * 0.72f, 0.11f, true);
+            AudioClip[] sounds = _profile.HitSounds;
+            if (sounds == null || sounds.Length == 0)
+            {
+                sounds = _profile.MeleeImpactSounds;
+            }
+
+            int index = Choose(sounds, _previousHitSound);
+            _previousHitSound = index;
+            PlayIndex(sounds, index, point, _profile.HitVolume * (lethal ? 1f : 0.85f));
+            NormalMonsterCameraShake.Request(point, _profile.HitCameraShake * (lethal ? 1.3f : 1f), 0.075f);
+            return true;
+        }
+
+        private void RefreshHitVisual()
+        {
+            if (!_hitActive)
+            {
+                return;
+            }
+
+            float duration = Mathf.Max(_profile.HitPopDuration, _profile.HitFlashHold + _profile.HitFlashFade);
+            if (_bodyRenderer == null || _hitRenderer == null || _hitAge >= duration || !_bodyRenderer.enabled || !_bodyRenderer.gameObject.activeInHierarchy || _bodyRenderer.sprite == null)
+            {
+                EndHitVisual();
+                return;
+            }
+
+            _hitRenderer.sprite = _bodyRenderer.sprite;
+            _hitRenderer.flipX = _bodyRenderer.flipX;
+            _hitRenderer.flipY = _bodyRenderer.flipY;
+            _hitRenderer.color = _bodyRenderer.color;
+            _hitRenderer.gameObject.layer = _bodyRenderer.gameObject.layer;
+            _hitRenderer.sortingLayerID = _bodyRenderer.sortingLayerID;
+            _hitRenderer.sortingOrder = _bodyRenderer.sortingOrder;
+            _hitRenderer.spriteSortPoint = _bodyRenderer.spriteSortPoint;
+            float scale = NormalMonsterHitMath.Scale(_hitAge, _profile.HitPopDuration, _profile.HitPopAmount);
+            float recoil = NormalMonsterHitMath.Recoil(_hitAge, _profile.HitPopDuration);
+            float width = Mathf.Clamp(_referenceWidth, 0.45f, 1.8f);
+            Vector2 sideways = new Vector2(-_hitDirection.y, _hitDirection.x);
+            Vector2 offset = (_hitDirection * _profile.HitRecoil + sideways * Mathf.Sin(_hitAge * 120f) * _profile.HitRecoil * 0.2f) * width * recoil;
+            _hitRenderer.transform.position = _bodyRenderer.transform.position + new Vector3(offset.x, offset.y, 0f);
+            _hitRenderer.transform.rotation = _bodyRenderer.transform.rotation;
+            Vector3 originalScale = _bodyRenderer.transform.lossyScale;
+            _hitRenderer.transform.localScale = new Vector3(originalScale.x * scale, originalScale.y * scale, originalScale.z);
+            _hitProperties.SetFloat(HitFlashAmountId, NormalMonsterHitMath.Flash(_hitAge, _profile.HitFlashHold, _profile.HitFlashFade));
+            _hitRenderer.SetPropertyBlock(_hitProperties);
+            _hitRenderer.enabled = !_bodyWasRenderingOff;
+        }
+
+        private void EndHitVisual()
+        {
+            if (_hitActive && _bodyRenderer != null)
+            {
+                _bodyRenderer.forceRenderingOff = _bodyWasRenderingOff;
+            }
+
+            _hitActive = false;
+            if (_hitRenderer != null)
+            {
+                _hitRenderer.enabled = false;
+            }
         }
 
         public void BeginMeleeAttack(Vector2 direction, float range)
@@ -318,9 +424,9 @@ namespace _02.Scripts.Monster.Presentation
             }
         }
 
-        private void Ring(Vector3 point, Color color, float start, float end, float lifetime)
+        private void Ring(Vector3 point, Color color, float start, float end, float lifetime, bool hitGlow = false)
         {
-            Emit(_effects.Shape(NormalFeelShape.Ring), point, 0f, Vector2.one * start, Vector2.one * end, Vector2.zero, color, lifetime, 3);
+            Emit(_effects.Shape(NormalFeelShape.Ring), point, 0f, Vector2.one * start, Vector2.one * end, Vector2.zero, color, lifetime, 3, false, false, hitGlow);
         }
 
         private void Glow(Vector3 point, Color color, float size, float lifetime)
@@ -329,9 +435,9 @@ namespace _02.Scripts.Monster.Presentation
             Emit(_effects.Shape(NormalFeelShape.Glow), point, 0f, Vector2.one * size, Vector2.one * size * 1.1f, Vector2.zero, color, lifetime, 1);
         }
 
-        private void Emit(Sprite sprite, Vector3 position, float rotation, Vector2 startSize, Vector2 endSize, Vector2 velocity, Color color, float lifetime, int order, bool flipX = false, bool flipY = false)
+        private void Emit(Sprite sprite, Vector3 position, float rotation, Vector2 startSize, Vector2 endSize, Vector2 velocity, Color color, float lifetime, int order, bool flipX = false, bool flipY = false, bool hitGlow = false)
         {
-            _effects.Emit(sprite, position, rotation, startSize, endSize, velocity, color, lifetime, gameObject.layer, _bodyRenderer.sortingLayerID, _bodyRenderer.sortingOrder + order, flipX, flipY);
+            _effects.Emit(sprite, position, rotation, startSize, endSize, velocity, color, lifetime, gameObject.layer, _bodyRenderer.sortingLayerID, _bodyRenderer.sortingOrder + order, flipX, flipY, false, hitGlow);
         }
 
         private void Play(AudioClip[] sounds, Vector3 position, float volume)
@@ -376,7 +482,14 @@ namespace _02.Scripts.Monster.Presentation
         {
             if (!EnsureReady())
             {
+                EndHitVisual();
                 return;
+            }
+
+            if (_hitActive)
+            {
+                _hitAge += Time.deltaTime;
+                RefreshHitVisual();
             }
 
             RefreshOutline();
@@ -424,7 +537,7 @@ namespace _02.Scripts.Monster.Presentation
 
         private void RefreshOutline()
         {
-            bool visible = _effects.HasOutlineMaterial && _profile.OutlineOpacity > 0f && _bodyRenderer.enabled && _bodyRenderer.gameObject.activeInHierarchy && _bodyRenderer.sprite != null;
+            bool visible = !_hitActive && !_bodyRenderer.forceRenderingOff && _effects.HasOutlineMaterial && _profile.OutlineOpacity > 0f && _bodyRenderer.enabled && _bodyRenderer.gameObject.activeInHierarchy && _bodyRenderer.sprite != null;
             _outline.enabled = visible;
             if (!visible)
             {
@@ -463,6 +576,7 @@ namespace _02.Scripts.Monster.Presentation
 
         private void OnDisable()
         {
+            EndHitVisual();
             CancelAttackVisual();
             if (_outline != null)
             {
@@ -472,6 +586,8 @@ namespace _02.Scripts.Monster.Presentation
 
         private void OnDestroy()
         {
+            EndHitVisual();
+            DestroyOwnedRenderer(_hitRenderer);
             DestroyOwnedRenderer(_outline);
             DestroyOwnedRenderer(_chargeGlow);
             DestroyOwnedRenderer(_chargeCore);

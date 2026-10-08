@@ -28,6 +28,32 @@ namespace _02.Scripts.Monster.Presentation
         private float _trailInterval = 0.035f;
         [SerializeField, Range(0f, 0.3f)]
         private float _cameraShake = 0.09f;
+        [Header("피격: 빨간 실루엣과 크기 반동")]
+        [SerializeField, Range(0.03f, 0.2f)]
+        private float _hitFlashHold = 0.1f;
+        [SerializeField, Range(0.02f, 0.15f)]
+        private float _hitFlashFade = 0.065f;
+        [SerializeField, Range(0.12f, 0.4f)]
+        private float _hitPopDuration = 0.22f;
+        [SerializeField, Range(0f, 0.25f)]
+        private float _hitPopAmount = 0.14f;
+        [SerializeField, Range(0f, 0.1f)]
+        private float _hitRecoil = 0.035f;
+        [SerializeField, Range(0f, 0.08f)]
+        private float _hitCameraShake = 0.026f;
+        [Header("피격: 기계 파편과 오일")]
+        [SerializeField, Range(0, 24)]
+        private int _hitSparks = 12;
+        [SerializeField, Range(0, 12)]
+        private int _hitMetalShards = 5;
+        [SerializeField, Range(0, 16)]
+        private int _hitOilDrops = 7;
+        [SerializeField, Range(0.3f, 5f)]
+        private float _hitOilLifetime = 2.2f;
+        [SerializeField]
+        private AudioClip[] _hitSounds;
+        [SerializeField, Range(0f, 1f)]
+        private float _hitVolume = 0.62f;
         [Header("사운드")]
         [SerializeField]
         private AudioClip[] _meleeChargeSounds;
@@ -63,6 +89,18 @@ namespace _02.Scripts.Monster.Presentation
         public int ImpactSparks => Mathf.Clamp(_impactSparks, 4, 40);
         public float TrailInterval => Mathf.Max(0.01f, _trailInterval);
         public float CameraShake => Mathf.Clamp(_cameraShake, 0f, 0.3f);
+        public float HitFlashHold => Mathf.Clamp(_hitFlashHold, 0.03f, 0.2f);
+        public float HitFlashFade => Mathf.Clamp(_hitFlashFade, 0.02f, 0.15f);
+        public float HitPopDuration => Mathf.Clamp(_hitPopDuration, 0.12f, 0.4f);
+        public float HitPopAmount => Mathf.Clamp(_hitPopAmount, 0f, 0.25f);
+        public float HitRecoil => Mathf.Clamp(_hitRecoil, 0f, 0.1f);
+        public float HitCameraShake => Mathf.Clamp(_hitCameraShake, 0f, 0.08f);
+        public int HitSparks => Mathf.Clamp(_hitSparks, 0, 24);
+        public int HitMetalShards => Mathf.Clamp(_hitMetalShards, 0, 12);
+        public int HitOilDrops => Mathf.Clamp(_hitOilDrops, 0, 16);
+        public float HitOilLifetime => Mathf.Clamp(_hitOilLifetime, 0.3f, 5f);
+        public AudioClip[] HitSounds => _hitSounds;
+        public float HitVolume => Mathf.Clamp01(_hitVolume);
         public float AttackVolume => Mathf.Clamp01(_attackVolume);
         public float ImpactVolume => Mathf.Clamp01(_impactVolume);
         public AudioMixerGroup SoundMixerGroup => _soundMixerGroup;
