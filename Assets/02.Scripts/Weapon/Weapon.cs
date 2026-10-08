@@ -13,6 +13,7 @@ public class Weapon : MonoBehaviour
     public WeaponModifier Modifier { get; private set; }
 
     private FireBehaviour _fireBehaviour;
+    public FireBehaviour FireBehaviour => _fireBehaviour;
     private IFirePattern _firePattern;
     private Projectile _currentProjectile;
 

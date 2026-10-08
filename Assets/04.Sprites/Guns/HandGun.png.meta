@@ -396,9 +396,9 @@ TextureImporter:
       name: HandGun_0
       rect:
         serializedVersion: 2
-        x: 30
+        x: 0
         y: 444
-        width: 436
+        width: 443
         height: 443
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -418,9 +418,9 @@ TextureImporter:
       name: HandGun_1
       rect:
         serializedVersion: 2
-        x: 466
+        x: 443
         y: 444
-        width: 436
+        width: 443
         height: 443
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -440,9 +440,9 @@ TextureImporter:
       name: HandGun_2
       rect:
         serializedVersion: 2
-        x: 902
+        x: 886
         y: 444
-        width: 436
+        width: 443
         height: 443
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -462,9 +462,9 @@ TextureImporter:
       name: HandGun_3
       rect:
         serializedVersion: 2
-        x: 1338
+        x: 1329
         y: 444
-        width: 436
+        width: 443
         height: 443
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -484,9 +484,9 @@ TextureImporter:
       name: HandGun_4
       rect:
         serializedVersion: 2
-        x: 30
+        x: 0
         y: 1
-        width: 436
+        width: 443
         height: 443
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -494,9 +494,9 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 426c2b583cc7f9920800000000000000
+      spriteID: f0352e8426775b648a57fd848c2b3834
       internalID: 2999253056055592484
       vertices: []
       indices: 
@@ -506,9 +506,9 @@ TextureImporter:
       name: HandGun_5
       rect:
         serializedVersion: 2
-        x: 466
+        x: 443
         y: 1
-        width: 436
+        width: 443
         height: 443
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -516,9 +516,9 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f090f5ccbb686c270800000000000000
+      spriteID: bbb4d67abeace214aaf980cba921bb64
       internalID: 8270445906858281231
       vertices: []
       indices: 
@@ -528,9 +528,9 @@ TextureImporter:
       name: HandGun_6
       rect:
         serializedVersion: 2
-        x: 902
+        x: 886
         y: 1
-        width: 436
+        width: 443
         height: 443
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -538,9 +538,9 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3d53815828b7408f0800000000000000
+      spriteID: c430834e277573b4ba1cb3f12c6e647f
       internalID: -575199051887659565
       vertices: []
       indices: 
@@ -550,9 +550,9 @@ TextureImporter:
       name: HandGun_7
       rect:
         serializedVersion: 2
-        x: 1338
+        x: 1329
         y: 1
-        width: 436
+        width: 443
         height: 443
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -560,9 +560,9 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3590802186cd19290800000000000000
+      spriteID: 3c4ee9758a3f7b848828ba264769fe13
       internalID: -7885279133011801773
       vertices: []
       indices: 
@@ -582,7 +582,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":4.0,"y":2.0},"gridSpriteSize":{"x":436.0,"y":443.0},"gridSpriteOffset":{"x":30.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":4.0,"y":2.0},"gridSpriteSize":{"x":443.0,"y":443.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       HandGun_0: 4512714918657851343
       HandGun_1: -2100020025919925453
