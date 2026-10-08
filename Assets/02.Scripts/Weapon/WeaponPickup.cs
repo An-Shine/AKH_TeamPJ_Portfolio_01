@@ -11,9 +11,17 @@ public class WeaponPickup : MonoBehaviour, IInteractable
     private OverlapSphere _overlapSphere;
     private bool _tooltipFlag;
 
+    [SerializeField] private Material _shaderMaterial;
+    private Material _runtimeMaterial;
+
+    private const string OutlineShaderKey = "_OuterOutlineFade";
+
     private void Awake()
     {
         _overlapSphere = GetComponent<OverlapSphere>();
+        _runtimeMaterial = Instantiate(_shaderMaterial);
+        gameObject.GetComponent<SpriteRenderer>().material = _runtimeMaterial;
+        DeactivateOutline();
     }
 
     private void Start()
@@ -52,6 +60,7 @@ public class WeaponPickup : MonoBehaviour, IInteractable
             if (_tooltipFlag)
             {
                 _tooltipFlag = false;
+                DeactivateOutline();
                 manager.CloseItemTooltip();
             }
 
@@ -60,6 +69,7 @@ public class WeaponPickup : MonoBehaviour, IInteractable
 
         if (_tooltipFlag) return;
 
+        ActivateOutline();
         string description = BuildDescription();
         manager.OpenItemTooltip(transform, _tooltipOffset, description);
         _tooltipFlag = true;
@@ -75,5 +85,15 @@ public class WeaponPickup : MonoBehaviour, IInteractable
         description += dataManager.WeaponDatas[IdPrefix.WeaponPrefix + _weaponId].Description;
 
         return description;
+    }
+
+    private void ActivateOutline()
+    {
+        _runtimeMaterial.SetFloat(OutlineShaderKey, 1f);
+    }
+
+    private void DeactivateOutline()
+    {
+        _runtimeMaterial.SetFloat(OutlineShaderKey, 0f);
     }
 }
