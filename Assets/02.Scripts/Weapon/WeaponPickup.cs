@@ -45,7 +45,9 @@ public class WeaponPickup : MonoBehaviour, IInteractable
     public Sprite Interact(GameObject actor)
     {
         WeaponManager.Instance.GainWeapon(_weaponId);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+        // Destroy(gameObject);
+        return gameObject.GetComponent<SpriteRenderer>().sprite;
     }
 
     private void DisplayTooltip()

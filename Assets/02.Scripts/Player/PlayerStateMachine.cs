@@ -3,10 +3,11 @@ using UnityEngine;
 public class PlayerStateMachine : MonoBehaviour
 {
     // 순간이동을 사용한 뒤 다음 사용까지의 대기 시간
-    private readonly float _dashCooldown = 2f;
+    public float DashCooldown = 1f;
 
     private float _interactionRemaining;
     private float _cooldownRemaining;
+    private Vector2 _lastMoveDirection = Vector2.right;
 
     public PlayerState CurrentState { get; private set; } = PlayerState.Idle;
     public Vector2 MovementDirection { get; private set; }
@@ -25,7 +26,7 @@ public class PlayerStateMachine : MonoBehaviour
         return true;
     }
 
-    public void Act(Vector2 moveInput, Vector2 aimDirection, bool dashRequested, float deltaTime)
+    public void Act(Vector2 moveInput, bool dashRequested, float deltaTime)
     {
         if (IsDead) return;
         _cooldownRemaining = Mathf.Max(0f, _cooldownRemaining - deltaTime);
@@ -43,12 +44,17 @@ public class PlayerStateMachine : MonoBehaviour
             ChangeState(moveInput.sqrMagnitude > 0f ? PlayerState.Run : PlayerState.Idle);
         }
 
+        if (moveInput.sqrMagnitude > 0f)
+        {
+            _lastMoveDirection = moveInput.normalized;
+        }
+
         if (dashRequested && CanDash)
         {
-            // 순간이동은 한 물리 프레임만 처리하며 항상 조준 방향을 사용합니다.
-            _cooldownRemaining = _dashCooldown;
+            // 정지 중에도 마지막 이동 방향을 유지해 순간이동합니다.
+            _cooldownRemaining = DashCooldown;
             ChangeState(PlayerState.Dash);
-            MovementDirection = aimDirection.normalized;
+            MovementDirection = _lastMoveDirection;
             return;
         }
 
