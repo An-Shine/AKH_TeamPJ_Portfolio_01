@@ -10,6 +10,7 @@ public class Item : MonoBehaviour, IInteractable
     public SFXType GainEffectSFX => _gainEffectSFX;
 
     public ItemData Data { get; private set; }
+
     private List<ItemEffectData> _effects;
     public List<ItemEffectData> Effects => _effects;
 
@@ -102,8 +103,9 @@ public class Item : MonoBehaviour, IInteractable
         _runtimeMaterial.SetFloat(OutlineShaderKey, 0f);
     }
 
-    public void Interact(GameObject actor)
+    public Sprite Interact(GameObject actor)
     {
         ItemManager.Instance.GainItem(this);
+        return gameObject.GetComponent<SpriteRenderer>().sprite;
     }
 }
