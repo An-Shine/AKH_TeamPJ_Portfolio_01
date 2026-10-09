@@ -14,6 +14,7 @@ Material:
   m_ValidKeywords:
   - _ADDCOLORCONTRASTTOGGLE_ON
   - _ENABLEOUTEROUTLINE_ON
+  - _ENABLERECOLORRGBYCP_ON
   - _ENABLESINEGLOW_ON
   - _ENABLESINEMOVE_ON
   - _OUTEROUTLINEDISTORTIONTOGGLE_ON
@@ -241,7 +242,7 @@ Material:
     - _EnablePoison: 0
     - _EnableRainbow: 0
     - _EnableRecolorRGB: 0
-    - _EnableRecolorRGBYCP: 0
+    - _EnableRecolorRGBYCP: 1
     - _EnableSaturation: 0
     - _EnableScreenTiling: 0
     - _EnableShadow: 0
@@ -340,10 +341,10 @@ Material:
     - _NegativeFade: 1
     - _NormalIntensity: 1
     - _OuterOutlineDistortionToggle: 1
-    - _OuterOutlineFade: 0
+    - _OuterOutlineFade: 1
     - _OuterOutlineOutlineOnlyToggle: 0
     - _OuterOutlineTextureToggle: 0
-    - _OuterOutlineWidth: 0.05
+    - _OuterOutlineWidth: 0.03
     - _PingPongGlowContrast: 1
     - _PingPongGlowFade: 1
     - _PingPongGlowFrequency: 3
@@ -351,7 +352,7 @@ Material:
     - _PixelOutlineFade: 1
     - _PixelOutlineOutlineOnlyToggle: 0
     - _PixelOutlineTextureToggle: 0
-    - _PixelOutlineWidth: 6
+    - _PixelOutlineWidth: 2
     - _PixelPerfectSpace: 0
     - _PixelPerfectUV: 0
     - _PixelateFade: 1
@@ -405,9 +406,9 @@ Material:
     - _ShineWidth: 0.1
     - _SineGlowContrast: 1
     - _SineGlowFade: 1
-    - _SineGlowFrequency: 1
+    - _SineGlowFrequency: 2.5
     - _SineGlowMaskToggle: 0
-    - _SineGlowMax: 4
+    - _SineGlowMax: 1
     - _SineGlowMin: 0
     - _SineMoveFade: 1
     - _SineRotateAngle: 15
@@ -608,7 +609,7 @@ Material:
     - _ShiftingColorA: {r: 0.068931945, g: 0, b: 1.4980391, a: 0}
     - _ShiftingColorB: {r: 0, g: 1.4980391, b: 0.90880555, a: 0}
     - _ShineColor: {r: 11.98431, g: 11.98431, b: 11.98431, a: 0}
-    - _SineGlowColor: {r: 5.7008104, g: 13.617451, b: 17.26531, a: 0}
+    - _SineGlowColor: {r: 8.123899, g: 14.476087, b: 17.396633, a: 0}
     - _SineMoveFrequency: {r: 1, g: 5, b: 0, a: 0}
     - _SineMoveOffset: {r: 0, g: 0.05, b: 0, a: 0}
     - _SineRotatePivot: {r: 0.5, g: 0.5, b: 0, a: 0}
