@@ -31,4 +31,6 @@ public enum SFXType
     TooltipOpen,
     Genome,
     NanoHeal,
+    Overload,
+    VitalCore,
 }
