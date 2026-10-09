@@ -29,4 +29,5 @@ public enum SFXType
     FollowerAttack,
     PlayerWalk,
     TooltipOpen,
+    Genome,
 }
