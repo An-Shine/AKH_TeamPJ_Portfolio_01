@@ -30,4 +30,5 @@ public enum SFXType
     PlayerWalk,
     TooltipOpen,
     Genome,
+    NanoHeal,
 }
