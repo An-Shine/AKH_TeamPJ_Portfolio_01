@@ -332,9 +332,10 @@ namespace _02.Scripts.Monster.BossMonster
             zone.TrackingPadding = 0.4f;
         }
 
-        private void ReleaseBurst(Vector2 point, float radius)
+        private void ReleaseBurst(Vector2 point, float radius, bool emitBurst = true)
         {
-            _effects.Burst(point, radius * _move.EffectScale, _move.Color, 28);
+            if (emitBurst)
+                _effects.Burst(point, radius * _move.EffectScale, _move.Color, 28);
             _audio.Impact();
             _owner.PulsePatternAnimation(_move);
             _owner.ShakeCamera(_move.ImpactShake, 0.3f);
@@ -880,7 +881,9 @@ namespace _02.Scripts.Monster.BossMonster
 
             float damage = PlayerManager.Instance != null && PlayerManager.Instance.PlayerStatusData != null ? Mathf.Max(_damage, PlayerManager.Instance.PlayerStatusData.MaxHP * 10f) : _damage;
             Schedule(0f, () => _world.AddZone(new BossDamageZone { Shape = BossZoneShape.ArenaOutsideSafeCircle, Move = _move, Center = _owner.Arena.center, SafeCenter = safe, SafeRadius = _move.Radius, Radius = _owner.Arena.size.magnitude, Warning = _warning, Duration = _move.Duration, Damage = damage, Once = true }));
-            Schedule(_warning, () => ReleaseBurst(_origin, 3.4f));
+            // ArenaDetonation already draws the impact around the refuge.
+            // A second origin explosion would obscure the safe circle.
+            Schedule(_warning, () => ReleaseBurst(_origin, 3.4f, false));
             _plannedEnd = _warning + _move.Duration + 0.2f;
         }
 

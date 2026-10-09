@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using _02.Scripts.Monster.Presentation;
 
 namespace _02.Scripts.Monster.BossMonster
 {
@@ -38,7 +37,7 @@ namespace _02.Scripts.Monster.BossMonster
         private float _punch;
         private float _nextAmbient;
         private bool _casting;
-        private MonsterNeonVfx _effects;
+        private BossBattleEffects _effects;
         private void Start()
         {
             _owner = GetComponent<global::BossMonster>();
@@ -54,7 +53,7 @@ namespace _02.Scripts.Monster.BossMonster
             _restScale = _body.transform.localScale;
             _properties = new MaterialPropertyBlock();
             _rimProperties = new MaterialPropertyBlock();
-            Shader body = Resources.Load<Shader>("Monster/NeonVfx/BossNeonBody");
+            Shader body = Resources.Load<Shader>(BossVfxUpgrade.ResourceRoot + "BossCrispBody");
             if (body != null)
             {
                 _bodyMaterial = new Material(body)
@@ -64,7 +63,7 @@ namespace _02.Scripts.Monster.BossMonster
                 _body.sharedMaterial = _bodyMaterial;
             }
 
-            Shader rim = Resources.Load<Shader>("Monster/NormalGameFeel/NormalFeelPixelRim");
+            Shader rim = Resources.Load<Shader>(BossVfxUpgrade.ResourceRoot + "BossCrispRim");
             if (rim != null)
             {
                 _rimMaterial = new Material(rim)
@@ -74,7 +73,7 @@ namespace _02.Scripts.Monster.BossMonster
                 _rim = CreateRenderer("BossNeonRim", _rimMaterial);
             }
 
-            _effects = MonsterNeonVfx.ForScene(gameObject.scene);
+            _effects = BossBattleEffects.ForOwner(gameObject);
             _current = _body.sprite;
             _previous = _current;
         }
@@ -106,7 +105,7 @@ namespace _02.Scripts.Monster.BossMonster
         public void Pulse(Vector2 direction, float strength = 1f)
         {
             _punch = Mathf.Max(_punch, Mathf.Clamp01(strength));
-            _impulse = -direction.normalized * 0.045f * Mathf.Clamp01(strength);
+            _impulse = -direction.normalized * 0.07f * Mathf.Clamp01(strength);
         }
 
         public void BlendMotion(float seconds)
@@ -193,11 +192,13 @@ namespace _02.Scripts.Monster.BossMonster
                 _rim.SetPropertyBlock(_rimProperties);
             }
 
-            if (alive && _owner.CanFight && Time.time >= _nextAmbient && _body.enabled)
+            if (_effects == null)
+                _effects = BossBattleEffects.ForOwner(gameObject);
+            if (_effects != null && alive && _owner.CanFight && Time.time >= _nextAmbient && _body.enabled)
             {
                 _nextAmbient = Time.time + (_casting ? 0.12f : 0.35f);
                 Vector3 point = transform.position + new Vector3(Random.Range(-0.55f, 0.55f), Random.Range(-0.2f, 0.55f), 0f);
-                _effects.Trail(point, Vector2.down, 0.15f, _casting ? _castColor : new Color(0.15f, 0.9f, 1f), _body.sortingLayerID, _body.sortingOrder - 1);
+                _effects.Trail(point, Vector2.down, 0.12f, _casting ? _castColor : new Color(0.15f, 0.9f, 1f));
             }
         }
 

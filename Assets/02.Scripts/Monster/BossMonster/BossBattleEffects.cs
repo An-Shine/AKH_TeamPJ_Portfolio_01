@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
-using _02.Scripts.Monster.Presentation;
+using System.Collections.Generic;
 
 namespace _02.Scripts.Monster.BossMonster
 {
@@ -33,7 +33,23 @@ namespace _02.Scripts.Monster.BossMonster
         private float _z;
         private float _retireAge;
         private bool _retiring;
-        private MonsterNeonVfx _neon;
+        private static readonly Dictionary<int, BossBattleEffects> Owners = new Dictionary<int, BossBattleEffects>();
+        private BossVfxUpgrade _upgrade;
+        private int _ownerId;
+        public BossVfxUpgrade Upgrade => _upgrade;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetOwners()
+        {
+            Owners.Clear();
+        }
+
+        public static BossBattleEffects ForOwner(GameObject owner)
+        {
+            if (owner != null && Owners.TryGetValue(owner.GetInstanceID(), out BossBattleEffects effects) && effects != null)
+                return effects;
+            return null;
+        }
         private float _nextCharge;
         private bool _ownsGlow, _ownsSpark, _ownsFlame;
         internal Material SolidMaterial => _solidMaterial;
@@ -46,7 +62,9 @@ namespace _02.Scripts.Monster.BossMonster
             BossBattleEffects effects = root.AddComponent<BossBattleEffects>();
             MonsterCombat.GetEffectSorting(owner.transform, out effects._layer, out effects._sortingLayer, out effects._order);
             effects._z = owner.transform.position.z;
-            Shader shader = profile.EffectShader;
+            Shader shader = Resources.Load<Shader>(BossVfxUpgrade.ResourceRoot + "BossCrispVfx");
+            if (shader == null)
+                shader = profile.EffectShader;
             if (shader == null)
             {
                 shader = Shader.Find("Monsters/BossGlow");
@@ -69,10 +87,13 @@ namespace _02.Scripts.Monster.BossMonster
                 hideFlags = HideFlags.DontSave
             };
             effects._glowMaterial.SetFloat("_DstBlend", (float)BlendMode.One);
-            effects._neon = MonsterNeonVfx.ForScene(owner.scene);
-            effects._glowSprite = Resources.Load<Sprite>("Monster/NeonVfx/Particles/light_01");
-            effects._sparkSprite = Resources.Load<Sprite>("Monster/NeonVfx/Particles/trace_01");
-            effects._flameSprite = Resources.Load<Sprite>("Monster/NeonVfx/Particles/flame_01");
+            effects._ownerId = owner.GetInstanceID();
+            Owners[effects._ownerId] = effects;
+            effects._upgrade = root.AddComponent<BossVfxUpgrade>();
+            effects._upgrade.Initialize(effects._layer, effects._sortingLayer, effects._order, effects._z, effects._ownerId);
+            effects._glowSprite = Resources.Load<Sprite>(BossVfxUpgrade.ResourceRoot + "Kenney/light_01");
+            effects._sparkSprite = Resources.Load<Sprite>(BossVfxUpgrade.ResourceRoot + "Kenney/trace_01");
+            effects._flameSprite = Resources.Load<Sprite>(BossVfxUpgrade.ResourceRoot + "Kenney/flame_01");
             if (effects._glowSprite == null)
             {
                 effects._glowSprite = effects.CreateSprite(32, 32, 0);
@@ -103,9 +124,9 @@ namespace _02.Scripts.Monster.BossMonster
 
         public void Burst(Vector2 point, float radius, Color color, int sparks = 18)
         {
-            if (_neon != null)
+            if (_upgrade != null && _upgrade.IsReady)
             {
-                _neon.Burst(new Vector3(point.x, point.y, _z), radius * 0.65f, color, _sortingLayer, _order, Mathf.Min(28, sparks), radius > 0.7f);
+                _upgrade.Explosion(point, radius, color, sparks);
                 return;
             }
 
@@ -120,9 +141,9 @@ namespace _02.Scripts.Monster.BossMonster
 
         public void Pillar(Vector2 point, float radius, Color color)
         {
-            if (_neon != null)
+            if (_upgrade != null && _upgrade.IsReady)
             {
-                _neon.Pillar(new Vector3(point.x, point.y, _z), Mathf.Min(radius, 1.6f), color, _sortingLayer, _order);
+                _upgrade.FirePillar(point, radius, color);
                 return;
             }
 
@@ -136,9 +157,9 @@ namespace _02.Scripts.Monster.BossMonster
 
         public void Trail(Vector2 point, Vector2 direction, float size, Color color)
         {
-            if (_neon != null)
+            if (_upgrade != null && _upgrade.IsReady)
             {
-                _neon.Trail(new Vector3(point.x, point.y, _z), direction, size, color, _sortingLayer, _order + 1);
+                _upgrade.Trail(point, direction, size, color);
                 return;
             }
 
@@ -147,6 +168,11 @@ namespace _02.Scripts.Monster.BossMonster
 
         public void Spikes(Vector2 point, float radius, Color color)
         {
+            if (_upgrade != null && _upgrade.IsReady)
+            {
+                _upgrade.GroundBreak(point, radius, color);
+                return;
+            }
             Burst(point, radius * 0.8f, color, 10);
             for (int i = 0; i < 5; i++)
             {
@@ -170,41 +196,81 @@ namespace _02.Scripts.Monster.BossMonster
 
         public void Charge(Vector2 point, float radius, float progress, Color color)
         {
-            if (_neon != null && Time.time >= _nextCharge)
+            if (_upgrade != null && _upgrade.IsReady && Time.time >= _nextCharge)
             {
                 _nextCharge = Time.time + 0.04f;
-                _neon.Charge(new Vector3(point.x, point.y, _z), radius, progress, color, _sortingLayer, _order);
+                _upgrade.Charge(point, radius, progress, color);
             }
         }
 
-        public void Slash(Vector2 point, float radius, float angle, Color color, float intensity = 1f)
+        public void Slash(Vector2 point, float radius, float angle, Color color, float intensity = 1f, float span = 120f)
         {
-            if (_neon != null)
-                _neon.Slash(new Vector3(point.x, point.y, _z), radius, angle, color, _sortingLayer, _order + 1, intensity);
+            if (_upgrade != null && _upgrade.IsReady)
+                _upgrade.Slash(point, radius, angle, color, intensity, span);
         }
 
         public void Vortex(Vector2 point, float radius, float angle, Color color)
         {
-            if (_neon != null)
-                _neon.Vortex(new Vector3(point.x, point.y, _z), radius, angle, color, _sortingLayer, _order + 1);
+            if (_upgrade != null && _upgrade.IsReady)
+                _upgrade.Vortex(point, radius, angle, color);
         }
 
         public void ArenaDetonation(Rect arena, Vector2 safeCenter, float safeRadius, Color color)
         {
-            // Keep the green refuge clear while detonating the rest of the room in a tiled wave.
-            int columns = Mathf.Clamp(Mathf.CeilToInt(arena.width / 3.1f), 3, 7);
-            int rows = Mathf.Clamp(Mathf.CeilToInt(arena.height / 3.1f), 3, 5);
-            for (int y = 0; y < rows; y++)
-            {
-                for (int x = 0; x < columns; x++)
-                {
-                    Vector2 point = new Vector2(Mathf.Lerp(arena.xMin, arena.xMax, (x + 0.5f) / columns), Mathf.Lerp(arena.yMin, arena.yMax, (y + 0.5f) / rows));
-                    if ((point - safeCenter).magnitude < safeRadius + 0.9f)
-                        continue;
-                    if (_neon != null)
-                        _neon.Burst(new Vector3(point.x, point.y, _z), 0.9f, color, _sortingLayer, _order, 6, true);
-                }
-            }
+            if (_upgrade != null && _upgrade.IsReady)
+                _upgrade.ArenaBlast(arena, safeCenter, safeRadius, color);
+        }
+
+        public void Lightning(Vector2 point, float radius, Color color)
+        {
+            if (_upgrade != null && _upgrade.IsReady)
+                _upgrade.Lightning(point, radius, color);
+            else
+                Pillar(point, radius, color);
+        }
+
+        public void Beam(Vector2 point, float angle, float length, float width, Color color, bool rift, Rect arena)
+        {
+            if (_upgrade != null && _upgrade.IsReady)
+                _upgrade.Beam(point, angle, length, width, color, rift, arena);
+        }
+
+        public void NovaArc(Vector2 point, float radius, float start, float span, float width, Color color, bool impact)
+        {
+            if (_upgrade != null && _upgrade.IsReady)
+                _upgrade.NovaArc(point, radius, start, span, width, color, impact);
+        }
+
+        public void Collapse(Vector2 point, float radius, Color color)
+        {
+            if (_upgrade != null && _upgrade.IsReady)
+                _upgrade.Vortex(point, radius, 0f, color, true);
+        }
+
+        public void BloodPool(Vector2 point, float radius, Color color, bool impact)
+        {
+            if (_upgrade != null && _upgrade.IsReady)
+                _upgrade.BloodPool(point, radius, color, impact);
+        }
+
+        public void PreImpact(BossEncounterPattern kind, Vector2 point, float radius, Color color)
+        {
+            if (_upgrade != null && _upgrade.IsReady)
+                _upgrade.PreImpact(kind, point, radius, color);
+        }
+
+        public void ProjectileTrail(Vector2 point, Vector2 direction, float size, Color color)
+        {
+            if (_upgrade != null && _upgrade.IsReady)
+                _upgrade.Trail(point, direction, size, color, true);
+            else
+                Trail(point, direction, size, color);
+        }
+
+        public void Muzzle(Vector2 point, Vector2 direction, float size, Color color)
+        {
+            if (_upgrade != null && _upgrade.IsReady)
+                _upgrade.Muzzle(point, direction, size, color);
         }
 
         internal SpriteRenderer CreateBoltRenderer()
@@ -214,10 +280,12 @@ namespace _02.Scripts.Monster.BossMonster
             root.transform.position = new Vector3(0f, 0f, _z);
             root.layer = _layer;
             SpriteRenderer renderer = root.GetComponent<SpriteRenderer>();
-            renderer.sprite = _glowSprite;
-            renderer.sharedMaterial = _glowMaterial;
+            renderer.sprite = Resources.Load<Sprite>(BossVfxUpgrade.ResourceRoot + "Kenney/magic_03");
+            if (renderer.sprite == null)
+                renderer.sprite = _glowSprite;
+            renderer.sharedMaterial = _solidMaterial;
             renderer.sortingLayerID = _sortingLayer;
-            renderer.sortingOrder = _order + 3;
+            renderer.sortingOrder = _order + 6;
             return renderer;
         }
 
@@ -356,6 +424,8 @@ namespace _02.Scripts.Monster.BossMonster
 
         private void OnDestroy()
         {
+            if (Owners.TryGetValue(_ownerId, out BossBattleEffects ownerEffects) && ownerEffects == this)
+                Owners.Remove(_ownerId);
             if (_ownsGlow)
                 DestroySprite(_glowSprite);
             if (_ownsSpark)

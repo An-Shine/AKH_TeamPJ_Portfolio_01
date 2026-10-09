@@ -35,6 +35,7 @@ namespace _02.Scripts.Monster.BossMonster
         public bool WarningOnly;
         public bool ContactConsumed;
         public bool Impacted;
+        public bool PreImpactPlayed;
         public bool TrackPosition;
         public bool TrackDirection;
         public bool DirectionFromCenter;
@@ -55,6 +56,8 @@ namespace _02.Scripts.Monster.BossMonster
         public BossShapeVisual Fill;
         public BossShapeVisual Outline;
         public BossShapeVisual Core;
+        public BossShapeVisual Boundary;
+        public BossShapeVisual Detail;
         public BossShapeVisual SweepHint;
         public BossShapeVisual OppositeHint;
         public float Progress => Mathf.Clamp01((Age - Warning) / Mathf.Max(0.01f, Duration));
@@ -66,6 +69,8 @@ namespace _02.Scripts.Monster.BossMonster
             Fill.Dispose();
             Outline.Dispose();
             Core.Dispose();
+            Boundary.Dispose();
+            Detail.Dispose();
             if (SweepHint != null)
             {
                 SweepHint.Dispose();

@@ -6,7 +6,7 @@ namespace _02.Scripts.Monster.BossMonster
 {
     internal sealed class BossShapeVisual : IDisposable
     {
-        private const int Segments = 72;
+        private const int Segments = 96;
         private readonly GameObject _root;
         private readonly Mesh _mesh;
         private readonly List<Vector3> _vertices = new List<Vector3>(300);
@@ -66,6 +66,73 @@ namespace _02.Scripts.Monster.BossMonster
             AddTriangle(0, 1, 2);
             AddTriangle(0, 2, 3);
             Finish();
+        }
+
+        public void SetBeamEdges(Vector2 center, float angle, float length, float width, float thickness, Color color)
+        {
+            Begin(center);
+            Vector2 forward = BossBattleGeometry.Direction(angle) * length * 0.5f;
+            Vector2 side = BossBattleGeometry.Direction(angle + 90f) * width * 0.5f;
+            AddLine(-forward - side, forward - side, thickness, color);
+            AddLine(-forward + side, forward + side, thickness, color);
+            AddLine(-forward - side, -forward + side, thickness, color);
+            AddLine(forward - side, forward + side, thickness, color);
+            Finish();
+        }
+
+        public void SetReticle(Vector2 center, float radius, float start, float span, float progress, Color color)
+        {
+            Begin(center);
+            int ticks = Mathf.Clamp(Mathf.CeilToInt(span / 30f), 2, 12);
+            for (int i = 0; i <= ticks; i++)
+            {
+                Vector2 direction = BossBattleGeometry.Direction(start + span * i / ticks);
+                AddLine(direction * Mathf.Max(0f, radius - 0.15f), direction * (radius + 0.045f), 0.03f, color);
+            }
+            if (progress > 0f)
+            {
+                float meterRadius = Mathf.Max(0.03f, radius - 0.12f);
+                float meterSpan = span * Mathf.Clamp01(progress);
+                int count = Mathf.Max(2, Mathf.CeilToInt(meterSpan / 4f));
+                Vector2 previous = BossBattleGeometry.Direction(start) * meterRadius;
+                for (int i = 1; i <= count; i++)
+                {
+                    Vector2 next = BossBattleGeometry.Direction(start + meterSpan * i / count) * meterRadius;
+                    AddLine(previous, next, 0.026f, color);
+                    previous = next;
+                }
+            }
+            Finish();
+        }
+
+        public void SetBeamTicks(Vector2 center, float angle, float length, float width, Color color)
+        {
+            Begin(center);
+            Vector2 forward = BossBattleGeometry.Direction(angle);
+            Vector2 side = BossBattleGeometry.Direction(angle + 90f);
+            int count = Mathf.Clamp(Mathf.CeilToInt(length / 1.3f), 2, 24);
+            for (int i = 0; i <= count; i++)
+            {
+                Vector2 point = forward * ((float)i / count - 0.5f) * length;
+                AddLine(point + side * width * 0.33f, point + side * width * 0.52f, 0.025f, color);
+                AddLine(point - side * width * 0.33f, point - side * width * 0.52f, 0.025f, color);
+            }
+            Finish();
+        }
+
+        private void AddLine(Vector2 from, Vector2 to, float width, Color color)
+        {
+            Vector2 direction = to - from;
+            if (direction.sqrMagnitude < 0.000001f)
+                return;
+            Vector2 side = new Vector2(-direction.y, direction.x).normalized * width * 0.5f;
+            int start = _vertices.Count;
+            AddVertex(from - side, color);
+            AddVertex(from + side, color);
+            AddVertex(to + side, color);
+            AddVertex(to - side, color);
+            AddTriangle(start, start + 1, start + 2);
+            AddTriangle(start, start + 2, start + 3);
         }
 
         public void SetArenaOutsideCircle(Rect arena, Vector2 center, float safeRadius, Color color)
