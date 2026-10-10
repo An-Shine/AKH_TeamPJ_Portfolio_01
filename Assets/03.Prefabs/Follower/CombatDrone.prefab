@@ -79,8 +79,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: -2115163997
-  m_SortingLayer: 0
+  m_SortingLayerID: -637956649
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 8015463664245792054, guid: b1c8084000cf52e4c9f25b396737d982, type: 3}
@@ -127,12 +127,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d50c8d51854d4c54b2af53df1775872a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CombatDrone
-  _projectileType: 0
-  _projectileRange: 15
-  _projectileDamageBonus: -5
-  _fireCoolTime: 0.75
   _speedScalar: 10
   _blockingLayer:
     serializedVersion: 2
     m_Bits: 768
   _teleportThreshold: 0.1
+  _projectileType: 0
+  _projectileRange: 15
+  _projectileDamageBonus: -5
+  _fireCoolTime: 0.75
