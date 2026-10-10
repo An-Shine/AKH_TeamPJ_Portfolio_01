@@ -389,6 +389,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -397,9 +410,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 444
-        width: 443
-        height: 443
+        y: 505
+        width: 458
+        height: 206
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -418,10 +431,10 @@ TextureImporter:
       name: HandGun_1
       rect:
         serializedVersion: 2
-        x: 443
-        y: 444
-        width: 443
-        height: 443
+        x: 527
+        y: 496
+        width: 362
+        height: 264
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -440,10 +453,10 @@ TextureImporter:
       name: HandGun_2
       rect:
         serializedVersion: 2
-        x: 886
-        y: 444
-        width: 443
-        height: 443
+        x: 1045
+        y: 449
+        width: 132
+        height: 319
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -462,10 +475,10 @@ TextureImporter:
       name: HandGun_3
       rect:
         serializedVersion: 2
-        x: 1329
-        y: 444
-        width: 443
-        height: 443
+        x: 1368
+        y: 494
+        width: 348
+        height: 265
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -484,10 +497,10 @@ TextureImporter:
       name: HandGun_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1
-        width: 443
-        height: 443
+        x: 2
+        y: 105
+        width: 444
+        height: 206
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -503,13 +516,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HandGun_5
+      name: HandGun_9
       rect:
         serializedVersion: 2
-        x: 443
-        y: 1
-        width: 443
-        height: 443
+        x: 442
+        y: 196
+        width: 6
+        height: 4
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -525,13 +538,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HandGun_6
+      name: HandGun_5
       rect:
         serializedVersion: 2
-        x: 886
-        y: 1
-        width: 443
-        height: 443
+        x: 529
+        y: 81
+        width: 353
+        height: 303
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -547,13 +560,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HandGun_7
+      name: HandGun_6
       rect:
         serializedVersion: 2
-        x: 1329
-        y: 1
-        width: 443
-        height: 443
+        x: 1043
+        y: 77
+        width: 135
+        height: 336
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -564,6 +577,28 @@ TextureImporter:
       bones: []
       spriteID: 3c4ee9758a3f7b848828ba264769fe13
       internalID: -7885279133011801773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HandGun_7
+      rect:
+        serializedVersion: 2
+        x: 1384
+        y: 79
+        width: 351
+        height: 311
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 687050e41d341bb439f9c4bc94cc758e
+      internalID: -1081551671
       vertices: []
       indices: 
       edges: []
@@ -582,16 +617,17 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":4.0,"y":2.0},"gridSpriteSize":{"x":443.0,"y":443.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       HandGun_0: 4512714918657851343
       HandGun_1: -2100020025919925453
       HandGun_2: -5465282513196093506
       HandGun_3: 532952625515318942
       HandGun_4: 2999253056055592484
-      HandGun_5: 8270445906858281231
-      HandGun_6: -575199051887659565
-      HandGun_7: -7885279133011801773
+      HandGun_5: -575199051887659565
+      HandGun_6: -7885279133011801773
+      HandGun_7: -1081551671
+      HandGun_9: 8270445906858281231
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
