@@ -8,6 +8,7 @@ TagManager:
   - Interactable
   - Wall
   - Obstacle
+  - PlayerHurtCollider
   layers:
   - Default
   - TransparentFX
