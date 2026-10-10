@@ -129,12 +129,12 @@ public static class ItemEffectApplier
             case EffectType.LastBullet:
             {
                 stat.HasLastBulletEffect = true;
-                stat.LastBulletMultiplier = (int)effect.Value;
+                stat.LastBulletMultiplier = effect.Value;
                 break;
             }
             case EffectType.ChargeSpeedMultiplier:
             {
-                stat.ChargeSpeedMultiplier += (int)effect.Value;
+                stat.ChargeSpeedMultiplier += effect.Value;
                 break;
             }
         }
