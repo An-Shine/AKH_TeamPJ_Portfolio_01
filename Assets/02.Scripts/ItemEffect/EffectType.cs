@@ -16,6 +16,7 @@ public enum EffectType
     ProjectileCountModifier,
     SpreadAngleModifier,
     SpreadAngleMultiplier,
+    LastBullet,
 
     // Projectile
     DamageModifier,

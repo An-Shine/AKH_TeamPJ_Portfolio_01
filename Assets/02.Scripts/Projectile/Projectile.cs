@@ -109,4 +109,9 @@ public abstract class Projectile : MonoBehaviour
     {
         ProjectilePoolManager.Instance.Release(this);
     }
+
+    public void ApplyLastBulletEffect(float bonusRate)
+    {
+        _bonusDamage += (int)(Damage * bonusRate);
+    }
 }

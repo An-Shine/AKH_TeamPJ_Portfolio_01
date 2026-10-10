@@ -124,6 +124,7 @@ public class Weapon : MonoBehaviour
             {
                 AudioManager.Instance.PlaySFX(SFXType.FailFire);
             }
+
             return false;
         }
 
@@ -140,8 +141,11 @@ public class Weapon : MonoBehaviour
     {
         FireContext context = new FireContext(Data.ProjectileType, OriginPoint.transform.position,
             _targetDirection.normalized, Range, ProjectileCount, Angle);
-        Projectile projectile = _firePattern.Fire(context, Damage);
+
         AudioManager.Instance.PlaySFX(_fireSoundType);
+        Projectile projectile = _firePattern.Fire(context, Damage);
+        LastBullet(projectile);
+
         if (_fireEffectPrefab != null)
         {
             GameObject effectObject =
@@ -150,6 +154,18 @@ public class Weapon : MonoBehaviour
         }
 
         return projectile;
+    }
+
+    private void LastBullet(Projectile projectile)
+    {
+        ItemManager manager = ItemManager.Instance;
+        if (manager != null)
+        {
+            if (manager.WeaponStat.HasLastBulletEffect && _remainingAmmo <= 1)
+            {
+                projectile.ApplyLastBulletEffect(manager.WeaponStat.LastBulletMultiplier);
+            }
+        }
     }
 
     public void RefreshDirection()

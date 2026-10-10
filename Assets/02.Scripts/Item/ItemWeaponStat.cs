@@ -9,6 +9,9 @@ public class ItemWeaponStat
     public float SpreadAngleModifier;
     public float SpreadAngleMultiplier;
 
+    public bool HasLastBulletEffect;
+    public float LastBulletMultiplier;
+
     public ItemWeaponStat()
     {
         FireSpeedModifier = 0;
