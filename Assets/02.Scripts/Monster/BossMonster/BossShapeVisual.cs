@@ -8,6 +8,7 @@ namespace _02.Scripts.Monster.BossMonster
     {
         private const int Segments = 96;
         private readonly GameObject _root;
+        private readonly MeshRenderer _renderer;
         private readonly Mesh _mesh;
         private readonly List<Vector3> _vertices = new List<Vector3>(300);
         private readonly List<int> _triangles = new List<int>(450);
@@ -28,6 +29,7 @@ namespace _02.Scripts.Monster.BossMonster
             _mesh.MarkDynamic();
             _root.GetComponent<MeshFilter>().sharedMesh = _mesh;
             MeshRenderer renderer = _root.GetComponent<MeshRenderer>();
+            _renderer = renderer;
             renderer.sharedMaterial = material;
             renderer.sortingLayerID = sortingLayer;
             renderer.sortingOrder = order;
@@ -36,6 +38,8 @@ namespace _02.Scripts.Monster.BossMonster
         public void SetArc(Vector2 center, float innerRadius, float outerRadius, float startDegrees, float spanDegrees, Color color)
         {
             Begin(center);
+            innerRadius = Mathf.Max(0f, innerRadius);
+            outerRadius = Mathf.Max(innerRadius, outerRadius);
             int count = Mathf.Max(2, Mathf.CeilToInt(Segments * Mathf.Abs(spanDegrees) / 360f));
             for (int i = 0; i <= count; i++)
             {
@@ -77,6 +81,27 @@ namespace _02.Scripts.Monster.BossMonster
             AddLine(-forward + side, forward + side, thickness, color);
             AddLine(-forward - side, -forward + side, thickness, color);
             AddLine(forward - side, forward + side, thickness, color);
+            Finish();
+        }
+
+        public void SetSectorEdges(Vector2 center, float radius, float start, float span, float thickness, Color color)
+        {
+            Begin(center);
+            radius = Mathf.Max(0f, radius);
+            int count = Mathf.Max(2, Mathf.CeilToInt(Mathf.Abs(span) / 4f));
+            Vector2 previous = BossBattleGeometry.Direction(start) * radius;
+            for (int i = 1; i <= count; i++)
+            {
+                Vector2 next = BossBattleGeometry.Direction(start + span * i / count) * radius;
+                AddLine(previous, next, thickness, color);
+                previous = next;
+            }
+            if (Mathf.Abs(span) < 359.9f)
+            {
+                AddLine(Vector2.zero, BossBattleGeometry.Direction(start) * radius, thickness, color);
+                AddLine(Vector2.zero, BossBattleGeometry.Direction(start + span) * radius, thickness, color);
+            }
+
             Finish();
         }
 
@@ -171,6 +196,12 @@ namespace _02.Scripts.Monster.BossMonster
             {
                 _root.SetActive(visible);
             }
+        }
+
+        public void SetSorting(int sortingLayer, int order)
+        {
+            _renderer.sortingLayerID = sortingLayer;
+            _renderer.sortingOrder = order;
         }
 
         private void Begin(Vector2 center)

@@ -1,0 +1,877 @@
+{
+  "version": 1,
+  "spriteCount": 245,
+  "sprites": [
+    "Monster/BossMotionUpgrade/Sprites/Blade/S/frame_000",
+    "Monster/BossMotionUpgrade/Sprites/Blade/S/frame_001",
+    "Monster/BossMotionUpgrade/Sprites/Blade/S/frame_002",
+    "Monster/BossMotionUpgrade/Sprites/Blade/S/frame_003",
+    "Monster/BossMotionUpgrade/Sprites/Blade/S/frame_004",
+    "Monster/BossMotionUpgrade/Sprites/Blade/S/frame_005",
+    "Monster/BossMotionUpgrade/Sprites/Blade/S/frame_006",
+    "Monster/BossMotionUpgrade/Sprites/Blade/S/frame_007",
+    "Monster/BossMotionUpgrade/Sprites/Blade/SE/frame_000",
+    "Monster/BossMotionUpgrade/Sprites/Blade/SE/frame_001",
+    "Monster/BossMotionUpgrade/Sprites/Blade/SE/frame_002",
+    "Monster/BossMotionUpgrade/Sprites/Blade/SE/frame_004",
+    "Monster/BossMotionUpgrade/Sprites/Blade/SE/frame_005",
+    "Monster/BossMotionUpgrade/Sprites/Blade/SE/frame_006",
+    "Monster/BossMotionUpgrade/Sprites/Blade/SE/frame_007",
+    "Monster/BossMotionUpgrade/Sprites/Blade/E/frame_000",
+    "Monster/BossMotionUpgrade/Sprites/Blade/E/frame_001",
+    "Monster/BossMotionUpgrade/Sprites/Blade/E/frame_002",
+    "Monster/BossMotionUpgrade/Sprites/Blade/E/frame_004",
+    "Monster/BossMotionUpgrade/Sprites/Blade/E/frame_005",
+    "Monster/BossMotionUpgrade/Sprites/Blade/E/frame_006",
+    "Monster/BossMotionUpgrade/Sprites/Blade/E/frame_007",
+    "Monster/BossMotionUpgrade/Sprites/Blade/NE/frame_000",
+    "Monster/BossMotionUpgrade/Sprites/Blade/NE/frame_001",
+    "Monster/BossMotionUpgrade/Sprites/Blade/NE/frame_002",
+    "Monster/BossMotionUpgrade/Sprites/Blade/NE/frame_003",
+    "Monster/BossMotionUpgrade/Sprites/Blade/NE/frame_004",
+    "Monster/BossMotionUpgrade/Sprites/Blade/NE/frame_005",
+    "Monster/BossMotionUpgrade/Sprites/Blade/NE/frame_006",
+    "Monster/BossMotionUpgrade/Sprites/Blade/NE/frame_007",
+    "Monster/BossMotionUpgrade/Sprites/Blade/N/frame_000",
+    "Monster/BossMotionUpgrade/Sprites/Blade/N/frame_001",
+    "Monster/BossMotionUpgrade/Sprites/Blade/N/frame_002",
+    "Monster/BossMotionUpgrade/Sprites/Blade/N/frame_003",
+    "Monster/BossMotionUpgrade/Sprites/Blade/N/frame_004",
+    "Monster/BossMotionUpgrade/Sprites/Blade/N/frame_005",
+    "Monster/BossMotionUpgrade/Sprites/Blade/N/frame_006",
+    "Monster/BossMotionUpgrade/Sprites/Blade/N/frame_007",
+    "Monster/BossMotionUpgrade/Sprites/Blade/NW/frame_000",
+    "Monster/BossMotionUpgrade/Sprites/Blade/NW/frame_001",
+    "Monster/BossMotionUpgrade/Sprites/Blade/NW/frame_002",
+    "Monster/BossMotionUpgrade/Sprites/Blade/NW/frame_003",
+    "Monster/BossMotionUpgrade/Sprites/Blade/NW/frame_004",
+    "Monster/BossMotionUpgrade/Sprites/Blade/NW/frame_005",
+    "Monster/BossMotionUpgrade/Sprites/Blade/NW/frame_006",
+    "Monster/BossMotionUpgrade/Sprites/Blade/NW/frame_007",
+    "Monster/BossMotionUpgrade/Sprites/Blade/W/frame_000",
+    "Monster/BossMotionUpgrade/Sprites/Blade/W/frame_001",
+    "Monster/BossMotionUpgrade/Sprites/Blade/W/frame_002",
+    "Monster/BossMotionUpgrade/Sprites/Blade/W/frame_003",
+    "Monster/BossMotionUpgrade/Sprites/Blade/W/frame_004",
+    "Monster/BossMotionUpgrade/Sprites/Blade/W/frame_005",
+    "Monster/BossMotionUpgrade/Sprites/Blade/W/frame_006",
+    "Monster/BossMotionUpgrade/Sprites/Blade/W/frame_007",
+    "Monster/BossMotionUpgrade/Sprites/Blade/SW/frame_000",
+    "Monster/BossMotionUpgrade/Sprites/Blade/SW/frame_001",
+    "Monster/BossMotionUpgrade/Sprites/Blade/SW/frame_002",
+    "Monster/BossMotionUpgrade/Sprites/Blade/SW/frame_003",
+    "Monster/BossMotionUpgrade/Sprites/Blade/SW/frame_004",
+    "Monster/BossMotionUpgrade/Sprites/Blade/SW/frame_005",
+    "Monster/BossMotionUpgrade/Sprites/Blade/SW/frame_006",
+    "Monster/BossMotionUpgrade/Sprites/Blade/SW/frame_007",
+    "Monster/BossMotionUpgrade/Sprites/Slam/S/frame_000",
+    "Monster/BossMotionUpgrade/Sprites/Slam/S/frame_001",
+    "Monster/BossMotionUpgrade/Sprites/Slam/S/frame_002",
+    "Monster/BossMotionUpgrade/Sprites/Slam/S/frame_004",
+    "Monster/BossMotionUpgrade/Sprites/Slam/S/frame_005",
+    "Monster/BossMotionUpgrade/Sprites/Slam/S/frame_006",
+    "Monster/BossMotionUpgrade/Sprites/Slam/S/frame_007",
+    "Monster/BossMotionUpgrade/Sprites/Slam/SE/frame_000",
+    "Monster/BossMotionUpgrade/Sprites/Slam/SE/frame_001",
+    "Monster/BossMotionUpgrade/Sprites/Slam/SE/frame_002",
+    "Monster/BossMotionUpgrade/Sprites/Slam/SE/frame_004",
+    "Monster/BossMotionUpgrade/Sprites/Slam/SE/frame_005",
+    "Monster/BossMotionUpgrade/Sprites/Slam/SE/frame_006",
+    "Monster/BossMotionUpgrade/Sprites/Slam/SE/frame_007",
+    "Monster/BossMotionUpgrade/Sprites/Slam/E/frame_000",
+    "Monster/BossMotionUpgrade/Sprites/Slam/E/frame_001",
+    "Monster/BossMotionUpgrade/Sprites/Slam/E/frame_002",
+    "Monster/BossMotionUpgrade/Sprites/Slam/E/frame_003",
+    "Monster/BossMotionUpgrade/Sprites/Slam/E/frame_004",
+    "Monster/BossMotionUpgrade/Sprites/Slam/E/frame_005",
+    "Monster/BossMotionUpgrade/Sprites/Slam/E/frame_006",
+    "Monster/BossMotionUpgrade/Sprites/Slam/E/frame_007",
+    "Monster/BossMotionUpgrade/Sprites/Slam/NE/frame_000",
+    "Monster/BossMotionUpgrade/Sprites/Slam/NE/frame_001",
+    "Monster/BossMotionUpgrade/Sprites/Slam/NE/frame_002",
+    "Monster/BossMotionUpgrade/Sprites/Slam/NE/frame_003",
+    "Monster/BossMotionUpgrade/Sprites/Slam/NE/frame_004",
+    "Monster/BossMotionUpgrade/Sprites/Slam/NE/frame_005",
+    "Monster/BossMotionUpgrade/Sprites/Slam/NE/frame_006",
+    "Monster/BossMotionUpgrade/Sprites/Slam/NE/frame_007",
+    "Monster/BossMotionUpgrade/Sprites/Slam/N/frame_000",
+    "Monster/BossMotionUpgrade/Sprites/Slam/N/frame_001",
+    "Monster/BossMotionUpgrade/Sprites/Slam/N/frame_002",
+    "Monster/BossMotionUpgrade/Sprites/Slam/N/frame_003",
+    "Monster/BossMotionUpgrade/Sprites/Slam/N/frame_004",
+    "Monster/BossMotionUpgrade/Sprites/Slam/N/frame_005",
+    "Monster/BossMotionUpgrade/Sprites/Slam/N/frame_006",
+    "Monster/BossMotionUpgrade/Sprites/Slam/N/frame_007",
+    "Monster/BossMotionUpgrade/Sprites/Slam/NW/frame_000",
+    "Monster/BossMotionUpgrade/Sprites/Slam/NW/frame_001",
+    "Monster/BossMotionUpgrade/Sprites/Slam/NW/frame_002",
+    "Monster/BossMotionUpgrade/Sprites/Slam/NW/frame_003",
+    "Monster/BossMotionUpgrade/Sprites/Slam/NW/frame_004",
+    "Monster/BossMotionUpgrade/Sprites/Slam/NW/frame_005",
+    "Monster/BossMotionUpgrade/Sprites/Slam/NW/frame_006",
+    "Monster/BossMotionUpgrade/Sprites/Slam/NW/frame_007",
+    "Monster/BossMotionUpgrade/Sprites/Slam/W/frame_000",
+    "Monster/BossMotionUpgrade/Sprites/Slam/W/frame_001",
+    "Monster/BossMotionUpgrade/Sprites/Slam/W/frame_002",
+    "Monster/BossMotionUpgrade/Sprites/Slam/W/frame_003",
+    "Monster/BossMotionUpgrade/Sprites/Slam/W/frame_004",
+    "Monster/BossMotionUpgrade/Sprites/Slam/W/frame_005",
+    "Monster/BossMotionUpgrade/Sprites/Slam/W/frame_006",
+    "Monster/BossMotionUpgrade/Sprites/Slam/W/frame_007",
+    "Monster/BossMotionUpgrade/Sprites/Slam/SW/frame_000",
+    "Monster/BossMotionUpgrade/Sprites/Slam/SW/frame_001",
+    "Monster/BossMotionUpgrade/Sprites/Slam/SW/frame_002",
+    "Monster/BossMotionUpgrade/Sprites/Slam/SW/frame_003",
+    "Monster/BossMotionUpgrade/Sprites/Slam/SW/frame_004",
+    "Monster/BossMotionUpgrade/Sprites/Slam/SW/frame_005",
+    "Monster/BossMotionUpgrade/Sprites/Slam/SW/frame_006",
+    "Monster/BossMotionUpgrade/Sprites/Slam/SW/frame_007",
+    "Monster/BossMotionUpgrade/Sprites/Core/S/frame_000",
+    "Monster/BossMotionUpgrade/Sprites/Core/S/frame_001",
+    "Monster/BossMotionUpgrade/Sprites/Core/S/frame_002",
+    "Monster/BossMotionUpgrade/Sprites/Core/S/frame_003",
+    "Monster/BossMotionUpgrade/Sprites/Core/S/frame_004",
+    "Monster/BossMotionUpgrade/Sprites/Core/S/frame_005",
+    "Monster/BossMotionUpgrade/Sprites/Core/S/frame_006",
+    "Monster/BossMotionUpgrade/Sprites/Core/S/frame_007",
+    "Monster/BossMotionUpgrade/Sprites/Core/SE/frame_000",
+    "Monster/BossMotionUpgrade/Sprites/Core/SE/frame_001",
+    "Monster/BossMotionUpgrade/Sprites/Core/SE/frame_002",
+    "Monster/BossMotionUpgrade/Sprites/Core/SE/frame_003",
+    "Monster/BossMotionUpgrade/Sprites/Core/SE/frame_004",
+    "Monster/BossMotionUpgrade/Sprites/Core/SE/frame_005",
+    "Monster/BossMotionUpgrade/Sprites/Core/SE/frame_006",
+    "Monster/BossMotionUpgrade/Sprites/Core/SE/frame_007",
+    "Monster/BossMotionUpgrade/Sprites/Core/E/frame_000",
+    "Monster/BossMotionUpgrade/Sprites/Core/E/frame_001",
+    "Monster/BossMotionUpgrade/Sprites/Core/E/frame_002",
+    "Monster/BossMotionUpgrade/Sprites/Core/E/frame_003",
+    "Monster/BossMotionUpgrade/Sprites/Core/E/frame_004",
+    "Monster/BossMotionUpgrade/Sprites/Core/E/frame_005",
+    "Monster/BossMotionUpgrade/Sprites/Core/E/frame_006",
+    "Monster/BossMotionUpgrade/Sprites/Core/E/frame_007",
+    "Monster/BossMotionUpgrade/Sprites/Core/NE/frame_000",
+    "Monster/BossMotionUpgrade/Sprites/Core/NE/frame_001",
+    "Monster/BossMotionUpgrade/Sprites/Core/NE/frame_002",
+    "Monster/BossMotionUpgrade/Sprites/Core/NE/frame_003",
+    "Monster/BossMotionUpgrade/Sprites/Core/NE/frame_004",
+    "Monster/BossMotionUpgrade/Sprites/Core/NE/frame_005",
+    "Monster/BossMotionUpgrade/Sprites/Core/NE/frame_006",
+    "Monster/BossMotionUpgrade/Sprites/Core/NE/frame_007",
+    "Monster/BossMotionUpgrade/Sprites/Core/N/frame_000",
+    "Monster/BossMotionUpgrade/Sprites/Core/N/frame_001",
+    "Monster/BossMotionUpgrade/Sprites/Core/N/frame_002",
+    "Monster/BossMotionUpgrade/Sprites/Core/N/frame_003",
+    "Monster/BossMotionUpgrade/Sprites/Core/N/frame_004",
+    "Monster/BossMotionUpgrade/Sprites/Core/N/frame_005",
+    "Monster/BossMotionUpgrade/Sprites/Core/N/frame_006",
+    "Monster/BossMotionUpgrade/Sprites/Core/N/frame_007",
+    "Monster/BossMotionUpgrade/Sprites/Core/NW/frame_000",
+    "Monster/BossMotionUpgrade/Sprites/Core/NW/frame_001",
+    "Monster/BossMotionUpgrade/Sprites/Core/NW/frame_002",
+    "Monster/BossMotionUpgrade/Sprites/Core/NW/frame_003",
+    "Monster/BossMotionUpgrade/Sprites/Core/NW/frame_004",
+    "Monster/BossMotionUpgrade/Sprites/Core/NW/frame_005",
+    "Monster/BossMotionUpgrade/Sprites/Core/NW/frame_006",
+    "Monster/BossMotionUpgrade/Sprites/Core/NW/frame_007",
+    "Monster/BossMotionUpgrade/Sprites/Core/W/frame_000",
+    "Monster/BossMotionUpgrade/Sprites/Core/W/frame_001",
+    "Monster/BossMotionUpgrade/Sprites/Core/W/frame_002",
+    "Monster/BossMotionUpgrade/Sprites/Core/W/frame_003",
+    "Monster/BossMotionUpgrade/Sprites/Core/W/frame_004",
+    "Monster/BossMotionUpgrade/Sprites/Core/W/frame_005",
+    "Monster/BossMotionUpgrade/Sprites/Core/W/frame_006",
+    "Monster/BossMotionUpgrade/Sprites/Core/W/frame_007",
+    "Monster/BossMotionUpgrade/Sprites/Core/SW/frame_000",
+    "Monster/BossMotionUpgrade/Sprites/Core/SW/frame_001",
+    "Monster/BossMotionUpgrade/Sprites/Core/SW/frame_002",
+    "Monster/BossMotionUpgrade/Sprites/Core/SW/frame_003",
+    "Monster/BossMotionUpgrade/Sprites/Core/SW/frame_004",
+    "Monster/BossMotionUpgrade/Sprites/Core/SW/frame_005",
+    "Monster/BossMotionUpgrade/Sprites/Core/SW/frame_006",
+    "Monster/BossMotionUpgrade/Sprites/Core/SW/frame_007",
+    "Monster/BossMotionUpgrade/Sprites/Walk/S/frame_000",
+    "Monster/BossMotionUpgrade/Sprites/Walk/S/frame_001",
+    "Monster/BossMotionUpgrade/Sprites/Walk/S/frame_002",
+    "Monster/BossMotionUpgrade/Sprites/Walk/S/frame_003",
+    "Monster/BossMotionUpgrade/Sprites/Walk/S/frame_004",
+    "Monster/BossMotionUpgrade/Sprites/Walk/S/frame_005",
+    "Monster/BossMotionUpgrade/Sprites/Walk/S/frame_006",
+    "Monster/BossMotionUpgrade/Sprites/Walk/SE/frame_000",
+    "Monster/BossMotionUpgrade/Sprites/Walk/SE/frame_001",
+    "Monster/BossMotionUpgrade/Sprites/Walk/SE/frame_002",
+    "Monster/BossMotionUpgrade/Sprites/Walk/SE/frame_003",
+    "Monster/BossMotionUpgrade/Sprites/Walk/SE/frame_004",
+    "Monster/BossMotionUpgrade/Sprites/Walk/SE/frame_005",
+    "Monster/BossMotionUpgrade/Sprites/Walk/SE/frame_006",
+    "Monster/BossMotionUpgrade/Sprites/Walk/E/frame_000",
+    "Monster/BossMotionUpgrade/Sprites/Walk/E/frame_001",
+    "Monster/BossMotionUpgrade/Sprites/Walk/E/frame_002",
+    "Monster/BossMotionUpgrade/Sprites/Walk/E/frame_003",
+    "Monster/BossMotionUpgrade/Sprites/Walk/E/frame_004",
+    "Monster/BossMotionUpgrade/Sprites/Walk/E/frame_005",
+    "Monster/BossMotionUpgrade/Sprites/Walk/E/frame_006",
+    "Monster/BossMotionUpgrade/Sprites/Walk/N/frame_000",
+    "Monster/BossMotionUpgrade/Sprites/Walk/N/frame_001",
+    "Monster/BossMotionUpgrade/Sprites/Walk/N/frame_002",
+    "Monster/BossMotionUpgrade/Sprites/Walk/N/frame_003",
+    "Monster/BossMotionUpgrade/Sprites/Walk/N/frame_004",
+    "Monster/BossMotionUpgrade/Sprites/Walk/N/frame_005",
+    "Monster/BossMotionUpgrade/Sprites/Walk/N/frame_006",
+    "Monster/BossMotionUpgrade/Sprites/Walk/NW/frame_000",
+    "Monster/BossMotionUpgrade/Sprites/Walk/NW/frame_001",
+    "Monster/BossMotionUpgrade/Sprites/Walk/NW/frame_002",
+    "Monster/BossMotionUpgrade/Sprites/Walk/NW/frame_003",
+    "Monster/BossMotionUpgrade/Sprites/Walk/NW/frame_004",
+    "Monster/BossMotionUpgrade/Sprites/Walk/NW/frame_005",
+    "Monster/BossMotionUpgrade/Sprites/Walk/NW/frame_006",
+    "Monster/BossMotionUpgrade/Sprites/Walk/W/frame_000",
+    "Monster/BossMotionUpgrade/Sprites/Walk/W/frame_001",
+    "Monster/BossMotionUpgrade/Sprites/Walk/W/frame_002",
+    "Monster/BossMotionUpgrade/Sprites/Walk/W/frame_003",
+    "Monster/BossMotionUpgrade/Sprites/Walk/W/frame_004",
+    "Monster/BossMotionUpgrade/Sprites/Walk/W/frame_005",
+    "Monster/BossMotionUpgrade/Sprites/Walk/W/frame_006",
+    "Monster/BossMotionUpgrade/Sprites/Walk/SW/frame_000",
+    "Monster/BossMotionUpgrade/Sprites/Walk/SW/frame_001",
+    "Monster/BossMotionUpgrade/Sprites/Walk/SW/frame_002",
+    "Monster/BossMotionUpgrade/Sprites/Walk/SW/frame_003",
+    "Monster/BossMotionUpgrade/Sprites/Walk/SW/frame_004",
+    "Monster/BossMotionUpgrade/Sprites/Walk/SW/frame_005",
+    "Monster/BossMotionUpgrade/Sprites/Walk/SW/frame_006",
+    "Monster/BossMotionUpgrade/Sprites/Walk/NE/frame_000",
+    "Monster/BossMotionUpgrade/Sprites/Walk/NE/frame_001",
+    "Monster/BossMotionUpgrade/Sprites/Walk/NE/frame_002",
+    "Monster/BossMotionUpgrade/Sprites/Walk/NE/frame_003",
+    "Monster/BossMotionUpgrade/Sprites/Walk/NE/frame_004",
+    "Monster/BossMotionUpgrade/Sprites/Walk/NE/frame_005",
+    "Monster/BossMotionUpgrade/Sprites/Walk/NE/frame_006",
+    "Monster/BossMotionUpgrade/Sprites/Walk/NE/frame_007"
+  ],
+  "clips": [
+    {
+      "family": 0,
+      "stage": 0,
+      "direction": 0,
+      "path": "Monster/BossMotionUpgrade/Clips/Blade/BossMonster_blade_0_S"
+    },
+    {
+      "family": 0,
+      "stage": 1,
+      "direction": 0,
+      "path": "Monster/BossMotionUpgrade/Clips/Blade/BossMonster_blade_1_S"
+    },
+    {
+      "family": 0,
+      "stage": 2,
+      "direction": 0,
+      "path": "Monster/BossMotionUpgrade/Clips/Blade/BossMonster_blade_2_S"
+    },
+    {
+      "family": 0,
+      "stage": 3,
+      "direction": 0,
+      "path": "Monster/BossMotionUpgrade/Clips/Blade/BossMonster_blade_3_S"
+    },
+    {
+      "family": 0,
+      "stage": 0,
+      "direction": 1,
+      "path": "Monster/BossMotionUpgrade/Clips/Blade/BossMonster_blade_0_SE"
+    },
+    {
+      "family": 0,
+      "stage": 1,
+      "direction": 1,
+      "path": "Monster/BossMotionUpgrade/Clips/Blade/BossMonster_blade_1_SE"
+    },
+    {
+      "family": 0,
+      "stage": 2,
+      "direction": 1,
+      "path": "Monster/BossMotionUpgrade/Clips/Blade/BossMonster_blade_2_SE"
+    },
+    {
+      "family": 0,
+      "stage": 3,
+      "direction": 1,
+      "path": "Monster/BossMotionUpgrade/Clips/Blade/BossMonster_blade_3_SE"
+    },
+    {
+      "family": 0,
+      "stage": 0,
+      "direction": 2,
+      "path": "Monster/BossMotionUpgrade/Clips/Blade/BossMonster_blade_0_E"
+    },
+    {
+      "family": 0,
+      "stage": 1,
+      "direction": 2,
+      "path": "Monster/BossMotionUpgrade/Clips/Blade/BossMonster_blade_1_E"
+    },
+    {
+      "family": 0,
+      "stage": 2,
+      "direction": 2,
+      "path": "Monster/BossMotionUpgrade/Clips/Blade/BossMonster_blade_2_E"
+    },
+    {
+      "family": 0,
+      "stage": 3,
+      "direction": 2,
+      "path": "Monster/BossMotionUpgrade/Clips/Blade/BossMonster_blade_3_E"
+    },
+    {
+      "family": 0,
+      "stage": 0,
+      "direction": 3,
+      "path": "Monster/BossMotionUpgrade/Clips/Blade/BossMonster_blade_0_NE"
+    },
+    {
+      "family": 0,
+      "stage": 1,
+      "direction": 3,
+      "path": "Monster/BossMotionUpgrade/Clips/Blade/BossMonster_blade_1_NE"
+    },
+    {
+      "family": 0,
+      "stage": 2,
+      "direction": 3,
+      "path": "Monster/BossMotionUpgrade/Clips/Blade/BossMonster_blade_2_NE"
+    },
+    {
+      "family": 0,
+      "stage": 3,
+      "direction": 3,
+      "path": "Monster/BossMotionUpgrade/Clips/Blade/BossMonster_blade_3_NE"
+    },
+    {
+      "family": 0,
+      "stage": 0,
+      "direction": 4,
+      "path": "Monster/BossMotionUpgrade/Clips/Blade/BossMonster_blade_0_N"
+    },
+    {
+      "family": 0,
+      "stage": 1,
+      "direction": 4,
+      "path": "Monster/BossMotionUpgrade/Clips/Blade/BossMonster_blade_1_N"
+    },
+    {
+      "family": 0,
+      "stage": 2,
+      "direction": 4,
+      "path": "Monster/BossMotionUpgrade/Clips/Blade/BossMonster_blade_2_N"
+    },
+    {
+      "family": 0,
+      "stage": 3,
+      "direction": 4,
+      "path": "Monster/BossMotionUpgrade/Clips/Blade/BossMonster_blade_3_N"
+    },
+    {
+      "family": 0,
+      "stage": 0,
+      "direction": 5,
+      "path": "Monster/BossMotionUpgrade/Clips/Blade/BossMonster_blade_0_NW"
+    },
+    {
+      "family": 0,
+      "stage": 1,
+      "direction": 5,
+      "path": "Monster/BossMotionUpgrade/Clips/Blade/BossMonster_blade_1_NW"
+    },
+    {
+      "family": 0,
+      "stage": 2,
+      "direction": 5,
+      "path": "Monster/BossMotionUpgrade/Clips/Blade/BossMonster_blade_2_NW"
+    },
+    {
+      "family": 0,
+      "stage": 3,
+      "direction": 5,
+      "path": "Monster/BossMotionUpgrade/Clips/Blade/BossMonster_blade_3_NW"
+    },
+    {
+      "family": 0,
+      "stage": 0,
+      "direction": 6,
+      "path": "Monster/BossMotionUpgrade/Clips/Blade/BossMonster_blade_0_W"
+    },
+    {
+      "family": 0,
+      "stage": 1,
+      "direction": 6,
+      "path": "Monster/BossMotionUpgrade/Clips/Blade/BossMonster_blade_1_W"
+    },
+    {
+      "family": 0,
+      "stage": 2,
+      "direction": 6,
+      "path": "Monster/BossMotionUpgrade/Clips/Blade/BossMonster_blade_2_W"
+    },
+    {
+      "family": 0,
+      "stage": 3,
+      "direction": 6,
+      "path": "Monster/BossMotionUpgrade/Clips/Blade/BossMonster_blade_3_W"
+    },
+    {
+      "family": 0,
+      "stage": 0,
+      "direction": 7,
+      "path": "Monster/BossMotionUpgrade/Clips/Blade/BossMonster_blade_0_SW"
+    },
+    {
+      "family": 0,
+      "stage": 1,
+      "direction": 7,
+      "path": "Monster/BossMotionUpgrade/Clips/Blade/BossMonster_blade_1_SW"
+    },
+    {
+      "family": 0,
+      "stage": 2,
+      "direction": 7,
+      "path": "Monster/BossMotionUpgrade/Clips/Blade/BossMonster_blade_2_SW"
+    },
+    {
+      "family": 0,
+      "stage": 3,
+      "direction": 7,
+      "path": "Monster/BossMotionUpgrade/Clips/Blade/BossMonster_blade_3_SW"
+    },
+    {
+      "family": 1,
+      "stage": 0,
+      "direction": 0,
+      "path": "Monster/BossMotionUpgrade/Clips/Slam/BossMonster_slam_0_S"
+    },
+    {
+      "family": 1,
+      "stage": 1,
+      "direction": 0,
+      "path": "Monster/BossMotionUpgrade/Clips/Slam/BossMonster_slam_1_S"
+    },
+    {
+      "family": 1,
+      "stage": 2,
+      "direction": 0,
+      "path": "Monster/BossMotionUpgrade/Clips/Slam/BossMonster_slam_2_S"
+    },
+    {
+      "family": 1,
+      "stage": 3,
+      "direction": 0,
+      "path": "Monster/BossMotionUpgrade/Clips/Slam/BossMonster_slam_3_S"
+    },
+    {
+      "family": 1,
+      "stage": 0,
+      "direction": 1,
+      "path": "Monster/BossMotionUpgrade/Clips/Slam/BossMonster_slam_0_SE"
+    },
+    {
+      "family": 1,
+      "stage": 1,
+      "direction": 1,
+      "path": "Monster/BossMotionUpgrade/Clips/Slam/BossMonster_slam_1_SE"
+    },
+    {
+      "family": 1,
+      "stage": 2,
+      "direction": 1,
+      "path": "Monster/BossMotionUpgrade/Clips/Slam/BossMonster_slam_2_SE"
+    },
+    {
+      "family": 1,
+      "stage": 3,
+      "direction": 1,
+      "path": "Monster/BossMotionUpgrade/Clips/Slam/BossMonster_slam_3_SE"
+    },
+    {
+      "family": 1,
+      "stage": 0,
+      "direction": 2,
+      "path": "Monster/BossMotionUpgrade/Clips/Slam/BossMonster_slam_0_E"
+    },
+    {
+      "family": 1,
+      "stage": 1,
+      "direction": 2,
+      "path": "Monster/BossMotionUpgrade/Clips/Slam/BossMonster_slam_1_E"
+    },
+    {
+      "family": 1,
+      "stage": 2,
+      "direction": 2,
+      "path": "Monster/BossMotionUpgrade/Clips/Slam/BossMonster_slam_2_E"
+    },
+    {
+      "family": 1,
+      "stage": 3,
+      "direction": 2,
+      "path": "Monster/BossMotionUpgrade/Clips/Slam/BossMonster_slam_3_E"
+    },
+    {
+      "family": 1,
+      "stage": 0,
+      "direction": 3,
+      "path": "Monster/BossMotionUpgrade/Clips/Slam/BossMonster_slam_0_NE"
+    },
+    {
+      "family": 1,
+      "stage": 1,
+      "direction": 3,
+      "path": "Monster/BossMotionUpgrade/Clips/Slam/BossMonster_slam_1_NE"
+    },
+    {
+      "family": 1,
+      "stage": 2,
+      "direction": 3,
+      "path": "Monster/BossMotionUpgrade/Clips/Slam/BossMonster_slam_2_NE"
+    },
+    {
+      "family": 1,
+      "stage": 3,
+      "direction": 3,
+      "path": "Monster/BossMotionUpgrade/Clips/Slam/BossMonster_slam_3_NE"
+    },
+    {
+      "family": 1,
+      "stage": 0,
+      "direction": 4,
+      "path": "Monster/BossMotionUpgrade/Clips/Slam/BossMonster_slam_0_N"
+    },
+    {
+      "family": 1,
+      "stage": 1,
+      "direction": 4,
+      "path": "Monster/BossMotionUpgrade/Clips/Slam/BossMonster_slam_1_N"
+    },
+    {
+      "family": 1,
+      "stage": 2,
+      "direction": 4,
+      "path": "Monster/BossMotionUpgrade/Clips/Slam/BossMonster_slam_2_N"
+    },
+    {
+      "family": 1,
+      "stage": 3,
+      "direction": 4,
+      "path": "Monster/BossMotionUpgrade/Clips/Slam/BossMonster_slam_3_N"
+    },
+    {
+      "family": 1,
+      "stage": 0,
+      "direction": 5,
+      "path": "Monster/BossMotionUpgrade/Clips/Slam/BossMonster_slam_0_NW"
+    },
+    {
+      "family": 1,
+      "stage": 1,
+      "direction": 5,
+      "path": "Monster/BossMotionUpgrade/Clips/Slam/BossMonster_slam_1_NW"
+    },
+    {
+      "family": 1,
+      "stage": 2,
+      "direction": 5,
+      "path": "Monster/BossMotionUpgrade/Clips/Slam/BossMonster_slam_2_NW"
+    },
+    {
+      "family": 1,
+      "stage": 3,
+      "direction": 5,
+      "path": "Monster/BossMotionUpgrade/Clips/Slam/BossMonster_slam_3_NW"
+    },
+    {
+      "family": 1,
+      "stage": 0,
+      "direction": 6,
+      "path": "Monster/BossMotionUpgrade/Clips/Slam/BossMonster_slam_0_W"
+    },
+    {
+      "family": 1,
+      "stage": 1,
+      "direction": 6,
+      "path": "Monster/BossMotionUpgrade/Clips/Slam/BossMonster_slam_1_W"
+    },
+    {
+      "family": 1,
+      "stage": 2,
+      "direction": 6,
+      "path": "Monster/BossMotionUpgrade/Clips/Slam/BossMonster_slam_2_W"
+    },
+    {
+      "family": 1,
+      "stage": 3,
+      "direction": 6,
+      "path": "Monster/BossMotionUpgrade/Clips/Slam/BossMonster_slam_3_W"
+    },
+    {
+      "family": 1,
+      "stage": 0,
+      "direction": 7,
+      "path": "Monster/BossMotionUpgrade/Clips/Slam/BossMonster_slam_0_SW"
+    },
+    {
+      "family": 1,
+      "stage": 1,
+      "direction": 7,
+      "path": "Monster/BossMotionUpgrade/Clips/Slam/BossMonster_slam_1_SW"
+    },
+    {
+      "family": 1,
+      "stage": 2,
+      "direction": 7,
+      "path": "Monster/BossMotionUpgrade/Clips/Slam/BossMonster_slam_2_SW"
+    },
+    {
+      "family": 1,
+      "stage": 3,
+      "direction": 7,
+      "path": "Monster/BossMotionUpgrade/Clips/Slam/BossMonster_slam_3_SW"
+    },
+    {
+      "family": 2,
+      "stage": 0,
+      "direction": 0,
+      "path": "Monster/BossMotionUpgrade/Clips/Core/BossMonster_core_0_S"
+    },
+    {
+      "family": 2,
+      "stage": 1,
+      "direction": 0,
+      "path": "Monster/BossMotionUpgrade/Clips/Core/BossMonster_core_1_S"
+    },
+    {
+      "family": 2,
+      "stage": 2,
+      "direction": 0,
+      "path": "Monster/BossMotionUpgrade/Clips/Core/BossMonster_core_2_S"
+    },
+    {
+      "family": 2,
+      "stage": 3,
+      "direction": 0,
+      "path": "Monster/BossMotionUpgrade/Clips/Core/BossMonster_core_3_S"
+    },
+    {
+      "family": 2,
+      "stage": 0,
+      "direction": 1,
+      "path": "Monster/BossMotionUpgrade/Clips/Core/BossMonster_core_0_SE"
+    },
+    {
+      "family": 2,
+      "stage": 1,
+      "direction": 1,
+      "path": "Monster/BossMotionUpgrade/Clips/Core/BossMonster_core_1_SE"
+    },
+    {
+      "family": 2,
+      "stage": 2,
+      "direction": 1,
+      "path": "Monster/BossMotionUpgrade/Clips/Core/BossMonster_core_2_SE"
+    },
+    {
+      "family": 2,
+      "stage": 3,
+      "direction": 1,
+      "path": "Monster/BossMotionUpgrade/Clips/Core/BossMonster_core_3_SE"
+    },
+    {
+      "family": 2,
+      "stage": 0,
+      "direction": 2,
+      "path": "Monster/BossMotionUpgrade/Clips/Core/BossMonster_core_0_E"
+    },
+    {
+      "family": 2,
+      "stage": 1,
+      "direction": 2,
+      "path": "Monster/BossMotionUpgrade/Clips/Core/BossMonster_core_1_E"
+    },
+    {
+      "family": 2,
+      "stage": 2,
+      "direction": 2,
+      "path": "Monster/BossMotionUpgrade/Clips/Core/BossMonster_core_2_E"
+    },
+    {
+      "family": 2,
+      "stage": 3,
+      "direction": 2,
+      "path": "Monster/BossMotionUpgrade/Clips/Core/BossMonster_core_3_E"
+    },
+    {
+      "family": 2,
+      "stage": 0,
+      "direction": 3,
+      "path": "Monster/BossMotionUpgrade/Clips/Core/BossMonster_core_0_NE"
+    },
+    {
+      "family": 2,
+      "stage": 1,
+      "direction": 3,
+      "path": "Monster/BossMotionUpgrade/Clips/Core/BossMonster_core_1_NE"
+    },
+    {
+      "family": 2,
+      "stage": 2,
+      "direction": 3,
+      "path": "Monster/BossMotionUpgrade/Clips/Core/BossMonster_core_2_NE"
+    },
+    {
+      "family": 2,
+      "stage": 3,
+      "direction": 3,
+      "path": "Monster/BossMotionUpgrade/Clips/Core/BossMonster_core_3_NE"
+    },
+    {
+      "family": 2,
+      "stage": 0,
+      "direction": 4,
+      "path": "Monster/BossMotionUpgrade/Clips/Core/BossMonster_core_0_N"
+    },
+    {
+      "family": 2,
+      "stage": 1,
+      "direction": 4,
+      "path": "Monster/BossMotionUpgrade/Clips/Core/BossMonster_core_1_N"
+    },
+    {
+      "family": 2,
+      "stage": 2,
+      "direction": 4,
+      "path": "Monster/BossMotionUpgrade/Clips/Core/BossMonster_core_2_N"
+    },
+    {
+      "family": 2,
+      "stage": 3,
+      "direction": 4,
+      "path": "Monster/BossMotionUpgrade/Clips/Core/BossMonster_core_3_N"
+    },
+    {
+      "family": 2,
+      "stage": 0,
+      "direction": 5,
+      "path": "Monster/BossMotionUpgrade/Clips/Core/BossMonster_core_0_NW"
+    },
+    {
+      "family": 2,
+      "stage": 1,
+      "direction": 5,
+      "path": "Monster/BossMotionUpgrade/Clips/Core/BossMonster_core_1_NW"
+    },
+    {
+      "family": 2,
+      "stage": 2,
+      "direction": 5,
+      "path": "Monster/BossMotionUpgrade/Clips/Core/BossMonster_core_2_NW"
+    },
+    {
+      "family": 2,
+      "stage": 3,
+      "direction": 5,
+      "path": "Monster/BossMotionUpgrade/Clips/Core/BossMonster_core_3_NW"
+    },
+    {
+      "family": 2,
+      "stage": 0,
+      "direction": 6,
+      "path": "Monster/BossMotionUpgrade/Clips/Core/BossMonster_core_0_W"
+    },
+    {
+      "family": 2,
+      "stage": 1,
+      "direction": 6,
+      "path": "Monster/BossMotionUpgrade/Clips/Core/BossMonster_core_1_W"
+    },
+    {
+      "family": 2,
+      "stage": 2,
+      "direction": 6,
+      "path": "Monster/BossMotionUpgrade/Clips/Core/BossMonster_core_2_W"
+    },
+    {
+      "family": 2,
+      "stage": 3,
+      "direction": 6,
+      "path": "Monster/BossMotionUpgrade/Clips/Core/BossMonster_core_3_W"
+    },
+    {
+      "family": 2,
+      "stage": 0,
+      "direction": 7,
+      "path": "Monster/BossMotionUpgrade/Clips/Core/BossMonster_core_0_SW"
+    },
+    {
+      "family": 2,
+      "stage": 1,
+      "direction": 7,
+      "path": "Monster/BossMotionUpgrade/Clips/Core/BossMonster_core_1_SW"
+    },
+    {
+      "family": 2,
+      "stage": 2,
+      "direction": 7,
+      "path": "Monster/BossMotionUpgrade/Clips/Core/BossMonster_core_2_SW"
+    },
+    {
+      "family": 2,
+      "stage": 3,
+      "direction": 7,
+      "path": "Monster/BossMotionUpgrade/Clips/Core/BossMonster_core_3_SW"
+    },
+    {
+      "family": 3,
+      "stage": 2,
+      "direction": 0,
+      "path": "Monster/BossMotionUpgrade/Clips/Walk/BossMonster_walk_2_S"
+    },
+    {
+      "family": 3,
+      "stage": 2,
+      "direction": 1,
+      "path": "Monster/BossMotionUpgrade/Clips/Walk/BossMonster_walk_2_SE"
+    },
+    {
+      "family": 3,
+      "stage": 2,
+      "direction": 2,
+      "path": "Monster/BossMotionUpgrade/Clips/Walk/BossMonster_walk_2_E"
+    },
+    {
+      "family": 3,
+      "stage": 2,
+      "direction": 3,
+      "path": "Monster/BossMotionUpgrade/Clips/Walk/BossMonster_walk_2_NE"
+    },
+    {
+      "family": 3,
+      "stage": 2,
+      "direction": 4,
+      "path": "Monster/BossMotionUpgrade/Clips/Walk/BossMonster_walk_2_N"
+    },
+    {
+      "family": 3,
+      "stage": 2,
+      "direction": 5,
+      "path": "Monster/BossMotionUpgrade/Clips/Walk/BossMonster_walk_2_NW"
+    },
+    {
+      "family": 3,
+      "stage": 2,
+      "direction": 6,
+      "path": "Monster/BossMotionUpgrade/Clips/Walk/BossMonster_walk_2_W"
+    },
+    {
+      "family": 3,
+      "stage": 2,
+      "direction": 7,
+      "path": "Monster/BossMotionUpgrade/Clips/Walk/BossMonster_walk_2_SW"
+    }
+  ]
+}

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using _02.Scripts.Monster.Presentation;
 
 namespace _02.Scripts.Monster.BossMonster
 {
@@ -118,8 +119,8 @@ namespace _02.Scripts.Monster.BossMonster
             color.enabled = true;
             Gradient gradient = new Gradient();
             gradient.SetKeys(new[] { new GradientColorKey(Color.white, 0f), new GradientColorKey(Color.white, 1f) },
-                new[] { new GradientAlphaKey(1f, 0f), new GradientAlphaKey(1f, 0.15f),
-                    new GradientAlphaKey(definition.frames > 1 ? 0.7f : 0f, 1f) });
+                new[] { new GradientAlphaKey(1f, 0f), new GradientAlphaKey(0.9f, 0.12f),
+                    new GradientAlphaKey(0.35f, 0.5f), new GradientAlphaKey(0f, 1f) });
             color.color = gradient;
             var size = particles.sizeOverLifetime;
             size.enabled = true;
@@ -149,13 +150,13 @@ namespace _02.Scripts.Monster.BossMonster
             };
             material.SetFloat("_DstBlend", (float)(definition.additive == 1 ? BlendMode.One : BlendMode.OneMinusSrcAlpha));
             material.SetFloat("_Desaturate", definition.desaturate);
-            material.SetFloat("_Gain", definition.additive == 1 ? 1.22f : 1.08f);
+            material.SetFloat("_Gain", 1f);
             ParticleSystemRenderer renderer = root.GetComponent<ParticleSystemRenderer>();
             renderer.sharedMaterial = material;
             renderer.renderMode = ParticleSystemRenderMode.Billboard;
             renderer.maxParticleSize = 4f;
             renderer.sortingLayerID = _sortingLayer;
-            renderer.sortingOrder = _order + definition.order;
+            renderer.sortingOrder = _order + MonsterVfxReadability.ParticleOrder(definition.key, definition.order);
             particles.useAutoRandomSeed = false;
             particles.randomSeed = (uint)_random.Next(1, int.MaxValue);
             particles.Play();
@@ -170,8 +171,8 @@ namespace _02.Scripts.Monster.BossMonster
             if (_budgetFrame != Time.frameCount)
             {
                 _budgetFrame = Time.frameCount;
-                _decorativeBudget = 320;
-                _primaryBudget = 128;
+                _decorativeBudget = MonsterVfxReadability.DecorativeBudget;
+                _primaryBudget = MonsterVfxReadability.ImpactBudget;
             }
             if (pool.Particles.particleCount >= pool.Definition.limit
                 || (primary ? _primaryBudget-- : _decorativeBudget--) <= 0)
@@ -185,7 +186,7 @@ namespace _02.Scripts.Monster.BossMonster
                 velocity = new Vector3(velocity.x, velocity.y, 0f),
                 startSize3D = new Vector3(Mathf.Max(0.01f, width), Mathf.Max(0.01f, height), 1f),
                 startLifetime = Mathf.Max(0.035f, lifetime),
-                startColor = color,
+                startColor = MonsterVfxReadability.ParticleColor(key, color, primary),
                 rotation = angle
             }, 1);
         }
@@ -230,10 +231,10 @@ namespace _02.Scripts.Monster.BossMonster
                 return;
             radius = Mathf.Clamp(radius, 0.12f, 4.2f);
             // The white core is local and short; the larger outline retains the pattern's hue.
-            Square("impact", point, radius * 2.3f, 0.15f, Color.white, Range(0f, 360f), true);
+            Square("impact", point, radius * 1.1f, 0.065f, Color.white, Range(0f, 360f), true);
             string variant = sparks > 44 ? "explosion_heavy" : _random.Next(2) == 0 ? "explosion" : "explosion_round";
-            Square(variant, point, radius * 2.65f, 0.68f, Color.Lerp(color, Color.white, 0.75f), 0f, true);
-            Square("sunburst", point, radius * 1.65f, 0.4f, Color.Lerp(color, Color.white, 0.55f), 0f, true);
+            Square(variant, point, radius * 2.4f, sparks > 44 ? 0.5f : 0.36f, Color.Lerp(color, Color.white, 0.3f), 0f, true);
+            Square("sunburst", point, radius * 1.4f, 0.22f, Color.Lerp(color, Color.white, 0.25f), 0f, true);
             Square("glow", point, radius * 1.4f, 0.12f, Alpha(color, 0.35f));
             Square("shock_ring", point, radius * 1.25f, 0.28f, Alpha(color, 0.28f));
             _mesh.Ring(point, radius * 0.22f, radius * 1.45f, 0.07f, color, 0.32f);
@@ -244,7 +245,7 @@ namespace _02.Scripts.Monster.BossMonster
                 Vector2 direction = Direction(Range(0f, 360f));
                 Vector2 offset = direction * radius * Range(0.1f, 0.35f);
                 Emit("smoke", point + offset, direction * radius * 0.35f + Vector2.up * radius * 0.4f,
-                    radius * 0.65f, radius * 0.65f, Range(0.6f, 1f), new Color(0.18f, 0.21f, 0.3f, 0.32f));
+                    radius * 0.55f, radius * 0.55f, Range(0.4f, 0.65f), new Color(0.18f, 0.21f, 0.3f, 0.2f));
                 Emit("debris", point, direction * radius * Range(1.5f, 3.2f) + Vector2.up * radius,
                     radius * 0.07f, radius * 0.1f, 0.65f, new Color(0.32f, 0.26f, 0.32f, 0.95f), Range(0f, 360f));
             }
@@ -268,9 +269,9 @@ namespace _02.Scripts.Monster.BossMonster
             Explosion(point, radius * 0.7f, color, 24);
             Square("fire_spin", point, radius * 1.9f, 0.35f, Alpha(color, 0.55f));
             Emit("fire_column", point + Vector2.up * radius * 0.85f, Vector2.zero,
-                radius * 1.9f, radius * 3.2f, 0.58f, Color.Lerp(color, Color.white, 0.65f), 0f, true);
+                radius * 1.6f, radius * 2.8f, 0.4f, Color.Lerp(color, Color.white, 0.3f), 0f, true);
             Emit("fire_plume", point + Vector2.up * radius * 0.65f, Vector2.up * radius * 0.3f,
-                radius * 1.55f, radius * 2.5f, 0.65f, Color.Lerp(color, Color.white, 0.6f));
+                radius * 1.35f, radius * 2.2f, 0.45f, Color.Lerp(color, Color.white, 0.25f));
             for (int i = 0; i < 5; i++)
             {
                 Vector2 offset = new Vector2(Range(-0.45f, 0.45f), Range(0f, 0.35f)) * radius;
@@ -292,8 +293,8 @@ namespace _02.Scripts.Monster.BossMonster
                 0.027f, color, 0.16f, 0.025f);
             Emit("lightning_column", point + Vector2.up * height * 0.45f, Vector2.zero,
                 radius * 1.4f, height, 0.22f, Color.Lerp(color, Color.white, 0.7f), 0f, true);
-            Square("prism_hit", point, radius * 3.2f, 0.25f, Color.white, 0f, true);
-            Square("flare", point, radius * 1.8f, 0.075f, Color.white, 0f, true);
+            Square("prism_hit", point, radius * 1.8f, 0.14f, Color.Lerp(color, Color.white, 0.35f), 0f, true);
+            Square("flare", point, radius * 0.95f, 0.055f, Color.white, 0f, true);
             Square("electric_ball", point, radius * 2.1f, 0.35f, color, 0f, true);
             Square("electric_aura", point, radius * 2f, 0.46f, Alpha(color, 0.7f));
             _mesh.Ring(point, radius * 0.25f, radius * 1.55f, 0.06f, color, 0.32f);
@@ -314,7 +315,7 @@ namespace _02.Scripts.Monster.BossMonster
             radius = Mathf.Clamp(radius, 0.2f, 3.2f);
             Square("earth_burst", point, radius * 2.4f, 0.36f, Color.Lerp(color, Color.white, 0.65f), 0f, true);
             Square("earth_ring", point, radius * 2.8f, 0.46f, new Color(0.58f, 0.42f, 0.36f, 0.8f), 0f, true);
-            Square("impact", point, radius * 1.7f, 0.14f, Color.white, 0f, true);
+            Square("impact", point, radius * 0.95f, 0.065f, Color.white, 0f, true);
             Square("earth_shards", point + Vector2.up * radius * 0.25f,
                 radius * 2.2f, 0.45f, Color.Lerp(color, Color.white, 0.3f), 0f, true);
             _mesh.Cracks(point, radius * 1.35f, color, 9);
@@ -460,16 +461,15 @@ namespace _02.Scripts.Monster.BossMonster
             size = Mathf.Clamp(size, 0.07f, 0.65f);
             float angle = BossBattleGeometry.Angle(direction);
             Emit("spark", point, -direction * 0.65f, size * 0.13f, size * 0.65f,
-                0.16f, Color.Lerp(color, Color.white, 0.35f), angle - 90f);
+                0.1f, MonsterVfxReadability.Trail(color), angle - 90f);
             if (projectile)
             {
                 Emit("plasma_tail", point - direction * size * 0.3f, -direction * 0.4f,
-                    size * 1.8f, size * 0.9f, 0.17f, Alpha(color, 0.7f), angle);
-                Square("arcane_orb", point, size * 0.95f, 0.15f, Alpha(color, 0.35f));
+                    size * 1.3f, size * 0.6f, 0.11f, MonsterVfxReadability.Trail(color), angle);
             }
             else
             {
-                Square("sparkles", point, size * 1.7f, 0.23f, Alpha(color, 0.65f));
+                Square("sparkles", point, size * 1.2f, 0.14f, MonsterVfxReadability.Trail(color));
             }
         }
 
@@ -480,7 +480,7 @@ namespace _02.Scripts.Monster.BossMonster
             _nextMuzzle = Time.time + 0.055f;
             size = Mathf.Clamp(size, 0.18f, 0.7f);
             float angle = BossBattleGeometry.Angle(direction);
-            Square("muzzle", point, size * 2f, 0.085f, Color.white, angle - 90f, true);
+            Square("muzzle", point, size * 1.5f, 0.055f, Color.white, angle - 90f, true);
             Emit("plasma", point, direction * 0.7f, size * 2.2f, size * 1.2f,
                 0.18f, color, angle, true);
             Square("plasma_burst", point, size * 1.7f, 0.2f, color, 0f, true);
@@ -494,12 +494,12 @@ namespace _02.Scripts.Monster.BossMonster
                 return;
             _nextCharge = Time.time + 0.055f;
             progress = Mathf.Clamp01(progress);
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 3; i++)
             {
-                float angle = Time.time * 150f + i * 72f;
+                float angle = Time.time * 110f + i * 120f;
                 Vector2 offset = Direction(angle) * radius * Mathf.Lerp(2.2f, 1.35f, progress);
                 Emit("spark", point + offset, -offset * (2f + progress * 4f),
-                    0.035f, 0.21f, 0.2f, Color.Lerp(color, Color.white, progress * 0.65f), angle + 90f);
+                    0.03f, 0.16f, 0.14f, Alpha(color, 0.35f + progress * 0.15f), angle + 90f);
             }
             _mesh.Arc(point, radius * 1.15f, Time.time * 160f, 130f, 0.028f, Alpha(color, 0.75f), 0.095f);
             _mesh.Arc(point, radius * 1.3f, -Time.time * 140f, 100f, 0.022f, Alpha(color, 0.6f), 0.095f);

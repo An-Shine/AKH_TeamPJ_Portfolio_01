@@ -169,7 +169,7 @@ namespace _02.Scripts.Monster.BossMonster
                 _properties.SetVector("_CurrentLocal", current.Local);
                 _properties.SetVector("_PreviousLocal", previous.Local);
                 _properties.SetFloat("_FrameBlend", _blending ? Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(_blendAge / _blendDuration)) : 1f);
-                _properties.SetFloat("_NeonStrength", alive ? 0.28f + _charge * 0.3f + _punch * 0.2f : 0.08f);
+                _properties.SetFloat("_NeonStrength", alive ? 0.14f + _charge * 0.28f + _punch * 0.22f : 0.05f);
                 _properties.SetColor("_NeonColor", _casting ? _castColor : new Color(0.1f, 0.88f, 1f));
                 _body.SetPropertyBlock(_properties);
             }
@@ -186,7 +186,7 @@ namespace _02.Scripts.Monster.BossMonster
                 Vector3 bodyScale = _body.transform.lossyScale;
                 _rim.transform.localScale = new Vector3(bodyScale.x / Mathf.Max(0.001f, parentScale.x), bodyScale.y / Mathf.Max(0.001f, parentScale.y), 1f);
                 Color rim = _casting ? _castColor : new Color(0.12f, 0.85f, 1f);
-                rim.a = 0.6f + _charge * 0.18f;
+                rim.a = 0.38f + _charge * 0.4f;
                 _rim.color = rim;
                 _rimProperties.SetVector("_UvBounds", Frame(_current).Uv);
                 _rim.SetPropertyBlock(_rimProperties);
@@ -196,7 +196,7 @@ namespace _02.Scripts.Monster.BossMonster
                 _effects = BossBattleEffects.ForOwner(gameObject);
             if (_effects != null && alive && _owner.CanFight && Time.time >= _nextAmbient && _body.enabled)
             {
-                _nextAmbient = Time.time + (_casting ? 0.12f : 0.35f);
+                _nextAmbient = Time.time + (_casting ? 0.22f : 0.6f);
                 Vector3 point = transform.position + new Vector3(Random.Range(-0.55f, 0.55f), Random.Range(-0.2f, 0.55f), 0f);
                 _effects.Trail(point, Vector2.down, 0.12f, _casting ? _castColor : new Color(0.15f, 0.9f, 1f));
             }

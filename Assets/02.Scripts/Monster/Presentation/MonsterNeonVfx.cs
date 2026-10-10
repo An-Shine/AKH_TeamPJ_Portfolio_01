@@ -32,6 +32,7 @@ namespace _02.Scripts.Monster.Presentation
         private readonly Material[] _materials = new Material[15];
         private int _budgetFrame = -1;
         private int _frameBudget;
+        private int _impactBudget;
         private int _sceneHandle;
         private bool _paused;
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
@@ -119,7 +120,9 @@ namespace _02.Scripts.Monster.Presentation
                 var color = particles.colorOverLifetime;
                 color.enabled = true;
                 Gradient gradient = new Gradient();
-                gradient.SetKeys(new[] { new GradientColorKey(Color.white, 0f), new GradientColorKey(Color.white, 1f) }, new[] { new GradientAlphaKey(0.8f, 0f), new GradientAlphaKey(1f, 0.08f), new GradientAlphaKey(0f, 1f) });
+                gradient.SetKeys(new[] { new GradientColorKey(Color.white, 0f), new GradientColorKey(Color.white, 1f) },
+                    new[] { new GradientAlphaKey(1f, 0f), new GradientAlphaKey(0.8f, 0.12f),
+                        new GradientAlphaKey(0.3f, 0.5f), new GradientAlphaKey(0f, 1f) });
                 color.color = gradient;
                 var size = particles.sizeOverLifetime;
                 size.enabled = true;
@@ -173,13 +176,13 @@ namespace _02.Scripts.Monster.Presentation
             radius = Mathf.Clamp(radius, 0.1f, 5f);
             Color core = Color.Lerp(color, Color.white, 0.5f);
             core.a *= 0.7f;
-            Emit(Kind.Energy, point, Vector2.zero, radius * 1.25f, 0.12f, core, sortingLayer, order + 2);
-            Emit(Kind.Ring, point, Vector2.zero, radius * 1.3f, 0.42f, color, sortingLayer, order + 1);
+            Emit(Kind.Energy, point, Vector2.zero, radius * 0.85f, 0.065f, core, sortingLayer, order + 2);
+            Emit(Kind.Ring, point, Vector2.zero, radius * 1.3f, 0.3f, color, sortingLayer, order + 1);
             if (explosion)
             {
-                Color fire = Color.Lerp(color, Color.white, 0.68f);
-                Emit(Kind.Blast, point, Vector2.zero, radius * 2.6f, 0.72f, fire, sortingLayer, order + 3);
-                Emit(Kind.BlastDebris, point, Vector2.zero, radius * 3f, 0.55f, fire, sortingLayer, order + 4, Random.Range(-18f, 18f));
+                Color fire = Color.Lerp(color, Color.white, 0.3f);
+                Emit(Kind.Blast, point, Vector2.zero, radius * 2.4f, 0.42f, fire, sortingLayer, order + 3);
+                Emit(Kind.BlastDebris, point, Vector2.zero, radius * 2.6f, 0.36f, fire, sortingLayer, order + 4, Random.Range(-18f, 18f));
             }
             else
             {
@@ -197,8 +200,8 @@ namespace _02.Scripts.Monster.Presentation
             {
                 Vector2 offset = Random.insideUnitCircle * radius * 0.3f;
                 Color smoke = Color.Lerp(color, new Color(0.18f, 0.2f, 0.27f), 0.7f);
-                smoke.a = 0.3f;
-                Emit(Kind.Smoke, point + (Vector3)offset, offset * 0.8f + Vector2.up * radius * 0.4f, radius * Random.Range(0.6f, 1.1f), Random.Range(0.6f, 1.1f), smoke, sortingLayer, order - 1);
+                smoke.a = 0.18f;
+                Emit(Kind.Smoke, point + (Vector3)offset, offset * 0.8f + Vector2.up * radius * 0.4f, radius * Random.Range(0.45f, 0.85f), Random.Range(0.4f, 0.7f), smoke, sortingLayer, order - 1);
                 if (explosion)
                     Emit(Kind.Debris, point, offset * 5f + Vector2.up * radius, radius * 0.12f, 0.6f, new Color(0.3f, 0.23f, 0.24f, 0.8f), sortingLayer, order);
             }
@@ -218,17 +221,19 @@ namespace _02.Scripts.Monster.Presentation
 
         public void Trail(Vector3 point, Vector2 direction, float size, Color color, int sortingLayer, int order)
         {
-            color.a *= 0.55f;
-            Emit(Kind.Energy, point, -direction * 0.3f, Mathf.Clamp(size, 0.07f, 0.6f), 0.19f, color, sortingLayer, order);
-            Emit(Kind.Spark, point, -direction * 0.6f, Mathf.Clamp(size * 0.3f, 0.03f, 0.1f), 0.16f, Color.Lerp(color, Color.white, 0.4f), sortingLayer, order + 1, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f, 3f);
+            color = MonsterVfxReadability.Trail(color);
+            point -= (Vector3)(direction * size * 0.35f);
+            Emit(Kind.Energy, point, -direction * 0.3f, Mathf.Clamp(size * 0.7f, 0.07f, 0.45f), 0.1f, color, sortingLayer, order);
+            Emit(Kind.Spark, point, -direction * 0.6f, Mathf.Clamp(size * 0.22f, 0.025f, 0.08f), 0.1f, color, sortingLayer, order + 1, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f, 3f);
         }
 
         public void Charge(Vector3 point, float radius, float progress, Color color, int sortingLayer, int order)
         {
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 3; i++)
             {
                 Vector2 offset = Random.insideUnitCircle.normalized * radius * Random.Range(1.1f, 1.9f);
-                Emit(Kind.Spark, point + (Vector3)offset, -offset * (2f + progress * 3f), 0.06f, 0.3f, color, sortingLayer, order + 2, Mathf.Atan2(-offset.y, -offset.x) * Mathf.Rad2Deg - 90f, 3f);
+                Emit(Kind.Spark, point + (Vector3)offset, -offset * (2f + progress * 3f), 0.045f, 0.2f,
+                    MonsterVfxReadability.WithOpacity(color, 0.35f), sortingLayer, order + 2, Mathf.Atan2(-offset.y, -offset.x) * Mathf.Rad2Deg - 90f, 3f);
             }
 
             if (Random.value < 0.25f)
@@ -266,17 +271,21 @@ namespace _02.Scripts.Monster.Presentation
             if (_budgetFrame != Time.frameCount)
             {
                 _budgetFrame = Time.frameCount;
-                _frameBudget = 448;
+                _frameBudget = MonsterVfxReadability.DecorativeBudget;
+                _impactBudget = MonsterVfxReadability.ImpactBudget;
             }
 
-            if (_frameBudget-- <= 0)
+            bool impact = kind == Kind.Blast || kind == Kind.BlastDebris || kind == Kind.Plasma
+                || kind == Kind.Slash || kind == Kind.Ripple || kind == Kind.Lightning;
+            if ((impact ? _impactBudget-- : _frameBudget--) <= 0)
                 return;
             ParticleSystem system = _systems[(int)kind];
             if (system == null || system.particleCount >= system.main.maxParticles)
                 return;
             ParticleSystemRenderer renderer = _renderers[(int)kind];
             renderer.sortingLayerID = sortingLayer;
-            renderer.sortingOrder = order;
+            renderer.sortingOrder = kind == Kind.Smoke || kind == Kind.Debris
+                ? order - 5 : order;
             system.Emit(new ParticleSystem.EmitParams { position = point, velocity = new Vector3(velocity.x, velocity.y, 0f), startSize3D = new Vector3(size, size * aspect, 1f), startLifetime = lifetime, startColor = color, rotation = rotation }, 1);
         }
 

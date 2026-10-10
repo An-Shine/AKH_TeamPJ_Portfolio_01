@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using _02.Scripts.Monster.Presentation;
 
 namespace _02.Scripts.Monster.BossMonster
 {
@@ -189,7 +190,7 @@ namespace _02.Scripts.Monster.BossMonster
                 return;
             }
 
-            color.a = 0.38f;
+            color.a = 0.2f;
             Vector3 scale = source.transform.lossyScale;
             Emit(source.transform.position, Vector2.zero, Mathf.Abs(scale.x), Mathf.Abs(scale.y), color, 0.24f, 4, 0f, source.sprite);
         }
@@ -285,7 +286,7 @@ namespace _02.Scripts.Monster.BossMonster
                 renderer.sprite = _glowSprite;
             renderer.sharedMaterial = _solidMaterial;
             renderer.sortingLayerID = _sortingLayer;
-            renderer.sortingOrder = _order + 6;
+            renderer.sortingOrder = _order + MonsterVfxReadability.ProjectileBodyOrder;
             return renderer;
         }
 

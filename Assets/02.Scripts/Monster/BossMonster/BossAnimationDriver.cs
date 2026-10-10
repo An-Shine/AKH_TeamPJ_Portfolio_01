@@ -23,6 +23,7 @@ namespace _02.Scripts.Monster.BossMonster
         };
         private readonly Animator _animator;
         private readonly BossVisualPolish _visual;
+        private readonly BossMotionUpgrade _motionUpgrade;
         private readonly int[,] _states = new int[7, 8];
         private readonly float[,] _lengths = new float[7, 8];
         private readonly Dictionary<string, float> _clipLengths = new Dictionary<string, float>(System.StringComparer.OrdinalIgnoreCase);
@@ -56,6 +57,7 @@ namespace _02.Scripts.Monster.BossMonster
             _ready = MonsterCombat.ValidateAnimatorParameters(animator);
             if (!_ready)
                 return;
+            _motionUpgrade = BossMotionUpgrade.Install(_animator);
             _animator.applyRootMotion = false;
             _animator.cullingMode = AnimatorCullingMode.AlwaysAnimate;
             foreach (AnimatorControllerParameter parameter in _animator.parameters)
@@ -68,6 +70,8 @@ namespace _02.Scripts.Monster.BossMonster
                 if (clip != null && !clip.empty)
                     _clipLengths[clip.name] = Mathf.Max(0.05f, clip.length);
             }
+            if (_motionUpgrade != null)
+                _motionUpgrade.CopyClipLengths(_clipLengths);
             for (int row = 0; row < Motions.Length; row++)
             {
                 for (int direction = 0; direction < 8; direction++)
@@ -110,6 +114,11 @@ namespace _02.Scripts.Monster.BossMonster
 
         public void BeginPattern(BossEncounterMove move, float warning)
         {
+            if (_motionUpgrade != null)
+            {
+                _motionUpgrade.SelectPattern(move.Kind);
+                _motionUpgrade.CopyClipLengths(_clipLengths);
+            }
             _stage = -1;
             _chargeHolding = false;
             _chargeBuildTime = Mathf.Min(warning, 0.85f);
@@ -128,7 +137,7 @@ namespace _02.Scripts.Monster.BossMonster
             int stage = ending ? 2 : age < warning ? 0 : 1;
             if (stage != _stage)
             {
-                bool continueChannel = _stage == 0 && _chargeHolding && stage == 1;
+                bool continueChannel = _motionUpgrade == null && _stage == 0 && _chargeHolding && stage == 1;
                 _stage = stage;
                 _chargeHolding = false;
                 if (!continueChannel)
@@ -168,6 +177,11 @@ namespace _02.Scripts.Monster.BossMonster
 
         private void PlayStage(BossEncounterMove move, float warning, float normalized = 0f)
         {
+            if (_motionUpgrade != null)
+            {
+                _motionUpgrade.SetHolding(_chargeHolding);
+                _motionUpgrade.CopyClipLengths(_clipLengths);
+            }
             string motion = _stage == 0 && !_chargeHolding ? move.AnimationMotion : _stage == 1 || _chargeHolding ? move.LoopMotion : move.EndMotion;
             bool custom = TryState(motion, _direction, out int hash, out float length);
             if (!custom)
@@ -211,6 +225,11 @@ namespace _02.Scripts.Monster.BossMonster
 
         public void Phase()
         {
+            if (_motionUpgrade != null)
+            {
+                _motionUpgrade.SelectPhase();
+                _motionUpgrade.CopyClipLengths(_clipLengths);
+            }
             _hitUntil = 0f;
             _attacking = true;
             _moving = false;

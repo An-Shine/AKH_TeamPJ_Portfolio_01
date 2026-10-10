@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using _02.Scripts.Monster.Presentation;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -80,15 +81,15 @@ namespace _02.Scripts.Monster.BossMonster
                 return;
             }
 
-            zone.Fill = _effects.CreateShape("BossDangerArea", false);
-            zone.Boundary = _effects.CreateShape("BossDangerContrast", false, 12);
-            zone.Outline = _effects.CreateShape("BossDangerOutline", false, 13);
-            zone.Detail = _effects.CreateShape("BossDangerTicks", false, 14);
+            zone.Fill = _effects.CreateShape("BossDangerArea", false, MonsterVfxReadability.GroundOrder);
+            zone.Boundary = _effects.CreateShape("BossDangerContrast", false, MonsterVfxReadability.WarningContrastOrder);
+            zone.Outline = _effects.CreateShape("BossDangerOutline", false, MonsterVfxReadability.WarningEdgeOrder);
+            zone.Detail = _effects.CreateShape("BossDangerTicks", false, MonsterVfxReadability.WarningDetailOrder);
             zone.Core = _effects.CreateShape("BossAttackCore", true, 4);
             if (zone.Shape == BossZoneShape.Beam && Mathf.Abs(zone.SweepAngle) > 0.01f)
             {
-                zone.SweepHint = _effects.CreateShape("BeamSweepWarning", false);
-                zone.OppositeHint = _effects.CreateShape("BeamOppositeWarning", false);
+                zone.SweepHint = _effects.CreateShape("BeamSweepWarning", false, MonsterVfxReadability.GroundOrder);
+                zone.OppositeHint = _effects.CreateShape("BeamOppositeWarning", false, MonsterVfxReadability.GroundOrder);
             }
 
             _zones.Add(zone);
@@ -143,8 +144,8 @@ namespace _02.Scripts.Monster.BossMonster
                 Released = true,
                 Move = move,
                 Glow = _effects.CreateShape("BossProjectileGlow", true, 2),
-                Core = _effects.CreateShape("BossProjectileCore", true, 7),
-                Outline = _effects.CreateShape("BossProjectileContrast", false, 5),
+                Core = _effects.CreateShape("BossProjectileCore", false, MonsterVfxReadability.ProjectileCoreOrder),
+                Outline = _effects.CreateShape("BossProjectileContrast", false, MonsterVfxReadability.ProjectileContrastOrder),
                 Body = _effects.CreateBoltRenderer()
             };
             _bolts.Add(bolt);
@@ -502,7 +503,7 @@ namespace _02.Scripts.Monster.BossMonster
                 return;
             }
 
-            zone.NextParticle = zone.Age + 0.075f;
+            zone.NextParticle = zone.Age + 0.12f;
             if (zone.Shape == BossZoneShape.ArenaOutsideSafeCircle)
             {
                 return;
@@ -535,7 +536,7 @@ namespace _02.Scripts.Monster.BossMonster
                 return;
             }
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 3; i++)
             {
                 Vector2 point;
                 if (zone.Shape == BossZoneShape.Beam)
@@ -560,33 +561,45 @@ namespace _02.Scripts.Monster.BossMonster
             bool warning = zone.Age < zone.Warning;
             float progress = Mathf.Clamp01(zone.Age / Mathf.Max(0.01f, zone.Warning));
             float fade = 1f - Mathf.Clamp01((zone.Age - zone.Warning - zone.Duration) / 0.16f);
-            Color fill = warning ? new Color(1f, 0.04f, 0.09f, 0.07f + progress * 0.15f) : zone.Move.Color;
-            Color edge = warning ? new Color(1f, 0.13f, 0.16f, 0.6f + progress * 0.35f) : zone.Move.Color;
-            if (warning && (zone.TrackPosition || zone.TrackDirection || zone.MotionTracking) && zone.Age >= zone.Warning - zone.LockBeforeImpact)
-                edge = Color.Lerp(edge, new Color(1f, 0.72f, 0.28f, 1f), 0.65f);
-            fill.a = (warning ? fill.a : 0.25f) * fade;
+            bool locked = warning && (zone.TrackPosition || zone.TrackDirection || zone.MotionTracking)
+                && zone.Age >= zone.Warning - zone.LockBeforeImpact;
+            float activeAge = Mathf.Max(0f, zone.Age - zone.Warning);
+            bool residual = !warning && activeAge > zone.Duration;
+            // The outline always shows the full hit area. Only its countdown advances.
+            Color fill = warning ? MonsterVfxReadability.WarningFill(progress)
+                : MonsterVfxReadability.ActiveFill(zone.Move.Color, activeAge);
+            Color edge = warning ? MonsterVfxReadability.WarningEdge(progress, locked) : zone.Move.Color;
+            if (!warning)
+            {
+                edge.a = 0.78f + MonsterVfxReadability.ImpactEnvelope(activeAge) * 0.18f;
+            }
+            if (residual)
+            {
+                fade *= 0.24f;
+            }
+            fill.a *= fade;
             edge.a *= fade;
-            Color core = Color.Lerp(zone.Move.Color, Color.white, 0.8f);
-            core.a = warning ? 0f : 0.95f * fade;
-            zone.Core.SetVisible(!warning);
-            Color border = new Color(0.025f, 0.018f, 0.045f, fade * 0.9f);
-            Color ticks = warning ? Color.Lerp(edge, Color.white, 0.55f) : Color.Lerp(zone.Move.Color, Color.white, 0.35f);
-            ticks.a = fade * (warning ? 0.8f : 0.55f);
+            Color core = MonsterVfxReadability.ActiveCore(zone.Move.Color, activeAge);
+            core.a *= warning ? 0f : fade;
+            zone.Core.SetVisible(!warning && !residual);
+            Color border = new Color(0.025f, 0.018f, 0.045f, fade * 0.95f);
+            Color ticks = warning ? Color.Lerp(edge, Color.white, 0.35f) : Color.Lerp(zone.Move.Color, Color.white, 0.18f);
+            ticks.a = fade * (warning ? 0.9f : 0.4f);
             if (zone.Shape == BossZoneShape.ArenaOutsideSafeCircle)
             {
                 zone.Fill.SetArenaOutsideCircle(_owner.Arena, zone.SafeCenter, zone.SafeRadius, fill);
-                Color safe = new Color(0.12f, 1f, 0.78f, fade * (0.65f + 0.25f * Mathf.Sin(zone.Age * 6f)));
+                Color safe = new Color(0.12f, 1f, 0.78f, fade * (0.85f + 0.1f * Mathf.Sin(zone.Age * 6f)));
                 zone.Boundary.SetArc(zone.SafeCenter, zone.SafeRadius - 0.16f, zone.SafeRadius + 0.14f, 0f, 360f, border);
                 zone.Outline.SetArc(zone.SafeCenter, zone.SafeRadius - 0.08f, zone.SafeRadius + 0.04f, 0f, 360f, safe);
                 zone.Detail.SetReticle(zone.SafeCenter, zone.SafeRadius, 0f, 360f, warning ? progress : 0f,
                     new Color(0.65f, 1f, 0.9f, fade));
-                zone.Core.SetVisible(true);
-                safe.a = 0.1f * fade;
+                zone.Core.SetVisible(!residual);
+                safe.a = 0.055f * fade;
                 zone.Core.SetArc(zone.SafeCenter, 0f, zone.SafeRadius - 0.12f, 0f, 360f, safe);
             }
             else if (zone.Shape == BossZoneShape.Circle)
             {
-                zone.Fill.SetArc(zone.Center, 0f, zone.Radius * (warning ? progress : 1f), 0f, 360f, fill);
+                zone.Fill.SetArc(zone.Center, 0f, zone.Radius, 0f, 360f, fill);
                 zone.Boundary.SetArc(zone.Center, Mathf.Max(0f, zone.Radius - 0.12f), zone.Radius + 0.1f, 0f, 360f, border);
                 zone.Outline.SetArc(zone.Center, zone.Radius - 0.055f, zone.Radius + 0.055f, 0f, 360f, edge);
                 zone.Detail.SetReticle(zone.Center, zone.Radius, -90f, 360f, warning ? progress : 0f, ticks);
@@ -596,8 +609,8 @@ namespace _02.Scripts.Monster.BossMonster
             {
                 float start = zone.CurrentAngle - zone.Span * 0.5f;
                 zone.Fill.SetArc(zone.Center, 0f, zone.Radius, start, zone.Span, fill);
-                zone.Boundary.SetArc(zone.Center, zone.Radius - 0.15f, zone.Radius + 0.11f, start, zone.Span, border);
-                zone.Outline.SetArc(zone.Center, zone.Radius - 0.07f, zone.Radius + 0.04f, start, zone.Span, edge);
+                zone.Boundary.SetSectorEdges(zone.Center, zone.Radius, start, zone.Span, 0.17f, border);
+                zone.Outline.SetSectorEdges(zone.Center, zone.Radius, start, zone.Span, 0.055f, edge);
                 zone.Detail.SetReticle(zone.Center, zone.Radius, start, zone.Span, warning ? progress : 0f, ticks);
                 zone.Core.SetArc(zone.Center, zone.Radius - 0.2f, zone.Radius, start, zone.Span, core);
             }
@@ -632,17 +645,18 @@ namespace _02.Scripts.Monster.BossMonster
 
         private static void DrawBolt(Bolt bolt)
         {
-            float size = bolt.Move.Width * (bolt.Released ? 0.8f : 1.2f) * bolt.Move.EffectScale;
+            float size = bolt.Radius * (bolt.Released ? 1.65f : 1.9f);
             Color glow = bolt.Move.Color;
-            glow.a = 0.16f;
+            glow.a = 0.1f;
             bolt.Glow.SetArc(bolt.Position, 0f, size, 0f, 360f, glow);
-            bolt.Outline.SetArc(bolt.Position, 0f, bolt.Radius * 1.3f, 0f, 360f, new Color(0.018f, 0.025f, 0.055f, 0.95f));
-            bolt.Core.SetArc(bolt.Position, 0f, bolt.Radius, 0f, 360f, Color.Lerp(bolt.Move.Color, Color.white, 0.9f));
+            bolt.Outline.SetArc(bolt.Position, 0f, bolt.Radius * 1.22f, 0f, 360f, new Color(0.018f, 0.025f, 0.055f, 0.95f));
+            bolt.Core.SetArc(bolt.Position, 0f, bolt.Radius * 0.58f, 0f, 360f, Color.Lerp(bolt.Move.Color, Color.white, 0.72f));
             bolt.Body.transform.position = new Vector3(bolt.Position.x, bolt.Position.y, bolt.Body.transform.position.z);
             bolt.Body.transform.rotation = Quaternion.Euler(0f, 0f, BossBattleGeometry.Angle(bolt.Direction) - 90f);
             float spriteSize = Mathf.Max(bolt.Body.sprite.bounds.size.x, bolt.Body.sprite.bounds.size.y);
-            bolt.Body.transform.localScale = Vector3.one * size * (1.7f + Mathf.Sin(bolt.Age * 16f) * 0.06f) / Mathf.Max(0.001f, spriteSize);
-            bolt.Body.color = bolt.Move.Color;
+            bolt.Body.transform.localScale = Vector3.one * bolt.Radius * 2f
+                * (1f + Mathf.Sin(bolt.Age * 12f) * 0.025f) / Mathf.Max(0.001f, spriteSize);
+            bolt.Body.color = Color.Lerp(bolt.Move.Color, Color.white, 0.12f);
         }
 
         public void Clear()

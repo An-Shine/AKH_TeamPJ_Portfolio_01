@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using _02.Scripts.Monster.Presentation;
 
 namespace _02.Scripts.Monster.BossMonster
 {
@@ -51,7 +52,7 @@ namespace _02.Scripts.Monster.BossMonster
                 Material = new Material(shader) { hideFlags = HideFlags.DontSave };
                 Material.mainTexture = Texture2D.whiteTexture;
                 Material.SetFloat("_DstBlend", (float)(additive ? BlendMode.One : BlendMode.OneMinusSrcAlpha));
-                Material.SetFloat("_Gain", additive ? 1.1f : 1f);
+                Material.SetFloat("_Gain", 1f);
                 Root.GetComponent<MeshFilter>().sharedMesh = Mesh;
                 MeshRenderer renderer = Root.GetComponent<MeshRenderer>();
                 renderer.sharedMaterial = Material;
@@ -120,8 +121,8 @@ namespace _02.Scripts.Monster.BossMonster
 
         public BossVfxMesh(Transform parent, Shader shader, int layer, int sortingLayer, int order, float z)
         {
-            _contrast = new Buffer(parent, shader, layer, sortingLayer, order + 9, z, false);
-            _energy = new Buffer(parent, shader, layer, sortingLayer, order + 10, z, true);
+            _contrast = new Buffer(parent, shader, layer, sortingLayer, order + 8, z, false);
+            _energy = new Buffer(parent, shader, layer, sortingLayer, order + 9, z, true);
         }
 
         public void Ring(Vector2 center, float from, float to, float width, Color color,
@@ -242,7 +243,8 @@ namespace _02.Scripts.Monster.BossMonster
                 if (stroke.Age < 0f)
                     continue;
                 float progress = Mathf.Clamp01(stroke.Age / stroke.Lifetime);
-                float alpha = Mathf.Pow(1f - progress, stroke.Kind == Kind.Crack ? 0.55f : 1.4f);
+                float alpha = stroke.Kind == Kind.Crack ? Mathf.Pow(1f - progress, 1.2f)
+                    : MonsterVfxReadability.TransientFade(stroke.Age, stroke.Lifetime);
                 if (stroke.Kind == Kind.Ring || stroke.Kind == Kind.Arc)
                     DrawArc(stroke, progress, alpha);
                 else
