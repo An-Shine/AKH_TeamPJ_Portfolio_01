@@ -14,18 +14,41 @@ public class CombatDrone : Follower
     private Vector3 _fireDirection;
     private Transform _target;
 
+    private float _judgeTimer;
+    private float _judgeTerm = 0.1f;
+    private bool _doSupportFire;
+
     private void Start()
     {
+        _judgeTimer = 0f;
         _timer = 0f;
         _target = PlayerManager.Instance.PlayerAimObj.FireDirectionPoint.transform;
     }
 
     protected override void Update()
     {
+        _judgeTimer += Time.deltaTime;
         _timer += Time.deltaTime;
         Rotation();
         base.Update();
+        JudgeFire();
         Fire();
+    }
+
+    private void JudgeFire()
+    {
+        if (_judgeTimer >= _judgeTerm)
+        {
+            _judgeTimer = 0f;
+            PlayerManager manager = PlayerManager.Instance;
+            if (manager != null)
+            {
+                _doSupportFire = manager.PlayerControllerObj._weapon.IsAttacking;
+                return;
+            }
+        }
+
+        _doSupportFire = false;
     }
 
     protected override void Move()
@@ -52,6 +75,7 @@ public class CombatDrone : Follower
 
     private void Fire()
     {
+        if (!_doSupportFire) return;
         if (_timer < _fireCoolTime) return;
         _timer = 0f;
         Vector3 direction = _target.position - transform.position;
