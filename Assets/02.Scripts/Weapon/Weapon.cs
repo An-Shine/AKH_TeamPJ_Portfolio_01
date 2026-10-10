@@ -34,7 +34,8 @@ public class Weapon : MonoBehaviour
         * (1f + Modifier.FireRate.Rate + ItemManager.Instance.WeaponStat.FireSpeedMultiplier);
 
     private float ReloadSpeed => (1 + Modifier.ReloadSpeed.Flat) * (1f + Modifier.ReloadSpeed.Rate);
-    public float ChargeSpeed => (1 + Modifier.ChargeSpeed.Flat) * (1f + Modifier.ChargeSpeed.Rate);
+    public float ChargeSpeed => (1 + Modifier.ChargeSpeed.Flat)
+                                * (1f + Modifier.ChargeSpeed.Rate + ItemManager.Instance.WeaponStat.ChargeSpeedMultiplier);
 
     public int MagazineSize =>
         (int)((Data.MagazineSize + Modifier.MagazineSize)
