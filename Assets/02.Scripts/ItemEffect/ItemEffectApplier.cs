@@ -178,6 +178,11 @@ public static class ItemEffectApplier
                 stat.SizeMultiplier += effect.Value;
                 break;
             }
+            case EffectType.DamageBonusByPenetration:
+            {
+                stat.DamageBonusByPenetration += effect.Value;
+                break;
+            }
         }
     }
 }

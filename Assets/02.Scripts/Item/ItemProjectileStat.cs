@@ -10,6 +10,8 @@ public class ItemProjectileStat
     public float ExplosionRadius;
     public bool IsHoming;
 
+    public float DamageBonusByPenetration;
+
     public ItemProjectileStat()
     {
         DamageModifier = 0;
@@ -20,5 +22,7 @@ public class ItemProjectileStat
         KnockbackDistance = 0;
         IsExplosive = false;
         IsHoming = false;
+
+        DamageBonusByPenetration = 0;
     }
 }

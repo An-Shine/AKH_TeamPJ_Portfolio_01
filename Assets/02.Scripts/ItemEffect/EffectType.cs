@@ -27,6 +27,7 @@ public enum EffectType
     AddExplosionEffect,
     AddHomingEffect,
     AddKnockbackEffect,
+    DamageBonusByPenetration,
 
     //Player or Projectile
     MoveSpeedMultiplier,

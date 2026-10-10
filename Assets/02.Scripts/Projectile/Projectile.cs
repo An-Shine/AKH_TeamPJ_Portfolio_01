@@ -97,6 +97,7 @@ public abstract class Projectile : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             _durability -= 1;
+            _bonusDamage += (int)(Damage * ItemManager.Instance.ProjectileStat.DamageBonusByPenetration);
         }
 
         if (_durability <= 0)
