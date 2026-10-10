@@ -105,10 +105,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d2931a7e1e44e418b727544e731ab14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OverlapSphere
-  _radius: 1
+  _radius: 1.15
   _targetMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   _findInterval: 0.1
 --- !u!114 &165784317929572754
 MonoBehaviour:
@@ -124,5 +124,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Item
   _gainEffectPrefab: {fileID: 0}
   _gainEffectSFX: 0
-  _tooltipOffset: {x: 0, y: 0, z: 0}
-  _shaderMaterial: {fileID: 0}
+  _tooltipOffset: {x: 0, y: 1, z: 0}
+  _shaderMaterial: {fileID: 2100000, guid: 19af4abf9cc99464db749509ef738230, type: 2}
