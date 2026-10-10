@@ -6,7 +6,6 @@ public class CombatDrone : Follower
     [SerializeField] private float _projectileRange;
     [SerializeField] private int _projectileDamageBonus;
     [SerializeField] private float _fireCoolTime;
-    [SerializeField] private float _speedScalar;
 
     private Vector3 _adjustPosition;
     private float _timer;
@@ -55,7 +54,18 @@ public class CombatDrone : Follower
     {
         if (_playerTransform == null) return;
         Vector3 direction = _playerTransform.position - transform.position + _adjustPosition;
-        transform.position += direction * _speedScalar * Time.deltaTime;
+        Vector3 distance = direction * (_speedScalar * Time.deltaTime);
+        float distanceScalar = distance.magnitude;
+
+        if (CanMove(direction, distanceScalar))
+        {
+            transform.position += distance;
+        }
+
+        if (CheckTeleportDistance(distanceScalar))
+        {
+            transform.position = _playerTransform.position + _adjustPosition;
+        }
     }
 
     protected override void SetInitialPosition()

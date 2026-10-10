@@ -80,7 +80,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -2115163997
-  m_SortingLayer: 4
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 8015463664245792054, guid: b1c8084000cf52e4c9f25b396737d982, type: 3}
@@ -132,3 +132,7 @@ MonoBehaviour:
   _projectileDamageBonus: -5
   _fireCoolTime: 0.75
   _speedScalar: 10
+  _blockingLayer:
+    serializedVersion: 2
+    m_Bits: 768
+  _teleportThreshold: 0.1
