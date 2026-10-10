@@ -126,6 +126,17 @@ public static class ItemEffectApplier
                 stat.SpreadAngleMultiplier += effect.Value;
                 break;
             }
+            case EffectType.LastBullet:
+            {
+                stat.HasLastBulletEffect = true;
+                stat.LastBulletMultiplier = (int)effect.Value;
+                break;
+            }
+            case EffectType.ChargeSpeedMultiplier:
+            {
+                stat.ChargeSpeedMultiplier += (int)effect.Value;
+                break;
+            }
         }
     }
 
