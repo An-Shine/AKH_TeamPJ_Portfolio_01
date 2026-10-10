@@ -51867,7 +51867,7 @@ PrefabInstance:
       objectReference: {fileID: 722226110}
     - target: {fileID: 3819265829258752211, guid: 8cfefe87713ae9742a22215d33616cf0, type: 3}
       propertyPath: _maxHealth
-      value: 2000
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 3819265829258752211, guid: 8cfefe87713ae9742a22215d33616cf0, type: 3}
       propertyPath: _shakeCamera
@@ -51877,6 +51877,10 @@ PrefabInstance:
       propertyPath: _detectionMode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3819265829258752211, guid: 8cfefe87713ae9742a22215d33616cf0, type: 3}
+      propertyPath: _endingCutscene
+      value: 
+      objectReference: {fileID: 1901578109}
     - target: {fileID: 3819265829258752211, guid: 8cfefe87713ae9742a22215d33616cf0, type: 3}
       propertyPath: _patterns.Array.size
       value: 6
@@ -79942,6 +79946,17 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1901578109 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4971296951433636266, guid: 3ac8e5cbefd5782498b325262aa28caa, type: 3}
+  m_PrefabInstance: {fileID: 3500858139576167629}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 857a0ccc5455cdb40ac6b2e0c32a16a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EndingCutscenePlayer
 --- !u!1 &1905018817
 GameObject:
   m_ObjectHideFlags: 0
@@ -82569,6 +82584,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe2599a142614e04e81c44ff77a6c5bc, type: 3}
+--- !u!1001 &3500858139576167629
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4249356744903041636, guid: 3ac8e5cbefd5782498b325262aa28caa, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -25.33463
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249356744903041636, guid: 3ac8e5cbefd5782498b325262aa28caa, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 36.72455
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249356744903041636, guid: 3ac8e5cbefd5782498b325262aa28caa, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249356744903041636, guid: 3ac8e5cbefd5782498b325262aa28caa, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249356744903041636, guid: 3ac8e5cbefd5782498b325262aa28caa, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249356744903041636, guid: 3ac8e5cbefd5782498b325262aa28caa, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249356744903041636, guid: 3ac8e5cbefd5782498b325262aa28caa, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249356744903041636, guid: 3ac8e5cbefd5782498b325262aa28caa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249356744903041636, guid: 3ac8e5cbefd5782498b325262aa28caa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249356744903041636, guid: 3ac8e5cbefd5782498b325262aa28caa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618525976503423673, guid: 3ac8e5cbefd5782498b325262aa28caa, type: 3}
+      propertyPath: m_Name
+      value: EndingCutscene
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3ac8e5cbefd5782498b325262aa28caa, type: 3}
 --- !u!1001 &5317490559150533711
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -82652,3 +82724,4 @@ SceneRoots:
   - {fileID: 521312345}
   - {fileID: 487839575}
   - {fileID: 722226111}
+  - {fileID: 3500858139576167629}

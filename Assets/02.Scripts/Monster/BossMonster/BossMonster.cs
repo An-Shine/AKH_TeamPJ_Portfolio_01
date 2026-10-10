@@ -1,10 +1,9 @@
 using _02.Scripts.Monster.BossMonster;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using TMPro;
 
-// 기존 투사체와 보스방에서 참조하는 타입 이름을 유지합니다.
 [DisallowMultipleComponent]
 public class BossMonster : NormalMonster
 {
@@ -15,22 +14,29 @@ public class BossMonster : NormalMonster
     [SerializeField, Min(0f)] private float _initialAttackDelay = 1.5f;
     [SerializeField] private Vector2 _fallbackArenaSize = new Vector2(18f, 12f);
     [SerializeField] private Camera _shakeCamera = null;
+
+    [Header("보스 처치 엔딩")]
+    [SerializeField] private EndingCutscenePlayer _endingCutscene;
+
     [Header("패턴 사이 이동")]
     [SerializeField] private bool _enableSlowChase = true;
     [SerializeField, Min(0f)] private float _slowMoveSpeed = 1.3f;
     [SerializeField, Min(0f)] private float _stopDistance = 2.3f;
     [SerializeField, Min(0f)] private float _roomEdgePadding = 1.1f;
+
     [Header("보스 피격")]
     [SerializeField] private Color _hitSparkColor = new Color(1f, 0.9f, 0.5f, 1f);
     [SerializeField] private AudioClip _hitSound = null;
     [SerializeField, Range(0f, 1f)] private float _hitSoundVolume = 0.5f;
     [SerializeField, Min(0f)] private float _hitSoundCooldown = 0.08f;
     [SerializeField, Min(0f)] private float _hitReactionCooldown = 0.8f;
+
     [Header("체력 표시")]
     [SerializeField] private bool _showHealthBar = true;
     [SerializeField] private string _bossDisplayName = "BOSS";
     [SerializeField] private Color _healthBarColor = new Color(0.85f, 0.12f, 0.2f, 1f);
     [SerializeField] private TMP_FontAsset _healthFont;
+
     private Transform _targetPlayer;
     private readonly BossPlayerTracker _playerTracker = new BossPlayerTracker();
     private Collider2D[] _playerColliders = new Collider2D[0];
@@ -73,6 +79,7 @@ public class BossMonster : NormalMonster
     private int _displayedPhase = -1;
     private string _displayedPattern;
     private int _displayedCharge = -1;
+
     public BossRoom Room => _room;
     public Transform Player => _targetPlayer;
     public Collider2D[] PlayerColliders => _playerColliders;
@@ -129,6 +136,7 @@ public class BossMonster : NormalMonster
         _renderers = GetComponentsInChildren<SpriteRenderer>(true);
         _originalColors = new Color[_renderers.Length];
         _originalRendererEnabled = new bool[_renderers.Length];
+
         for (int i = 0; i < _renderers.Length; i++)
         {
             _originalColors[i] = _renderers[i].color;
@@ -167,6 +175,7 @@ public class BossMonster : NormalMonster
         _targetPlayer = _player;
         _player = null;
         CachePlayer();
+
         if (_encounterProfile == null || _encounterProfile.Moves == null || _encounterProfile.Moves.Length == 0)
         {
             _encounterProfile = ScriptableObject.CreateInstance<BossEncounterProfile>();
@@ -177,6 +186,7 @@ public class BossMonster : NormalMonster
         _animations = new BossAnimationDriver(_directionAnimator);
         _director = new BossEncounterDirector(this, _encounterProfile, _initialAttackDelay);
         _started = true;
+
         if (_deathStarted)
         {
             _director.Stop(true);
@@ -208,7 +218,6 @@ public class BossMonster : NormalMonster
             return;
         }
 
-        // Player 소스의 접촉 처리와 별도로, 보스의 패턴만 피해를 전달합니다.
         base.Update();
         if (!_started || Time.deltaTime <= 0f)
         {
@@ -223,7 +232,10 @@ public class BossMonster : NormalMonster
         }
 
         if (_targetPlayer != null)
+        {
             _playerTracker.Sample(_targetPlayer.position, Time.deltaTime);
+        }
+
         _director.Tick(Time.deltaTime);
         if (_director.IsCasting)
         {
@@ -234,7 +246,9 @@ public class BossMonster : NormalMonster
         {
             _animations.EndPattern();
             if (_visualPolish != null)
+            {
                 _visualPolish.EndCast();
+            }
         }
 
         UpdateMovement();
@@ -313,8 +327,11 @@ public class BossMonster : NormalMonster
         _playerColliders = _targetPlayer != null
             ? _targetPlayer.GetComponentsInChildren<Collider2D>(true)
             : new Collider2D[0];
+
         if (_targetPlayer != null)
+        {
             _playerTracker.Reset(_targetPlayer.position);
+        }
     }
 
     private void UpdateMovement()
@@ -328,6 +345,7 @@ public class BossMonster : NormalMonster
         Vector2 origin = transform.position;
         Vector2 delta = (Vector2)_targetPlayer.position - origin;
         _animations.Face(delta);
+
         if (delta.magnitude <= _stopDistance)
         {
             _animations.Locomotion(false);
@@ -359,7 +377,7 @@ public class BossMonster : NormalMonster
     {
         Vector2 origin = transform.position;
         target = BossBattleGeometry.ClampToRoom(target, Arena, Mathf.Max(_roomEdgePadding, padding));
-        // 착지 지점과 이동 경로를 함께 확인해 벽 반대편으로 돌진하지 않습니다.
+
         for (int i = 10; i >= 0; i--)
         {
             Vector2 candidate = origin + (target - origin) * (i / 10f);
@@ -437,6 +455,7 @@ public class BossMonster : NormalMonster
         {
             _nextStrikePulse = Time.time + 0.25f;
             _animations.PulseStrike(move);
+
             if (_visualPolish != null)
             {
                 _visualPolish.Pulse(_targetPlayer != null
@@ -446,7 +465,6 @@ public class BossMonster : NormalMonster
         }
     }
 
-    // 이전 보스 공격 보조 스크립트가 컴파일될 수 있도록 공개 진입점을 유지합니다.
     public void HitArea(Vector2 center, float radius, float damage, Color color)
     {
         if (!CanFight)
@@ -456,6 +474,7 @@ public class BossMonster : NormalMonster
 
         float squared =
             MonsterCombat.GetPlayerDistanceSquared(_targetPlayer, _playerColliders, center, out Vector2 point);
+
         if (squared <= radius * radius && MonsterCombat.HasClearAttackPath(center, point, transform, _targetPlayer))
         {
             TryDealPlayerDamage(damage, point, (point - center).normalized, color);
@@ -471,6 +490,7 @@ public class BossMonster : NormalMonster
 
         float previous = _currentHealth;
         base.TakeDamage(damage);
+
         if (_currentHealth >= previous)
         {
             return;
@@ -479,6 +499,7 @@ public class BossMonster : NormalMonster
         Vector2 source = _targetPlayer != null
             ? (Vector2)_targetPlayer.position
             : (Vector2)transform.position + Vector2.down;
+
         Vector2 point = transform.position;
         foreach (Collider2D collider in _bodyColliders)
         {
@@ -491,6 +512,7 @@ public class BossMonster : NormalMonster
 
         MonsterCombatEffect.SpawnImpact(new Vector3(point.x, point.y, transform.position.z),
             ((Vector2)transform.position - source).normalized, _hitSparkColor, transform);
+
         if (_hitSound != null && Time.time >= _nextHitSound)
         {
             _nextHitSound = Time.time + _hitSoundCooldown;
@@ -514,8 +536,11 @@ public class BossMonster : NormalMonster
 
         _nextHitReaction = Time.time + _hitReactionCooldown;
         _animations.Hit();
+
         if (_visualPolish != null)
+        {
             _visualPolish.Pulse(Vector2.up, 0.45f);
+        }
     }
 
     protected override void Die()
@@ -526,6 +551,7 @@ public class BossMonster : NormalMonster
         }
 
         _deathStarted = true;
+
         if (AudioManager.Instance != null)
         {
             AudioManager.Instance.SetBossBattle(this, false);
@@ -535,6 +561,7 @@ public class BossMonster : NormalMonster
         _currentHealth = 0f;
         StopMovementForDeath();
         StopAllCoroutines();
+
         if (_director != null)
         {
             _director.Stop(true);
@@ -568,28 +595,46 @@ public class BossMonster : NormalMonster
         {
             _animations.Death();
         }
+
+        if (_endingCutscene != null)
+        {
+            _endingCutscene.PlayAfterBossDeath();
+        }
+        else
+        {
+            Debug.LogError("BossMonster의 Ending Cutscene을 연결하세요.", this);
+        }
     }
 
     public void StartPatternAnimation(BossEncounterMove move, float warning)
     {
         _animations.Face((Vector2)_targetPlayer.position - (Vector2)transform.position);
         _animations.BeginPattern(move, warning);
+
         if (_visualPolish != null)
+        {
             _visualPolish.Cast(move.Color, 0f);
+        }
     }
 
     public void UpdatePatternAnimation(BossEncounterMove move, float age, float warning, float finishAt, bool ending)
     {
         _animations.UpdatePattern(move, age, warning, finishAt, ending);
+
         if (_visualPolish != null)
+        {
             _visualPolish.Cast(move.Color, ending ? 0f : Mathf.Clamp01(age / warning));
+        }
     }
 
     public void EndPatternAnimation()
     {
         _animations.EndPattern();
+
         if (_visualPolish != null)
+        {
             _visualPolish.EndCast();
+        }
     }
 
     public void StartPhaseAnimation()
@@ -600,6 +645,7 @@ public class BossMonster : NormalMonster
     public void ShakeCamera(float strength, float duration)
     {
         ResolveShakeCamera();
+
         if (_cameraImpulse != null)
         {
             _cameraImpulse.Hit(strength * _encounterProfile.ShakeMultiplier, duration);
@@ -668,6 +714,7 @@ public class BossMonster : NormalMonster
         }
 
         base.OnDisable();
+
         if (_director != null)
         {
             _director.Dispose();
@@ -713,45 +760,58 @@ public class BossMonster : NormalMonster
     private void CreateHealthBar()
     {
         if (!_showHealthBar || _healthBarRoot != null)
+        {
             return;
+        }
+
         _healthBarRoot = new GameObject(name + "_HealthBar", typeof(RectTransform), typeof(Canvas),
             typeof(CanvasScaler), typeof(CanvasGroup));
+
         Canvas canvas = _healthBarRoot.GetComponent<Canvas>();
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
         canvas.sortingOrder = 50;
+
         _healthCanvasGroup = _healthBarRoot.GetComponent<CanvasGroup>();
         _healthCanvasGroup.alpha = 0f;
         _healthCanvasGroup.blocksRaycasts = false;
+
         CanvasScaler scaler = _healthBarRoot.GetComponent<CanvasScaler>();
         scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
         scaler.referenceResolution = new Vector2(1280f, 720f);
         scaler.matchWidthOrHeight = 0.5f;
+
         Image panel = CreateBarImage("NeonBossPanel", _healthBarRoot.transform,
             new Color(0.025f, 0.035f, 0.065f, 0.93f));
+
         RectTransform rect = panel.rectTransform;
         rect.anchorMin = rect.anchorMax = new Vector2(0.5f, 1f);
         rect.pivot = new Vector2(0.5f, 1f);
         rect.sizeDelta = new Vector2(640f, 98f);
         rect.anchoredPosition = new Vector2(0f, -24f);
+
         Image top = CreateBarImage("CyanBorder", rect, new Color(0.15f, 0.82f, 1f, 0.85f));
         top.rectTransform.anchorMin = new Vector2(0f, 1f);
         top.rectTransform.anchorMax = Vector2.one;
         top.rectTransform.offsetMin = new Vector2(0f, -2f);
         top.rectTransform.offsetMax = Vector2.zero;
+
         Image bottom = CreateBarImage("MagentaBorder", rect, new Color(1f, 0.12f, 0.45f, 0.7f));
         bottom.rectTransform.anchorMin = Vector2.zero;
         bottom.rectTransform.anchorMax = new Vector2(1f, 0f);
         bottom.rectTransform.offsetMin = Vector2.zero;
         bottom.rectTransform.offsetMax = new Vector2(0f, 2f);
+
         Image background = CreateBarImage("HealthTrack", rect, new Color(0.12f, 0.08f, 0.16f));
         RectTransform bar = background.rectTransform;
         bar.anchorMin = Vector2.zero;
         bar.anchorMax = new Vector2(1f, 0f);
         bar.offsetMin = new Vector2(16f, 35f);
         bar.offsetMax = new Vector2(-16f, 54f);
+
         _healthTrail = CreateBarImage("DamageTrail", bar, new Color(1f, 0.68f, 0.17f)).rectTransform;
         _healthFillImage = CreateBarImage("NeonHealth", bar, _healthBarColor);
         _healthFill = _healthFillImage.rectTransform;
+
         for (int i = 1; i < 12; i++)
         {
             Image tick = CreateBarImage("HealthSegment", bar, new Color(0.03f, 0.03f, 0.07f, 0.5f));
@@ -766,16 +826,19 @@ public class BossMonster : NormalMonster
         _healthLabel.rectTransform.anchorMax = Vector2.one;
         _healthLabel.rectTransform.offsetMin = new Vector2(16f, -37f);
         _healthLabel.rectTransform.offsetMax = new Vector2(-16f, -6f);
+
         _healthDetail = CreateBossText("PatternAndWarning", rect, 14f);
         _healthDetail.rectTransform.anchorMin = Vector2.zero;
         _healthDetail.rectTransform.anchorMax = new Vector2(1f, 0f);
         _healthDetail.rectTransform.offsetMin = new Vector2(16f, 6f);
         _healthDetail.rectTransform.offsetMax = new Vector2(-16f, 27f);
+
         Image castTrack = CreateBarImage("ChargeTrack", rect, new Color(0.08f, 0.13f, 0.2f));
         castTrack.rectTransform.anchorMin = Vector2.zero;
         castTrack.rectTransform.anchorMax = new Vector2(1f, 0f);
         castTrack.rectTransform.offsetMin = new Vector2(16f, 29f);
         castTrack.rectTransform.offsetMax = new Vector2(-16f, 32f);
+
         _healthCastImage = CreateBarImage("ChargeProgress", castTrack.rectTransform, new Color(0.1f, 0.88f, 1f));
         _healthCastFill = _healthCastImage.rectTransform;
         _healthTrailRatio = Mathf.Clamp01(CurrentHealth / MaximumHealth);
@@ -787,6 +850,7 @@ public class BossMonster : NormalMonster
     {
         GameObject child = new GameObject(objectName, typeof(RectTransform), typeof(CanvasRenderer),
             typeof(TextMeshProUGUI));
+
         child.transform.SetParent(parent, false);
         TMP_Text text = child.GetComponent<TextMeshProUGUI>();
         text.font = _healthFont != null ? _healthFont : TMP_Settings.defaultFontAsset;
@@ -818,8 +882,10 @@ public class BossMonster : NormalMonster
 
         bool playerInside = _targetPlayer != null && _targetPlayer.gameObject.activeInHierarchy &&
                             (_room == null || _room.Contains(_targetPlayer.position, 0f));
+
         bool visible = _showHealthBar && isActiveAndEnabled && playerInside &&
                        (!_deathStarted || Time.time - _deathStartTime < 2f);
+
         if (_healthBarRoot.activeSelf != visible)
         {
             _healthBarRoot.SetActive(visible);
@@ -827,18 +893,22 @@ public class BossMonster : NormalMonster
 
         _healthCanvasGroup.alpha = Mathf.Lerp(_healthCanvasGroup.alpha, visible ? 1f : 0f,
             1f - Mathf.Exp(-Time.deltaTime * 10f));
+
         float charge = _director != null && _director.IsCasting ? _director.ChargeProgress : 0f;
         bool executionCharge = _director != null && _director.IsExecutionCharging;
         SetBarWidth(_healthCastFill, charge);
         _healthCastImage.color = executionCharge ? new Color(1f, 0.12f, 0.32f) : new Color(0.1f, 0.88f, 1f);
+
         int chargePercent = executionCharge ? Mathf.FloorToInt(charge * 100f) : -1;
         float ratio = Mathf.Clamp01(CurrentHealth / MaximumHealth);
+
         if (ratio < _previousHealthRatio)
         {
             _healthTrailHoldUntil = Time.time + 0.2f;
         }
 
         _previousHealthRatio = ratio;
+
         if (ratio > _healthTrailRatio)
         {
             _healthTrailRatio = ratio;
@@ -851,8 +921,10 @@ public class BossMonster : NormalMonster
         SetBarWidth(_healthFill, ratio);
         SetBarWidth(_healthTrail, _healthTrailRatio);
         _healthFillImage.color = Time.time < _healthTrailHoldUntil ? Color.white : _healthBarColor;
+
         int health = Mathf.CeilToInt(CurrentHealth);
         int maximum = Mathf.CeilToInt(MaximumHealth);
+
         if (health != _displayedHealth || maximum != _displayedMaximumHealth || _displayedPhase != Phase ||
             _displayedPattern != CurrentPattern || _displayedCharge != chargePercent)
         {
@@ -861,6 +933,7 @@ public class BossMonster : NormalMonster
             _displayedPhase = Phase;
             _displayedPattern = CurrentPattern;
             _displayedCharge = chargePercent;
+
             _healthLabel.text = $"{_bossDisplayName}  <size=15>{health} / {maximum}   PHASE {Phase}</size>";
             _healthDetail.text = executionCharge
                 ? $"<color=#FF537A>EXECUTION  {_director.ChargeSecondsRemaining:0.0}s</color>  <color=#80FFE1>ENTER CYAN SAFE ZONE</color>"
