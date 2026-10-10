@@ -10,7 +10,7 @@ namespace _02.Scripts.Monster.BossMonster
     // These objects never contain colliders or alter the combat clock.
     internal sealed class BossVfxMesh : IDisposable
     {
-        private enum Kind { Ring, Arc, Lightning, Crack }
+        private enum Kind { Ring, Arc, Lightning, Crack, Shard }
 
         private struct Stroke
         {
@@ -104,6 +104,35 @@ namespace _02.Scripts.Monster.BossMonster
                 Mesh.RecalculateBounds();
             }
 
+            public void TaperedLine(Vector2 from, Vector2 to, float fromWidth, float toWidth,
+                Color fromColor, Color toColor)
+            {
+                Vector2 delta = to - from;
+                if (delta.sqrMagnitude < 0.000001f || fromColor.a <= 0.001f)
+                    return;
+                Vector2 normal = new Vector2(-delta.y, delta.x).normalized * 0.5f;
+                int start = Vertices.Count;
+                Vertices.Add(from - normal * fromWidth);
+                Vertices.Add(from + normal * fromWidth);
+                Vertices.Add(to + normal * toWidth);
+                Vertices.Add(to - normal * toWidth);
+                Colors.Add(fromColor);
+                Colors.Add(fromColor);
+                Colors.Add(toColor);
+                Colors.Add(toColor);
+                for (int i = 0; i < 4; i++)
+                {
+                    Uvs.Add(Vector2.one * 0.5f);
+                }
+
+                Indices.Add(start);
+                Indices.Add(start + 1);
+                Indices.Add(start + 2);
+                Indices.Add(start);
+                Indices.Add(start + 2);
+                Indices.Add(start + 3);
+            }
+
             public void Dispose()
             {
                 UnityEngine.Object.Destroy(Mesh);
@@ -143,7 +172,7 @@ namespace _02.Scripts.Monster.BossMonster
         }
 
         public void Arc(Vector2 center, float radius, float angle, float span,
-            float width, Color color, float lifetime = 0.2f)
+            float width, Color color, float lifetime = 0.2f, float delay = 0f)
         {
             Add(new Stroke
             {
@@ -155,7 +184,8 @@ namespace _02.Scripts.Monster.BossMonster
                 Angle = angle,
                 Span = span,
                 Color = color,
-                Lifetime = lifetime
+                Lifetime = lifetime,
+                Age = -delay
             });
         }
 
@@ -187,6 +217,30 @@ namespace _02.Scripts.Monster.BossMonster
                     Width = 0.035f,
                     Color = color,
                     Lifetime = 0.68f
+                });
+            }
+        }
+
+        public void Shards(Vector2 center, float radius, Color color, int count = 12,
+            float heading = 0f, float span = 360f)
+        {
+            count = Mathf.Clamp(count, 3, 24);
+            radius = Mathf.Clamp(radius, 0.1f, 4.2f);
+            for (int i = 0; i < count; i++)
+            {
+                float angle = heading - span * 0.5f + span * (i + 0.5f) / count;
+                angle += Noise(_sequence + i, 11) * Mathf.Min(12f, span / count * 0.3f);
+                Vector2 direction = Direction(angle);
+                Add(new Stroke
+                {
+                    Kind = Kind.Shard,
+                    Center = center + direction * radius * 0.1f,
+                    End = direction * radius * (1.25f + Mathf.Abs(Noise(_sequence + i, 13)) * 0.9f),
+                    Radius = radius * (0.16f + Mathf.Abs(Noise(_sequence + i, 17)) * 0.18f),
+                    Width = Mathf.Clamp(radius * 0.026f, 0.015f, 0.07f),
+                    Color = i % 4 == 0 ? Color.Lerp(color, Color.white, 0.55f) : color,
+                    Lifetime = 0.28f + i % 4 * 0.035f,
+                    Age = -(i % 3) * 0.012f
                 });
             }
         }
@@ -245,13 +299,30 @@ namespace _02.Scripts.Monster.BossMonster
                 float progress = Mathf.Clamp01(stroke.Age / stroke.Lifetime);
                 float alpha = stroke.Kind == Kind.Crack ? Mathf.Pow(1f - progress, 1.2f)
                     : MonsterVfxReadability.TransientFade(stroke.Age, stroke.Lifetime);
-                if (stroke.Kind == Kind.Ring || stroke.Kind == Kind.Arc)
+                if (stroke.Kind == Kind.Shard)
+                    DrawShard(stroke, progress, alpha);
+                else if (stroke.Kind == Kind.Ring || stroke.Kind == Kind.Arc)
                     DrawArc(stroke, progress, alpha);
                 else
                     DrawLightning(stroke, alpha);
             }
             _contrast.Finish();
             _energy.Finish();
+        }
+
+        private void DrawShard(Stroke stroke, float progress, float alpha)
+        {
+            float travel = 1f - (1f - progress) * (1f - progress);
+            Vector2 head = stroke.Center + stroke.End * travel;
+            Vector2 tail = head - stroke.End.normalized * stroke.Radius * (1f - progress * 0.65f);
+            float width = stroke.Width * (1f - progress * 0.6f);
+            Color dark = new Color(0.012f, 0.018f, 0.04f, alpha * 0.75f);
+            _contrast.TaperedLine(head, tail, width * 2.8f, width * 0.6f, dark, dark);
+            Color color = stroke.Color;
+            color.a *= alpha * 0.85f;
+            Color tip = Color.Lerp(color, Color.white, 0.65f);
+            tip.a = color.a;
+            _energy.TaperedLine(head, tail, width * 1.25f, width * 0.15f, tip, color);
         }
 
         private void DrawArc(Stroke stroke, float progress, float alpha)

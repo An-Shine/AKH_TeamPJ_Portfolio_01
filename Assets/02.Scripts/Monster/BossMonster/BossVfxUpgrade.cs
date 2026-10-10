@@ -24,6 +24,7 @@ namespace _02.Scripts.Monster.BossMonster
         public float gravity = 0f;
         public float spin = 0f;
         public int order = 5;
+        public bool punch = false;
     }
 
     [Serializable]
@@ -40,6 +41,7 @@ namespace _02.Scripts.Monster.BossMonster
         private sealed class Pool
         {
             public ParticleSystem Particles;
+            public BossVfxStampPool Stamps;
             public Material Material;
             public BossVfxTextureDefinition Definition;
         }
@@ -95,6 +97,18 @@ namespace _02.Scripts.Monster.BossMonster
 
         private Pool CreatePool(BossVfxTextureDefinition definition, Texture2D texture)
         {
+            Material material = CreateMaterial(definition, texture);
+            if (definition.key.StartsWith("signature_", StringComparison.Ordinal))
+            {
+                return new Pool
+                {
+                    Material = material,
+                    Definition = definition,
+                    Stamps = new BossVfxStampPool(transform, texture, material, definition, _layer, _sortingLayer,
+                        _order + MonsterVfxReadability.ParticleOrder(definition.key, definition.order), _z)
+                };
+            }
+
             GameObject root = new GameObject("BossVfx_" + definition.key, typeof(ParticleSystem));
             root.layer = _layer;
             root.transform.SetParent(transform, false);
@@ -124,8 +138,11 @@ namespace _02.Scripts.Monster.BossMonster
             color.color = gradient;
             var size = particles.sizeOverLifetime;
             size.enabled = true;
-            size.size = new ParticleSystem.MinMaxCurve(1f,
-                AnimationCurve.Linear(0f, 1f, 1f, Mathf.Max(0.1f, 1f + definition.grow)));
+            AnimationCurve sizeCurve = definition.punch
+                ? new AnimationCurve(new Keyframe(0f, 0.42f), new Keyframe(0.16f, 1.08f),
+                    new Keyframe(0.34f, 1f), new Keyframe(1f, Mathf.Max(0.1f, 1f + definition.grow)))
+                : AnimationCurve.Linear(0f, 1f, 1f, Mathf.Max(0.1f, 1f + definition.grow));
+            size.size = new ParticleSystem.MinMaxCurve(1f, sizeCurve);
             var rotation = particles.rotationOverLifetime;
             rotation.enabled = Mathf.Abs(definition.spin) > 0.001f;
             rotation.z = new ParticleSystem.MinMaxCurve(-definition.spin, definition.spin);
@@ -142,15 +159,6 @@ namespace _02.Scripts.Monster.BossMonster
                     AnimationCurve.Linear(0f, 0f, 1f, Mathf.Clamp01(last)));
                 sheet.cycleCount = 1;
             }
-            Material material = new Material(_shader)
-            {
-                name = "BossCrisp_" + definition.key,
-                hideFlags = HideFlags.DontSave,
-                mainTexture = texture
-            };
-            material.SetFloat("_DstBlend", (float)(definition.additive == 1 ? BlendMode.One : BlendMode.OneMinusSrcAlpha));
-            material.SetFloat("_Desaturate", definition.desaturate);
-            material.SetFloat("_Gain", 1f);
             ParticleSystemRenderer renderer = root.GetComponent<ParticleSystemRenderer>();
             renderer.sharedMaterial = material;
             renderer.renderMode = ParticleSystemRenderMode.Billboard;
@@ -161,6 +169,20 @@ namespace _02.Scripts.Monster.BossMonster
             particles.randomSeed = (uint)_random.Next(1, int.MaxValue);
             particles.Play();
             return new Pool { Particles = particles, Material = material, Definition = definition };
+        }
+
+        private Material CreateMaterial(BossVfxTextureDefinition definition, Texture2D texture)
+        {
+            Material material = new Material(_shader)
+            {
+                name = "BossCrisp_" + definition.key,
+                hideFlags = HideFlags.DontSave,
+                mainTexture = texture
+            };
+            material.SetFloat("_DstBlend", (float)(definition.additive == 1 ? BlendMode.One : BlendMode.OneMinusSrcAlpha));
+            material.SetFloat("_Desaturate", definition.desaturate);
+            material.SetFloat("_Gain", 1f);
+            return material;
         }
 
         private void Emit(string key, Vector2 point, Vector2 velocity, float width, float height,
@@ -174,9 +196,17 @@ namespace _02.Scripts.Monster.BossMonster
                 _decorativeBudget = MonsterVfxReadability.DecorativeBudget;
                 _primaryBudget = MonsterVfxReadability.ImpactBudget;
             }
-            if (pool.Particles.particleCount >= pool.Definition.limit
+            int activeCount = pool.Stamps != null ? pool.Stamps.ActiveCount : pool.Particles.particleCount;
+            if (activeCount >= pool.Definition.limit
                 || (primary ? _primaryBudget-- : _decorativeBudget--) <= 0)
             {
+                return;
+            }
+
+            if (pool.Stamps != null)
+            {
+                pool.Stamps.Emit(point, velocity, Mathf.Max(0.01f, width), Mathf.Max(0.01f, height), lifetime,
+                    MonsterVfxReadability.ParticleColor(key, color, primary), angle);
                 return;
             }
 
@@ -234,11 +264,16 @@ namespace _02.Scripts.Monster.BossMonster
             Square("impact", point, radius * 1.1f, 0.065f, Color.white, Range(0f, 360f), true);
             string variant = sparks > 44 ? "explosion_heavy" : _random.Next(2) == 0 ? "explosion" : "explosion_round";
             Square(variant, point, radius * 2.4f, sparks > 44 ? 0.5f : 0.36f, Color.Lerp(color, Color.white, 0.3f), 0f, true);
+            Square("signature_detonation", point, radius * 2.35f, 0.32f,
+                Alpha(Color.white, 0.88f), Range(-20f, 20f), true);
             Square("sunburst", point, radius * 1.4f, 0.22f, Color.Lerp(color, Color.white, 0.25f), 0f, true);
             Square("glow", point, radius * 1.4f, 0.12f, Alpha(color, 0.35f));
             Square("shock_ring", point, radius * 1.25f, 0.28f, Alpha(color, 0.28f));
             _mesh.Ring(point, radius * 0.22f, radius * 1.45f, 0.07f, color, 0.32f);
             _mesh.Ring(point, radius * 0.35f, radius * 1.65f, 0.028f, Color.Lerp(color, Color.white, 0.4f), 0.42f, 0.035f);
+            _mesh.Ring(point, radius * 0.2f, radius * 1.9f, 0.02f,
+                Alpha(color, 0.6f), 0.36f, 0.07f);
+            _mesh.Shards(point, radius, color, sparks > 44 ? 18 : 10);
             Sparks(point, radius, color, Mathf.Clamp(sparks, 8, 64));
             for (int i = 0; i < 5; i++)
             {
@@ -293,11 +328,16 @@ namespace _02.Scripts.Monster.BossMonster
                 0.027f, color, 0.16f, 0.025f);
             Emit("lightning_column", point + Vector2.up * height * 0.45f, Vector2.zero,
                 radius * 1.4f, height, 0.22f, Color.Lerp(color, Color.white, 0.7f), 0f, true);
+            Emit("signature_lightning", point + Vector2.up * height * 0.44f, Vector2.zero,
+                radius * 1.9f, height * 1.12f, 0.18f, Color.white, 0f, true);
+            _mesh.Lightning(point + Vector2.up * height, point,
+                0.025f, Color.Lerp(color, Color.white, 0.8f), 0.13f, 0.065f);
             Square("prism_hit", point, radius * 1.8f, 0.14f, Color.Lerp(color, Color.white, 0.35f), 0f, true);
             Square("flare", point, radius * 0.95f, 0.055f, Color.white, 0f, true);
             Square("electric_ball", point, radius * 2.1f, 0.35f, color, 0f, true);
             Square("electric_aura", point, radius * 2f, 0.46f, Alpha(color, 0.7f));
             _mesh.Ring(point, radius * 0.25f, radius * 1.55f, 0.06f, color, 0.32f);
+            _mesh.Shards(point, radius * 0.8f, color, 12);
             Sparks(point, radius, color, 36);
             for (int i = 0; i < 4; i++)
             {
@@ -314,10 +354,13 @@ namespace _02.Scripts.Monster.BossMonster
                 return;
             radius = Mathf.Clamp(radius, 0.2f, 3.2f);
             Square("earth_burst", point, radius * 2.4f, 0.36f, Color.Lerp(color, Color.white, 0.65f), 0f, true);
+            Square("signature_detonation", point, radius * 1.75f, 0.24f,
+                Alpha(Color.white, 0.72f), Range(0f, 360f), true);
             Square("earth_ring", point, radius * 2.8f, 0.46f, new Color(0.58f, 0.42f, 0.36f, 0.8f), 0f, true);
             Square("impact", point, radius * 0.95f, 0.065f, Color.white, 0f, true);
             Square("earth_shards", point + Vector2.up * radius * 0.25f,
                 radius * 2.2f, 0.45f, Color.Lerp(color, Color.white, 0.3f), 0f, true);
+            _mesh.Shards(point, radius * 0.95f, color, 12);
             _mesh.Cracks(point, radius * 1.35f, color, 9);
             _mesh.Ring(point, radius * 0.25f, radius * 1.4f, 0.075f, color, 0.3f);
             Sparks(point, radius * 0.7f, color, 24);
@@ -341,13 +384,23 @@ namespace _02.Scripts.Monster.BossMonster
                 intensity >= 0.5f ? 0.095f : 0.035f, color, intensity >= 0.5f ? 0.2f : 0.12f);
             if (intensity < 0.5f)
                 return;
-            Square("slash", point, radius * 2f, 0.18f, color, angle + 90f, true);
-            Square("fire_cleave", point + Direction(angle) * radius * 0.35f,
-                radius * 1.6f, 0.24f, color, angle - 90f, true);
+            // A narrow tangent sprite follows the shared damage arc, including small pizza slices.
+            float bladeWidth = Mathf.Min(radius * 0.85f, 1.8f);
+            int blades = Mathf.Clamp(Mathf.CeilToInt(span / 52f), 1, 5);
+            for (int i = 0; i < blades; i++)
+            {
+                float heading = angle + (i - (blades - 1) * 0.5f) * span / blades;
+                float bladeHeight = Mathf.Min(radius * 1.35f, radius * span * Mathf.Deg2Rad / blades * 0.8f);
+                Emit("signature_cleave", point + Direction(heading) * radius * 0.68f, Vector2.zero,
+                    bladeWidth, bladeHeight, 0.21f, Alpha(Color.white, color.a), heading, true);
+            }
             _mesh.Arc(point, radius * 0.82f, angle - span * 0.48f, span * 0.96f,
                 0.033f, Color.white, 0.11f);
+            _mesh.Arc(point, radius * 0.72f, angle - span * 0.46f, span * 0.92f,
+                0.045f, Alpha(color, 0.7f), 0.25f, 0.045f);
             Vector2 end = point + Direction(angle) * radius * 0.85f;
             Square("magic_hit", end, radius * 0.7f, 0.2f, Color.white, 0f, true);
+            _mesh.Shards(end, radius * 0.3f, color, 7, angle, 110f);
             Sparks(end, radius * 0.25f, color, 18, angle - 60f, 120f);
         }
 
@@ -416,6 +469,16 @@ namespace _02.Scripts.Monster.BossMonster
                     0.19f, 0.2f, Color.Lerp(color, Color.white, 0.55f), angle - 90f);
                 if (impact && i % 3 == 0)
                     Square("magic_hit", sample, Mathf.Min(0.7f, width * 1.6f), 0.22f, color, 0f, true);
+                if (impact && i % 4 == 0)
+                {
+                    float edgeDistance = Mathf.Min(angle - start, start + span - angle) * Mathf.Deg2Rad;
+                    float bladeHeight = Mathf.Min(Mathf.Clamp(width * 1.8f, 0.3f, 1.3f),
+                        radius * Mathf.Sin(Mathf.Min(edgeDistance, Mathf.PI * 0.5f)) * 1.3f);
+                    Emit("signature_cleave", sample, direction * 0.35f,
+                        Mathf.Clamp(width * 0.9f, 0.15f, 0.7f), bladeHeight,
+                        0.19f, Alpha(Color.white, 0.78f), angle, true);
+                    _mesh.Shards(sample, Mathf.Min(0.35f, width), color, 3, angle, 70f);
+                }
             }
         }
 
@@ -428,6 +491,8 @@ namespace _02.Scripts.Monster.BossMonster
             _mesh.Arc(point, radius * 0.65f, angle, 210f, 0.035f, color, 0.25f);
             if (impact)
             {
+                Square("signature_collapse", point, radius * 2.05f, 0.38f,
+                    Alpha(Color.white, 0.84f), angle, true);
                 Square("arcane_collapse", point, radius * 2.1f, 0.55f, color, 0f, true);
                 Square("nova", point, radius * 1.5f, 0.38f, color, 0f, true);
                 _mesh.Ring(point, radius, radius * 0.12f, 0.075f, color, 0.4f);
@@ -561,6 +626,8 @@ namespace _02.Scripts.Monster.BossMonster
                     float size = Mathf.Min(0.7f, clearance / 2.5f);
                     Square("explosion_heavy", point, size * 2.2f, 0.55f,
                         Color.Lerp(color, Color.white, 0.6f), 0f, true);
+                    Square("signature_detonation", point, size * 2f, 0.3f,
+                        Alpha(Color.white, 0.72f), Range(-30f, 30f), true);
                     Square("impact", point, size * 1.5f, 0.12f, Color.white, 0f, true);
                     _mesh.Ring(point, size * 0.15f, size * 1.4f, 0.035f, color, 0.28f,
                         ((x + y) % 4) * 0.025f);
@@ -579,7 +646,14 @@ namespace _02.Scripts.Monster.BossMonster
         private void LateUpdate()
         {
             if (_ready && _mesh != null)
+            {
                 _mesh.Tick(Time.deltaTime);
+                foreach (Pool pool in _pools.Values)
+                {
+                    if (pool.Stamps != null)
+                        pool.Stamps.Tick(Time.deltaTime);
+                }
+            }
         }
 
         private void OnDestroy()
@@ -588,6 +662,8 @@ namespace _02.Scripts.Monster.BossMonster
                 _mesh.Dispose();
             foreach (Pool pool in _pools.Values)
             {
+                if (pool.Stamps != null)
+                    pool.Stamps.Dispose();
                 if (pool.Material != null)
                     Destroy(pool.Material);
             }

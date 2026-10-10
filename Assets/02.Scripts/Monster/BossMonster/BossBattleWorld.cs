@@ -492,7 +492,13 @@ namespace _02.Scripts.Monster.BossMonster
             if (Time.time >= _nextShake)
             {
                 _nextShake = Time.time + 0.08f;
-                _owner.ShakeCamera(zone.Move.ImpactShake, 0.3f);
+                float shake = zone.Move.ImpactShake;
+                if (shake > 0f)
+                {
+                    float accent = zone.Shape == BossZoneShape.ArenaOutsideSafeCircle ? 1.5f
+                        : zone.Shape == BossZoneShape.Sector || zone.Move.Kind == BossEncounterPattern.StormPillars ? 1.3f : 1.15f;
+                    _owner.ShakeCamera(Mathf.Min(0.42f, shake * accent), 0.19f);
+                }
             }
         }
 

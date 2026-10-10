@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using _02.Scripts.Monster.BossMonster;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -30,6 +31,10 @@ namespace _02.Scripts.Monster.Presentation
         private readonly ParticleSystem[] _systems = new ParticleSystem[15];
         private readonly ParticleSystemRenderer[] _renderers = new ParticleSystemRenderer[15];
         private readonly Material[] _materials = new Material[15];
+        private readonly Dictionary<long, BossVfxMesh> _accentMeshes = new Dictionary<long, BossVfxMesh>();
+        private Shader _accentShader;
+        private int _accentFrame = -1;
+        private int _accentBudget;
         private int _budgetFrame = -1;
         private int _frameBudget;
         private int _impactBudget;
@@ -55,24 +60,23 @@ namespace _02.Scripts.Monster.Presentation
         {
             _sceneHandle = gameObject.scene.handle;
             Pools[_sceneHandle] = this;
-            string[] textures =
+            string[] textureKeys =
             {
-                "trace_01",
-                "smoke_04",
-                "light_01",
-                "circle_03",
-                "flame_01",
-                "explosion_pixelfied",
-                "slash_01",
-                "dirt_01",
-                "spark_01",
-                "twirl_02",
-                "Effect36",
-                "Effect51",
-                "Explosion25",
-                "ToonExplosion31",
-                "Fire01"
+                "spark", "smoke", "glow", "shock_ring", "pixel_flame",
+                "explosion", "slash", "debris", "lightning_column", "vortex",
+                "plasma_burst", "prism_hit", "explosion_round", "earth_burst", "fire_column"
             };
+            TextAsset catalogAsset = Resources.Load<TextAsset>(BossVfxUpgrade.ResourceRoot + "BossVfxCatalog");
+            BossVfxCatalog catalog = catalogAsset != null ? JsonUtility.FromJson<BossVfxCatalog>(catalogAsset.text) : null;
+            Dictionary<string, BossVfxTextureDefinition> definitions = new Dictionary<string, BossVfxTextureDefinition>();
+            if (catalog != null && catalog.textures != null)
+            {
+                foreach (BossVfxTextureDefinition definition in catalog.textures)
+                {
+                    definitions[definition.key] = definition;
+                }
+            }
+
             int[] limits =
             {
                 768,
@@ -91,14 +95,26 @@ namespace _02.Scripts.Monster.Presentation
                 64,
                 96
             };
-            Shader shader = Resources.Load<Shader>("Monster/NeonVfx/NeonParticle");
+            Shader shader = Resources.Load<Shader>(BossVfxUpgrade.ResourceRoot + "BossCrispVfx");
+            _accentShader = shader;
             if (shader == null)
                 shader = Shader.Find("Particles/Standard Unlit");
             if (shader == null)
                 shader = Shader.Find("Sprites/Default");
             for (int i = 0; i < _systems.Length; i++)
             {
-                Texture2D texture = Resources.Load<Texture2D>("Monster/NeonVfx/Particles/" + textures[i]);
+                if (!definitions.TryGetValue(textureKeys[i], out BossVfxTextureDefinition definition))
+                {
+                    Debug.LogError("몬스터 VFX 카탈로그 누락: " + textureKeys[i], this);
+                    continue;
+                }
+
+                Texture2D texture = Resources.Load<Texture2D>(definition.path);
+                if (texture == null)
+                {
+                    Debug.LogError("몬스터 VFX 텍스처 누락: " + definition.path, this);
+                    continue;
+                }
                 GameObject child = new GameObject(((Kind)i).ToString(), typeof(ParticleSystem));
                 child.transform.SetParent(transform, false);
                 ParticleSystem particles = child.GetComponent<ParticleSystem>();
@@ -139,25 +155,27 @@ namespace _02.Scripts.Monster.Presentation
                 noise.frequency = 0.9f;
                 noise.scrollSpeed = 0.5f;
                 noise.quality = ParticleSystemNoiseQuality.Low;
-                if (i == 5 || i >= 10)
+                if (definition.frames > 1)
                 {
                     var sheet = particles.textureSheetAnimation;
                     sheet.enabled = true;
-                    sheet.numTilesX = i == 14 ? 8 : 4;
-                    sheet.numTilesY = 4;
+                    sheet.numTilesX = definition.columns;
+                    sheet.numTilesY = definition.rows;
                     sheet.animation = ParticleSystemAnimationType.WholeSheet;
-                    sheet.frameOverTime = new ParticleSystem.MinMaxCurve(1f, AnimationCurve.Linear(0f, 0f, 1f, 1f));
+                    float lastFrame = (definition.frames - 0.01f) / (definition.columns * definition.rows);
+                    sheet.frameOverTime = new ParticleSystem.MinMaxCurve(1f, AnimationCurve.Linear(0f, 0f, 1f, lastFrame));
                     sheet.cycleCount = 1;
                 }
 
                 Material material = new Material(shader)
                 {
-                    name = "Neon_" + textures[i],
+                    name = "Neon_" + textureKeys[i],
                     hideFlags = HideFlags.DontSave
                 };
                 material.mainTexture = texture;
-                material.SetFloat("_Additive", i == 1 || i == 7 || i == 12 || i == 13 ? 0f : i >= 10 ? 0.65f : 1f);
-                material.SetFloat("_Desaturate", i == 5 || i == 10 || i == 11 ? 1f : i >= 12 ? 0.35f : 0f);
+                material.SetFloat("_DstBlend", (float)(definition.additive > 0 ? UnityEngine.Rendering.BlendMode.One : UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha));
+                material.SetFloat("_Desaturate", definition.desaturate);
+                material.SetFloat("_Gain", 1f);
                 ParticleSystemRenderer renderer = child.GetComponent<ParticleSystemRenderer>();
                 renderer.sharedMaterial = material;
                 renderer.renderMode = ParticleSystemRenderMode.Billboard;
@@ -174,6 +192,15 @@ namespace _02.Scripts.Monster.Presentation
             if (Time.timeScale <= 0f)
                 return;
             radius = Mathf.Clamp(radius, 0.1f, 5f);
+            BossVfxMesh accent = GetAccentMesh(point, sortingLayer, order);
+            if (accent != null && (explosion || sparks >= 18))
+            {
+                accent.Ring(point, radius * 0.18f, radius * 1.5f, 0.032f, color, 0.28f);
+                accent.Shards(point, radius, color, explosion ? 14 : 5);
+                if (explosion)
+                    accent.Ring(point, radius * 0.38f, radius * 1.75f, 0.018f, color, 0.36f, 0.045f);
+            }
+
             Color core = Color.Lerp(color, Color.white, 0.5f);
             core.a *= 0.7f;
             Emit(Kind.Energy, point, Vector2.zero, radius * 0.85f, 0.065f, core, sortingLayer, order + 2);
@@ -243,6 +270,14 @@ namespace _02.Scripts.Monster.Presentation
         public void PlasmaShot(Vector3 point, Vector2 direction, float size, Color color, int sortingLayer, int order)
         {
             size = Mathf.Clamp(size, 0.2f, 1.5f);
+            BossVfxMesh accent = GetAccentMesh(point, sortingLayer, order);
+            if (accent != null)
+            {
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                accent.Arc(point, size * 0.8f, angle + 65f, 230f, 0.025f, color, 0.18f);
+                accent.Shards(point, size * 0.55f, color, 5, angle, 70f);
+            }
+
             Emit(Kind.Plasma, point, direction * 0.5f, size * 2f, 0.24f, color, sortingLayer, order + 3);
             Burst(point, size * 0.32f, color, sortingLayer, order, 12);
         }
@@ -253,6 +288,14 @@ namespace _02.Scripts.Monster.Presentation
             Emit(Kind.Slash, point, Vector2.zero, radius * 2.05f, 0.23f, color, sortingLayer, order + 2, angle + 90f);
             if (intensity < 0.5f)
                 return;
+            BossVfxMesh accent = GetAccentMesh(point, sortingLayer, order);
+            if (accent != null)
+            {
+                accent.Arc(point, radius * 0.8f, angle - 40f, 80f, 0.035f, color, 0.18f);
+                accent.Arc(point, radius * 0.68f, angle - 32f, 64f, 0.015f, Color.Lerp(color, Color.white, 0.45f), 0.12f);
+                accent.Shards((Vector2)point + Direction(angle) * radius * 0.7f, radius * 0.22f, color, 6, angle, 100f);
+            }
+
             Vector2 direction = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
             Burst(point + (Vector3)(direction * radius * 0.75f), radius * 0.2f, color, sortingLayer, order, 16);
             Emit(Kind.Slash, point, Vector2.zero, radius * 1.85f, 0.1f, Color.white * 0.8f, sortingLayer, order + 3, angle + 95f);
@@ -262,6 +305,44 @@ namespace _02.Scripts.Monster.Presentation
         {
             color.a *= 0.55f;
             Emit(Kind.Vortex, point, Vector2.zero, radius * 2f, 0.45f, color, sortingLayer, order, angle);
+        }
+
+        private static Vector2 Direction(float degrees)
+        {
+            float radians = degrees * Mathf.Deg2Rad;
+            return new Vector2(Mathf.Cos(radians), Mathf.Sin(radians));
+        }
+
+        private BossVfxMesh GetAccentMesh(Vector3 point, int sortingLayer, int order)
+        {
+            if (_accentShader == null || Time.timeScale <= 0f)
+                return null;
+            if (_accentFrame != Time.frameCount)
+            {
+                _accentFrame = Time.frameCount;
+                _accentBudget = 12;
+            }
+
+            if (_accentBudget-- <= 0)
+                return null;
+            long key = ((long)sortingLayer << 32) | (uint)order;
+            if (!_accentMeshes.TryGetValue(key, out BossVfxMesh mesh))
+            {
+                if (_accentMeshes.Count >= 12)
+                    return null;
+                mesh = new BossVfxMesh(transform, _accentShader, gameObject.layer, sortingLayer, order - 5, point.z);
+                _accentMeshes.Add(key, mesh);
+            }
+
+            return mesh;
+        }
+
+        private void LateUpdate()
+        {
+            foreach (BossVfxMesh mesh in _accentMeshes.Values)
+            {
+                mesh.Tick(Time.deltaTime);
+            }
         }
 
         private void Emit(Kind kind, Vector3 point, Vector2 velocity, float size, float lifetime, Color color, int sortingLayer, int order, float rotation = 0f, float aspect = 1f)
@@ -297,6 +378,8 @@ namespace _02.Scripts.Monster.Presentation
             _paused = paused;
             foreach (ParticleSystem system in _systems)
             {
+                if (system == null)
+                    continue;
                 if (paused)
                     system.Pause();
                 else
@@ -306,6 +389,12 @@ namespace _02.Scripts.Monster.Presentation
 
         private void OnDestroy()
         {
+            foreach (BossVfxMesh mesh in _accentMeshes.Values)
+            {
+                mesh.Dispose();
+            }
+
+            _accentMeshes.Clear();
             if (Pools.TryGetValue(_sceneHandle, out MonsterNeonVfx pool) && pool == this)
                 Pools.Remove(_sceneHandle);
             foreach (Material material in _materials)
