@@ -499,7 +499,7 @@ TextureImporter:
         serializedVersion: 2
         x: 2
         y: 105
-        width: 444
+        width: 441
         height: 206
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -511,28 +511,6 @@ TextureImporter:
       bones: []
       spriteID: f0352e8426775b648a57fd848c2b3834
       internalID: 2999253056055592484
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HandGun_9
-      rect:
-        serializedVersion: 2
-        x: 442
-        y: 196
-        width: 6
-        height: 4
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bbb4d67abeace214aaf980cba921bb64
-      internalID: 8270445906858281231
       vertices: []
       indices: 
       edges: []
@@ -627,7 +605,6 @@ TextureImporter:
       HandGun_5: -575199051887659565
       HandGun_6: -7885279133011801773
       HandGun_7: -1081551671
-      HandGun_9: 8270445906858281231
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

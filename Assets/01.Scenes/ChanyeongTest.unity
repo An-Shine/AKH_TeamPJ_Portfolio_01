@@ -6295,6 +6295,18 @@ PrefabInstance:
       propertyPath: _fireDirectionPoint
       value: 
       objectReference: {fileID: 2075709545}
+    - target: {fileID: 3603634642599122488, guid: b5f335e30d5aa2344bc4adefae59483a, type: 3}
+      propertyPath: _gunSprites.Array.data[0].Up
+      value: 
+      objectReference: {fileID: -7885279133011801773, guid: db04e9d30814d6443b5ff87dc90da699, type: 3}
+    - target: {fileID: 3603634642599122488, guid: b5f335e30d5aa2344bc4adefae59483a, type: 3}
+      propertyPath: _gunSprites.Array.data[0].LeftUp
+      value: 
+      objectReference: {fileID: -575199051887659565, guid: db04e9d30814d6443b5ff87dc90da699, type: 3}
+    - target: {fileID: 3603634642599122488, guid: b5f335e30d5aa2344bc4adefae59483a, type: 3}
+      propertyPath: _gunSprites.Array.data[0].RightUp
+      value: 
+      objectReference: {fileID: -1081551671, guid: db04e9d30814d6443b5ff87dc90da699, type: 3}
     - target: {fileID: 3852817395504386140, guid: b5f335e30d5aa2344bc4adefae59483a, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -8454,7 +8466,7 @@ MonoBehaviour:
     SpawnPointRightDown: {fileID: 151246657}
   _unitSize: {x: 0.5, y: 0.5}
   _weaponSpawnCount: 1
-  _itemSpawnCount: 1
+  _itemSpawnCount: 2
   _nonTargetLayerMask:
     serializedVersion: 2
     m_Bits: 768
