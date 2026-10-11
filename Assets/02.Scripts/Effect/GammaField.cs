@@ -49,4 +49,15 @@ public class GammaField : Effect
             _animator.SetTrigger(EndAnimationKey);
         }
     }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            if (other.TryGetComponent(out NormalMonster monster))
+            {
+                monster.TakeDamage(_damage * Time.deltaTime);
+            }
+        }
+    }
 }
