@@ -1416,6 +1416,7 @@ GameObject:
   - component: {fileID: 222004146603352756}
   - component: {fileID: 114488950153862918}
   - component: {fileID: 1290170408830629965}
+  - component: {fileID: 8655163186437566842}
   m_Layer: 5
   m_Name: FinishGame
   m_TagString: Untagged
@@ -1522,6 +1523,25 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8655163186437566842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1434084465147848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fad88e459dfc77c4dbcbaff69c5e05a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Michsky.UI.Shift.UIElementSound
+  UIManagerAsset: {fileID: 11400000, guid: ed935159a86a1be4cbc1c44848b24daf, type: 2}
+  audioObject: {fileID: 0}
+  hoverSFX: {fileID: 0}
+  clickSFX: {fileID: 0}
+  enableHoverSound: 1
+  enableClickSound: 1
+  checkForInteraction: 1
 --- !u!1 &1449774792227828
 GameObject:
   m_ObjectHideFlags: 0
@@ -1534,6 +1554,7 @@ GameObject:
   - component: {fileID: 222984480732690790}
   - component: {fileID: 114609935918811756}
   - component: {fileID: 5477348515205845343}
+  - component: {fileID: 5845332492047142122}
   m_Layer: 5
   m_Name: ReturnGame
   m_TagString: Untagged
@@ -1652,6 +1673,25 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5845332492047142122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1449774792227828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fad88e459dfc77c4dbcbaff69c5e05a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Michsky.UI.Shift.UIElementSound
+  UIManagerAsset: {fileID: 11400000, guid: ed935159a86a1be4cbc1c44848b24daf, type: 2}
+  audioObject: {fileID: 0}
+  hoverSFX: {fileID: 0}
+  clickSFX: {fileID: 0}
+  enableHoverSound: 1
+  enableClickSound: 1
+  checkForInteraction: 1
 --- !u!1 &1461312255555258
 GameObject:
   m_ObjectHideFlags: 0
@@ -1778,6 +1818,7 @@ GameObject:
   - component: {fileID: 222356483357569776}
   - component: {fileID: 114612378365561650}
   - component: {fileID: 4362767581897339671}
+  - component: {fileID: 217194391078681013}
   m_Layer: 5
   m_Name: GoToMainMenu
   m_TagString: Untagged
@@ -1896,6 +1937,25 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &217194391078681013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1482686230321440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fad88e459dfc77c4dbcbaff69c5e05a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Michsky.UI.Shift.UIElementSound
+  UIManagerAsset: {fileID: 11400000, guid: ed935159a86a1be4cbc1c44848b24daf, type: 2}
+  audioObject: {fileID: 0}
+  hoverSFX: {fileID: 0}
+  clickSFX: {fileID: 0}
+  enableHoverSound: 1
+  enableClickSound: 1
+  checkForInteraction: 1
 --- !u!1 &1499185149721434
 GameObject:
   m_ObjectHideFlags: 0
