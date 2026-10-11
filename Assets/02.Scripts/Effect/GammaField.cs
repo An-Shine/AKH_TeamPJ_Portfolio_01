@@ -18,7 +18,7 @@ public class GammaField : Effect
     {
         if (!gameObject.TryGetComponent(out _animator))
         {
-            Destroy(gameObject);
+            EffectSpawner.Instance.Release(this);
         }
     }
 
