@@ -34,10 +34,12 @@ public class GammaField : Effect
         CheckLifeTime();
     }
 
-    public void OnSpawn()
+    public override void OnSpawn()
     {
         AudioManager.Instance.PlaySFX(_spawnSfxType);
         transform.localScale = _scale;
+        _aleadyEnd = false;
+        _lifeTimer = _lifeDuration;
     }
 
     private void CheckLifeTime()

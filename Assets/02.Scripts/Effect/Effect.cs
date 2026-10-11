@@ -10,6 +10,11 @@ public class Effect : MonoBehaviour
         _type = type;
     }
 
+    public virtual void OnSpawn()
+    {
+        Debug.Log("Require Override");
+    }
+
     protected void DestroyEffect()
     {
         EffectSpawner.Instance.Release(this);
