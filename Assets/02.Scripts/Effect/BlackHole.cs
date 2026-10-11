@@ -5,7 +5,6 @@ public class BlackHole : Effect
 {
     [SerializeField] private SFXType _spawnSfxType;
     [SerializeField] private float _damage;
-    [SerializeField] private float _damageInterval;
     [SerializeField] private Vector3 _scale;
 
     private Animator _animator;
@@ -37,7 +36,7 @@ public class BlackHole : Effect
         _aleadyEnd = false;
         _lifeTimer = _lifeDuration;
 
-        _blackHoleDamageControl.SetDamage(_damage, _damageInterval);
+        _blackHoleDamageControl.SetDamage(_damage);
     }
 
     private void Update()
