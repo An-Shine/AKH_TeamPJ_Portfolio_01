@@ -19,6 +19,8 @@ public abstract class Projectile : MonoBehaviour
     public float SpeedScalar => _speedScalar * (1f + ItemManager.Instance.ProjectileStat.MoveSpeedMultiplier);
     protected Vector3 _initialPosition;
 
+    private int _effectProbability = 30;
+
     protected virtual void Update()
     {
         Move();
@@ -118,11 +120,20 @@ public abstract class Projectile : MonoBehaviour
         if (itemManager == null) return;
         if (itemManager.ProjectileStat.IsBlackHole)
         {
-            EffectSpawner.Instance.Spawn(EffectType.BlackHole, transform.position, itemManager.ProjectileStat.BlackHoleDamage);
+            if (UnityEngine.Random.Range(1, 100) <= _effectProbability)
+            {
+                EffectSpawner.Instance.Spawn(EffectType.BlackHole, transform.position,
+                    itemManager.ProjectileStat.BlackHoleDamage);
+            }
         }
+
         if (itemManager.ProjectileStat.IsGammaField)
         {
-            EffectSpawner.Instance.Spawn(EffectType.Gamma, transform.position, itemManager.ProjectileStat.GammaDamage);
+            if (UnityEngine.Random.Range(1, 100) <= _effectProbability)
+            {
+                EffectSpawner.Instance.Spawn(EffectType.Gamma, transform.position,
+                    itemManager.ProjectileStat.GammaDamage);
+            }
         }
     }
 
