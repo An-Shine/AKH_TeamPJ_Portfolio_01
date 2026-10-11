@@ -131,9 +131,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32937977a77e4894aef6c08d60438ce5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BlackHole
-  _spawnSfxType: 0
-  _damage: 10
-  _damageInterval: 0.5
+  _lifeDuration: 5
+  _spawnSfxType: 33
   _scale: {x: 2, y: 2, z: 2}
 --- !u!58 &4081860062339535148
 CircleCollider2D:
