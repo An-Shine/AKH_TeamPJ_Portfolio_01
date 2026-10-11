@@ -6,7 +6,6 @@ public class GammaField : Effect
     [SerializeField] private Vector3 _scale;
 
     private Animator _animator;
-    private const string EndAnimationKey = "End";
     private bool _aleadyEnd;
 
     private void Awake()
@@ -42,7 +41,7 @@ public class GammaField : Effect
         if (!_aleadyEnd && _lifeTimer <= 0f)
         {
             _aleadyEnd = true;
-            _animator.SetTrigger(EndAnimationKey);
+            _animator.Play(EndAnimHash);
         }
     }
 

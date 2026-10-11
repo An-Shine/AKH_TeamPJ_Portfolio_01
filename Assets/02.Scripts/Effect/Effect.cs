@@ -10,6 +10,8 @@ public class Effect : MonoBehaviour
     protected float _lifeTimer;
     protected float _damage;
 
+    protected static readonly int EndAnimHash = Animator.StringToHash("Base Layer.End");
+
     public void Initialize(EffectType type)
     {
         _type = type;
