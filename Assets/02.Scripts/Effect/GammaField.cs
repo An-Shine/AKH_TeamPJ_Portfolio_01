@@ -24,7 +24,7 @@ public class GammaField : Effect
 
     private void Update()
     {
-        _lifeDuration -= Time.deltaTime;
+        _lifeTimer -= Time.deltaTime;
         CheckLifeTime();
     }
 
