@@ -19,7 +19,7 @@ public abstract class Projectile : MonoBehaviour
     public float SpeedScalar => _speedScalar * (1f + ItemManager.Instance.ProjectileStat.MoveSpeedMultiplier);
     protected Vector3 _initialPosition;
 
-    private int _effectProbability = 30;
+    [SerializeField] private int _effectProbability;
 
     protected virtual void Update()
     {
