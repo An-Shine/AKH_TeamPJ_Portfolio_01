@@ -52,6 +52,7 @@ public class BlackHole : Effect
     {
         if (!_aleadyEnd && _lifeTimer <= 0f)
         {
+            _aleadyEnd = true;
             _animator.SetTrigger(EndAnimationKey);
         }
     }
