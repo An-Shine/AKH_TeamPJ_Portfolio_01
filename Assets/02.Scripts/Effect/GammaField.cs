@@ -10,9 +10,6 @@ public class GammaField : Effect
     private const string EndAnimationKey = "End";
     private bool _aleadyEnd;
 
-    private float _lifeDuration;
-    private float _lifeTimer;
-
     private void Awake()
     {
         if (!gameObject.TryGetComponent(out _animator))
@@ -33,11 +30,12 @@ public class GammaField : Effect
         CheckLifeTime();
     }
 
-    public override void OnSpawn()
+    public override void OnSpawn(float lifeTime)
     {
         AudioManager.Instance.PlaySFX(_spawnSfxType);
         transform.localScale = _scale;
         _aleadyEnd = false;
+        _lifeDuration = lifeTime;
         _lifeTimer = _lifeDuration;
     }
 

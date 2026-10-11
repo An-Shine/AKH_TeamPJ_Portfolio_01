@@ -13,9 +13,6 @@ public class BlackHole : Effect
 
     private BlackHoleDamageControl _blackHoleDamageControl;
 
-    private float _lifeDuration;
-    private float _lifeTimer;
-
     private void Awake()
     {
         if (!gameObject.TryGetComponent(out _animator))
@@ -45,11 +42,12 @@ public class BlackHole : Effect
         CheckLifeTime();
     }
 
-    public override void OnSpawn()
+    public override void OnSpawn(float lifeTime)
     {
         AudioManager.Instance.PlaySFX(_spawnSfxType);
         transform.localScale = _scale;
         _aleadyEnd = false;
+        _lifeDuration = lifeTime;
         _lifeTimer = _lifeDuration;
     }
 
