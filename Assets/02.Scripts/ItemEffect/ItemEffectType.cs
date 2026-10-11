@@ -29,6 +29,7 @@ public enum ItemEffectType
     AddKnockbackEffect,
     DamageBonusByPenetration,
     AddBlackHoleEffect,
+    AddGammaFieldEffect,
 
     //Player or Projectile
     MoveSpeedMultiplier,
