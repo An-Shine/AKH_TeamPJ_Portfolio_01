@@ -129,15 +129,15 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Frame_0
     originalName: 
-    pivot: {x: 0.5714286, y: -0.43589744}
+    pivot: {x: 0.6, y: -0.43589744}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
       serializedVersion: 2
       x: 64
-      y: 4
-      width: 21
+      y: 51
+      width: 20
       height: 39
     spriteID: 9b5919f6bfc981842b80e3296b7796df
     spriteBone: []
@@ -147,7 +147,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 64, y: 4}
+    uvTransform: {x: 64, y: 51}
   - name: Frame_1
     originalName: 
     pivot: {x: 0.54545456, y: -0.3846154}
@@ -178,7 +178,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 64
-      y: 51
+      y: 4
       width: 21
       height: 39
     spriteID: 450ee6f21c50e4848a2166e14711d85b
@@ -189,7 +189,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 64, y: 51}
+    uvTransform: {x: 64, y: 4}
   - name: Frame_3
     originalName: 
     pivot: {x: 0.59090906, y: -0.43589744}
@@ -274,7 +274,7 @@ ScriptedImporter:
       cellRect:
         x: 12
         y: 17
-        width: 21
+        width: 20
         height: 39
       spriteId: 9b5919f6bfc981842b80e3296b7796df
     - name: Frame_1
