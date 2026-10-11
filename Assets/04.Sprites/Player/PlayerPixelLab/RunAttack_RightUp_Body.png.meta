@@ -1,25 +1,25 @@
 fileFormatVersion: 2
-guid: dce87de29d27446428269e82a36e3abb
+guid: eacd68e69437c7d4a9a7a9cebab4856f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4260274325181822489
-    second: Run_Down_Body_0
+      213: 6747940381264267006
+    second: Run_RightUp_Body_0
   - first:
-      213: 5839650500171886884
-    second: Run_Down_Body_1
+      213: 3298030748312832047
+    second: Run_RightUp_Body_1
   - first:
-      213: 4150449884411146235
-    second: Run_Down_Body_2
+      213: 1375150303937088758
+    second: Run_RightUp_Body_2
   - first:
-      213: -6502643380978139052
-    second: Run_Down_Body_3
+      213: 8830055412251060063
+    second: Run_RightUp_Body_3
   - first:
-      213: -3076077931109317552
-    second: Run_Down_Body_4
+      213: 4778588755963946486
+    second: Run_RightUp_Body_4
   - first:
-      213: 4527325680286385247
-    second: Run_Down_Body_5
+      213: -1400001473211786497
+    second: Run_RightUp_Body_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -52,7 +52,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -66,7 +66,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 35
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -90,7 +90,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -128,133 +128,133 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Run_Down_Body_0
+      name: Run_RightUp_Body_0
       rect:
         serializedVersion: 2
-        x: 13
-        y: 16
-        width: 23
-        height: 41
+        x: 0
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7e902d9b21770e4c0800000000000000
-      internalID: -4260274325181822489
+      spriteID: ef645ce460085ad50800000000000000
+      internalID: 6747940381264267006
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run_Down_Body_1
+      name: Run_RightUp_Body_1
       rect:
         serializedVersion: 2
-        x: 60
-        y: 14
-        width: 24
-        height: 40
+        x: 48
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4217d2ba03b9a0150800000000000000
-      internalID: 5839650500171886884
+      spriteID: f28808bed75f4cd20800000000000000
+      internalID: 3298030748312832047
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run_Down_Body_2
+      name: Run_RightUp_Body_2
       rect:
         serializedVersion: 2
-        x: 108
-        y: 15
-        width: 25
-        height: 40
+        x: 96
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bff236a0e2c599930800000000000000
-      internalID: 4150449884411146235
+      spriteID: 6fcc0f26ae3851310800000000000000
+      internalID: 1375150303937088758
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run_Down_Body_3
+      name: Run_RightUp_Body_3
       rect:
         serializedVersion: 2
-        x: 156
-        y: 16
-        width: 24
-        height: 41
+        x: 144
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 450c0c72c48f1c5a0800000000000000
-      internalID: -6502643380978139052
+      spriteID: f576d322d98aa8a70800000000000000
+      internalID: 8830055412251060063
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run_Down_Body_4
+      name: Run_RightUp_Body_4
       rect:
         serializedVersion: 2
-        x: 204
-        y: 14
-        width: 24
-        height: 40
+        x: 192
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0548fce5b639f45d0800000000000000
-      internalID: -3076077931109317552
+      spriteID: 6f528eec725f05240800000000000000
+      internalID: 4778588755963946486
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run_Down_Body_5
+      name: Run_RightUp_Body_5
       rect:
         serializedVersion: 2
-        x: 252
-        y: 15
-        width: 24
-        height: 41
+        x: 240
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f5449fb28ba44de30800000000000000
-      internalID: 4527325680286385247
+      spriteID: ffa1030e312329ce0800000000000000
+      internalID: -1400001473211786497
       vertices: []
       indices: 
       edges: []
@@ -263,7 +263,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 47ebb13db2061d640ad17b355f73ed34
     internalID: 0
     vertices: []
     indices: 
@@ -271,14 +271,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":48.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Run_Down_Body_0: -4260274325181822489
-      Run_Down_Body_1: 5839650500171886884
-      Run_Down_Body_2: 4150449884411146235
-      Run_Down_Body_3: -6502643380978139052
-      Run_Down_Body_4: -3076077931109317552
-      Run_Down_Body_5: 4527325680286385247
+      Run_RightUp_Body_0: 6747940381264267006
+      Run_RightUp_Body_1: 3298030748312832047
+      Run_RightUp_Body_2: 1375150303937088758
+      Run_RightUp_Body_3: 8830055412251060063
+      Run_RightUp_Body_4: 4778588755963946486
+      Run_RightUp_Body_5: -1400001473211786497
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
