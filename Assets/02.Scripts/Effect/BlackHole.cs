@@ -12,6 +12,8 @@ public class BlackHole : Effect
     private const string EndBlackHoleAnimationKey = "End";
     private bool _aleadyEnd;
 
+    private BlackHoleDamageControl _blackHoleDamageControl;
+
     private float _lifeDuration;
     private float _lifeTimer;
 
@@ -22,14 +24,24 @@ public class BlackHole : Effect
         if (!gameObject.TryGetComponent(out _animator))
         {
             Destroy(gameObject);
+            return;
+        }
+
+        GameObject child = transform.GetChild(0).gameObject;
+        if (!child.TryGetComponent(out _blackHoleDamageControl))
+        {
+            Destroy(gameObject);
         }
     }
 
     private void Start()
     {
+        _lifeDuration = 10000f;
         _aleadyEnd = false;
         _timer = 0f;
         _lifeTimer = _lifeDuration;
+
+        _blackHoleDamageControl.SetDamage(_damage, _damageInterval);
     }
 
     private void Update()
@@ -42,24 +54,6 @@ public class BlackHole : Effect
     {
         AudioManager.Instance.PlaySFX(_spawnSfxType);
         transform.localScale = _scale;
-    }
-
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.CompareTag("Enemy"))
-        {
-            _timer += Time.deltaTime;
-            TryGiveDamage(other);
-        }
-    }
-
-    private void TryGiveDamage(Collider2D other)
-    {
-        if (_timer >= _damageInterval && other.TryGetComponent(out NormalMonster monster))
-        {
-            _timer = 0f;
-            monster.TakeDamage(_damage);
-        }
     }
 
     private void CheckLifeTime()
