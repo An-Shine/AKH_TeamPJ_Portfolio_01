@@ -18,12 +18,13 @@ public class LootSpawner : MonoBehaviour
 
     [Header("Spawn Count")]
     [SerializeField] private int _weaponSpawnCount;
-    [SerializeField] private int _itemSpawnCount;
+    [SerializeField] private int _itemOptionCount;
 
     [Header("Evade Layer")]
     [SerializeField] private LayerMask _nonTargetLayerMask;
 
     private List<RoomId> _spawnDoneRoomIds;
+    private Dictionary<RoomId, List<Item>> _spawnedItemDictionary;
 
     private void Awake()
     {
@@ -59,6 +60,7 @@ public class LootSpawner : MonoBehaviour
         }
 
         _spawnDoneRoomIds = new List<RoomId>();
+        _spawnedItemDictionary = new Dictionary<RoomId, List<Item>>();
         //Invoke("SpawnTest", 1f);
     }
 
@@ -115,10 +117,10 @@ public class LootSpawner : MonoBehaviour
             }
         }
 
-        for (repeat = 0; repeat < _itemSpawnCount + failedSpawnCount; repeat++)
+        for (repeat = 0; repeat < _itemOptionCount + failedSpawnCount; repeat++)
         {
             spawnPosition = GetPosition(roomId);
-            SpawnItem(spawnPosition);
+            SpawnItem(spawnPosition, roomId);
         }
 
         _spawnDoneRoomIds.Add(roomId);
@@ -177,7 +179,7 @@ public class LootSpawner : MonoBehaviour
         return false;
     }
 
-    private bool SpawnItem(Vector3 spawnPosition)
+    private bool SpawnItem(Vector3 spawnPosition, RoomId roomId)
     {
         int count = ItemManager.Instance.UnobtainedItemDictionary.Count;
         if (count <= 0) return false;
@@ -189,9 +191,45 @@ public class LootSpawner : MonoBehaviour
             targetItem.transform.position = spawnPosition;
             targetItem.gameObject.SetActive(true);
             ItemManager.Instance.RemoveUnobtainItem(targetItem);
+
+            if (!_spawnedItemDictionary.ContainsKey(roomId))
+            {
+                _spawnedItemDictionary.Add(roomId, new List<Item>());
+            }
+
+            _spawnedItemDictionary[roomId].Add(targetItem);
+
             return true;
         }
 
         return false;
+    }
+
+    public void EraseOtherItemOption(Item targetItem)
+    {
+        bool findFlag = false;
+        RoomId targetRoomId = RoomId.Room1;
+        foreach (RoomId id in _spawnedItemDictionary.Keys)
+        {
+            if (_spawnedItemDictionary[id].Contains(targetItem))
+            {
+                targetRoomId = id;
+                findFlag = true;
+                break;
+            }
+        }
+
+        if (!findFlag) return;
+
+        foreach (Item item in _spawnedItemDictionary[targetRoomId])
+        {
+            if (targetItem.Data.ItemId == item.Data.ItemId)
+            {
+                continue;
+            }
+
+            ItemManager.Instance.AddUnobtainItem(item);
+            item.gameObject.SetActive(false);
+        }
     }
 }

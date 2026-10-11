@@ -72,12 +72,22 @@ public class ItemManager : MonoBehaviour
         {
             Instantiate(item.GainEffectPrefab, _playerTransform);
         }
+
         AudioManager.Instance.PlaySFX(item.GainEffectSFX);
         item.gameObject.SetActive(false);
+        LootSpawner.Instance.EraseOtherItemOption(item);
     }
 
     public void RemoveUnobtainItem(Item item)
     {
         _unobtainedItemDictionary.Remove(IdPrefix.ItemPrefix + item.Data.ItemId);
+    }
+
+    public void AddUnobtainItem(Item item)
+    {
+        string itemId = IdPrefix.ItemPrefix + item.Data.ItemId;
+        if (_unobtainedItemDictionary.ContainsKey(itemId)) return;
+
+        _unobtainedItemDictionary.Add(itemId, item);
     }
 }
