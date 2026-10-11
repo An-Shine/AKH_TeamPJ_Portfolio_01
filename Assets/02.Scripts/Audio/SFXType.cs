@@ -33,4 +33,6 @@ public enum SFXType
     NanoHeal,
     Overload,
     VitalCore,
+    BlackHoleSpawn,
+    GammaFieldSpawn,
 }
