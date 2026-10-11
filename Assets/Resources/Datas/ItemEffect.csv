@@ -30,7 +30,7 @@ DecreaseProjectileSize,Projectile,ProjectileSizeMultiplier,Stat,-0.3
 SpawnCombatDrone,Player,CombatDrone,Immediate,1
 SpawnGuardDrone,Player,GuardDrone,Immediate,3
 LastBullet,Weapon,LastBullet,Stat,1
-IncreaseChargeSpeed,Weapon,ChargeSpeedMultiplier,Stat,0.8
+IncreaseChargeSpeed,Weapon,ChargeSpeedMultiplier,Stat,1
 DecreaseChargeSpeed,Weapon,ChargeSpeedMultiplier,Stat,-0.5
 IncreasePenetrationBonus,Projectile,DamageBonusByPenetration,Stat,0.25
 DecreasePenetrationBonus,Projectile,DamageBonusByPenetration,Stat,-0.25
