@@ -5,8 +5,6 @@ public class BlackHole : Effect
     [SerializeField] private SFXType _spawnSfxType;
     [SerializeField] private Vector3 _scale;
 
-    private float _damage;
-
     private Animator _animator;
     private const string EndAnimationKey = "End";
     private bool _aleadyEnd;
