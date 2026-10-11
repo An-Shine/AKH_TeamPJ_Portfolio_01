@@ -9,15 +9,13 @@ public class BlackHole : Effect
     [SerializeField] private Vector3 _scale;
 
     private Animator _animator;
-    private const string EndBlackHoleAnimationKey = "End";
+    private const string EndAnimationKey = "End";
     private bool _aleadyEnd;
 
     private BlackHoleDamageControl _blackHoleDamageControl;
 
     private float _lifeDuration;
     private float _lifeTimer;
-
-    private float _timer;
 
     private void Awake()
     {
@@ -36,9 +34,7 @@ public class BlackHole : Effect
 
     private void Start()
     {
-        _lifeDuration = 10000f;
         _aleadyEnd = false;
-        _timer = 0f;
         _lifeTimer = _lifeDuration;
 
         _blackHoleDamageControl.SetDamage(_damage, _damageInterval);
@@ -60,7 +56,7 @@ public class BlackHole : Effect
     {
         if (!_aleadyEnd && _lifeTimer <= 0f)
         {
-            _animator.SetTrigger(EndBlackHoleAnimationKey);
+            _animator.SetTrigger(EndAnimationKey);
         }
     }
 }
