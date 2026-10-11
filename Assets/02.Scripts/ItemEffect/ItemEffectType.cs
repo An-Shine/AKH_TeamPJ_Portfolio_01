@@ -1,4 +1,4 @@
-public enum EffectType
+public enum ItemEffectType
 {
     // Player
     HealHealth,

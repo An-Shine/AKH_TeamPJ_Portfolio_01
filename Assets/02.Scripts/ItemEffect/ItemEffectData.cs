@@ -1,7 +1,7 @@
 public class ItemEffectData
 {
     public EffectTarget TargetType;
-    public EffectType EffectType;
+    public ItemEffectType itemEffectType;
     public ItemEffectApplyType ApplyType;
     public float Value;
 }

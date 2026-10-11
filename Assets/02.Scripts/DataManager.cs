@@ -135,7 +135,7 @@ public class DataManager : MonoBehaviour
             ItemEffectDatas[row[0]] = new ItemEffectData
             {
                 TargetType = (EffectTarget)Enum.Parse(typeof(EffectTarget), row[1]),
-                EffectType = (EffectType)Enum.Parse(typeof(EffectType), row[2]),
+                itemEffectType = (ItemEffectType)Enum.Parse(typeof(ItemEffectType), row[2]),
                 ApplyType = (ItemEffectApplyType)Enum.Parse(typeof(ItemEffectApplyType), row[3]),
                 Value = float.Parse(row[4]),
             };
