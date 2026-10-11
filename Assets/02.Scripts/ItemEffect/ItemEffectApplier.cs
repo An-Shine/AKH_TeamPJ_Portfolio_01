@@ -183,6 +183,18 @@ public static class ItemEffectApplier
                 stat.DamageBonusByPenetration += effect.Value;
                 break;
             }
+            case ItemEffectType.AddBlackHoleEffect:
+            {
+                stat.IsBlackHole = true;
+                stat.BlackHoleDamage = effect.Value;
+                break;
+            }
+            case ItemEffectType.AddGammaFieldEffect:
+            {
+                stat.IsGammaField = true;
+                stat.BlackHoleDamage = effect.Value;
+                break;
+            }
         }
     }
 }
