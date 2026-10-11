@@ -109,6 +109,21 @@ public abstract class Projectile : MonoBehaviour
     protected virtual void OnDestroySelf()
     {
         ProjectilePoolManager.Instance.Release(this);
+        ExecuteDestroyEffect();
+    }
+
+    private void ExecuteDestroyEffect()
+    {
+        ItemManager itemManager = ItemManager.Instance;
+        if (itemManager == null) return;
+        if (itemManager.ProjectileStat.IsBlackHole)
+        {
+            EffectSpawner.Instance.Spawn(EffectType.BlackHole, transform.position, itemManager.ProjectileStat.BlackHoleDamage);
+        }
+        if (itemManager.ProjectileStat.IsGammaField)
+        {
+            EffectSpawner.Instance.Spawn(EffectType.Gamma, transform.position, itemManager.ProjectileStat.GammaDamage);
+        }
     }
 
     public void ApplyLastBulletEffect(float bonusRate)

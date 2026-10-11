@@ -3,7 +3,6 @@ using UnityEngine;
 public class Explosion : Effect
 {
     [SerializeField] private SFXType _sfxType;
-    private float _damage;
 
     public void Initialize(float damage)
     {

@@ -68,4 +68,12 @@ public class EffectSpawner : MonoBehaviour
         if (effect == null) return;
         Destroy(effect.gameObject);
     }
+
+    public void Spawn(EffectType type, Vector3 position, float damage)
+    {
+        Effect effect = Get(type);
+        effect.transform.position = position;
+        effect.OnSpawn();
+        effect.SetDamage(damage);
+    }
 }
