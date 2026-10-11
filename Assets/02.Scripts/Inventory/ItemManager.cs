@@ -68,7 +68,10 @@ public class ItemManager : MonoBehaviour
             }
         }
 
-        Instantiate(item.GainEffectPrefab, _playerTransform);
+        if (item.GainEffectPrefab != null)
+        {
+            Instantiate(item.GainEffectPrefab, _playerTransform);
+        }
         AudioManager.Instance.PlaySFX(item.GainEffectSFX);
         item.gameObject.SetActive(false);
     }
