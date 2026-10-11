@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8979068292203773528}
   - component: {fileID: 7303320853654565074}
   - component: {fileID: 3940885817414405109}
-  - component: {fileID: 6839740651086284301}
+  - component: {fileID: 6617774531110501960}
   m_Layer: 0
   m_Name: GenomeCapsuleEffect
   m_TagString: Untagged
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1633969471
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 6866523595503220482, guid: 49cef27be8604bd4eb1c583a10477974, type: 3}
@@ -115,7 +115,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6839740651086284301
+--- !u!114 &6617774531110501960
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,6 +124,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 3136057836859017804}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99f012402c1249acb89743d80f80c249, type: 3}
+  m_Script: {fileID: 11500000, guid: 7842a949b63f46e88c66ee460e85cd7d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Effect
+  m_EditorClassIdentifier: Assembly-CSharp::ItemApplyEffect

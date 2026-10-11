@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8035223857209626571}
   - component: {fileID: 4023047372643546776}
   - component: {fileID: 4704879423970991645}
-  - component: {fileID: 752505581283332214}
+  - component: {fileID: 7099572711987686290}
   m_Layer: 0
   m_Name: BoosterEffect
   m_TagString: Untagged
@@ -115,7 +115,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &752505581283332214
+--- !u!114 &7099572711987686290
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,6 +124,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 6471568013182061324}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99f012402c1249acb89743d80f80c249, type: 3}
+  m_Script: {fileID: 11500000, guid: 7842a949b63f46e88c66ee460e85cd7d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Effect
+  m_EditorClassIdentifier: Assembly-CSharp::ItemApplyEffect

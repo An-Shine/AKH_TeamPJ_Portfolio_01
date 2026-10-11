@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6697462798829572422}
   - component: {fileID: 2594505678659332704}
   - component: {fileID: 7877307930288883294}
-  - component: {fileID: 278109113557142258}
+  - component: {fileID: -6729965285865913050}
   m_Layer: 0
   m_Name: VitalCoreEffect
   m_TagString: Untagged
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1633969471
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -3794782149471004211, guid: b9da16abc8d7dcc4ca14b572af1b5f3c, type: 3}
@@ -115,7 +115,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &278109113557142258
+--- !u!114 &-6729965285865913050
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,6 +124,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8395722770442488768}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99f012402c1249acb89743d80f80c249, type: 3}
+  m_Script: {fileID: 11500000, guid: 7842a949b63f46e88c66ee460e85cd7d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Effect
+  m_EditorClassIdentifier: Assembly-CSharp::ItemApplyEffect

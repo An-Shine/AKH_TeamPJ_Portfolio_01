@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5570808173191017312}
   - component: {fileID: 4237342363025070048}
   - component: {fileID: 8453036883641363000}
-  - component: {fileID: 4048966395194014794}
+  - component: {fileID: 5641703759347279195}
   m_Layer: 0
   m_Name: CoolerEffect
   m_TagString: Untagged
@@ -115,7 +115,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4048966395194014794
+--- !u!114 &5641703759347279195
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,6 +124,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8726891770611154273}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99f012402c1249acb89743d80f80c249, type: 3}
+  m_Script: {fileID: 11500000, guid: 7842a949b63f46e88c66ee460e85cd7d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Effect
+  m_EditorClassIdentifier: Assembly-CSharp::ItemApplyEffect
