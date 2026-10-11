@@ -192,7 +192,7 @@ public static class ItemEffectApplier
             case ItemEffectType.AddGammaFieldEffect:
             {
                 stat.IsGammaField = true;
-                stat.BlackHoleDamage = effect.Value;
+                stat.GammaDamage = effect.Value;
                 break;
             }
         }
