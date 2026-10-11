@@ -20,6 +20,16 @@ namespace _02.Scripts.Monster.BossMonster
         public int spriteCount;
         public string[] sprites = new string[0];
         public BossMotionClipEntry[] clips = new BossMotionClipEntry[0];
+        public BossPatternMotionClipEntry[] patterns = new BossPatternMotionClipEntry[0];
+    }
+
+    [Serializable]
+    public sealed class BossPatternMotionClipEntry
+    {
+        public int pattern;
+        public int stage;
+        public int direction;
+        public string path = string.Empty;
     }
 
     // This component only replaces this boss instance's sprite animation clips.
@@ -28,9 +38,11 @@ namespace _02.Scripts.Monster.BossMonster
     public sealed class BossMotionUpgrade : MonoBehaviour
     {
         public const string ResourceRoot = "Monster/BossMotionUpgrade/";
-        public const int ExpectedSpriteCount = 245;
+        public const int ExpectedSpriteCount = 341;
         public const int ExpectedClipCount = 104;
+        public const int ExpectedPatternClipCount = 1200;
 
+        private const int LegacySpriteCount = 245;
         private const int Blade = 0;
         private const int Slam = 1;
         private const int Core = 2;
@@ -39,8 +51,11 @@ namespace _02.Scripts.Monster.BossMonster
         private const int Hold = 1;
         private const int Impact = 2;
         private const int Recover = 3;
+        private const int FollowThrough = 4;
 
         private readonly AnimationClip[,,] _clips = new AnimationClip[4, 4, 8];
+        private readonly string[,,] _patternPaths = new string[30, 5, 8];
+        private readonly Dictionary<int, AnimationClip[,]> _patternClips = new Dictionary<int, AnimationClip[,]>();
         private readonly List<KeyValuePair<AnimationClip, AnimationClip>> _overrides =
             new List<KeyValuePair<AnimationClip, AnimationClip>>(160);
         private readonly Dictionary<string, AnimationClip> _originalOverrides =
@@ -51,10 +66,15 @@ namespace _02.Scripts.Monster.BossMonster
         private int _family = -1;
         private bool _holding;
         private bool _ready;
+        private int _pattern = -1;
+        private int _patternStage = Impact;
+        private AnimationClip[,] _selectedClips;
 
         public bool IsReady => _ready;
         public int CurrentFamily => _family;
         public bool IsHolding => _holding;
+        public bool HasPatternMotions => _selectedClips != null;
+        internal bool IsStageLooping => _selectedClips != null && _selectedClips[_patternStage, 0].isLooping;
 
         internal static BossMotionUpgrade Install(Animator animator)
         {
@@ -81,11 +101,17 @@ namespace _02.Scripts.Monster.BossMonster
         private bool Initialize(Animator animator, TextAsset text)
         {
             BossMotionCatalog catalog = JsonUtility.FromJson<BossMotionCatalog>(text.text);
-            if (catalog == null || catalog.version != 1 || catalog.spriteCount != ExpectedSpriteCount
-                || catalog.sprites == null || catalog.sprites.Length != ExpectedSpriteCount
+            if (catalog == null || catalog.version < 1 || catalog.version > 2
+                || catalog.spriteCount != (catalog.version == 1 ? LegacySpriteCount : ExpectedSpriteCount)
+                || catalog.sprites == null || catalog.sprites.Length != catalog.spriteCount
                 || catalog.clips == null || catalog.clips.Length != ExpectedClipCount)
             {
                 Debug.LogWarning("보스 동작 카탈로그가 불완전합니다. BossMonster_Motion_Upgrade를 전체 적용하세요.", this);
+                return false;
+            }
+            if (catalog.version == 2 && !LoadPatternPaths(catalog.patterns))
+            {
+                Debug.LogWarning("보스 패턴별 동작 카탈로그가 불완전합니다. 모션 ZIP 전체를 적용하세요.", this);
                 return false;
             }
             foreach (BossMotionClipEntry entry in catalog.clips)
@@ -145,6 +171,49 @@ namespace _02.Scripts.Monster.BossMonster
             return true;
         }
 
+        private bool LoadPatternPaths(BossPatternMotionClipEntry[] entries)
+        {
+            if (entries == null || entries.Length != ExpectedPatternClipCount)
+                return false;
+            foreach (BossPatternMotionClipEntry entry in entries)
+            {
+                if (entry == null || entry.pattern < 0 || entry.pattern >= BossPatternCatalog.Count
+                    || entry.stage < Windup || entry.stage > FollowThrough || entry.direction < 0
+                    || entry.direction >= 8 || string.IsNullOrEmpty(entry.path)
+                    || _patternPaths[entry.pattern, entry.stage, entry.direction] != null)
+                {
+                    return false;
+                }
+
+                _patternPaths[entry.pattern, entry.stage, entry.direction] = entry.path;
+            }
+            return true;
+        }
+
+        private AnimationClip[,] LoadPatternClips(int pattern)
+        {
+            if (pattern < 0 || pattern >= BossPatternCatalog.Count || _patternPaths[pattern, 0, 0] == null)
+                return null;
+            if (_patternClips.TryGetValue(pattern, out AnimationClip[,] cached))
+                return cached;
+            AnimationClip[,] clips = new AnimationClip[5, 8];
+            for (int stage = Windup; stage <= FollowThrough; stage++)
+            {
+                for (int direction = 0; direction < 8; direction++)
+                {
+                    AnimationClip clip = Resources.Load<AnimationClip>(_patternPaths[pattern, stage, direction]);
+                    if (clip == null || clip.empty || clip.length <= 0f)
+                    {
+                        Debug.LogWarning("패턴 동작 누락. 기존 보스 모션 사용: " + _patternPaths[pattern, stage, direction], this);
+                        return null;
+                    }
+                    clips[stage, direction] = clip;
+                }
+            }
+            _patternClips.Add(pattern, clips);
+            return clips;
+        }
+
         internal void SelectPattern(BossEncounterPattern pattern)
         {
             int family;
@@ -170,22 +239,36 @@ namespace _02.Scripts.Monster.BossMonster
                     family = Core;
                     break;
             }
-            SetFamily(family, false);
+            _pattern = (int)pattern;
+            _selectedClips = LoadPatternClips(_pattern);
+            _patternStage = Impact;
+            SetFamily(family, false, true);
         }
 
         internal void SelectPhase()
         {
-            SetFamily(Core, false);
+            _pattern = -1;
+            _selectedClips = null;
+            SetFamily(Core, false, true);
         }
 
         internal void SetHolding(bool holding)
         {
-            SetFamily(_family, holding);
+            SetStage(holding ? Hold : Impact);
         }
 
-        private void SetFamily(int family, bool holding)
+        internal void SetStage(int stage)
         {
-            if (!_ready || family < Blade || family > Core || (_family == family && _holding == holding))
+            stage = Mathf.Clamp(stage, Windup, FollowThrough);
+            if (_patternStage == stage && _holding == (stage == Hold))
+                return;
+            _patternStage = stage;
+            SetFamily(_family, stage == Hold, true);
+        }
+
+        private void SetFamily(int family, bool holding, bool force = false)
+        {
+            if (!_ready || family < Blade || family > Core || (!force && _family == family && _holding == holding))
                 return;
             _family = family;
             _holding = holding;
@@ -197,9 +280,19 @@ namespace _02.Scripts.Monster.BossMonster
                 AnimationClip replacement = null;
                 if (TryMotion(original.name, out int category, out int direction))
                 {
-                    replacement = category == 4 ? _clips[Walk, Impact, direction]
-                        : _clips[family, category == Impact && holding && original.name.Contains("_channel_")
+                    if (category == 4)
+                    {
+                        replacement = _clips[Walk, Impact, direction];
+                    }
+                    else if (_selectedClips != null)
+                    {
+                        replacement = _selectedClips[category == Impact ? _patternStage : category, direction];
+                    }
+                    else
+                    {
+                        replacement = _clips[family, category == Impact && holding && original.name.Contains("_channel_")
                             ? Hold : category, direction];
+                    }
                 }
                 else
                 {

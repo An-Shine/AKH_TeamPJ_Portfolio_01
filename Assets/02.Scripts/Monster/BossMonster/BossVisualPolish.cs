@@ -19,6 +19,18 @@ namespace _02.Scripts.Monster.BossMonster
         private Sprite _previous;
         private Vector3 _restPosition;
         private Vector3 _restScale;
+        private Quaternion _restRotation;
+        private bool _initialized;
+        private bool _patternActive;
+        private BossEncounterPattern _motionPattern;
+        private int _motionStage;
+        private bool _motionHolding;
+        private float _motionAge;
+        private float _motionWarning;
+        private float _motionUpdatedAt;
+        private Vector2 _motionFacing;
+        private int _motionStrike;
+        private float _motionStrikeAt;
         private Vector2 _impulse;
         private Color _castColor = new Color(0.1f, 0.88f, 1f);
         private float _blendAge;
@@ -51,6 +63,8 @@ namespace _02.Scripts.Monster.BossMonster
 
             _restPosition = _body.transform.localPosition;
             _restScale = _body.transform.localScale;
+            _restRotation = _body.transform.localRotation;
+            _initialized = true;
             _properties = new MaterialPropertyBlock();
             _rimProperties = new MaterialPropertyBlock();
             Shader body = Resources.Load<Shader>(BossVfxUpgrade.ResourceRoot + "BossCrispBody");
@@ -120,6 +134,26 @@ namespace _02.Scripts.Monster.BossMonster
             _blendPendingUntil = Time.time + 0.22f;
         }
 
+        public void PatternMotion(BossEncounterPattern pattern, int stage, bool holding,
+            float age, float warning, Vector2 facing, int strike, float lastStrikeAt)
+        {
+            _patternActive = true;
+            _motionPattern = pattern;
+            _motionStage = stage;
+            _motionHolding = holding;
+            _motionAge = age;
+            _motionWarning = warning;
+            _motionFacing = facing;
+            _motionStrike = strike;
+            _motionStrikeAt = lastStrikeAt;
+            _motionUpdatedAt = Time.time;
+        }
+
+        public void ClearPatternMotion()
+        {
+            _patternActive = false;
+        }
+
         private void LateUpdate()
         {
             if (_body == null || _body.sprite == null)
@@ -132,9 +166,18 @@ namespace _02.Scripts.Monster.BossMonster
             // Only the visual child moves. The collider, room bounds and damage stay stable.
             if (_body.transform != transform)
             {
-                _body.transform.localPosition = _restPosition + new Vector3(_impulse.x, _impulse.y + breath * 0.018f, 0f);
-                _body.transform.localScale = Vector3.Scale(_restScale, new Vector3(1f + breath * 0.008f + _punch * 0.025f, 1f - breath * 0.007f - _punch * 0.022f, 1f));
-                _body.transform.localRotation = Quaternion.Euler(0f, 0f, breath * (_casting ? 0.8f : 0.35f));
+                BossMotionPose pose = _patternActive && alive
+                    ? BossPatternChoreography.Evaluate(_motionPattern, _motionStage, _motionHolding,
+                        _motionAge + Mathf.Max(0f, Time.time - _motionUpdatedAt), _motionWarning,
+                        _motionFacing, _motionStrike, Time.time - _motionStrikeAt)
+                    : new BossMotionPose { Scale = Vector2.one };
+                _body.transform.localPosition = _restPosition + new Vector3(_impulse.x + pose.Offset.x,
+                    _impulse.y + pose.Offset.y + breath * 0.018f, 0f);
+                _body.transform.localScale = Vector3.Scale(_restScale, new Vector3(
+                    pose.Scale.x + breath * 0.008f + _punch * 0.025f,
+                    pose.Scale.y - breath * 0.007f - _punch * 0.022f, 1f));
+                _body.transform.localRotation = _restRotation * Quaternion.Euler(0f, 0f,
+                    pose.Roll + breath * (_casting ? 0.8f : 0.35f));
             }
 
             if (_current != _body.sprite)
@@ -217,6 +260,13 @@ namespace _02.Scripts.Monster.BossMonster
 
         private void OnDisable()
         {
+            ClearPatternMotion();
+            if (_initialized && _body != null && _body.transform != transform)
+            {
+                _body.transform.localPosition = _restPosition;
+                _body.transform.localScale = _restScale;
+                _body.transform.localRotation = _restRotation;
+            }
             if (_rim != null)
                 _rim.enabled = false;
         }

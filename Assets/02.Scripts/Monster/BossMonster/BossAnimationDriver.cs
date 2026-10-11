@@ -47,6 +47,14 @@ namespace _02.Scripts.Monster.BossMonster
         private bool _looping;
         private bool _chargeHolding;
         private float _chargeBuildTime;
+        private bool _attackHolding;
+        private bool _pendingStrike;
+        private int _strikeCount;
+        private int _releaseStage = 2;
+        private float _lastStrikeAt = -1000f;
+        private float _patternAge;
+        private float _patternWarning;
+        private BossEncounterMove _activeMove;
         public bool IsHit => Time.time < _hitUntil;
         public bool IsAttacking => _attacking;
 
@@ -114,6 +122,8 @@ namespace _02.Scripts.Monster.BossMonster
 
         public void BeginPattern(BossEncounterMove move, float warning)
         {
+            if (_dead || !_ready || move == null)
+                return;
             if (_motionUpgrade != null)
             {
                 _motionUpgrade.SelectPattern(move.Kind);
@@ -121,6 +131,12 @@ namespace _02.Scripts.Monster.BossMonster
             }
             _stage = -1;
             _chargeHolding = false;
+            _attackHolding = false;
+            _pendingStrike = false;
+            _strikeCount = 0;
+            _releaseStage = 2;
+            _lastStrikeAt = -1000f;
+            _activeMove = move;
             _chargeBuildTime = Mathf.Min(warning, 0.85f);
             _hitUntil = 0f;
             _attacking = true;
@@ -132,18 +148,32 @@ namespace _02.Scripts.Monster.BossMonster
 
         public void UpdatePattern(BossEncounterMove move, float age, float warning, float finishAt, bool ending)
         {
-            if (_dead || !_ready)
+            if (_dead || !_ready || move == null)
                 return;
+            _patternAge = age;
+            _patternWarning = warning;
             int stage = ending ? 2 : age < warning ? 0 : 1;
             if (stage != _stage)
             {
                 bool continueChannel = _motionUpgrade == null && _stage == 0 && _chargeHolding && stage == 1;
                 _stage = stage;
                 _chargeHolding = false;
+                _attackHolding = false;
+                _releaseStage = 2;
+                if (_stage == 1 && _motionUpgrade != null && _motionUpgrade.HasPatternMotions)
+                {
+                    _motionUpgrade.SetStage(2);
+                    _attackHolding = !_motionUpgrade.IsStageLooping;
+                }
                 if (!continueChannel)
                     PlayStage(move, warning);
                 else if (_motionDirection != _direction)
                     PlayStage(move, warning, Mathf.Repeat(CurrentPhase(), 1f));
+                if (_stage == 1 && _pendingStrike)
+                {
+                    _pendingStrike = false;
+                    PulseStrike(move);
+                }
             }
             else if (_motionDirection != _direction)
             {
@@ -165,21 +195,33 @@ namespace _02.Scripts.Monster.BossMonster
                 AnimatorStateInfo state = _animator.GetCurrentAnimatorStateInfo(0);
                 if (state.fullPathHash == _hash && !state.loop && state.normalizedTime >= 0.97f)
                 {
-                    if (_looping)
+                    if (_motionUpgrade != null && _motionUpgrade.HasPatternMotions && _stage == 1 && !_attackHolding)
+                    {
+                        _attackHolding = true;
+                        PlayStage(move, warning);
+                    }
+                    else if (_looping)
+                    {
                         Play(_hash, 1f, true);
+                    }
                     else
+                    {
                         Play(_states[0, _direction], 0.88f, false);
+                    }
                 }
             }
 
             SetParameters();
+            UpdateVisualMotion();
         }
 
         private void PlayStage(BossEncounterMove move, float warning, float normalized = 0f)
         {
             if (_motionUpgrade != null)
             {
-                _motionUpgrade.SetHolding(_chargeHolding);
+                int motionStage = _stage == 2 ? 3 : _chargeHolding || _attackHolding ? 1
+                    : _stage == 0 ? 0 : _releaseStage;
+                _motionUpgrade.SetStage(motionStage);
                 _motionUpgrade.CopyClipLengths(_clipLengths);
             }
             string motion = _stage == 0 && !_chargeHolding ? move.AnimationMotion : _stage == 1 || _chargeHolding ? move.LoopMotion : move.EndMotion;
@@ -192,6 +234,8 @@ namespace _02.Scripts.Monster.BossMonster
             }
 
             _looping = _stage == 1 || _chargeHolding;
+            if (_motionUpgrade != null && _motionUpgrade.HasPatternMotions)
+                _looping = _motionUpgrade.IsStageLooping;
             _motionDirection = _direction;
             float speed = _stage == 0 && !_chargeHolding ? length / Mathf.Max(0.1f, _chargeBuildTime) : _stage == 2 ? length / 0.34f : 1f;
             Play(hash, Mathf.Clamp(speed, 0.08f, 5f), true, normalized);
@@ -201,15 +245,56 @@ namespace _02.Scripts.Monster.BossMonster
         {
             _stage = -1;
             _chargeHolding = false;
+            _attackHolding = false;
+            _pendingStrike = false;
+            _activeMove = null;
             _attacking = false;
             _looping = false;
+            if (_visual != null)
+                _visual.ClearPatternMotion();
             Locomotion(false);
         }
 
         public void PulseStrike(BossEncounterMove move)
         {
-            // Damage pulses can occur many times per cast. BossVisualPolish.Pulse
-            // supplies recoil/emission; the sprite channel must stay uninterrupted.
+            if (_dead || !_ready || !_attacking || move == null || _activeMove == null
+                || move.Kind != _activeMove.Kind || _stage == 2)
+            {
+                return;
+            }
+
+            if (_stage == 0)
+            {
+                _pendingStrike = true;
+                return;
+            }
+            if (_stage != 1 || Time.time < _lastStrikeAt + 0.18f)
+                return;
+            _lastStrikeAt = Time.time;
+            _strikeCount++;
+            if (_motionUpgrade != null && _motionUpgrade.HasPatternMotions)
+            {
+                _motionUpgrade.SetStage(2);
+                // A beam or orbit continues its cast; discrete strikes alternate
+                // release and follow-through poses at the actual attack events.
+                if (!_motionUpgrade.IsStageLooping)
+                {
+                    _attackHolding = false;
+                    _releaseStage = (_strikeCount & 1) == 0 ? 4 : 2;
+                    PlayStage(move, _patternWarning);
+                }
+            }
+            UpdateVisualMotion();
+        }
+
+        private void UpdateVisualMotion()
+        {
+            if (_visual == null || _activeMove == null)
+                return;
+            float angle = (_direction * 45f - 90f) * Mathf.Deg2Rad;
+            _visual.PatternMotion(_activeMove.Kind, _stage, _chargeHolding || _attackHolding,
+                _patternAge, _patternWarning, new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)),
+                _strikeCount, _lastStrikeAt);
         }
 
         public void Hit()
@@ -225,6 +310,10 @@ namespace _02.Scripts.Monster.BossMonster
 
         public void Phase()
         {
+            _activeMove = null;
+            _pendingStrike = false;
+            if (_visual != null)
+                _visual.ClearPatternMotion();
             if (_motionUpgrade != null)
             {
                 _motionUpgrade.SelectPhase();
@@ -241,6 +330,10 @@ namespace _02.Scripts.Monster.BossMonster
         public void Death()
         {
             _dead = true;
+            _activeMove = null;
+            _pendingStrike = false;
+            if (_visual != null)
+                _visual.ClearPatternMotion();
             _hitUntil = 0f;
             _moving = false;
             _attacking = false;
@@ -320,6 +413,13 @@ namespace _02.Scripts.Monster.BossMonster
 
         private float FindLength(int hash)
         {
+            // Override clip lengths change for every pattern and release pose.
+            // Consult the current bindings before the constructor's fallback cache.
+            foreach (KeyValuePair<string, float> clip in _clipLengths)
+            {
+                if (Animator.StringToHash("Base Layer." + clip.Key) == hash)
+                    return clip.Value;
+            }
             for (int row = 0; row < 7; row++)
             {
                 for (int d = 0; d < 8; d++)
@@ -327,11 +427,6 @@ namespace _02.Scripts.Monster.BossMonster
                     if (_states[row, d] == hash)
                         return _lengths[row, d];
                 }
-            }
-            foreach (KeyValuePair<string, float> clip in _clipLengths)
-            {
-                if (Animator.StringToHash("Base Layer." + clip.Key) == hash)
-                    return clip.Value;
             }
             return 1f;
         }
