@@ -4,8 +4,9 @@ using UnityEngine;
 public class BlackHole : Effect
 {
     [SerializeField] private SFXType _spawnSfxType;
-    [SerializeField] private float _damage;
     [SerializeField] private Vector3 _scale;
+
+    private float _damage;
 
     private Animator _animator;
     private const string EndAnimationKey = "End";
@@ -42,12 +43,11 @@ public class BlackHole : Effect
         CheckLifeTime();
     }
 
-    public override void OnSpawn(float lifeTime)
+    public override void OnSpawn()
     {
         AudioManager.Instance.PlaySFX(_spawnSfxType);
         transform.localScale = _scale;
         _aleadyEnd = false;
-        _lifeDuration = lifeTime;
         _lifeTimer = _lifeDuration;
     }
 
