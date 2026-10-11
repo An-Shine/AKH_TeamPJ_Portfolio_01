@@ -987,6 +987,14 @@ public class NormalMonster : MonoBehaviour
 
     #region 피격과 사망
 
+    public bool TryTakeDamage(float damage)
+    {
+        float previousHealth = _currentHealth;
+        // 기존 파생 클래스의 피격/사망 처리를 그대로 거칩니다.
+        TakeDamage(damage);
+        return _currentHealth < previousHealth;
+    }
+
     public virtual void TakeDamage(float damage)
     {
         if (_normalIsDead || _normalHitCooldownTimer > 0f || damage <= 0f || float.IsNaN(damage) || float.IsInfinity(damage))

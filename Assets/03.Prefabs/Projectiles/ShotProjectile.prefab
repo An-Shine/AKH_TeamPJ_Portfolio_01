@@ -129,6 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55abc73b27304ff0a6e4260f56f2d6c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NormalProjectile
+  _hitEffectPrefab: {fileID: 7430092777275873676, guid: 66a2349ec36701e4d89461738b18ef79, type: 3}
 --- !u!60 &1304806318239912140
 PolygonCollider2D:
   m_ObjectHideFlags: 0

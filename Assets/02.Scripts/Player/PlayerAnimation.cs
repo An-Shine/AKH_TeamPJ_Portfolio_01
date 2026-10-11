@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
+[DefaultExecutionOrder(-100)]
 public class PlayerAnimation : MonoBehaviour
 {
     [System.Serializable]
@@ -38,8 +39,10 @@ public class PlayerAnimation : MonoBehaviour
     [SerializeField] private SpriteRenderer _gunRenderer;
     [SerializeField] private List<GunSpriteSet> _gunSprites = new List<GunSpriteSet>();
     private Animator _animator;
+
     private readonly int[,] _hashes = new int[System.Enum.GetValues(typeof(Motion)).Length,
         System.Enum.GetValues(typeof(FacingDirection)).Length];
+
     private int _lastHash;
     private Motion _lastMotion;
     private bool _hasPlayed;
@@ -49,6 +52,88 @@ public class PlayerAnimation : MonoBehaviour
     private bool _hasGunSelection;
     private Sprite _lastGunSprite;
     private bool _isDead;
+    [SerializeField] private float _recoilDistance = 0.045f;
+    [SerializeField] private float _recoilAngle = 16f;
+    [SerializeField] private float _recoilDuration = 0.08f;
+    private Weapon _recoilWeapon;
+    private int _recoilShotSequence;
+    private float _recoilStartedAt = float.NegativeInfinity;
+    private Vector3 _gunBasePosition;
+    private Quaternion _gunBaseRotation;
+    private bool _recoilApplied;
+
+    private void Update()
+    {
+        // 입력/발사 계산과 Animator 갱신 전에 이전 프레임의 시각 반동을 제거합니다.
+        RestoreGunPose();
+    }
+
+    private void LateUpdate()
+    {
+        Weapon weapon = WeaponManager.Instance != null ? WeaponManager.Instance.CurrentWeapon : null;
+        if (weapon != _recoilWeapon)
+        {
+            ResetRecoil();
+            _recoilWeapon = weapon;
+            _recoilShotSequence = weapon != null ? weapon.ShotSequence : 0;
+            if (weapon != null && weapon.LastShotFrame == Time.frameCount)
+            {
+                _recoilStartedAt = Time.time;
+            }
+        }
+
+        if (weapon == null || _gunRenderer == null) return;
+        if (weapon.ShotSequence != _recoilShotSequence)
+        {
+            _recoilShotSequence = weapon.ShotSequence;
+            // 연사 중에도 누적하지 않고 같은 최대 반동에서 복귀합니다.
+            _recoilStartedAt = Time.time;
+        }
+
+        if (_isDead || weapon.IsReloading || PlayerManager.IsInputBlocked || !_gunRenderer.enabled)
+        {
+            ResetRecoil();
+            return;
+        }
+
+        float progress = (Time.time - _recoilStartedAt) / Mathf.Max(0.01f, _recoilDuration);
+        if (progress >= 1f || weapon.OriginPoint == null || weapon.FirePoint == null) return;
+
+        Vector2 direction = ((Vector2)(weapon.FirePoint.position - weapon.OriginPoint.position)).normalized;
+        float strength = (1f - Mathf.Clamp01(progress));
+        strength *= strength;
+
+        Transform gun = _gunRenderer.transform;
+        _gunBasePosition = gun.localPosition;
+        _gunBaseRotation = gun.localRotation;
+
+        Vector3 offset = -(Vector3)direction * (_recoilDistance * strength);
+        gun.localPosition += gun.parent != null ? gun.parent.InverseTransformVector(offset) : offset;
+
+        float sign = direction.x < 0f ? -1f : 1f;
+        gun.localRotation = _gunBaseRotation * Quaternion.Euler(0f, 0f, sign * _recoilAngle * strength);
+        _recoilApplied = true;
+    }
+
+    private void RestoreGunPose()
+    {
+        if (!_recoilApplied || _gunRenderer == null) return;
+        _gunRenderer.transform.localPosition = _gunBasePosition;
+        _gunRenderer.transform.localRotation = _gunBaseRotation;
+        _recoilApplied = false;
+    }
+
+    private void ResetRecoil()
+    {
+        RestoreGunPose();
+        _recoilStartedAt = float.NegativeInfinity;
+    }
+
+    private void OnDisable()
+    {
+        ResetRecoil();
+        _recoilWeapon = null;
+    }
 
     private void Awake()
     {
@@ -81,12 +166,14 @@ public class PlayerAnimation : MonoBehaviour
 
     public void BeginInteraction()
     {
+        ResetRecoil();
         _reloadUntil = 0f;
         _hasPlayed = false;
     }
 
     public void PlayReload(float duration)
     {
+        ResetRecoil();
         if (duration <= 0f)
         {
             return;
@@ -98,6 +185,7 @@ public class PlayerAnimation : MonoBehaviour
 
     public void Refresh(PlayerState state, FacingDirection facing, bool isAttacking, int shotSequence)
     {
+        if (state == PlayerState.Dash || state == PlayerState.Interact) ResetRecoil();
         if (state == PlayerState.Die) PlayDie();
         if (_isDead) return;
         // 상호작용 클립의 무기 숨김은 유지하고, 종료 후에는 선택한 스프라이트를 복원합니다.
@@ -119,7 +207,8 @@ public class PlayerAnimation : MonoBehaviour
         }
 
         int hash = _hashes[(int)motion, (int)facing];
-        if ((motion == Motion.Reload || motion == Motion.RunReload || motion == Motion.Interact) && !_animator.HasState(0, hash))
+        if ((motion == Motion.Reload || motion == Motion.RunReload || motion == Motion.Interact) &&
+            !_animator.HasState(0, hash))
         {
             hash = _hashes[(int)motion, (int)FacingDirection.Down];
         }
@@ -146,7 +235,7 @@ public class PlayerAnimation : MonoBehaviour
         bool wasReloadMotion = _lastMotion == Motion.Reload || _lastMotion == Motion.RunReload;
         // 공격/재장전 중 이동 여부가 바뀌어도 현재 재생 진행도를 유지합니다.
         if (_hasPlayed && (motion == _lastMotion || (attackMotion && wasAttackMotion) ||
-                          (reloadMotion && wasReloadMotion)))
+                           (reloadMotion && wasReloadMotion)))
         {
             AnimatorStateInfo info = _animator.GetCurrentAnimatorStateInfo(0);
             normalizedTime = info.loop
@@ -162,6 +251,7 @@ public class PlayerAnimation : MonoBehaviour
 
     public void PlayDie()
     {
+        ResetRecoil();
         if (_isDead) return;
         _isDead = true;
         _reloadUntil = 0f;

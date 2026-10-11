@@ -22,6 +22,8 @@ public class Weapon : MonoBehaviour
     public bool IsReloading => _isReloading;
     private int _remainingAmmo;
     public int RemainingAmmo => _remainingAmmo;
+    public int ShotSequence { get; private set; }
+    public int LastShotFrame { get; private set; } = -1;
     private float _timer;
     private float _fireTimer;
     private float _reloadTimer;
@@ -131,6 +133,9 @@ public class Weapon : MonoBehaviour
         _fireTimer = 0;
 
         _remainingAmmo--;
+
+        ShotSequence++;
+        LastShotFrame = Time.frameCount;
 
         return true;
     }
