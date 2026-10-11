@@ -21,14 +21,14 @@ public class BlackHole : Effect
     {
         if (!gameObject.TryGetComponent(out _animator))
         {
-            Destroy(gameObject);
+            EffectSpawner.Instance.Release(this);
             return;
         }
 
         GameObject child = transform.GetChild(0).gameObject;
         if (!child.TryGetComponent(out _blackHoleDamageControl))
         {
-            Destroy(gameObject);
+            EffectSpawner.Instance.Release(this);
         }
     }
 
