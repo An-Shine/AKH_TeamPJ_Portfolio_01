@@ -23,6 +23,8 @@ public class LootSpawner : MonoBehaviour
     [Header("Evade Layer")]
     [SerializeField] private LayerMask _nonTargetLayerMask;
 
+    private List<RoomId> _spawnDoneRoomIds;
+
     private void Awake()
     {
         if (_instance != null)
@@ -56,7 +58,8 @@ public class LootSpawner : MonoBehaviour
             _gridInfoDictionary[lootSpawnInfo.RoomId] = CreateGridInfo(lootSpawnInfo.RoomId);
         }
 
-        Invoke("SpawnTest", 1f);
+        _spawnDoneRoomIds = new List<RoomId>();
+        //Invoke("SpawnTest", 1f);
     }
 
     public void SpawnTest()
@@ -97,6 +100,8 @@ public class LootSpawner : MonoBehaviour
 
     public void SpawnLoot(RoomId roomId)
     {
+        if (_spawnDoneRoomIds.Contains(roomId)) return;
+
         int repeat;
         Vector3 spawnPosition;
 
@@ -115,6 +120,8 @@ public class LootSpawner : MonoBehaviour
             spawnPosition = GetPosition(roomId);
             SpawnItem(spawnPosition);
         }
+
+        _spawnDoneRoomIds.Add(roomId);
     }
 
     private Vector3 GetPosition(RoomId roomId)
