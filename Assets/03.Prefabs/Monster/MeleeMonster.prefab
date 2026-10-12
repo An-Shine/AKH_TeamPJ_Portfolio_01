@@ -64,7 +64,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: f1b3dd9d1e6c54a19b1aa2c078ce1c60, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -109,6 +109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a0d91a31eeb9994d90ed8efe7a2423e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeMonster
+  _useCombatTactics: 1
+  _useCoordinatedAttacks: 1
   _maxHealth: 150
   _moveSpeed: 2
   _contactDamage: 30
@@ -206,18 +208,19 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.48279667, y: 0.73218894}
-      - {x: -0.78659296, y: 0.41656336}
-      - {x: -0.9846666, y: -0.20079705}
-      - {x: -0.97651243, y: -0.78525794}
-      - {x: -0.37582994, y: -1.1152878}
-      - {x: 0.019680977, y: -1.2380443}
-      - {x: 0.603171, y: -1.0693048}
-      - {x: 0.9649857, y: -0.8109137}
-      - {x: 1.1125946, y: -0.22234833}
-      - {x: 1.0115877, y: 0.3592044}
-      - {x: 0.5987297, y: 0.7182001}
-      - {x: 0.15744925, y: 0.97234833}
+    - - {x: -0.29540443, y: 0.39685535}
+      - {x: -0.46112204, y: 0.11081797}
+      - {x: -0.65919566, y: -0.22052252}
+      - {x: -0.5425513, y: -0.4203361}
+      - {x: -0.24761415, y: -0.4544834}
+      - {x: -0.103767395, y: -0.6164951}
+      - {x: 0.07885742, y: -0.567377}
+      - {x: 0.3763275, y: -0.52685344}
+      - {x: 0.45212233, y: -0.39667803}
+      - {x: 0.619457, y: -0.11385803}
+      - {x: 0.49872446, y: 0.19153757}
+      - {x: 0.28312147, y: 0.41245478}
+      - {x: -0.020080328, y: 0.5285244}
   m_UseDelaunayMesh: 1
 --- !u!50 &7013926720832336473
 Rigidbody2D:
