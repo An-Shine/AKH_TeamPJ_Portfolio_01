@@ -59,7 +59,7 @@ public class CrosshairFollowMouse : MonoBehaviour
         {
             Weapon weapon = WeaponManager.Instance != null ? WeaponManager.Instance.CurrentWeapon : null;
             _image.color = weapon != null && weapon.RemainingAmmo <= 0
-                ? new Color(0f, 0f, 0f, _baseColor.a)
+                ? new Color(1f, 0f, 0f, _baseColor.a)
                 : _baseColor;
         }
 

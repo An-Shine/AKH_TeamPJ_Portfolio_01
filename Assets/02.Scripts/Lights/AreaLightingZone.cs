@@ -9,6 +9,9 @@ public class AreaLightingZone : MonoBehaviour
     [Header("매니저")]
     [SerializeField] private AreaLightManager _areaLightManager;
 
+    [SerializeField] private RoomId _roomId;
+    [SerializeField] private bool _isItemRoom;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         var rb = collision.attachedRigidbody;
@@ -16,6 +19,7 @@ public class AreaLightingZone : MonoBehaviour
         if (rb == null || !rb.CompareTag("Player")) return;
 
         _areaLightManager.EnterZone(this);
+        LootSpawn();
     }
 
     public void ActivateLighting()
@@ -35,5 +39,15 @@ public class AreaLightingZone : MonoBehaviour
 
             lightObject.enabled = false;
         }
+    }
+
+    private void LootSpawn()
+    {
+        if (!_isItemRoom) return;
+
+        LootSpawner spawner = LootSpawner.Instance;
+        if (spawner == null) return;
+
+        spawner.SpawnLoot(_roomId);
     }
 }
