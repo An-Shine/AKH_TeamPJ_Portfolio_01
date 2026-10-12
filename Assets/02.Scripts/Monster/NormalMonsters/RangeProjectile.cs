@@ -47,10 +47,20 @@ public class RangeProjectile : MonoBehaviour
     private NormalMonsterGameFeel _gameFeel;
     private SpriteRenderer _trailRenderer;
     private float _nextTrailTime;
+    private RangeAttackPattern _pattern;
+    private RangePatternVfx _patternVfx;
+    private bool _hasPatternVisual;
     private void Awake()
     {
         _body = GetComponent<Rigidbody2D>();
         _trailRenderer = GetComponentInChildren<SpriteRenderer>(true);
+        if (_trailRenderer != null)
+        {
+            Material material = Resources.Load<Material>(RangePatternVfx.ResourceRoot + "RangePatternUnlit");
+            if (material != null && material.shader != null && material.shader.isSupported)
+                _trailRenderer.sharedMaterial = material;
+        }
+
         _colliders = GetComponentsInChildren<Collider2D>(true);
         foreach (Collider2D bodyCollider in _colliders)
         {
@@ -67,6 +77,44 @@ public class RangeProjectile : MonoBehaviour
         _filter = new ContactFilter2D();
         _filter.SetLayerMask(_hitLayers);
         _filter.useTriggers = true;
+    }
+
+    public void ConfigurePattern(RangeAttackPattern pattern, float speedMultiplier, SpriteRenderer ownerRenderer)
+    {
+        if (!float.IsNaN(speedMultiplier) && !float.IsInfinity(speedMultiplier))
+            _moveSpeed *= Mathf.Clamp(speedMultiplier, 0.6f, 1.5f);
+        _pattern = pattern;
+        _lifeTime = Mathf.Min(_lifeTime, 2.1f);
+        _impactColor = RangeAttackPatterns.Color(pattern);
+        Sprite sprite = RangePatternVfx.GetSprite(pattern, RangePatternSprite.Projectile);
+        if (sprite == null)
+            return;
+        _patternVfx = RangePatternVfx.ForScene(gameObject.scene);
+        if (_patternVfx.SpriteMaterial == null)
+            return;
+        int sortingLayer = ownerRenderer != null ? ownerRenderer.sortingLayerID : _trailRenderer != null ? _trailRenderer.sortingLayerID : 0;
+        int sortingOrder = ownerRenderer != null ? ownerRenderer.sortingOrder : _trailRenderer != null ? _trailRenderer.sortingOrder : 0;
+        GameObject visual = new GameObject("RangePatternProjectileBody");
+        visual.transform.SetParent(transform, false);
+        visual.layer = gameObject.layer;
+        SpriteRenderer patternRenderer = visual.AddComponent<SpriteRenderer>();
+        patternRenderer.sharedMaterial = _patternVfx.SpriteMaterial;
+        patternRenderer.sprite = sprite;
+        patternRenderer.color = Color.white;
+        patternRenderer.sortingLayerID = sortingLayer;
+        patternRenderer.sortingOrder = sortingOrder + 17;
+        // 캐릭터와 물리 콜라이더는 확대하지 않고 새 탄환 이미지에만 크기를 적용합니다.
+        float rootScale = Mathf.Max(0.001f, Mathf.Abs(transform.lossyScale.x));
+        visual.transform.localScale = Vector3.one * (0.46f / Mathf.Max(0.01f, sprite.bounds.size.x) / rootScale);
+        // 새 이미지와 재질이 준비된 뒤에 기존 탄환 그림만 끕니다.
+        foreach (SpriteRenderer renderer in GetComponentsInChildren<SpriteRenderer>(true))
+        {
+            if (renderer != patternRenderer)
+                renderer.enabled = false;
+        }
+
+        _trailRenderer = patternRenderer;
+        _hasPatternVisual = true;
     }
 
     public void Initialize(Vector2 direction, Transform owner, Transform player)
@@ -198,7 +246,12 @@ public class RangeProjectile : MonoBehaviour
             transform.position = new Vector3(position.x, position.y, transform.position.z);
         }
 
-        if (!_hasImpacted && _gameFeel != null && _gameFeel.IsConfigured && Time.time >= _nextTrailTime)
+        if (!_hasImpacted && Time.time >= _nextTrailTime && _hasPatternVisual && _patternVfx != null)
+        {
+            _nextTrailTime = Time.time + 0.075f;
+            _patternVfx.Trail(_pattern, new Vector3(position.x, position.y, transform.position.z), _direction, _trailRenderer);
+        }
+        else if (!_hasImpacted && !_hasPatternVisual && _gameFeel != null && _gameFeel.IsConfigured && Time.time >= _nextTrailTime)
         {
             _nextTrailTime = Time.time + _gameFeel.TrailInterval;
             _gameFeel.ProjectileTrail(_trailRenderer, new Vector3(position.x, position.y, transform.position.z), _direction);
@@ -285,6 +338,19 @@ public class RangeProjectile : MonoBehaviour
         Vector3 hitPosition = new Vector3(point.x, point.y, transform.position.z);
         Transform player = MonsterCombat.ResolvePlayerCollider(other, _player);
         bool enhanced = _gameFeel != null && _gameFeel.IsConfigured;
+        if (_hasPatternVisual && _patternVfx != null)
+        {
+            bool damaged = player == null || MonsterCombat.TryTakePlayerDamage(player, _damage, hitPosition,
+                _direction, _impactColor, false);
+            _patternVfx.Impact(_pattern, hitPosition, _direction, _trailRenderer, damaged);
+            if (enhanced)
+                _gameFeel.RangePatternImpact(hitPosition, damaged);
+            else if (player == null || damaged)
+                PlaySound(player != null ? _playerHitSound : _obstacleHitSound, hitPosition);
+            Destroy(gameObject);
+            return;
+        }
+
         if (player != null)
         {
             bool damaged = MonsterCombat.TryTakePlayerDamage(player, _damage, hitPosition, _direction, _impactColor, !enhanced && _impactEffectPrefab == null);

@@ -1,0 +1,277 @@
+fileFormatVersion: 2
+guid: a603594d944154f39ff3568adc62ab0d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: Projectile
+  - first:
+      213: 21300001
+    second: Muzzle
+  - first:
+      213: 21300002
+    second: Impact
+  - first:
+      213: 21300003
+    second: Trail
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot:
+    x: 0.5
+    y: 0.5
+  spritePixelsToUnits: 1024
+  spriteBorder:
+    x: 0
+    y: 0
+    z: 0
+    w: 0
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Projectile
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 795
+        width: 448
+        height: 197
+      alignment: 9
+      pivot:
+        x: 0.6515983928068553
+        y: 0.49887713048587146
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43a43b17803251ddace0761a220c507e
+      internalID: 21300000
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Muzzle
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 717
+        width: 457
+        height: 365
+      alignment: 9
+      pivot:
+        x: 0.24267098888441713
+        y: 0.509092021303033
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de9fde9d99e9586b9d93a6a25cd9344b
+      internalID: 21300001
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Impact
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 91
+        width: 504
+        height: 493
+      alignment: 9
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8d978f2006b5e31994dbe726daad4ac
+      internalID: 21300002
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Trail
+      rect:
+        serializedVersion: 2
+        x: 698
+        y: 235
+        width: 493
+        height: 161
+      alignment: 9
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e769ba3baca5186b8d42b9529af4f08
+      internalID: 21300003
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    outline: []
+    customData: null
+    physicsShape: []
+    bones: []
+    spriteID: 0de1be31d8195cbb87b55710710ca5c6
+    internalID: 0
+    vertices: []
+    indices: null
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Projectile: 21300000
+      Muzzle: 21300001
+      Impact: 21300002
+      Trail: 21300003
+  mipmapLimitGroupName: null
+  pSDRemoveMatte: 0
+  userData: null
+  assetBundleName: null
+  assetBundleVariant: null
