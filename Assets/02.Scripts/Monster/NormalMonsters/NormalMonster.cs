@@ -1004,11 +1004,9 @@ public class NormalMonster : MonoBehaviour
 #endif
         body.angularVelocity = 0f;
     }
-
     #endregion
 
     #region 피격과 사망
-
     public virtual void TakeDamage(float damage)
     {
         if (_normalIsDead || _normalHitCooldownTimer > 0f || damage <= 0f || float.IsNaN(damage) ||
@@ -1025,8 +1023,12 @@ public class NormalMonster : MonoBehaviour
             Die();
             return;
         }
-
-        PlayHitFlash();
+        Vector2 hitDirection = _player != null ? (Vector2)(transform.position - _player.position) : Vector2.up;
+        bool enhancedHit = _normalHitGameFeel != null && _normalHitGameFeel.ReceiveHit(hitDirection, _currentHealth <= 0f);
+        if (!enhancedHit)
+        {
+            PlayHitFlash();
+        }
         OnHit();
     }
 
