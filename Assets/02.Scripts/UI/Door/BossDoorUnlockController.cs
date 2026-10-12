@@ -11,7 +11,7 @@ public class BossDoorUnlockController : MonoBehaviour
     {
         if (_isUnlocked) return;
 
-        if (_dataCollectionUI.CollectedCount < 2) return;
+        if (_dataCollectionUI.CollectedCount < _dataCollectionUI.MaxCollectCount) return;
 
         _isUnlocked = true;
         _doorController.Open();
