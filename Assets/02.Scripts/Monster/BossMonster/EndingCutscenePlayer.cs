@@ -13,6 +13,7 @@ public class EndingCutscenePlayer : MonoBehaviour
     [SerializeField] private Behaviour[] _disableDuringEnding;
     [SerializeField] private string _nextSceneName;
     [SerializeField] private UnityEvent _onFinished;
+    [SerializeField] private GameStateManager _gameStateManager;
 
     private VideoPlayer _videoPlayer;
     private float _previousTimeScale;
@@ -58,6 +59,19 @@ public class EndingCutscenePlayer : MonoBehaviour
             !Application.CanStreamedLevelBeLoaded(_nextSceneName))
         {
             Debug.LogError($"다음 씬을 빌드 씬 목록에 추가하세요: {_nextSceneName}", this);
+            return;
+        }
+
+        if (_gameStateManager == null)
+        {
+            Debug.LogError("GameStateManager 확인하세요", this);
+            return;
+        }
+
+        _gameStateManager.BeginEnding();
+
+        if (_gameStateManager.CurrentState != GameStateManager.GameState.Ending)
+        {
             return;
         }
 
@@ -123,19 +137,13 @@ public class EndingCutscenePlayer : MonoBehaviour
 
     private void OnVideoFinished(VideoPlayer player)
     {
-        if (!_paused)
-        {
-            return;
-        }
+        if (!_paused) return;
+        _paused = false;
 
-        if (!string.IsNullOrWhiteSpace(_nextSceneName))
-        {
-            RestoreTimeScale();
-            SceneManager.LoadScene(_nextSceneName);
-            return;
-        }
+        _videoPlayer.Stop();
+        _endingCanvas.SetActive(false);
 
-        _onFinished.Invoke();
+        _gameStateManager.CompleteGame();
     }
 
     private void OnVideoError(VideoPlayer player, string message)
