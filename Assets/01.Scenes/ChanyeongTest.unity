@@ -31261,6 +31261,7 @@ GameObject:
   - component: {fileID: 1163682256}
   - component: {fileID: 1163682255}
   - component: {fileID: 1163682254}
+  - component: {fileID: 1163682257}
   m_Layer: 5
   m_Name: UI_TooltipPanel
   m_TagString: Untagged
@@ -31349,6 +31350,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1163682252}
   m_CullTransparentMesh: 1
+--- !u!114 &1163682257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163682252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 227e18457ec84c2895b1707a12c1c24a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TooltipAnimationEventReceiver
 --- !u!1 &1166566946
 GameObject:
   m_ObjectHideFlags: 0
@@ -37340,6 +37353,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1313276590831294669, guid: b5f335e30d5aa2344bc4adefae59483a, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a916c804229e4e54b8352abf848c6460, type: 2}
     - target: {fileID: 1666053433102001330, guid: b5f335e30d5aa2344bc4adefae59483a, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -37359,6 +37376,14 @@ PrefabInstance:
     - target: {fileID: 3852817395504386140, guid: b5f335e30d5aa2344bc4adefae59483a, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4150041566731573994, guid: b5f335e30d5aa2344bc4adefae59483a, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4150041566731573994, guid: b5f335e30d5aa2344bc4adefae59483a, type: 3}
+      propertyPath: m_Color.g
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5819182594994543154, guid: b5f335e30d5aa2344bc4adefae59483a, type: 3}
       propertyPath: m_Name
