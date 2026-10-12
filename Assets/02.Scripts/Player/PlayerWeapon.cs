@@ -39,7 +39,11 @@ public class PlayerWeapon : MonoBehaviour
 
         if (isDashing || Time.timeScale <= 0f)
         {
-            TickCharge(false);
+            if (_activeWeapon.Data.BehaviourType == FireBehaviourType.Continuous)
+            {
+                TickCharge(false);
+                _wasFireHeld = false;
+            }
             CancelAttackVisual();
             return;
         }
@@ -113,7 +117,7 @@ public class PlayerWeapon : MonoBehaviour
     public void CancelAttackVisual()
     {
         _attackVisualUntil = 0f;
-        _wasFireHeld = false;
+        //_wasFireHeld = false;
         _chargeTime = 0f;
     }
 
