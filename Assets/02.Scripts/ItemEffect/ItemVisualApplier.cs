@@ -28,8 +28,12 @@ public static class ItemVisualApplier
                 GameObject visualObject = child.transform.GetChild(0).gameObject;
                 if (visualObject.TryGetComponent(out SpriteRenderer spriteRenderer))
                 {
-                    Color color = spriteRenderer.color;
-                    color.r += itemData.VisualValue;
+                    float otherColor = itemData.VisualValue;
+                    if (otherColor >= 1f)
+                    {
+                        otherColor = 1f;
+                    }
+                    Color color = new Color(1f, otherColor, otherColor, 1f);
                     spriteRenderer.color = color;
                 }
 
