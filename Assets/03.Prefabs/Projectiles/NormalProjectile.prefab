@@ -130,6 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NormalProjectile
   _effectProbability: 5
+  _hitEffectPrefab: {fileID: 7430092777275873676, guid: 66a2349ec36701e4d89461738b18ef79, type: 3}
 --- !u!70 &3858727750077348127
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
