@@ -1,0 +1,950 @@
+[
+  {
+    "key": "spark",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/Kenney/trace_01.png",
+    "source_pack": "kenney_particles",
+    "source_members": [
+      "PNG (Transparent)/trace_01.png"
+    ],
+    "sha256": "23716fcfb2e2bd59f4882624905b36d5093c6c845961e23468fde055d7595919",
+    "columns": 1,
+    "rows": 1,
+    "frames": 1,
+    "frame_width": 512,
+    "frame_height": 512,
+    "author": "Kenney",
+    "source_url": "https://kenney.nl/assets/particle-pack",
+    "license": "CC0"
+  },
+  {
+    "key": "glint",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/Kenney/star_01.png",
+    "source_pack": "kenney_particles",
+    "source_members": [
+      "PNG (Transparent)/star_01.png"
+    ],
+    "sha256": "cebbc06511bb4f867762e9011f615d6c04b5b2322401f6e7f9b7f033a97dc574",
+    "columns": 1,
+    "rows": 1,
+    "frames": 1,
+    "frame_width": 512,
+    "frame_height": 512,
+    "author": "Kenney",
+    "source_url": "https://kenney.nl/assets/particle-pack",
+    "license": "CC0"
+  },
+  {
+    "key": "glow",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/Kenney/light_01.png",
+    "source_pack": "kenney_particles",
+    "source_members": [
+      "PNG (Transparent)/light_01.png"
+    ],
+    "sha256": "f873ba506afb5eeb8c78bc39f544a49d1e509a9fcee2afede917cab9f95730b9",
+    "columns": 1,
+    "rows": 1,
+    "frames": 1,
+    "frame_width": 512,
+    "frame_height": 512,
+    "author": "Kenney",
+    "source_url": "https://kenney.nl/assets/particle-pack",
+    "license": "CC0"
+  },
+  {
+    "key": "smoke",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/Kenney/smoke_04.png",
+    "source_pack": "kenney_particles",
+    "source_members": [
+      "PNG (Transparent)/smoke_04.png"
+    ],
+    "sha256": "dce3171508b32119099ba3855dfe6097aeb8fe87e89afb6f9fc3eecabb7d76b1",
+    "columns": 1,
+    "rows": 1,
+    "frames": 1,
+    "frame_width": 512,
+    "frame_height": 512,
+    "author": "Kenney",
+    "source_url": "https://kenney.nl/assets/particle-pack",
+    "license": "CC0"
+  },
+  {
+    "key": "dust",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/Kenney/dirt_01.png",
+    "source_pack": "kenney_particles",
+    "source_members": [
+      "PNG (Transparent)/dirt_01.png"
+    ],
+    "sha256": "497ca307ec23d9af8a594f25ee9fa57d0ed314e5a731d1b8b631594bd912049e",
+    "columns": 1,
+    "rows": 1,
+    "frames": 1,
+    "frame_width": 512,
+    "frame_height": 512,
+    "author": "Kenney",
+    "source_url": "https://kenney.nl/assets/particle-pack",
+    "license": "CC0"
+  },
+  {
+    "key": "debris",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/Kenney/dirt_03.png",
+    "source_pack": "kenney_particles",
+    "source_members": [
+      "PNG (Transparent)/dirt_03.png"
+    ],
+    "sha256": "c3ad9cbd42bb7f630c7084905fc491e17c3d29e9dc97a9b979fa8cb2ed17fbac",
+    "columns": 1,
+    "rows": 1,
+    "frames": 1,
+    "frame_width": 512,
+    "frame_height": 512,
+    "author": "Kenney",
+    "source_url": "https://kenney.nl/assets/particle-pack",
+    "license": "CC0"
+  },
+  {
+    "key": "slash",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/Kenney/slash_01.png",
+    "source_pack": "kenney_particles",
+    "source_members": [
+      "PNG (Transparent)/slash_01.png"
+    ],
+    "sha256": "c83794251c4cc1c29fc438578ab8586dc80ac726bd4b8732404e99ac8e8760c8",
+    "columns": 1,
+    "rows": 1,
+    "frames": 1,
+    "frame_width": 512,
+    "frame_height": 512,
+    "author": "Kenney",
+    "source_url": "https://kenney.nl/assets/particle-pack",
+    "license": "CC0"
+  },
+  {
+    "key": "twirl",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/Kenney/twirl_02.png",
+    "source_pack": "kenney_particles",
+    "source_members": [
+      "PNG (Transparent)/twirl_02.png"
+    ],
+    "sha256": "9c9ec088f800214fe85b0bbf87331f6e92aea7519f72d1af2942ecebb0adde06",
+    "columns": 1,
+    "rows": 1,
+    "frames": 1,
+    "frame_width": 512,
+    "frame_height": 512,
+    "author": "Kenney",
+    "source_url": "https://kenney.nl/assets/particle-pack",
+    "license": "CC0"
+  },
+  {
+    "key": "muzzle",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/Kenney/muzzle_03.png",
+    "source_pack": "kenney_particles",
+    "source_members": [
+      "PNG (Transparent)/muzzle_03.png"
+    ],
+    "sha256": "124ffffbc2f99cb938011e3968e2d4e927e8b2ac837c0e6cef4abcb9dd275314",
+    "columns": 1,
+    "rows": 1,
+    "frames": 1,
+    "frame_width": 512,
+    "frame_height": 512,
+    "author": "Kenney",
+    "source_url": "https://kenney.nl/assets/particle-pack",
+    "license": "CC0"
+  },
+  {
+    "key": "shock_ring",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/Kenney/circle_03.png",
+    "source_pack": "kenney_particles",
+    "source_members": [
+      "PNG (Transparent)/circle_03.png"
+    ],
+    "sha256": "31ba18150367b37cac92e42867f440cb732a1e390315fb3d5d8ee382e35d6030",
+    "columns": 1,
+    "rows": 1,
+    "frames": 1,
+    "frame_width": 512,
+    "frame_height": 512,
+    "author": "Kenney",
+    "source_url": "https://kenney.nl/assets/particle-pack",
+    "license": "CC0"
+  },
+  {
+    "key": "flare",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/Kenney/flare_01.png",
+    "source_pack": "kenney_particles",
+    "source_members": [
+      "PNG (Transparent)/flare_01.png"
+    ],
+    "sha256": "3890e3f1f6feaa2e75675dd3dc30eed51dcad02ce247152034e042e94e9ebb2f",
+    "columns": 1,
+    "rows": 1,
+    "frames": 1,
+    "frame_width": 512,
+    "frame_height": 512,
+    "author": "Kenney",
+    "source_url": "https://kenney.nl/assets/particle-pack",
+    "license": "CC0"
+  },
+  {
+    "key": "flame",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/Kenney/flame_01.png",
+    "source_pack": "kenney_particles",
+    "source_members": [
+      "PNG (Transparent)/flame_01.png"
+    ],
+    "sha256": "4e964b3d958f415ca4826f97ed6601c01f7615c9da72659ba7925baaaf132c06",
+    "columns": 1,
+    "rows": 1,
+    "frames": 1,
+    "frame_width": 512,
+    "frame_height": 512,
+    "author": "Kenney",
+    "source_url": "https://kenney.nl/assets/particle-pack",
+    "license": "CC0"
+  },
+  {
+    "key": "bolt_body",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/Kenney/magic_03.png",
+    "source_pack": "kenney_particles",
+    "source_members": [
+      "PNG (Transparent)/magic_03.png"
+    ],
+    "sha256": "7e3957f4519790d1ad7fa17cc4619f9f54a8315b7183ab055f8896404e8ac1d1",
+    "columns": 1,
+    "rows": 1,
+    "frames": 1,
+    "frame_width": 512,
+    "frame_height": 512,
+    "author": "Kenney",
+    "source_url": "https://kenney.nl/assets/particle-pack",
+    "license": "CC0"
+  },
+  {
+    "key": "impact",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/CodeManu/10_weaponhit_spritesheet.png",
+    "source_pack": "codemanu_pixel_fx",
+    "source_members": [
+      "10_weaponhit_spritesheet.png"
+    ],
+    "sha256": "50a947cd91858e0408a74983255bef763a3da28d14aa5fca587d2976328446f8",
+    "columns": 6,
+    "rows": 6,
+    "frames": 31,
+    "frame_width": 100,
+    "frame_height": 100,
+    "author": "CodeManu",
+    "source_url": "https://opengameart.org/content/free-pixel-effects-pack",
+    "license": "CC0"
+  },
+  {
+    "key": "magic_hit",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/CodeManu/5_magickahit_spritesheet.png",
+    "source_pack": "codemanu_pixel_fx",
+    "source_members": [
+      "5_magickahit_spritesheet.png"
+    ],
+    "sha256": "53f28d3bd1ff133ee43b2ad725dbc92053d87b3f34f7e177b0b4587836acdd19",
+    "columns": 7,
+    "rows": 7,
+    "frames": 41,
+    "frame_width": 100,
+    "frame_height": 100,
+    "author": "CodeManu",
+    "source_url": "https://opengameart.org/content/free-pixel-effects-pack",
+    "license": "CC0"
+  },
+  {
+    "key": "nova",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/CodeManu/12_nebula_spritesheet.png",
+    "source_pack": "codemanu_pixel_fx",
+    "source_members": [
+      "12_nebula_spritesheet.png"
+    ],
+    "sha256": "4c62dd20155978257cf52746f8553094eb79b73388417842435338d6d6afe9ed",
+    "columns": 8,
+    "rows": 8,
+    "frames": 61,
+    "frame_width": 100,
+    "frame_height": 100,
+    "author": "CodeManu",
+    "source_url": "https://opengameart.org/content/free-pixel-effects-pack",
+    "license": "CC0"
+  },
+  {
+    "key": "vortex",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/CodeManu/13_vortex_spritesheet.png",
+    "source_pack": "codemanu_pixel_fx",
+    "source_members": [
+      "13_vortex_spritesheet.png"
+    ],
+    "sha256": "3cbc251d8b0aaffc6ea514ee18f2263fd11bf0c2bab9c8a1921208bce7321938",
+    "columns": 8,
+    "rows": 8,
+    "frames": 61,
+    "frame_width": 100,
+    "frame_height": 100,
+    "author": "CodeManu",
+    "source_url": "https://opengameart.org/content/free-pixel-effects-pack",
+    "license": "CC0"
+  },
+  {
+    "key": "sigil",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/CodeManu/8_protectioncircle_spritesheet.png",
+    "source_pack": "codemanu_pixel_fx",
+    "source_members": [
+      "8_protectioncircle_spritesheet.png"
+    ],
+    "sha256": "239ea05ddc8fdd6bd67fde22ab29b35499a18aab3a614bde4016820f759cf328",
+    "columns": 8,
+    "rows": 8,
+    "frames": 61,
+    "frame_width": 100,
+    "frame_height": 100,
+    "author": "CodeManu",
+    "source_url": "https://opengameart.org/content/free-pixel-effects-pack",
+    "license": "CC0"
+  },
+  {
+    "key": "charge_rune",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/CodeManu/4_casting_spritesheet.png",
+    "source_pack": "codemanu_pixel_fx",
+    "source_members": [
+      "4_casting_spritesheet.png"
+    ],
+    "sha256": "59f66bf75890d8e98685324cd2b9b6ab66e7abe04f41b28e0a9924d99c22dd92",
+    "columns": 9,
+    "rows": 9,
+    "frames": 73,
+    "frame_width": 100,
+    "frame_height": 100,
+    "author": "CodeManu",
+    "source_url": "https://opengameart.org/content/free-pixel-effects-pack",
+    "license": "CC0"
+  },
+  {
+    "key": "fire_spin",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/CodeManu/7_firespin_spritesheet.png",
+    "source_pack": "codemanu_pixel_fx",
+    "source_members": [
+      "7_firespin_spritesheet.png"
+    ],
+    "sha256": "8a8028ec109707b951a80782e56204ae1f1db4eedd5b1a7095acaca8c7c5ce23",
+    "columns": 8,
+    "rows": 8,
+    "frames": 61,
+    "frame_width": 100,
+    "frame_height": 100,
+    "author": "CodeManu",
+    "source_url": "https://opengameart.org/content/free-pixel-effects-pack",
+    "license": "CC0"
+  },
+  {
+    "key": "sunburst",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/CodeManu/16_sunburn_spritesheet.png",
+    "source_pack": "codemanu_pixel_fx",
+    "source_members": [
+      "16_sunburn_spritesheet.png"
+    ],
+    "sha256": "f23221eaf246c415989c6bb324d49770821cac159f66967bf82776a4afdd6b20",
+    "columns": 8,
+    "rows": 8,
+    "frames": 61,
+    "frame_width": 100,
+    "frame_height": 100,
+    "author": "CodeManu",
+    "source_url": "https://opengameart.org/content/free-pixel-effects-pack",
+    "license": "CC0"
+  },
+  {
+    "key": "blood_pool",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/CodeManu/17_felspell_spritesheet.png",
+    "source_pack": "codemanu_pixel_fx",
+    "source_members": [
+      "17_felspell_spritesheet.png"
+    ],
+    "sha256": "46e77649e623e5fff53f89197d39e9d9c2b9b26f597ab66431ea5c8b7b190962",
+    "columns": 10,
+    "rows": 10,
+    "frames": 91,
+    "frame_width": 100,
+    "frame_height": 100,
+    "author": "CodeManu",
+    "source_url": "https://opengameart.org/content/free-pixel-effects-pack",
+    "license": "CC0"
+  },
+  {
+    "key": "orbit_rune",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/CodeManu/2_magic8_spritesheet.png",
+    "source_pack": "codemanu_pixel_fx",
+    "source_members": [
+      "2_magic8_spritesheet.png"
+    ],
+    "sha256": "ca026e5440c8264d600af8041f28cdd779e74a710b35e7f121fa23336359715b",
+    "columns": 8,
+    "rows": 8,
+    "frames": 61,
+    "frame_width": 100,
+    "frame_height": 100,
+    "author": "CodeManu",
+    "source_url": "https://opengameart.org/content/free-pixel-effects-pack",
+    "license": "CC0"
+  },
+  {
+    "key": "plasma_burst",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/CodeManu/1_magicspell_spritesheet.png",
+    "source_pack": "codemanu_pixel_fx",
+    "source_members": [
+      "1_magicspell_spritesheet.png"
+    ],
+    "sha256": "c98e159fdb53c85e65ca52c8af25f4d483d0e4d78f4c5c99599f363c57a172de",
+    "columns": 9,
+    "rows": 9,
+    "frames": 75,
+    "frame_width": 100,
+    "frame_height": 100,
+    "author": "CodeManu",
+    "source_url": "https://opengameart.org/content/free-pixel-effects-pack",
+    "license": "CC0"
+  },
+  {
+    "key": "electric_aura",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/CodeManu/19_freezing_spritesheet.png",
+    "source_pack": "codemanu_pixel_fx",
+    "source_members": [
+      "19_freezing_spritesheet.png"
+    ],
+    "sha256": "6a63846dbb06ced2365a4fb7368503ae467ebd5b14b36c03bc7f301941f6a902",
+    "columns": 10,
+    "rows": 10,
+    "frames": 86,
+    "frame_width": 100,
+    "frame_height": 100,
+    "author": "CodeManu",
+    "source_url": "https://opengameart.org/content/free-pixel-effects-pack",
+    "license": "CC0"
+  },
+  {
+    "key": "fire_plume",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/CodeManu/11_fire_spritesheet.png",
+    "source_pack": "codemanu_pixel_fx",
+    "source_members": [
+      "11_fire_spritesheet.png"
+    ],
+    "sha256": "84714b33ce4e2d8878f0045afa8e990cb5a552d4355e2e419a7e5e469c450bac",
+    "columns": 8,
+    "rows": 8,
+    "frames": 61,
+    "frame_width": 100,
+    "frame_height": 100,
+    "author": "CodeManu",
+    "source_url": "https://opengameart.org/content/free-pixel-effects-pack",
+    "license": "CC0"
+  },
+  {
+    "key": "explosion",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/Stumpy/test3.png",
+    "source_pack": "stumpy_explosions",
+    "source_members": [
+      "test3.png"
+    ],
+    "sha256": "fb99f7b350f6f80f596c12be9f9afc5daa5371f0b92df65eea5dec7cb038fc51",
+    "columns": 10,
+    "rows": 10,
+    "frames": 94,
+    "frame_width": 100,
+    "frame_height": 100,
+    "author": "StumpyStrust",
+    "source_url": "https://opengameart.org/content/more-explosions",
+    "license": "CC0"
+  },
+  {
+    "key": "explosion_heavy",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/Stumpy/test6.png",
+    "source_pack": "stumpy_explosions",
+    "source_members": [
+      "test6.png"
+    ],
+    "sha256": "824d24a117c0d3d723ae73c3773886b505412091200df0842fc3d39f3b1473cd",
+    "columns": 10,
+    "rows": 10,
+    "frames": 60,
+    "frame_width": 100,
+    "frame_height": 100,
+    "author": "StumpyStrust",
+    "source_url": "https://opengameart.org/content/more-explosions",
+    "license": "CC0"
+  },
+  {
+    "key": "explosion_round",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/Stumpy/test4.png",
+    "source_pack": "stumpy_explosions",
+    "source_members": [
+      "test4.png"
+    ],
+    "sha256": "f521d8927bc5ba5b9733c396973291790ea9e6827fe5ecbb34d24b3134010dfa",
+    "columns": 10,
+    "rows": 10,
+    "frames": 59,
+    "frame_width": 100,
+    "frame_height": 100,
+    "author": "StumpyStrust",
+    "source_url": "https://opengameart.org/content/more-explosions",
+    "license": "CC0"
+  },
+  {
+    "key": "embers",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/LPC/burningbits-1.png",
+    "source_pack": "lpc_explosions_2",
+    "source_members": [
+      "burningbits-1.png"
+    ],
+    "sha256": "54b1a817c7036594aa6b3b44c756a45b43e0c8b5687e61978fe70f3d0f23b28f",
+    "columns": 24,
+    "rows": 1,
+    "frames": 23,
+    "frame_width": 32,
+    "frame_height": 32,
+    "author": "theidiotmachine",
+    "source_url": "https://opengameart.org/content/lpc-explosions-2",
+    "license": "CC0"
+  },
+  {
+    "key": "fireball",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/LPC/fireball1.png",
+    "source_pack": "lpc_explosions_2",
+    "source_members": [
+      "fireball1.png"
+    ],
+    "sha256": "208e485abb5f5d9b7ac5c9671d296eca53adb6f209fdf7d2201cce4f19c6ec59",
+    "columns": 24,
+    "rows": 1,
+    "frames": 23,
+    "frame_width": 32,
+    "frame_height": 32,
+    "author": "theidiotmachine",
+    "source_url": "https://opengameart.org/content/lpc-explosions-2",
+    "license": "CC0"
+  },
+  {
+    "key": "sparkles",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/LPC/sparkles-2.png",
+    "source_pack": "lpc_explosions_2",
+    "source_members": [
+      "sparkles-2.png"
+    ],
+    "sha256": "a52cd99557d45438e78ee2bcfd71391cf5d217155bcdc8641a7f45962d523da8",
+    "columns": 24,
+    "rows": 1,
+    "frames": 23,
+    "frame_width": 32,
+    "frame_height": 32,
+    "author": "theidiotmachine",
+    "source_url": "https://opengameart.org/content/lpc-explosions-2",
+    "license": "CC0"
+  },
+  {
+    "key": "pixel_flame",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/LPC/largeflames-2.png",
+    "source_pack": "lpc_explosions_2",
+    "source_members": [
+      "largeflames-2.png"
+    ],
+    "sha256": "e2b156a8f2cfe1bfc9894dd9d7e8fd151f9d6b4f1e5982dea9333986084f96a2",
+    "columns": 24,
+    "rows": 1,
+    "frames": 23,
+    "frame_width": 32,
+    "frame_height": 32,
+    "author": "theidiotmachine",
+    "source_url": "https://opengameart.org/content/lpc-explosions-2",
+    "license": "CC0"
+  },
+  {
+    "key": "pixel_lightning",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/LPC/lightning-2.png",
+    "source_pack": "lpc_explosions_2",
+    "source_members": [
+      "lightning-2.png"
+    ],
+    "sha256": "f1f1ef5dcb60f6eaf69f4b868851f0797dc0cc0e9104aa09487e8c07ddfb41b6",
+    "columns": 10,
+    "rows": 1,
+    "frames": 10,
+    "frame_width": 32,
+    "frame_height": 32,
+    "author": "theidiotmachine",
+    "source_url": "https://opengameart.org/content/lpc-explosions-2",
+    "license": "CC0"
+  },
+  {
+    "key": "earth_burst",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/Cethiel/EarthBurst.png",
+    "source_pack": "cethiel_earth",
+    "source_members": [
+      "1/Earth-Impact_01.png",
+      "1/Earth-Impact_02.png",
+      "1/Earth-Impact_03.png",
+      "1/Earth-Impact_04.png",
+      "1/Earth-Impact_05.png"
+    ],
+    "sha256": "3721a8e450387a361cdd8b2205a84c6c64b2e1955c1e55a4b27927001117de19",
+    "columns": 5,
+    "rows": 1,
+    "frames": 5,
+    "frame_width": 154,
+    "frame_height": 154,
+    "author": "Cethiel",
+    "source_url": "https://opengameart.org/content/earth-impact-magic-effect",
+    "license": "CC0"
+  },
+  {
+    "key": "earth_ring",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/Cethiel/EarthRing.png",
+    "source_pack": "cethiel_earth",
+    "source_members": [
+      "3/Earth-Impact_11.png",
+      "3/Earth-Impact_12.png",
+      "3/Earth-Impact_13.png",
+      "3/Earth-Impact_14.png",
+      "3/Earth-Impact_15.png"
+    ],
+    "sha256": "ec10a18facab29d3858dfe28a87596bbba781cd324c7ef88d7bacac718094cf5",
+    "columns": 5,
+    "rows": 1,
+    "frames": 5,
+    "frame_width": 154,
+    "frame_height": 154,
+    "author": "Cethiel",
+    "source_url": "https://opengameart.org/content/earth-impact-magic-effect",
+    "license": "CC0"
+  },
+  {
+    "key": "earth_shards",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/Cethiel/EarthShards.png",
+    "source_pack": "cethiel_earth",
+    "source_members": [
+      "4/Earth-Impact_16.png",
+      "4/Earth-Impact_17.png",
+      "4/Earth-Impact_18.png",
+      "4/Earth-Impact_19.png",
+      "4/Earth-Impact_20.png"
+    ],
+    "sha256": "0fe5601d7739fc0c5e8a02ee00e8082057c5acd873cd9fd035ea956a3194aaf0",
+    "columns": 5,
+    "rows": 1,
+    "frames": 5,
+    "frame_width": 154,
+    "frame_height": 154,
+    "author": "Cethiel",
+    "source_url": "https://opengameart.org/content/earth-impact-magic-effect",
+    "license": "CC0"
+  },
+  {
+    "key": "photon_ring",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/Cethiel/PhotonRing.png",
+    "source_pack": "cethiel_light",
+    "source_members": [
+      "LightEffect_01.png",
+      "LightEffect_02.png",
+      "LightEffect_03.png",
+      "LightEffect_04.png",
+      "LightEffect_05.png"
+    ],
+    "sha256": "f6617ce5b150877d21d1d76c56af57929c7d3df5ea64e5e684c5151f88be5514",
+    "columns": 5,
+    "rows": 1,
+    "frames": 5,
+    "frame_width": 154,
+    "frame_height": 154,
+    "author": "Cethiel",
+    "source_url": "https://opengameart.org/content/light-magic-effect",
+    "license": "CC0"
+  },
+  {
+    "key": "prism_hit",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/Cethiel/PrismHit.png",
+    "source_pack": "cethiel_light",
+    "source_members": [
+      "LightEffect_11.png",
+      "LightEffect_12.png",
+      "LightEffect_13.png",
+      "LightEffect_14.png",
+      "LightEffect_15.png"
+    ],
+    "sha256": "45c994867f005368f7f0549d91198460c71548488682479b5fc98d6e4bf9ab3c",
+    "columns": 5,
+    "rows": 1,
+    "frames": 5,
+    "frame_width": 154,
+    "frame_height": 154,
+    "author": "Cethiel",
+    "source_url": "https://opengameart.org/content/light-magic-effect",
+    "license": "CC0"
+  },
+  {
+    "key": "plasma",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/Cethiel/Plasma.png",
+    "source_pack": "cethiel_projectile",
+    "source_members": [
+      "Files/Pure_01.png",
+      "Files/Pure_02.png",
+      "Files/Pure_03.png",
+      "Files/Pure_04.png",
+      "Files/Pure_05.png"
+    ],
+    "sha256": "a0d8742a5660fdb0ba723614e80643eec1ed1f1cef546f4df3efa71cd8d7d675",
+    "columns": 5,
+    "rows": 1,
+    "frames": 5,
+    "frame_width": 204,
+    "frame_height": 204,
+    "author": "Cethiel",
+    "source_url": "https://opengameart.org/content/pure-projectile-magic-effect",
+    "license": "CC0"
+  },
+  {
+    "key": "plasma_tail",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/Cethiel/PlasmaTail.png",
+    "source_pack": "cethiel_projectile",
+    "source_members": [
+      "Files/Pure_06.png",
+      "Files/Pure_07.png",
+      "Files/Pure_08.png",
+      "Files/Pure_09.png",
+      "Files/Pure_10.png"
+    ],
+    "sha256": "d9570ce62bc73710a3868c6f80f832685d4b83b366145745c76ee54a7c4edd2f",
+    "columns": 5,
+    "rows": 1,
+    "frames": 5,
+    "frame_width": 204,
+    "frame_height": 204,
+    "author": "Cethiel",
+    "source_url": "https://opengameart.org/content/pure-projectile-magic-effect",
+    "license": "CC0"
+  },
+  {
+    "key": "fire_column",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/Cethiel/FireColumn.png",
+    "source_pack": "cethiel_fire",
+    "source_members": [
+      "SD/2/Fire-Wrath__06.png",
+      "SD/2/Fire-Wrath__07.png",
+      "SD/2/Fire-Wrath__08.png",
+      "SD/2/Fire-Wrath__09.png",
+      "SD/2/Fire-Wrath__10.png"
+    ],
+    "sha256": "b43d900189499653e122e595d014d291aa8a3f74f2ceae1abceabc026c5f3914",
+    "columns": 5,
+    "rows": 1,
+    "frames": 5,
+    "frame_width": 204,
+    "frame_height": 204,
+    "author": "Cethiel",
+    "source_url": "https://opengameart.org/content/fire-wrath-magic-effect",
+    "license": "CC0"
+  },
+  {
+    "key": "fire_cleave",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/Cethiel/FireCleave.png",
+    "source_pack": "cethiel_fire",
+    "source_members": [
+      "SD/3/Fire-Wrath__11.png",
+      "SD/3/Fire-Wrath__12.png",
+      "SD/3/Fire-Wrath__13.png",
+      "SD/3/Fire-Wrath__14.png",
+      "SD/3/Fire-Wrath__15.png"
+    ],
+    "sha256": "42c0e244003412621ee6243fac842acf157453c4f67d27d6a003729e645bf977",
+    "columns": 5,
+    "rows": 1,
+    "frames": 5,
+    "frame_width": 204,
+    "frame_height": 204,
+    "author": "Cethiel",
+    "source_url": "https://opengameart.org/content/fire-wrath-magic-effect",
+    "license": "CC0"
+  },
+  {
+    "key": "arcane_collapse",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/Cethiel/ArcaneCollapse.png",
+    "source_pack": "cethiel_arcane",
+    "source_members": [
+      "01/Arcane_Effect_1.png",
+      "01/Arcane_Effect_2.png",
+      "01/Arcane_Effect_3.png",
+      "01/Arcane_Effect_4.png",
+      "01/Arcane_Effect_5.png",
+      "01/Arcane_Effect_6.png",
+      "01/Arcane_Effect_7.png"
+    ],
+    "sha256": "b8d37dcaad941c73e941320e507d4d2750d06d357efc88cfb36560b89b3c92bc",
+    "columns": 7,
+    "rows": 1,
+    "frames": 7,
+    "frame_width": 130,
+    "frame_height": 112,
+    "author": "Cethiel",
+    "source_url": "https://opengameart.org/content/arcane-magic-effect",
+    "license": "CC0"
+  },
+  {
+    "key": "arcane_orb",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/Cethiel/ArcaneOrb.png",
+    "source_pack": "cethiel_arcane",
+    "source_members": [
+      "03/Arcane_Effect_1.png",
+      "03/Arcane_Effect_2.png",
+      "03/Arcane_Effect_3.png",
+      "03/Arcane_Effect_4.png",
+      "03/Arcane_Effect_5.png",
+      "03/Arcane_Effect_6.png",
+      "03/Arcane_Effect_7.png"
+    ],
+    "sha256": "d8265d3e8cf950881ba9254c7306d6104821cdf021417490af2a18f31bcd47c8",
+    "columns": 7,
+    "rows": 1,
+    "frames": 7,
+    "frame_width": 128,
+    "frame_height": 112,
+    "author": "Cethiel",
+    "source_url": "https://opengameart.org/content/arcane-magic-effect",
+    "license": "CC0"
+  },
+  {
+    "key": "disintegrate",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/Superjoe/Disintegrate.png",
+    "source_pack": "superjoe_electric",
+    "source_members": [
+      "disintegrate00.png",
+      "disintegrate01.png",
+      "disintegrate02.png",
+      "disintegrate03.png",
+      "disintegrate04.png",
+      "disintegrate05.png",
+      "disintegrate06.png",
+      "disintegrate07.png",
+      "disintegrate08.png",
+      "disintegrate09.png",
+      "disintegrate10.png"
+    ],
+    "sha256": "4c727e709feb056e80238717554cc186a77535ac28ef47ef91062186d290c204",
+    "columns": 8,
+    "rows": 2,
+    "frames": 11,
+    "frame_width": 67,
+    "frame_height": 87,
+    "author": "superjoe",
+    "source_url": "https://opengameart.org/content/electrical-disintegration-animation",
+    "license": "CC0"
+  },
+  {
+    "key": "lightning_column",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/Mikodrak/LightningColumn.png",
+    "source_pack": "spell_effects",
+    "source_members": [
+      "fx1_blue_topEffect/spell_bluetop_1_1.png",
+      "fx1_blue_topEffect/spell_bluetop_1_2.png",
+      "fx1_blue_topEffect/spell_bluetop_1_3.png",
+      "fx1_blue_topEffect/spell_bluetop_1_4.png",
+      "fx1_blue_topEffect/spell_bluetop_1_5.png",
+      "fx1_blue_topEffect/spell_bluetop_1_6.png",
+      "fx1_blue_topEffect/spell_bluetop_1_7.png",
+      "fx1_blue_topEffect/spell_bluetop_1_8.png",
+      "fx1_blue_topEffect/spell_bluetop_1_9.png",
+      "fx1_blue_topEffect/spell_bluetop_1_10.png",
+      "fx1_blue_topEffect/spell_bluetop_1_11.png",
+      "fx1_blue_topEffect/spell_bluetop_1_12.png",
+      "fx1_blue_topEffect/spell_bluetop_1_13.png",
+      "fx1_blue_topEffect/spell_bluetop_1_14.png",
+      "fx1_blue_topEffect/spell_bluetop_1_15.png",
+      "fx1_blue_topEffect/spell_bluetop_1_16.png",
+      "fx1_blue_topEffect/spell_bluetop_1_17.png",
+      "fx1_blue_topEffect/spell_bluetop_1_18.png",
+      "fx1_blue_topEffect/spell_bluetop_1_19.png",
+      "fx1_blue_topEffect/spell_bluetop_1_20.png",
+      "fx1_blue_topEffect/spell_bluetop_1_21.png",
+      "fx1_blue_topEffect/spell_bluetop_1_22.png"
+    ],
+    "sha256": "6cb2f01a9d4d0087ba180cd008f05ad910aeed50dc1addf3f0b516b285b6378e",
+    "columns": 8,
+    "rows": 3,
+    "frames": 22,
+    "frame_width": 102,
+    "frame_height": 207,
+    "author": "Mikodrak / Martin Jelinek",
+    "source_url": "https://opengameart.org/content/2d-spell-effects",
+    "license": "CC0"
+  },
+  {
+    "key": "electric_ball",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/Mikodrak/ElectricBall.png",
+    "source_pack": "spell_effects",
+    "source_members": [
+      "fx8_lighteningBall/lighteningball_1_20_1.png",
+      "fx8_lighteningBall/lighteningball_1_20_2.png",
+      "fx8_lighteningBall/lighteningball_1_20_3.png",
+      "fx8_lighteningBall/lighteningball_1_20_4.png",
+      "fx8_lighteningBall/lighteningball_1_20_5.png",
+      "fx8_lighteningBall/lighteningball_1_20_6.png",
+      "fx8_lighteningBall/lighteningball_1_20_7.png",
+      "fx8_lighteningBall/lighteningball_1_20_8.png",
+      "fx8_lighteningBall/lighteningball_1_20_9.png",
+      "fx8_lighteningBall/lighteningball_1_20_10.png",
+      "fx8_lighteningBall/lighteningball_1_20_11.png",
+      "fx8_lighteningBall/lighteningball_1_20_12.png",
+      "fx8_lighteningBall/lighteningball_1_20_13.png",
+      "fx8_lighteningBall/lighteningball_1_20_14.png",
+      "fx8_lighteningBall/lighteningball_1_20_15.png",
+      "fx8_lighteningBall/lighteningball_1_20_16.png",
+      "fx8_lighteningBall/lighteningball_1_20_17.png",
+      "fx8_lighteningBall/lighteningball_1_20_18.png",
+      "fx8_lighteningBall/lighteningball_1_20_19.png",
+      "fx8_lighteningBall/lighteningball_1_20_20.png"
+    ],
+    "sha256": "0d9b11e0a35e74c1796f0feb5135295af4add464a882cf49391fae591bdc15b5",
+    "columns": 8,
+    "rows": 3,
+    "frames": 20,
+    "frame_width": 60,
+    "frame_height": 69,
+    "author": "Mikodrak / Martin Jelinek",
+    "source_url": "https://opengameart.org/content/2d-spell-effects",
+    "license": "CC0"
+  },
+  {
+    "key": "black_smoke",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/Kenney/BlackSmoke.png",
+    "source_pack": "kenney_smoke",
+    "source_members": [
+      "PNG/Black smoke/blackSmoke01.png"
+    ],
+    "sha256": "c3b3c7e357c45d66b352ed6fa49999e3506a55fad06d253a37f7585a534d43ec",
+    "columns": 1,
+    "rows": 1,
+    "frames": 1,
+    "frame_width": 398,
+    "frame_height": 364,
+    "author": "Kenney",
+    "source_url": "https://kenney.nl/assets/smoke-particles",
+    "license": "CC0"
+  },
+  {
+    "key": "electric_surface",
+    "file": "Assets/MonsterResources/BossVfxUpgrade/Resources/Monster/BossVfxUpgrade/Wreaderror/LightningSurface.png",
+    "source_pack": "lightning",
+    "source_members": [
+      "lightning_1.png"
+    ],
+    "sha256": "9b9935074c9759c134f3a94f4bbef278162ad453fb38a01bdaedb3633936cd22",
+    "columns": 1,
+    "rows": 1,
+    "frames": 1,
+    "frame_width": 2048,
+    "frame_height": 512,
+    "author": "wreaderror",
+    "source_url": "https://opengameart.org/content/lightning",
+    "license": "CC0"
+  }
+]

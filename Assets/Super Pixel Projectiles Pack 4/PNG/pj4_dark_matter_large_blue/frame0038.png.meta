@@ -1,5 +1,12 @@
 fileFormatVersion: 2
 guid: 8f71b64fae2b6f746ab60dbd2734ba26
+AssetOrigin:
+  serializedVersion: 1
+  productId: 338784
+  packageName: Super Pixel Projectiles Pack 4
+  packageVersion: 1.0
+  assetPath: Assets/Super Pixel Projectiles Pack 4/PNG/pj4_dark_matter_large_blue/frame0038.png
+  uploadId: 802256
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -51,7 +58,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -109,6 +116,32 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -153,10 +186,3 @@ TextureImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 338784
-  packageName: Super Pixel Projectiles Pack 4
-  packageVersion: 1.0
-  assetPath: Assets/Super Pixel Projectiles Pack 4/PNG/pj4_dark_matter_large_blue/frame0038.png
-  uploadId: 802256

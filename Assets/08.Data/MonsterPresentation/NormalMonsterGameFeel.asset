@@ -14,13 +14,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _meleeColor: {r: 1, g: 0.12, b: 0.58, a: 1}
   _rangeColor: {r: 0.08, g: 0.82, b: 1, a: 1}
+  _kamikazeColor: {r: 1, g: 0.32, b: 0.06, a: 1}
   _accentColor: {r: 1, g: 0.65, b: 0.12, a: 1}
-  _outlineOpacity: 0.28
-  _decorationScale: 1.3
+  _outlineOpacity: 0.36
+  _decorationScale: 1.45
   _meleeSparks: 22
   _impactSparks: 26
   _trailInterval: 0.035
   _cameraShake: 0.09
+  _hitFlashHold: 0.1
+  _hitFlashFade: 0.065
+  _hitPopDuration: 0.22
+  _hitPopAmount: 0.14
+  _hitRecoil: 0.035
+  _hitCameraShake: 0.026
+  _hitSparks: 12
+  _hitMetalShards: 5
+  _hitOilDrops: 7
+  _hitOilLifetime: 2.2
+  _hitSounds:
+  - {fileID: 8300000, guid: 6b98fcf0719446f98bcba5f72b66df41, type: 3}
+  - {fileID: 8300000, guid: c3b0251f2e014a46ae99fdb7acbeb5f2, type: 3}
+  - {fileID: 8300000, guid: fc1cdb9a271f455aa5a5d168f099ebd8, type: 3}
+  - {fileID: 8300000, guid: 174ffb4373444f0cad19175c410f3e20, type: 3}
+  _hitVolume: 0.62
   _meleeChargeSounds:
   - {fileID: 8300000, guid: 05ff1b32a1bd56c0936a05ed22a5206e, type: 3}
   - {fileID: 8300000, guid: 737612df20f55e1cbf286b023d777985, type: 3}
@@ -49,6 +66,19 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 77657ad2e52a548daefbb7949cf2c2de, type: 3}
   - {fileID: 8300000, guid: c918b19625dc52d786ac9707aeca6904, type: 3}
   - {fileID: 8300000, guid: aa54de253e8950318729af8c96693eca, type: 3}
+  _kamikazeChargeSounds:
+  - {fileID: 8300000, guid: f8847b961832965944f432d1907636ca, type: 3}
+  - {fileID: 8300000, guid: c48a60c08b5a46fbbb547568d58ae835, type: 3}
+  - {fileID: 8300000, guid: cb95970d1068d4ae99a5a923bfbdbb1e, type: 3}
+  _kamikazeTickSounds:
+  - {fileID: 8300000, guid: 4e4304aef2e06ffc4c9caa44abcf2852, type: 3}
+  - {fileID: 8300000, guid: ca7c0676eeab927cc79d0f3c67ce0464, type: 3}
+  - {fileID: 8300000, guid: fd18322f21dff488283536d136d28ba3, type: 3}
+  _kamikazeExplosionSounds:
+  - {fileID: 8300000, guid: 69eed4d5aeb67fc6ede702595cc1ad21, type: 3}
+  - {fileID: 8300000, guid: 868e654b87813b7348dc021826576387, type: 3}
+  - {fileID: 8300000, guid: 00134c07a38d54b787fb4767c8b8b096, type: 3}
+  - {fileID: 8300000, guid: 1878db1ccf6c2301bca8f3c82026b84d, type: 3}
   _attackVolume: 0.75
   _impactVolume: 0.82
   _soundMixerGroup: {fileID: 0}

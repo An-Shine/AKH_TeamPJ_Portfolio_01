@@ -233,6 +233,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -240,10 +253,10 @@ TextureImporter:
       name: ShotGun_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 444
-        width: 443
-        height: 443
+        x: 47
+        y: 562
+        width: 401
+        height: 155
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -262,10 +275,10 @@ TextureImporter:
       name: ShotGun_1
       rect:
         serializedVersion: 2
-        x: 443
-        y: 444
-        width: 443
-        height: 443
+        x: 533
+        y: 547
+        width: 336
+        height: 206
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -284,10 +297,10 @@ TextureImporter:
       name: ShotGun_2
       rect:
         serializedVersion: 2
-        x: 886
-        y: 444
-        width: 443
-        height: 443
+        x: 1063
+        y: 487
+        width: 131
+        height: 318
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -306,10 +319,10 @@ TextureImporter:
       name: ShotGun_3
       rect:
         serializedVersion: 2
-        x: 1329
-        y: 444
-        width: 443
-        height: 443
+        x: 1379
+        y: 542
+        width: 310
+        height: 211
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -328,10 +341,10 @@ TextureImporter:
       name: ShotGun_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1
-        width: 443
-        height: 443
+        x: 48
+        y: 137
+        width: 396
+        height: 150
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -350,10 +363,10 @@ TextureImporter:
       name: ShotGun_5
       rect:
         serializedVersion: 2
-        x: 443
-        y: 1
-        width: 443
-        height: 443
+        x: 533
+        y: 127
+        width: 291
+        height: 228
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -372,10 +385,10 @@ TextureImporter:
       name: ShotGun_6
       rect:
         serializedVersion: 2
-        x: 886
-        y: 1
-        width: 443
-        height: 443
+        x: 1069
+        y: 63
+        width: 123
+        height: 320
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -394,10 +407,10 @@ TextureImporter:
       name: ShotGun_7
       rect:
         serializedVersion: 2
-        x: 1329
-        y: 1
-        width: 443
-        height: 443
+        x: 1413
+        y: 126
+        width: 293
+        height: 224
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -426,7 +439,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":4.0,"y":2.0},"gridSpriteSize":{"x":443.0,"y":443.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       ShotGun_0: 7631219046128225658
       ShotGun_1: -6934976629734404245

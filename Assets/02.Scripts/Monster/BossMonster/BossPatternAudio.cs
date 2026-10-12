@@ -1,3 +1,4 @@
+using _02.Scripts.Monster.Presentation;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +12,10 @@ namespace _02.Scripts.Monster.BossMonster
         private AudioSource _loop;
         private BossEncounterProfile _profile;
         private BossPatternSound _sound;
+        private BossEncounterPattern _pattern;
+        private int _previousStart = -1;
+        private int _previousImpact = -1;
+        private int _previousEnd = -1;
         private float _targetLoopVolume;
         private float _nextImpact;
         private float _retireAge;
@@ -18,7 +23,6 @@ namespace _02.Scripts.Monster.BossMonster
         private bool _paused;
         private bool _pausedLoop;
         private bool _retiring;
-
         public static BossPatternAudio Create(GameObject owner, BossEncounterProfile profile)
         {
             GameObject root = new GameObject(owner.name + "_BossAudio");
@@ -32,20 +36,23 @@ namespace _02.Scripts.Monster.BossMonster
             {
                 audio._voices[i] = audio.CreateSource();
             }
+
             return audio;
         }
 
         public void Begin(BossEncounterMove move)
         {
             _sound = move.Sound;
+            _pattern = move.Kind;
             _retiring = false;
             _retireAge = 0f;
             _nextImpact = 0f;
-            Play(_sound.Start, 1f);
+            Play(Pick("Start", _sound.Start, ref _previousStart), 0.82f);
             _loop.Stop();
-            _loop.clip = _sound.Loop;
+            _loop.clip = MonsterCombatAudio.First("Boss/" + _pattern + "_Loop", _sound.Loop);
+            _loop.pitch = 1f;
             _loop.volume = 0f;
-            _targetLoopVolume = _profile.SoundVolume * 0.58f;
+            _targetLoopVolume = _profile.SoundVolume * 0.24f;
             if (_loop.clip != null)
             {
                 // 시작음을 재생하는 동안 루프를 겹쳐 올려 패턴 중간의 무음을 없앱니다.
@@ -59,8 +66,18 @@ namespace _02.Scripts.Monster.BossMonster
             {
                 return;
             }
+
             _nextImpact = Time.time + 0.1f;
-            Play(_sound.Impact, volume);
+            _targetLoopVolume = Mathf.Min(_targetLoopVolume, _profile.SoundVolume * 0.12f);
+            Play(Pick("Impact", _sound.Impact, ref _previousImpact), volume);
+        }
+
+        public void Charge(float progress, bool ultimate)
+        {
+            if (_loop == null || _sound == null)
+                return;
+            _loop.pitch = Mathf.Lerp(ultimate ? 0.75f : 0.92f, ultimate ? 1.22f : 1.05f, Mathf.Clamp01(progress));
+            _targetLoopVolume = _profile.SoundVolume * Mathf.Lerp(0.12f, ultimate ? 0.38f : 0.26f, progress);
         }
 
         public void End(bool playTail)
@@ -68,9 +85,15 @@ namespace _02.Scripts.Monster.BossMonster
             _targetLoopVolume = 0f;
             if (playTail && _sound != null)
             {
-                Play(_sound.End, 0.85f);
+                Play(Pick("End", _sound.End, ref _previousEnd), 0.58f);
             }
+
             _sound = null;
+        }
+
+        private AudioClip Pick(string stage, AudioClip fallback, ref int previous)
+        {
+            return MonsterCombatAudio.Pick("Boss/" + _pattern + "_" + stage, fallback, ref previous);
         }
 
         public void Play(AudioClip clip, float volume)
@@ -79,11 +102,13 @@ namespace _02.Scripts.Monster.BossMonster
             {
                 return;
             }
+
             AudioSource source = _voices[_nextVoice];
             _pausedVoices[_nextVoice] = false;
             _nextVoice = (_nextVoice + 1) % VoiceCount;
             source.Stop();
             source.clip = clip;
+            source.pitch = Random.Range(0.98f, 1.02f);
             source.volume = Mathf.Clamp01(_profile.SoundVolume * volume);
             source.Play();
         }
@@ -111,25 +136,30 @@ namespace _02.Scripts.Monster.BossMonster
             {
                 SetPaused(shouldPause);
             }
+
             if (_paused)
             {
                 return;
             }
+
             _loop.volume = Mathf.MoveTowards(_loop.volume, _targetLoopVolume, Time.deltaTime * 4f);
             if (_loop.volume <= 0f && _targetLoopVolume <= 0f && _loop.isPlaying)
             {
                 _loop.Stop();
             }
+
             if (!_retiring)
             {
                 return;
             }
+
             _retireAge += Time.deltaTime;
             bool busy = _loop.isPlaying;
             for (int i = 0; i < VoiceCount; i++)
             {
                 busy |= _voices[i].isPlaying;
             }
+
             if (!busy || _retireAge > 12f)
             {
                 Destroy(gameObject);
@@ -148,12 +178,15 @@ namespace _02.Scripts.Monster.BossMonster
                     _pausedVoices[i] = _voices[i].isPlaying;
                     _voices[i].Pause();
                 }
+
                 return;
             }
+
             if (_pausedLoop)
             {
                 _loop.UnPause();
             }
+
             for (int i = 0; i < VoiceCount; i++)
             {
                 if (_pausedVoices[i])

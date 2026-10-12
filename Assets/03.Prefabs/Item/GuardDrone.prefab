@@ -80,7 +80,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1904686153
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 777528505627316671, guid: f4cdbd269f49b5c4281bf19b07ccc31a, type: 3}
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d2931a7e1e44e418b727544e731ab14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OverlapSphere
-  _radius: 1.2
+  _radius: 1.12
   _targetMask:
     serializedVersion: 2
     m_Bits: 8

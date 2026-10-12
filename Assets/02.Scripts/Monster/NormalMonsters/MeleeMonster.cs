@@ -163,19 +163,12 @@ public class MeleeMonster : NormalMonster
 
         if (distance <= _attackRange && clearAttackPath)
         {
-            // 붙은 상태에서는 밀어내기와 매 프레임 방향 갱신을 멈춥니다.
-            PlayLocomotion(false);
-            TryAttack(toPlayer, closestPoint);
-            return;
+            if (TryAttack(toPlayer, closestPoint))
+                return;
         }
 
         float moveDistance = Mathf.Max(0f, _moveSpeed) * Time.deltaTime;
-        if (clearAttackPath)
-        {
-            moveDistance = Mathf.Min(moveDistance, Mathf.Max(0f, distance - _attackRange));
-        }
-
-        Vector2 movement = GetNavigationMovement(_player.position, moveDistance);
+        Vector2 movement = GetTacticalMovement(_player.position, moveDistance, _attackRange);
         if (distance > _facingLockDistance)
         {
             movement += GetSeparationDirection() * (1.5f * Time.deltaTime);
@@ -321,11 +314,11 @@ public class MeleeMonster : NormalMonster
         _directionAnimator.SetInteger(DirectionId, _direction);
     }
 
-    private void TryAttack(Vector2 toPlayer, Vector2 closestPoint)
+    private bool TryAttack(Vector2 toPlayer, Vector2 closestPoint)
     {
         if (_attackCooldownTimer > 0f || _player == null)
         {
-            return;
+            return false;
         }
 
         Vector2 facing = MonsterCombat.GetDirectionVector(_direction);
@@ -344,17 +337,21 @@ public class MeleeMonster : NormalMonster
         _attackDirection = MonsterCombat.GetDirectionVector(_direction);
         if (targetDirection.sqrMagnitude > 0.000001f && Vector2.Angle(_attackDirection, targetDirection) > _attackAngle * 0.5f)
         {
-            return;
+            return false;
         }
 
         if (!MonsterCombat.HasClearAttackPath(transform.position, closestPoint, transform, _player))
         {
-            return;
+            return false;
         }
+
+        if (!TryBeginCoordinatedAttack(_maximumAttackTime / _attackSpeedMultiplier))
+            return false;
 
         _attackCooldownTimer = _attackCooldown / _attackSpeedMultiplier;
         _attackHitApplied = false;
         BeginAction(ActionState.Attack, 2);
+        return true;
     }
 
     private void ApplyAttackHit()
@@ -435,6 +432,8 @@ public class MeleeMonster : NormalMonster
 
     private void BeginAction(ActionState action, int row)
     {
+        if (action != ActionState.Attack)
+            ReleaseCoordinatedAttack();
         _action = action;
         _actionHash = _states[row, _direction];
         _actionStartFrame = Time.frameCount;
@@ -506,6 +505,7 @@ public class MeleeMonster : NormalMonster
             return;
         }
 
+        ReleaseCoordinatedAttack();
         _action = ActionState.None;
         if (_gameFeel != null)
         {

@@ -1,26 +1,26 @@
 public static class ImmediateEffectFactory
 {
-    public static IItemImmediateEffect Create(EffectType type)
+    public static IItemImmediateEffect Create(ItemEffectType type)
     {
         IItemImmediateEffect immediateEffect = null;
         switch (type)
         {
-            case EffectType.HealHealth:
+            case ItemEffectType.HealHealth:
             {
                 immediateEffect = new HealEffect();
                 break;
             }
-            case EffectType.DamageHealth:
+            case ItemEffectType.DamageHealth:
             {
                 immediateEffect = new DamageEffect();
                 break;
             }
-            case EffectType.CombatDrone:
+            case ItemEffectType.CombatDrone:
             {
                 immediateEffect = new CombatDroneSpawnEffect();
                 break;
             }
-            case EffectType.GuardDrone:
+            case ItemEffectType.GuardDrone:
             {
                 immediateEffect = new GuardDroneSpawnEffect();
                 break;

@@ -17,16 +17,15 @@ public class MonsterSpawner : MonoBehaviour
     [Header("스폰 설정")]
     [Tooltip("이 스포너의 누적 생성 한도입니다. 죽어도 다시 생성하지 않으며, 0이면 생성하지 않습니다.")]
     [FormerlySerializedAs("_spawnCount")]
-    [SerializeField, Min(0)] private int _maxSpawnCount = 3;
+    [SerializeField, Min(0)]
+    private int _maxSpawnCount = 3;
     [SerializeField, Min(0.1f)] private float _spawnInterval = 3f;
     [SerializeField] private bool _spawnOnStart = true;
 
     [Header("플레이어 근처 생성 차단")]
-    [Tooltip("비워 두면 Player 태그로 실제 플레이어를 찾습니다.")]
     [SerializeField] private Transform _player;
     [SerializeField, Min(0f)] private float _minPlayerDistance = 5f;
 
-    [Tooltip("켜면 스포너 본체 근처에서도 전체 생성을 멈춥니다. 각 Spawn Point의 거리 검사는 항상 적용합니다.")]
     [SerializeField] private bool _blockNearSpawnerRoot = true;
 
     private readonly List<NormalMonster> _availablePrefabs = new List<NormalMonster>();

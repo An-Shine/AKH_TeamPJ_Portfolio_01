@@ -33,9 +33,9 @@ MonoBehaviour:
     _sustainShake: 0.025
     _minimumPhase: 1
     _color: {r: 1, g: 0.12, b: 0.2, a: 1}
-    _animationMotion: attack_crescentcleave
-    _loopMotion: 
-    _endMotion: 
+    _animationMotion: charge_melee
+    _loopMotion: channel_melee
+    _endMotion: recover_melee
     _releaseNormalizedTime: 0.53
     _impactPrefab: {fileID: 0}
     _impactPrefabLifetime: 3
@@ -64,9 +64,9 @@ MonoBehaviour:
     _sustainShake: 0.025
     _minimumPhase: 1
     _color: {r: 1, g: 0.28, b: 0.1, a: 1}
-    _animationMotion: attack_riftlanes
-    _loopMotion: 
-    _endMotion: 
+    _animationMotion: charge_melee
+    _loopMotion: channel_melee
+    _endMotion: recover_melee
     _releaseNormalizedTime: 0.53
     _impactPrefab: {fileID: 0}
     _impactPrefabLifetime: 3
@@ -95,9 +95,9 @@ MonoBehaviour:
     _sustainShake: 0.025
     _minimumPhase: 1
     _color: {r: 1, g: 0.16, b: 0.1, a: 1}
-    _animationMotion: attack_hellfirerain
-    _loopMotion: 
-    _endMotion: 
+    _animationMotion: charge_explosion
+    _loopMotion: channel_explosion
+    _endMotion: recover_explosion
     _releaseNormalizedTime: 0.53
     _impactPrefab: {fileID: 0}
     _impactPrefabLifetime: 3
@@ -126,9 +126,9 @@ MonoBehaviour:
     _sustainShake: 0.025
     _minimumPhase: 2
     _color: {r: 1, g: 0.12, b: 0.2, a: 1}
-    _animationMotion: attack_spiralbarrage
-    _loopMotion: 
-    _endMotion: 
+    _animationMotion: charge_projectile
+    _loopMotion: channel_projectile
+    _endMotion: recover_projectile
     _releaseNormalizedTime: 0.53
     _impactPrefab: {fileID: 0}
     _impactPrefabLifetime: 3
@@ -157,9 +157,9 @@ MonoBehaviour:
     _sustainShake: 0.055
     _minimumPhase: 3
     _color: {r: 1, g: 0.15, b: 0.55, a: 1}
-    _animationMotion: attack_crosssweep
-    _loopMotion: 
-    _endMotion: 
+    _animationMotion: charge_projectile
+    _loopMotion: channel_projectile
+    _endMotion: recover_projectile
     _releaseNormalizedTime: 0.53
     _impactPrefab: {fileID: 0}
     _impactPrefabLifetime: 3
@@ -188,9 +188,9 @@ MonoBehaviour:
     _sustainShake: 0.06
     _minimumPhase: 3
     _color: {r: 0.65, g: 0.25, b: 1, a: 1}
-    _animationMotion: attack_cataclysm
-    _loopMotion: 
-    _endMotion: 
+    _animationMotion: charge_explosion
+    _loopMotion: channel_explosion
+    _endMotion: recover_explosion
     _releaseNormalizedTime: 0.53
     _impactPrefab: {fileID: 0}
     _impactPrefabLifetime: 3
@@ -219,9 +219,9 @@ MonoBehaviour:
     _sustainShake: 0.025
     _minimumPhase: 1
     _color: {r: 1, g: 0.12, b: 0.2, a: 1}
-    _animationMotion: attack_doubleclaw
-    _loopMotion: 
-    _endMotion: 
+    _animationMotion: charge_melee
+    _loopMotion: channel_melee
+    _endMotion: recover_melee
     _releaseNormalizedTime: 0.53
     _impactPrefab: {fileID: 0}
     _impactPrefabLifetime: 3
@@ -250,9 +250,9 @@ MonoBehaviour:
     _sustainShake: 0.025
     _minimumPhase: 1
     _color: {r: 1, g: 0.38, b: 0.08, a: 1}
-    _animationMotion: attack_groundslam
-    _loopMotion: 
-    _endMotion: 
+    _animationMotion: charge_melee
+    _loopMotion: channel_melee
+    _endMotion: recover_melee
     _releaseNormalizedTime: 0.53
     _impactPrefab: {fileID: 0}
     _impactPrefabLifetime: 3
@@ -281,9 +281,9 @@ MonoBehaviour:
     _sustainShake: 0.025
     _minimumPhase: 1
     _color: {r: 1, g: 0.1, b: 0.28, a: 1}
-    _animationMotion: attack_serpentwave
-    _loopMotion: 
-    _endMotion: 
+    _animationMotion: charge_melee
+    _loopMotion: channel_melee
+    _endMotion: recover_melee
     _releaseNormalizedTime: 0.53
     _impactPrefab: {fileID: 0}
     _impactPrefabLifetime: 3
@@ -312,9 +312,9 @@ MonoBehaviour:
     _sustainShake: 0.025
     _minimumPhase: 1
     _color: {r: 1, g: 0.22, b: 0.1, a: 1}
-    _animationMotion: attack_thornfan
-    _loopMotion: 
-    _endMotion: 
+    _animationMotion: charge_melee
+    _loopMotion: channel_melee
+    _endMotion: recover_melee
     _releaseNormalizedTime: 0.53
     _impactPrefab: {fileID: 0}
     _impactPrefabLifetime: 3
@@ -343,9 +343,9 @@ MonoBehaviour:
     _sustainShake: 0.025
     _minimumPhase: 2
     _color: {r: 1, g: 0.12, b: 0.2, a: 1}
-    _animationMotion: attack_radialspikes
-    _loopMotion: 
-    _endMotion: 
+    _animationMotion: charge_explosion
+    _loopMotion: channel_explosion
+    _endMotion: recover_explosion
     _releaseNormalizedTime: 0.53
     _impactPrefab: {fileID: 0}
     _impactPrefabLifetime: 3
@@ -374,9 +374,9 @@ MonoBehaviour:
     _sustainShake: 0.025
     _minimumPhase: 2
     _color: {r: 0.8, g: 0.12, b: 1, a: 1}
-    _animationMotion: attack_expandingnova
-    _loopMotion: 
-    _endMotion: 
+    _animationMotion: charge_explosion
+    _loopMotion: channel_explosion
+    _endMotion: recover_explosion
     _releaseNormalizedTime: 0.53
     _impactPrefab: {fileID: 0}
     _impactPrefabLifetime: 3
@@ -405,9 +405,9 @@ MonoBehaviour:
     _sustainShake: 0.025
     _minimumPhase: 3
     _color: {r: 0.6, g: 0.3, b: 1, a: 1}
-    _animationMotion: attack_twinnova
-    _loopMotion: 
-    _endMotion: 
+    _animationMotion: charge_explosion
+    _loopMotion: channel_explosion
+    _endMotion: recover_explosion
     _releaseNormalizedTime: 0.53
     _impactPrefab: {fileID: 0}
     _impactPrefabLifetime: 3
@@ -436,9 +436,9 @@ MonoBehaviour:
     _sustainShake: 0.025
     _minimumPhase: 1
     _color: {r: 1, g: 0.12, b: 0.2, a: 1}
-    _animationMotion: attack_trackingeruption
-    _loopMotion: 
-    _endMotion: 
+    _animationMotion: charge_explosion
+    _loopMotion: channel_explosion
+    _endMotion: recover_explosion
     _releaseNormalizedTime: 0.53
     _impactPrefab: {fileID: 0}
     _impactPrefabLifetime: 3
@@ -467,9 +467,9 @@ MonoBehaviour:
     _sustainShake: 0.025
     _minimumPhase: 2
     _color: {r: 1, g: 0.45, b: 0.12, a: 1}
-    _animationMotion: attack_meteorlattice
-    _loopMotion: 
-    _endMotion: 
+    _animationMotion: charge_explosion
+    _loopMotion: channel_explosion
+    _endMotion: recover_explosion
     _releaseNormalizedTime: 0.53
     _impactPrefab: {fileID: 0}
     _impactPrefabLifetime: 3
@@ -498,9 +498,9 @@ MonoBehaviour:
     _sustainShake: 0.02
     _minimumPhase: 1
     _color: {r: 0.75, g: 0.04, b: 0.18, a: 1}
-    _animationMotion: attack_bloodpools
-    _loopMotion: 
-    _endMotion: 
+    _animationMotion: charge_explosion
+    _loopMotion: channel_explosion
+    _endMotion: recover_explosion
     _releaseNormalizedTime: 0.53
     _impactPrefab: {fileID: 0}
     _impactPrefabLifetime: 3
@@ -529,9 +529,9 @@ MonoBehaviour:
     _sustainShake: 0.025
     _minimumPhase: 1
     _color: {r: 1, g: 0.12, b: 0.2, a: 1}
-    _animationMotion: attack_targetedvolley
-    _loopMotion: 
-    _endMotion: 
+    _animationMotion: charge_projectile
+    _loopMotion: channel_projectile
+    _endMotion: recover_projectile
     _releaseNormalizedTime: 0.53
     _impactPrefab: {fileID: 0}
     _impactPrefabLifetime: 3
@@ -560,9 +560,9 @@ MonoBehaviour:
     _sustainShake: 0.025
     _minimumPhase: 2
     _color: {r: 0.6, g: 0.25, b: 1, a: 1}
-    _animationMotion: attack_homingorbs
-    _loopMotion: 
-    _endMotion: 
+    _animationMotion: charge_projectile
+    _loopMotion: channel_projectile
+    _endMotion: recover_projectile
     _releaseNormalizedTime: 0.53
     _impactPrefab: {fileID: 0}
     _impactPrefabLifetime: 3
@@ -591,9 +591,9 @@ MonoBehaviour:
     _sustainShake: 0.03
     _minimumPhase: 2
     _color: {r: 0.65, g: 0.35, b: 1, a: 1}
-    _animationMotion: attack_echoturrets
-    _loopMotion: 
-    _endMotion: 
+    _animationMotion: charge_projectile
+    _loopMotion: channel_projectile
+    _endMotion: recover_projectile
     _releaseNormalizedTime: 0.53
     _impactPrefab: {fileID: 0}
     _impactPrefabLifetime: 3
@@ -622,9 +622,9 @@ MonoBehaviour:
     _sustainShake: 0.025
     _minimumPhase: 2
     _color: {r: 0.35, g: 0.75, b: 1, a: 1}
-    _animationMotion: attack_orbitrelease
-    _loopMotion: 
-    _endMotion: 
+    _animationMotion: charge_projectile
+    _loopMotion: channel_projectile
+    _endMotion: recover_projectile
     _releaseNormalizedTime: 0.53
     _impactPrefab: {fileID: 0}
     _impactPrefabLifetime: 3
@@ -653,9 +653,9 @@ MonoBehaviour:
     _sustainShake: 0.025
     _minimumPhase: 3
     _color: {r: 1, g: 0.2, b: 0.45, a: 1}
-    _animationMotion: attack_perimeterbarrage
-    _loopMotion: 
-    _endMotion: 
+    _animationMotion: charge_projectile
+    _loopMotion: channel_projectile
+    _endMotion: recover_projectile
     _releaseNormalizedTime: 0.53
     _impactPrefab: {fileID: 0}
     _impactPrefabLifetime: 3
@@ -684,9 +684,9 @@ MonoBehaviour:
     _sustainShake: 0.045
     _minimumPhase: 2
     _color: {r: 1, g: 0.12, b: 0.2, a: 1}
-    _animationMotion: attack_dashrend
-    _loopMotion: 
-    _endMotion: 
+    _animationMotion: charge_melee
+    _loopMotion: channel_melee
+    _endMotion: recover_melee
     _releaseNormalizedTime: 0.53
     _impactPrefab: {fileID: 0}
     _impactPrefabLifetime: 3
@@ -715,9 +715,9 @@ MonoBehaviour:
     _sustainShake: 0.025
     _minimumPhase: 3
     _color: {r: 0.6, g: 0.2, b: 1, a: 1}
-    _animationMotion: attack_burrowambush
-    _loopMotion: 
-    _endMotion: 
+    _animationMotion: charge_melee
+    _loopMotion: channel_melee
+    _endMotion: recover_melee
     _releaseNormalizedTime: 0.53
     _impactPrefab: {fileID: 0}
     _impactPrefabLifetime: 3
@@ -746,9 +746,9 @@ MonoBehaviour:
     _sustainShake: 0.055
     _minimumPhase: 3
     _color: {r: 1, g: 0.13, b: 0.4, a: 1}
-    _animationMotion: attack_apocalypsesequence
-    _loopMotion: 
-    _endMotion: 
+    _animationMotion: charge_explosion
+    _loopMotion: channel_explosion
+    _endMotion: recover_explosion
     _releaseNormalizedTime: 0.53
     _impactPrefab: {fileID: 0}
     _impactPrefabLifetime: 3
@@ -757,10 +757,208 @@ MonoBehaviour:
       _loop: {fileID: 8300000, guid: ced91cbb9abb58bea0c6ac1d00cbb5ec, type: 3}
       _impact: {fileID: 8300000, guid: 5add49cda74552ada4109bbff5b7865b, type: 3}
       _end: {fileID: 8300000, guid: ecca6da0566e5e868b3f3a77aafcd264, type: 3}
-  _secondPhaseHealth: 0.6
-  _thirdPhaseHealth: 0.25
-  _phaseWarningMultiplier: 0.92
-  _phaseDamageBonus: 0.08
+  - _kind: 24
+    _enabled: 1
+    _minimumPhase: 1
+    _weight: 1
+    _cooldown: 9
+    _warning: 1.1
+    _duration: 0.32
+    _interval: 1.2
+    _waves: 3
+    _count: 3
+    _damage: 13
+    _radius: 0.8
+    _width: 0.65
+    _damageInterval: 0.3
+    _effectScale: 1.6
+    _speed: 4.8
+    _recovery: 1.1
+    _impactShake: 0.18
+    _sustainShake: 0.025
+    _color: {r: 1, g: 0.08, b: 0.42, a: 1}
+    _animationMotion: charge_melee
+    _loopMotion: channel_melee
+    _endMotion: recover_melee
+    _releaseNormalizedTime: 0.53
+    _impactPrefab: {fileID: 0}
+    _impactPrefabLifetime: 3
+    _sound:
+      _start: {fileID: 8300000, guid: d40d2066e3171e41391488c45522a13d, type: 3}
+      _loop: {fileID: 8300000, guid: 34c7f113c7dbfee9e9fee456b1696772, type: 3}
+      _impact: {fileID: 8300000, guid: 94e8db966ce1ee567285fe426c609fc1, type: 3}
+      _end: {fileID: 8300000, guid: 70c35122a6e6eb2c1227cb3ae522a912, type: 3}
+  - _kind: 25
+    _enabled: 1
+    _minimumPhase: 2
+    _weight: 1
+    _cooldown: 11
+    _warning: 1.2
+    _duration: 0.45
+    _interval: 1.5
+    _waves: 3
+    _count: 4
+    _damage: 14
+    _radius: 0.75
+    _width: 0.65
+    _damageInterval: 0.3
+    _effectScale: 1.6
+    _speed: 4.8
+    _recovery: 1.1
+    _impactShake: 0.18
+    _sustainShake: 0.025
+    _color: {r: 0.14, g: 0.85, b: 1, a: 1}
+    _animationMotion: charge_explosion
+    _loopMotion: channel_explosion
+    _endMotion: recover_explosion
+    _releaseNormalizedTime: 0.53
+    _impactPrefab: {fileID: 0}
+    _impactPrefabLifetime: 3
+    _sound:
+      _start: {fileID: 8300000, guid: 3daa76b409cb37d5a109bc27f3d740c0, type: 3}
+      _loop: {fileID: 8300000, guid: 9033c69adcfd521a0de1158f8831cf2c, type: 3}
+      _impact: {fileID: 8300000, guid: df4108164ba89476d803ecc72943f251, type: 3}
+      _end: {fileID: 8300000, guid: a820d5190f56c58bf97c9d76b8c9df45, type: 3}
+  - _kind: 26
+    _enabled: 1
+    _minimumPhase: 2
+    _weight: 1
+    _cooldown: 13
+    _warning: 1.45
+    _duration: 3.8
+    _interval: 0.6
+    _waves: 1
+    _count: 3
+    _damage: 14
+    _radius: 4.2
+    _width: 0.45
+    _damageInterval: 0.3
+    _effectScale: 1.6
+    _speed: 4.8
+    _recovery: 1.1
+    _impactShake: 0.18
+    _sustainShake: 0.025
+    _color: {r: 0.75, g: 0.2, b: 1, a: 1}
+    _animationMotion: charge_melee
+    _loopMotion: channel_melee
+    _endMotion: recover_melee
+    _releaseNormalizedTime: 0.53
+    _impactPrefab: {fileID: 0}
+    _impactPrefabLifetime: 3
+    _sound:
+      _start: {fileID: 8300000, guid: eaf38b1301c4bb8f052c8a473b2a3c9c, type: 3}
+      _loop: {fileID: 8300000, guid: 3e9e3df236765572571f127009e4eb07, type: 3}
+      _impact: {fileID: 8300000, guid: 4c0cf58da982701d7407c30d1ca484a9, type: 3}
+      _end: {fileID: 8300000, guid: 534dde62aaaffcf50fa67595b0e9b48c, type: 3}
+  - _kind: 27
+    _enabled: 1
+    _minimumPhase: 2
+    _weight: 1
+    _cooldown: 12
+    _warning: 1.5
+    _duration: 0.38
+    _interval: 1.35
+    _waves: 3
+    _count: 4
+    _damage: 16
+    _radius: 1.55
+    _width: 0.65
+    _damageInterval: 0.3
+    _effectScale: 1.6
+    _speed: 4.8
+    _recovery: 1.1
+    _impactShake: 0.18
+    _sustainShake: 0.025
+    _color: {r: 0.5, g: 0.35, b: 1, a: 1}
+    _animationMotion: charge_explosion
+    _loopMotion: channel_explosion
+    _endMotion: recover_explosion
+    _releaseNormalizedTime: 0.53
+    _impactPrefab: {fileID: 0}
+    _impactPrefabLifetime: 3
+    _sound:
+      _start: {fileID: 8300000, guid: 902ee9d79f8d670ddca5c90f71203563, type: 3}
+      _loop: {fileID: 8300000, guid: 02c7bdde2d44513b8c940fbdf59e38ee, type: 3}
+      _impact: {fileID: 8300000, guid: 8dc8409259b9d4dc0c7fd797cc25d9b3, type: 3}
+      _end: {fileID: 8300000, guid: 86989f7cce4db36083c91b0e9577d63b, type: 3}
+  - _kind: 28
+    _enabled: 1
+    _minimumPhase: 3
+    _weight: 1
+    _cooldown: 13
+    _warning: 1.2
+    _duration: 0.32
+    _interval: 1.65
+    _waves: 4
+    _count: 4
+    _damage: 14
+    _radius: 0.8
+    _width: 0.55
+    _damageInterval: 0.3
+    _effectScale: 1.6
+    _speed: 4.8
+    _recovery: 1.1
+    _impactShake: 0.18
+    _sustainShake: 0.025
+    _color: {r: 1, g: 0.3, b: 0.1, a: 1}
+    _animationMotion: charge_melee
+    _loopMotion: channel_melee
+    _endMotion: recover_melee
+    _releaseNormalizedTime: 0.53
+    _impactPrefab: {fileID: 0}
+    _impactPrefabLifetime: 3
+    _sound:
+      _start: {fileID: 8300000, guid: efffcd6b282544290d2130efee1787e7, type: 3}
+      _loop: {fileID: 8300000, guid: 75fb2a5c9a01ffecab99d19406282743, type: 3}
+      _impact: {fileID: 8300000, guid: 80eeba29f0e9522045631fc033c4246f, type: 3}
+      _end: {fileID: 8300000, guid: aa367989aa4e8d3af5ee11a0ab1c7d7d, type: 3}
+  - _kind: 29
+    _enabled: 1
+    _minimumPhase: 2
+    _weight: 1
+    _cooldown: 28
+    _warning: 5
+    _duration: 0.4
+    _interval: 0.6
+    _waves: 1
+    _count: 1
+    _damage: 99999
+    _radius: 2.3
+    _width: 0.65
+    _damageInterval: 0.5
+    _effectScale: 1.9
+    _speed: 4.8
+    _recovery: 1.8
+    _impactShake: 0.34
+    _sustainShake: 0.045
+    _color: {r: 1, g: 0.06, b: 0.32, a: 1}
+    _animationMotion: charge_explosion
+    _loopMotion: channel_explosion
+    _endMotion: recover_explosion
+    _releaseNormalizedTime: 0.53
+    _impactPrefab: {fileID: 0}
+    _impactPrefabLifetime: 3
+    _sound:
+      _start: {fileID: 8300000, guid: 40ee8fcd79070bb1b68f63c7bcdee39c, type: 3}
+      _loop: {fileID: 8300000, guid: 6eb5d56b84c05834e6f4f7d9581d7cb9, type: 3}
+      _impact: {fileID: 8300000, guid: a980f8844c11ec7e4c9ec9508b6c75be, type: 3}
+      _end: {fileID: 8300000, guid: afe6f495afffac159864263caf6cfac3, type: 3}
+  _attackRangeMultiplier: 1.35
+  _projectileSpeedMultiplier: 1.2
+  _damageMultiplier: 1.15
+  _recoveryMultiplier: 0.65
+  _cooldownMultiplier: 0.8
+  _extraWaves: 1
+  _targetLeadTime: 0.2
+  _targetLockTime: 0.42
+  _groundTrackingSpeed: 8
+  _aimTrackingTurnRate: 150
+  _projectileTurnRate: 56
+  _projectileHomingDuration: 1.7
+  _secondPhaseHealth: 0.7
+  _thirdPhaseHealth: 0.35
+  _phaseWarningMultiplier: 0.88
+  _phaseDamageBonus: 0.12
   _introducePatterns: 1
   _soundVolume: 0.7
   _mixerGroup: {fileID: 0}

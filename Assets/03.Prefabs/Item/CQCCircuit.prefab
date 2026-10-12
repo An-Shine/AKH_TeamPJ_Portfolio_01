@@ -80,7 +80,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1904686153
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -6652055957043662939, guid: 439b36dee00b4d741b5762acbc650c71, type: 3}
@@ -105,8 +105,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ed8de1ada934d4eb76728ed185ba546, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  _gainEffectPrefab: {fileID: 207533826550086198, guid: 49c44e811823276408412ea4277a8e8e, type: 3}
-  _gainEffectSFX: 13
+  _gainEffectPrefab: {fileID: 1304287324175017507, guid: 85a9e0046da2f104fa0c9ecae70f9dd4, type: 3}
+  _gainEffectSFX: 18
   _tooltipOffset: {x: 0, y: 1, z: 0}
   _shaderMaterial: {fileID: 2100000, guid: 19af4abf9cc99464db749509ef738230, type: 2}
 --- !u!114 &6812115468571779367
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d2931a7e1e44e418b727544e731ab14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OverlapSphere
-  _radius: 1.2
+  _radius: 1.12
   _targetMask:
     serializedVersion: 2
     m_Bits: 8

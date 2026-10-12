@@ -14,4 +14,6 @@ public class WeaponData
     public float Rebound;
     public float Angle;
     public float Range;
+
+    public string Description;
 }

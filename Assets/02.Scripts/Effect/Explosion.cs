@@ -2,13 +2,11 @@ using UnityEngine;
 
 public class Explosion : Effect
 {
-    [SerializeField] private SFXType _sfxType;
-    private float _damage;
+    [SerializeField] private SFXType _spawnSfxType;
 
-    public void Initialize(float damage)
+    public override void OnSpawn()
     {
-        AudioManager.Instance.PlaySFX(_sfxType);
-        _damage = damage;
+        AudioManager.Instance.PlaySFX(_spawnSfxType);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

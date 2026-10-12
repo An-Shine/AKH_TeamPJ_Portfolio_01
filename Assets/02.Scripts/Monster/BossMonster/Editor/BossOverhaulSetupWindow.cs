@@ -12,7 +12,6 @@ namespace _02.Scripts.Monster.BossMonster.Editor
         private const string DefaultPrefabPath = "Assets/03.Prefabs/Monster/BossMonster.prefab";
         private const string ProfilePath = "Assets/08.Data/MonsterPresentation/BossEncounter.asset";
         private const string ControllerPath = "Assets/MonsterResources/BossOverhaul/Generated/BossEncounter.controller";
-
         private GameObject _bossPrefab;
         private global::BossMonster _sceneBoss;
         private global::BossRoom _room;
@@ -22,7 +21,6 @@ namespace _02.Scripts.Monster.BossMonster.Editor
         private bool _useEnemySorting = true;
         private Vector2 _scroll;
         private string _message;
-
         [MenuItem("Tools/Monster/Boss Overhaul Setup")]
         public static void Open()
         {
@@ -40,31 +38,34 @@ namespace _02.Scripts.Monster.BossMonster.Editor
         private void OnGUI()
         {
             _scroll = EditorGUILayout.BeginScrollView(_scroll);
-            EditorGUILayout.LabelField("보스 24패턴 + 3단계 전투 적용", EditorStyles.boldLabel);
-            EditorGUILayout.HelpBox("대형 효과와 96개 사운드가 포함되어 있습니다. 체력 단계에 따라 10종 → 18종 → 24종이 열립니다.", MessageType.Info);
+            EditorGUILayout.LabelField("보스 30패턴 + 추적·고난도 전투", EditorStyles.boldLabel);
+            EditorGUILayout.HelpBox("실제 파티클과 120개 사운드, 예측 추적·유도 탄환을 포함합니다. 체력 70% / 35%에서 11종 → 23종 → 30종을 반복하며, 공격 범위는 기본 1.35배입니다.", MessageType.Info);
             _bossPrefab = (GameObject)EditorGUILayout.ObjectField("Project 보스 프리팹", _bossPrefab, typeof(GameObject), false);
             _sceneBoss = (global::BossMonster)EditorGUILayout.ObjectField("Hierarchy 씬 보스", _sceneBoss, typeof(global::BossMonster), true);
             _room = (global::BossRoom)EditorGUILayout.ObjectField("씬 BossRoom", _room, typeof(global::BossRoom), true);
             _camera = (Camera)EditorGUILayout.ObjectField("쉐이크 카메라", _camera, typeof(Camera), true);
             _profile = (BossEncounterProfile)EditorGUILayout.ObjectField("전투 설정", _profile, typeof(BossEncounterProfile), false);
-            _applyChaseDefaults = EditorGUILayout.Toggle("추적 속도 0.8 적용", _applyChaseDefaults);
+            _applyChaseDefaults = EditorGUILayout.Toggle("추적 속도 1.3 · 접근 거리 2.3 적용", _applyChaseDefaults);
             _useEnemySorting = EditorGUILayout.Toggle("Enemy Sorting Layer 적용", _useEnemySorting);
             EditorGUILayout.Space();
             if (GUILayout.Button("현재 씬 연결 다시 찾기"))
             {
                 RefreshSceneReferences();
             }
+
             using (new EditorGUI.DisabledScope(EditorApplication.isPlayingOrWillChangePlaymode))
             {
                 if (GUILayout.Button("프리팹과 씬 보스에 적용", GUILayout.Height(36f)))
                 {
                     Apply();
                 }
+
                 if (GUILayout.Button("전투 설정 열기") && _profile != null)
                 {
                     Selection.activeObject = _profile;
                     EditorGUIUtility.PingObject(_profile);
                 }
+
                 if (GUILayout.Button("기존 설정에 빠진 패턴 추가") && _profile != null)
                 {
                     Undo.RecordObject(_profile, "Add Missing Boss Patterns");
@@ -74,12 +75,14 @@ namespace _02.Scripts.Monster.BossMonster.Editor
                     _message = added + "개 패턴을 추가했습니다. 기존 항목의 설정은 유지됩니다.";
                 }
             }
+
             EditorGUILayout.Space();
             EditorGUILayout.HelpBox("설정은 한 번 적용하면 저장됩니다. 적용 후 씬을 Ctrl+S로 저장하세요. 체력·피해·기존 스프라이트·Player 코드는 바꾸지 않습니다.", MessageType.None);
             if (!string.IsNullOrEmpty(_message))
             {
                 EditorGUILayout.HelpBox(_message, MessageType.Info);
             }
+
             EditorGUILayout.EndScrollView();
         }
 
@@ -94,6 +97,7 @@ namespace _02.Scripts.Monster.BossMonster.Editor
                     _sceneBoss = null;
                 }
             }
+
 #if UNITY_2022_2_OR_NEWER
             global::BossMonster[] bosses = UnityEngine.Object.FindObjectsByType<global::BossMonster>(FindObjectsInactive.Include, FindObjectsSortMode.None);
             global::BossRoom[] rooms = UnityEngine.Object.FindObjectsByType<global::BossRoom>(FindObjectsInactive.Include, FindObjectsSortMode.None);
@@ -105,6 +109,7 @@ namespace _02.Scripts.Monster.BossMonster.Editor
             {
                 _sceneBoss = bosses[0];
             }
+
             _room = null;
             if (_sceneBoss != null)
             {
@@ -112,17 +117,18 @@ namespace _02.Scripts.Monster.BossMonster.Editor
                 _room = serialized.FindProperty("_room").objectReferenceValue as global::BossRoom;
                 foreach (global::BossRoom room in rooms)
                 {
-                    if (_room == null && room.gameObject.scene == _sceneBoss.gameObject.scene &&
-                        room.Contains(_sceneBoss.transform.position, 0f))
+                    if (_room == null && room.gameObject.scene == _sceneBoss.gameObject.scene && room.Contains(_sceneBoss.transform.position, 0f))
                     {
                         _room = room;
                     }
                 }
             }
+
             if (_room == null && rooms.Length == 1)
             {
                 _room = rooms[0];
             }
+
             _camera = Camera.main;
         }
 
@@ -135,6 +141,7 @@ namespace _02.Scripts.Monster.BossMonster.Editor
                 {
                     throw new InvalidOperationException("보스 프리팹 또는 씬의 BossMonster를 연결하세요.");
                 }
+
                 string prefabPath = _bossPrefab != null ? AssetDatabase.GetAssetPath(_bossPrefab) : null;
                 if (_bossPrefab != null)
                 {
@@ -142,12 +149,14 @@ namespace _02.Scripts.Monster.BossMonster.Editor
                     {
                         throw new InvalidOperationException("Project 창의 .prefab 파일을 연결하세요.");
                     }
+
                     contents = PrefabUtility.LoadPrefabContents(prefabPath);
                     if (contents.GetComponentInChildren<global::BossMonster>(true) == null)
                     {
                         throw new InvalidOperationException("선택한 프리팹에 BossMonster가 없습니다.");
                     }
                 }
+
                 if (_profile == null)
                 {
                     EnsureFolder("Assets/08.Data/MonsterPresentation");
@@ -159,6 +168,7 @@ namespace _02.Scripts.Monster.BossMonster.Editor
                         AssetDatabase.CreateAsset(_profile, ProfilePath);
                     }
                 }
+
                 if (_profile.Moves == null || _profile.Moves.Length == 0)
                 {
                     _profile.InitializeDefaults();
@@ -168,11 +178,13 @@ namespace _02.Scripts.Monster.BossMonster.Editor
                 {
                     EditorUtility.SetDirty(_profile);
                 }
+
                 if (contents != null)
                 {
                     Configure(contents.GetComponentInChildren<global::BossMonster>(true), false);
                     PrefabUtility.SaveAsPrefabAsset(contents, prefabPath);
                 }
+
                 if (_sceneBoss != null)
                 {
                     Undo.RecordObject(_sceneBoss, "Apply Boss Overhaul");
@@ -180,6 +192,7 @@ namespace _02.Scripts.Monster.BossMonster.Editor
                     PrefabUtility.RecordPrefabInstancePropertyModifications(_sceneBoss);
                     EditorSceneManager.MarkSceneDirty(_sceneBoss.gameObject.scene);
                 }
+
                 AssetDatabase.SaveAssets();
                 Selection.activeObject = _profile;
                 _message = "보스 전투 적용 완료. 씬을 저장하고 플레이하세요. 전투 설정의 Moves에서 사운드와 효과 프리팹을 교체할 수 있습니다.";
@@ -206,26 +219,31 @@ namespace _02.Scripts.Monster.BossMonster.Editor
             if (_applyChaseDefaults)
             {
                 serialized.FindProperty("_enableSlowChase").boolValue = true;
-                serialized.FindProperty("_slowMoveSpeed").floatValue = 0.8f;
+                serialized.FindProperty("_slowMoveSpeed").floatValue = 1.3f;
+                serialized.FindProperty("_stopDistance").floatValue = 2.3f;
                 serialized.FindProperty("_roomEdgePadding").floatValue = 1.1f;
             }
+
             if (sceneObject)
             {
                 if (_room != null)
                 {
                     serialized.FindProperty("_room").objectReferenceValue = _room;
                 }
+
                 if (_camera != null)
                 {
                     serialized.FindProperty("_shakeCamera").objectReferenceValue = _camera;
                 }
             }
+
             serialized.ApplyModifiedProperties();
             Animator animator = boss.GetComponentInChildren<Animator>(true);
             if (animator != null)
             {
                 ConfigureController(animator, sceneObject);
             }
+
             if (_useEnemySorting)
             {
                 foreach (SortingLayer layer in SortingLayer.layers)
@@ -234,12 +252,14 @@ namespace _02.Scripts.Monster.BossMonster.Editor
                     {
                         continue;
                     }
+
                     foreach (SpriteRenderer renderer in boss.GetComponentsInChildren<SpriteRenderer>(true))
                     {
                         if (sceneObject)
                         {
                             Undo.RecordObject(renderer, "Boss Sorting Layer");
                         }
+
                         renderer.sortingLayerID = layer.id;
                         EditorUtility.SetDirty(renderer);
                         if (sceneObject)
@@ -247,9 +267,11 @@ namespace _02.Scripts.Monster.BossMonster.Editor
                             PrefabUtility.RecordPrefabInstancePropertyModifications(renderer);
                         }
                     }
+
                     break;
                 }
             }
+
             EditorUtility.SetDirty(boss);
         }
 
@@ -259,6 +281,7 @@ namespace _02.Scripts.Monster.BossMonster.Editor
             {
                 return;
             }
+
             AnimatorController controller = AssetDatabase.LoadAssetAtPath<AnimatorController>(ControllerPath);
             if (controller == null)
             {
@@ -268,17 +291,21 @@ namespace _02.Scripts.Monster.BossMonster.Editor
                 {
                     throw new InvalidOperationException("보스 Animator Controller 복사에 실패했습니다: " + sourcePath);
                 }
+
                 controller = AssetDatabase.LoadAssetAtPath<AnimatorController>(ControllerPath);
                 foreach (AnimatorControllerLayer layer in controller.layers)
                 {
                     RemoveAutomaticTransitions(layer.stateMachine);
                 }
+
                 EditorUtility.SetDirty(controller);
             }
+
             if (sceneObject)
             {
                 Undo.RecordObject(animator, "Boss Animation Controller");
             }
+
             animator.runtimeAnimatorController = controller;
             EditorUtility.SetDirty(animator);
             if (sceneObject)
@@ -296,11 +323,13 @@ namespace _02.Scripts.Monster.BossMonster.Editor
                 state.state.transitions = new AnimatorStateTransition[0];
                 EditorUtility.SetDirty(state.state);
             }
+
             foreach (ChildAnimatorStateMachine child in machine.stateMachines)
             {
                 machine.SetStateMachineTransitions(child.stateMachine, new AnimatorTransition[0]);
                 RemoveAutomaticTransitions(child.stateMachine);
             }
+
             EditorUtility.SetDirty(machine);
         }
 
@@ -315,9 +344,11 @@ namespace _02.Scripts.Monster.BossMonster.Editor
                 {
                     AssetDatabase.CreateFolder(current, parts[i]);
                 }
+
                 current = next;
             }
         }
     }
 }
 #endif
+

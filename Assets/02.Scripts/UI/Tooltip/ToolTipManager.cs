@@ -53,6 +53,7 @@ public class ToolTipManager : MonoBehaviour
         _offset = offset;
         _isOpenTooltip = true;
         RefreshTooltip();
+        AudioManager.Instance.PlaySFX(SFXType.TooltipOpen);
         _tooltipAnimator.Play(nameof(TooltipState.Open));
     }
 

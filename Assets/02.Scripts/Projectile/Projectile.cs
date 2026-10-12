@@ -19,6 +19,8 @@ public abstract class Projectile : MonoBehaviour
     public float SpeedScalar => _speedScalar * (1f + ItemManager.Instance.ProjectileStat.MoveSpeedMultiplier);
     protected Vector3 _initialPosition;
 
+    [SerializeField] private int _effectProbability;
+
     protected virtual void Update()
     {
         Move();
@@ -97,6 +99,7 @@ public abstract class Projectile : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             _durability -= 1;
+            _bonusDamage += (int)(Damage * ItemManager.Instance.ProjectileStat.DamageBonusByPenetration);
         }
 
         if (_durability <= 0)
@@ -108,5 +111,34 @@ public abstract class Projectile : MonoBehaviour
     protected virtual void OnDestroySelf()
     {
         ProjectilePoolManager.Instance.Release(this);
+        ExecuteDestroyEffect();
+    }
+
+    private void ExecuteDestroyEffect()
+    {
+        ItemManager itemManager = ItemManager.Instance;
+        if (itemManager == null) return;
+        if (itemManager.ProjectileStat.IsBlackHole)
+        {
+            if (UnityEngine.Random.Range(1, 100) <= _effectProbability)
+            {
+                EffectSpawner.Instance.Spawn(EffectType.BlackHole, transform.position,
+                    itemManager.ProjectileStat.BlackHoleDamage);
+            }
+        }
+
+        if (itemManager.ProjectileStat.IsGammaField)
+        {
+            if (UnityEngine.Random.Range(1, 100) <= _effectProbability)
+            {
+                EffectSpawner.Instance.Spawn(EffectType.Gamma, transform.position,
+                    itemManager.ProjectileStat.GammaDamage);
+            }
+        }
+    }
+
+    public void ApplyLastBulletEffect(float bonusRate)
+    {
+        _bonusDamage += (int)(Damage * bonusRate);
     }
 }

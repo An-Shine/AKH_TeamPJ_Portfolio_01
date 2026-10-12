@@ -52,7 +52,8 @@ public class DataManager : MonoBehaviour
                 ReloadTime = float.Parse(row[9]),
                 ChargeTime = float.Parse(row[10]),
                 Angle = float.Parse(row[11]),
-                Range = float.Parse(row[12])
+                Range = float.Parse(row[12]),
+                Description = row[13],
             };
         }
     }
@@ -134,7 +135,7 @@ public class DataManager : MonoBehaviour
             ItemEffectDatas[row[0]] = new ItemEffectData
             {
                 TargetType = (EffectTarget)Enum.Parse(typeof(EffectTarget), row[1]),
-                EffectType = (EffectType)Enum.Parse(typeof(EffectType), row[2]),
+                itemEffectType = (ItemEffectType)Enum.Parse(typeof(ItemEffectType), row[2]),
                 ApplyType = (ItemEffectApplyType)Enum.Parse(typeof(ItemEffectApplyType), row[3]),
                 Value = float.Parse(row[4]),
             };

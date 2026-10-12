@@ -79,8 +79,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: -2115163997
-  m_SortingLayer: 4
+  m_SortingLayerID: -637956649
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 777528505627316671, guid: f4cdbd269f49b5c4281bf19b07ccc31a, type: 3}
@@ -127,5 +127,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 473bd937777548bfa760295fafcbbf8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GuardDrone
+  _speedScalar: 10
+  _blockingLayer:
+    serializedVersion: 2
+    m_Bits: 768
+  _teleportThreshold: 0.1
   _maxHealth: 100
   _rotaionSpeedScalar: 60

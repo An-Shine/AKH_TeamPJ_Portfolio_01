@@ -10,7 +10,9 @@ namespace _02.Scripts.Monster.Presentation
         Ring,
         Star,
         Pixel,
-        Glow
+        Glow,
+        Oil,
+        Shard
     }
 
     // 장면별 풀에 연출을 보관하므로 몬스터/탄환이 사라져도 효과와 사운드가 끝까지 재생됩니다.
@@ -35,10 +37,13 @@ namespace _02.Scripts.Monster.Presentation
         private readonly Stamp[] _stamps = new Stamp[MaximumStamps];
         private readonly AudioSource[] _voices = new AudioSource[MaximumVoices];
         private readonly bool[] _pausedVoices = new bool[MaximumVoices];
-        private readonly Sprite[] _shapes = new Sprite[5];
+        private readonly Sprite[] _shapes = new Sprite[7];
         private readonly Dictionary<int, Sprite> _slashSprites = new Dictionary<int, Sprite>();
         private Material _additiveMaterial;
         private Material _outlineMaterial;
+        private Material _hitMaterial;
+        private Material _hitGlowMaterial;
+        private NormalMonsterHitParticles _hitParticles;
         private int _sceneHandle;
         private int _nextStamp;
         private int _createdStamps;
@@ -92,6 +97,20 @@ namespace _02.Scripts.Monster.Presentation
             {
                 _shapes[i] = CreateShape((NormalFeelShape)i);
             }
+
+            Shader hit = Resources.Load<Shader>("Monster/NormalGameFeel/NormalMonsterHit");
+            if (hit != null)
+            {
+                _hitMaterial = new Material(hit)
+                { hideFlags = HideFlags.DontSave };
+            }
+
+            Shader hitGlow = Resources.Load<Shader>("Monster/NormalGameFeel/NormalMonsterHitGlow");
+            if (hitGlow != null)
+            {
+                _hitGlowMaterial = new Material(hitGlow)
+                { hideFlags = HideFlags.DontSave };
+            }
         }
 
         internal SpriteRenderer CreatePersistentRenderer(string name, bool outline = false)
@@ -110,6 +129,42 @@ namespace _02.Scripts.Monster.Presentation
         }
 
         internal bool HasOutlineMaterial => _outlineMaterial != null;
+        internal bool HasHitMaterial => _hitMaterial != null;
+
+        internal SpriteRenderer CreateHitRenderer(string name)
+        {
+            SpriteRenderer renderer = CreatePersistentRenderer(name);
+            renderer.sharedMaterial = _hitMaterial;
+            return renderer;
+        }
+
+        internal void MechanicalHit(Vector3 point, Vector2 direction, float width, Color accent, NormalMonsterFeelProfile profile, int layer, int sortingLayer, int order, bool lethal)
+        {
+            if (_hitParticles == null)
+            {
+                GameObject root = new GameObject("NormalMonsterMechanicalHitParticles");
+                root.transform.SetParent(transform, false);
+                _hitParticles = root.AddComponent<NormalMonsterHitParticles>();
+                _hitParticles.Configure(_hitGlowMaterial, _hitMaterial, Shape(NormalFeelShape.Pixel), Shape(NormalFeelShape.Shard), Shape(NormalFeelShape.Oil));
+            }
+
+            _hitParticles.Burst(point, direction, width, accent, profile, layer, sortingLayer, order, lethal);
+            if (profile.HitOilDrops <= 0)
+            {
+                return;
+            }
+
+            Vector3 floor = point + new Vector3(0f, -width * 0.23f, 0f);
+            int stains = lethal ? 3 : 2;
+            for (int i = 0; i < stains; i++)
+            {
+                Vector2 offset = direction * Random.Range(0.02f, 0.25f) * width + Random.insideUnitCircle * width * 0.12f;
+                float size = width * Random.Range(0.13f, 0.25f);
+                Color oil = new Color(0.09f, 0.012f, 0.035f, 0.8f);
+                Vector2 start = new Vector2(size, size * 0.45f);
+                Emit(Shape(NormalFeelShape.Oil), floor + new Vector3(offset.x, offset.y, 0f), Random.Range(-25f, 25f), start, start * 1.15f, Vector2.zero, oil, profile.HitOilLifetime, layer, sortingLayer, order - 5, false, false, true);
+            }
+        }
         internal Sprite Shape(NormalFeelShape shape) => _shapes[(int)shape];
         internal Sprite Slash(float angle)
         {
@@ -128,7 +183,7 @@ namespace _02.Scripts.Monster.Presentation
             return sprite;
         }
 
-        internal void Emit(Sprite sprite, Vector3 position, float rotation, Vector2 startSize, Vector2 endSize, Vector2 velocity, Color color, float lifetime, int layer, int sortingLayer, int order, bool flipX = false, bool flipY = false)
+        internal void Emit(Sprite sprite, Vector3 position, float rotation, Vector2 startSize, Vector2 endSize, Vector2 velocity, Color color, float lifetime, int layer, int sortingLayer, int order, bool flipX = false, bool flipY = false, bool opaque = false, bool hitGlow = false)
         {
             if (sprite == null)
             {
@@ -145,6 +200,7 @@ namespace _02.Scripts.Monster.Presentation
             }
 
             SpriteRenderer renderer = stamp.Renderer;
+            renderer.sharedMaterial = opaque && _hitMaterial != null ? _hitMaterial : hitGlow && _hitGlowMaterial != null ? _hitGlowMaterial : _additiveMaterial;
             renderer.gameObject.layer = layer;
             renderer.sprite = sprite;
             renderer.color = color;
@@ -202,7 +258,17 @@ namespace _02.Scripts.Monster.Presentation
 
                 voice.transform.position = position;
                 voice.clip = clip;
-                voice.volume = Mathf.Clamp01(volume) / (1f + distance * 0.06f);
+                int activeVoices = 0;
+                for (int j = 0; j < _voices.Length; j++)
+                {
+                    if (_voices[j] != null && _voices[j].isPlaying)
+                    {
+                        activeVoices++;
+                    }
+                }
+
+                float crowdGain = 1f / Mathf.Sqrt(1f + activeVoices * 0.12f);
+                voice.volume = Mathf.Clamp01(volume) * crowdGain / (1f + distance * 0.06f);
                 voice.pitch = Random.Range(0.96f, 1.04f);
                 voice.outputAudioMixerGroup = profile.SoundMixerGroup;
                 voice.Play();
@@ -325,6 +391,21 @@ namespace _02.Scripts.Monster.Presentation
                             alpha = Mathf.Round(alpha * 6f) / 6f;
                             break;
                         }
+
+                        case NormalFeelShape.Oil:
+                        {
+                            float steppedX = Mathf.Round(dx * 10f) / 10f;
+                            float steppedY = Mathf.Round(dy * 10f) / 10f;
+                            float edge = 0.68f + Mathf.Sin(Mathf.Atan2(steppedY, steppedX) * 5f) * 0.08f;
+                            alpha = steppedX * steppedX + steppedY * steppedY <= edge * edge ? 1f : 0f;
+                            break;
+                        }
+
+                        case NormalFeelShape.Shard:
+                        {
+                            alpha = Mathf.Abs(dx) * 0.9f + Mathf.Abs(dy) <= 0.72f && dy > dx * 0.5f - 0.45f ? 1f : 0f;
+                            break;
+                        }
                     }
 
                     pixels[y * Size + x] = new Color32(255, 255, 255, (byte)(alpha * 255f));
@@ -379,6 +460,16 @@ namespace _02.Scripts.Monster.Presentation
             if (_outlineMaterial != null)
             {
                 Destroy(_outlineMaterial);
+            }
+
+            if (_hitMaterial != null)
+            {
+                Destroy(_hitMaterial);
+            }
+
+            if (_hitGlowMaterial != null)
+            {
+                Destroy(_hitGlowMaterial);
             }
         }
     }

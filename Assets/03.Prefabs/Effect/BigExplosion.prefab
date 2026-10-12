@@ -82,7 +82,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1633969471
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -900289933308699707, guid: 46393cc0d3bb02548b407b99c3686250, type: 3}
@@ -129,7 +129,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31951b6cbc41c2d49b71c6a02d7cf0e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Explosion
-  _sfxType: 24
+  _lifeDuration: 0
+  _spawnSfxType: 24
 --- !u!58 &2951718993265838117
 CircleCollider2D:
   m_ObjectHideFlags: 0

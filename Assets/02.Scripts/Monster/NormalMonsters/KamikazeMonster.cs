@@ -1,50 +1,64 @@
 using UnityEngine;
+using _02.Scripts.Monster.Presentation;
 
 [RequireComponent(typeof(Animator))]
 public class KamikazeMonster : NormalMonster
 {
-
     [Header("자폭 시작")]
     [Tooltip("플레이어 몸의 Collider2D와 이 거리 안에 들어오면 자폭 준비를 시작합니다.")]
-    [SerializeField, Min(0.1f)] private float _explodeRange = 1.2f;
-    [SerializeField, Min(0f)] private float _attackTriggerTolerance = 0.05f;
+    [SerializeField, Min(0.1f)]
+    private float _explodeRange = 1.2f;
+    [SerializeField, Min(0f)]
+    private float _attackTriggerTolerance = 0.05f;
     [Tooltip("Attack 애니메이션에서 폭발하는 시점입니다. 0.8이면 80% 지점입니다.")]
-    [SerializeField, Range(0f, 0.95f)] private float _explodeNormalizedTime = 0.8f;
+    [SerializeField, Range(0f, 0.95f)]
+    private float _explodeNormalizedTime = 0.8f;
     [Tooltip("Animator가 공격 상태를 반복하거나 벗어나도 이 시간이 지나면 폭발합니다.")]
-    [SerializeField, Min(0.1f)] private float _maximumFuseTime = 1.5f;
+    [SerializeField, Min(0.1f)]
+    private float _maximumFuseTime = 1.5f;
     [Tooltip("폭발 후 Attack 애니메이션이 끝나지 않을 때 Death로 넘어가는 대기 시간입니다.")]
-    [SerializeField, Min(0.1f)] private float _postExplosionDelay = 0.5f;
-
+    [SerializeField, Min(0.1f)]
+    private float _postExplosionDelay = 0.5f;
     [Header("폭발 데미지")]
-    [SerializeField, Min(0f)] private float _explosionDamage = 30f;
-    [SerializeField, Min(0.1f)] private float _explosionDamageRadius = 2f;
-
+    [SerializeField, Min(0f)]
+    private float _explosionDamage = 30f;
+    [SerializeField, Min(0.1f)]
+    private float _explosionDamageRadius = 2f;
     [Header("추격")]
-    [SerializeField, Min(0.1f)] private float _chargeRange = 4f;
-    [SerializeField, Min(0.1f)] private float _chaseSpeedMultiplier = 1.2f;
-    [SerializeField, Min(0.1f)] private float _chargeSpeedMultiplier = 2f;
-    [SerializeField, Min(0f)] private float _crowdAvoidanceSpeed = 1.5f;
-
+    [SerializeField, Min(0.1f)]
+    private float _chargeRange = 4f;
+    [SerializeField, Min(0.1f)]
+    private float _chaseSpeedMultiplier = 1.2f;
+    [SerializeField, Min(0.1f)]
+    private float _chargeSpeedMultiplier = 2f;
+    [SerializeField, Min(0f)]
+    private float _crowdAvoidanceSpeed = 1.5f;
     [Header("방향 안정화")]
     [Tooltip("이 거리 안에서는 마지막 접근 방향을 유지합니다. 공격 중에는 항상 방향을 고정합니다.")]
-    [SerializeField, Min(0.1f)] private float _facingLockDistance = 1.5f;
+    [SerializeField, Min(0.1f)]
+    private float _facingLockDistance = 1.5f;
     [Tooltip("8방향 경계에서 작은 각도 변화 때문에 자세가 왕복하는 것을 줄입니다.")]
-    [SerializeField, Range(0f, 20f)] private float _directionHysteresis = 7f;
-
+    [SerializeField, Range(0f, 20f)]
+    private float _directionHysteresis = 7f;
     [Header("걷기 애니메이션")]
     [Tooltip("Walk 재생 배율입니다. 실제 이동 속도와 별개입니다.")]
-    [SerializeField, Min(0.1f)] private float _walkAnimationSpeed = 1.8f;
-    [SerializeField, Min(0.1f)] private float _chargeAnimationSpeed = 2.2f;
-
+    [SerializeField, Min(0.1f)]
+    private float _walkAnimationSpeed = 1.8f;
+    [SerializeField, Min(0.1f)]
+    private float _chargeAnimationSpeed = 2.2f;
     [Header("폭발 효과")]
     [Tooltip("연결하면 이 프리팹을 사용합니다. 비워 두면 기본 픽셀 폭발 효과를 생성합니다.")]
-    [SerializeField] private GameObject _explosionEffectPrefab;
-    [SerializeField, Min(0f)] private float _explosionEffectLifetime = 1f;
-    [SerializeField] private Color _explosionColor = new Color(0.2f, 0.9f, 1f, 1f);
-
+    [SerializeField]
+    private GameObject _explosionEffectPrefab;
+    [SerializeField, Min(0f)]
+    private float _explosionEffectLifetime = 1f;
+    [SerializeField]
+    private Color _explosionColor = new Color(0.2f, 0.9f, 1f, 1f);
     [Header("애니메이션 종료 보정")]
-    [SerializeField, Min(0.1f)] private float _maximumHitTime = 1.2f;
-    [SerializeField, Min(0.1f)] private float _maximumDeathTime = 3f;
+    [SerializeField, Min(0.1f)]
+    private float _maximumHitTime = 1.2f;
+    [SerializeField, Min(0.1f)]
+    private float _maximumDeathTime = 3f;
     private enum ActionState
     {
         None,
@@ -58,10 +72,21 @@ public class KamikazeMonster : NormalMonster
     private static readonly int AttackingId = Animator.StringToHash("IsAttacking");
     private static readonly int HitId = Animator.StringToHash("IsHit");
     private static readonly int DeadId = Animator.StringToHash("IsDead");
-    private static readonly string[] Directions = { "S", "SE", "E", "NE", "N", "NW", "W", "SW" };
+    private static readonly string[] Directions =
+    {
+        "S",
+        "SE",
+        "E",
+        "NE",
+        "N",
+        "NW",
+        "W",
+        "SW"
+    };
     // Idle / Walk / Attack / Hit / Death, 각 8방향.
     private readonly int[,] _states = new int[5, 8];
     private Animator _animator;
+    private NormalMonsterGameFeel _gameFeel;
     private SpriteRenderer[] _renderers;
     private Color[] _kamikazeOriginalColors;
     private Collider2D[] _colliders;
@@ -88,6 +113,7 @@ public class KamikazeMonster : NormalMonster
         _visualLock = new MonsterVisualLock(transform);
         ClampSettings();
         _animator = GetComponent<Animator>();
+        _gameFeel = GetComponent<NormalMonsterGameFeel>();
         _renderers = GetComponentsInChildren<SpriteRenderer>(true);
         _colliders = GetComponentsInChildren<Collider2D>(true);
         _bodies = GetComponentsInChildren<Rigidbody2D>(true);
@@ -168,6 +194,7 @@ public class KamikazeMonster : NormalMonster
                 SetDirection(toPlayer);
             }
 
+            PlayLocomotion(false, false);
             BeginKamikazeAttack();
             return;
         }
@@ -180,7 +207,7 @@ public class KamikazeMonster : NormalMonster
             moveDistance = Mathf.Min(moveDistance, Mathf.Max(0f, distance - _explodeRange));
         }
 
-        Vector2 movement = GetNavigationMovement(_player.position, moveDistance);
+        Vector2 movement = GetTacticalMovement(_player.position, moveDistance, _explodeRange, charging);
         if (!charging)
         {
             movement += GetSeparationDirection() * (_crowdAvoidanceSpeed * Time.deltaTime);
@@ -369,12 +396,19 @@ public class KamikazeMonster : NormalMonster
             return;
         }
 
+        if (!TryBeginCoordinatedAttack(_maximumFuseTime + _postExplosionDelay))
+            return;
+
         _explosionTriggered = false;
         BeginAction(ActionState.Attack, 2);
+        if (_gameFeel != null)
+            _gameFeel.BeginKamikazeFuse(_explosionDamageRadius);
     }
 
     private void BeginAction(ActionState action, int row)
     {
+        if (action != ActionState.Attack)
+            ReleaseCoordinatedAttack();
         _action = action;
         _actionHash = _states[row, _direction];
         _actionStartFrame = Time.frameCount;
@@ -398,6 +432,12 @@ public class KamikazeMonster : NormalMonster
         bool matching = state.fullPathHash == _actionHash;
         if (_action == ActionState.Attack)
         {
+            if (!_explosionTriggered && _gameFeel != null)
+            {
+                float animationProgress = matching ? state.normalizedTime / Mathf.Max(0.05f, _explodeNormalizedTime) : 0f;
+                _gameFeel.UpdateKamikazeFuse(Mathf.Max(animationProgress, elapsed / _maximumFuseTime));
+            }
+
             bool animationReachedExplosion = matching && state.normalizedTime >= _explodeNormalizedTime;
             if (!_explosionTriggered && (animationReachedExplosion || elapsed >= _maximumFuseTime))
             {
@@ -466,6 +506,12 @@ public class KamikazeMonster : NormalMonster
 
     private void SpawnExplosionEffect(Vector3 position)
     {
+        if (_gameFeel != null && _gameFeel.IsConfigured)
+        {
+            _gameFeel.KamikazeExplosion(position, _explosionDamageRadius);
+            return;
+        }
+
         if (_explosionEffectPrefab != null)
         {
             GameObject effect = Instantiate(_explosionEffectPrefab, position, Quaternion.identity);
@@ -496,6 +542,8 @@ public class KamikazeMonster : NormalMonster
         }
 
         _hasDied = true;
+        if (_gameFeel != null)
+            _gameFeel.CancelAttackVisual();
         StopMovementForDeath();
         _currentHealth = 0f;
         StopAllCoroutines();
@@ -539,6 +587,7 @@ public class KamikazeMonster : NormalMonster
 
     private void FinishAction()
     {
+        ReleaseCoordinatedAttack();
         _action = ActionState.None;
         PlayLocomotion(false, false);
     }
@@ -551,8 +600,22 @@ public class KamikazeMonster : NormalMonster
             return false;
         }
 
-        int[] ids = { DirectionId, MovingId, AttackingId, HitId, DeadId };
-        string[] names = { "Direction", "IsMoving", "IsAttacking", "IsHit", "IsDead" };
+        int[] ids =
+        {
+            DirectionId,
+            MovingId,
+            AttackingId,
+            HitId,
+            DeadId
+        };
+        string[] names =
+        {
+            "Direction",
+            "IsMoving",
+            "IsAttacking",
+            "IsHit",
+            "IsDead"
+        };
         AnimatorControllerParameter[] parameters = _animator.parameters;
         for (int i = 0; i < ids.Length; i++)
         {
@@ -574,7 +637,14 @@ public class KamikazeMonster : NormalMonster
             }
         }
 
-        string[] motions = { "idle", "walk", "attack", "hit", "death" };
+        string[] motions =
+        {
+            "idle",
+            "walk",
+            "attack",
+            "hit",
+            "death"
+        };
         for (int row = 0; row < motions.Length; row++)
         {
             for (int direction = 0; direction < Directions.Length; direction++)
