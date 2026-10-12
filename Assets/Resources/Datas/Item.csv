@@ -1,6 +1,6 @@
 Item_Id,Name,Description,Effect_Id1,Effect_Id2,Effect_Id3,Effect_Id4,Effect_Id5,Effect_Id6,VisualVariable
 0,근접전 회로,공격 속도 <color=#FFF900>+ 15%</color> 사거리 <color=#FF0000>- 20%</color>,IncreaseFireSpeed,DecreaseRangeMulti,,,,,0
-1,증폭기,공격력 <color=#FFF900>+ 20%</color> 발사체 크기 <color=#FFF900>+ 50%</color>,IncreaseDamageMulti,IncreaseProjectileSize,,,,,1
+1,증폭기,공격력 <color=#FFF900>+ 20%</color> 발사체 크기 <color=#FFF900>+ 50%</color>,IncreaseDamageMulti,IncreaseProjectileSize,,,,,1.5
 2,확산기,이동 속도 <color=#FF0000>- 20%</color> <color=#00FFFF>[산탄 전용]</color> 투사체 개수 <color=#FFF900>+ 4</color> 투사체 분산 각도  <color=#FFF900>+ 20</color>,IncreaseAngle,DecreaseMoveSpeed,IncreaseProjectileCount,IncreaseProjectileCount,,,2
 3,탄도 가속 코일,투사체 속도 <color=#FFF900>+ 50%</color>,IncreaseProjectileSpeed,,,,,,3
 4,바이탈 코어,플레이어 최대 체력 <color=#FFF900>+ 150</color> 플레이어 회복 <color=#00FF0D>50</color>,IncreaseMaxHealth,HealPlayer,,,,,2
