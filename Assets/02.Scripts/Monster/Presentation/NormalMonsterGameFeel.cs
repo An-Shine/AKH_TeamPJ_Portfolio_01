@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace _02.Scripts.Monster.Presentation
@@ -26,7 +27,10 @@ namespace _02.Scripts.Monster.Presentation
         private bool _hitActive;
         private bool _bodyWasRenderingOff;
         private bool _isNormalMonster;
+        private readonly Dictionary<AudioClip[], int> _previousSoundIndices = new Dictionary<AudioClip[], int>();
         private int _previousHitSound = -1;
+        private bool _deathSoundPlayed;
+        private bool _explosionSoundPlayed;
         private MaterialPropertyBlock _outlineProperties;
         private Sprite _outlinedSprite;
         private Vector2 _chargeDirection;
@@ -136,6 +140,21 @@ namespace _02.Scripts.Monster.Presentation
             PlayIndex(sounds, index, point, _profile.HitVolume * (lethal ? 1f : 0.85f));
             NormalMonsterCameraShake.Request(point, _profile.HitCameraShake * (lethal ? 1.3f : 1f), 0.075f);
             return true;
+        }
+
+        public void PlayDeathSound()
+        {
+            if (_deathSoundPlayed || _explosionSoundPlayed || !_isNormalMonster || !IsConfigured || Time.timeScale <= 0f)
+                return;
+            _deathSoundPlayed = true;
+            if (_effects == null)
+            {
+                _effects = NormalMonsterFeelEffects.ForScene(gameObject.scene);
+            }
+
+            string cue = _isKamikaze ? "KamikazeDeath" : _isMelee ? "MeleeDeath" : "RangeDeath";
+            AudioClip[] clips = MonsterCombatAudio.Normal(cue, _profile.HitSounds);
+            Play(clips, transform.position, _profile.ImpactVolume);
         }
 
         private void RefreshHitVisual()
@@ -250,6 +269,7 @@ namespace _02.Scripts.Monster.Presentation
                 _neon.Burst(point, Mathf.Max(0.2f, radius * 0.7f), color, _bodyRenderer.sortingLayerID, _bodyRenderer.sortingOrder + 3, 38, true);
             Ring(point, color, radius * 0.25f, radius * 2.1f, 0.35f);
             Glow(point, Color.Lerp(color, Color.white, 0.4f), radius * 0.7f, 0.1f);
+            _explosionSoundPlayed = true;
             int index = Choose(_profile.KamikazeExplosionSounds, _previousExplosion);
             _previousExplosion = index;
             PlayIndex(_profile.KamikazeExplosionSounds, index, point, Mathf.Min(1f, _profile.ImpactVolume * 1.1f));
@@ -451,7 +471,14 @@ namespace _02.Scripts.Monster.Presentation
 
         private void Play(AudioClip[] sounds, Vector3 position, float volume)
         {
-            PlayIndex(sounds, Choose(sounds, -1), position, volume);
+            int previous = sounds != null && _previousSoundIndices.TryGetValue(sounds, out int last) ? last : -1;
+            int index = Choose(sounds, previous);
+            if (sounds != null && index >= 0)
+            {
+                _previousSoundIndices[sounds] = index;
+            }
+
+            PlayIndex(sounds, index, position, volume);
         }
 
         private void PlayIndex(AudioClip[] sounds, int index, Vector3 position, float volume)

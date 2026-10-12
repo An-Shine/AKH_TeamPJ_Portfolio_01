@@ -1,4 +1,5 @@
 using _02.Scripts.Monster.BossMonster;
+using _02.Scripts.Monster.Presentation;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -56,6 +57,7 @@ public class BossMonster : NormalMonster
     private float _nextPlayerSearch;
     private float _nextHitReaction;
     private float _nextHitSound;
+    private int _previousHitSound = -1;
     private float _nextStrikePulse;
     private float _deathStartTime;
     private bool _deathStarted;
@@ -513,8 +515,11 @@ public class BossMonster : NormalMonster
         MonsterCombatEffect.SpawnImpact(new Vector3(point.x, point.y, transform.position.z),
             ((Vector2)transform.position - source).normalized, _hitSparkColor, transform);
 
-        if (_hitSound != null && Time.time >= _nextHitSound)
+        if (Time.time >= _nextHitSound)
         {
+            AudioClip hitSound = MonsterCombatAudio.Pick("Special/BossHit", _hitSound, ref _previousHitSound);
+            if (hitSound == null)
+                return;
             _nextHitSound = Time.time + _hitSoundCooldown;
             if (_hitAudioSource == null)
             {
@@ -523,7 +528,7 @@ public class BossMonster : NormalMonster
                 _hitAudioSource.spatialBlend = 0f;
             }
 
-            _hitAudioSource.PlayOneShot(_hitSound, _hitSoundVolume);
+            _hitAudioSource.PlayOneShot(hitSound, _hitSoundVolume);
         }
     }
 

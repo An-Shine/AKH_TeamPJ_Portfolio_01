@@ -1138,6 +1138,11 @@ public class NormalMonster : MonoBehaviour
 
     protected void StopMovementForDeath()
     {
+        if (!_normalIsDead && _normalHitGameFeel != null)
+        {
+            _normalHitGameFeel.PlayDeathSound();
+        }
+
         _normalIsDead = true;
         _normalCombatTactics?.Disable();
         _normalContactKnockbackActive = false;
