@@ -9,7 +9,7 @@ public class PlayerMotor : MonoBehaviour
     private float _dashEffectLifetime = 0.2f;
     private Rigidbody2D _body;
     private PlayerHitFlash _hitFlash;
-    private PlayerDashAfterimage _afterimage;
+    [SerializeField] private PlayerDashAfterimage _afterimage;
     private PlayerStateMachine _state;
     private Vector2 _lastSoundPosition;
     private bool _blinkSinceLastFrame;
@@ -21,7 +21,7 @@ public class PlayerMotor : MonoBehaviour
     {
         _body = GetComponent<Rigidbody2D>();
         _hitFlash = GetComponent<PlayerHitFlash>();
-        _afterimage = GetComponent<PlayerDashAfterimage>();
+        if (_afterimage == null) _afterimage = GetComponent<PlayerDashAfterimage>();
         _state = GetComponent<PlayerStateMachine>();
         _lastSoundPosition = _body.position;
         _body.gravityScale = 0f;

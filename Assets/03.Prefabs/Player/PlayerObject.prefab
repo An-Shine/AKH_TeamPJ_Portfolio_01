@@ -5439,7 +5439,6 @@ GameObject:
   - component: {fileID: 3957558499064253009}
   - component: {fileID: 8362892312594355892}
   - component: {fileID: 7449468793716505890}
-  - component: {fileID: 1456884250926879959}
   - component: {fileID: 7128903371122094100}
   m_Layer: 3
   m_Name: PlayerObject
@@ -5511,7 +5510,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8705740909f48bdb18b89606ee1b39d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAimVisual
-  _crosshairImage: {fileID: 0}
+  _crosshairObj: {fileID: 0}
+  CrosshairSprites:
+  - {fileID: -6142374563283994760, guid: d40a226d7ab8d534892b73a8d8bd609b, type: 3}
+  - {fileID: 514144892534032454, guid: d40a226d7ab8d534892b73a8d8bd609b, type: 3}
   _aimLine: {fileID: 8910268917954700399}
 --- !u!114 &7799158211837625566
 MonoBehaviour:
@@ -5543,6 +5545,7 @@ MonoBehaviour:
   _moveSpeed: 5
   _blinkDistance: 1.5
   _dashEffectPrefab: {fileID: 7430092777275873676, guid: de7254c351f240041af2acb47b7482ae, type: 3}
+  _afterimage: {fileID: 0}
 --- !u!114 &4285497294300338000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5822,22 +5825,6 @@ MonoBehaviour:
   _groundOffset: {x: 0, y: -0.35}
   _spriteAngleOffset: 0
   _teleportThreshold: 1.5
---- !u!114 &1456884250926879959
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5819182594994543154}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bf70369ffe5e2e459d9eed3103c9e4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerDashAfterimage
-  _material: {fileID: 2100000, guid: 7a0a93862c6c75449b4f65611f5efa9e, type: 2}
-  _imageCount: 6
-  _duration: 0.45
-  _tint: {r: 0.2509804, g: 0.89411765, b: 0.9019608, a: 0.54901963}
 --- !u!114 &7128903371122094100
 MonoBehaviour:
   m_ObjectHideFlags: 0
