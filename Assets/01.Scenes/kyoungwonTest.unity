@@ -50163,7 +50163,7 @@ MonoBehaviour:
     SpawnPointRightDown: {fileID: 2083604112}
   _unitSize: {x: 0.5, y: 0.5}
   _weaponSpawnCount: 1
-  _itemSpawnCount: 1
+  _itemOptionCount: 0
   _nonTargetLayerMask:
     serializedVersion: 2
     m_Bits: 768
@@ -56514,11 +56514,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9074837142586714173, guid: b5f335e30d5aa2344bc4adefae59483a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.2
+      value: -34
       objectReference: {fileID: 0}
     - target: {fileID: 9074837142586714173, guid: b5f335e30d5aa2344bc4adefae59483a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 53.1
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 9074837142586714173, guid: b5f335e30d5aa2344bc4adefae59483a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -78616,6 +78616,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0992b48b6f864b4d82feae013599bf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CrosshairFollowMouse
+  _fireScale: 0.82
+  _shrinkDuration: 0.035
+  _recoverDuration: 0.12
+  _reloadRotationSpeed: 720
+  _rotationReturnSpeed: 1080
 --- !u!1 &1803251090
 GameObject:
   m_ObjectHideFlags: 0
@@ -79341,6 +79346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PauseTabController
   _pauseMenuRoot: {fileID: 1159143382620641111}
   _pauseTabAnimator: {fileID: 1159143382620641112}
+  _gameStateManager: {fileID: 0}
 --- !u!4 &1867246533
 Transform:
   m_ObjectHideFlags: 0
