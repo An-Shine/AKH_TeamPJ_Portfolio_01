@@ -30,11 +30,10 @@ public class FootprintPool : MonoBehaviour
 
         // 사용자가 씬에 배치한 발자국도 최초 풀 항목으로 재사용합니다.
         var existing = new Queue<Footprint>(GetComponentsInChildren<Footprint>(true));
-        int capacity = Mathf.Max(1, _maxSize, existing.Count);
         _pool = new ObjectPool<Footprint>(
             () =>
             {
-                Footprint footprint = existing.Count > 0 ? existing.Dequeue() : Instantiate(_prefab, transform);
+                Footprint footprint = Instantiate(_prefab, transform);
                 footprint.Initialize(this);
                 footprint.Hide();
                 return footprint;
@@ -42,21 +41,35 @@ public class FootprintPool : MonoBehaviour
             null,
             footprint => footprint.Hide(),
             footprint => Destroy(footprint.gameObject),
-            true, Mathf.Min(_initialSize, capacity), capacity);
+            true, Mathf.Min(_initialSize, _maxSize), _maxSize);
 
-        int warmCount = Mathf.Clamp(Mathf.Max(_initialSize, existing.Count), 1, capacity);
+        int warmCount = Mathf.Clamp(Mathf.Max(_initialSize, existing.Count), 1, _maxSize);
         var warmed = new List<Footprint>(warmCount);
-        for (int i = 0; i < warmCount; i++) warmed.Add(_pool.Get());
-        foreach (Footprint footprint in warmed) _pool.Release(footprint);
-        _maxSize = capacity;
+        for (int i = 0; i < warmCount; i++)
+        {
+            warmed.Add(_pool.Get());
+        }
+
+        foreach (Footprint footprint in warmed)
+        {
+            _pool.Release(footprint);
+        }
     }
 
     public bool Spawn(Vector3 position, Quaternion rotation, bool flipY)
     {
-        if (!isActiveAndEnabled) return false;
+        if (!isActiveAndEnabled)
+        {
+            return false;
+        }
+
         Initialize();
         // 최대 개수에 도달하면 새 자국을 생략해 무한 생성을 방지합니다.
-        if (_pool == null || (_pool.CountInactive == 0 && _pool.CountAll >= _maxSize)) return false;
+        if (_pool == null || (_pool.CountInactive == 0 && _pool.CountAll >= _maxSize))
+        {
+            return false;
+        }
+
         Footprint footprint = _pool.Get();
         _active.Add(footprint);
         footprint.Show(position, rotation, flipY);
@@ -74,8 +87,12 @@ public class FootprintPool : MonoBehaviour
         if (_pool == null) return;
         foreach (Footprint footprint in _active)
         {
-            if (footprint != null) _pool.Release(footprint);
+            if (footprint != null)
+            {
+                _pool.Release(footprint);
+            }
         }
+
         _active.Clear();
     }
 }

@@ -49,13 +49,21 @@ public class PlayerController : MonoBehaviour
             TryInteract();
         }
 
-        if (Input.GetMouseButtonDown(1) &&
+        float weaponScroll = Input.mouseScrollDelta.y;
+        if (weaponScroll != 0f &&
             Time.timeScale > 0f &&
             !_fsm.IsInteracting &&
             !_weapon.IsReloading &&
             WeaponManager.Instance != null)
         {
-            WeaponManager.Instance.NextWeapon();
+            if (weaponScroll < 0f)
+            {
+                WeaponManager.Instance.NextWeapon();
+            }
+            else
+            {
+                WeaponManager.Instance.PreviousWeapon();
+            }
         }
 
         // FixedUpdate 전에 들어온 대시 입력도 즉시 사격 제한에 반영합니다.
