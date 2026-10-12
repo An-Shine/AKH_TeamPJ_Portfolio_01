@@ -19,6 +19,12 @@ public class NormalMonster : MonoBehaviour
 
     #region Inspector 설정
 
+    [Header("몬스터 전술과 공격 리듬")]
+    [Tooltip("근접 측면 접근, 원거리 사격 위치 확보, 자폭 이동 경로 압박을 사용합니다.")]
+    [SerializeField] private bool _useCombatTactics = true;
+    [Tooltip("같은 방의 공격 시작을 분산하고, 세 번의 공격 뒤 짧은 반격 틈을 줍니다.")]
+    [SerializeField] private bool _useCoordinatedAttacks = true;
+
     [Header("기본 능력치")]
     [SerializeField] protected float _maxHealth = 100f;
     [SerializeField] protected float _moveSpeed = 2f;
@@ -104,6 +110,7 @@ public class NormalMonster : MonoBehaviour
     // 몬스터 간격과 장애물 경로
     private float _normalSpriteSpacingRadius;
     private MonsterPathfinder _normalPathfinder;
+    private MonsterCombatTactics _normalCombatTactics;
     private bool _normalRoomAlertActive;
     private bool _normalReportedObstacleConfiguration;
     private readonly List<Collider2D> _normalMovementHits = new List<Collider2D>(16);
@@ -124,6 +131,7 @@ public class NormalMonster : MonoBehaviour
     protected bool IsContactKnockbackActive =>
         _normalContactKnockbackActive || _normalKnockbackMoveFrame == Time.frameCount;
     protected bool RequiresRoomEntry => _homeRoom != null && _homeRoom.RequiresPlayerEntry;
+    protected bool UsesCombatTactics => _normalCombatTactics != null && _useCombatTactics;
 
     #region Unity 생명주기
 
@@ -135,10 +143,17 @@ public class NormalMonster : MonoBehaviour
         ConfigurePhysicsBodies();
         CacheOriginalColors();
         CacheSpriteSpacingRadius();
+        if (this is MeleeMonster || this is RangeMonster || this is KamikazeMonster)
+        {
+            MonsterCombatRole role = this is MeleeMonster ? MonsterCombatRole.Melee :
+                this is RangeMonster ? MonsterCombatRole.Ranged : MonsterCombatRole.Kamikaze;
+            _normalCombatTactics = new MonsterCombatTactics(this, role, CanMoveTo, HasObstacleLineOfSight);
+        }
     }
 
     protected virtual void OnEnable()
     {
+        _normalCombatTactics?.Enable();
         if (!ActiveMonsters.Contains(this))
         {
             ActiveMonsters.Add(this);
@@ -148,6 +163,7 @@ public class NormalMonster : MonoBehaviour
     protected virtual void OnDisable()
     {
         ActiveMonsters.Remove(this);
+        _normalCombatTactics?.Disable();
         ResetPlayerTracking();
     }
 
@@ -175,6 +191,7 @@ public class NormalMonster : MonoBehaviour
             ResetPlayerTracking();
         }
 
+        _normalCombatTactics?.SetTarget(CanTrackPlayer() ? _player : null);
         CheckPlayerContact();
         UpdateContactKnockback();
     }
@@ -771,6 +788,32 @@ public class NormalMonster : MonoBehaviour
         return CanMoveTo(position);
     }
 
+    protected Vector2 GetTacticalMovement(Vector2 target, float maxDistance, float preferredDistance, bool commitApproach = false)
+    {
+        if (_normalCombatTactics != null && _useCombatTactics)
+        {
+            _normalCombatTactics.SetTarget(CanTrackPlayer() ? _player : null);
+            target = _normalCombatTactics.Destination(target, preferredDistance, commitApproach);
+        }
+
+        return GetNavigationMovement(target, maxDistance);
+    }
+
+    protected bool TryBeginCoordinatedAttack(float maximumDuration)
+    {
+        if (_normalIsDead || Time.timeScale <= 0f || !CanTrackPlayer())
+            return false;
+        if (_normalCombatTactics == null || !_useCoordinatedAttacks)
+            return true;
+        _normalCombatTactics.SetTarget(_player);
+        return _normalCombatTactics.TryBeginAttack(maximumDuration);
+    }
+
+    protected void ReleaseCoordinatedAttack()
+    {
+        _normalCombatTactics?.ReleaseAttack();
+    }
+
     protected Vector2 GetNavigationMovement(Vector2 target, float maxDistance)
     {
         if (_normalIsDead || IsContactKnockbackActive || maxDistance <= 0f)
@@ -1095,7 +1138,13 @@ public class NormalMonster : MonoBehaviour
 
     protected void StopMovementForDeath()
     {
+        if (!_normalIsDead && _normalHitGameFeel != null)
+        {
+            _normalHitGameFeel.PlayDeathSound();
+        }
+
         _normalIsDead = true;
+        _normalCombatTactics?.Disable();
         _normalContactKnockbackActive = false;
         _normalKnockbackMoveFrame = -1;
         if (_normalDeathPositionLocked)

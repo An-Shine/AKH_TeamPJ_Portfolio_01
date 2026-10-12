@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace _02.Scripts.Monster.Presentation
@@ -18,7 +19,7 @@ namespace _02.Scripts.Monster.Presentation
         private SpriteRenderer _outline;
         private SpriteRenderer _chargeGlow;
         private SpriteRenderer _chargeCore;
-        private SpriteRenderer _fuseRing;
+        private MonsterAttackCue _attackCue;
         private SpriteRenderer _hitRenderer;
         private MaterialPropertyBlock _hitProperties;
         private Vector2 _hitDirection;
@@ -26,11 +27,15 @@ namespace _02.Scripts.Monster.Presentation
         private bool _hitActive;
         private bool _bodyWasRenderingOff;
         private bool _isNormalMonster;
+        private readonly Dictionary<AudioClip[], int> _previousSoundIndices = new Dictionary<AudioClip[], int>();
         private int _previousHitSound = -1;
+        private bool _deathSoundPlayed;
+        private bool _explosionSoundPlayed;
         private MaterialPropertyBlock _outlineProperties;
         private Sprite _outlinedSprite;
         private Vector2 _chargeDirection;
         private Vector3 _chargeOffset;
+        private float _aimCueLength;
         private float _chargeStartedAt;
         private float _referenceWidth;
         private bool _charging;
@@ -84,9 +89,7 @@ namespace _02.Scripts.Monster.Presentation
             _outline = _effects.CreatePersistentRenderer(name + "_PixelRim", true);
             _chargeGlow = _effects.CreatePersistentRenderer(name + "_ChargeGlow");
             _chargeCore = _effects.CreatePersistentRenderer(name + "_ChargeCore");
-            _fuseRing = _effects.CreatePersistentRenderer(name + "_FuseWarning");
-            _fuseRing.sprite = _effects.Shape(NormalFeelShape.Ring);
-            _fuseRing.enabled = false;
+            _attackCue = new MonsterAttackCue(transform, _bodyRenderer);
             _chargeGlow.sprite = _effects.Shape(NormalFeelShape.Glow);
             _chargeCore.sprite = _effects.Shape(NormalFeelShape.Star);
             _referenceWidth = Mathf.Max(0.3f, _bodyRenderer.bounds.size.x);
@@ -137,6 +140,21 @@ namespace _02.Scripts.Monster.Presentation
             PlayIndex(sounds, index, point, _profile.HitVolume * (lethal ? 1f : 0.85f));
             NormalMonsterCameraShake.Request(point, _profile.HitCameraShake * (lethal ? 1.3f : 1f), 0.075f);
             return true;
+        }
+
+        public void PlayDeathSound()
+        {
+            if (_deathSoundPlayed || _explosionSoundPlayed || !_isNormalMonster || !IsConfigured || Time.timeScale <= 0f)
+                return;
+            _deathSoundPlayed = true;
+            if (_effects == null)
+            {
+                _effects = NormalMonsterFeelEffects.ForScene(gameObject.scene);
+            }
+
+            string cue = _isKamikaze ? "KamikazeDeath" : _isMelee ? "MeleeDeath" : "RangeDeath";
+            AudioClip[] clips = MonsterCombatAudio.Normal(cue, _profile.HitSounds);
+            Play(clips, transform.position, _profile.ImpactVolume);
         }
 
         private void RefreshHitVisual()
@@ -197,6 +215,7 @@ namespace _02.Scripts.Monster.Presentation
             }
 
             BeginCharge(direction, transform.position + new Vector3(direction.x, direction.y, 0f) * range * 0.35f, false);
+            _aimCueLength = Mathf.Max(0.3f, range);
             Play(_profile.MeleeChargeSounds, transform.position, _profile.AttackVolume * 0.35f);
         }
 
@@ -208,6 +227,7 @@ namespace _02.Scripts.Monster.Presentation
             }
 
             BeginCharge(direction, muzzle, true);
+            _aimCueLength = 0.85f;
             Play(_profile.RangeChargeSounds, muzzle, _profile.AttackVolume * 0.45f);
         }
 
@@ -249,6 +269,7 @@ namespace _02.Scripts.Monster.Presentation
                 _neon.Burst(point, Mathf.Max(0.2f, radius * 0.7f), color, _bodyRenderer.sortingLayerID, _bodyRenderer.sortingOrder + 3, 38, true);
             Ring(point, color, radius * 0.25f, radius * 2.1f, 0.35f);
             Glow(point, Color.Lerp(color, Color.white, 0.4f), radius * 0.7f, 0.1f);
+            _explosionSoundPlayed = true;
             int index = Choose(_profile.KamikazeExplosionSounds, _previousExplosion);
             _previousExplosion = index;
             PlayIndex(_profile.KamikazeExplosionSounds, index, point, Mathf.Min(1f, _profile.ImpactVolume * 1.1f));
@@ -259,8 +280,10 @@ namespace _02.Scripts.Monster.Presentation
         {
             _charging = false;
             _fusing = false;
-            if (_fuseRing != null)
-                _fuseRing.enabled = false;
+            if (_attackCue != null)
+            {
+                _attackCue.Hide();
+            }
             if (_chargeGlow != null)
             {
                 _chargeGlow.enabled = false;
@@ -285,10 +308,10 @@ namespace _02.Scripts.Monster.Presentation
             float width = Mathf.Max(0.2f, range) * 2f / 0.95f;
             Sprite slash = _effects.Slash(attackAngle);
             Emit(slash, transform.position, rotation, new Vector2(width * 0.92f, width * 0.92f), Vector2.one * width, Vector2.zero, color, 0.17f, 4);
-            Emit(slash, transform.position, rotation, Vector2.one * width * 0.92f, Vector2.one * width * 0.97f, Vector2.zero, Color.white, 0.065f, 5);
+            Emit(slash, transform.position, rotation, Vector2.one * width * 0.92f, Vector2.one * width * 0.97f, Vector2.zero, Color.white, 0.045f, 5);
             Color trail = color;
-            trail.a = 0.32f;
-            Emit(slash, transform.position, rotation - 7f, Vector2.one * width * 0.92f, Vector2.one * width, -direction * 0.4f, trail, 0.24f, 3);
+            trail.a = 0.2f;
+            Emit(slash, transform.position, rotation - 7f, Vector2.one * width * 0.92f, Vector2.one * width, -direction * 0.4f, trail, 0.16f, 3);
             Vector3 strike = transform.position + new Vector3(direction.x, direction.y, 0f) * range * 0.73f;
             if (_neon != null)
                 _neon.Slash(transform.position, range * 0.95f, rotation, color, _bodyRenderer.sortingLayerID, _bodyRenderer.sortingOrder + 3);
@@ -323,7 +346,7 @@ namespace _02.Scripts.Monster.Presentation
             Color color = _profile.RangeColor;
             if (_neon != null)
                 _neon.PlasmaShot(muzzle, direction, 0.45f * _profile.DecorationScale, color, _bodyRenderer.sortingLayerID, _bodyRenderer.sortingOrder + 3);
-            Glow(muzzle, color, 1.1f * _profile.DecorationScale, 0.12f);
+            Glow(muzzle, color, 0.8f * _profile.DecorationScale, 0.085f);
             Emit(_effects.Shape(NormalFeelShape.Star), muzzle, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg, new Vector2(0.6f, 0.35f), new Vector2(0.9f, 0.12f), direction * 1.4f, Color.white, 0.085f, 6);
             Ring(muzzle, color, 0.16f, 0.8f * _profile.DecorationScale, 0.18f);
             Burst(muzzle, direction, color, 14, 0.6f, false);
@@ -342,10 +365,13 @@ namespace _02.Scripts.Monster.Presentation
             }
 
             Color color = _profile.RangeColor;
-            color.a = 0.55f;
+            color.a = 0.28f;
             Vector2 size = new Vector2(0.2f, 0.12f);
             if (source != null && source.sprite != null)
             {
+                source.sortingLayerID = _bodyRenderer.sortingLayerID;
+                source.sortingOrder = Mathf.Max(source.sortingOrder,
+                    _bodyRenderer.sortingOrder + MonsterVfxReadability.ProjectileBodyOrder);
                 Vector3 bounds = source.sprite.bounds.size;
                 Vector3 scale = source.transform.lossyScale;
                 size = new Vector2(bounds.x * Mathf.Abs(scale.x), bounds.y * Mathf.Abs(scale.y));
@@ -356,11 +382,14 @@ namespace _02.Scripts.Monster.Presentation
                 _neon.Trail(position, direction, Mathf.Max(0.18f, size.x * 1.3f), _profile.RangeColor, _bodyRenderer.sortingLayerID, _bodyRenderer.sortingOrder + 3);
             if (source != null && source.sprite != null)
             {
-                Emit(source.sprite, position, source.transform.eulerAngles.z, size * 1.25f, size * 0.35f, -direction * 0.2f, color, 0.14f, 2, source.flipX, source.flipY);
+                Emit(source.sprite, position - (Vector3)(direction * size.x * 0.35f), source.transform.eulerAngles.z,
+                    size, size * 0.25f, -direction * 0.2f, color, 0.095f, 2, source.flipX, source.flipY);
             }
 
-            Emit(_effects.Shape(NormalFeelShape.Star), position, angle, new Vector2(Mathf.Max(0.15f, size.x), 0.065f), new Vector2(0.08f, 0.02f), -direction * 0.6f, Color.white, 0.08f, 3);
-            Glow(position, color, Mathf.Max(0.24f, size.x * 2.3f), 0.09f);
+            Emit(_effects.Shape(NormalFeelShape.Star), position - (Vector3)(direction * size.x * 0.4f), angle,
+                new Vector2(Mathf.Max(0.12f, size.x * 0.7f), 0.045f), new Vector2(0.06f, 0.02f),
+                -direction * 0.6f, color, 0.065f, 3);
+            Glow(position, color, Mathf.Max(0.2f, size.x * 1.5f), 0.07f);
         }
 
         public void ProjectileImpact(Vector3 point, Vector2 direction, bool fullImpact)
@@ -378,7 +407,7 @@ namespace _02.Scripts.Monster.Presentation
         private void Impact(Vector3 point, Vector2 direction, Color color, float intensity)
         {
             float scale = _profile.DecorationScale * intensity;
-            Glow(point, color, 1.8f * scale, 0.21f);
+            Glow(point, color, 1.35f * scale, 0.12f);
             Ring(point, color, 0.2f * scale, 1.5f * scale, 0.23f);
             Color accent = _profile.AccentColor;
             accent.a = 0.7f;
@@ -431,7 +460,7 @@ namespace _02.Scripts.Monster.Presentation
 
         private void Glow(Vector3 point, Color color, float size, float lifetime)
         {
-            color.a *= 0.55f;
+            color.a = Mathf.Min(color.a * 0.4f, 0.22f);
             Emit(_effects.Shape(NormalFeelShape.Glow), point, 0f, Vector2.one * size, Vector2.one * size * 1.1f, Vector2.zero, color, lifetime, 1);
         }
 
@@ -442,7 +471,14 @@ namespace _02.Scripts.Monster.Presentation
 
         private void Play(AudioClip[] sounds, Vector3 position, float volume)
         {
-            PlayIndex(sounds, Choose(sounds, -1), position, volume);
+            int previous = sounds != null && _previousSoundIndices.TryGetValue(sounds, out int last) ? last : -1;
+            int index = Choose(sounds, previous);
+            if (sounds != null && index >= 0)
+            {
+                _previousSoundIndices[sounds] = index;
+            }
+
+            PlayIndex(sounds, index, position, volume);
         }
 
         private void PlayIndex(AudioClip[] sounds, int index, Vector3 position, float volume)
@@ -483,6 +519,7 @@ namespace _02.Scripts.Monster.Presentation
             if (!EnsureReady())
             {
                 EndHitVisual();
+                CancelAttackVisual();
                 return;
             }
 
@@ -493,6 +530,10 @@ namespace _02.Scripts.Monster.Presentation
             }
 
             RefreshOutline();
+            if (!_bodyRenderer.enabled || !_bodyRenderer.gameObject.activeInHierarchy)
+            {
+                CancelAttackVisual();
+            }
             if (!_charging || Time.timeScale <= 0f)
             {
                 return;
@@ -500,26 +541,29 @@ namespace _02.Scripts.Monster.Presentation
 
             Vector3 position = transform.position + _chargeOffset;
             Color color = _fusing ? _profile.KamikazeColor : _rangedCharge ? _profile.RangeColor : _profile.MeleeColor;
-            float pulse = 0.5f + 0.5f * Mathf.Sin((Time.time - _chargeStartedAt) * (_fusing ? 12f + _fuseProgress * 35f : 36f));
-            float width = Mathf.Clamp(_referenceWidth * 0.5f, 0.3f, 0.9f) * (0.8f + pulse * 0.4f);
-            UpdateChargeRenderer(_chargeGlow, position, color, width, 2);
-            UpdateChargeRenderer(_chargeCore, position, Color.Lerp(color, Color.white, 0.65f), width * 0.28f, 3);
+            float pulse = 0.5f + 0.5f * Mathf.Sin((Time.time - _chargeStartedAt) * (_fusing ? 8f + _fuseProgress * 12f : 10f));
+            float width = Mathf.Clamp(_referenceWidth * 0.45f, 0.3f, 0.8f) * (0.9f + pulse * 0.15f);
+            UpdateChargeRenderer(_chargeGlow, position, MonsterVfxReadability.WithOpacity(color, 0.2f), width, 2);
+            UpdateChargeRenderer(_chargeCore, position, Color.Lerp(color, Color.white, 0.35f), width * 0.22f, 3);
             if (_neon != null && Time.time >= _nextChargeParticles)
             {
-                _nextChargeParticles = Time.time + 0.06f;
+                _nextChargeParticles = Time.time + 0.1f;
                 _neon.Charge(position, width * 0.6f, _fusing ? _fuseProgress : 0.5f, color, _bodyRenderer.sortingLayerID, _bodyRenderer.sortingOrder + 2);
             }
 
             if (_fusing)
             {
-                Color warning = color;
-                warning.a = 0.28f + _fuseProgress * 0.35f + pulse * 0.12f;
-                UpdateChargeRenderer(_fuseRing, transform.position, warning, _fuseRadius * 2f / 0.95f, -1);
+                _attackCue.Circle(transform.position, _fuseRadius, _fuseProgress);
                 if (Time.time >= _nextFuseTick)
                 {
                     _nextFuseTick = Time.time + Mathf.Lerp(0.38f, 0.14f, _fuseProgress);
                     Play(_profile.KamikazeTickSounds, transform.position, _profile.AttackVolume * 0.4f);
                 }
+            }
+            else
+            {
+                _attackCue.Direction(_rangedCharge ? (Vector2)position : (Vector2)transform.position,
+                    _chargeDirection, _aimCueLength, color);
             }
         }
 
@@ -591,7 +635,10 @@ namespace _02.Scripts.Monster.Presentation
             DestroyOwnedRenderer(_outline);
             DestroyOwnedRenderer(_chargeGlow);
             DestroyOwnedRenderer(_chargeCore);
-            DestroyOwnedRenderer(_fuseRing);
+            if (_attackCue != null)
+            {
+                _attackCue.Dispose();
+            }
         }
 
         private static void DestroyOwnedRenderer(SpriteRenderer renderer)

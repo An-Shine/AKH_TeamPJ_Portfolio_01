@@ -1,0 +1,214 @@
+{
+  "baseline": "test(4).unitypackage",
+  "original_assets": 3038,
+  "changed_existing_files": [
+    "Assets/02.Scripts/Monster/BossMonster/BossBattleEffects.cs",
+    "Assets/02.Scripts/Monster/BossMonster/BossShapeVisual.cs",
+    "Assets/02.Scripts/Monster/BossMonster/BossDamageZone.cs",
+    "Assets/02.Scripts/Monster/BossMonster/BossPatternExecutor.cs",
+    "Assets/02.Scripts/Monster/BossMonster/BossVisualPolish.cs",
+    "Assets/02.Scripts/Monster/BossMonster/BossBattleWorld.cs"
+  ],
+  "unchanged_original_assets": 3032,
+  "all_original_metadata_unchanged": true,
+  "textures": 50,
+  "animation_frames": 1266,
+  "combat_methods_preserved": [
+    "Shoot",
+    "ShootOrbit",
+    "MoveBolt",
+    "CanHitCollider",
+    "TestDamage",
+    "BeamTouches",
+    "PointTouches"
+  ],
+  "husky": "Not executed: no .husky, Git repository, or project lint configuration supplied.",
+  "unity_play": "Not executed: Unity Editor absent; contract fixture is not a Unity/GPU run.",
+  "static_checks_passed": 8493,
+  "format_check": "git diff --no-index --check, with CRLF recognized; all nine changed/new boss C# sources passed",
+  "runtime_contract": {
+    "validation": "C# compiler and engine-contract fixture; not a Unity/GPU run",
+    "input": "Original BossEncounter.asset serialized move values; synthetic room/physics contract",
+    "phase": 2,
+    "assertions": 2829012,
+    "originalExecutorDamageCalls": 24,
+    "patterns": [
+      {
+        "pattern": "CrescentCleave",
+        "emissions": 150,
+        "textureKinds": 5
+      },
+      {
+        "pattern": "RiftLanes",
+        "emissions": 453,
+        "textureKinds": 4
+      },
+      {
+        "pattern": "HellfireRain",
+        "emissions": 2310,
+        "textureKinds": 18
+      },
+      {
+        "pattern": "SpiralBarrage",
+        "emissions": 7060,
+        "textureKinds": 16
+      },
+      {
+        "pattern": "CrossSweep",
+        "emissions": 430,
+        "textureKinds": 5
+      },
+      {
+        "pattern": "Cataclysm",
+        "emissions": 181,
+        "textureKinds": 12
+      },
+      {
+        "pattern": "DoubleClaw",
+        "emissions": 125,
+        "textureKinds": 5
+      },
+      {
+        "pattern": "GroundSlam",
+        "emissions": 883,
+        "textureKinds": 10
+      },
+      {
+        "pattern": "SerpentWave",
+        "emissions": 1020,
+        "textureKinds": 2
+      },
+      {
+        "pattern": "ThornFan",
+        "emissions": 8435,
+        "textureKinds": 9
+      },
+      {
+        "pattern": "RadialSpikes",
+        "emissions": 7410,
+        "textureKinds": 9
+      },
+      {
+        "pattern": "ExpandingNova",
+        "emissions": 492,
+        "textureKinds": 2
+      },
+      {
+        "pattern": "TwinNova",
+        "emissions": 730,
+        "textureKinds": 2
+      },
+      {
+        "pattern": "TrackingEruption",
+        "emissions": 504,
+        "textureKinds": 16
+      },
+      {
+        "pattern": "MeteorLattice",
+        "emissions": 4422,
+        "textureKinds": 18
+      },
+      {
+        "pattern": "BloodPools",
+        "emissions": 1620,
+        "textureKinds": 4
+      },
+      {
+        "pattern": "TargetedVolley",
+        "emissions": 4144,
+        "textureKinds": 16
+      },
+      {
+        "pattern": "HomingOrbs",
+        "emissions": 2010,
+        "textureKinds": 16
+      },
+      {
+        "pattern": "EchoTurrets",
+        "emissions": 5131,
+        "textureKinds": 16
+      },
+      {
+        "pattern": "OrbitRelease",
+        "emissions": 6640,
+        "textureKinds": 16
+      },
+      {
+        "pattern": "PerimeterBarrage",
+        "emissions": 5229,
+        "textureKinds": 16
+      },
+      {
+        "pattern": "DashRend",
+        "emissions": 49,
+        "textureKinds": 9
+      },
+      {
+        "pattern": "BurrowAmbush",
+        "emissions": 225,
+        "textureKinds": 17
+      },
+      {
+        "pattern": "ApocalypseSequence",
+        "emissions": 1958,
+        "textureKinds": 23
+      },
+      {
+        "pattern": "SanguineLances",
+        "emissions": 1394,
+        "textureKinds": 4
+      },
+      {
+        "pattern": "StormPillars",
+        "emissions": 1920,
+        "textureKinds": 10
+      },
+      {
+        "pattern": "RotatingScythes",
+        "emissions": 75,
+        "textureKinds": 5
+      },
+      {
+        "pattern": "GravityCollapse",
+        "emissions": 892,
+        "textureKinds": 7
+      },
+      {
+        "pattern": "AlternatingMaze",
+        "emissions": 2924,
+        "textureKinds": 4
+      },
+      {
+        "pattern": "ExecutionNova",
+        "emissions": 102,
+        "textureKinds": 3
+      }
+    ]
+  },
+  "changed_sources": [
+    {
+      "path": "Assets/02.Scripts/Monster/BossMonster/BossBattleEffects.cs",
+      "original_sha256": "5dd4d790b42f075b765546d5027f22d7fbedfc3c6e813b99cd650aab3e029bf3"
+    },
+    {
+      "path": "Assets/02.Scripts/Monster/BossMonster/BossShapeVisual.cs",
+      "original_sha256": "b6ea7f97728264f0547aae86f3f2715f0f213a3bc0e4a2b1d5738f0ff7696775"
+    },
+    {
+      "path": "Assets/02.Scripts/Monster/BossMonster/BossDamageZone.cs",
+      "original_sha256": "52dc3f5943291e82a2d65372af095e21b04eefa1aeebbc4b4c64fd6d12d5b24e"
+    },
+    {
+      "path": "Assets/02.Scripts/Monster/BossMonster/BossPatternExecutor.cs",
+      "original_sha256": "e976926210c650bc405ce80c455e01b3ba3722a559570c4ece50f4565eda36cd"
+    },
+    {
+      "path": "Assets/02.Scripts/Monster/BossMonster/BossVisualPolish.cs",
+      "original_sha256": "8542b16f57a8b947dc0ae9628ca29901b2537059bdfecf4a869b2d675ff9e5f2"
+    },
+    {
+      "path": "Assets/02.Scripts/Monster/BossMonster/BossBattleWorld.cs",
+      "original_sha256": "3e7aa745f17aa6cc9e158075ba536924521a4a9bc4bb6d4e9b494b92067c8ac3"
+    }
+  ]
+}

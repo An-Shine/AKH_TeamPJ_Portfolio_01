@@ -168,23 +168,16 @@ public class RangeMonster : NormalMonster
             SetDirection(toPlayer);
         }
 
-        Vector2 movement = Vector2.zero;
-        if (!clearAttackPath)
-        {
-            // 사거리 안이어도 벽 너머라면 공격하지 않고 통로를 찾습니다.
-            movement = GetNavigationMovement(_player.position, Mathf.Max(0f, _moveSpeed) * Time.deltaTime);
-        }
-        else if (distance > _attackRange + _distanceTolerance)
-        {
-            movement = GetNavigationMovement(_player.position, Mathf.Min(Mathf.Max(0f, _moveSpeed) * Time.deltaTime, distance - _attackRange));
-        }
-        else if (distance < _keepDistance - _distanceTolerance)
-        {
-            movement = -toPlayer.normalized * Mathf.Min(Mathf.Max(0f, _moveSpeed) * Time.deltaTime, _keepDistance - distance);
-        }
-        else if (TryAttack(toPlayer, distance))
-        {
+        if (clearAttackPath && distance >= _keepDistance - _distanceTolerance && TryAttack(toPlayer, distance))
             return;
+
+        float preferredDistance = Mathf.Lerp(_keepDistance, _attackRange, 0.35f);
+        Vector2 movement = GetTacticalMovement(_player.position, Mathf.Max(0f, _moveSpeed) * Time.deltaTime, preferredDistance);
+        if (!UsesCombatTactics && clearAttackPath)
+        {
+            movement = distance < _keepDistance - _distanceTolerance
+                ? -toPlayer.normalized * Mathf.Min(Mathf.Max(0f, _moveSpeed) * Time.deltaTime, _keepDistance - distance)
+                : distance > _attackRange + _distanceTolerance ? movement : Vector2.zero;
         }
 
         if (distance > _facingLockDistance)
@@ -329,6 +322,9 @@ public class RangeMonster : NormalMonster
             return false;
         }
 
+        if (!TryBeginCoordinatedAttack(_maximumAttackTime / _attackSpeedMultiplier))
+            return false;
+
         _shotDirection = toPlayer.normalized;
         // 실제 발사 방향을 공격 시작 시에만 확정하고 모션 중에는 유지합니다.
         SetDirection(_shotDirection);
@@ -362,6 +358,8 @@ public class RangeMonster : NormalMonster
 
     private void BeginAction(ActionState action, int row)
     {
+        if (action != ActionState.Attack)
+            ReleaseCoordinatedAttack();
         _action = action;
         _actionHash = _states[row, _direction];
         _actionStartFrame = Time.frameCount;
@@ -482,6 +480,7 @@ public class RangeMonster : NormalMonster
             return;
         }
 
+        ReleaseCoordinatedAttack();
         _action = ActionState.None;
         if (_gameFeel != null)
         {
