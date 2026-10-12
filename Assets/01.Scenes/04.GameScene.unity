@@ -464,6 +464,8 @@ MonoBehaviour:
   - {fileID: 1314260198}
   - {fileID: 1699821018}
   _areaLightManager: {fileID: 370533785}
+  _roomId: 0
+  _isItemRoom: 0
 --- !u!61 &43098662
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2439,6 +2441,90 @@ Transform:
   - {fileID: 480414176}
   m_Father: {fileID: 1506741756}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &218981830
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 218981832}
+  - component: {fileID: 218981831}
+  m_Layer: 0
+  m_Name: Global Light 2D
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &218981831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218981830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.2D.Runtime::UnityEngine.Rendering.Universal.Light2D
+  m_ComponentVersion: 3
+  m_LightType: 4
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 0.5
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
+  m_LightVolumeIntensity: 1
+  m_LightVolumeEnabled: 0
+  m_ApplyToSortingLayers: 3f656461
+  m_LightCookieSprite: {fileID: 0}
+  m_DeprecatedPointLightCookieSprite: {fileID: 0}
+  m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
+  m_OverlapOperation: 0
+  m_NormalMapDistance: 3
+  m_NormalMapQuality: 2
+  m_UseNormalMap: 0
+  m_ShadowsEnabled: 1
+  m_ShadowIntensity: 0.75
+  m_ShadowSoftness: 0.3
+  m_ShadowSoftnessFalloffIntensity: 0.5
+  m_ShadowVolumeIntensityEnabled: 0
+  m_ShadowVolumeIntensity: 0.75
+  m_LocalBounds:
+    m_Center: {x: 0, y: -0.00000011920929, z: 0}
+    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
+  m_PointLightInnerAngle: 360
+  m_PointLightOuterAngle: 360
+  m_PointLightInnerRadius: 0
+  m_PointLightOuterRadius: 1
+  m_ShapeLightParametricSides: 5
+  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricRadius: 1
+  m_ShapeLightFalloffSize: 0.5
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: -0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: 0.5, z: 0}
+  - {x: -0.5, y: 0.5, z: 0}
+--- !u!4 &218981832
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218981830}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.8364077, y: 32.855076, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &219410032
 GameObject:
   m_ObjectHideFlags: 0
@@ -2552,6 +2638,8 @@ MonoBehaviour:
   - {fileID: 1803251092}
   - {fileID: 1147958032}
   _areaLightManager: {fileID: 370533785}
+  _roomId: 0
+  _isItemRoom: 0
 --- !u!61 &229298861
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2744,6 +2832,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1151817735}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &253552966
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 253552967}
+  m_Layer: 0
+  m_Name: Room5StoneRD
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &253552967
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 253552966}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -40, y: 18, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2005052116}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &256456275
 GameObject:
   m_ObjectHideFlags: 0
@@ -2860,6 +2979,8 @@ MonoBehaviour:
   - {fileID: 334787959}
   - {fileID: 0}
   _areaLightManager: {fileID: 370533785}
+  _roomId: 0
+  _isItemRoom: 0
 --- !u!61 &272888553
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5415,6 +5536,28 @@ MonoBehaviour:
     Clip: {fileID: 8300000, guid: 2c331521ea3ff3c4481cb74a7868ff3e, type: 3}
   - Type: 27
     Clip: {fileID: 8300000, guid: b8cd5593007ba8948b977c470b1dbcc5, type: 3}
+  - Type: 28
+    Clip: {fileID: 8300000, guid: 46ae6fb7ebc00a340991be1d147009ea, type: 3}
+  - Type: 14
+    Clip: {fileID: 8300000, guid: 852add1bd022b9544933766d6ae0a6d1, type: 3}
+  - Type: 15
+    Clip: {fileID: 8300000, guid: 9ab29a2420832744b95b69cb39be7a30, type: 3}
+  - Type: 16
+    Clip: {fileID: 8300000, guid: 84ae8f07c44b8ab40aa0e0cd109b1bd3, type: 3}
+  - Type: 17
+    Clip: {fileID: 8300000, guid: 45abd86e0c397474b8b0881e9a1b1734, type: 3}
+  - Type: 18
+    Clip: {fileID: 8300000, guid: 23a3b695ea6fca94cb3a9578c0c821d4, type: 3}
+  - Type: 19
+    Clip: {fileID: 8300000, guid: 8bac3a12723bc2d40985b1f6a36b4eda, type: 3}
+  - Type: 29
+    Clip: {fileID: 8300000, guid: 80b67c2f949344a4b99f83af13e45457, type: 3}
+  - Type: 30
+    Clip: {fileID: 8300000, guid: 0015bf94669ad7e4aadc1614e7774220, type: 3}
+  - Type: 31
+    Clip: {fileID: 8300000, guid: 53230fb2ff395b048b082f0be0c27ecb, type: 3}
+  - Type: 32
+    Clip: {fileID: 8300000, guid: 4dae69b929af28a4dabc1c0f9eea013e, type: 3}
 --- !u!4 &408124218
 Transform:
   m_ObjectHideFlags: 0
@@ -6806,7 +6949,40 @@ Transform:
   - {fileID: 993394981}
   - {fileID: 980021881}
   - {fileID: 1184040701}
+  - {fileID: 1034191899}
+  - {fileID: 2005052116}
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &502101604
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 502101605}
+  m_Layer: 0
+  m_Name: Room4StoneRD
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &502101605
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 502101604}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2, y: 50, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1034191899}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &505974866
 PrefabInstance:
@@ -14839,6 +15015,8 @@ MonoBehaviour:
   - {fileID: 530042360}
   - {fileID: 1361063602}
   _areaLightManager: {fileID: 370533785}
+  _roomId: 0
+  _isItemRoom: 0
 --- !u!4 &556243455
 Transform:
   m_ObjectHideFlags: 0
@@ -14950,6 +15128,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 310576442}
   _areaLightManager: {fileID: 370533785}
+  _roomId: 0
+  _isItemRoom: 0
 --- !u!61 &557633016
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15187,12 +15367,18 @@ MonoBehaviour:
   - RoomId: 2
     SpawnPointLeftUp: {fileID: 1956363401}
     SpawnPointRightDown: {fileID: 2083604112}
+  - RoomId: 3
+    SpawnPointLeftUp: {fileID: 1968433735}
+    SpawnPointRightDown: {fileID: 502101605}
+  - RoomId: 4
+    SpawnPointLeftUp: {fileID: 1484920746}
+    SpawnPointRightDown: {fileID: 253552967}
   _unitSize: {x: 0.5, y: 0.5}
   _weaponSpawnCount: 1
-  _itemSpawnCount: 1
+  _itemOptionCount: 3
   _nonTargetLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 768
 --- !u!1 &563974575
 GameObject:
   m_ObjectHideFlags: 0
@@ -16444,6 +16630,8 @@ MonoBehaviour:
   - {fileID: 938424524}
   - {fileID: 190993145}
   _areaLightManager: {fileID: 370533785}
+  _roomId: 0
+  _isItemRoom: 0
 --- !u!61 &687255132
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16786,6 +16974,8 @@ MonoBehaviour:
   - {fileID: 1984241129}
   - {fileID: 2093387330}
   _areaLightManager: {fileID: 370533785}
+  _roomId: 0
+  _isItemRoom: 0
 --- !u!61 &712532553
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17214,6 +17404,8 @@ MonoBehaviour:
   - {fileID: 1811318098}
   - {fileID: 1232601112}
   _areaLightManager: {fileID: 370533785}
+  _roomId: 2
+  _isItemRoom: 1
 --- !u!61 &741879880
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17628,6 +17820,8 @@ MonoBehaviour:
   - {fileID: 1058107434}
   - {fileID: 756088923}
   _areaLightManager: {fileID: 370533785}
+  _roomId: 3
+  _isItemRoom: 1
 --- !u!61 &775924072
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19592,6 +19786,8 @@ MonoBehaviour:
   - {fileID: 1635749951}
   - {fileID: 413384948}
   _areaLightManager: {fileID: 370533785}
+  _roomId: 0
+  _isItemRoom: 0
 --- !u!61 &940706211
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -20525,6 +20721,8 @@ MonoBehaviour:
   - {fileID: 1910463928}
   - {fileID: 2118239353}
   _areaLightManager: {fileID: 370533785}
+  _roomId: 0
+  _isItemRoom: 0
 --- !u!61 &999174750
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -20831,6 +21029,39 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4386641809939241808, guid: e0b7bc28c089495c876ecdc71475fa53, type: 3}
   m_PrefabInstance: {fileID: 1767094223}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1034191898
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1034191899}
+  m_Layer: 0
+  m_Name: Room4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1034191899
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034191898}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1968433735}
+  - {fileID: 502101605}
+  m_Father: {fileID: 487839575}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1038501924
 GameObject:
   m_ObjectHideFlags: 0
@@ -20881,6 +21112,8 @@ MonoBehaviour:
   - {fileID: 1387835885}
   - {fileID: 1053729079}
   _areaLightManager: {fileID: 370533785}
+  _roomId: 0
+  _isItemRoom: 0
 --- !u!61 &1038501927
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21377,6 +21610,8 @@ MonoBehaviour:
   - {fileID: 938346222}
   - {fileID: 1875708293}
   _areaLightManager: {fileID: 370533785}
+  _roomId: 0
+  _isItemRoom: 0
 --- !u!61 &1132445697
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21667,6 +21902,8 @@ MonoBehaviour:
   - {fileID: 1727718939}
   - {fileID: 1290106780}
   _areaLightManager: {fileID: 370533785}
+  _roomId: 0
+  _isItemRoom: 0
 --- !u!61 &1153004921
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -32128,6 +32365,8 @@ MonoBehaviour:
   - {fileID: 809471544}
   - {fileID: 133602582}
   _areaLightManager: {fileID: 370533785}
+  _roomId: 0
+  _isItemRoom: 1
 --- !u!61 &1208297665
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -32326,6 +32565,8 @@ MonoBehaviour:
   - {fileID: 648036971}
   - {fileID: 968977600}
   _areaLightManager: {fileID: 370533785}
+  _roomId: 0
+  _isItemRoom: 0
 --- !u!61 &1217438114
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -32599,6 +32840,8 @@ MonoBehaviour:
   - {fileID: 1664176340}
   - {fileID: 1562489740}
   _areaLightManager: {fileID: 370533785}
+  _roomId: 0
+  _isItemRoom: 0
 --- !u!61 &1235885578
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -55745,6 +55988,16 @@ MonoBehaviour:
     ItemPrefab: {fileID: -2514233485333587086, guid: 4066805fd1ad49c498404f980d9a66f0, type: 3}
   - ItemId: 11
     ItemPrefab: {fileID: 2675392472269499183, guid: 3c8147bddf3b9db4697b93d4e16da329, type: 3}
+  - ItemId: 12
+    ItemPrefab: {fileID: 5696288406888112251, guid: ff651bd291b307f4e9767643748c480e, type: 3}
+  - ItemId: 13
+    ItemPrefab: {fileID: 85414102422346481, guid: f96fb170470de664a8de571b84e3f8f4, type: 3}
+  - ItemId: 14
+    ItemPrefab: {fileID: 6242697073394968390, guid: 640659ff2ee688942872d570bd44ce21, type: 3}
+  - ItemId: 15
+    ItemPrefab: {fileID: 1286150407042091770, guid: b8f281d0415c69f4185459bbde127a30, type: 3}
+  - ItemId: 16
+    ItemPrefab: {fileID: 4891707145990715358, guid: 5de3899297e43a54aa12c807983a469b, type: 3}
   _itemContainer: {fileID: 1808580149}
   _playerTransform: {fileID: 1409805389}
 --- !u!4 &1459045303
@@ -61411,6 +61664,37 @@ Transform:
   - {fileID: 1397935099}
   m_Father: {fileID: 1660343324}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1484920745
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1484920746}
+  m_Layer: 0
+  m_Name: Room5StoneLU
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1484920746
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1484920745}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -47, y: 22, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2005052116}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1499096983 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4386641809939241808, guid: e0b7bc28c089495c876ecdc71475fa53, type: 3}
@@ -61457,6 +61741,7 @@ Transform:
   - {fileID: 550362715}
   - {fileID: 1337042838}
   - {fileID: 563881023}
+  - {fileID: 2138597901}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1511589815
@@ -62086,7 +62371,7 @@ MonoBehaviour:
   m_Intensity: 0.15
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000c31f1404574b58ae831f2d596bf09a21cbbb8eb6b7cb788e3f656461a328ed81
+  m_ApplyToSortingLayers: 00000000c31f1404574b58ae831f2d596bf09a21cbbb8eb6b7cb788e
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -63599,6 +63884,8 @@ MonoBehaviour:
   - {fileID: 946085057}
   - {fileID: 752033649}
   _areaLightManager: {fileID: 370533785}
+  _roomId: 0
+  _isItemRoom: 0
 --- !u!61 &1652849553
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -64837,6 +65124,8 @@ MonoBehaviour:
   - {fileID: 912133752}
   - {fileID: 391106016}
   _areaLightManager: {fileID: 370533785}
+  _roomId: 0
+  _isItemRoom: 0
 --- !u!61 &1738902617
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -104321,6 +104610,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0992b48b6f864b4d82feae013599bf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CrosshairFollowMouse
+  _fireScale: 0.82
+  _shrinkDuration: 0.035
+  _recoverDuration: 0.12
+  _reloadRotationSpeed: 720
+  _rotationReturnSpeed: 1080
 --- !u!1 &1803251090
 GameObject:
   m_ObjectHideFlags: 0
@@ -105158,6 +105452,8 @@ MonoBehaviour:
   - {fileID: 946984470}
   - {fileID: 1542243299}
   _areaLightManager: {fileID: 370533785}
+  _roomId: 0
+  _isItemRoom: 0
 --- !u!61 &1855781309
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -105791,6 +106087,8 @@ MonoBehaviour:
   - {fileID: 1591361209}
   - {fileID: 157361194}
   _areaLightManager: {fileID: 370533785}
+  _roomId: 0
+  _isItemRoom: 0
 --- !u!61 &1879547639
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -106405,6 +106703,8 @@ MonoBehaviour:
   - {fileID: 1428112421}
   - {fileID: 282546394}
   _areaLightManager: {fileID: 370533785}
+  _roomId: 0
+  _isItemRoom: 0
 --- !u!61 &1951239944
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -106520,7 +106820,7 @@ Transform:
   m_GameObject: {fileID: 1956363400}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9, y: 57, z: 0}
+  m_LocalPosition: {x: 29, y: 19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -106556,6 +106856,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 657626828}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1968433734
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1968433735}
+  m_Layer: 0
+  m_Name: Room4StoneLU
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1968433735
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1968433734}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -9, y: 57, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1034191899}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1971843555
 GameObject:
@@ -106928,6 +107259,39 @@ Transform:
   m_Children: []
   m_Father: {fileID: 657626828}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2005052115
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2005052116}
+  m_Layer: 0
+  m_Name: Room5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2005052116
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2005052115}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1484920746}
+  - {fileID: 253552967}
+  m_Father: {fileID: 487839575}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2005092249
 GameObject:
   m_ObjectHideFlags: 0
@@ -107081,6 +107445,8 @@ MonoBehaviour:
   - {fileID: 1027771162}
   - {fileID: 372130256}
   _areaLightManager: {fileID: 370533785}
+  _roomId: 1
+  _isItemRoom: 1
 --- !u!61 &2025084106
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -107183,6 +107549,8 @@ MonoBehaviour:
   - {fileID: 1730982363}
   - {fileID: 51597811}
   _areaLightManager: {fileID: 370533785}
+  _roomId: 0
+  _isItemRoom: 0
 --- !u!61 &2040293699
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -107495,6 +107863,8 @@ MonoBehaviour:
   - {fileID: 949001215}
   - {fileID: 1191032776}
   _areaLightManager: {fileID: 370533785}
+  _roomId: 4
+  _isItemRoom: 1
 --- !u!61 &2064340492
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -107812,7 +108182,7 @@ Transform:
   m_GameObject: {fileID: 2083604111}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2, y: 50, z: 0}
+  m_LocalPosition: {x: 42, y: 9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -108471,6 +108841,64 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1 &2138597900
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2138597901}
+  - component: {fileID: 2138597902}
+  m_Layer: 0
+  m_Name: EffectSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2138597901
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2138597900}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -266.18127, y: -482.79077, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1506741756}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2138597902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2138597900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de4c5c92f0f444ceaa7af3144c4abf6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EffectSpawner
+  _entries:
+  - Type: 0
+    EffectPrefab: {fileID: 233643166561870216, guid: ce6f766f084eb2f4e9b9833c763f4ed0, type: 3}
+    InitialAmount: 1
+    MaxAmount: 10
+  - Type: 1
+    EffectPrefab: {fileID: 8059446138540741752, guid: 3c6d646b4d69af343955cbdedf62b244, type: 3}
+    InitialAmount: 10
+    MaxAmount: 50
+  - Type: 2
+    EffectPrefab: {fileID: 4637194640393567468, guid: cbdb9e3cfa6da8b4d95b6d793abc5bbe, type: 3}
+    InitialAmount: 10
+    MaxAmount: 50
+  _effectContainer: {fileID: 2138597901}
 --- !u!1 &2139890070
 GameObject:
   m_ObjectHideFlags: 0
@@ -109804,3 +110232,4 @@ SceneRoots:
   - {fileID: 1085225157}
   - {fileID: 351131227}
   - {fileID: 1771103824}
+  - {fileID: 218981832}

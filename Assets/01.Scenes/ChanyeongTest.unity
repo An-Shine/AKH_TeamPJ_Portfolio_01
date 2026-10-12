@@ -352,6 +352,8 @@ MonoBehaviour:
   - {fileID: 1090678537}
   - {fileID: 141265922}
   _areaLightManager: {fileID: 1835482151}
+  _roomId: 0
+  _isItemRoom: 0
 --- !u!61 &110377890
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1928,6 +1930,8 @@ MonoBehaviour:
   - {fileID: 906798937}
   - {fileID: 721325742}
   _areaLightManager: {fileID: 1835482151}
+  _roomId: 0
+  _isItemRoom: 0
 --- !u!61 &488786408
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3134,6 +3138,8 @@ MonoBehaviour:
   - {fileID: 189325377}
   - {fileID: 1413226005}
   _areaLightManager: {fileID: 1835482151}
+  _roomId: 0
+  _isItemRoom: 0
 --- !u!61 &636291094
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6865,6 +6871,8 @@ MonoBehaviour:
   - {fileID: 1800584822}
   - {fileID: 1971089558}
   _areaLightManager: {fileID: 1835482151}
+  _roomId: 0
+  _isItemRoom: 0
 --- !u!61 &786522323
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7422,6 +7430,8 @@ MonoBehaviour:
   - {fileID: 1370567464}
   - {fileID: 1055832607}
   _areaLightManager: {fileID: 1835482151}
+  _roomId: 0
+  _isItemRoom: 0
 --- !u!61 &899090860
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7747,6 +7757,8 @@ MonoBehaviour:
   - {fileID: 1861225364}
   - {fileID: 730441302}
   _areaLightManager: {fileID: 1835482151}
+  _roomId: 0
+  _isItemRoom: 0
 --- !u!61 &963064987
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8524,7 +8536,7 @@ MonoBehaviour:
     SpawnPointRightDown: {fileID: 151246657}
   _unitSize: {x: 0.5, y: 0.5}
   _weaponSpawnCount: 1
-  _itemSpawnCount: 2
+  _itemOptionCount: 0
   _nonTargetLayerMask:
     serializedVersion: 2
     m_Bits: 768
@@ -9098,6 +9110,8 @@ MonoBehaviour:
   - {fileID: 1214168148}
   - {fileID: 1321693963}
   _areaLightManager: {fileID: 1835482151}
+  _roomId: 0
+  _isItemRoom: 0
 --- !u!61 &1216211430
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -26470,6 +26484,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PauseTabController
   _pauseMenuRoot: {fileID: 582403747}
   _pauseTabAnimator: {fileID: 582403749}
+  _gameStateManager: {fileID: 0}
 --- !u!4 &1529087163
 Transform:
   m_ObjectHideFlags: 0
@@ -27952,6 +27967,8 @@ MonoBehaviour:
   - {fileID: 2121911168}
   - {fileID: 584952382}
   _areaLightManager: {fileID: 1835482151}
+  _roomId: 0
+  _isItemRoom: 0
 --- !u!61 &1735777117
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -32358,6 +32375,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0992b48b6f864b4d82feae013599bf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CrosshairFollowMouse
+  _fireScale: 0.82
+  _shrinkDuration: 0.035
+  _recoverDuration: 0.12
+  _reloadRotationSpeed: 720
+  _rotationReturnSpeed: 1080
 --- !u!222 &2009263773
 CanvasRenderer:
   m_ObjectHideFlags: 0
