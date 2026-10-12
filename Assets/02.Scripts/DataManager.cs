@@ -138,6 +138,7 @@ public class DataManager : MonoBehaviour
                 itemEffectType = (ItemEffectType)Enum.Parse(typeof(ItemEffectType), row[2]),
                 ApplyType = (ItemEffectApplyType)Enum.Parse(typeof(ItemEffectApplyType), row[3]),
                 Value = float.Parse(row[4]),
+                VisualValue = float.Parse(row[5]),
             };
         }
     }
