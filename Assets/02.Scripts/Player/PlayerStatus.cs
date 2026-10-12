@@ -9,6 +9,7 @@ public class PlayerStatus
     public float CurrentHP;
     public float MaxHP;
     public float MoveSpeed;
+    public float ShootingMoveSpeed;
     public float DashDistance;
     public float DashDuration;
     public float DashInvulnerableDuration;
@@ -23,13 +24,15 @@ public class PlayerStatus
     public float ChargeCooldown;
 
     public PlayerStatus(float maxHP, float moveSpeed, float dashDistance, float dashDuration,
-        float dashInvulnerableDuration, float dashCooldown, float hitInvulnerableDuration, int upgradeCurrency)
+        float dashInvulnerableDuration, float dashCooldown, float hitInvulnerableDuration, int upgradeCurrency,
+        float shootingMoveSpeed)
     {
         _baseMaxHP = maxHP;
         _baseMoveSpeed = moveSpeed;
         MaxHP = maxHP;
         CurrentHP = maxHP;
         MoveSpeed = moveSpeed;
+        ShootingMoveSpeed = shootingMoveSpeed;
         DashDistance = dashDistance;
         DashDuration = dashDuration;
         DashInvulnerableDuration = dashInvulnerableDuration;
