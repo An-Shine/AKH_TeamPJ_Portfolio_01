@@ -14,7 +14,7 @@ public static class ItemVisualApplier
             {
                 Transform child = playerTransform.GetChild(0);
                 GameObject gunVisualObject = child.transform.GetChild(1).gameObject;
-                gunVisualObject.transform.localScale = Vector3.one * itemData.VisualValue;
+                gunVisualObject.transform.localScale *= itemData.VisualValue;
                 break;
             }
             case 4:
