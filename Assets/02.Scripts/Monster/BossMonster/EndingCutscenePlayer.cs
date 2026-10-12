@@ -7,11 +7,12 @@ using UnityEngine.Video;
 [RequireComponent(typeof(VideoPlayer))]
 public class EndingCutscenePlayer : MonoBehaviour
 {
+    private const string MainMenuSceneName = "03.MainMenu";
     [SerializeField] private GameObject _endingCanvas;
     [SerializeField, Min(0f)] private float _deathAnimationDelay = 2f;
     [SerializeField] private AudioSource[] _gameAudioSources;
     [SerializeField] private Behaviour[] _disableDuringEnding;
-    [SerializeField] private string _nextSceneName;
+    [SerializeField] private string _nextSceneName = MainMenuSceneName;
     [SerializeField] private UnityEvent _onFinished;
 
     private VideoPlayer _videoPlayer;
@@ -19,6 +20,10 @@ public class EndingCutscenePlayer : MonoBehaviour
     private bool _requested;
     private bool _paused;
     private bool _failed;
+    private bool _completed;
+
+    private string NextSceneName => string.IsNullOrWhiteSpace(_nextSceneName)
+        ? MainMenuSceneName : _nextSceneName.Trim();
 
     private void Awake()
     {
@@ -54,10 +59,9 @@ public class EndingCutscenePlayer : MonoBehaviour
             return;
         }
 
-        if (!string.IsNullOrWhiteSpace(_nextSceneName) &&
-            !Application.CanStreamedLevelBeLoaded(_nextSceneName))
+        if (!Application.CanStreamedLevelBeLoaded(NextSceneName))
         {
-            Debug.LogError($"다음 씬을 빌드 씬 목록에 추가하세요: {_nextSceneName}", this);
+            Debug.LogError($"다음 씬을 빌드 씬 목록에 추가하세요: {NextSceneName}", this);
             return;
         }
 
@@ -123,19 +127,44 @@ public class EndingCutscenePlayer : MonoBehaviour
 
     private void OnVideoFinished(VideoPlayer player)
     {
-        if (!_paused)
+        if (!_paused || _completed)
         {
             return;
         }
 
-        if (!string.IsNullOrWhiteSpace(_nextSceneName))
+        _completed = true;
+        string nextSceneName = NextSceneName;
+        RestoreTimeScale();
+        Time.timeScale = 1f;
+        _videoPlayer.Stop();
+        if (_endingCanvas != null)
         {
-            RestoreTimeScale();
-            SceneManager.LoadScene(_nextSceneName);
+            _endingCanvas.SetActive(false);
+        }
+
+        // 이전에 다음 씬을 비우고 등록한 완료 이벤트도 유지합니다.
+        if (string.IsNullOrWhiteSpace(_nextSceneName))
+        {
+            _onFinished?.Invoke();
+            if (this == null)
+                return;
+        }
+
+        if (!Application.CanStreamedLevelBeLoaded(nextSceneName))
+        {
+            Debug.LogError($"다음 씬을 빌드 씬 목록에 추가하세요: {nextSceneName}", this);
             return;
         }
 
-        _onFinished.Invoke();
+        if (SceneFlowManager.Instance != null)
+        {
+            // 완료 이벤트가 이미 씬 전환을 요청했다면 중복 요청하지 않습니다.
+            if (!SceneFlowManager.Instance.IsTransitioning)
+                SceneFlowManager.Instance.LoadScene(nextSceneName);
+            return;
+        }
+
+        SceneManager.LoadScene(nextSceneName, LoadSceneMode.Single);
     }
 
     private void OnVideoError(VideoPlayer player, string message)
