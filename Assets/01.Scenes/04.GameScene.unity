@@ -4853,6 +4853,17 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 18.166147, y: 12.9963875}
   m_EdgeRadius: 0
+--- !u!114 &378431865 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4971296951433636266, guid: 3ac8e5cbefd5782498b325262aa28caa, type: 3}
+  m_PrefabInstance: {fileID: 991803948}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 857a0ccc5455cdb40ac6b2e0c32a16a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EndingCutscenePlayer
 --- !u!1 &391106014
 GameObject:
   m_ObjectHideFlags: 0
@@ -19841,6 +19852,10 @@ PrefabInstance:
       propertyPath: _detectionMode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3819265829258752211, guid: 8cfefe87713ae9742a22215d33616cf0, type: 3}
+      propertyPath: _endingCutscene
+      value: 
+      objectReference: {fileID: 378431865}
     - target: {fileID: 3819265829258752211, guid: 8cfefe87713ae9742a22215d33616cf0, type: 3}
       propertyPath: _patterns.Array.size
       value: 6
