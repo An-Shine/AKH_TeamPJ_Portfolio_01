@@ -21,11 +21,11 @@ namespace _02.Scripts.Monster.Presentation
         private SpriteRenderer _chargeCore;
         private MonsterAttackCue _attackCue;
         private SpriteRenderer _hitRenderer;
+        private Material _bodyMaterial;
         private MaterialPropertyBlock _hitProperties;
         private Vector2 _hitDirection;
         private float _hitAge;
         private bool _hitActive;
-        private bool _bodyWasRenderingOff;
         private bool _isNormalMonster;
         private readonly Dictionary<AudioClip[], int> _previousSoundIndices = new Dictionary<AudioClip[], int>();
         private int _previousHitSound = -1;
@@ -63,8 +63,41 @@ namespace _02.Scripts.Monster.Presentation
             _isNormalMonster = _isMelee || _isKamikaze || GetComponent<RangeMonster>() != null;
             if (_bodyRenderer == null)
             {
-                _bodyRenderer = GetComponentInChildren<SpriteRenderer>(true);
+                _bodyRenderer = GetComponent<SpriteRenderer>();
+                if (_bodyRenderer == null)
+                    _bodyRenderer = GetComponentInChildren<SpriteRenderer>(true);
             }
+
+            ConfigureBodyMaterial();
+            KeepBodyOpaque();
+        }
+
+        private void ConfigureBodyMaterial()
+        {
+            if (!_isNormalMonster || _bodyRenderer == null)
+                return;
+            _bodyMaterial = Resources.Load<Material>("Monster/NormalGameFeel/NormalMonsterOpaque");
+            if (_bodyMaterial == null || _bodyMaterial.shader == null || !_bodyMaterial.shader.isSupported)
+                return;
+            // Unity의 2D Unlit 재질을 공유합니다. 효과 재질로 본체를 대체하지 않습니다.
+            _bodyRenderer.sharedMaterial = _bodyMaterial;
+        }
+
+        private void KeepBodyOpaque()
+        {
+            if (!_isNormalMonster || _bodyRenderer == null)
+                return;
+            Color color = _bodyRenderer.color;
+            color.a = 1f;
+            _bodyRenderer.color = color;
+            _bodyRenderer.forceRenderingOff = false;
+        }
+
+        private void OnEnable()
+        {
+            if (_isNormalMonster && _bodyRenderer != null && _bodyMaterial != null)
+                _bodyRenderer.sharedMaterial = _bodyMaterial;
+            KeepBodyOpaque();
         }
 
         private void Start()
@@ -100,25 +133,21 @@ namespace _02.Scripts.Monster.Presentation
         // TakeDamage에서 실제로 피해가 적용된 경우에만 호출합니다. 마지막 타격도 포함합니다.
         public bool ReceiveHit(Vector2 direction, bool lethal)
         {
-            if (!_isNormalMonster || Time.timeScale <= 0f || !EnsureReady() || !_effects.HasHitMaterial)
+            if (!_isNormalMonster || Time.timeScale <= 0f || !EnsureReady())
             {
                 return false;
             }
 
-            if (_hitRenderer == null)
+            if (_hitRenderer == null && _effects.HasHitMaterial)
             {
                 _hitRenderer = _effects.CreateHitRenderer(name + "_HitVisual");
             }
 
-            if (!_hitActive)
-            {
-                _bodyWasRenderingOff = _bodyRenderer.forceRenderingOff;
-            }
-
             _hitDirection = direction.sqrMagnitude > 0.001f ? direction.normalized : Vector2.up;
             _hitAge = 0f;
-            _hitActive = true;
-            _bodyRenderer.forceRenderingOff = true;
+            _hitActive = _hitRenderer != null;
+            // 피격 복사본이 준비되지 않아도 실제 몬스터 본체는 계속 표시합니다.
+            KeepBodyOpaque();
             RefreshHitVisual();
 
             float width = Mathf.Clamp(_referenceWidth, 0.45f, 1.8f);
@@ -139,7 +168,8 @@ namespace _02.Scripts.Monster.Presentation
             _previousHitSound = index;
             PlayIndex(sounds, index, point, _profile.HitVolume * (lethal ? 1f : 0.85f));
             NormalMonsterCameraShake.Request(point, _profile.HitCameraShake * (lethal ? 1.3f : 1f), 0.075f);
-            return true;
+            // 복사본 재질이 없는 경우 기존 NormalMonster의 붉은 피격 표시를 허용합니다.
+            return _hitActive;
         }
 
         public void PlayDeathSound()
@@ -174,10 +204,12 @@ namespace _02.Scripts.Monster.Presentation
             _hitRenderer.sprite = _bodyRenderer.sprite;
             _hitRenderer.flipX = _bodyRenderer.flipX;
             _hitRenderer.flipY = _bodyRenderer.flipY;
-            _hitRenderer.color = _bodyRenderer.color;
+            Color hitColor = _bodyRenderer.color;
+            hitColor.a = 1f;
+            _hitRenderer.color = hitColor;
             _hitRenderer.gameObject.layer = _bodyRenderer.gameObject.layer;
             _hitRenderer.sortingLayerID = _bodyRenderer.sortingLayerID;
-            _hitRenderer.sortingOrder = _bodyRenderer.sortingOrder;
+            _hitRenderer.sortingOrder = _bodyRenderer.sortingOrder + 1;
             _hitRenderer.spriteSortPoint = _bodyRenderer.spriteSortPoint;
             float scale = NormalMonsterHitMath.Scale(_hitAge, _profile.HitPopDuration, _profile.HitPopAmount);
             float recoil = NormalMonsterHitMath.Recoil(_hitAge, _profile.HitPopDuration);
@@ -190,16 +222,11 @@ namespace _02.Scripts.Monster.Presentation
             _hitRenderer.transform.localScale = new Vector3(originalScale.x * scale, originalScale.y * scale, originalScale.z);
             _hitProperties.SetFloat(HitFlashAmountId, NormalMonsterHitMath.Flash(_hitAge, _profile.HitFlashHold, _profile.HitFlashFade));
             _hitRenderer.SetPropertyBlock(_hitProperties);
-            _hitRenderer.enabled = !_bodyWasRenderingOff;
+            _hitRenderer.enabled = true;
         }
 
         private void EndHitVisual()
         {
-            if (_hitActive && _bodyRenderer != null)
-            {
-                _bodyRenderer.forceRenderingOff = _bodyWasRenderingOff;
-            }
-
             _hitActive = false;
             if (_hitRenderer != null)
             {
@@ -335,6 +362,35 @@ namespace _02.Scripts.Monster.Presentation
             Play(_profile.MeleeImpactSounds, point, _profile.ImpactVolume);
         }
 
+        public void BeginRangePatternAttack(Vector3 muzzle)
+        {
+            if (!EnsureReady())
+                return;
+            CancelAttackVisual();
+            Play(_profile.RangeChargeSounds, muzzle, _profile.AttackVolume * 0.35f);
+        }
+
+        public void RangePatternRelease(Vector3 muzzle, Vector2 direction, bool firstWave)
+        {
+            if (!EnsureReady())
+                return;
+            CancelAttackVisual();
+            int index = Choose(_profile.RangeShotSounds, _previousRangeShot);
+            _previousRangeShot = index;
+            PlayIndex(_profile.RangeShotSounds, index, muzzle, _profile.AttackVolume * 0.72f);
+            if (firstWave)
+            {
+                NormalMonsterCameraShake.Request(muzzle, _profile.CameraShake * 0.15f, 0.06f);
+            }
+        }
+
+        public void RangePatternImpact(Vector3 point, bool fullImpact)
+        {
+            if (!EnsureReady())
+                return;
+            Play(_profile.RangeImpactSounds, point, _profile.ImpactVolume * (fullImpact ? 0.7f : 0.25f));
+        }
+
         public void RangeRelease(Vector3 muzzle, Vector2 direction)
         {
             if (!EnsureReady())
@@ -350,7 +406,6 @@ namespace _02.Scripts.Monster.Presentation
             Emit(_effects.Shape(NormalFeelShape.Star), muzzle, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg, new Vector2(0.6f, 0.35f), new Vector2(0.9f, 0.12f), direction * 1.4f, Color.white, 0.085f, 6);
             Ring(muzzle, color, 0.16f, 0.8f * _profile.DecorationScale, 0.18f);
             Burst(muzzle, direction, color, 14, 0.6f, false);
-            Afterimages(direction, color, 2);
             int index = Choose(_profile.RangeShotSounds, _previousRangeShot);
             _previousRangeShot = index;
             PlayIndex(_profile.RangeShotSounds, index, muzzle, _profile.AttackVolume);
@@ -516,6 +571,7 @@ namespace _02.Scripts.Monster.Presentation
 
         private void LateUpdate()
         {
+            KeepBodyOpaque();
             if (!EnsureReady())
             {
                 EndHitVisual();
@@ -622,6 +678,7 @@ namespace _02.Scripts.Monster.Presentation
         {
             EndHitVisual();
             CancelAttackVisual();
+            KeepBodyOpaque();
             if (_outline != null)
             {
                 _outline.enabled = false;
