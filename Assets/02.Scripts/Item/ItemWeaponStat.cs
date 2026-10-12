@@ -9,6 +9,11 @@ public class ItemWeaponStat
     public float SpreadAngleModifier;
     public float SpreadAngleMultiplier;
 
+    public bool HasLastBulletEffect;
+    public float LastBulletMultiplier;
+
+    public float ChargeSpeedMultiplier;
+
     public ItemWeaponStat()
     {
         FireSpeedModifier = 0;
@@ -19,5 +24,10 @@ public class ItemWeaponStat
         ProjectileCountModifier = 0;
         SpreadAngleModifier = 0;
         SpreadAngleMultiplier = 0;
+
+        HasLastBulletEffect = false;
+        LastBulletMultiplier = 0;
+
+        ChargeSpeedMultiplier = 0;
     }
 }

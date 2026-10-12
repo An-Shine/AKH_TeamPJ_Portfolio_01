@@ -10,6 +10,13 @@ public class ItemProjectileStat
     public float ExplosionRadius;
     public bool IsHoming;
 
+    public float DamageBonusByPenetration;
+
+    public bool IsBlackHole;
+    public float BlackHoleDamage;
+    public bool IsGammaField;
+    public float GammaDamage;
+
     public ItemProjectileStat()
     {
         DamageModifier = 0;
@@ -20,5 +27,12 @@ public class ItemProjectileStat
         KnockbackDistance = 0;
         IsExplosive = false;
         IsHoming = false;
+
+        DamageBonusByPenetration = 0;
+
+        IsBlackHole = false;
+        BlackHoleDamage = 0;
+        IsGammaField = false;
+        GammaDamage = 0;
     }
 }

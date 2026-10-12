@@ -34,7 +34,8 @@ public class Weapon : MonoBehaviour
         * (1f + Modifier.FireRate.Rate + ItemManager.Instance.WeaponStat.FireSpeedMultiplier);
 
     private float ReloadSpeed => (1 + Modifier.ReloadSpeed.Flat) * (1f + Modifier.ReloadSpeed.Rate);
-    public float ChargeSpeed => (1 + Modifier.ChargeSpeed.Flat) * (1f + Modifier.ChargeSpeed.Rate);
+    public float ChargeSpeed => (1 + Modifier.ChargeSpeed.Flat)
+                                * (1f + Modifier.ChargeSpeed.Rate + ItemManager.Instance.WeaponStat.ChargeSpeedMultiplier);
 
     public int MagazineSize =>
         (int)((Data.MagazineSize + Modifier.MagazineSize)
@@ -124,6 +125,7 @@ public class Weapon : MonoBehaviour
             {
                 AudioManager.Instance.PlaySFX(SFXType.FailFire);
             }
+
             return false;
         }
 
@@ -140,8 +142,11 @@ public class Weapon : MonoBehaviour
     {
         FireContext context = new FireContext(Data.ProjectileType, OriginPoint.transform.position,
             _targetDirection.normalized, Range, ProjectileCount, Angle);
-        Projectile projectile = _firePattern.Fire(context, Damage);
+
         AudioManager.Instance.PlaySFX(_fireSoundType);
+        Projectile projectile = _firePattern.Fire(context, Damage);
+        LastBullet(projectile);
+
         if (_fireEffectPrefab != null)
         {
             GameObject effectObject =
@@ -150,6 +155,18 @@ public class Weapon : MonoBehaviour
         }
 
         return projectile;
+    }
+
+    private void LastBullet(Projectile projectile)
+    {
+        ItemManager manager = ItemManager.Instance;
+        if (manager != null)
+        {
+            if (manager.WeaponStat.HasLastBulletEffect && _remainingAmmo <= 1)
+            {
+                projectile.ApplyLastBulletEffect(manager.WeaponStat.LastBulletMultiplier);
+            }
+        }
     }
 
     public void RefreshDirection()

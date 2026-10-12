@@ -104,7 +104,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1496129411
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 223f6156138226d4da18ea3f63e9e994, type: 3}
@@ -129,7 +129,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34eb0e0464954284b768fcd2fd5f379f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExplosionProjectile
-  _explosionEffect: {fileID: 233643166561870216, guid: ce6f766f084eb2f4e9b9833c763f4ed0, type: 3}
+  _effectProbability: 70
+  _effectType: 0
   _adjustExplosionPosition: {x: 0, y: 2, z: 0}
 --- !u!70 &1237593117003784088
 CapsuleCollider2D:

@@ -27,7 +27,7 @@ public static class ItemEffectApplier
 
     public static void ApplyImmediateEffect(ItemEffectData effect, UnityEngine.Transform playerTransform)
     {
-        IItemImmediateEffect immediateEffect = ImmediateEffectFactory.Create(effect.EffectType);
+        IItemImmediateEffect immediateEffect = ImmediateEffectFactory.Create(effect.itemEffectType);
         ImmediateEffectContext immediateEffectContext = new ImmediateEffectContext
         {
             PlayerTransform = playerTransform,
@@ -53,14 +53,14 @@ public static class ItemEffectApplier
 
     private static void ApplyPlayerEffect(ItemPlayerStat stat, ItemEffectData effect)
     {
-        switch (effect.EffectType)
+        switch (effect.itemEffectType)
         {
-            case EffectType.MaxHealthModifier:
+            case ItemEffectType.MaxHealthModifier:
             {
                 stat.MaxHealthModifier += (int)effect.Value;
                 break;
             }
-            case EffectType.MoveSpeedMultiplier:
+            case ItemEffectType.MoveSpeedMultiplier:
             {
                 stat.MoveSpeedMultiplier += effect.Value;
                 break;
@@ -84,46 +84,57 @@ public static class ItemEffectApplier
 
     private static void ApplyWeaponEffect(ItemWeaponStat stat, ItemEffectData effect)
     {
-        switch (effect.EffectType)
+        switch (effect.itemEffectType)
         {
-            case EffectType.FireSpeedModifier:
+            case ItemEffectType.FireSpeedModifier:
             {
                 stat.FireSpeedModifier += (int)effect.Value;
                 break;
             }
-            case EffectType.FireSpeedMultiplier:
+            case ItemEffectType.FireSpeedMultiplier:
             {
                 stat.FireSpeedMultiplier += effect.Value;
                 break;
             }
-            case EffectType.RangeModifier:
+            case ItemEffectType.RangeModifier:
             {
                 stat.RangeModifier += (int)effect.Value;
                 break;
             }
-            case EffectType.RangeMultiplier:
+            case ItemEffectType.RangeMultiplier:
             {
                 stat.RangeMultiplier += effect.Value;
                 break;
             }
-            case EffectType.MagazineSizeMultiplier:
+            case ItemEffectType.MagazineSizeMultiplier:
             {
                 stat.MagazineSizeMultiplier += effect.Value;
                 break;
             }
-            case EffectType.ProjectileCountModifier:
+            case ItemEffectType.ProjectileCountModifier:
             {
                 stat.ProjectileCountModifier += (int)effect.Value;
                 break;
             }
-            case EffectType.SpreadAngleModifier:
+            case ItemEffectType.SpreadAngleModifier:
             {
                 stat.SpreadAngleModifier += (int)effect.Value;
                 break;
             }
-            case EffectType.SpreadAngleMultiplier:
+            case ItemEffectType.SpreadAngleMultiplier:
             {
                 stat.SpreadAngleMultiplier += effect.Value;
+                break;
+            }
+            case ItemEffectType.LastBullet:
+            {
+                stat.HasLastBulletEffect = true;
+                stat.LastBulletMultiplier = effect.Value;
+                break;
+            }
+            case ItemEffectType.ChargeSpeedMultiplier:
+            {
+                stat.ChargeSpeedMultiplier += effect.Value;
                 break;
             }
         }
@@ -145,26 +156,43 @@ public static class ItemEffectApplier
 
     private static void ApplyProjectileEffect(ItemProjectileStat stat, ItemEffectData effect)
     {
-        switch (effect.EffectType)
+        switch (effect.itemEffectType)
         {
-            case EffectType.DamageModifier:
+            case ItemEffectType.DamageModifier:
             {
                 stat.DamageModifier += (int)effect.Value;
                 break;
             }
-            case EffectType.DamageMultiplier:
+            case ItemEffectType.DamageMultiplier:
             {
                 stat.DamageMultiplier += effect.Value;
                 break;
             }
-            case EffectType.MoveSpeedMultiplier:
+            case ItemEffectType.MoveSpeedMultiplier:
             {
                 stat.MoveSpeedMultiplier += effect.Value;
                 break;
             }
-            case EffectType.ProjectileSizeMultiplier:
+            case ItemEffectType.ProjectileSizeMultiplier:
             {
                 stat.SizeMultiplier += effect.Value;
+                break;
+            }
+            case ItemEffectType.DamageBonusByPenetration:
+            {
+                stat.DamageBonusByPenetration += effect.Value;
+                break;
+            }
+            case ItemEffectType.AddBlackHoleEffect:
+            {
+                stat.IsBlackHole = true;
+                stat.BlackHoleDamage = effect.Value;
+                break;
+            }
+            case ItemEffectType.AddGammaFieldEffect:
+            {
+                stat.IsGammaField = true;
+                stat.GammaDamage = effect.Value;
                 break;
             }
         }

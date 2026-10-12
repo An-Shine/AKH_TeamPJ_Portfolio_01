@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ExplosionProjectile : Projectile
 {
-    [SerializeField] private Explosion _explosionEffect;
+    [SerializeField] private EffectType _effectType;
     [SerializeField] private Vector3 _adjustExplosionPosition;
 
     protected override void Move()
@@ -12,9 +12,7 @@ public class ExplosionProjectile : Projectile
 
     protected override void OnDestroySelf()
     {
-        ProjectilePoolManager.Instance.Release(this);
-        Explosion explosion = Instantiate(
-            _explosionEffect, transform.position + _adjustExplosionPosition, Quaternion.identity);
-        explosion.Initialize(_damage);
+        base.OnDestroySelf();
+        EffectSpawner.Instance.Spawn(_effectType, transform.position + _adjustExplosionPosition, _damage);
     }
 }

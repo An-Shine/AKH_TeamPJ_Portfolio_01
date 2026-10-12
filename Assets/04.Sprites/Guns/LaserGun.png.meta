@@ -151,9 +151,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 444
-        width: 443
-        height: 443
+        y: 534
+        width: 498
+        height: 164
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -172,10 +172,10 @@ TextureImporter:
       name: LaserGun_1
       rect:
         serializedVersion: 2
-        x: 443
-        y: 444
-        width: 443
-        height: 443
+        x: 518
+        y: 445
+        width: 315
+        height: 305
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,10 +194,10 @@ TextureImporter:
       name: LaserGun_2
       rect:
         serializedVersion: 2
-        x: 886
-        y: 444
-        width: 443
-        height: 443
+        x: 1042
+        y: 481
+        width: 126
+        height: 309
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,10 +216,10 @@ TextureImporter:
       name: LaserGun_3
       rect:
         serializedVersion: 2
-        x: 1329
-        y: 444
-        width: 443
-        height: 443
+        x: 1390
+        y: 482
+        width: 369
+        height: 301
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -238,10 +238,10 @@ TextureImporter:
       name: LaserGun_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1
-        width: 443
-        height: 443
+        x: 4
+        y: 135
+        width: 478
+        height: 164
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -260,10 +260,10 @@ TextureImporter:
       name: LaserGun_5
       rect:
         serializedVersion: 2
-        x: 442
-        y: 2
-        width: 443
-        height: 443
+        x: 511
+        y: 103
+        width: 345
+        height: 281
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -282,10 +282,10 @@ TextureImporter:
       name: LaserGun_6
       rect:
         serializedVersion: 2
-        x: 886
-        y: 1
-        width: 443
-        height: 443
+        x: 902
+        y: 103
+        width: 266
+        height: 312
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -304,10 +304,10 @@ TextureImporter:
       name: LaserGun_7
       rect:
         serializedVersion: 2
-        x: 1329
-        y: 1
-        width: 443
-        height: 443
+        x: 1390
+        y: 103
+        width: 367
+        height: 309
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -336,7 +336,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":4.0,"y":2.0},"gridSpriteSize":{"x":443.0,"y":443.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       LaserGun_0: 1297108270181015463
       LaserGun_1: 8414127768732306668
