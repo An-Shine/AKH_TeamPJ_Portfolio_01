@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerStateMachine), typeof(Rigidbody2D))]
 public class PlayerRunDust : MonoBehaviour
 {
-    [SerializeField] private DustCloudPool _pool;
+    [SerializeField] private DustCloud _pool;
     [SerializeField] private Vector2 _groundOffset = new Vector2(0f, -0.6f);
     private Rigidbody2D _body;
     private PlayerStateMachine _state;
