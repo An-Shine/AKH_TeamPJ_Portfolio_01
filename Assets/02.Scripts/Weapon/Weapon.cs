@@ -78,6 +78,11 @@ public class Weapon : MonoBehaviour
         Reloading();
     }
 
+    private void OnEnable()
+    {
+        transform.localScale = Vector3.one * Modifier.Size;
+    }
+
     public void Initialize(WeaponData data)
     {
         Data = data;
