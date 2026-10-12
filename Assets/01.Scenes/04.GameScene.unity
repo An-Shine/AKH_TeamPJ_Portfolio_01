@@ -2048,14 +2048,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MonsterSpawner
   _monsterPrefabs:
-  - {fileID: 639612782717581268, guid: 06ddf9934d5082e439abaf345b510719, type: 3}
-  - {fileID: 3752560541776440137, guid: e4c67777cc259704d84123501921468b, type: 3}
-  - {fileID: 8326424469708161978, guid: 5c49daa289ab3474e8046744413410ab, type: 3}
+  - {fileID: 3752560541776440137, guid: 90166dd23fa65d9bacfe3f56d89b9700, type: 3}
   _room: {fileID: 607853936}
   _spawnPoints:
   - {fileID: 35545744}
   - {fileID: 687324814}
-  _maxSpawnCount: 6
+  _maxSpawnCount: 5
   _spawnInterval: 1
   _spawnOnStart: 1
   _player: {fileID: 1409805389}
@@ -16990,14 +16988,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MonsterSpawner
   _monsterPrefabs:
-  - {fileID: 639612782717581268, guid: 06ddf9934d5082e439abaf345b510719, type: 3}
-  - {fileID: 3752560541776440137, guid: e4c67777cc259704d84123501921468b, type: 3}
-  - {fileID: 8326424469708161978, guid: 5c49daa289ab3474e8046744413410ab, type: 3}
+  - {fileID: 3752560541776440137, guid: 90166dd23fa65d9bacfe3f56d89b9700, type: 3}
   _room: {fileID: 480414177}
   _spawnPoints:
   - {fileID: 1301407408}
   - {fileID: 2053812451}
-  _maxSpawnCount: 10
+  _maxSpawnCount: 5
   _spawnInterval: 1
   _spawnOnStart: 1
   _player: {fileID: 1409805389}
@@ -19842,15 +19838,23 @@ PrefabInstance:
       objectReference: {fileID: 722226110}
     - target: {fileID: 3819265829258752211, guid: 8cfefe87713ae9742a22215d33616cf0, type: 3}
       propertyPath: _maxHealth
-      value: 200
+      value: 23000
       objectReference: {fileID: 0}
     - target: {fileID: 3819265829258752211, guid: 8cfefe87713ae9742a22215d33616cf0, type: 3}
       propertyPath: _shakeCamera
       value: 
       objectReference: {fileID: 449865805}
     - target: {fileID: 3819265829258752211, guid: 8cfefe87713ae9742a22215d33616cf0, type: 3}
+      propertyPath: _contactDamage
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 3819265829258752211, guid: 8cfefe87713ae9742a22215d33616cf0, type: 3}
       propertyPath: _detectionMode
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3819265829258752211, guid: 8cfefe87713ae9742a22215d33616cf0, type: 3}
+      propertyPath: _slowMoveSpeed
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3819265829258752211, guid: 8cfefe87713ae9742a22215d33616cf0, type: 3}
       propertyPath: _endingCutscene
@@ -60725,11 +60729,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9074837142586714173, guid: b5f335e30d5aa2344bc4adefae59483a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.8
+      value: -36.4
       objectReference: {fileID: 0}
     - target: {fileID: 9074837142586714173, guid: b5f335e30d5aa2344bc4adefae59483a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 53.7
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 9074837142586714173, guid: b5f335e30d5aa2344bc4adefae59483a, type: 3}
       propertyPath: m_LocalPosition.z

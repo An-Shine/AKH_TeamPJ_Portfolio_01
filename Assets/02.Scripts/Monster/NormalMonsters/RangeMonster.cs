@@ -14,7 +14,7 @@ public class RangeMonster : NormalMonster
     [SerializeField] private Transform _firePoint;
 
     [Header("애니메이션 발사 시점")]
-    [Tooltip("0.5는 공격 모션의 절반에서 한 번 발사합니다.")]
+    [Tooltip("첫 탄막은 이 모션 시점과 최소 조준 시간이 모두 지난 뒤 발사합니다.")]
     [SerializeField, Range(0f, 0.95f)] private float _fireNormalizedTime = 0.5f;
     [Tooltip("Attack 모션 길이를 알아내지 못할 때 사용하는 기본 시간입니다.")]
     [SerializeField, Min(0.1f)] private float _attackFallbackDuration = 0.8f;
@@ -38,7 +38,13 @@ public class RangeMonster : NormalMonster
     [SerializeField, Min(0.1f)] private float _walkAnimationSpeed = 1.6f;
     [SerializeField, Min(0.1f)] private float _attackAnimationSpeed = 1f;
     [Tooltip("공격 모션과 실제 공격 빈도를 같은 배율로 변경합니다. 2이면 원래의 2배입니다.")]
-    [SerializeField, Min(0.1f)] private float _attackSpeedMultiplier = 2f;
+    [SerializeField, Min(0.1f)] private float _attackSpeedMultiplier = 2.3f;
+
+    [Header("일반 몬스터 탄막")]
+    [SerializeField] private bool _useVariedPatterns = true;
+    [SerializeField, Range(0.18f, 0.4f)] private float _minimumAimTime = 0.2f;
+    [SerializeField, Range(0.08f, 0.14f)] private float _patternShotInterval = 0.09f;
+    [SerializeField, Range(0.05f, 0.2f)] private float _patternRecoveryTime = 0.07f;
 
     [Header("동작 대기 제한")]
     [SerializeField, Min(0.1f)] private float _maximumAttackTime = 3f;
@@ -82,6 +88,19 @@ public class RangeMonster : NormalMonster
     private bool _attackDurationResolved;
     private Vector2 _shotDirection;
     private Vector3 _fireOffset;
+    private RangeAttackPattern _activePattern;
+    private RangePatternCue _patternCue;
+    private RangePatternVfx _patternVfx;
+    private SpriteRenderer _bodyRenderer;
+    private int _nextPattern;
+    private int _patternWave;
+    private int _sweepSign = 1;
+    private float _nextPatternShotTime;
+    private float _lastPatternShotTime;
+    protected virtual bool UsesElitePatterns => false;
+    public bool IsElite => UsesElitePatterns;
+    private bool IsPatternAttack => _useVariedPatterns && _activePattern != RangeAttackPattern.Single;
+
     protected override void Awake()
     {
         base.Awake();
@@ -90,6 +109,11 @@ public class RangeMonster : NormalMonster
         _visualLock = new MonsterVisualLock(transform);
         _animator = GetComponent<Animator>();
         _renderers = GetComponentsInChildren<SpriteRenderer>(true);
+        _bodyRenderer = GetComponent<SpriteRenderer>();
+        if (_bodyRenderer == null && _renderers.Length > 0)
+            _bodyRenderer = _renderers[0];
+        _nextPattern = Random.Range(0, RangeAttackPatterns.PatternCount(UsesElitePatterns));
+        _activePattern = RangeAttackPatterns.ForTier(UsesElitePatterns, _nextPattern);
         _colliders = GetComponentsInChildren<Collider2D>(true);
         _bodies = GetComponentsInChildren<Rigidbody2D>(true);
         _colors = new Color[_renderers.Length];
@@ -104,6 +128,22 @@ public class RangeMonster : NormalMonster
         _fireOffset = _firePoint != null ? transform.InverseTransformPoint(_firePoint.position) : Vector3.zero;
         _animator.applyRootMotion = false;
         _animator.cullingMode = AnimatorCullingMode.AlwaysAnimate;
+    }
+
+    protected override void OnDisable()
+    {
+        _patternWave = RangeAttackPatterns.WaveCount(_activePattern);
+        _shotFired = true;
+        _action = ActionState.None;
+        _patternCue?.Hide();
+        if (_gameFeel != null)
+            _gameFeel.CancelAttackVisual();
+        base.OnDisable();
+    }
+
+    protected virtual void OnDestroy()
+    {
+        _patternCue?.Dispose();
     }
 
     protected override void Start()
@@ -131,6 +171,8 @@ public class RangeMonster : NormalMonster
 
     protected override void Update()
     {
+        if (Time.timeScale <= 0f)
+            return;
         if (_hasDied)
         {
             if (_ready)
@@ -322,9 +364,20 @@ public class RangeMonster : NormalMonster
             return false;
         }
 
-        if (!TryBeginCoordinatedAttack(_maximumAttackTime / _attackSpeedMultiplier))
+        if (!TryBeginCoordinatedAttack(GetMaximumAttackDuration()))
             return false;
 
+        _activePattern = RangeAttackPatterns.ForTier(UsesElitePatterns, _nextPattern);
+        _nextPattern = (_nextPattern + 1) % RangeAttackPatterns.PatternCount(UsesElitePatterns);
+        if (_activePattern == RangeAttackPattern.Sweep || _activePattern == RangeAttackPattern.EliteSweep
+            || _activePattern == RangeAttackPattern.EliteFan)
+        {
+            _sweepSign = -_sweepSign;
+        }
+
+        _patternWave = 0;
+        _nextPatternShotTime = 0f;
+        _lastPatternShotTime = 0f;
         _shotDirection = toPlayer.normalized;
         // 실제 발사 방향을 공격 시작 시에만 확정하고 모션 중에는 유지합니다.
         SetDirection(_shotDirection);
@@ -332,6 +385,21 @@ public class RangeMonster : NormalMonster
         _shotFired = false;
         BeginAction(ActionState.Attack, 2);
         return true;
+    }
+
+    private float GetMaximumAttackDuration()
+    {
+        float longestVolley = 0f;
+        for (int index = 0; index < RangeAttackPatterns.PatternCount(UsesElitePatterns); index++)
+        {
+            RangeAttackPattern pattern = RangeAttackPatterns.ForTier(UsesElitePatterns, index);
+            float duration = (RangeAttackPatterns.WaveCount(pattern) - 1)
+                * RangeAttackPatterns.WaveInterval(pattern, _patternShotInterval);
+            longestVolley = Mathf.Max(longestVolley, duration);
+        }
+
+        return Mathf.Max(_maximumAttackTime / _attackSpeedMultiplier,
+            _minimumAimTime + longestVolley + _patternRecoveryTime + 0.15f);
     }
 
     private void SetAnimationFlags(bool moving)
@@ -359,7 +427,11 @@ public class RangeMonster : NormalMonster
     private void BeginAction(ActionState action, int row)
     {
         if (action != ActionState.Attack)
+        {
             ReleaseCoordinatedAttack();
+            _patternWave = RangeAttackPatterns.WaveCount(_activePattern);
+            _patternCue?.Hide();
+        }
         _action = action;
         _actionHash = _states[row, _direction];
         _actionStartFrame = Time.frameCount;
@@ -377,7 +449,10 @@ public class RangeMonster : NormalMonster
         {
             if (action == ActionState.Attack)
             {
-                _gameFeel.BeginRangeAttack(_shotDirection, GetMuzzlePosition());
+                if (IsPatternAttack)
+                    _gameFeel.BeginRangePatternAttack(GetMuzzlePosition());
+                else
+                    _gameFeel.BeginRangeAttack(_shotDirection, GetMuzzlePosition());
             }
             else
             {
@@ -387,6 +462,14 @@ public class RangeMonster : NormalMonster
 
         SetAnimationFlags(false);
         _animator.Play(_actionHash, 0, 0f);
+        if (action == ActionState.Attack && IsPatternAttack && _bodyRenderer != null)
+        {
+            if (_patternVfx == null)
+                _patternVfx = RangePatternVfx.ForScene(gameObject.scene);
+            if (_patternCue == null)
+                _patternCue = new RangePatternCue(transform, _bodyRenderer, _patternVfx.SpriteMaterial, _patternVfx.LineMaterial);
+            _patternCue.Show(_activePattern, GetMuzzlePosition(), _shotDirection, _sweepSign, 0f);
+        }
     }
 
     private void UpdateAction()
@@ -411,28 +494,49 @@ public class RangeMonster : NormalMonster
             }
         }
 
-        float maximum = _action == ActionState.Attack ? _maximumAttackTime / _attackSpeedMultiplier : (_action == ActionState.Hit ? _maximumHitTime : _maximumDeathTime);
+        float maximum = _action == ActionState.Attack ? GetMaximumAttackDuration() : (_action == ActionState.Hit ? _maximumHitTime : _maximumDeathTime);
+        if (_action == ActionState.Attack && IsPatternAttack && elapsed >= maximum)
+        {
+            FinishAction();
+            return;
+        }
+
         float fallbackDuration = maximum;
         if (_action == ActionState.Attack)
         {
             ResolveAttackDuration(info, matching, useNextState);
             fallbackDuration = _attackDuration;
             float progress = Mathf.Max(matching ? info.normalizedTime : 0f, elapsed / fallbackDuration);
-            // 전환이나 자기 재진입으로 모션이 초기화되어도 한 공격에서 한 번만 발사합니다.
-            if (!_shotFired && (progress >= _fireNormalizedTime || elapsed >= maximum))
+            if (IsPatternAttack && !_shotFired)
+            {
+                _patternCue?.Show(_activePattern, GetMuzzlePosition(), _shotDirection, _sweepSign,
+                    Mathf.Clamp01(elapsed / _minimumAimTime));
+            }
+            // 조준 방향은 공격 시작에 고정합니다. 프레임이 밀려도 여러 연사 단계를 한꺼번에 발사하지 않습니다.
+            bool aimReady = !IsPatternAttack || elapsed >= _minimumAimTime;
+            if (!_shotFired && aimReady && (progress >= _fireNormalizedTime || elapsed >= maximum))
             {
                 FireProjectile();
+            }
+
+            else if (IsPatternAttack && _shotFired && _patternWave < RangeAttackPatterns.WaveCount(_activePattern)
+                && Time.time >= _nextPatternShotTime)
+            {
+                FirePatternWave();
             }
         }
 
         bool timedAttackFinished = _action == ActionState.Attack && elapsed >= fallbackDuration;
-        if ((matching && info.normalizedTime >= 1f) || timedAttackFinished || elapsed >= maximum)
+        bool volleyFinished = _action != ActionState.Attack || !IsPatternAttack
+            || _shotFired && _patternWave >= RangeAttackPatterns.WaveCount(_activePattern)
+            && Time.time >= _lastPatternShotTime + _patternRecoveryTime;
+        if (((matching && info.normalizedTime >= 1f) || timedAttackFinished) && volleyFinished || elapsed >= maximum)
         {
             FinishAction();
             return;
         }
 
-        if (!matching && Time.time >= _nextAnimationRetry)
+        if (!matching && Time.time >= _nextAnimationRetry && !(_action == ActionState.Attack && _shotFired))
         {
             SetAnimationFlags(false);
             _animator.Play(_actionHash, 0, Mathf.Clamp(elapsed / fallbackDuration, 0f, 0.95f));
@@ -482,6 +586,7 @@ public class RangeMonster : NormalMonster
 
         ReleaseCoordinatedAttack();
         _action = ActionState.None;
+        _patternCue?.Hide();
         if (_gameFeel != null)
         {
             _gameFeel.CancelAttackVisual();
@@ -506,6 +611,13 @@ public class RangeMonster : NormalMonster
 
         Vector3 position = GetMuzzlePosition();
         _shotFired = true;
+        _patternCue?.Hide();
+        if (IsPatternAttack)
+        {
+            FirePatternWave();
+            return;
+        }
+
         RangeProjectile projectile = Instantiate(_projectilePrefab, position, Quaternion.identity);
         projectile.gameObject.SetActive(true);
         projectile.Initialize(_shotDirection, transform, _player);
@@ -517,6 +629,49 @@ public class RangeMonster : NormalMonster
         {
             MonsterCombatEffect.SpawnImpact(position, _shotDirection, _muzzleFlashColor, transform);
         }
+    }
+
+    private void FirePatternWave()
+    {
+        if (_hasDied || _action != ActionState.Attack || _projectilePrefab == null || _player == null
+            || !_player.gameObject.activeInHierarchy || !CanTrackPlayer()
+            || !HasObstacleLineOfSight(transform.position, _player.position))
+        {
+            _patternWave = RangeAttackPatterns.WaveCount(_activePattern);
+            _lastPatternShotTime = Time.time;
+            _patternCue?.Hide();
+            return;
+        }
+
+        Vector3 position = GetMuzzlePosition();
+        int count = RangeAttackPatterns.ShotCount(_activePattern);
+        for (int shot = 0; shot < count; shot++)
+        {
+            float angle = RangeAttackPatterns.Angle(_activePattern, _patternWave, shot, _sweepSign);
+            Vector2 direction = RangeAttackPatterns.Direction(_shotDirection, angle);
+            RangeProjectile projectile = Instantiate(_projectilePrefab, position, Quaternion.identity);
+            projectile.gameObject.SetActive(true);
+            projectile.ConfigurePattern(_activePattern, RangeAttackPatterns.SpeedMultiplier(_activePattern), _bodyRenderer);
+            projectile.Initialize(direction, transform, _player);
+        }
+
+        Vector2 releaseDirection = count == 1
+            ? RangeAttackPatterns.Direction(_shotDirection, RangeAttackPatterns.Angle(_activePattern, _patternWave, 0, _sweepSign))
+            : _shotDirection;
+        if (_patternVfx != null && _showMuzzleFlash)
+            _patternVfx.Muzzle(_activePattern, position, releaseDirection, _bodyRenderer);
+        if (_gameFeel != null && _gameFeel.IsConfigured)
+        {
+            _gameFeel.RangePatternRelease(position, releaseDirection, _patternWave == 0);
+        }
+        else if (_showMuzzleFlash && RangePatternVfx.GetSprite(_activePattern, RangePatternSprite.Muzzle) == null)
+        {
+            MonsterCombatEffect.SpawnImpact(position, _shotDirection, RangeAttackPatterns.Color(_activePattern), transform);
+        }
+
+        _patternWave++;
+        _lastPatternShotTime = Time.time;
+        _nextPatternShotTime = Time.time + RangeAttackPatterns.WaveInterval(_activePattern, _patternShotInterval);
     }
 
     private bool ValidateAnimator()
@@ -542,7 +697,7 @@ public class RangeMonster : NormalMonster
         return true;
     }
 
-    private void OnValidate()
+    protected virtual void OnValidate()
     {
         ClampSettings();
     }
@@ -560,6 +715,9 @@ public class RangeMonster : NormalMonster
         _walkAnimationSpeed = Mathf.Max(0.1f, _walkAnimationSpeed);
         _attackAnimationSpeed = Mathf.Max(0.1f, _attackAnimationSpeed);
         _attackSpeedMultiplier = Mathf.Max(0.1f, _attackSpeedMultiplier);
+        _minimumAimTime = Mathf.Clamp(_minimumAimTime, 0.18f, 0.4f);
+        _patternShotInterval = Mathf.Clamp(_patternShotInterval, 0.08f, 0.14f);
+        _patternRecoveryTime = Mathf.Clamp(_patternRecoveryTime, 0.05f, 0.2f);
         _maximumAttackTime = Mathf.Max(0.1f, _maximumAttackTime);
         _attackFallbackDuration = Mathf.Clamp(_attackFallbackDuration, 0.1f, _maximumAttackTime);
         _maximumHitTime = Mathf.Max(0.1f, _maximumHitTime);
