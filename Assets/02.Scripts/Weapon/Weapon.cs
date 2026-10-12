@@ -59,7 +59,7 @@ public class Weapon : MonoBehaviour
 
     private Vector2 _fireOrigin;
     private Vector2 _fireDirection = Vector2.right;
-    private bool _hasFirePose;
+    //private bool _hasFirePose;
 
     private void Awake()
     {
@@ -241,7 +241,7 @@ public class Weapon : MonoBehaviour
         _fireOrigin = origin;
         if (direction.sqrMagnitude > 0.000001f) _fireDirection = direction.normalized;
 
-        _hasFirePose = true;
+        //_hasFirePose = true;
     }
 
     public void CancelActions()
