@@ -99,19 +99,19 @@ namespace _02.Scripts.Monster.Presentation
         public int HitMetalShards => Mathf.Clamp(_hitMetalShards, 0, 12);
         public int HitOilDrops => Mathf.Clamp(_hitOilDrops, 0, 16);
         public float HitOilLifetime => Mathf.Clamp(_hitOilLifetime, 0.3f, 5f);
-        public AudioClip[] HitSounds => _hitSounds;
+        public AudioClip[] HitSounds => MonsterCombatAudio.Normal("Hit", _hitSounds);
         public float HitVolume => Mathf.Clamp01(_hitVolume);
         public float AttackVolume => Mathf.Clamp01(_attackVolume);
         public float ImpactVolume => Mathf.Clamp01(_impactVolume);
         public AudioMixerGroup SoundMixerGroup => _soundMixerGroup;
-        public AudioClip[] MeleeChargeSounds => _meleeChargeSounds;
-        public AudioClip[] MeleeSlashSounds => _meleeSlashSounds;
-        public AudioClip[] MeleeImpactSounds => _meleeImpactSounds;
-        public AudioClip[] RangeChargeSounds => _rangeChargeSounds;
-        public AudioClip[] RangeShotSounds => _rangeShotSounds;
-        public AudioClip[] RangeImpactSounds => _rangeImpactSounds;
-        public AudioClip[] KamikazeChargeSounds => _kamikazeChargeSounds;
-        public AudioClip[] KamikazeTickSounds => _kamikazeTickSounds;
-        public AudioClip[] KamikazeExplosionSounds => _kamikazeExplosionSounds;
+        public AudioClip[] MeleeChargeSounds => MonsterCombatAudio.Normal("MeleeCharge", _meleeChargeSounds);
+        public AudioClip[] MeleeSlashSounds => MonsterCombatAudio.Normal("MeleeSlash", _meleeSlashSounds);
+        public AudioClip[] MeleeImpactSounds => MonsterCombatAudio.Normal("MeleeImpact", _meleeImpactSounds);
+        public AudioClip[] RangeChargeSounds => MonsterCombatAudio.Normal("RangeCharge", _rangeChargeSounds);
+        public AudioClip[] RangeShotSounds => MonsterCombatAudio.Normal("RangeShot", _rangeShotSounds);
+        public AudioClip[] RangeImpactSounds => MonsterCombatAudio.Normal("RangeImpact", _rangeImpactSounds);
+        public AudioClip[] KamikazeChargeSounds => MonsterCombatAudio.Normal("KamikazeCharge", _kamikazeChargeSounds);
+        public AudioClip[] KamikazeTickSounds => MonsterCombatAudio.Normal("KamikazeTick", _kamikazeTickSounds);
+        public AudioClip[] KamikazeExplosionSounds => MonsterCombatAudio.Normal("KamikazeExplosion", _kamikazeExplosionSounds);
     }
 }

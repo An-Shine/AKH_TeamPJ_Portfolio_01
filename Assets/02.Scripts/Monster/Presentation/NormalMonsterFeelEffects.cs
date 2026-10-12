@@ -258,7 +258,17 @@ namespace _02.Scripts.Monster.Presentation
 
                 voice.transform.position = position;
                 voice.clip = clip;
-                voice.volume = Mathf.Clamp01(volume) / (1f + distance * 0.06f);
+                int activeVoices = 0;
+                for (int j = 0; j < _voices.Length; j++)
+                {
+                    if (_voices[j] != null && _voices[j].isPlaying)
+                    {
+                        activeVoices++;
+                    }
+                }
+
+                float crowdGain = 1f / Mathf.Sqrt(1f + activeVoices * 0.12f);
+                voice.volume = Mathf.Clamp01(volume) * crowdGain / (1f + distance * 0.06f);
                 voice.pitch = Random.Range(0.96f, 1.04f);
                 voice.outputAudioMixerGroup = profile.SoundMixerGroup;
                 voice.Play();

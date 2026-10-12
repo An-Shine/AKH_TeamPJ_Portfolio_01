@@ -1,0 +1,53 @@
+{
+  "status": "passed",
+  "sprite_assets": 245,
+  "animation_clips": 104,
+  "directions": 8,
+  "families": {
+    "Blade": 62,
+    "Slam": 62,
+    "Core": 64,
+    "Walk": 57
+  },
+  "original_files_checked": 3038,
+  "original_meta_changes": [],
+  "original_changes_in_this_patch": [
+    "Assets/02.Scripts/Monster/BossMonster/BossAnimationDriver.cs"
+  ],
+  "all_original_changes_including_prior_vfx": [
+    "Assets/02.Scripts/Monster/BossMonster/BossBattleEffects.cs",
+    "Assets/02.Scripts/Monster/BossMonster/BossShapeVisual.cs",
+    "Assets/02.Scripts/Monster/BossMonster/BossDamageZone.cs",
+    "Assets/02.Scripts/Monster/BossMonster/BossPatternExecutor.cs",
+    "Assets/02.Scripts/Monster/BossMonster/BossVisualPolish.cs",
+    "Assets/02.Scripts/Monster/BossMonster/BossBattleWorld.cs",
+    "Assets/02.Scripts/Monster/BossMonster/BossAnimationDriver.cs"
+  ],
+  "prior_vfx_entries_preserved": 80,
+  "shared_controller_prefab_scene_and_non_monster_changes": 0,
+  "native_generated_pixels_preserved": true,
+  "transparent_frame_padding_checked": true,
+  "clip_bindings": "SpriteRenderer.m_Sprite only; no transform, damage, event or collider animation",
+  "discarded_overlapping_poses": 4,
+  "held_clean_samples": 4,
+  "code_whitespace_check": "Git diff --no-index --check with CRLF-aware whitespace settings",
+  "runtime_contract": {
+    "status": "passed",
+    "environment": "Roslyn C# compilation and animation API contract simulation; not Unity Editor or Play Mode",
+    "realProfilePatterns": 30,
+    "directions": 8,
+    "checks": [
+      "All catalog clips load from actual generated .anim files",
+      "Only a BossMonster can receive the override",
+      "Boss instances own independent override controllers; shared assets stay unchanged",
+      "Existing hit/death/idle overrides survive installation and pattern changes",
+      "Five-second warning holds a ready pose; release restarts the actual impact clip",
+      "All 30 real profile patterns and all eight directional stages resolve",
+      "Walking direction changes preserve cycle phase and never move the owner",
+      "Missing resource and malformed catalog retain the original animator",
+      "Destroying the upgrade restores its original controller without destroying shared clips"
+    ]
+  },
+  "unity_editor_play_mode": "not available; not run",
+  "husky": "The uploaded Unity package has no .husky configuration or Git repository; hooks were not run"
+}

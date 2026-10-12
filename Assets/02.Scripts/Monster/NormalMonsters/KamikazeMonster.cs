@@ -194,6 +194,7 @@ public class KamikazeMonster : NormalMonster
                 SetDirection(toPlayer);
             }
 
+            PlayLocomotion(false, false);
             BeginKamikazeAttack();
             return;
         }
@@ -206,7 +207,7 @@ public class KamikazeMonster : NormalMonster
             moveDistance = Mathf.Min(moveDistance, Mathf.Max(0f, distance - _explodeRange));
         }
 
-        Vector2 movement = GetNavigationMovement(_player.position, moveDistance);
+        Vector2 movement = GetTacticalMovement(_player.position, moveDistance, _explodeRange, charging);
         if (!charging)
         {
             movement += GetSeparationDirection() * (_crowdAvoidanceSpeed * Time.deltaTime);
@@ -395,6 +396,9 @@ public class KamikazeMonster : NormalMonster
             return;
         }
 
+        if (!TryBeginCoordinatedAttack(_maximumFuseTime + _postExplosionDelay))
+            return;
+
         _explosionTriggered = false;
         BeginAction(ActionState.Attack, 2);
         if (_gameFeel != null)
@@ -403,6 +407,8 @@ public class KamikazeMonster : NormalMonster
 
     private void BeginAction(ActionState action, int row)
     {
+        if (action != ActionState.Attack)
+            ReleaseCoordinatedAttack();
         _action = action;
         _actionHash = _states[row, _direction];
         _actionStartFrame = Time.frameCount;
@@ -581,6 +587,7 @@ public class KamikazeMonster : NormalMonster
 
     private void FinishAction()
     {
+        ReleaseCoordinatedAttack();
         _action = ActionState.None;
         PlayLocomotion(false, false);
     }

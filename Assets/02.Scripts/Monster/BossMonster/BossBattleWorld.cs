@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using _02.Scripts.Monster.Presentation;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -27,6 +28,7 @@ namespace _02.Scripts.Monster.BossMonster
             public BossEncounterMove Move;
             public BossShapeVisual Glow;
             public BossShapeVisual Core;
+            public BossShapeVisual Outline;
             public SpriteRenderer Body;
         }
 
@@ -79,13 +81,15 @@ namespace _02.Scripts.Monster.BossMonster
                 return;
             }
 
-            zone.Fill = _effects.CreateShape("BossDangerArea", false);
-            zone.Outline = _effects.CreateShape("BossDangerOutline", true, 1);
-            zone.Core = _effects.CreateShape("BossAttackCore", true, 2);
+            zone.Fill = _effects.CreateShape("BossDangerArea", false, MonsterVfxReadability.GroundOrder);
+            zone.Boundary = _effects.CreateShape("BossDangerContrast", false, MonsterVfxReadability.WarningContrastOrder);
+            zone.Outline = _effects.CreateShape("BossDangerOutline", false, MonsterVfxReadability.WarningEdgeOrder);
+            zone.Detail = _effects.CreateShape("BossDangerTicks", false, MonsterVfxReadability.WarningDetailOrder);
+            zone.Core = _effects.CreateShape("BossAttackCore", true, 4);
             if (zone.Shape == BossZoneShape.Beam && Mathf.Abs(zone.SweepAngle) > 0.01f)
             {
-                zone.SweepHint = _effects.CreateShape("BeamSweepWarning", false);
-                zone.OppositeHint = _effects.CreateShape("BeamOppositeWarning", false);
+                zone.SweepHint = _effects.CreateShape("BeamSweepWarning", false, MonsterVfxReadability.GroundOrder);
+                zone.OppositeHint = _effects.CreateShape("BeamOppositeWarning", false, MonsterVfxReadability.GroundOrder);
             }
 
             _zones.Add(zone);
@@ -140,10 +144,12 @@ namespace _02.Scripts.Monster.BossMonster
                 Released = true,
                 Move = move,
                 Glow = _effects.CreateShape("BossProjectileGlow", true, 2),
-                Core = _effects.CreateShape("BossProjectileCore", true, 3),
+                Core = _effects.CreateShape("BossProjectileCore", false, MonsterVfxReadability.ProjectileCoreOrder),
+                Outline = _effects.CreateShape("BossProjectileContrast", false, MonsterVfxReadability.ProjectileContrastOrder),
                 Body = _effects.CreateBoltRenderer()
             };
             _bolts.Add(bolt);
+            _effects.Muzzle(origin, bolt.Direction, move.Width, move.Color);
             DrawBolt(bolt);
             return bolt;
         }
@@ -163,6 +169,12 @@ namespace _02.Scripts.Monster.BossMonster
                 float previousAngle = zone.CurrentAngle;
                 float previousAge = zone.Age;
                 zone.Age += deltaTime;
+                if (!zone.WarningOnly && !zone.PreImpactPlayed && zone.Shape == BossZoneShape.Circle
+                    && zone.Age < zone.Warning && zone.Warning - zone.Age <= 0.24f)
+                {
+                    zone.PreImpactPlayed = true;
+                    _effects.PreImpact(zone.Move.Kind, zone.Center, zone.Radius, zone.Move.Color);
+                }
                 if (zone.WarningOnly && zone.Age >= zone.Warning)
                 {
                     zone.Dispose();
@@ -201,6 +213,7 @@ namespace _02.Scripts.Monster.BossMonster
                 {
                     bolt.Glow.Dispose();
                     bolt.Core.Dispose();
+                    bolt.Outline.Dispose();
                     UnityEngine.Object.Destroy(bolt.Body.gameObject);
                     _bolts.RemoveAt(i);
                     continue;
@@ -210,7 +223,7 @@ namespace _02.Scripts.Monster.BossMonster
                 if (bolt.Age >= bolt.NextTrail)
                 {
                     bolt.NextTrail = bolt.Age + 0.045f;
-                    _effects.Trail(bolt.Position, bolt.Direction, bolt.Move.Width, bolt.Move.Color);
+                    _effects.ProjectileTrail(bolt.Position, bolt.Direction, bolt.Move.Width, bolt.Move.Color);
                 }
             }
 
@@ -431,35 +444,36 @@ namespace _02.Scripts.Monster.BossMonster
             }
             else if (zone.Shape == BossZoneShape.Sector)
             {
-                _effects.Slash(zone.Center, zone.Radius, zone.CurrentAngle, color);
+                _effects.Slash(zone.Center, zone.Radius, zone.CurrentAngle, color, 1f, zone.Span);
             }
-            else if (zone.Spikes && zone.Shape == BossZoneShape.Circle)
+            else if (zone.Shape == BossZoneShape.ClosingRing)
+            {
+                _effects.NovaArc(zone.Center, zone.CurrentRadius, zone.CurrentAngle + zone.GapWidth * 0.5f,
+                    360f - zone.GapWidth, zone.Width, color, true);
+            }
+            else if (zone.Shape == BossZoneShape.Beam)
+            {
+                _effects.Beam(zone.Center, zone.CurrentAngle, zone.Length, zone.Width, color, zone.Spikes, _owner.Arena);
+            }
+            else if (zone.Move.Kind == BossEncounterPattern.StormPillars)
+            {
+                _effects.Lightning(zone.Center, zone.Radius * size, color);
+            }
+            else if (zone.Move.Kind == BossEncounterPattern.GravityCollapse)
+            {
+                _effects.Collapse(zone.Center, zone.Radius * size, color);
+            }
+            else if (zone.Move.Kind == BossEncounterPattern.BloodPools)
+            {
+                _effects.BloodPool(zone.Center, zone.Radius, color, true);
+            }
+            else if (zone.Spikes)
             {
                 _effects.Spikes(zone.Center, zone.Radius * size, color);
             }
             else if (zone.Pillar)
             {
                 _effects.Pillar(zone.Center, zone.Radius * size, color);
-            }
-            else if (zone.Shape == BossZoneShape.Beam)
-            {
-                Vector2 direction = BossBattleGeometry.Direction(zone.Angle);
-                int count = Mathf.Clamp(Mathf.CeilToInt(zone.Length / 1.4f), 2, 18);
-                for (int i = 0; i < count; i++)
-                {
-                    Vector2 point = zone.Center + direction * ((float)i / (count - 1) - 0.5f) * zone.Length;
-                    if (_owner.Arena.Contains(point))
-                    {
-                        if (zone.Spikes)
-                        {
-                            _effects.Spikes(point, zone.Width * 0.8f * size, color);
-                        }
-                        else
-                        {
-                            _effects.Pillar(point, zone.Width * 0.6f * size, color);
-                        }
-                    }
-                }
             }
             else
             {
@@ -478,7 +492,13 @@ namespace _02.Scripts.Monster.BossMonster
             if (Time.time >= _nextShake)
             {
                 _nextShake = Time.time + 0.08f;
-                _owner.ShakeCamera(zone.Move.ImpactShake, 0.3f);
+                float shake = zone.Move.ImpactShake;
+                if (shake > 0f)
+                {
+                    float accent = zone.Shape == BossZoneShape.ArenaOutsideSafeCircle ? 1.5f
+                        : zone.Shape == BossZoneShape.Sector || zone.Move.Kind == BossEncounterPattern.StormPillars ? 1.3f : 1.15f;
+                    _owner.ShakeCamera(Mathf.Min(0.42f, shake * accent), 0.19f);
+                }
             }
         }
 
@@ -489,7 +509,7 @@ namespace _02.Scripts.Monster.BossMonster
                 return;
             }
 
-            zone.NextParticle = zone.Age + 0.075f;
+            zone.NextParticle = zone.Age + 0.12f;
             if (zone.Shape == BossZoneShape.ArenaOutsideSafeCircle)
             {
                 return;
@@ -498,33 +518,31 @@ namespace _02.Scripts.Monster.BossMonster
             if (zone.Move.Kind == BossEncounterPattern.GravityCollapse)
             {
                 _effects.Vortex(zone.Center, zone.Radius, zone.CurrentAngle, zone.Move.Color);
+                return;
             }
-
+            if (zone.Move.Kind == BossEncounterPattern.BloodPools)
+            {
+                _effects.BloodPool(zone.Center, zone.Radius, zone.Move.Color, false);
+                return;
+            }
             if (zone.Shape == BossZoneShape.Sector)
             {
-                _effects.Slash(zone.Center, zone.Radius, zone.CurrentAngle, zone.Move.Color, 0.22f);
-            }
-
-            if (zone.Shape == BossZoneShape.ArenaOutsideSafeCircle)
-            {
-                Rect area = _owner.Arena;
-                for (int i = 0; i < 6; i++)
-                {
-                    Vector2 point = new Vector2(Random.Range(area.xMin, area.xMax), Random.Range(area.yMin, area.yMax));
-                    if ((point - zone.SafeCenter).sqrMagnitude > zone.SafeRadius * zone.SafeRadius)
-                        _effects.Pillar(point, 0.35f, zone.Move.Color);
-                }
-
+                _effects.Slash(zone.Center, zone.Radius, zone.CurrentAngle, zone.Move.Color, 0.22f, zone.Span);
                 return;
             }
-
+            if (zone.Shape == BossZoneShape.ClosingRing)
+            {
+                _effects.NovaArc(zone.Center, zone.CurrentRadius, zone.CurrentAngle + zone.GapWidth * 0.5f,
+                    360f - zone.GapWidth, zone.Width, zone.Move.Color, false);
+                return;
+            }
             if (zone.Shape == BossZoneShape.Circle)
             {
-                _effects.Trail(zone.Center + Random.insideUnitCircle * zone.Radius, Vector2.down, zone.Radius * 0.35f, zone.Move.Color);
+                _effects.Trail(zone.Center + Random.insideUnitCircle * zone.Radius, Vector2.up, zone.Radius * 0.25f, zone.Move.Color);
                 return;
             }
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 3; i++)
             {
                 Vector2 point;
                 if (zone.Shape == BossZoneShape.Beam)
@@ -549,41 +567,65 @@ namespace _02.Scripts.Monster.BossMonster
             bool warning = zone.Age < zone.Warning;
             float progress = Mathf.Clamp01(zone.Age / Mathf.Max(0.01f, zone.Warning));
             float fade = 1f - Mathf.Clamp01((zone.Age - zone.Warning - zone.Duration) / 0.16f);
-            Color fill = warning ? new Color(1f, 0.04f, 0.09f, 0.07f + progress * 0.15f) : zone.Move.Color;
-            Color edge = warning ? new Color(1f, 0.13f, 0.16f, 0.6f + progress * 0.35f) : zone.Move.Color;
-            if (warning && (zone.TrackPosition || zone.TrackDirection || zone.MotionTracking) && zone.Age >= zone.Warning - zone.LockBeforeImpact)
-                edge = Color.Lerp(edge, new Color(1f, 0.72f, 0.28f, 1f), 0.65f);
-            fill.a = (warning ? fill.a : 0.25f) * fade;
+            bool locked = warning && (zone.TrackPosition || zone.TrackDirection || zone.MotionTracking)
+                && zone.Age >= zone.Warning - zone.LockBeforeImpact;
+            float activeAge = Mathf.Max(0f, zone.Age - zone.Warning);
+            bool residual = !warning && activeAge > zone.Duration;
+            // The outline always shows the full hit area. Only its countdown advances.
+            Color fill = warning ? MonsterVfxReadability.WarningFill(progress)
+                : MonsterVfxReadability.ActiveFill(zone.Move.Color, activeAge);
+            Color edge = warning ? MonsterVfxReadability.WarningEdge(progress, locked) : zone.Move.Color;
+            if (!warning)
+            {
+                edge.a = 0.78f + MonsterVfxReadability.ImpactEnvelope(activeAge) * 0.18f;
+            }
+            if (residual)
+            {
+                fade *= 0.24f;
+            }
+            fill.a *= fade;
             edge.a *= fade;
-            Color core = Color.Lerp(zone.Move.Color, Color.white, 0.8f);
-            core.a = warning ? 0f : 0.95f * fade;
-            zone.Core.SetVisible(!warning);
+            Color core = MonsterVfxReadability.ActiveCore(zone.Move.Color, activeAge);
+            core.a *= warning ? 0f : fade;
+            zone.Core.SetVisible(!warning && !residual);
+            Color border = new Color(0.025f, 0.018f, 0.045f, fade * 0.95f);
+            Color ticks = warning ? Color.Lerp(edge, Color.white, 0.35f) : Color.Lerp(zone.Move.Color, Color.white, 0.18f);
+            ticks.a = fade * (warning ? 0.9f : 0.4f);
             if (zone.Shape == BossZoneShape.ArenaOutsideSafeCircle)
             {
                 zone.Fill.SetArenaOutsideCircle(_owner.Arena, zone.SafeCenter, zone.SafeRadius, fill);
-                Color safe = new Color(0.12f, 1f, 0.78f, fade * (0.65f + 0.25f * Mathf.Sin(zone.Age * 6f)));
+                Color safe = new Color(0.12f, 1f, 0.78f, fade * (0.85f + 0.1f * Mathf.Sin(zone.Age * 6f)));
+                zone.Boundary.SetArc(zone.SafeCenter, zone.SafeRadius - 0.16f, zone.SafeRadius + 0.14f, 0f, 360f, border);
                 zone.Outline.SetArc(zone.SafeCenter, zone.SafeRadius - 0.08f, zone.SafeRadius + 0.04f, 0f, 360f, safe);
-                zone.Core.SetVisible(true);
-                safe.a = 0.1f * fade;
+                zone.Detail.SetReticle(zone.SafeCenter, zone.SafeRadius, 0f, 360f, warning ? progress : 0f,
+                    new Color(0.65f, 1f, 0.9f, fade));
+                zone.Core.SetVisible(!residual);
+                safe.a = 0.055f * fade;
                 zone.Core.SetArc(zone.SafeCenter, 0f, zone.SafeRadius - 0.12f, 0f, 360f, safe);
             }
             else if (zone.Shape == BossZoneShape.Circle)
             {
-                zone.Fill.SetArc(zone.Center, 0f, zone.Radius * (warning ? progress : 1f), 0f, 360f, fill);
-                zone.Outline.SetArc(zone.Center, zone.Radius - 0.045f, zone.Radius + 0.045f, 0f, 360f, edge);
+                zone.Fill.SetArc(zone.Center, 0f, zone.Radius, 0f, 360f, fill);
+                zone.Boundary.SetArc(zone.Center, Mathf.Max(0f, zone.Radius - 0.12f), zone.Radius + 0.1f, 0f, 360f, border);
+                zone.Outline.SetArc(zone.Center, zone.Radius - 0.055f, zone.Radius + 0.055f, 0f, 360f, edge);
+                zone.Detail.SetReticle(zone.Center, zone.Radius, -90f, 360f, warning ? progress : 0f, ticks);
                 zone.Core.SetArc(zone.Center, zone.Radius - 0.08f, zone.Radius, 0f, 360f, core);
             }
             else if (zone.Shape == BossZoneShape.Sector)
             {
                 float start = zone.CurrentAngle - zone.Span * 0.5f;
                 zone.Fill.SetArc(zone.Center, 0f, zone.Radius, start, zone.Span, fill);
-                zone.Outline.SetArc(zone.Center, zone.Radius - 0.07f, zone.Radius + 0.04f, start, zone.Span, edge);
+                zone.Boundary.SetSectorEdges(zone.Center, zone.Radius, start, zone.Span, 0.17f, border);
+                zone.Outline.SetSectorEdges(zone.Center, zone.Radius, start, zone.Span, 0.055f, edge);
+                zone.Detail.SetReticle(zone.Center, zone.Radius, start, zone.Span, warning ? progress : 0f, ticks);
                 zone.Core.SetArc(zone.Center, zone.Radius - 0.2f, zone.Radius, start, zone.Span, core);
             }
             else if (zone.Shape == BossZoneShape.Beam)
             {
                 zone.Fill.SetBeam(zone.Center, zone.CurrentAngle, zone.Length, zone.Width, fill);
-                zone.Outline.SetBeam(zone.Center, zone.CurrentAngle, zone.Length, zone.Width + 0.045f, edge * 0.45f);
+                zone.Boundary.SetBeamEdges(zone.Center, zone.CurrentAngle, zone.Length, zone.Width, 0.16f, border);
+                zone.Outline.SetBeamEdges(zone.Center, zone.CurrentAngle, zone.Length, zone.Width, 0.055f, edge);
+                zone.Detail.SetBeamTicks(zone.Center, zone.CurrentAngle, zone.Length, zone.Width, ticks);
                 zone.Core.SetBeam(zone.Center, zone.CurrentAngle, zone.Length, zone.Width * 0.25f, core);
                 if (zone.SweepHint != null)
                 {
@@ -600,22 +642,27 @@ namespace _02.Scripts.Monster.BossMonster
                 float start = zone.CurrentAngle + zone.GapWidth * 0.5f;
                 float span = 360f - zone.GapWidth;
                 zone.Fill.SetArc(zone.Center, warning ? Mathf.Min(zone.Radius, zone.EndRadius) : Mathf.Max(0f, radius - zone.Width * 0.5f), warning ? Mathf.Max(zone.Radius, zone.EndRadius) : radius + zone.Width * 0.5f, start, span, fill);
-                zone.Outline.SetArc(zone.Center, radius - zone.Width * 0.5f, radius + zone.Width * 0.5f, start, span, edge);
+                zone.Boundary.SetArc(zone.Center, Mathf.Max(0f, radius - zone.Width * 0.5f - 0.04f), radius + zone.Width * 0.5f + 0.04f, start, span, border);
+                zone.Outline.SetArc(zone.Center, Mathf.Max(0f, radius - zone.Width * 0.5f), radius + zone.Width * 0.5f, start, span, edge);
+                zone.Detail.SetReticle(zone.Center, radius + zone.Width * 0.45f, start, span, warning ? progress : 0f, ticks);
                 zone.Core.SetArc(zone.Center, radius - zone.Width * 0.15f, radius + zone.Width * 0.15f, start, span, core);
             }
         }
 
         private static void DrawBolt(Bolt bolt)
         {
-            float size = bolt.Move.Width * (bolt.Released ? 0.8f : 1.2f) * bolt.Move.EffectScale;
+            float size = bolt.Radius * (bolt.Released ? 1.65f : 1.9f);
             Color glow = bolt.Move.Color;
-            glow.a = 0.22f;
+            glow.a = 0.1f;
             bolt.Glow.SetArc(bolt.Position, 0f, size, 0f, 360f, glow);
-            bolt.Core.SetArc(bolt.Position, 0f, bolt.Radius, 0f, 360f, Color.white);
+            bolt.Outline.SetArc(bolt.Position, 0f, bolt.Radius * 1.22f, 0f, 360f, new Color(0.018f, 0.025f, 0.055f, 0.95f));
+            bolt.Core.SetArc(bolt.Position, 0f, bolt.Radius * 0.58f, 0f, 360f, Color.Lerp(bolt.Move.Color, Color.white, 0.72f));
             bolt.Body.transform.position = new Vector3(bolt.Position.x, bolt.Position.y, bolt.Body.transform.position.z);
-            bolt.Body.transform.rotation = Quaternion.Euler(0f, 0f, bolt.Age * 320f);
-            bolt.Body.transform.localScale = Vector3.one * size * (2.1f + Mathf.Sin(bolt.Age * 16f) * 0.12f);
-            bolt.Body.color = bolt.Move.Color;
+            bolt.Body.transform.rotation = Quaternion.Euler(0f, 0f, BossBattleGeometry.Angle(bolt.Direction) - 90f);
+            float spriteSize = Mathf.Max(bolt.Body.sprite.bounds.size.x, bolt.Body.sprite.bounds.size.y);
+            bolt.Body.transform.localScale = Vector3.one * bolt.Radius * 2f
+                * (1f + Mathf.Sin(bolt.Age * 12f) * 0.025f) / Mathf.Max(0.001f, spriteSize);
+            bolt.Body.color = Color.Lerp(bolt.Move.Color, Color.white, 0.12f);
         }
 
         public void Clear()
@@ -630,6 +677,7 @@ namespace _02.Scripts.Monster.BossMonster
             {
                 bolt.Glow.Dispose();
                 bolt.Core.Dispose();
+                bolt.Outline.Dispose();
                 UnityEngine.Object.Destroy(bolt.Body.gameObject);
             }
 

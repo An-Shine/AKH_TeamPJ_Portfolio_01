@@ -1,28 +1,25 @@
 fileFormatVersion: 2
-guid: ed4d843e6109738438848290f27a579c
+guid: 6939d6d9d3e16cf44b9c1e39db8a9e84
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7297691541247195760
-    second: Run_Back_Arm_0
+      213: 7088434763832238782
+    second: Run_Up_Arm_0
   - first:
-      213: 1543745315047542592
-    second: Run_Back_Arm_1
+      213: -5988328473920685192
+    second: Run_Up_Arm_1
   - first:
-      213: 7541514406635983084
-    second: Run_Back_Arm_2
+      213: 8849835268508206377
+    second: Run_Up_Arm_2
   - first:
-      213: 6061577135258440618
-    second: Run_Back_Arm_3
+      213: -2447840379330253583
+    second: Run_Up_Arm_3
   - first:
-      213: 5602386916800333675
-    second: Run_Back_Arm_4
+      213: -8050961217852581033
+    second: Run_Up_Arm_4
   - first:
-      213: 4118675571887866686
-    second: Run_Back_Arm_5
-  - first:
-      213: 6912701321045887454
-    second: Run_Back_Arm_6
+      213: 1212435918070304431
+    second: Run_Up_Arm_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -115,19 +112,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -144,7 +128,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Run_Back_Arm_0
+      name: Run_Up_Arm_0
       rect:
         serializedVersion: 2
         x: 0
@@ -159,14 +143,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 07a796cbacb964560800000000000000
-      internalID: 7297691541247195760
+      spriteID: eb220cf8cdd2f5260800000000000000
+      internalID: 7088434763832238782
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run_Back_Arm_1
+      name: Run_Up_Arm_1
       rect:
         serializedVersion: 2
         x: 48
@@ -181,14 +165,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 04f05175f2c7c6510800000000000000
-      internalID: 1543745315047542592
+      spriteID: 87bb9910bfe25eca0800000000000000
+      internalID: -5988328473920685192
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run_Back_Arm_2
+      name: Run_Up_Arm_2
       rect:
         serializedVersion: 2
         x: 96
@@ -203,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ce0570c6567d8a860800000000000000
-      internalID: 7541514406635983084
+      spriteID: 925c72cc94ee0da70800000000000000
+      internalID: 8849835268508206377
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run_Back_Arm_3
+      name: Run_Up_Arm_3
       rect:
         serializedVersion: 2
         x: 144
@@ -225,14 +209,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: aa395b5f94c0f1450800000000000000
-      internalID: 6061577135258440618
+      spriteID: 1fca92be426870ed0800000000000000
+      internalID: -2447840379330253583
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run_Back_Arm_4
+      name: Run_Up_Arm_4
       rect:
         serializedVersion: 2
         x: 192
@@ -247,14 +231,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b670e26d73dafbd40800000000000000
-      internalID: 5602386916800333675
+      spriteID: 75b537d9d6d354090800000000000000
+      internalID: -8050961217852581033
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run_Back_Arm_5
+      name: Run_Up_Arm_5
       rect:
         serializedVersion: 2
         x: 240
@@ -269,8 +253,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e3384776c99782930800000000000000
-      internalID: 4118675571887866686
+      spriteID: fae41813b0073d010800000000000000
+      internalID: 1212435918070304431
       vertices: []
       indices: 
       edges: []
@@ -279,7 +263,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: cc48b79db739edd47b928a4ae5903dcd
+    spriteID: 19a4f11f6cdb1c34794bef3e9622ace2
     internalID: 0
     vertices: []
     indices: 
@@ -291,13 +275,12 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":48.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Run_Back_Arm_0: 7297691541247195760
-      Run_Back_Arm_1: 1543745315047542592
-      Run_Back_Arm_2: 7541514406635983084
-      Run_Back_Arm_3: 6061577135258440618
-      Run_Back_Arm_4: 5602386916800333675
-      Run_Back_Arm_5: 4118675571887866686
-      Run_Back_Arm_6: 6912701321045887454
+      Run_Up_Arm_0: 7088434763832238782
+      Run_Up_Arm_1: -5988328473920685192
+      Run_Up_Arm_2: 8849835268508206377
+      Run_Up_Arm_3: -2447840379330253583
+      Run_Up_Arm_4: -8050961217852581033
+      Run_Up_Arm_5: 1212435918070304431
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

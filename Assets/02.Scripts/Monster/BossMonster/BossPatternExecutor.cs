@@ -117,7 +117,7 @@ namespace _02.Scripts.Monster.BossMonster
             switch (_move.Kind)
             {
                 case BossEncounterPattern.CrescentCleave:
-                    ScheduleWaves(0f, wave => Sector(_origin, AimFrom(_origin), 125f, AttackRadius, _warning));
+                    ScheduleWaves(0f, wave => Sector(_origin, PlayerAimFrom(_origin), 125f, AttackRadius, _warning));
                     break;
                 case BossEncounterPattern.RiftLanes:
                     Schedule(0f, RiftLanes);
@@ -136,7 +136,7 @@ namespace _02.Scripts.Monster.BossMonster
                     Schedule(_warning + _move.Duration, () => ReleaseBurst(_owner.Arena.center, 2.6f));
                     break;
                 case BossEncounterPattern.DoubleClaw:
-                    ScheduleWaves(0f, wave => Sector(_origin, AimFrom(_origin) + (wave % 2 == 0 ? -38f : 38f), 115f, AttackRadius, _warning));
+                    ScheduleWaves(0f, wave => Sector(_origin, PlayerAimFrom(_origin) + (wave % 2 == 0 ? -38f : 38f), 115f, AttackRadius, _warning));
                     break;
                 case BossEncounterPattern.GroundSlam:
                     ScheduleWaves(0f, GroundSlam);
@@ -151,7 +151,7 @@ namespace _02.Scripts.Monster.BossMonster
                     ScheduleWaves(0f, RadialSpikes);
                     break;
                 case BossEncounterPattern.ExpandingNova:
-                    ScheduleWaves(0f, wave => Ring(_origin, 0.7f, ArenaRadius * 1.7f, AimFrom(_origin), 86f, _warning, _move.Duration));
+                    ScheduleWaves(0f, wave => Ring(_origin, 0.7f, ArenaRadius * 1.7f, PlayerAimFrom(_origin), 86f, _warning, _move.Duration));
                     break;
                 case BossEncounterPattern.TwinNova:
                     ScheduleWaves(0f, TwinNova);
@@ -220,6 +220,12 @@ namespace _02.Scripts.Monster.BossMonster
             return BossBattleGeometry.Angle(PlayerPoint() - point);
         }
 
+        private float PlayerAimFrom(Vector2 point)
+        {
+            // Close-range slices aim at the player, without leading across the boss.
+            return BossBattleGeometry.Angle(_owner.PredictPlayerPosition(0f) - point);
+        }
+
         private BossDamageZone Circle(Vector2 point, float radius, float warning, float duration, bool spikes = false, bool once = true, bool clampToRoom = true, bool trackPlayer = false)
         {
             Vector2 offset = point - PlayerPoint();
@@ -267,11 +273,11 @@ namespace _02.Scripts.Monster.BossMonster
                 Damage = _damage,
                 Once = true
             };
-            Track(zone, false, true);
+            Track(zone, false, true, directAim: true);
             _world.AddZone(zone);
         }
 
-        private void Ring(Vector2 point, float start, float end, float gapAngle, float gapWidth, float warning, float duration, float turn = 0f, bool trackPlayer = false)
+        private void Ring(Vector2 point, float start, float end, float attackAngle, float gapWidth, float warning, float duration, float turn = 0f, bool trackPlayer = false)
         {
             float gap = gapWidth > 180f ? 360f - (360f - gapWidth) * 1.15f : Mathf.Max(70f, gapWidth * 0.88f);
             BossDamageZone zone = new BossDamageZone
@@ -281,7 +287,8 @@ namespace _02.Scripts.Monster.BossMonster
                 Center = point,
                 Radius = start,
                 EndRadius = end,
-                Angle = gapAngle,
+                // ClosingRing.Angle is the escape gap; the damaging arc faces the other way.
+                Angle = attackAngle + 180f,
                 GapWidth = gap,
                 SweepAngle = turn,
                 Width = AttackWidth,
@@ -291,7 +298,7 @@ namespace _02.Scripts.Monster.BossMonster
                 Once = true,
                 Spikes = true
             };
-            Track(zone, trackPlayer, true);
+            Track(zone, trackPlayer, true, directAim: true);
             _world.AddZone(zone);
         }
 
@@ -314,27 +321,29 @@ namespace _02.Scripts.Monster.BossMonster
             return zone;
         }
 
-        private void Track(BossDamageZone zone, bool position, bool direction, Vector2? aimOrigin = null, bool forwardBeam = false)
+        private void Track(BossDamageZone zone, bool position, bool direction, Vector2? aimOrigin = null, bool forwardBeam = false, bool directAim = false)
         {
             Vector2 origin = aimOrigin ?? zone.Center;
+            zone.TargetLeadTime = directAim ? 0f : LeadTime;
+            Vector2 target = _owner.PredictPlayerPosition(zone.TargetLeadTime);
             zone.TrackPosition = position;
             zone.TrackDirection = direction;
             zone.DirectionFromCenter = !aimOrigin.HasValue;
             zone.TrackingOrigin = origin;
             zone.FollowAimRay = forwardBeam;
             zone.AimDistance = zone.Length * 0.5f;
-            zone.TargetOffset = zone.Center - PlayerPoint();
-            zone.AimOffset = Mathf.DeltaAngle(AimFrom(origin), zone.Angle);
+            zone.TargetOffset = zone.Center - target;
+            zone.AimOffset = Mathf.DeltaAngle(BossBattleGeometry.Angle(target - origin), zone.Angle);
             zone.TrackingSpeed = _profile.GroundTrackingSpeed * (1f + _phase * 0.08f);
             zone.TrackingTurnRate = _profile.AimTrackingTurnRate * (1f + _phase * 0.08f);
             zone.LockBeforeImpact = _profile.TargetLockTime;
-            zone.TargetLeadTime = LeadTime;
             zone.TrackingPadding = 0.4f;
         }
 
-        private void ReleaseBurst(Vector2 point, float radius)
+        private void ReleaseBurst(Vector2 point, float radius, bool emitBurst = true)
         {
-            _effects.Burst(point, radius * _move.EffectScale, _move.Color, 28);
+            if (emitBurst)
+                _effects.Burst(point, radius * _move.EffectScale, _move.Color, 28);
             _audio.Impact();
             _owner.PulsePatternAnimation(_move);
             _owner.ShakeCamera(_move.ImpactShake, 0.3f);
@@ -425,25 +434,25 @@ namespace _02.Scripts.Monster.BossMonster
         private void Cataclysm()
         {
             Vector2 center = _owner.Arena.center;
-            Ring(center, ArenaRadius, 0.75f, AimFrom(center), 96f, _warning, _move.Duration, _phase * 12f);
+            Ring(center, ArenaRadius, 0.75f, PlayerAimFrom(center), 96f, _warning, _move.Duration, _phase * 12f);
         }
 
         private void GroundSlam(int wave)
         {
             Circle(_origin, AttackRadius, _warning, _move.Duration, true, true, false);
             Circle(PlayerPoint(), AttackRadius * 0.4f, _warning + 0.18f, _move.Duration, true, trackPlayer: true);
-            Ring(_origin, AttackRadius + 0.5f, ArenaRadius * 1.4f, AimFrom(_origin), 100f, _warning + 0.22f, 1.6f);
+            Ring(_origin, AttackRadius + 0.5f, ArenaRadius * 1.4f, PlayerAimFrom(_origin), 100f, _warning + 0.22f, 1.6f);
         }
 
         private void SerpentWave(int wave)
         {
-            float angle = AimFrom(_origin);
+            float angle = PlayerAimFrom(_origin);
             int count = Mathf.Clamp(_move.Count, 1, 3);
             for (int i = 0; i < count; i++)
             {
                 float offset = (i - (count - 1) * 0.5f) * 65f;
                 float turn = (wave % 2 == 0 ? 1f : -1f) * 45f;
-                Ring(_origin, AttackRadius, ArenaRadius * 1.8f, angle + offset + 180f, 282f, _warning + i * 0.16f, _move.Duration, turn);
+                Ring(_origin, AttackRadius, ArenaRadius * 1.8f, angle + offset, 282f, _warning + i * 0.16f, _move.Duration, turn);
             }
         }
 
@@ -493,9 +502,9 @@ namespace _02.Scripts.Monster.BossMonster
 
         private void TwinNova(int wave)
         {
-            float gap = AimFrom(_origin);
-            Ring(_origin, 0.7f, ArenaRadius * 1.5f, gap, 110f, _warning, _move.Duration);
-            Ring(_origin, ArenaRadius * 1.5f, 0.7f, gap, 110f, _warning + 0.65f, _move.Duration);
+            float angle = PlayerAimFrom(_origin);
+            Ring(_origin, 0.7f, ArenaRadius * 1.5f, angle, 110f, _warning, _move.Duration);
+            Ring(_origin, ArenaRadius * 1.5f, 0.7f, angle, 110f, _warning + 0.65f, _move.Duration);
         }
 
         private void MeteorLattice(int wave)
@@ -721,7 +730,7 @@ namespace _02.Scripts.Monster.BossMonster
             {
                 _owner.SetPatternHidden(false);
                 ReleaseBurst(_owner.transform.position, 1.8f);
-                Ring(_motionTarget, AttackRadius + 0.2f, ArenaRadius * 1.4f, AimFrom(_motionTarget), 125f, 0.75f, 1.4f);
+                Ring(_motionTarget, AttackRadius + 0.2f, ArenaRadius * 1.4f, PlayerAimFrom(_motionTarget), 125f, 0.75f, 1.4f);
             });
         }
 
@@ -759,7 +768,7 @@ namespace _02.Scripts.Monster.BossMonster
             ScheduleWaves(0f, wave =>
             {
                 Vector2 target = PlayerPoint();
-                float gap = AimFrom(_origin);
+                float gap = PlayerAimFrom(_origin);
                 Circle(target, AttackRadius, _warning, 0.28f, trackPlayer: true);
                 Ring(_origin, 0.8f, ArenaRadius * 1.6f, gap, 150f, _warning, _move.Duration);
                 for (int i = 0; i < 3; i++)
@@ -821,7 +830,7 @@ namespace _02.Scripts.Monster.BossMonster
                     Move = _move,
                     Center = _origin,
                     Radius = AttackRadius,
-                    Angle = _aim + i * 120f,
+                    Angle = PlayerAimFrom(_origin) + i * 120f,
                     Span = 36f,
                     SweepAngle = 180f,
                     Warning = _warning,
@@ -829,7 +838,7 @@ namespace _02.Scripts.Monster.BossMonster
                     Damage = _damage,
                     Once = false
                 };
-                Track(zone, false, true);
+                Track(zone, false, true, directAim: true);
                 _world.AddZone(zone);
             }
         }
@@ -839,7 +848,7 @@ namespace _02.Scripts.Monster.BossMonster
             Vector2 point = PlayerPoint() + (wave == 0 ? Vector2.zero : BossBattleGeometry.Direction(_aim + wave * 120f) * AttackRadius * 0.7f);
             point = BossBattleGeometry.ClampToRoom(point, _owner.Arena, AttackRadius + 0.1f);
             Circle(point, AttackRadius, _warning, _move.Duration, trackPlayer: true);
-            Ring(point, 3.5f * _profile.AttackRangeMultiplier, AttackRadius + 0.3f, AimFrom(point), 115f, _warning, 1.2f, trackPlayer: true);
+            Ring(point, 3.5f * _profile.AttackRangeMultiplier, AttackRadius + 0.3f, PlayerAimFrom(point), 115f, _warning, 1.2f, trackPlayer: true);
         }
 
         private void AlternatingMaze(int wave)
@@ -880,7 +889,9 @@ namespace _02.Scripts.Monster.BossMonster
 
             float damage = PlayerManager.Instance != null && PlayerManager.Instance.PlayerStatusData != null ? Mathf.Max(_damage, PlayerManager.Instance.PlayerStatusData.MaxHP * 10f) : _damage;
             Schedule(0f, () => _world.AddZone(new BossDamageZone { Shape = BossZoneShape.ArenaOutsideSafeCircle, Move = _move, Center = _owner.Arena.center, SafeCenter = safe, SafeRadius = _move.Radius, Radius = _owner.Arena.size.magnitude, Warning = _warning, Duration = _move.Duration, Damage = damage, Once = true }));
-            Schedule(_warning, () => ReleaseBurst(_origin, 3.4f));
+            // ArenaDetonation already draws the impact around the refuge.
+            // A second origin explosion would obscure the safe circle.
+            Schedule(_warning, () => ReleaseBurst(_origin, 3.4f, false));
             _plannedEnd = _warning + _move.Duration + 0.2f;
         }
 

@@ -1,0 +1,115 @@
+{
+  "mode": "built-in image_gen",
+  "prompts": [
+    {
+      "key": "blade",
+      "prompt": "Use case: identity-preserve. Asset type: production 2D pixel-art sprite animation atlas for the existing Unity boss. The input reference is an exact-pixel catalog of ONE existing purple cybernetic reptilian monster in EIGHT directions. Preserve this specific monster's identity: dark purple segmented creature armor, mechanical black/silver limbs, green circular chest/back core with orange outer ring, orange-tipped shoulder cannon on the anatomical left shoulder, cyan energy sword on the anatomical right forearm, hunched heavy biped with two clawed feet, crocodilian snout. Match the reference's hand-pixelated dark outlines, palette and chunky mechanical anatomy; avoid smooth painting or different character designs.\nCreate a single PERFECT REGULAR 8 columns x 8 rows animation sprite sheet, square 1024x1024, genuine transparent alpha background. Every cell exactly 128x128, with 8px transparent gutters inside each cell. Each row is ONE complete 8-frame BLADE WINDUP -> HEAVY CLEAVE -> RECOIL -> READY animation sequence, left to right. Rows top to bottom MUST face: 0 south (toward viewer); 1 south-east; 2 east (right side); 3 north-east (back/right); 4 north (back to viewer); 5 north-west (back/left); 6 west (left side); 7 south-west. These are the same eight views in the numbered reference. Preserve the actual equipment side in every view. Fixed ground pivot at x64,y112 within every cell, same body size, keep head and sword fully inside each cell. No sprite crosses a cell boundary. Do not draw grid lines, labels, text, floor, shadows, checkerboard, background, effects, floating particles, blur, trails or extra weapons.\nAnimation timing per row: frame0 low ready crouch, frame1 heavier planted crouch and shoulder twist, frame2 sword elbow drawn behind, frame3 sword high raised maximum windup, frame4 forward torso-and-arm cleave at the actual facing direction, frame5 low follow-through, frame6 staggered arm recovery, frame7 balanced ready pose. Show articulated torso/shoulder/elbow/knee changes rather than just translating the whole sprite. Consistent anatomy and same face, core, blade, cannon across all 64 cells. Crisp visible pixels and hard alpha edges. Target original character fidelity and professional game sprite clarity."
+    },
+    {
+      "key": "slam",
+      "prompt": "Asset type: production animation sprites for the same existing Unity pixel-art boss. Input image 1 is the authoritative original eight-direction character catalog. Input image 2 is a newly made blade animation of the SAME character, to keep your new frames consistent in detail and pixel style. Preserve the monster: heavy hunched reptilian cyber-creature, dark purple segmented armor, black/silver mechanical limbs, bright green circular chest/back core with orange ring, orange-tipped shoulder cannon on its anatomical left, cyan sword on its anatomical right forearm, two clawed feet, crocodile snout. No redesign, no extra limbs, weapons or accessories. Same hand-pixelated palette, sharp black outlines, articulated mechanical anatomy. Genuine transparent background; no floor, shadows, lettering, labels, grid lines, effects, sparks, smoke, camera blur or motion trails.\nONE sprite atlas containing 64 distinct articulated poses arranged as 8 COLUMNS by 8 ROWS. Generous transparent separation: at least 14 pixels between EVERY adjacent character; make characters smaller as needed so no weapons or body parts touch another sprite. All body parts fully visible including raised arms/sword. Exactly eight chronological animation frames per row, facing stays constant. Rows from TOP to BOTTOM face S, SE, E, NE, N, NW, W, SW, as numbered in original reference. Return each row to its beginning ready pose at the final frame. Consistent stance origin, body dimensions and equipment sides. Fixed pixel scale; no blurry resampling. Each direction is a real directional view, not the same front character pasted eight times.\nMotion: HEAVY GROUND SLAM. Frame0 planted ready stance, frame1 deeply bent knees and hunched torso, frame2 torso twist with free mechanical arm rising, frame3 free arm fully raised and back stretched in heavy anticipation while the cyan blade is held safely to the side, frame4 heavy downward arm/body slam, frame5 very low compressed impact squat with one armored hand against the ground (without any drawn floor/effect), frame6 weight lifts and legs straighten, frame7 returns to initial stance. Distinct knee/hip/torso/shoulder articulation in all frames. The body may compress and extend naturally but its armor, core and head stay the same. No detached limbs."
+    },
+    {
+      "key": "core",
+      "prompt": "Asset type: production animation sprites for the same existing Unity pixel-art boss. Input image 1 is the authoritative original eight-direction character catalog. Input image 2 is a newly made blade animation of the SAME character, to keep your new frames consistent in detail and pixel style. Preserve the monster: heavy hunched reptilian cyber-creature, dark purple segmented armor, black/silver mechanical limbs, bright green circular chest/back core with orange ring, orange-tipped shoulder cannon on its anatomical left, cyan sword on its anatomical right forearm, two clawed feet, crocodile snout. No redesign, no extra limbs, weapons or accessories. Same hand-pixelated palette, sharp black outlines, articulated mechanical anatomy. Genuine transparent background; no floor, shadows, lettering, labels, grid lines, effects, sparks, smoke, camera blur or motion trails.\nONE sprite atlas containing 64 distinct articulated poses arranged as 8 COLUMNS by 8 ROWS. Generous transparent separation: at least 14 pixels between EVERY adjacent character; make characters smaller as needed so no weapons or body parts touch another sprite. All body parts fully visible including raised arms/sword. Exactly eight chronological animation frames per row, facing stays constant. Rows from TOP to BOTTOM face S, SE, E, NE, N, NW, W, SW, as numbered in original reference. Return each row to its beginning ready pose at the final frame. Consistent stance origin, body dimensions and equipment sides. Fixed pixel scale; no blurry resampling. Each direction is a real directional view, not the same front character pasted eight times.\nMotion: CORE CHARGING AND SHOULDER CANNON RECOIL. Frame0 forward ready stance, frame1 knees plant wide and head leans toward actual facing direction, frame2 chest opens slightly and forearms draw in toward bright green core, frame3 powerful braced charge pose with torso raised and shoulder cannon aimed correctly along that row's facing, frame4 mechanical cannon and torso kick backwards in a clearly visible recoil with no projectile/flame, frame5 recoil settles as knees absorb weight, frame6 shoulders/arms recover forward, frame7 returns to initial ready stance. Keep local core green, do not add a giant glow or external aura. Keep cannon locked to same shoulder in every view."
+    },
+    {
+      "key": "walk",
+      "prompt": "Asset type: production animation sprites for the same existing Unity pixel-art boss. Input image 1 is the authoritative original eight-direction character catalog. Input image 2 is a newly made blade animation of the SAME character, to keep your new frames consistent in detail and pixel style. Preserve the monster: heavy hunched reptilian cyber-creature, dark purple segmented armor, black/silver mechanical limbs, bright green circular chest/back core with orange ring, orange-tipped shoulder cannon on its anatomical left, cyan sword on its anatomical right forearm, two clawed feet, crocodile snout. No redesign, no extra limbs, weapons or accessories. Same hand-pixelated palette, sharp black outlines, articulated mechanical anatomy. Genuine transparent background; no floor, shadows, lettering, labels, grid lines, effects, sparks, smoke, camera blur or motion trails.\nONE sprite atlas containing 64 distinct articulated poses arranged as 8 COLUMNS by 8 ROWS. Generous transparent separation: at least 14 pixels between EVERY adjacent character; make characters smaller as needed so no weapons or body parts touch another sprite. All body parts fully visible including raised arms/sword. Exactly eight chronological animation frames per row, facing stays constant. Rows from TOP to BOTTOM face S, SE, E, NE, N, NW, W, SW, as numbered in original reference. Return each row to its beginning ready pose at the final frame. Consistent stance origin, body dimensions and equipment sides. Fixed pixel scale; no blurry resampling. Each direction is a real directional view, not the same front character pasted eight times.\nMotion: HEAVY COMBAT WALK LOOP IN PLACE, not an attack. Eight continuous chronological gait frames, alternating left/right clawed leg steps, clear hip and knee articulation, shoulders counter-rotate, modest planted weight drop at each footfall, heavy stride with small torso bounce. Every row walks IN PLACE facing its own direction; do not translate the character across the atlas. Both feet fully visible and anatomical legs unchanged, cyan blade stays firmly on right forearm in a lowered ready guard and cannon stays on left shoulder. Frame0 left foot forward, frames1-3 transfer weight to right foot, frame4 right foot forward, frames5-7 transfer weight back to left foot for a seamless loop. Same character identity, crisp pixel art."
+    },
+    {
+      "key": "core_sw",
+      "prompt": "Use case: identity-preserve. This reference is the authoritative SOUTH-WEST view of an existing pixel-art reptilian cyber-boss. Preserve EXACTLY this monster, this SOUTH-WEST facing angle, purple mechanical armor, orange-tipped shoulder cannon, green ring core, cyan sword, two clawed feet, the same anatomy and pixel scale. Generate EXACTLY EIGHT fully visible sprites in a four columns by two rows contact sheet on TRUE TRANSPARENT alpha. Each separated by 32px empty alpha so frames never touch. NO other directions, NO text, NO grid lines, NO floor, NO shadows, NO external effects. These eight frames form a shoulder-cannon charge and recoil animation, read left to right on the top row then left to right on the bottom row: 0 low ready; 1 planted legs and slight backward anticipation; 2 forearms gathered in near green core; 3 torso braced and cannon firmly aimed SOUTH-WEST; 4 chest and cannon snap backwards in recoil, feet stay planted; 5 bent knees absorb recoil; 6 torso moves forward into balance; 7 returns to ready. IMPORTANT the cyan sword stays LOW throughout all eight frames, never raise it overhead or perform a sword slash. Articulate shoulders, knees and torso. Draw the same cannon attached to the same shoulder each frame. Crisp hand-made pixel outlines and original palette. No blurry or painted edges, no glowing background."
+    },
+    {
+      "key": "walk_clean",
+      "prompt": "Use case: background-extraction. Edit only the background and external haze of this existing character animation atlas. Preserve ALL FIFTY-SIX character sprites in their exact existing seven columns by eight rows arrangement, preserve every articulated pose, facing direction, anatomy, purple armor, black pixel outlines, green circular cores, orange shoulder cannons and cyan sword artwork. Remove every colored gradient, halo, teal/purple haze, shadow and background tint surrounding the sprites. Replace the entire background and every space between figures with genuine alpha ZERO transparency. Preserve character interior color pixels and clean hard character outlines, preserve cyan sword inside the silhouette. Do not redraw the characters, do not remove a sprite, do not rearrange rows, do not add text or labels, do not add a checkerboard or black backdrop. The result is the same 56 sprites cleanly isolated for a Unity sprite atlas."
+    },
+    {
+      "key": "walk_ne",
+      "prompt": "Use case: stylized-concept\nAsset type: Unity 2D top-down boss WALKING sprites, eight animation frames for ONE exact facing direction.\nInput image is the character and exact viewpoint reference. All EIGHT frames must show that same NORTH-EAST facing: we see the creature's BACK, backpack metal spine and green BACK reactor. Head faces away toward upper right. Do not show its chest or front face. Orange shoulder cannon on anatomical left, cyan sword lowered on anatomical right. Preserve the original purple reptile cyborg, black silver armor, bright circular green core with orange ring on the BACK, long clawed feet.\nCreate exactly eight separate complete full-body sprites arranged in 4 columns and 2 rows, read left to right top to bottom. One smooth heavy lumbering walk cycle: 0 left-foot contact, 1 compression, 2 passing, 3 right-foot contact, 4 compression, 5 passing, 6 recoil settle, 7 approaches first pose. Weight shift, swinging lowered sword and slight shoulder cannon bob, subtle vertical torso motion. No attack, no raised sword, no change of direction, no front view. Maintain a consistent body size and equipment.\nCrisp dark outlined pixel-art game sprites matching the original image. Fully transparent background, no glow/haze/gradients, no ground, no shadows, no text. Large fully transparent margins between every sprite; each isolated inside its own cell. Every weapon and foot entirely inside the canvas.\n"
+    }
+  ],
+  "selected_sources": [
+    {
+      "family": 0,
+      "path": "generated_images/exec-4323704d-d716-49a0-9b8e-16501a486e9b.png",
+      "rows": 8,
+      "columns": 8,
+      "directions": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "family": 1,
+      "path": "generated_images/exec-1e2fbf3c-5cc6-4970-8592-11264bc7aabe.png",
+      "rows": 8,
+      "columns": 8,
+      "directions": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "family": 2,
+      "path": "generated_images/exec-10fc29a3-d75a-45aa-98b2-9684df53fb2e.png",
+      "rows": 7,
+      "columns": 8,
+      "directions": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "family": 2,
+      "path": "generated_images/exec-3782d888-9077-41c6-af9d-c53a48e302cf.png",
+      "rows": 2,
+      "columns": 4,
+      "single_direction": 7
+    },
+    {
+      "family": 3,
+      "path": "generated_images/exec-d3927f92-5d86-4ea0-8dd9-a3e02338a3f6.png",
+      "rows": 8,
+      "columns": 7,
+      "directions": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "exclude_directions": [
+        3
+      ]
+    },
+    {
+      "family": 3,
+      "path": "generated_images/exec-fde7107c-d143-46a3-86da-38e01c2ea8c7.png",
+      "rows": 2,
+      "columns": 4,
+      "single_direction": 3
+    }
+  ]
+}

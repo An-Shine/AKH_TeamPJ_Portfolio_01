@@ -1,4 +1,5 @@
 using System;
+using _02.Scripts.Monster.Presentation;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -568,6 +569,8 @@ namespace _02.Scripts.Monster.BossMonster
         private AudioClip _phaseSound;
         [SerializeField]
         private AudioClip _deathSound;
+        private int _previousPhaseSound = -1;
+        private int _previousDeathSound = -1;
         public BossEncounterMove[] Moves => _moves;
         public float AttackRangeMultiplier => Mathf.Clamp(_attackRangeMultiplier, 1f, 1.8f);
         public float ProjectileSpeedMultiplier => Mathf.Clamp(_projectileSpeedMultiplier, 1f, 1.6f);
@@ -593,8 +596,8 @@ namespace _02.Scripts.Monster.BossMonster
         public int MaximumZones => Mathf.Clamp(_maximumZones, 1, 96);
         public int MaximumParticles => Mathf.Clamp(_maximumParticles, 64, 768);
         public Shader EffectShader => _effectShader;
-        public AudioClip PhaseSound => _phaseSound;
-        public AudioClip DeathSound => _deathSound;
+        public AudioClip PhaseSound => MonsterCombatAudio.Pick("Special/BossPhase", _phaseSound, ref _previousPhaseSound);
+        public AudioClip DeathSound => MonsterCombatAudio.Pick("Special/BossDeath", _deathSound, ref _previousDeathSound);
 
         public void InitializeDefaults()
         {
