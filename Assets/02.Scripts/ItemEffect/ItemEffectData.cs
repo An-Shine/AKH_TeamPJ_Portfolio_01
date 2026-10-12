@@ -4,5 +4,4 @@ public class ItemEffectData
     public ItemEffectType itemEffectType;
     public ItemEffectApplyType ApplyType;
     public float Value;
-    public float VisualValue;
 }
