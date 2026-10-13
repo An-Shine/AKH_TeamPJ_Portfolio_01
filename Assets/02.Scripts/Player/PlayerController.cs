@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
             ? _aim.GetDirectionFrom(_weapon.Muzzle.position)
             : _aim.AimDirection;
         _weapon.Tick(Input.GetMouseButton(0), _fsm.IsDashing || dashStarting || _fsm.IsInteracting, fireDirection);
-        if (Input.GetKeyDown(KeyCode.R) && !_fsm.IsInteracting)
+        if ((Input.GetKeyDown(KeyCode.R) || Input.GetMouseButtonDown(1)) && !_fsm.IsInteracting)
         {
             float reloadDuration = _weapon.Reload();
             if (_weapon.IsReloading)
