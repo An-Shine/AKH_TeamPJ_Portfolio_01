@@ -86,7 +86,7 @@ public class Item : MonoBehaviour, IInteractable
             return;
         }
 
-        if (_tooltipFlag) return;
+        if (_tooltipFlag && manager.IsOpenTooltip) return;
 
         ActivateOutline();
         manager.OpenItemTooltip(transform, _tooltipOffset, Data.Description);

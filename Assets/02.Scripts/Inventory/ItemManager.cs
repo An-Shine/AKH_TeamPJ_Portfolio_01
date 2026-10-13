@@ -73,6 +73,8 @@ public class ItemManager : MonoBehaviour
             Instantiate(item.GainEffectPrefab, _playerTransform);
         }
 
+        ItemVisualApplier.Visualize(item.Data, _playerTransform);
+
         AudioManager.Instance.PlaySFX(item.GainEffectSFX);
         item.gameObject.SetActive(false);
         LootSpawner.Instance.EraseOtherItemOption(item);

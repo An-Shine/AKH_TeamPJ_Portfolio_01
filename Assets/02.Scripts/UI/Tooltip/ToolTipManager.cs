@@ -17,6 +17,9 @@ public class ToolTipManager : MonoBehaviour
     private Vector3 _offset;
 
     private bool _isOpenTooltip;
+    public bool IsOpenTooltip => _isOpenTooltip;
+
+    private bool _isPlayEndAnimation;
 
     private void Awake()
     {
@@ -32,6 +35,7 @@ public class ToolTipManager : MonoBehaviour
     private void Start()
     {
         _isOpenTooltip = false;
+        _isPlayEndAnimation = false;
         if (_tooltipPanel != null)
         {
             _panelRectTransform = _tooltipPanel.GetComponent<RectTransform>();
@@ -48,6 +52,8 @@ public class ToolTipManager : MonoBehaviour
 
     public void OpenItemTooltip(Transform targetTransform, Vector3 offset, string description)
     {
+        if (_isPlayEndAnimation) return;
+
         SetItemDescription(description);
         _target = targetTransform;
         _offset = offset;
@@ -75,6 +81,7 @@ public class ToolTipManager : MonoBehaviour
         if (_tooltipAnimator == null) return;
         _tooltipAnimator.Play(nameof(TooltipState.Close));
         _isOpenTooltip = false;
+        _isPlayEndAnimation = true;
     }
 
     public void SetActiveTooltip(bool active)
@@ -89,6 +96,11 @@ public class ToolTipManager : MonoBehaviour
         if (string.IsNullOrEmpty(description)) return;
 
         _tooltipText.text = description;
+    }
+
+    public void OnEndAnimationFinished()
+    {
+        _isPlayEndAnimation = false;
     }
 
     enum TooltipState

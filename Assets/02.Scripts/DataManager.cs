@@ -112,7 +112,8 @@ public class DataManager : MonoBehaviour
                 ItemId = int.Parse(row[0]),
                 Name = row[1],
                 Description = row[2],
-                EffectIdList = effectList
+                EffectIdList = effectList,
+                VisualValue = float.Parse(row[9]),
             };
         }
     }

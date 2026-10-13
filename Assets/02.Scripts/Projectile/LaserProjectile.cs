@@ -23,7 +23,7 @@ public class LaserProjectile : Projectile
     {
     }
 
-    protected virtual void OnTriggerEnter2D(Collider2D other)
+    protected override void OnTriggerEnter2D(Collider2D other)
     {
     }
 
