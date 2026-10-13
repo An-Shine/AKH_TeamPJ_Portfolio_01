@@ -6,7 +6,9 @@ using UnityEngine.UI;
 [RequireComponent(typeof(PlayerAim), typeof(PlayerWeapon))]
 public class PlayerAimVisual : MonoBehaviour
 {
-    [SerializeField] private Image _crosshairImage;
+    [SerializeField] private Image _crosshairObj;
+    public Sprite[] CrosshairSprites;
+    // private type
     [SerializeField] private LineRenderer _aimLine;
 
     private PlayerAim _aim;
@@ -21,13 +23,13 @@ public class PlayerAimVisual : MonoBehaviour
         _aim = GetComponent<PlayerAim>();
         _weapon = GetComponent<PlayerWeapon>();
 
-        if (_crosshairImage == null)
+        if (_crosshairObj == null)
         {
             Debug.LogWarning("PlayerAimVisual에 Crosshair Image를 연결하세요.", this);
         }
         else
         {
-            _crosshairImage.raycastTarget = false;
+            _crosshairObj.raycastTarget = false;
         }
 
         if (_aimLine == null)
@@ -45,9 +47,9 @@ public class PlayerAimVisual : MonoBehaviour
 
     private void OnEnable()
     {
-        if (_crosshairImage != null)
+        if (_crosshairObj != null)
         {
-            _previousCrosshairVisible = _crosshairImage.enabled;
+            _previousCrosshairVisible = _crosshairObj.enabled;
         }
 
         RefreshVisual();
@@ -62,18 +64,20 @@ public class PlayerAimVisual : MonoBehaviour
     {
         if (PlayerManager.IsInputBlocked)
         {
-            if (_crosshairImage != null) _crosshairImage.enabled = false;
+            if (_crosshairObj != null) _crosshairObj.enabled = false;
             if (_aimLine != null) _aimLine.enabled = false;
             return;
         }
+
         if (_weapon == null || _aim == null) return;
+
         // bool showLine = _weapon.AimMode == AimDisplayMode.AimLine;
         bool showLine = false;
         // GameObject나 CrosshairFollowMouse를 끄지 않습니다.
         // 원래 스크립트의 위치 갱신과 기본 커서 숨김 동작을 유지합니다.
-        if (_crosshairImage != null)
+        if (_crosshairObj != null)
         {
-            _crosshairImage.enabled = !showLine;
+            _crosshairObj.enabled = !showLine;
         }
 
         if (_aimLine == null) return;
@@ -166,9 +170,9 @@ public class PlayerAimVisual : MonoBehaviour
             _aimLine.enabled = false;
         }
 
-        if (_crosshairImage != null)
+        if (_crosshairObj != null)
         {
-            _crosshairImage.enabled = _previousCrosshairVisible;
+            _crosshairObj.enabled = _previousCrosshairVisible;
         }
     }
 }
