@@ -22,6 +22,7 @@ public class LootSpawner : MonoBehaviour
 
     [Header("Weapon Display Stand")]
     [SerializeField] private GameObject _weaponStandPrefab;
+    [SerializeField] private Vector2 _weaponStandSize;
 
     [Header("Evade Layer")]
     [SerializeField] private LayerMask _nonTargetLayerMask;
@@ -68,7 +69,7 @@ public class LootSpawner : MonoBehaviour
         Vector3 spawnPosition;
         for (repeat = 0; repeat < _lootSpawnInfoDictionary[roomId].WeaponSpawnCount; repeat++)
         {
-            spawnPosition = GetPosition(roomId, _unitSize);
+            spawnPosition = GetPosition(roomId, _weaponStandSize);
             if (_weaponStandPrefab != null && SpawnWeapon(spawnPosition, _weaponStandPrefab.transform))
             {
                 Instantiate(_weaponStandPrefab, spawnPosition, Quaternion.identity);
