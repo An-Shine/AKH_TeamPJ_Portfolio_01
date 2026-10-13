@@ -46,6 +46,8 @@ public sealed class BossRoomCutsceneGate : MonoBehaviour
     private bool _playing;
     private bool _hasPlayed;
 
+    public bool IsPlaying => _playing;
+
     private void Reset()
     {
         GetComponent<BoxCollider2D>().isTrigger = true;
