@@ -4,6 +4,10 @@ using UnityEngine;
 public class LootSpawnInfo
 {
     public RoomId RoomId;
-    public Transform SpawnPointLeftUp;
-    public Transform SpawnPointRightDown;
+
+    public Vector2Int SpawnPointLeftUp;
+    public Vector2Int SpawnPointRightDown;
+
+    public int WeaponSpawnCount;
+    public bool DoNotNeedClear = false;
 }

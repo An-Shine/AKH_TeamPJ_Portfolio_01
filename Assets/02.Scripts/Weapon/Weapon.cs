@@ -36,8 +36,10 @@ public class Weapon : MonoBehaviour
         * (1f + Modifier.FireRate.Rate + ItemManager.Instance.WeaponStat.FireSpeedMultiplier);
 
     private float ReloadSpeed => (1 + Modifier.ReloadSpeed.Flat) * (1f + Modifier.ReloadSpeed.Rate);
+
     public float ChargeSpeed => (1 + Modifier.ChargeSpeed.Flat)
-                                * (1f + Modifier.ChargeSpeed.Rate + ItemManager.Instance.WeaponStat.ChargeSpeedMultiplier);
+                                * (1f + Modifier.ChargeSpeed.Rate +
+                                   ItemManager.Instance.WeaponStat.ChargeSpeedMultiplier);
 
     public int MagazineSize =>
         (int)((Data.MagazineSize + Modifier.MagazineSize)
@@ -53,6 +55,9 @@ public class Weapon : MonoBehaviour
     private float Range =>
         (Data.Range + Modifier.Range + ItemManager.Instance.WeaponStat.RangeModifier)
         * (1f + ItemManager.Instance.WeaponStat.RangeMultiplier);
+
+    private int _currentAmmo;
+    private float _reloadAmmoRate;
 
     private Vector3 _targetDirection;
     private Vector3 _effectDirection;
@@ -208,20 +213,24 @@ public class Weapon : MonoBehaviour
     {
         _isReloading = true;
         _reloadTimer = 0;
+        _currentAmmo = _remainingAmmo;
+        _reloadAmmoRate = (float)(MagazineSize - _remainingAmmo) / MagazineSize;
     }
 
     private void Reloading()
     {
         if (!_isReloading) return;
 
-        if (_isReloading && _reloadTimer < Data.ReloadTime)
+        if (_isReloading && _reloadTimer < Data.ReloadTime * _reloadAmmoRate)
         {
             _reloadTimer += Time.deltaTime * ReloadSpeed;
-            _remainingAmmo = (int)(MagazineSize * (_reloadTimer / Data.ReloadTime));
+            _remainingAmmo = _currentAmmo +
+                             (int)((MagazineSize * _reloadAmmoRate) *
+                                   (_reloadTimer / (Data.ReloadTime * _reloadAmmoRate)));
             if (_remainingAmmo > MagazineSize) _remainingAmmo = MagazineSize;
         }
 
-        if (_reloadTimer >= Data.ReloadTime) _isReloading = false;
+        if (_reloadTimer >= Data.ReloadTime * _reloadAmmoRate) _isReloading = false;
     }
 
     private void ContinousDecreaseAmmo()
