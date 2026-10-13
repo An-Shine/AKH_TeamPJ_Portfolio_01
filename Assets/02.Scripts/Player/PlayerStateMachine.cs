@@ -97,4 +97,10 @@ public class PlayerStateMachine : MonoBehaviour
         _interactionRemaining = 0f;
         _cooldownRemaining = 0f;
     }
+
+    public void Revive()
+    {
+        CurrentState = PlayerState.Idle;
+        ResetState();
+    }
 }
