@@ -30,11 +30,13 @@ public class LootSpawner : MonoBehaviour
     [Header("Evade Layer")]
     [SerializeField] private LayerMask _nonTargetLayerMask;
 
+    [Header("Monster Spawner")]
+    [SerializeField] private MonsterSpawner _monsterSpawner;
+
     private List<RoomId> _spawnDoneRoomIds;
     private Dictionary<RoomId, List<Item>> _spawnedItemDictionary;
 
     private RoomId _currentRoomId;
-    public RoomId CurrentRoomId => _currentRoomId;
 
     private void Awake()
     {
@@ -67,7 +69,16 @@ public class LootSpawner : MonoBehaviour
         _spawnedItemDictionary = new Dictionary<RoomId, List<Item>>();
     }
 
-    public void SpawnLoot()
+    private void Update()
+    {
+        if (_monsterSpawner == null) return;
+        if (!_monsterSpawner.IsComplete) return;
+        if (_monsterSpawner.RemainingMonsterCount != 0) return;
+
+        SpawnLoot();
+    }
+
+    private void SpawnLoot()
     {
         if (_spawnDoneRoomIds.Contains(_currentRoomId)) return;
 
