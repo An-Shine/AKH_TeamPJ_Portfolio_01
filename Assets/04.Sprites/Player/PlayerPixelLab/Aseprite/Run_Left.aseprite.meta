@@ -129,7 +129,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Frame_0
     originalName: 
-    pivot: {x: 0.6086957, y: -0.4473684}
+    pivot: {x: 0.6086957, y: -0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -150,7 +150,7 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 4}
   - name: Frame_1
     originalName: 
-    pivot: {x: 0.6190476, y: -0.42105263}
+    pivot: {x: 0.6190476, y: -0.39473686}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -171,7 +171,7 @@ ScriptedImporter:
     uvTransform: {x: 35, y: 49}
   - name: Frame_2
     originalName: 
-    pivot: {x: 0.6818182, y: -0.4054054}
+    pivot: {x: 0.6818182, y: -0.45945948}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -192,7 +192,7 @@ ScriptedImporter:
     uvTransform: {x: 35, y: 4}
   - name: Frame_3
     originalName: 
-    pivot: {x: 0.6190476, y: -0.45945948}
+    pivot: {x: 0.6190476, y: -0.5135135}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -234,7 +234,7 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 50}
   - name: Frame_5
     originalName: 
-    pivot: {x: 0.66666675, y: -0.4054054}
+    pivot: {x: 0.66666675, y: -0.45945948}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -273,7 +273,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 10
-        y: 17
+        y: 19
         width: 23
         height: 38
       spriteId: 3ca9b379c2b033e4ea19ed138fb8c384
@@ -282,7 +282,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 11
-        y: 16
+        y: 15
         width: 21
         height: 38
       spriteId: 0fa5724f9d5ef494db03163f58ee0235
@@ -291,7 +291,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 9
-        y: 15
+        y: 17
         width: 22
         height: 37
       spriteId: 87f7608fdac4b5f4494d7f607b084560
@@ -300,7 +300,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 11
-        y: 17
+        y: 19
         width: 21
         height: 37
       spriteId: 60b2c571e8bfced44a40b5c41ac6498e
@@ -318,7 +318,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 10
-        y: 15
+        y: 17
         width: 21
         height: 37
       spriteId: 4d03ed6d56520ac4a9fb8ac1afc7d48e
