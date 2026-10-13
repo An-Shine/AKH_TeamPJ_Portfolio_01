@@ -146,4 +146,17 @@ public class GameStateManager : MonoBehaviour
 
         CurrentState = GameState.Ending;
     }
+
+    public void RevivePlayer()
+    {
+        if (_isLeaving) return;
+
+        if (CurrentState != GameState.GameOver) return;
+        var playerManager = PlayerManager.Instance;
+        if (playerManager == null) return;
+        if (!playerManager.TryRevive()) return;
+        _gameOverUI.SetActive(false);
+        CurrentState = GameState.Playing;
+        Time.timeScale = 1f;
+    }
 }
