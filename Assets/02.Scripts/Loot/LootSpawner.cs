@@ -33,6 +33,9 @@ public class LootSpawner : MonoBehaviour
     private List<RoomId> _spawnDoneRoomIds;
     private Dictionary<RoomId, List<Item>> _spawnedItemDictionary;
 
+    private RoomId _currentRoomId;
+    public RoomId CurrentRoomId => _currentRoomId;
+
     private void Awake()
     {
         if (_instance != null)
@@ -64,15 +67,15 @@ public class LootSpawner : MonoBehaviour
         _spawnedItemDictionary = new Dictionary<RoomId, List<Item>>();
     }
 
-    public void SpawnLoot(RoomId roomId)
+    public void SpawnLoot()
     {
-        if (_spawnDoneRoomIds.Contains(roomId)) return;
+        if (_spawnDoneRoomIds.Contains(_currentRoomId)) return;
 
         int repeat;
         Vector3 spawnPosition;
-        for (repeat = 0; repeat < _lootSpawnInfoDictionary[roomId].WeaponSpawnCount; repeat++)
+        for (repeat = 0; repeat < _lootSpawnInfoDictionary[_currentRoomId].WeaponSpawnCount; repeat++)
         {
-            spawnPosition = GetPosition(roomId, _weaponStandSize);
+            spawnPosition = GetPosition(_currentRoomId, _weaponStandSize);
             if (_weaponStandPrefab != null && SpawnWeapon(spawnPosition + _positionModifier))
             {
                 Instantiate(_weaponStandPrefab, spawnPosition, Quaternion.identity);
@@ -80,18 +83,18 @@ public class LootSpawner : MonoBehaviour
         }
 
         //item display stand
-        spawnPosition = GetPosition(roomId, _itemStandSize);
+        spawnPosition = GetPosition(_currentRoomId, _itemStandSize);
         Instantiate(_itemStandPrefab, spawnPosition, Quaternion.identity);
 
         //item
         spawnPosition.x -= _itemStandSize.x / 3;
         for (repeat = 0; repeat < 3; repeat++)
         {
-            SpawnItem(spawnPosition + _positionModifier, roomId);
+            SpawnItem(spawnPosition + _positionModifier, _currentRoomId);
             spawnPosition.x += _itemStandSize.x / 3;
         }
 
-        _spawnDoneRoomIds.Add(roomId);
+        _spawnDoneRoomIds.Add(_currentRoomId);
     }
 
     private Vector3 GetPosition(RoomId roomId, Vector2 checkSize)
@@ -195,5 +198,10 @@ public class LootSpawner : MonoBehaviour
             ItemManager.Instance.AddUnobtainItem(item);
             item.gameObject.SetActive(false);
         }
+    }
+
+    public void SetCurrentRoom(RoomId roomId)
+    {
+        _currentRoomId = roomId;
     }
 }
