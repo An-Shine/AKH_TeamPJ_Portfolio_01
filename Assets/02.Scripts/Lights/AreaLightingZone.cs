@@ -19,7 +19,7 @@ public class AreaLightingZone : MonoBehaviour
         if (rb == null || !rb.CompareTag("Player")) return;
 
         _areaLightManager.EnterZone(this);
-        LootSpawn();
+        EnterRoom();
     }
 
     public void ActivateLighting()
@@ -41,13 +41,13 @@ public class AreaLightingZone : MonoBehaviour
         }
     }
 
-    private void LootSpawn()
+    private void EnterRoom()
     {
         if (!_isItemRoom) return;
 
         LootSpawner spawner = LootSpawner.Instance;
         if (spawner == null) return;
 
-        spawner.SpawnLoot(_roomId);
+        spawner.SetCurrentRoom(_roomId);
     }
 }

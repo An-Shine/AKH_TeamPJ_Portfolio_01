@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -101,6 +102,28 @@ public class Item : MonoBehaviour, IInteractable
     private void DeactivateOutline()
     {
         _runtimeMaterial.SetFloat(OutlineShaderKey, 0f);
+    }
+
+    public void StartAppearance()
+    {
+        StartCoroutine(Appearance());
+    }
+
+    private IEnumerator Appearance()
+    {
+        float fadeValue = 0f;
+        float t = 0f;
+        float duration = 3f;
+        _runtimeMaterial.SetFloat("_FullGlowDissolveFade", fadeValue);
+
+        while (t < 3f)
+        {
+            t += Time.deltaTime;
+            fadeValue = Mathf.SmoothStep(0f, 6f, t / duration);
+            _runtimeMaterial.SetFloat("_FullGlowDissolveFade", fadeValue);
+
+            yield return null;
+        }
     }
 
     public Sprite Interact(GameObject actor)

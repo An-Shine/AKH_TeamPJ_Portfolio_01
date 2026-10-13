@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -11,20 +12,31 @@ public class LootSpawner : MonoBehaviour
     private Dictionary<string, WeaponPickup> _weaponPickUpDictionary;
 
     [SerializeField] private List<LootSpawnInfo> _lootSpawnInfos;
-    private Dictionary<RoomId, GridPos[]> _lootSpawnInfoDictionary;
+    private Dictionary<RoomId, LootSpawnInfo> _lootSpawnInfoDictionary;
 
     [SerializeField] private Vector2 _unitSize;
     private Dictionary<RoomId, List<GridPos>> _gridInfoDictionary;
 
-    [Header("Spawn Count")]
-    [SerializeField] private int _weaponSpawnCount;
-    [SerializeField] private int _itemOptionCount;
+    [SerializeField] private GameObject _spawnEffectPrefab;
+
+    [Header("Item Display Stand")]
+    [SerializeField] private DisplayStand _itemStandPrefab;
+    [SerializeField] private Vector2 _itemStandSize;
+
+    [Header("Weapon Display Stand")]
+    [SerializeField] private DisplayStand _weaponStandPrefab;
+    [SerializeField] private Vector2 _weaponStandSize;
+
+    [Header("Position Modifier")]
+    [SerializeField] private Vector3 _positionModifier;
 
     [Header("Evade Layer")]
     [SerializeField] private LayerMask _nonTargetLayerMask;
 
     private List<RoomId> _spawnDoneRoomIds;
     private Dictionary<RoomId, List<Item>> _spawnedItemDictionary;
+
+    private RoomId _currentRoomId = RoomId.None;
 
     private void Awake()
     {
@@ -37,6 +49,14 @@ public class LootSpawner : MonoBehaviour
         _instance = this;
     }
 
+    private void Update()
+    {
+        if (_currentRoomId != RoomId.None && _lootSpawnInfoDictionary[_currentRoomId].DoNotNeedClear)
+        {
+            SpawnLoot();
+        }
+    }
+
     private void Start()
     {
         _weaponPickUpDictionary = new Dictionary<string, WeaponPickup>();
@@ -45,119 +65,52 @@ public class LootSpawner : MonoBehaviour
             _weaponPickUpDictionary[IdPrefix.WeaponPrefix + weaponPickup.WeaponId] = weaponPickup;
         }
 
-        _lootSpawnInfoDictionary = new Dictionary<RoomId, GridPos[]>();
+        _lootSpawnInfoDictionary = new Dictionary<RoomId, LootSpawnInfo>();
         _gridInfoDictionary = new Dictionary<RoomId, List<GridPos>>();
         foreach (LootSpawnInfo lootSpawnInfo in _lootSpawnInfos)
         {
-            _lootSpawnInfoDictionary[lootSpawnInfo.RoomId] = new GridPos[2]
-            {
-                new GridPos((int)lootSpawnInfo.SpawnPointLeftUp.position.x,
-                    (int)lootSpawnInfo.SpawnPointLeftUp.position.y),
-                new GridPos((int)lootSpawnInfo.SpawnPointRightDown.position.x,
-                    (int)lootSpawnInfo.SpawnPointRightDown.position.y)
-            };
-            _gridInfoDictionary[lootSpawnInfo.RoomId] = CreateGridInfo(lootSpawnInfo.RoomId);
+            _lootSpawnInfoDictionary[lootSpawnInfo.RoomId] = lootSpawnInfo;
+            _gridInfoDictionary[lootSpawnInfo.RoomId] = GridPos.CreateGridInfo(lootSpawnInfo);
         }
 
         _spawnDoneRoomIds = new List<RoomId>();
         _spawnedItemDictionary = new Dictionary<RoomId, List<Item>>();
-        //Invoke("SpawnTest", 1f);
     }
 
-    public void SpawnTest()
+    public void SpawnLoot()
     {
-        SpawnLoot(RoomId.Room1);
-        SpawnLoot(RoomId.Room2);
-        SpawnLoot(RoomId.Room3);
-    }
-
-    private List<GridPos> CreateGridInfo(RoomId roomId)
-    {
-        List<GridPos> gridInfo = new List<GridPos>();
-
-        int startOfX = _lootSpawnInfoDictionary[roomId][0].X;
-        int startOfY = _lootSpawnInfoDictionary[roomId][0].Y;
-        int endOfX = _lootSpawnInfoDictionary[roomId][1].X;
-        int endOfY = _lootSpawnInfoDictionary[roomId][1].Y;
-
-        int indexOfX = startOfX;
-        int indexOfY = startOfY;
-
-        GridPos grid;
-        while (indexOfY >= endOfY)
-        {
-            while (indexOfX <= endOfX)
-            {
-                grid = new GridPos(indexOfX, indexOfY);
-                gridInfo.Add(grid);
-                indexOfX += 1;
-            }
-
-            indexOfX = startOfX;
-            indexOfY -= 1;
-        }
-
-        return gridInfo;
-    }
-
-    public void SpawnLoot(RoomId roomId)
-    {
-        if (_spawnDoneRoomIds.Contains(roomId)) return;
+        if (_currentRoomId == RoomId.None) return;
+        if (_spawnDoneRoomIds.Contains(_currentRoomId)) return;
 
         int repeat;
         Vector3 spawnPosition;
 
-        int failedSpawnCount = 0;
-        for (repeat = 0; repeat < _weaponSpawnCount; repeat++)
+        //item display stand
+        spawnPosition = GridPos.GetPosition(_gridInfoDictionary[_currentRoomId], _unitSize, _nonTargetLayerMask);
+        DisplayStand itemStand = Instantiate(_itemStandPrefab, spawnPosition, Quaternion.identity);
+        itemStand.StartAppearance();
+
+        //item
+        spawnPosition.x -= _itemStandSize.x / 3;
+        for (repeat = 0; repeat < 3; repeat++)
         {
-            spawnPosition = GetPosition(roomId);
-            if (!SpawnWeapon(spawnPosition))
+            SpawnItem(spawnPosition + _positionModifier, _currentRoomId);
+            spawnPosition.x += _itemStandSize.x / 3;
+        }
+
+        //weapon
+        for (repeat = 0; repeat < _lootSpawnInfoDictionary[_currentRoomId].WeaponSpawnCount; repeat++)
+        {
+            spawnPosition =
+                GridPos.GetPosition(_gridInfoDictionary[_currentRoomId], _weaponStandSize, _nonTargetLayerMask);
+            if (_weaponStandPrefab != null && SpawnWeapon(spawnPosition + _positionModifier))
             {
-                failedSpawnCount++;
+                DisplayStand weaponStand = Instantiate(_weaponStandPrefab, spawnPosition, Quaternion.identity);
+                weaponStand.StartAppearance();
             }
         }
 
-        for (repeat = 0; repeat < _itemOptionCount + failedSpawnCount; repeat++)
-        {
-            spawnPosition = GetPosition(roomId);
-            SpawnItem(spawnPosition, roomId);
-        }
-
-        _spawnDoneRoomIds.Add(roomId);
-    }
-
-    private Vector3 GetPosition(RoomId roomId)
-    {
-        int targetIndex;
-        int count;
-        Collider2D hit;
-
-        List<GridPos> currentGridInfoList = _gridInfoDictionary[roomId]; //.ToList(); //추후 사용할 일 없으니 굳이 복사X
-        Vector3 targetPosition = new Vector3(0, 0, 0);
-        int repeat = currentGridInfoList.Count;
-
-        for (int index = 0; index < repeat; index++)
-        {
-            count = currentGridInfoList.Count;
-            targetIndex = UnityEngine.Random.Range(0, count);
-            targetPosition.x = currentGridInfoList[targetIndex].X;
-            targetPosition.y = currentGridInfoList[targetIndex].Y;
-
-            currentGridInfoList.RemoveAt(targetIndex);
-
-            hit = Physics2D.OverlapBox(
-                targetPosition,
-                _unitSize,
-                0,
-                _nonTargetLayerMask);
-
-            if (hit == null)
-            {
-                break;
-            }
-        }
-
-        return targetPosition;
+        _spawnDoneRoomIds.Add(_currentRoomId);
     }
 
     private bool SpawnWeapon(Vector3 spawnPosition)
@@ -172,6 +125,7 @@ public class LootSpawner : MonoBehaviour
         if (_weaponPickUpDictionary.TryGetValue(weaponId, out WeaponPickup targetPickUp))
         {
             WeaponPickup weaponPickup = Instantiate(targetPickUp, spawnPosition, Quaternion.identity);
+            weaponPickup.StartAppearance();
             _weaponPickUpDictionary.Remove(weaponId);
             return true;
         }
@@ -179,10 +133,10 @@ public class LootSpawner : MonoBehaviour
         return false;
     }
 
-    private bool SpawnItem(Vector3 spawnPosition, RoomId roomId)
+    private void SpawnItem(Vector3 spawnPosition, RoomId roomId)
     {
         int count = ItemManager.Instance.UnobtainedItemDictionary.Count;
-        if (count <= 0) return false;
+        if (count <= 0) return;
 
         int index = UnityEngine.Random.Range(0, count);
         string itemId = ItemManager.Instance.UnobtainedItemDictionary.Keys.ElementAt(index);
@@ -190,6 +144,7 @@ public class LootSpawner : MonoBehaviour
         {
             targetItem.transform.position = spawnPosition;
             targetItem.gameObject.SetActive(true);
+            targetItem.StartAppearance();
             ItemManager.Instance.RemoveUnobtainItem(targetItem);
 
             if (!_spawnedItemDictionary.ContainsKey(roomId))
@@ -198,11 +153,7 @@ public class LootSpawner : MonoBehaviour
             }
 
             _spawnedItemDictionary[roomId].Add(targetItem);
-
-            return true;
         }
-
-        return false;
     }
 
     public void EraseOtherItemOption(Item targetItem)
@@ -231,5 +182,10 @@ public class LootSpawner : MonoBehaviour
             ItemManager.Instance.AddUnobtainItem(item);
             item.gameObject.SetActive(false);
         }
+    }
+
+    public void SetCurrentRoom(RoomId roomId)
+    {
+        _currentRoomId = roomId;
     }
 }
