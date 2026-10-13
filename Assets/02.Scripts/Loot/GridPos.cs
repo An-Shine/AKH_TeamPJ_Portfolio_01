@@ -2,10 +2,10 @@ using System.Collections.Generic;
 
 public class GridPos
 {
-    public int X;
-    public int Y;
+    public float X;
+    public float Y;
 
-    public GridPos(int x, int y)
+    public GridPos(float x, float y)
     {
         X = x;
         Y = y;
@@ -15,13 +15,13 @@ public class GridPos
     {
         List<GridPos> gridInfo = new List<GridPos>();
 
-        int startOfX = lootSpawnInfo.SpawnPointLeftUp.x;
-        int startOfY = lootSpawnInfo.SpawnPointLeftUp.y;
-        int endOfX = lootSpawnInfo.SpawnPointRightDown.x;
-        int endOfY = lootSpawnInfo.SpawnPointRightDown.y;
+        float startOfX = lootSpawnInfo.SpawnPointLeftUp.x;
+        float startOfY = lootSpawnInfo.SpawnPointLeftUp.y;
+        float endOfX = lootSpawnInfo.SpawnPointRightDown.x;
+        float endOfY = lootSpawnInfo.SpawnPointRightDown.y;
 
-        int indexOfX = startOfX;
-        int indexOfY = startOfY;
+        float indexOfX = startOfX;
+        float indexOfY = startOfY;
 
         GridPos grid;
         while (indexOfY >= endOfY)
@@ -30,11 +30,11 @@ public class GridPos
             {
                 grid = new GridPos(indexOfX, indexOfY);
                 gridInfo.Add(grid);
-                indexOfX += 1;
+                indexOfX += 0.5f;
             }
 
             indexOfX = startOfX;
-            indexOfY -= 1;
+            indexOfY -= 0.5f;
         }
 
         return gridInfo;

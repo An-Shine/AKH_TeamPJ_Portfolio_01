@@ -9,4 +9,5 @@ public class LootSpawnInfo
     public Vector2Int SpawnPointRightDown;
 
     public int WeaponSpawnCount;
+    public bool DoNotNeedClear = false;
 }

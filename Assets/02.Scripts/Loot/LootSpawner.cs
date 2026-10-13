@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -46,6 +47,14 @@ public class LootSpawner : MonoBehaviour
         _instance = this;
     }
 
+    private void Update()
+    {
+        if (_currentRoomId != RoomId.None && _lootSpawnInfoDictionary[_currentRoomId].DoNotNeedClear)
+        {
+            SpawnLoot();
+        }
+    }
+
     private void Start()
     {
         _weaponPickUpDictionary = new Dictionary<string, WeaponPickup>();
@@ -73,14 +82,6 @@ public class LootSpawner : MonoBehaviour
 
         int repeat;
         Vector3 spawnPosition;
-        for (repeat = 0; repeat < _lootSpawnInfoDictionary[_currentRoomId].WeaponSpawnCount; repeat++)
-        {
-            spawnPosition = GetPosition(_currentRoomId, _weaponStandSize);
-            if (_weaponStandPrefab != null && SpawnWeapon(spawnPosition + _positionModifier))
-            {
-                Instantiate(_weaponStandPrefab, spawnPosition, Quaternion.identity);
-            }
-        }
 
         //item display stand
         spawnPosition = GetPosition(_currentRoomId, _itemStandSize);
@@ -94,16 +95,26 @@ public class LootSpawner : MonoBehaviour
             spawnPosition.x += _itemStandSize.x / 3;
         }
 
+        //weapon
+        for (repeat = 0; repeat < _lootSpawnInfoDictionary[_currentRoomId].WeaponSpawnCount; repeat++)
+        {
+            spawnPosition = GetPosition(_currentRoomId, _weaponStandSize);
+            if (_weaponStandPrefab != null && SpawnWeapon(spawnPosition + _positionModifier))
+            {
+                Instantiate(_weaponStandPrefab, spawnPosition, Quaternion.identity);
+            }
+        }
+
         _spawnDoneRoomIds.Add(_currentRoomId);
     }
 
-    private Vector3 GetPosition(RoomId roomId, Vector2 checkSize)
+    private Vector3 GetPosition(RoomId roomId, Vector2 checksize)
     {
         int targetIndex;
         int count;
         Collider2D hit;
 
-        List<GridPos> currentGridInfoList = _gridInfoDictionary[roomId]; //.ToList(); //추후 사용할 일 없으니 굳이 복사X
+        List<GridPos> currentGridInfoList = _gridInfoDictionary[roomId].ToList();
         Vector3 targetPosition = new Vector3(0, 0, 0);
         int repeat = currentGridInfoList.Count;
 
@@ -118,7 +129,7 @@ public class LootSpawner : MonoBehaviour
 
             hit = Physics2D.OverlapBox(
                 targetPosition,
-                checkSize,
+                checksize,
                 0,
                 _nonTargetLayerMask);
 
@@ -126,6 +137,8 @@ public class LootSpawner : MonoBehaviour
             {
                 break;
             }
+
+            Debug.LogWarning($"{targetPosition.x}, {targetPosition.y} : " + hit.gameObject.name);
         }
 
         return targetPosition;
