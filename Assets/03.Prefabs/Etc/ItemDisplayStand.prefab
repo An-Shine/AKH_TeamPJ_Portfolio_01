@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 654621720577967042}
   - component: {fileID: 6000571485257404588}
   - component: {fileID: 1215191922280262487}
+  - component: {fileID: 729050415262756025}
   m_Layer: 10
   m_Name: ItemDisplayStand
   m_TagString: Untagged
@@ -138,3 +139,16 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 5, y: 1.2}
   m_EdgeRadius: 0
+--- !u!114 &729050415262756025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597504965711556546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3783f9d24c6a4b4caf9a8bd5b9287019, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DisplayStand
+  _shaderMaterial: {fileID: 2100000, guid: 2fc5b0bf28b952e4fb6fa63d76682c73, type: 2}

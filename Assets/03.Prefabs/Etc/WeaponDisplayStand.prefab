@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4451976051272002689}
   - component: {fileID: 4827071173420729998}
   - component: {fileID: 4337480013376719156}
+  - component: {fileID: -5491672239382890485}
   m_Layer: 10
   m_Name: WeaponDisplayStand
   m_TagString: Untagged
@@ -138,3 +139,16 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.5, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-5491672239382890485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849555145355823659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3783f9d24c6a4b4caf9a8bd5b9287019, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DisplayStand
+  _shaderMaterial: {fileID: 2100000, guid: 2fc5b0bf28b952e4fb6fa63d76682c73, type: 2}
