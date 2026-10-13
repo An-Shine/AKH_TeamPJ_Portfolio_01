@@ -1187,6 +1187,7 @@ MonoBehaviour:
   - {fileID: 3752560541776440137, guid: e4c67777cc259704d84123501921468b, type: 3}
   - {fileID: 8326424469708161978, guid: 5c49daa289ab3474e8046744413410ab, type: 3}
   _room: {fileID: 787143460}
+  _mapRoomIconUI: {fileID: 3653195159723180329}
   _spawnPoints:
   - {fileID: 1595006571}
   - {fileID: 2013115849}
@@ -2050,6 +2051,7 @@ MonoBehaviour:
   _monsterPrefabs:
   - {fileID: 3752560541776440137, guid: 90166dd23fa65d9bacfe3f56d89b9700, type: 3}
   _room: {fileID: 607853936}
+  _mapRoomIconUI: {fileID: 3653195159723180335}
   _spawnPoints:
   - {fileID: 35545744}
   - {fileID: 687324814}
@@ -15916,6 +15918,7 @@ MonoBehaviour:
   - {fileID: 3752560541776440137, guid: e4c67777cc259704d84123501921468b, type: 3}
   - {fileID: 8326424469708161978, guid: 5c49daa289ab3474e8046744413410ab, type: 3}
   _room: {fileID: 2093442479}
+  _mapRoomIconUI: {fileID: 3653195159723180328}
   _spawnPoints:
   - {fileID: 247909902}
   - {fileID: 1818782539}
@@ -16990,6 +16993,7 @@ MonoBehaviour:
   _monsterPrefabs:
   - {fileID: 3752560541776440137, guid: 90166dd23fa65d9bacfe3f56d89b9700, type: 3}
   _room: {fileID: 480414177}
+  _mapRoomIconUI: {fileID: 3653195159723180332}
   _spawnPoints:
   - {fileID: 1301407408}
   - {fileID: 2053812451}
@@ -37400,6 +37404,7 @@ MonoBehaviour:
   - {fileID: 3752560541776440137, guid: e4c67777cc259704d84123501921468b, type: 3}
   - {fileID: 8326424469708161978, guid: 5c49daa289ab3474e8046744413410ab, type: 3}
   _room: {fileID: 75196801}
+  _mapRoomIconUI: {fileID: 3653195159723180330}
   _spawnPoints:
   - {fileID: 1184711618}
   - {fileID: 1389829320}
@@ -39181,6 +39186,7 @@ MonoBehaviour:
   - {fileID: 3752560541776440137, guid: e4c67777cc259704d84123501921468b, type: 3}
   - {fileID: 8326424469708161978, guid: 5c49daa289ab3474e8046744413410ab, type: 3}
   _room: {fileID: 1795162395}
+  _mapRoomIconUI: {fileID: 3653195159723180334}
   _spawnPoints:
   - {fileID: 1202701556}
   _maxSpawnCount: 6
@@ -61061,6 +61067,7 @@ MonoBehaviour:
   - {fileID: 3752560541776440137, guid: e4c67777cc259704d84123501921468b, type: 3}
   - {fileID: 8326424469708161978, guid: 5c49daa289ab3474e8046744413410ab, type: 3}
   _room: {fileID: 444469511}
+  _mapRoomIconUI: {fileID: 3653195159723180331}
   _spawnPoints:
   - {fileID: 1829361903}
   _maxSpawnCount: 6
@@ -71881,6 +71888,7 @@ MonoBehaviour:
   - {fileID: 3752560541776440137, guid: e4c67777cc259704d84123501921468b, type: 3}
   - {fileID: 8326424469708161978, guid: 5c49daa289ab3474e8046744413410ab, type: 3}
   _room: {fileID: 1863305483}
+  _mapRoomIconUI: {fileID: 3653195159723180333}
   _spawnPoints:
   - {fileID: 977504287}
   - {fileID: 813171059}
@@ -116155,7 +116163,7 @@ GameObject:
   - component: {fileID: 2093442478}
   - component: {fileID: 2093442479}
   m_Layer: 0
-  m_Name: SpwanRoom
+  m_Name: SpawnRoom
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -117952,6 +117960,94 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ea71c8b51783054db4799ff60ebb042, type: 3}
+--- !u!114 &3653195159723180328 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2345655658067968041, guid: 8ea71c8b51783054db4799ff60ebb042, type: 3}
+  m_PrefabInstance: {fileID: 3653195159723180327}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6156be54d449b5043ab00b46ab7fc25b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MapRoomIconUI
+--- !u!114 &3653195159723180329 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1421378964627855898, guid: 8ea71c8b51783054db4799ff60ebb042, type: 3}
+  m_PrefabInstance: {fileID: 3653195159723180327}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6156be54d449b5043ab00b46ab7fc25b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MapRoomIconUI
+--- !u!114 &3653195159723180330 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4018693001714449519, guid: 8ea71c8b51783054db4799ff60ebb042, type: 3}
+  m_PrefabInstance: {fileID: 3653195159723180327}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6156be54d449b5043ab00b46ab7fc25b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MapRoomIconUI
+--- !u!114 &3653195159723180331 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 434483278991050439, guid: 8ea71c8b51783054db4799ff60ebb042, type: 3}
+  m_PrefabInstance: {fileID: 3653195159723180327}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6156be54d449b5043ab00b46ab7fc25b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MapRoomIconUI
+--- !u!114 &3653195159723180332 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7083686205478319850, guid: 8ea71c8b51783054db4799ff60ebb042, type: 3}
+  m_PrefabInstance: {fileID: 3653195159723180327}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6156be54d449b5043ab00b46ab7fc25b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MapRoomIconUI
+--- !u!114 &3653195159723180333 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2257094323165957570, guid: 8ea71c8b51783054db4799ff60ebb042, type: 3}
+  m_PrefabInstance: {fileID: 3653195159723180327}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6156be54d449b5043ab00b46ab7fc25b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MapRoomIconUI
+--- !u!114 &3653195159723180334 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4751625840008422946, guid: 8ea71c8b51783054db4799ff60ebb042, type: 3}
+  m_PrefabInstance: {fileID: 3653195159723180327}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6156be54d449b5043ab00b46ab7fc25b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MapRoomIconUI
+--- !u!114 &3653195159723180335 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6546851667494322954, guid: 8ea71c8b51783054db4799ff60ebb042, type: 3}
+  m_PrefabInstance: {fileID: 3653195159723180327}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6156be54d449b5043ab00b46ab7fc25b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MapRoomIconUI
 --- !u!1001 &4168283088364540187
 PrefabInstance:
   m_ObjectHideFlags: 0

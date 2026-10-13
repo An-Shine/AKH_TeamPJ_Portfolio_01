@@ -19,6 +19,15 @@ public class CrosshairFollowMouse : MonoBehaviour
     // reload
     [SerializeField] private float _reloadRotationSpeed = 720f;
     [SerializeField] private float _rotationReturnSpeed = 1080f;
+
+    // charge
+    [SerializeField] private Color _chargeColor = new Color(0.65f, 0.2f, 1f, 1f);
+    [SerializeField, Min(0.01f)] private float _chargeFlashDuration = 0.18f;
+    [SerializeField] private CrosshairChargeRing _chargeRing;
+    [SerializeField, Range(0.1f, 1f)] private float _chargedScale = 0.7f;
+    private ChargeFire _trackedCharge;
+    private bool _wasFullyCharged;
+    private float _chargeFlashAge = float.PositiveInfinity;
     private Vector3 _baseScale;
     private Quaternion _baseRotation;
     private Weapon _trackedWeapon;
@@ -58,9 +67,8 @@ public class CrosshairFollowMouse : MonoBehaviour
         if (_image != null)
         {
             Weapon weapon = WeaponManager.Instance != null ? WeaponManager.Instance.CurrentWeapon : null;
-            _image.color = weapon != null && weapon.RemainingAmmo <= 0
-                ? new Color(1f, 0f, 0f, _baseColor.a)
-                : _baseColor;
+
+            UpdateColor(weapon, Time.deltaTime);
         }
 
         if (PlayerManager.IsInputBlocked)
@@ -107,6 +115,11 @@ public class CrosshairFollowMouse : MonoBehaviour
             _currentScale = 1f;
             _reloadAngle = Mathf.Repeat(_reloadAngle - _reloadRotationSpeed * Time.deltaTime, 360f);
         }
+        else if (weapon.FireBehaviour is ChargeFire charge && weapon.Data != null)
+        {
+            UpdateChargeScale(weapon, charge, Time.deltaTime);
+            _reloadAngle = Mathf.MoveTowardsAngle(_reloadAngle, 0f, _rotationReturnSpeed * Time.deltaTime);
+        }
         else
         {
             float shrink = Mathf.Max(0.001f, _shrinkDuration);
@@ -130,6 +143,77 @@ public class CrosshairFollowMouse : MonoBehaviour
         _crosshair.localRotation = _baseRotation * Quaternion.Euler(0f, 0f, _reloadAngle);
     }
 
+    private void UpdateChargeScale(Weapon weapon, ChargeFire charge, float deltaTime)
+    {
+        // 차지 무기는 일반 발사 축소를 겹치지 않고 현재 크기에서 바로 복귀합니다.
+        _pulseAge = float.PositiveInfinity;
+        if (charge.IsFiring && weapon.RemainingAmmo > 0)
+        {
+            float progress = weapon.Data.ChargeTime <= 0f
+                ? 1f
+                : Mathf.Clamp01(charge.ChargeTime / weapon.Data.ChargeTime);
+            _currentScale = Mathf.Lerp(1f, _chargedScale, progress);
+        }
+        else
+        {
+            float speed = (1f - _chargedScale) / Mathf.Max(0.001f, _recoverDuration);
+            _currentScale = Mathf.MoveTowards(_currentScale, 1f, speed * deltaTime);
+        }
+    }
+
+    private void UpdateColor(Weapon weapon, float deltaTime)
+    {
+        ChargeFire charge = weapon != null ? weapon.FireBehaviour as ChargeFire : null;
+        bool charging = !PlayerManager.IsInputBlocked && weapon != null && weapon.Data != null &&
+                        !weapon.IsReloading && weapon.RemainingAmmo > 0 && charge != null && charge.IsFiring;
+        if (!charging)
+        {
+            _trackedCharge = null;
+            _wasFullyCharged = false;
+            _chargeFlashAge = float.PositiveInfinity;
+            _image.color = weapon != null && !weapon.IsReloading && weapon.RemainingAmmo <= 0
+                ? new Color(1f, 0f, 0f, _baseColor.a)
+                : _baseColor;
+            return;
+        }
+
+        if (_trackedCharge != charge)
+        {
+            _trackedCharge = charge;
+            _wasFullyCharged = false;
+            _chargeFlashAge = float.PositiveInfinity;
+        }
+
+        float progress = weapon.Data.ChargeTime <= 0f
+            ? 1f
+            : Mathf.Clamp01(charge.ChargeTime / weapon.Data.ChargeTime);
+        bool fullyCharged = progress >= 1f;
+        if (fullyCharged && !_wasFullyCharged)
+        {
+            _chargeFlashAge = 0f;
+            if (_chargeRing != null)
+            {
+                _chargeRing.Play();
+            }
+        }
+        else
+        {
+            _chargeFlashAge += deltaTime;
+        }
+
+        if (!fullyCharged)
+        {
+            _chargeFlashAge = float.PositiveInfinity;
+        }
+
+        _wasFullyCharged = fullyCharged;
+
+        Color purple = new Color(_chargeColor.r, _chargeColor.g, _chargeColor.b, _baseColor.a);
+        Color color = Color.Lerp(_baseColor, purple, progress);
+        float flash = 1f - Mathf.Clamp01(_chargeFlashAge / Mathf.Max(0.01f, _chargeFlashDuration));
+        _image.color = Color.Lerp(color, new Color(1f, 1f, 1f, _baseColor.a), flash);
+    }
+
     private void ResetFeedback()
     {
         _trackedWeapon = null;
@@ -144,8 +228,20 @@ public class CrosshairFollowMouse : MonoBehaviour
 
     private void OnDisable()
     {
+        if (_chargeRing != null)
+        {
+            _chargeRing.Hide();
+        }
+
+        _trackedCharge = null;
+        _wasFullyCharged = false;
+        _chargeFlashAge = float.PositiveInfinity;
         ResetFeedback();
-        if (_image != null) _image.color = _baseColor;
+        if (_image != null)
+        {
+            _image.color = _baseColor;
+        }
+
         Cursor.visible = _previousCursorVisible;
     }
 }

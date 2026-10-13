@@ -6,6 +6,7 @@ public class PlayerStatus
 {
     private readonly float _baseMaxHP;
     private readonly float _baseMoveSpeed;
+    private readonly float _baseShootingMoveSpeed;
     public float CurrentHP;
     public float MaxHP;
     public float MoveSpeed;
@@ -29,6 +30,7 @@ public class PlayerStatus
     {
         _baseMaxHP = maxHP;
         _baseMoveSpeed = moveSpeed;
+        _baseShootingMoveSpeed = shootingMoveSpeed;
         MaxHP = maxHP;
         CurrentHP = maxHP;
         MoveSpeed = moveSpeed;
@@ -45,7 +47,9 @@ public class PlayerStatus
     public void ApplyItemStats(ItemPlayerStat stat)
     {
         MaxHP = Mathf.Max(1f, _baseMaxHP + (stat != null ? stat.MaxHealthModifier : 0));
-        MoveSpeed = Mathf.Max(0f, _baseMoveSpeed * (1f + (stat != null ? stat.MoveSpeedMultiplier : 0f)));
+        float moveSpeedMultiplier = 1f + (stat != null ? stat.MoveSpeedMultiplier : 0f);
+        MoveSpeed = Mathf.Max(0f, _baseMoveSpeed * moveSpeedMultiplier);
+        ShootingMoveSpeed = Mathf.Max(0f, _baseShootingMoveSpeed * moveSpeedMultiplier);
         CurrentHP = Mathf.Clamp(CurrentHP, 0f, MaxHP);
     }
 

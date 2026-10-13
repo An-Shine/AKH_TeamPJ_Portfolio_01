@@ -8,7 +8,8 @@ public class GameStateManager : MonoBehaviour
         Playing,
         Dying,
         GameOver,
-        GameClear
+        GameClear,
+        Ending
     }
 
     [Header("게임오버")]
@@ -80,9 +81,8 @@ public class GameStateManager : MonoBehaviour
 
     public void CompleteGame()
     {
-        if (!IsPlaying) return;
+        if (CurrentState != GameState.Ending) return;
 
-        if (PlayerManager.Instance != null && PlayerManager.Instance.IsGameOver) return;
         CurrentState = GameState.GameClear;
         ShowResult(_stageClearUI, _stageClearTimeText);
     }
@@ -134,5 +134,16 @@ public class GameStateManager : MonoBehaviour
         }
 
         return !SceneFlowManager.Instance.IsTransitioning;
+    }
+
+    public void BeginEnding()
+    {
+        if (!IsPlaying) return;
+        if (PlayerManager.Instance != null && PlayerManager.Instance.IsGameOver)
+        {
+            return;
+        }
+
+        CurrentState = GameState.Ending;
     }
 }

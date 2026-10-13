@@ -6,4 +6,5 @@ public class ItemData
     public string Name;
     public string Description;
     public List<string> EffectIdList;
+    public float VisualValue;
 }

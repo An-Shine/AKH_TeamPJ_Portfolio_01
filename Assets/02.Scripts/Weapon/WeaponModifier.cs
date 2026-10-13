@@ -9,6 +9,8 @@ public class WeaponModifier
     public float Angle;
     public float Range;
 
+    public float Size;
+
     public WeaponModifier()
     {
         Damage = new WeaponStatModifier();
@@ -20,5 +22,7 @@ public class WeaponModifier
 
         ProjectileCount = 0;
         Angle = 0;
+
+        Size = 1;
     }
 }
