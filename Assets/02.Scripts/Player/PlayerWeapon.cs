@@ -5,6 +5,7 @@ public class PlayerWeapon : MonoBehaviour
     private AimDisplayMode _aimDisplayMode = AimDisplayMode.Crosshair;
     [SerializeField] private Transform _muzzle;
     [SerializeField] private ParticleSystem _reloadParticle;
+    [SerializeField] private GameObject _reloadText;
     private float _attackVisualDuration = 0.7f; // 공격 애니메이션 길이로 맞추기
 
     private Weapon _activeWeapon;
@@ -21,6 +22,23 @@ public class PlayerWeapon : MonoBehaviour
     public Transform Muzzle => _muzzle;
     [SerializeField] private Transform _origin;
     public Transform Origin => _origin;
+
+    private void LateUpdate()
+    {
+        RefreshReloadText();
+    }
+
+    private void RefreshReloadText()
+    {
+        if (_reloadText == null) return;
+
+        Weapon weapon = WeaponManager.Instance != null ? WeaponManager.Instance.CurrentWeapon : null;
+        bool showReloadText = weapon != null && weapon.RemainingAmmo <= 0;
+        if (_reloadText.activeSelf != showReloadText)
+        {
+            _reloadText.SetActive(showReloadText);
+        }
+    }
 
     public void Tick(bool fireHeld, bool isDashing, Vector2 aimDirection)
     {
@@ -45,6 +63,7 @@ public class PlayerWeapon : MonoBehaviour
                 TickCharge(false);
                 _wasFireHeld = false;
             }
+
             CancelAttackVisual();
             return;
         }
@@ -109,6 +128,7 @@ public class PlayerWeapon : MonoBehaviour
             _reloadParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
             _reloadParticle.Play(true);
         }
+
         WeaponStatModifier modifier = _activeWeapon.Modifier.ReloadSpeed;
         float reloadSpeed = (1f + modifier.Flat) * (1f + modifier.Rate);
         return reloadSpeed > 0f ? _activeWeapon.Data.ReloadTime / reloadSpeed : 0f;

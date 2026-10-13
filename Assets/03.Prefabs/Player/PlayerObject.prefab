@@ -5590,6 +5590,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerWeapon
   _muzzle: {fileID: 3226002579121709957}
   _reloadParticle: {fileID: 3504095718531778598}
+  _reloadText: {fileID: 5255517192566161345}
   _origin: {fileID: 4242759625333975747}
 --- !u!114 &9147032869833001549
 MonoBehaviour:
