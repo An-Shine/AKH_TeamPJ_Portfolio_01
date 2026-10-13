@@ -8,6 +8,7 @@ using UnityEngine.Video;
 public class EndingCutscenePlayer : MonoBehaviour
 {
     private const string MainMenuSceneName = "03.MainMenu";
+
     [SerializeField] private GameObject _endingCanvas;
     [SerializeField, Min(0f)] private float _deathAnimationDelay = 2f;
     [SerializeField] private AudioSource[] _gameAudioSources;
@@ -22,6 +23,7 @@ public class EndingCutscenePlayer : MonoBehaviour
     private bool _paused;
     private bool _failed;
     private bool _completed;
+    private bool _timeScaleCaptured;
 
     private string NextSceneName => string.IsNullOrWhiteSpace(_nextSceneName)
         ? MainMenuSceneName : _nextSceneName.Trim();
@@ -43,12 +45,10 @@ public class EndingCutscenePlayer : MonoBehaviour
 
     public void PlayAfterBossDeath()
     {
-        if (_requested)
-        {
+        if (_requested || _completed)
             return;
-        }
 
-        if (_endingCanvas == null || _videoPlayer.clip == null)
+        if (_endingCanvas == null || _videoPlayer == null || _videoPlayer.clip == null)
         {
             Debug.LogError("엔딩 Canvas와 Video Clip을 연결하세요.", this);
             return;
@@ -68,26 +68,39 @@ public class EndingCutscenePlayer : MonoBehaviour
 
         if (_gameStateManager == null)
         {
-            Debug.LogError("GameStateManager 확인하세요", this);
-            return;
+            _gameStateManager = FindFirstObjectByType<GameStateManager>();
         }
 
-        _gameStateManager.BeginEnding();
+        _previousTimeScale = Time.timeScale;
 
-        if (_gameStateManager.CurrentState != GameStateManager.GameState.Ending)
+        if (_gameStateManager != null)
         {
-            return;
+            _gameStateManager.BeginEnding();
+
+            if (_gameStateManager.CurrentState != GameStateManager.GameState.Ending)
+            {
+                return;
+            }
         }
 
+        _timeScaleCaptured = true;
         _requested = true;
+        _failed = false;
+
         StartCoroutine(PlayRoutine());
     }
 
     private IEnumerator PlayRoutine()
     {
-        yield return new WaitForSeconds(_deathAnimationDelay);
+        yield return new WaitForSecondsRealtime(_deathAnimationDelay);
 
-        _failed = false;
+        if (_failed)
+        {
+            _requested = false;
+            RestoreTimeScale();
+            yield break;
+        }
+
         _videoPlayer.Prepare();
         float timeout = Time.realtimeSinceStartup + 20f;
 
@@ -106,10 +119,10 @@ public class EndingCutscenePlayer : MonoBehaviour
         if (_failed)
         {
             _requested = false;
+            RestoreTimeScale();
             yield break;
         }
 
-        _previousTimeScale = Time.timeScale;
         _paused = true;
         Time.timeScale = 0f;
 
@@ -141,28 +154,39 @@ public class EndingCutscenePlayer : MonoBehaviour
 
     private void OnVideoFinished(VideoPlayer player)
     {
-        if (!_paused || _completed)
-        {
+        if (!_paused || _completed || _failed)
             return;
-        }
 
         _completed = true;
         string nextSceneName = NextSceneName;
-        RestoreTimeScale();
-        Time.timeScale = 1f;
+
         _videoPlayer.Stop();
+
         if (_endingCanvas != null)
         {
             _endingCanvas.SetActive(false);
         }
 
-        // 이전에 다음 씬을 비우고 등록한 완료 이벤트도 유지합니다.
+        RestoreTimeScale();
+
+        if (_gameStateManager != null)
+        {
+            _gameStateManager.CompleteGame();
+        }
+
+        Time.timeScale = 1f;
+
+        // 기존에 다음 씬을 비우고 등록한 완료 이벤트를 유지합니다.
         if (string.IsNullOrWhiteSpace(_nextSceneName))
         {
             _onFinished?.Invoke();
+
             if (this == null)
                 return;
         }
+
+        // 완료 이벤트가 시간을 정지했더라도 메뉴는 정상 속도로 실행합니다.
+        Time.timeScale = 1f;
 
         if (!Application.CanStreamedLevelBeLoaded(nextSceneName))
         {
@@ -172,20 +196,15 @@ public class EndingCutscenePlayer : MonoBehaviour
 
         if (SceneFlowManager.Instance != null)
         {
-            // 완료 이벤트가 이미 씬 전환을 요청했다면 중복 요청하지 않습니다.
             if (!SceneFlowManager.Instance.IsTransitioning)
+            {
                 SceneFlowManager.Instance.LoadScene(nextSceneName);
+            }
+
             return;
         }
 
         SceneManager.LoadScene(nextSceneName, LoadSceneMode.Single);
-        if (!_paused) return;
-        _paused = false;
-
-        _videoPlayer.Stop();
-        _endingCanvas.SetActive(false);
-
-        _gameStateManager.CompleteGame();
     }
 
     private void OnVideoError(VideoPlayer player, string message)
@@ -193,21 +212,21 @@ public class EndingCutscenePlayer : MonoBehaviour
         _failed = true;
         Debug.LogError($"엔딩 영상 재생 오류: {message}", this);
 
-        if (_paused)
+        RestoreTimeScale();
+
+        if (_endingCanvas != null)
         {
-            RestoreTimeScale();
             _endingCanvas.SetActive(false);
         }
     }
 
     private void RestoreTimeScale()
     {
-        if (!_paused)
-        {
+        if (!_timeScaleCaptured)
             return;
-        }
 
         Time.timeScale = _previousTimeScale;
+        _timeScaleCaptured = false;
         _paused = false;
     }
 

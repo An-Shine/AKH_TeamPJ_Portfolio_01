@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -13,6 +14,9 @@ public class PlayerController : MonoBehaviour
     public PlayerWeapon _weapon;
     private Vector2 _moveInput;
     private bool _dashQueued;
+    [SerializeField] private Transform _reviveEffect;
+    private ParticleSystem[] _reviveParticles;
+    private Coroutine _reviveEffectRoutine;
 
     public InteractDisplayObj InteractDisplayObject;
 
@@ -22,6 +26,12 @@ public class PlayerController : MonoBehaviour
         _fsm = GetComponent<PlayerStateMachine>();
         _aim = GetComponent<PlayerAim>();
         _weapon = GetComponent<PlayerWeapon>();
+        if (_reviveEffect != null)
+        {
+            _reviveParticles = _reviveEffect.GetComponentsInChildren<ParticleSystem>(true);
+            StopReviveEffect();
+        }
+
         if (_animation == null)
         {
             _animation = GetComponentInChildren<PlayerAnimation>();
@@ -72,7 +82,7 @@ public class PlayerController : MonoBehaviour
             ? _aim.GetDirectionFrom(_weapon.Muzzle.position)
             : _aim.AimDirection;
         _weapon.Tick(Input.GetMouseButton(0), _fsm.IsDashing || dashStarting || _fsm.IsInteracting, fireDirection);
-        if (Input.GetKeyDown(KeyCode.R) && !_fsm.IsInteracting)
+        if ((Input.GetKeyDown(KeyCode.R) || Input.GetMouseButtonDown(1)) && !_fsm.IsInteracting)
         {
             float reloadDuration = _weapon.Reload();
             if (_weapon.IsReloading)
@@ -165,6 +175,7 @@ public class PlayerController : MonoBehaviour
     public void Die()
     {
         if (_fsm.IsDead) return;
+        StopReviveEffect();
         _fsm.Die();
         _moveInput = Vector2.zero;
         _dashQueued = false;
@@ -176,8 +187,66 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Revive()
+    {
+        _fsm.Revive();
+        _moveInput = Vector2.zero;
+        _dashQueued = false;
+        _motor.Stop();
+        _weapon.CancelActions();
+        if (_animation != null)
+        {
+            _animation.Revive();
+        }
+
+        float duration = PlayerManager.ReviveInvulnerabilityDuration;
+        PlayerHitFlash hitFlash = GetComponent<PlayerHitFlash>();
+        if (hitFlash != null)
+        {
+            hitFlash.PlayRevive(duration);
+        }
+
+        StopReviveEffect();
+        if (_reviveEffect != null)
+        {
+            _reviveEffect.gameObject.SetActive(true);
+            foreach (ParticleSystem particle in _reviveParticles)
+            {
+                if (particle != null) particle.Play(false);
+            }
+
+            _reviveEffectRoutine = StartCoroutine(FinishReviveEffect(duration));
+        }
+    }
+
+    private IEnumerator FinishReviveEffect(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        foreach (ParticleSystem particle in _reviveParticles)
+        {
+            if (particle != null) particle.Stop(false, ParticleSystemStopBehavior.StopEmittingAndClear);
+        }
+
+        if (_reviveEffect != null) _reviveEffect.gameObject.SetActive(false);
+        _reviveEffectRoutine = null;
+    }
+
+    private void StopReviveEffect()
+    {
+        if (_reviveEffectRoutine != null) StopCoroutine(_reviveEffectRoutine);
+        _reviveEffectRoutine = null;
+        if (_reviveParticles == null) return;
+        foreach (ParticleSystem particle in _reviveParticles)
+        {
+            if (particle != null) particle.Stop(false, ParticleSystemStopBehavior.StopEmittingAndClear);
+        }
+
+        if (_reviveEffect != null) _reviveEffect.gameObject.SetActive(false);
+    }
+
     private void OnDisable()
     {
+        StopReviveEffect();
         _moveInput = Vector2.zero;
         _dashQueued = false;
         if (_motor != null)
