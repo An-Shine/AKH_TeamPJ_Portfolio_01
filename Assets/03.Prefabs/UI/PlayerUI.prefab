@@ -1,5 +1,80 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &916227290650335889
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8388553042013238795}
+  - component: {fileID: 3172015448910785533}
+  - component: {fileID: 264535891421050733}
+  m_Layer: 5
+  m_Name: PlayerHpLabel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8388553042013238795
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916227290650335889}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1154620552163674141}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -140, y: 38}
+  m_SizeDelta: {x: 80, y: 36}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &3172015448910785533
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916227290650335889}
+  m_CullTransparentMesh: 1
+--- !u!114 &264535891421050733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916227290650335889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: e666065aaaa741a4b145cf853b05af2e, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &1024684439577243947
 GameObject:
   m_ObjectHideFlags: 0
@@ -32,6 +107,7 @@ RectTransform:
   - {fileID: 250507805544485006}
   - {fileID: 2785892024733406266}
   - {fileID: 8230412007404052093}
+  - {fileID: 8388553042013238795}
   - {fileID: 241285820596157034}
   - {fileID: 7660003749656753208}
   m_Father: {fileID: 3806662124636121245}
@@ -242,7 +318,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3391568582986212505
 RectTransform:
   m_ObjectHideFlags: 0
@@ -480,7 +556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthUI
   _changeTrailImage: {fileID: 8840845554926027722}
-  _damageTrailColor: {r: 1, g: 0.68, b: 0.17, a: 1}
+  _damageTrailColor: {r: 0.74509805, g: 0.32156864, b: 0.59607846, a: 1}
   _healTrailColor: {r: 0.2, g: 1, b: 0.4, a: 1}
   _flashDuration: 0.2
   _damageTrailSpeed: 0.8
@@ -672,7 +748,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 47, y: -2}
+  m_AnchoredPosition: {x: 47, y: -3}
   m_SizeDelta: {x: 406, y: 16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7055367375545991014
@@ -896,7 +972,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -5.2149, y: 26.5}
+  m_AnchoredPosition: {x: 53.785103, y: 26.5}
   m_SizeDelta: {x: 285.57, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3278292519955682406
@@ -1139,8 +1215,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2f8c4a1d6b3e49f0a7c5d2e8b1f63490, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 937e9bc1ef58492a89b70c8178899bb2, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
