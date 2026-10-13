@@ -13,6 +13,7 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _ADDCOLORCONTRASTTOGGLE_ON
+  - _ENABLEFULLGLOWDISSOLVE_ON
   - _ENABLEOUTEROUTLINE_ON
   - _ENABLERECOLORRGBYCP_ON
   - _ENABLESINEGLOW_ON
@@ -225,7 +226,7 @@ Material:
     - _EnableFrozen: 0
     - _EnableFullAlphaDissolve: 0
     - _EnableFullDistortion: 0
-    - _EnableFullGlowDissolve: 0
+    - _EnableFullGlowDissolve: 1
     - _EnableGaussianBlur: 0
     - _EnableGlitch: 0
     - _EnableHalftone: 0
@@ -299,7 +300,7 @@ Material:
     - _FullAlphaDissolveFade: 0
     - _FullAlphaDissolveWidth: 0.5
     - _FullDistortionFade: 1
-    - _FullGlowDissolveFade: 0.5
+    - _FullGlowDissolveFade: 0
     - _FullGlowDissolveWidth: 0.5
     - _GaussianBlurFade: 1
     - _GaussianBlurOffset: 1
@@ -553,8 +554,8 @@ Material:
     - _FullAlphaDissolveNoiseScale: {r: 0.1, g: 0.1, b: 0, a: 0}
     - _FullDistortionDistortion: {r: 0.2, g: 0.2, b: 0, a: 0}
     - _FullDistortionNoiseScale: {r: 0.5, g: 0.5, b: 0, a: 0}
-    - _FullGlowDissolveEdgeColor: {r: 11.98431, g: 0.627451, b: 0.627451, a: 0}
-    - _FullGlowDissolveNoiseScale: {r: 0.1, g: 0.1, b: 0, a: 0}
+    - _FullGlowDissolveEdgeColor: {r: 0.6901959, g: 5.033118, b: 11.984312, a: 0}
+    - _FullGlowDissolveNoiseScale: {r: 0, g: 0.5, b: 0, a: 0}
     - _GlitchDistortion: {r: 0.1, g: 0, b: 0, a: 0}
     - _GlitchDistortionScale: {r: 0, g: 3, b: 0, a: 0}
     - _GlitchDistortionSpeed: {r: 0, g: 1, b: 0, a: 0}
