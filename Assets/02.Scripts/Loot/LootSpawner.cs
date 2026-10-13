@@ -70,7 +70,7 @@ public class LootSpawner : MonoBehaviour
         for (repeat = 0; repeat < _lootSpawnInfoDictionary[roomId].WeaponSpawnCount; repeat++)
         {
             spawnPosition = GetPosition(roomId, _weaponStandSize);
-            if (_weaponStandPrefab != null && SpawnWeapon(spawnPosition, _weaponStandPrefab.transform))
+            if (_weaponStandPrefab != null && SpawnWeapon(spawnPosition))
             {
                 Instantiate(_weaponStandPrefab, spawnPosition, Quaternion.identity);
             }
@@ -125,7 +125,7 @@ public class LootSpawner : MonoBehaviour
         return targetPosition;
     }
 
-    private bool SpawnWeapon(Vector3 spawnPosition, Transform parent)
+    private bool SpawnWeapon(Vector3 spawnPosition)
     {
         int count = _weaponPickUpDictionary.Count; //WeaponManager.Instance.UnobtainedWeapons.Count;
         if (count <= 0) return false;
@@ -136,7 +136,7 @@ public class LootSpawner : MonoBehaviour
                 .ElementAt(index); //WeaponManager.Instance.UnobtainedWeapons.Keys.ElementAt(index);
         if (_weaponPickUpDictionary.TryGetValue(weaponId, out WeaponPickup targetPickUp))
         {
-            WeaponPickup weaponPickup = Instantiate(targetPickUp, parent);
+            WeaponPickup weaponPickup = Instantiate(targetPickUp, spawnPosition, Quaternion.identity);
             _weaponPickUpDictionary.Remove(weaponId);
             return true;
         }
