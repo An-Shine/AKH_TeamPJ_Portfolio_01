@@ -51,6 +51,7 @@ public class ItemRoomDoorController : MonoBehaviour
 
         _state = DoorState.Cleared;
         _doorController.Open();
+        LootSpawner.Instance?.SpawnLoot();
     }
 
     private DoorState _state = DoorState.WaitingForEntry;
