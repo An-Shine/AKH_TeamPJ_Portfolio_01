@@ -8,6 +8,8 @@ public class PlayerHitFlash : MonoBehaviour
     [SerializeField, ColorUsage(false, true)]
     private Color _dashGlowColor = new Color(1.5f, 2.5f, 3f, 1f);
     private readonly int _flashAmountId = Shader.PropertyToID("_FlashAmount");
+    private readonly int _flashColorId = Shader.PropertyToID("_FlashColor");
+    private Color _flashColor = Color.red;
     private readonly int _dashGlowAmountId = Shader.PropertyToID("_DashGlowAmount");
     private readonly int _dashGlowColorId = Shader.PropertyToID("_DashGlowColor");
     private SpriteRenderer[] _renderers;
@@ -31,11 +33,36 @@ public class PlayerHitFlash : MonoBehaviour
         }
 
         _tween?.Kill();
+        _flashColor = Color.red;
         Apply(1f);
         _tween = DOTween.To(() => _amount, Apply, 0f, _duration)
             .SetEase(Ease.Linear)
             .SetTarget(this)
             .OnComplete(() => _tween = null);
+    }
+
+    public void PlayRevive(float duration)
+    {
+        if (!isActiveAndEnabled || duration <= 0f) return;
+
+        _tween?.Kill();
+        _flashColor = Color.white;
+        Apply(1f);
+        // 0.1초마다 흰색과 원래 색을 번갈아 표시하고 종료 시 원래 색으로 복원합니다.
+        float elapsed = 0f;
+        _tween = DOTween.To(() => elapsed, value =>
+            {
+                elapsed = value;
+                Apply(Mathf.FloorToInt(value / 0.1f) % 2 == 0 ? 1f : 0f);
+            }, duration, duration)
+            .SetEase(Ease.Linear)
+            .SetTarget(this)
+            .OnComplete(() =>
+            {
+                Apply(0f);
+                _flashColor = Color.red;
+                _tween = null;
+            });
     }
 
     public void PlayDashGlow()
@@ -80,6 +107,7 @@ public class PlayerHitFlash : MonoBehaviour
 
             sprite.GetPropertyBlock(_properties);
             _properties.SetFloat(_flashAmountId, amount);
+            _properties.SetColor(_flashColorId, _flashColor);
             sprite.SetPropertyBlock(_properties);
         }
     }

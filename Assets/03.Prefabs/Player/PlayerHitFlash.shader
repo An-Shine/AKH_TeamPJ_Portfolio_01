@@ -3,6 +3,7 @@ Shader "Player/Sprite Lit Hit Flash"
     Properties
     {
         _FlashAmount("Flash Amount", Range(0, 1)) = 0
+        _FlashColor("Flash Color", Color) = (1, 0, 0, 1)
         _DashGlowAmount("Dash Glow Amount", Range(0, 1)) = 0
         [HDR] _DashGlowColor("Dash Glow Color", Color) = (1.5, 2.5, 3, 1)
         _MainTex("Diffuse", 2D) = "white" {}
@@ -61,6 +62,7 @@ Shader "Player/Sprite Lit Hit Flash"
             CBUFFER_START(UnityPerMaterial)
                 half4 _Color;
                 half _FlashAmount;
+                half4 _FlashColor;
                 half _DashGlowAmount;
                 half4 _DashGlowColor;
             CBUFFER_END
@@ -81,7 +83,7 @@ Shader "Player/Sprite Lit Hit Flash"
             {
                 half4 result = CommonLitFragment(input, input.color);
                 result.rgb = lerp(result.rgb, _DashGlowColor.rgb, saturate(_DashGlowAmount));
-                result.rgb = lerp(result.rgb, half3(1, 0, 0), saturate(_FlashAmount));
+                result.rgb = lerp(result.rgb, _FlashColor.rgb, saturate(_FlashAmount));
                 return result;
             }
             ENDHLSL
@@ -120,6 +122,7 @@ Shader "Player/Sprite Lit Hit Flash"
             CBUFFER_START( UnityPerMaterial )
                 half4 _Color;
                 half _FlashAmount;
+                half4 _FlashColor;
                 half _DashGlowAmount;
                 half4 _DashGlowColor;
             CBUFFER_END
@@ -176,6 +179,7 @@ Shader "Player/Sprite Lit Hit Flash"
             CBUFFER_START(UnityPerMaterial)
                 half4 _Color;
                 half _FlashAmount;
+                half4 _FlashColor;
                 half _DashGlowAmount;
                 half4 _DashGlowColor;
             CBUFFER_END
@@ -195,7 +199,7 @@ Shader "Player/Sprite Lit Hit Flash"
             {
                 half4 result = CommonUnlitFragment(input, input.color);
                 result.rgb = lerp(result.rgb, _DashGlowColor.rgb, saturate(_DashGlowAmount));
-                result.rgb = lerp(result.rgb, half3(1, 0, 0), saturate(_FlashAmount));
+                result.rgb = lerp(result.rgb, _FlashColor.rgb, saturate(_FlashAmount));
                 return result;
             }
             ENDHLSL

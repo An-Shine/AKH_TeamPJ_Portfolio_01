@@ -5,6 +5,7 @@ using Michsky.UI.Shift;
 
 public class PlayerManager : MonoBehaviour
 {
+    public const float ReviveInvulnerabilityDuration = 2f;
     private const float WeaponCooldownUnits = 10f;
     private static PlayerManager _instance;
     public static PlayerManager Instance => _instance;
@@ -18,6 +19,7 @@ public class PlayerManager : MonoBehaviour
     public PlayerStatus PlayerStatusData { get; private set; }
     private float _hitInvulnerableUntil;
     private float _dashInvulnerableUntil;
+    private float _reviveInvulnerableUntil;
     private Weapon _modifiedWeapon;
     private float _appliedFireFlat;
     private float _appliedFireRate;
@@ -229,7 +231,8 @@ public class PlayerManager : MonoBehaviour
         EnsureStatus();
         if (IsGameOver || PlayerStatusData == null || !PlayerStatusData.IsVulnerable ||
             PlayerStatusData.CurrentHP <= 0f || Time.timeScale <= 0f ||
-            Time.time < _hitInvulnerableUntil || Time.time < _dashInvulnerableUntil || damage <= 0f ||
+            Time.time < _hitInvulnerableUntil || Time.time < _dashInvulnerableUntil ||
+            Time.time < _reviveInvulnerableUntil || damage <= 0f ||
             float.IsNaN(damage) || float.IsInfinity(damage))
         {
             return false;
@@ -264,6 +267,28 @@ public class PlayerManager : MonoBehaviour
         if (player != null) player.Die();
     }
 
+
+    // 사망 위치에서 최대 체력으로 부활하며, 게임 시간 기준 2초 동안 피해를 막습니다.
+    public bool TryRevive()
+    {
+        EnsureStatus();
+        if (PlayerStatusData == null || (!IsGameOver && PlayerStatusData.CurrentHP > 0f)) return false;
+
+        PlayerController player = PlayerControllerObj != null
+            ? PlayerControllerObj
+            : FindFirstObjectByType<PlayerController>();
+        if (player == null) return false;
+
+        RefreshFromManagers();
+        PlayerStatusData.CurrentHP = PlayerStatusData.MaxHP;
+        PlayerStatusData.IsVulnerable = true;
+        _hitInvulnerableUntil = 0f;
+        _dashInvulnerableUntil = 0f;
+        _reviveInvulnerableUntil = Time.time + ReviveInvulnerabilityDuration;
+        IsGameOver = false;
+        player.Revive();
+        return true;
+    }
 
     private void PlayHitFlash()
     {

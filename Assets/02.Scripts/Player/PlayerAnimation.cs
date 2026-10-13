@@ -261,6 +261,23 @@ public class PlayerAnimation : MonoBehaviour
         _animator.Play(Animator.StringToHash($"{_layerName}.Die"), 0, 0f);
     }
 
+    public void Revive()
+    {
+        _isDead = false;
+        _reloadUntil = 0f;
+        _hasPlayed = false;
+        _hasGunSelection = false;
+        ResetRecoil();
+        _animator.updateMode = AnimatorUpdateMode.Normal;
+        _animator.speed = 1f;
+        if (_gunRenderer != null)
+        {
+            _gunRenderer.enabled = true;
+        }
+
+        Refresh(PlayerState.Idle, FacingDirection.Down, false, 0);
+    }
+
     private void RefreshGunSprite(FacingDirection facing)
     {
         if (_gunRenderer == null)
