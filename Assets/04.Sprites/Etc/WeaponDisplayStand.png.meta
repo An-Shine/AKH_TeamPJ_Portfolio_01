@@ -1,0 +1,715 @@
+fileFormatVersion: 2
+guid: b6e4550974c6a404580e66d3e44a5029
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -589639893932823116
+    second: WeaponDisplayStand_0
+  - first:
+      213: -2942977431551536938
+    second: WeaponDisplayStand_1
+  - first:
+      213: 3259043750995410677
+    second: WeaponDisplayStand_2
+  - first:
+      213: -3463007867047589310
+    second: WeaponDisplayStand_3
+  - first:
+      213: 548207945319937882
+    second: WeaponDisplayStand_4
+  - first:
+      213: 6140182910838891291
+    second: WeaponDisplayStand_5
+  - first:
+      213: -2739056509486325072
+    second: WeaponDisplayStand_6
+  - first:
+      213: -4032861523162454587
+    second: WeaponDisplayStand_7
+  - first:
+      213: -4881197179087594238
+    second: WeaponDisplayStand_8
+  - first:
+      213: -5449849204185005182
+    second: WeaponDisplayStand_9
+  - first:
+      213: 2488256792790941605
+    second: WeaponDisplayStand_10
+  - first:
+      213: -5699151985729383360
+    second: WeaponDisplayStand_11
+  - first:
+      213: 1337245220898678081
+    second: WeaponDisplayStand_12
+  - first:
+      213: -5880026986760966705
+    second: WeaponDisplayStand_13
+  - first:
+      213: -8309810834413696973
+    second: WeaponDisplayStand_14
+  - first:
+      213: 2450611796754383214
+    second: WeaponDisplayStand_15
+  - first:
+      213: 2033004155403073600
+    second: WeaponDisplayStand_16
+  - first:
+      213: -1520809778441478353
+    second: WeaponDisplayStand_17
+  - first:
+      213: -2909472439164640037
+    second: WeaponDisplayStand_18
+  - first:
+      213: -6034539496804590799
+    second: WeaponDisplayStand_19
+  - first:
+      213: -4617476144942009381
+    second: WeaponDisplayStand_20
+  - first:
+      213: 1310939808786515360
+    second: WeaponDisplayStand_21
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 480
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: WeaponDisplayStand_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 57
+        width: 1203
+        height: 950
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bd2cb8f3ad21d7f0800000000000000
+      internalID: -589639893932823116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WeaponDisplayStand_1
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 921
+        width: 239
+        height: 248
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d0116a5e917827d0800000000000000
+      internalID: -2942977431551536938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WeaponDisplayStand_2
+      rect:
+        serializedVersion: 2
+        x: 1157
+        y: 566
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5feb98d36037a3d20800000000000000
+      internalID: 3259043750995410677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WeaponDisplayStand_3
+      rect:
+        serializedVersion: 2
+        x: 1162
+        y: 568
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24ace3651bce0ffc0800000000000000
+      internalID: -3463007867047589310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WeaponDisplayStand_4
+      rect:
+        serializedVersion: 2
+        x: 1222
+        y: 517
+        width: 30
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5777d3c830ab9700800000000000000
+      internalID: 548207945319937882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WeaponDisplayStand_5
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 505
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b13e97843df463550800000000000000
+      internalID: 6140182910838891291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WeaponDisplayStand_6
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 499
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b2a854ed9aecf9d0800000000000000
+      internalID: -2739056509486325072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WeaponDisplayStand_7
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 290
+        width: 46
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c5af8bcfc56808c0800000000000000
+      internalID: -4032861523162454587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WeaponDisplayStand_8
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 259
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20d58ddf601824cb0800000000000000
+      internalID: -4881197179087594238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WeaponDisplayStand_9
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 240
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2838b19f50f3e54b0800000000000000
+      internalID: -5449849204185005182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WeaponDisplayStand_10
+      rect:
+        serializedVersion: 2
+        x: 930
+        y: 242
+        width: 24
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5afb144ae50188220800000000000000
+      internalID: 2488256792790941605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WeaponDisplayStand_11
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 182
+        width: 42
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04453a1e67b88e0b0800000000000000
+      internalID: -5699151985729383360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WeaponDisplayStand_12
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 220
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14521418179de8210800000000000000
+      internalID: 1337245220898678081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WeaponDisplayStand_13
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 224
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcde668fb92f56ea0800000000000000
+      internalID: -5880026986760966705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WeaponDisplayStand_14
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 208
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3384418c21f9dac80800000000000000
+      internalID: -8309810834413696973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WeaponDisplayStand_15
+      rect:
+        serializedVersion: 2
+        x: 657
+        y: 208
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e614debf172520220800000000000000
+      internalID: 2450611796754383214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WeaponDisplayStand_16
+      rect:
+        serializedVersion: 2
+        x: 667
+        y: 210
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04871bd028ea63c10800000000000000
+      internalID: 2033004155403073600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WeaponDisplayStand_17
+      rect:
+        serializedVersion: 2
+        x: 685
+        y: 199
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2f1e09609ff4eae0800000000000000
+      internalID: -1520809778441478353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WeaponDisplayStand_18
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 203
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd46dcb4b3a7f97d0800000000000000
+      internalID: -2909472439164640037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WeaponDisplayStand_19
+      rect:
+        serializedVersion: 2
+        x: 713
+        y: 198
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13bd5edcc42014ca0800000000000000
+      internalID: -6034539496804590799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WeaponDisplayStand_20
+      rect:
+        serializedVersion: 2
+        x: 699
+        y: 192
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd334ed19ed6befb0800000000000000
+      internalID: -4617476144942009381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WeaponDisplayStand_21
+      rect:
+        serializedVersion: 2
+        x: 721
+        y: 198
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a583a87fc4613210800000000000000
+      internalID: 1310939808786515360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      WeaponDisplayStand_0: -589639893932823116
+      WeaponDisplayStand_1: -2942977431551536938
+      WeaponDisplayStand_10: 2488256792790941605
+      WeaponDisplayStand_11: -5699151985729383360
+      WeaponDisplayStand_12: 1337245220898678081
+      WeaponDisplayStand_13: -5880026986760966705
+      WeaponDisplayStand_14: -8309810834413696973
+      WeaponDisplayStand_15: 2450611796754383214
+      WeaponDisplayStand_16: 2033004155403073600
+      WeaponDisplayStand_17: -1520809778441478353
+      WeaponDisplayStand_18: -2909472439164640037
+      WeaponDisplayStand_19: -6034539496804590799
+      WeaponDisplayStand_2: 3259043750995410677
+      WeaponDisplayStand_20: -4617476144942009381
+      WeaponDisplayStand_21: 1310939808786515360
+      WeaponDisplayStand_3: -3463007867047589310
+      WeaponDisplayStand_4: 548207945319937882
+      WeaponDisplayStand_5: 6140182910838891291
+      WeaponDisplayStand_6: -2739056509486325072
+      WeaponDisplayStand_7: -4032861523162454587
+      WeaponDisplayStand_8: -4881197179087594238
+      WeaponDisplayStand_9: -5449849204185005182
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
