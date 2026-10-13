@@ -124,6 +124,7 @@ public class PlayerWeapon : MonoBehaviour
         _activeWeapon.Reload();
         if (_reloadParticle != null)
         {
+            _reloadParticle.transform.position = transform.position;
             _reloadParticle.gameObject.SetActive(true);
             _reloadParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
             _reloadParticle.Play(true);
