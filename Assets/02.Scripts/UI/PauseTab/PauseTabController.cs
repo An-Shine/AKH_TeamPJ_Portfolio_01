@@ -61,6 +61,17 @@ public class PauseTabController : MonoBehaviour
 
         if (!Input.GetKeyDown(KeyCode.Escape)) return;
 
+        // 컷씬을 넘긴 ESC 입력으로 일시정지 메뉴까지 열리지 않도록 합니다.
+        foreach (BossRoomCutsceneGate cutscene in FindObjectsByType<BossRoomCutsceneGate>(FindObjectsSortMode.None))
+        {
+            if (!cutscene.IsPlaying) continue;
+
+            _isPaused = false;
+            _pauseMenuRoot.SetActive(false);
+            cutscene.SkipCutscene();
+            return;
+        }
+
         if (_isPaused)
         {
             ResumeGame();

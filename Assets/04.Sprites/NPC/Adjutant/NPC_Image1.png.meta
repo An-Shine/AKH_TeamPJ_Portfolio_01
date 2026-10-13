@@ -144,12 +144,12 @@ TextureImporter:
       name: Adjutant_Portrait_UpperBody_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 43
-        width: 1051
-        height: 1366
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 1254
+        height: 1254
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -167,11 +167,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 674
-        y: 1394
+        y: 1253
         width: 21
-        height: 15
+        height: 1
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -189,11 +189,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 710
-        y: 1398
+        y: 1253
         width: 27
-        height: 19
+        height: 1
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -207,28 +207,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Adjutant_Portrait_UpperBody_3
-      rect:
-        serializedVersion: 2
-        x: 740
-        y: 1392
-        width: 11
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ab2900efbdf041ae0800000000000000
-      internalID: -1579620131766496582
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Adjutant_Portrait_UpperBody_4
       rect:
         serializedVersion: 2
@@ -237,7 +215,7 @@ TextureImporter:
         width: 31
         height: 43
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -259,7 +237,7 @@ TextureImporter:
         width: 9
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -276,7 +254,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 8175cd3d6d71aed43bd9dc685be2afa3
     internalID: 0
     vertices: []
     indices: 
