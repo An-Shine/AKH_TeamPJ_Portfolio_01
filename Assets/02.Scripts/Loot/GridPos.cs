@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 public class GridPos
 {
@@ -30,13 +32,47 @@ public class GridPos
             {
                 grid = new GridPos(indexOfX, indexOfY);
                 gridInfo.Add(grid);
-                indexOfX += 0.5f;
+                indexOfX += 0.25f;
             }
 
             indexOfX = startOfX;
-            indexOfY -= 0.5f;
+            indexOfY -= 0.25f;
         }
 
         return gridInfo;
+    }
+
+    public static Vector3 GetPosition(List<GridPos> gridList, Vector2 checksize, LayerMask targetMask)
+    {
+        int targetIndex;
+        int count;
+        Collider2D hit;
+
+        List<GridPos> currentGridInfoList = gridList.ToList();
+        Vector3 targetPosition = new Vector3(0, 0, 0);
+        int repeat = currentGridInfoList.Count;
+
+        for (int index = 0; index < repeat; index++)
+        {
+            count = currentGridInfoList.Count;
+            targetIndex = UnityEngine.Random.Range(0, count);
+            targetPosition.x = currentGridInfoList[targetIndex].X;
+            targetPosition.y = currentGridInfoList[targetIndex].Y;
+
+            currentGridInfoList.RemoveAt(targetIndex);
+
+            hit = Physics2D.OverlapBox(
+                targetPosition,
+                checksize,
+                0,
+                targetMask);
+
+            if (hit == null)
+            {
+                break;
+            }
+        }
+
+        return targetPosition;
     }
 }
