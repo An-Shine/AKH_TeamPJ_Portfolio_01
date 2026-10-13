@@ -4,6 +4,7 @@ using UnityEngine;
 public class DataCollectionArea : MonoBehaviour
 {
     [SerializeField] private DataCollectionUI _dataCollectionUI;
+    [SerializeField] private MapRoomIconUI _mapRoomIconUI;
     [SerializeField] private GameObject _gKeyIcon;
     [SerializeField] private Vector3 _tooltipOffset = new(0f, 1.5f, 0f);
 
@@ -26,6 +27,7 @@ public class DataCollectionArea : MonoBehaviour
         {
             _isCollected = true;
             _dataCollectionUI.CollectData();
+            if (_mapRoomIconUI != null) _mapRoomIconUI.MarkCleared();
             HidePrompt();
         }
     }
