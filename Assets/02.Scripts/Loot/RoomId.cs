@@ -1,5 +1,6 @@
 public enum RoomId
 {
+    None,
     Room1,
     Room2,
     Room3,

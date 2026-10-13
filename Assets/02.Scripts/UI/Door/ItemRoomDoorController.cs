@@ -49,9 +49,12 @@ public class ItemRoomDoorController : MonoBehaviour
         if (!_monsterSpawner.IsComplete) return;
         if (_monsterSpawner.RemainingMonsterCount != 0) return;
 
+        if (_state != DoorState.Cleared)
+        {
+            LootSpawner.Instance?.SpawnLoot();
+        }
         _state = DoorState.Cleared;
         _doorController.Open();
-        LootSpawner.Instance?.SpawnLoot();
     }
 
     private DoorState _state = DoorState.WaitingForEntry;

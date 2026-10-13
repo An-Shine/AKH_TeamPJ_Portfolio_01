@@ -33,7 +33,7 @@ public class LootSpawner : MonoBehaviour
     private List<RoomId> _spawnDoneRoomIds;
     private Dictionary<RoomId, List<Item>> _spawnedItemDictionary;
 
-    private RoomId _currentRoomId;
+    private RoomId _currentRoomId = RoomId.None;
 
     private void Awake()
     {
@@ -68,6 +68,7 @@ public class LootSpawner : MonoBehaviour
 
     public void SpawnLoot()
     {
+        if (_currentRoomId == RoomId.None) return;
         if (_spawnDoneRoomIds.Contains(_currentRoomId)) return;
 
         int repeat;
