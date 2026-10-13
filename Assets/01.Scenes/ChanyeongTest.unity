@@ -10292,6 +10292,7 @@ MonoBehaviour:
   _monsterPrefabs:
   - {fileID: 3752560541776440137, guid: 90166dd23fa65d9bacfe3f56d89b9700, type: 3}
   _room: {fileID: 141407120}
+  _mapRoomIconUI: {fileID: 0}
   _spawnPoints:
   - {fileID: 1521444721}
   - {fileID: 1544999516}
@@ -18898,6 +18899,7 @@ MonoBehaviour:
   - {fileID: 3752560541776440137, guid: e4c67777cc259704d84123501921468b, type: 3}
   - {fileID: 8326424469708161978, guid: 5c49daa289ab3474e8046744413410ab, type: 3}
   _room: {fileID: 62730003}
+  _mapRoomIconUI: {fileID: 0}
   _spawnPoints:
   - {fileID: 1244209624}
   _maxSpawnCount: 6
@@ -21167,7 +21169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.37254903, g: 0.37254903, b: 0.37254903, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -21699,6 +21701,7 @@ MonoBehaviour:
   - {fileID: 3752560541776440137, guid: e4c67777cc259704d84123501921468b, type: 3}
   - {fileID: 8326424469708161978, guid: 5c49daa289ab3474e8046744413410ab, type: 3}
   _room: {fileID: 1778352966}
+  _mapRoomIconUI: {fileID: 0}
   _spawnPoints:
   - {fileID: 546692113}
   - {fileID: 646510308}
@@ -23167,7 +23170,7 @@ MonoBehaviour:
     SpawnPointRightDown: {x: -40, y: 18}
     WeaponSpawnCount: 0
     DoNotNeedClear: 0
-  _unitSize: {x: 0.5, y: 0.5}
+  _unitSize: {x: 3, y: 2}
   _spawnEffectPrefab: {fileID: 7988641482014394737, guid: 3e852ddf8db79ea4a80f40aff8dcd0e5, type: 3}
   _itemStandPrefab: {fileID: 729050415262756025, guid: 37ecccc6c3cb6154e9ed1436ea538056, type: 3}
   _itemStandSize: {x: 5, y: 2}
@@ -23619,6 +23622,7 @@ MonoBehaviour:
   - {fileID: 3752560541776440137, guid: e4c67777cc259704d84123501921468b, type: 3}
   - {fileID: 8326424469708161978, guid: 5c49daa289ab3474e8046744413410ab, type: 3}
   _room: {fileID: 1543025055}
+  _mapRoomIconUI: {fileID: 0}
   _spawnPoints:
   - {fileID: 858266368}
   - {fileID: 1482425517}
@@ -25793,6 +25797,7 @@ MonoBehaviour:
   - {fileID: 3752560541776440137, guid: e4c67777cc259704d84123501921468b, type: 3}
   - {fileID: 8326424469708161978, guid: 5c49daa289ab3474e8046744413410ab, type: 3}
   _room: {fileID: 1440775892}
+  _mapRoomIconUI: {fileID: 0}
   _spawnPoints:
   - {fileID: 1224185515}
   - {fileID: 2040013702}
@@ -25933,6 +25938,10 @@ MonoBehaviour:
   _recoverDuration: 0.1
   _reloadRotationSpeed: 720
   _rotationReturnSpeed: 1080
+  _chargeColor: {r: 0.65, g: 0.2, b: 1, a: 1}
+  _chargeFlashDuration: 0.18
+  _chargeRing: {fileID: 0}
+  _chargedScale: 0.7
 --- !u!222 &1097515890
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -31487,6 +31496,7 @@ MonoBehaviour:
   _monsterPrefabs:
   - {fileID: 3752560541776440137, guid: 90166dd23fa65d9bacfe3f56d89b9700, type: 3}
   _room: {fileID: 1793258725}
+  _mapRoomIconUI: {fileID: 0}
   _spawnPoints:
   - {fileID: 1389347689}
   - {fileID: 333209900}
@@ -55509,6 +55519,7 @@ MonoBehaviour:
   - {fileID: 3752560541776440137, guid: e4c67777cc259704d84123501921468b, type: 3}
   - {fileID: 8326424469708161978, guid: 5c49daa289ab3474e8046744413410ab, type: 3}
   _room: {fileID: 804569714}
+  _mapRoomIconUI: {fileID: 0}
   _spawnPoints:
   - {fileID: 1531069411}
   _maxSpawnCount: 6
@@ -55811,6 +55822,7 @@ MonoBehaviour:
   - {fileID: 3752560541776440137, guid: e4c67777cc259704d84123501921468b, type: 3}
   - {fileID: 8326424469708161978, guid: 5c49daa289ab3474e8046744413410ab, type: 3}
   _room: {fileID: 87639260}
+  _mapRoomIconUI: {fileID: 0}
   _spawnPoints:
   - {fileID: 838404044}
   - {fileID: 604776427}
