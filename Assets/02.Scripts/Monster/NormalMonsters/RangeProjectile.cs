@@ -34,6 +34,7 @@ public class RangeProjectile : MonoBehaviour
     [SerializeField] private AudioMixerGroup _soundMixerGroup;
     // 보스가 소환한 몬스터의 탄만 골라 정리할 수 있게 소유자를 제공합니다.
     public Transform Owner => _owner;
+    internal LayerMask HitLayers => _hitLayers;
     private readonly List<RaycastHit2D> _castHits = new List<RaycastHit2D>(16);
     private Vector2 _direction;
     private Transform _owner;
@@ -52,6 +53,7 @@ public class RangeProjectile : MonoBehaviour
     private bool _hasPatternVisual;
     private void Awake()
     {
+        RangeProjectileTerrain.PrepareScene(gameObject.scene);
         _body = GetComponent<Rigidbody2D>();
         _trailRenderer = GetComponentInChildren<SpriteRenderer>(true);
         if (_trailRenderer != null)
@@ -291,6 +293,11 @@ public class RangeProjectile : MonoBehaviour
             return !other.isTrigger || !MonsterCombat.HasEnabledBodyCollider(_playerColliders);
         }
 
+        if (RangeProjectilePassThrough.Allows(other))
+        {
+            return false;
+        }
+
         return !other.isTrigger;
     }
 
@@ -337,6 +344,8 @@ public class RangeProjectile : MonoBehaviour
 
         Vector3 hitPosition = new Vector3(point.x, point.y, transform.position.z);
         Transform player = MonsterCombat.ResolvePlayerCollider(other, _player);
+        if (player == null)
+            RangeProjectileTerrain.ReportBlockedCollider(other);
         bool enhanced = _gameFeel != null && _gameFeel.IsConfigured;
         if (_hasPatternVisual && _patternVfx != null)
         {

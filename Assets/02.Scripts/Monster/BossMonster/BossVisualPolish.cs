@@ -76,6 +76,16 @@ namespace _02.Scripts.Monster.BossMonster
                 };
                 _body.sharedMaterial = _bodyMaterial;
             }
+            else if (_body.sharedMaterial != null && _body.sharedMaterial.HasProperty("_SpriteSheetRect"))
+            {
+                _bodyMaterial = new Material(_body.sharedMaterial)
+                {
+                    hideFlags = HideFlags.DontSave
+                };
+                _bodyMaterial.SetFloat("_SpriteSheetFix", 1f);
+                _bodyMaterial.EnableKeyword("_SPRITESHEETFIX_ON");
+                _body.sharedMaterial = _bodyMaterial;
+            }
 
             Shader rim = Resources.Load<Shader>(BossVfxUpgrade.ResourceRoot + "BossCrispRim");
             if (rim != null)
@@ -88,6 +98,7 @@ namespace _02.Scripts.Monster.BossMonster
             }
 
             _effects = BossBattleEffects.ForOwner(gameObject);
+            _body.sprite = BossSpriteArtifactGuard.Get(_body.sprite);
             _current = _body.sprite;
             _previous = _current;
         }
@@ -126,7 +137,7 @@ namespace _02.Scripts.Monster.BossMonster
         {
             if (_body == null || _body.sprite == null)
                 return;
-            _previous = _body.sprite;
+            _previous = BossSpriteArtifactGuard.Get(_body.sprite);
             _blendDuration = Mathf.Clamp(seconds, 0.02f, 0.1f);
             _blendAge = 0f;
             _blendPending = true;
@@ -158,6 +169,8 @@ namespace _02.Scripts.Monster.BossMonster
         {
             if (_body == null || _body.sprite == null)
                 return;
+            // Animator and motion overrides can replace the source sprite every frame.
+            _body.sprite = BossSpriteArtifactGuard.Get(_body.sprite);
             bool alive = _owner != null && _owner.CurrentHealth > 0f;
             float dt = Time.deltaTime;
             _punch *= Mathf.Exp(-dt * 14f);
@@ -209,9 +222,13 @@ namespace _02.Scripts.Monster.BossMonster
                 _properties.SetTexture("_PreviousTex", _previous != null ? _previous.texture : _current.texture);
                 _properties.SetVector("_CurrentUv", current.Uv);
                 _properties.SetVector("_PreviousUv", previous.Uv);
+                _properties.SetVector("_SpriteSheetRect", current.Uv);
                 _properties.SetVector("_CurrentLocal", current.Local);
                 _properties.SetVector("_PreviousLocal", previous.Local);
-                _properties.SetFloat("_FrameBlend", _blending ? Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(_blendAge / _blendDuration)) : 1f);
+                // A shader sampling an old raw texture must not bring its removed island back.
+                bool canBlend = _blending && !BossSpriteArtifactGuard.IsFiltered(_current)
+                    && !BossSpriteArtifactGuard.IsFiltered(_previous);
+                _properties.SetFloat("_FrameBlend", canBlend ? Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(_blendAge / _blendDuration)) : 1f);
                 _properties.SetFloat("_NeonStrength", alive ? 0.14f + _charge * 0.28f + _punch * 0.22f : 0.05f);
                 _properties.SetColor("_NeonColor", _casting ? _castColor : new Color(0.1f, 0.88f, 1f));
                 _body.SetPropertyBlock(_properties);
@@ -249,7 +266,23 @@ namespace _02.Scripts.Monster.BossMonster
         {
             if (_frames.TryGetValue(sprite, out FrameData data))
                 return data;
-            Rect rect = sprite.textureRect;
+            Rect rect;
+            try
+            {
+                rect = sprite.textureRect;
+            }
+            catch (UnityException)
+            {
+                Vector2 minimum = Vector2.one;
+                Vector2 maximum = Vector2.zero;
+                foreach (Vector2 uv in sprite.uv)
+                {
+                    minimum = Vector2.Min(minimum, uv);
+                    maximum = Vector2.Max(maximum, uv);
+                }
+                rect = Rect.MinMaxRect(minimum.x * sprite.texture.width, minimum.y * sprite.texture.height,
+                    maximum.x * sprite.texture.width, maximum.y * sprite.texture.height);
+            }
             float ppu = Mathf.Max(1f, sprite.pixelsPerUnit);
             data.Uv = new Vector4(rect.xMin / sprite.texture.width, rect.yMin / sprite.texture.height, rect.xMax / sprite.texture.width, rect.yMax / sprite.texture.height);
             // Align differently sized canvases by their pivot and pixels per unit.

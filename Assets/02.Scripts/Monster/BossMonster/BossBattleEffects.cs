@@ -192,7 +192,8 @@ namespace _02.Scripts.Monster.BossMonster
 
             color.a = 0.2f;
             Vector3 scale = source.transform.lossyScale;
-            Emit(source.transform.position, Vector2.zero, Mathf.Abs(scale.x), Mathf.Abs(scale.y), color, 0.24f, 4, 0f, source.sprite);
+            Emit(source.transform.position, Vector2.zero, Mathf.Abs(scale.x), Mathf.Abs(scale.y), color, 0.24f, 4, 0f,
+                BossSpriteArtifactGuard.Get(source.sprite));
         }
 
         public void Charge(Vector2 point, float radius, float progress, Color color)

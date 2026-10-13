@@ -8532,6 +8532,7 @@ GameObject:
   - component: {fileID: 642836362}
   - component: {fileID: 642836361}
   - component: {fileID: 642836360}
+  - component: {fileID: 600710000000000001}
   m_Layer: 9
   m_Name: MapBoundary
   m_TagString: Wall
@@ -8539,6 +8540,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &600710000000000001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642836358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b899038362c5426faecc737ca81786c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RangeProjectilePassThrough
 --- !u!4 &642836359
 Transform:
   m_ObjectHideFlags: 0
