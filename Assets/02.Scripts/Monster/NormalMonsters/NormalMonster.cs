@@ -1026,7 +1026,7 @@ public class NormalMonster : MonoBehaviour
         return direction * Mathf.Min(maxDistance, distance);
     }
 
-    protected bool HasObstacleLineOfSight(Vector2 origin, Vector2 target)
+    protected virtual bool HasObstacleLineOfSight(Vector2 origin, Vector2 target)
     {
         return IsObstacleCastClear(origin, target, 0f);
     }
