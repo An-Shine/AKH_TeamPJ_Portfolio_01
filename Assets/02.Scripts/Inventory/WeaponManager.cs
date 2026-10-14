@@ -86,6 +86,8 @@ public class WeaponManager : MonoBehaviour
         }
 
         EquipByIndex(index);
+
+        AudioManager.Instance.StopLoopSFX();
     }
 
     public void PreviousWeapon()
@@ -105,6 +107,8 @@ public class WeaponManager : MonoBehaviour
         CurrentWeapon.FirePoint = PlayerManager.Instance.PlayerAimObj.FireDirectionPoint.transform;
         CurrentWeapon.OriginPoint = PlayerManager.Instance.PlayerControllerObj._weapon.Muzzle;
         CurrentWeapon.gameObject.SetActive(true);
+
+        AudioManager.Instance.StopLoopSFX();
     }
 
     public bool GainWeapon(int weaponId)
