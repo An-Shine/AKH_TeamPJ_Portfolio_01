@@ -174,6 +174,8 @@ public class Weapon : MonoBehaviour
 
     private void LastBullet(Projectile projectile)
     {
+        if (projectile == null) return;
+
         ItemManager manager = ItemManager.Instance;
         if (manager != null)
         {
