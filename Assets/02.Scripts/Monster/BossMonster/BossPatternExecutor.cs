@@ -639,6 +639,7 @@ namespace _02.Scripts.Monster.BossMonster
         private void PerimeterBarrage()
         {
             Rect area = _owner.Arena;
+            float inset = Mathf.Min(_world.ProjectileSpawnInset(_move), Mathf.Min(area.width, area.height) * 0.4f);
             int count = Mathf.Clamp(_move.Count + _phase, 4, 10);
             for (int wave = 0; wave < Waves; wave++)
             {
@@ -648,15 +649,26 @@ namespace _02.Scripts.Monster.BossMonster
                 Schedule(wave * _move.Interval, () =>
                 {
                     Vector2 target = PlayerPoint();
-                    float coordinate = vertical ? (target.y - area.yMin) / area.height : (target.x - area.xMin) / area.width;
+                    float coordinate = vertical
+                        ? (target.y - area.yMin - inset) / Mathf.Max(0.1f, area.height - inset * 2f)
+                        : (target.x - area.xMin - inset) / Mathf.Max(0.1f, area.width - inset * 2f);
                     int gap = Mathf.Clamp(Mathf.FloorToInt(coordinate * count), 0, count - 1);
                     for (int i = 0; i < count; i++)
                     {
                         if (Mathf.Abs(i - gap) <= 1)
                             continue;
                         float fraction = (i + 0.5f) / count;
-                        Vector2 point = vertical ? new Vector2(edge == 0 ? area.xMin + 0.35f : area.xMax - 0.35f, area.yMin + area.height * fraction) : new Vector2(area.xMin + area.width * fraction, edge == 1 ? area.yMax - 0.35f : area.yMin + 0.35f);
-                        hints.Add(ProjectileHint(point, AimFrom(point), 14f, _warning));
+                        Vector2 point = vertical
+                            ? new Vector2(edge == 0 ? area.xMin + inset : area.xMax - inset,
+                                Mathf.Lerp(area.yMin + inset, area.yMax - inset, fraction))
+                            : new Vector2(Mathf.Lerp(area.xMin + inset, area.xMax - inset, fraction),
+                                edge == 1 ? area.yMax - inset : area.yMin + inset);
+                        if (!_world.TryGetProjectileSpawn(point, AimFrom(point), _move, out Vector2 spawn))
+                        {
+                            continue;
+                        }
+
+                        hints.Add(ProjectileHint(spawn, AimFrom(spawn), 14f, _warning));
                     }
                 });
                 Schedule(wave * _move.Interval + _warning, () =>

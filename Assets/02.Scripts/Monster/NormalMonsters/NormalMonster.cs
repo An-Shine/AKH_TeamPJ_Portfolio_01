@@ -16,6 +16,12 @@ public class NormalMonster : MonoBehaviour
     private const float NormalContactTolerance = 0.02f;
     private const float MonsterSpacingTolerance = 0.002f;
     private static readonly List<NormalMonster> ActiveMonsters = new List<NormalMonster>(64);
+    private static readonly float[] CrowdAngles =
+    {
+        0f, -15f, 15f, -30f, 30f, -50f, 50f, -75f, 75f, -100f, 100f, -135f, 135f, 180f
+    };
+    private static readonly float[] CrowdSpeeds = { 1f, 0.6f, 0.25f };
+    private static int _crowdSnapshotFrame = -1;
 
     #region Inspector 설정
 
@@ -113,6 +119,17 @@ public class NormalMonster : MonoBehaviour
     private bool _normalReportedObstacleConfiguration;
     private readonly List<Collider2D> _normalMovementHits = new List<Collider2D>(16);
     private readonly List<RaycastHit2D> _normalMovementCastHits = new List<RaycastHit2D>(16);
+    private readonly List<NormalMonster> _normalCrowdNeighbors = new List<NormalMonster>(16);
+    private Vector2 _normalSteeringVelocity;
+    private Vector2 _normalSteeringDirection;
+    private Vector2 _normalDesiredDirection;
+    private Vector2 _normalSnapshotPosition;
+    private Vector2 _normalSnapshotVelocity;
+    private float _normalLastMoveTime = -10f;
+    private float _normalBlockedTime;
+    private float _normalRecoveryUntil;
+    private float _normalPassingUntil;
+    private int _normalPassingSide = -1;
     // 사망 위치 고정
     private bool _normalIsDead;
     private bool _normalDeathPositionLocked;
@@ -151,6 +168,10 @@ public class NormalMonster : MonoBehaviour
 
     protected virtual void OnEnable()
     {
+        _normalSteeringVelocity = Vector2.zero;
+        _normalBlockedTime = 0f;
+        _normalRecoveryUntil = 0f;
+        _crowdSnapshotFrame = -1;
         _normalCombatTactics?.Enable();
         if (!ActiveMonsters.Contains(this))
         {
@@ -612,7 +633,8 @@ public class NormalMonster : MonoBehaviour
             separationDirection += direction * strength;
         }
 
-        return separationDirection.normalized;
+        // 가벼운 접근으로 추적 속도를 상쇄하지 않고, 가까워질수록 점차 떨어집니다.
+        return Vector2.ClampMagnitude(separationDirection, 0.4f);
     }
 
     protected void ApplySeparation()
@@ -637,6 +659,8 @@ public class NormalMonster : MonoBehaviour
         Vector2 origin = _normalControlledPosition;
         Vector2 correction = Vector2.zero;
         float ownRadius = GetMonsterSpacingRadius();
+        float deepestOverlap = 0f;
+        Vector2 deepestDirection = Vector2.zero;
         foreach (NormalMonster other in ActiveMonsters)
         {
             if (!IsSpacingTarget(other))
@@ -656,11 +680,171 @@ public class NormalMonster : MonoBehaviour
             Vector2 direction =
                 distance > 0.001f ? difference / distance : GetCoincidentSeparationDirection(this, other);
             correction += direction * (overlap * 0.5f);
+            if (overlap > deepestOverlap)
+            {
+                deepestOverlap = overlap;
+                deepestDirection = direction;
+            }
+        }
+
+        if (correction.sqrMagnitude <= 0.000001f && deepestOverlap > MonsterSpacingTolerance)
+        {
+            correction = new Vector2(deepestDirection.y, -deepestDirection.x) * (deepestOverlap * 0.5f);
         }
 
         correction = Vector2.ClampMagnitude(correction, Mathf.Max(0f, _overlapSeparationSpeed) * Time.deltaTime);
         // 겹침을 푸는 이동도 기존 벽 충돌 검사로 제한합니다.
-        TryMoveControlled(correction);
+        TryMoveControlled(correction, true);
+    }
+
+    private static void CaptureCrowdSnapshot()
+    {
+        if (_crowdSnapshotFrame == Time.frameCount)
+        {
+            return;
+        }
+
+        _crowdSnapshotFrame = Time.frameCount;
+        foreach (NormalMonster monster in ActiveMonsters)
+        {
+            if (monster == null)
+            {
+                continue;
+            }
+
+            monster._normalSnapshotPosition = monster._normalControlledPosition;
+            float age = Time.time - monster._normalLastMoveTime;
+            monster._normalSnapshotVelocity = age <= Mathf.Max(0.05f, Time.deltaTime * 1.5f)
+                ? monster._normalSteeringVelocity : Vector2.zero;
+        }
+    }
+
+    private Vector2 SelectCrowdMovement(Vector2 movement)
+    {
+        if (!_preventMonsterOverlap || Time.deltaTime <= 0f ||
+            !(this is MeleeMonster || this is RangeMonster || this is KamikazeMonster))
+        {
+            return movement;
+        }
+
+        CaptureCrowdSnapshot();
+        _normalCrowdNeighbors.Clear();
+        Vector2 origin = _normalControlledPosition;
+        float ownRadius = GetMonsterSpacingRadius();
+        float distance = movement.magnitude;
+        float speed = distance / Mathf.Max(0.001f, Time.deltaTime);
+        foreach (NormalMonster other in ActiveMonsters)
+        {
+            if (!IsSpacingTarget(other))
+            {
+                continue;
+            }
+
+            float range = ownRadius + other.GetMonsterSpacingRadius() + 1f + speed * 0.45f;
+            if ((origin - other._normalSnapshotPosition).sqrMagnitude <= range * range)
+            {
+                _normalCrowdNeighbors.Add(other);
+            }
+        }
+
+        if (_normalCrowdNeighbors.Count == 0)
+        {
+            return movement;
+        }
+
+        Vector2 desired = movement / Mathf.Max(0.0001f, distance);
+        if (CrowdMovementPenalty(origin, desired * speed, ownRadius) < 0.05f &&
+            IsMonsterSpacingStepClear(origin, origin + movement) && CanTravelBetween(origin, origin + movement))
+        {
+            return movement;
+        }
+
+        bool recovering = Time.time < _normalRecoveryUntil;
+        Vector2 best = Vector2.zero;
+        float bestScore = recovering ? 6f : 2.5f;
+        for (int angleIndex = 0; angleIndex < CrowdAngles.Length; angleIndex++)
+        {
+            float angle = CrowdAngles[angleIndex];
+            float radians = angle * Mathf.Deg2Rad;
+            float cosine = Mathf.Cos(radians);
+            float sine = Mathf.Sin(radians);
+            Vector2 direction = new Vector2(desired.x * cosine - desired.y * sine,
+                desired.x * sine + desired.y * cosine);
+            for (int speedIndex = 0; speedIndex < CrowdSpeeds.Length; speedIndex++)
+            {
+                float fraction = CrowdSpeeds[speedIndex];
+                Vector2 candidate = direction * (distance * fraction);
+                Vector2 velocity = direction * (speed * fraction);
+                float score = (velocity / Mathf.Max(0.001f, speed) - desired).sqrMagnitude * 0.8f;
+                if (_normalSteeringDirection.sqrMagnitude > 0.001f)
+                {
+                    score += (direction - _normalSteeringDirection).sqrMagnitude * 0.08f;
+                }
+
+                if (Mathf.Abs(angle) > 100f && !recovering)
+                {
+                    score += 0.8f;
+                }
+
+                int side = angle < 0f ? -1 : 1;
+                if (Mathf.Abs(angle) > 10f && side != _normalPassingSide && Time.time < _normalPassingUntil)
+                {
+                    score += 0.3f;
+                }
+
+                score += CrowdMovementPenalty(origin, velocity, ownRadius);
+                if (score >= bestScore || !IsMonsterSpacingStepClear(origin, origin + candidate) ||
+                    !CanTravelBetween(origin, origin + candidate))
+                {
+                    continue;
+                }
+
+                float probeDistance = Mathf.Max(distance * fraction, Mathf.Min(0.45f, speed * 0.22f));
+                if (!CanTravelBetween(origin, origin + direction * probeDistance))
+                {
+                    score += 0.6f;
+                }
+
+                if (score < bestScore)
+                {
+                    bestScore = score;
+                    best = candidate;
+                }
+            }
+        }
+
+        if (best.sqrMagnitude > 0.000001f)
+        {
+            float turn = desired.x * best.y - desired.y * best.x;
+            if (Mathf.Abs(turn) > distance * 0.1f)
+            {
+                _normalPassingSide = turn < 0f ? -1 : 1;
+                _normalPassingUntil = Time.time + 0.65f;
+            }
+        }
+
+        return best;
+    }
+
+    private float CrowdMovementPenalty(Vector2 origin, Vector2 velocity, float ownRadius)
+    {
+        float penalty = 0f;
+        foreach (NormalMonster other in _normalCrowdNeighbors)
+        {
+            Vector2 relativePosition = origin - other._normalSnapshotPosition;
+            Vector2 relativeVelocity = velocity - other._normalSnapshotVelocity;
+            float time = relativeVelocity.sqrMagnitude > 0.000001f
+                ? Mathf.Clamp(-Vector2.Dot(relativePosition, relativeVelocity) / relativeVelocity.sqrMagnitude, 0f, 0.45f)
+                : 0f;
+            float closestDistance = (relativePosition + relativeVelocity * time).magnitude;
+            float spacing = ownRadius + other.GetMonsterSpacingRadius() + 0.2f;
+            float pressure = Mathf.Clamp01((spacing - closestDistance) / Mathf.Max(0.05f, spacing));
+            float currentPressure = Mathf.Clamp01((spacing - relativePosition.magnitude) / Mathf.Max(0.05f, spacing));
+            // 이미 겹친 상태의 비용 때문에 모든 탈출 방향이 취소되지 않게 합니다.
+            penalty += Mathf.Max(0f, pressure * pressure - currentPressure * currentPressure) * 8f;
+        }
+
+        return penalty;
     }
 
     private bool IsMonsterSpacingStepClear(Vector2 origin, Vector2 target)
@@ -985,14 +1169,48 @@ public class NormalMonster : MonoBehaviour
             return;
         }
 
-        TryMoveControlled(movement);
+        Vector2 origin = _normalControlledPosition;
+        _normalDesiredDirection = movement.normalized;
+        TryMoveControlled(movement, true);
+        Vector2 applied = (Vector2)_normalControlledPosition - origin;
+        _normalSteeringVelocity = applied / Mathf.Max(0.001f, Time.deltaTime);
+        _normalLastMoveTime = Time.time;
+        if (applied.sqrMagnitude > 0.000001f)
+        {
+            _normalSteeringDirection = applied.normalized;
+        }
+
+        if (Vector2.Dot(applied, _normalDesiredDirection) < movement.magnitude * 0.2f)
+        {
+            _normalBlockedTime += Time.deltaTime;
+            if (_normalBlockedTime >= 0.4f)
+            {
+                _normalPathfinder?.Invalidate();
+                _normalCombatTactics?.InvalidateGoal();
+                _normalRecoveryUntil = Time.time + 0.65f;
+                _normalBlockedTime = 0f;
+            }
+        }
+        else
+        {
+            _normalBlockedTime = 0f;
+        }
     }
 
-    private bool TryMoveControlled(Vector2 movement)
+    private bool TryMoveControlled(Vector2 movement, bool steerAroundCrowd = false)
     {
         if (movement.sqrMagnitude <= Mathf.Epsilon)
         {
             return true;
+        }
+
+        if (steerAroundCrowd)
+        {
+            movement = SelectCrowdMovement(movement);
+            if (movement.sqrMagnitude <= Mathf.Epsilon)
+            {
+                return false;
+            }
         }
 
         Vector2 origin = _normalControlledPosition;

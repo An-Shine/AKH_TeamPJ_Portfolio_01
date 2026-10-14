@@ -43,6 +43,77 @@ namespace _02.Scripts.Monster.BossMonster
         private readonly List<GameObject> _customEffects = new List<GameObject>();
         private ContactFilter2D _filter;
         private float _nextShake;
+
+        public float ProjectileSpawnInset(BossEncounterMove move)
+        {
+            float radius = Mathf.Max(0.01f, move.Radius * _profile.AttackRangeMultiplier);
+            return Mathf.Max(1.25f, radius + 0.4f);
+        }
+
+        public bool TryGetProjectileSpawn(Vector2 requested, float angle, BossEncounterMove move,
+            out Vector2 position)
+        {
+            Rect arena = _owner.Arena;
+            float radius = Mathf.Max(0.01f, move.Radius * _profile.AttackRangeMultiplier);
+            float padding = ProjectileSpawnInset(move);
+            position = BossBattleGeometry.ClampToRoom(requested, arena, padding);
+            Vector2 start = position;
+            Vector2 inward = arena.center - start;
+            float distanceToCenter = inward.magnitude;
+            Vector2 inwardDirection = distanceToCenter > 0.001f ? inward / distanceToCenter : Vector2.zero;
+            Vector2 launchDirection = BossBattleGeometry.Direction(angle);
+            float launchClearance = Mathf.Clamp(move.Speed * _profile.ProjectileSpeedMultiplier * 0.1f, 0.2f, 0.75f);
+
+            // 실제 벽과 첫 이동 구간을 검사해 생성 직후 벽에 닿지 않는 위치를 선택합니다.
+            for (int attempt = 0; attempt <= 24; attempt++)
+            {
+                float distance = Mathf.Min(distanceToCenter, attempt * 0.25f);
+                Vector2 candidate = start + inwardDirection * distance;
+                if (IsProjectileLaunchClear(candidate, radius + 0.08f, launchDirection, launchClearance))
+                {
+                    position = candidate;
+                    return true;
+                }
+
+                if (distance >= distanceToCenter)
+                {
+                    break;
+                }
+            }
+
+            return false;
+        }
+
+        private bool IsProjectileLaunchClear(Vector2 position, float radius, Vector2 direction, float distance)
+        {
+            _overlaps.Clear();
+            int overlapCount = Physics2D.OverlapCircle(position, radius, _filter, _overlaps);
+            for (int i = 0; i < overlapCount; i++)
+            {
+                if (IsProjectileSpawnObstacle(_overlaps[i]))
+                {
+                    return false;
+                }
+            }
+
+            _castHits.Clear();
+            int castCount = Physics2D.CircleCast(position, radius, direction, _filter, _castHits, distance);
+            for (int i = 0; i < castCount; i++)
+            {
+                if (IsProjectileSpawnObstacle(_castHits[i].collider))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private bool IsProjectileSpawnObstacle(Collider2D collider)
+        {
+            return CanHitCollider(collider) &&
+                   MonsterCombat.ResolvePlayerCollider(collider, _owner.Player) == null;
+        }
         public float RemainingDuration
         {
             get
@@ -128,14 +199,15 @@ namespace _02.Scripts.Monster.BossMonster
 
         private Bolt CreateBolt(Vector2 origin, float angle, BossEncounterMove move, float damage, float speed)
         {
-            if (_bolts.Count >= _profile.MaximumProjectiles)
+            if (_bolts.Count >= _profile.MaximumProjectiles ||
+                !TryGetProjectileSpawn(origin, angle, move, out Vector2 safeOrigin))
             {
                 return null;
             }
 
             Bolt bolt = new Bolt
             {
-                Position = origin,
+                Position = safeOrigin,
                 Direction = BossBattleGeometry.Direction(angle),
                 Lifetime = move.Duration,
                 Speed = speed * _profile.ProjectileSpeedMultiplier,
@@ -149,7 +221,7 @@ namespace _02.Scripts.Monster.BossMonster
                 Body = _effects.CreateBoltRenderer()
             };
             _bolts.Add(bolt);
-            _effects.Muzzle(origin, bolt.Direction, move.Width, move.Color);
+            _effects.Muzzle(safeOrigin, bolt.Direction, move.Width, move.Color);
             DrawBolt(bolt);
             return bolt;
         }
@@ -251,6 +323,13 @@ namespace _02.Scripts.Monster.BossMonster
 
                 bolt.Released = true;
                 bolt.Direction = BossBattleGeometry.Direction(bolt.OrbitAngle + (bolt.OrbitTurn >= 0f ? 90f : -90f));
+                if (!TryGetProjectileSpawn(bolt.Position, BossBattleGeometry.Angle(bolt.Direction), bolt.Move,
+                        out Vector2 releasePosition))
+                {
+                    return true;
+                }
+
+                bolt.Position = releasePosition;
                 deltaTime = Mathf.Min(deltaTime, Mathf.Max(0f, bolt.Age - bolt.OrbitTime));
                 _effects.Burst(bolt.Position, bolt.Move.Width * 1.7f, bolt.Move.Color, 5);
                 _audio.Impact(0.6f);
