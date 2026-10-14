@@ -3,7 +3,6 @@ using _02.Scripts.Monster.Presentation;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 [DisallowMultipleComponent]
 public class BossMonster : NormalMonster
@@ -65,22 +64,7 @@ public class BossMonster : NormalMonster
     private bool _ownsProfile;
     private AudioSource _hitAudioSource;
     private GameObject _healthBarRoot;
-    private RectTransform _healthFill;
-    private RectTransform _healthTrail;
-    private Image _healthFillImage;
-    private TMP_Text _healthLabel;
-    private TMP_Text _healthDetail;
-    private RectTransform _healthCastFill;
-    private Image _healthCastImage;
-    private CanvasGroup _healthCanvasGroup;
-    private float _healthTrailRatio = 1f;
-    private float _previousHealthRatio = 1f;
-    private float _healthTrailHoldUntil;
-    private int _displayedHealth = -1;
-    private int _displayedMaximumHealth = -1;
-    private int _displayedPhase = -1;
-    private string _displayedPattern;
-    private int _displayedCharge = -1;
+    private BossHealthBarView _healthBarView;
 
     public BossRoom Room => _room;
     public Transform Player => _targetPlayer;
@@ -90,6 +74,9 @@ public class BossMonster : NormalMonster
     public float BodyWidth => _bodyWidth;
     public int Phase => _director != null ? _director.Phase : 1;
     public string CurrentPattern => _director != null ? _director.PatternName : string.Empty;
+    public bool ShowHealthBar => _showHealthBar;
+    public float HealthChargeProgress => _director != null && _director.IsCasting ? _director.ChargeProgress : 0f;
+    public bool IsExecutionCharging => _director != null && _director.IsExecutionCharging;
     public bool CanStartPattern => _animations == null || !_animations.IsHit;
 
     public Rect Arena
@@ -515,11 +502,19 @@ public class BossMonster : NormalMonster
         MonsterCombatEffect.SpawnImpact(new Vector3(point.x, point.y, transform.position.z),
             ((Vector2)transform.position - source).normalized, _hitSparkColor, transform);
 
+        BossBattleEffects effects = BossBattleEffects.ForOwner(gameObject);
+        if (effects != null)
+        {
+            effects.PlayBodyHit();
+        }
+
         if (Time.time >= _nextHitSound)
         {
             AudioClip hitSound = MonsterCombatAudio.Pick("Special/BossHit", _hitSound, ref _previousHitSound);
             if (hitSound == null)
+            {
                 return;
+            }
             _nextHitSound = Time.time + _hitSoundCooldown;
             if (_hitAudioSource == null)
             {
@@ -769,190 +764,20 @@ public class BossMonster : NormalMonster
             return;
         }
 
-        _healthBarRoot = new GameObject(name + "_HealthBar", typeof(RectTransform), typeof(Canvas),
-            typeof(CanvasScaler), typeof(CanvasGroup));
-
-        Canvas canvas = _healthBarRoot.GetComponent<Canvas>();
-        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-        canvas.sortingOrder = 50;
-
-        _healthCanvasGroup = _healthBarRoot.GetComponent<CanvasGroup>();
-        _healthCanvasGroup.alpha = 0f;
-        _healthCanvasGroup.blocksRaycasts = false;
-
-        CanvasScaler scaler = _healthBarRoot.GetComponent<CanvasScaler>();
-        scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-        scaler.referenceResolution = new Vector2(1280f, 720f);
-        scaler.matchWidthOrHeight = 0.5f;
-
-        Image panel = CreateBarImage("NeonBossPanel", _healthBarRoot.transform,
-            new Color(0.025f, 0.035f, 0.065f, 0.93f));
-
-        RectTransform rect = panel.rectTransform;
-        rect.anchorMin = rect.anchorMax = new Vector2(0.5f, 1f);
-        rect.pivot = new Vector2(0.5f, 1f);
-        rect.sizeDelta = new Vector2(640f, 98f);
-        rect.anchoredPosition = new Vector2(0f, -24f);
-
-        Image top = CreateBarImage("CyanBorder", rect, new Color(0.15f, 0.82f, 1f, 0.85f));
-        top.rectTransform.anchorMin = new Vector2(0f, 1f);
-        top.rectTransform.anchorMax = Vector2.one;
-        top.rectTransform.offsetMin = new Vector2(0f, -2f);
-        top.rectTransform.offsetMax = Vector2.zero;
-
-        Image bottom = CreateBarImage("MagentaBorder", rect, new Color(1f, 0.12f, 0.45f, 0.7f));
-        bottom.rectTransform.anchorMin = Vector2.zero;
-        bottom.rectTransform.anchorMax = new Vector2(1f, 0f);
-        bottom.rectTransform.offsetMin = Vector2.zero;
-        bottom.rectTransform.offsetMax = new Vector2(0f, 2f);
-
-        Image background = CreateBarImage("HealthTrack", rect, new Color(0.12f, 0.08f, 0.16f));
-        RectTransform bar = background.rectTransform;
-        bar.anchorMin = Vector2.zero;
-        bar.anchorMax = new Vector2(1f, 0f);
-        bar.offsetMin = new Vector2(16f, 35f);
-        bar.offsetMax = new Vector2(-16f, 54f);
-
-        _healthTrail = CreateBarImage("DamageTrail", bar, new Color(1f, 0.68f, 0.17f)).rectTransform;
-        _healthFillImage = CreateBarImage("NeonHealth", bar, _healthBarColor);
-        _healthFill = _healthFillImage.rectTransform;
-
-        for (int i = 1; i < 12; i++)
-        {
-            Image tick = CreateBarImage("HealthSegment", bar, new Color(0.03f, 0.03f, 0.07f, 0.5f));
-            tick.rectTransform.anchorMin = new Vector2(i / 12f, 0f);
-            tick.rectTransform.anchorMax = new Vector2(i / 12f, 1f);
-            tick.rectTransform.offsetMin = new Vector2(-0.6f, 0f);
-            tick.rectTransform.offsetMax = new Vector2(0.6f, 0f);
-        }
-
-        _healthLabel = CreateBossText("BossNameAndHP", rect, 20f);
-        _healthLabel.rectTransform.anchorMin = new Vector2(0f, 1f);
-        _healthLabel.rectTransform.anchorMax = Vector2.one;
-        _healthLabel.rectTransform.offsetMin = new Vector2(16f, -37f);
-        _healthLabel.rectTransform.offsetMax = new Vector2(-16f, -6f);
-
-        _healthDetail = CreateBossText("PatternAndWarning", rect, 14f);
-        _healthDetail.rectTransform.anchorMin = Vector2.zero;
-        _healthDetail.rectTransform.anchorMax = new Vector2(1f, 0f);
-        _healthDetail.rectTransform.offsetMin = new Vector2(16f, 6f);
-        _healthDetail.rectTransform.offsetMax = new Vector2(-16f, 27f);
-
-        Image castTrack = CreateBarImage("ChargeTrack", rect, new Color(0.08f, 0.13f, 0.2f));
-        castTrack.rectTransform.anchorMin = Vector2.zero;
-        castTrack.rectTransform.anchorMax = new Vector2(1f, 0f);
-        castTrack.rectTransform.offsetMin = new Vector2(16f, 29f);
-        castTrack.rectTransform.offsetMax = new Vector2(-16f, 32f);
-
-        _healthCastImage = CreateBarImage("ChargeProgress", castTrack.rectTransform, new Color(0.1f, 0.88f, 1f));
-        _healthCastFill = _healthCastImage.rectTransform;
-        _healthTrailRatio = Mathf.Clamp01(CurrentHealth / MaximumHealth);
-        _previousHealthRatio = _healthTrailRatio;
-        UpdateHealthBar();
-    }
-
-    private TMP_Text CreateBossText(string objectName, Transform parent, float size)
-    {
-        GameObject child = new GameObject(objectName, typeof(RectTransform), typeof(CanvasRenderer),
-            typeof(TextMeshProUGUI));
-
-        child.transform.SetParent(parent, false);
-        TMP_Text text = child.GetComponent<TextMeshProUGUI>();
-        text.font = _healthFont != null ? _healthFont : TMP_Settings.defaultFontAsset;
-        text.fontSize = size;
-        text.alignment = TextAlignmentOptions.MidlineLeft;
-        text.color = Color.white;
-        text.raycastTarget = false;
-        text.enableWordWrapping = false;
-        text.overflowMode = TextOverflowModes.Ellipsis;
-        return text;
-    }
-
-    private static Image CreateBarImage(string objectName, Transform parent, Color color)
-    {
-        GameObject bar = new GameObject(objectName, typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
-        bar.transform.SetParent(parent, false);
-        Image image = bar.GetComponent<Image>();
-        image.color = color;
-        image.raycastTarget = false;
-        return image;
+        _healthBarView = BossHealthBarView.Create(this, _bossDisplayName, _healthFont, _healthBarColor);
+        _healthBarRoot = _healthBarView.gameObject;
     }
 
     private void UpdateHealthBar()
     {
-        if (_healthBarRoot == null)
+        if (_healthBarView != null)
         {
-            return;
+            if (_healthBarRoot != null && !_healthBarRoot.activeSelf && isActiveAndEnabled)
+            {
+                _healthBarRoot.SetActive(true);
+            }
+
+            _healthBarView.Refresh();
         }
-
-        bool playerInside = _targetPlayer != null && _targetPlayer.gameObject.activeInHierarchy &&
-                            (_room == null || _room.Contains(_targetPlayer.position, 0f));
-
-        bool visible = _showHealthBar && isActiveAndEnabled && playerInside &&
-                       (!_deathStarted || Time.time - _deathStartTime < 2f);
-
-        if (_healthBarRoot.activeSelf != visible)
-        {
-            _healthBarRoot.SetActive(visible);
-        }
-
-        _healthCanvasGroup.alpha = Mathf.Lerp(_healthCanvasGroup.alpha, visible ? 1f : 0f,
-            1f - Mathf.Exp(-Time.deltaTime * 10f));
-
-        float charge = _director != null && _director.IsCasting ? _director.ChargeProgress : 0f;
-        bool executionCharge = _director != null && _director.IsExecutionCharging;
-        SetBarWidth(_healthCastFill, charge);
-        _healthCastImage.color = executionCharge ? new Color(1f, 0.12f, 0.32f) : new Color(0.1f, 0.88f, 1f);
-
-        int chargePercent = executionCharge ? Mathf.FloorToInt(charge * 100f) : -1;
-        float ratio = Mathf.Clamp01(CurrentHealth / MaximumHealth);
-
-        if (ratio < _previousHealthRatio)
-        {
-            _healthTrailHoldUntil = Time.time + 0.2f;
-        }
-
-        _previousHealthRatio = ratio;
-
-        if (ratio > _healthTrailRatio)
-        {
-            _healthTrailRatio = ratio;
-        }
-        else if (Time.time >= _healthTrailHoldUntil)
-        {
-            _healthTrailRatio = Mathf.MoveTowards(_healthTrailRatio, ratio, Time.deltaTime * 0.8f);
-        }
-
-        SetBarWidth(_healthFill, ratio);
-        SetBarWidth(_healthTrail, _healthTrailRatio);
-        _healthFillImage.color = Time.time < _healthTrailHoldUntil ? Color.white : _healthBarColor;
-
-        int health = Mathf.CeilToInt(CurrentHealth);
-        int maximum = Mathf.CeilToInt(MaximumHealth);
-
-        if (health != _displayedHealth || maximum != _displayedMaximumHealth || _displayedPhase != Phase ||
-            _displayedPattern != CurrentPattern || _displayedCharge != chargePercent)
-        {
-            _displayedHealth = health;
-            _displayedMaximumHealth = maximum;
-            _displayedPhase = Phase;
-            _displayedPattern = CurrentPattern;
-            _displayedCharge = chargePercent;
-
-            _healthLabel.text = $"{_bossDisplayName}  <size=15>{health} / {maximum}   PHASE {Phase}</size>";
-            _healthDetail.text = executionCharge
-                ? $"<color=#FF537A>EXECUTION  {_director.ChargeSecondsRemaining:0.0}s</color>  <color=#80FFE1>ENTER CYAN SAFE ZONE</color>"
-                : string.IsNullOrEmpty(CurrentPattern)
-                    ? "<color=#8BA6BE>PREPARING NEXT ATTACK</color>"
-                    : CurrentPattern;
-        }
-    }
-
-    private static void SetBarWidth(RectTransform bar, float ratio)
-    {
-        bar.anchorMin = Vector2.zero;
-        bar.anchorMax = new Vector2(Mathf.Clamp01(ratio), 1f);
-        bar.offsetMin = Vector2.zero;
-        bar.offsetMax = Vector2.zero;
     }
 }

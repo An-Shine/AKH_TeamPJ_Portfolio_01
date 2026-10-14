@@ -36,6 +36,7 @@ namespace _02.Scripts.Monster.BossMonster
         private bool _retiring;
         private static readonly Dictionary<int, BossBattleEffects> Owners = new Dictionary<int, BossBattleEffects>();
         private BossVfxUpgrade _upgrade;
+        private BossHitVfx _bodyHits;
         private int _ownerId;
         public BossVfxUpgrade Upgrade => _upgrade;
 
@@ -48,13 +49,23 @@ namespace _02.Scripts.Monster.BossMonster
         public static BossBattleEffects ForOwner(GameObject owner)
         {
             if (owner != null && Owners.TryGetValue(owner.GetInstanceID(), out BossBattleEffects effects) && effects != null)
+            {
                 return effects;
+            }
             return null;
         }
         private float _nextCharge;
         private bool _ownsGlow, _ownsSpark, _ownsFlame;
         internal Material SolidMaterial => _solidMaterial;
         internal Material GlowMaterial => _glowMaterial;
+
+        public void PlayBodyHit()
+        {
+            if (_bodyHits != null)
+            {
+                _bodyHits.PlayHit();
+            }
+        }
 
         public static BossBattleEffects Create(GameObject owner, BossEncounterProfile profile)
         {
@@ -63,9 +74,15 @@ namespace _02.Scripts.Monster.BossMonster
             BossBattleEffects effects = root.AddComponent<BossBattleEffects>();
             MonsterCombat.GetEffectSorting(owner.transform, out effects._layer, out effects._sortingLayer, out effects._order);
             effects._z = owner.transform.position.z;
-            Shader shader = Resources.Load<Shader>(BossVfxUpgrade.ResourceRoot + "BossCrispVfx");
+            Shader shader = Resources.Load<Shader>(BossArenaVfxClip.ShaderPath);
             if (shader == null)
+            {
+                shader = Resources.Load<Shader>(BossVfxUpgrade.ResourceRoot + "BossCrispVfx");
+            }
+            if (shader == null)
+            {
                 shader = profile.EffectShader;
+            }
             if (shader == null)
             {
                 shader = Shader.Find("Monsters/BossGlow");
@@ -90,6 +107,13 @@ namespace _02.Scripts.Monster.BossMonster
             effects._glowMaterial.SetFloat("_DstBlend", (float)BlendMode.One);
             effects._ownerId = owner.GetInstanceID();
             Owners[effects._ownerId] = effects;
+            GameObject hitsRoot = new GameObject("BossBodyHitEffects");
+            hitsRoot.transform.SetParent(root.transform, false);
+            effects._bodyHits = hitsRoot.AddComponent<BossHitVfx>();
+            global::BossMonster boss = owner.GetComponent<global::BossMonster>();
+            effects._bodyHits.Initialize(boss, effects._solidMaterial, effects._layer,
+                effects._sortingLayer, effects._order);
+            root.AddComponent<BossArenaVfxClip>().Initialize(boss, hitsRoot.transform);
             effects._upgrade = root.AddComponent<BossVfxUpgrade>();
             effects._upgrade.Initialize(effects._layer, effects._sortingLayer, effects._order, effects._z, effects._ownerId);
             effects._glowSprite = Resources.Load<Sprite>(BossVfxUpgrade.ResourceRoot + "Kenney/light_01");
@@ -207,71 +231,97 @@ namespace _02.Scripts.Monster.BossMonster
         public void Slash(Vector2 point, float radius, float angle, Color color, float intensity = 1f, float span = 120f)
         {
             if (_upgrade != null && _upgrade.IsReady)
+            {
                 _upgrade.Slash(point, radius, angle, color, intensity, span);
+            }
         }
 
         public void Vortex(Vector2 point, float radius, float angle, Color color)
         {
             if (_upgrade != null && _upgrade.IsReady)
+            {
                 _upgrade.Vortex(point, radius, angle, color);
+            }
         }
 
         public void ArenaDetonation(Rect arena, Vector2 safeCenter, float safeRadius, Color color)
         {
             if (_upgrade != null && _upgrade.IsReady)
+            {
                 _upgrade.ArenaBlast(arena, safeCenter, safeRadius, color);
+            }
         }
 
         public void Lightning(Vector2 point, float radius, Color color)
         {
             if (_upgrade != null && _upgrade.IsReady)
+            {
                 _upgrade.Lightning(point, radius, color);
+            }
             else
+            {
                 Pillar(point, radius, color);
+            }
         }
 
         public void Beam(Vector2 point, float angle, float length, float width, Color color, bool rift, Rect arena)
         {
             if (_upgrade != null && _upgrade.IsReady)
+            {
                 _upgrade.Beam(point, angle, length, width, color, rift, arena);
+            }
         }
 
         public void NovaArc(Vector2 point, float radius, float start, float span, float width, Color color, bool impact)
         {
             if (_upgrade != null && _upgrade.IsReady)
+            {
                 _upgrade.NovaArc(point, radius, start, span, width, color, impact);
+            }
         }
 
         public void Collapse(Vector2 point, float radius, Color color)
         {
             if (_upgrade != null && _upgrade.IsReady)
+            {
                 _upgrade.Vortex(point, radius, 0f, color, true);
+            }
         }
 
         public void BloodPool(Vector2 point, float radius, Color color, bool impact)
         {
             if (_upgrade != null && _upgrade.IsReady)
+            {
                 _upgrade.BloodPool(point, radius, color, impact);
+            }
         }
 
         public void PreImpact(BossEncounterPattern kind, Vector2 point, float radius, Color color)
         {
             if (_upgrade != null && _upgrade.IsReady)
+            {
                 _upgrade.PreImpact(kind, point, radius, color);
+            }
         }
 
         public void ProjectileTrail(Vector2 point, Vector2 direction, float size, Color color)
         {
             if (_upgrade != null && _upgrade.IsReady)
+            {
                 _upgrade.Trail(point, direction, size, color, true);
+            }
             else
+            {
                 Trail(point, direction, size, color);
+            }
         }
 
         public void Muzzle(Vector2 point, Vector2 direction, float size, Color color)
         {
             if (_upgrade != null && _upgrade.IsReady)
+            {
                 _upgrade.Muzzle(point, direction, size, color);
+            }
         }
 
         internal SpriteRenderer CreateBoltRenderer()
@@ -283,7 +333,9 @@ namespace _02.Scripts.Monster.BossMonster
             SpriteRenderer renderer = root.GetComponent<SpriteRenderer>();
             renderer.sprite = Resources.Load<Sprite>(BossVfxUpgrade.ResourceRoot + "Kenney/magic_03");
             if (renderer.sprite == null)
+            {
                 renderer.sprite = _glowSprite;
+            }
             renderer.sharedMaterial = _solidMaterial;
             renderer.sortingLayerID = _sortingLayer;
             renderer.sortingOrder = _order + MonsterVfxReadability.ProjectileBodyOrder;
@@ -370,7 +422,7 @@ namespace _02.Scripts.Monster.BossMonster
             if (_retiring)
             {
                 _retireAge += Time.deltaTime;
-                if (!busy || _retireAge > 3f)
+                if ((!busy && (_bodyHits == null || !_bodyHits.HasActiveBursts)) || _retireAge > 3f)
                 {
                     Destroy(gameObject);
                 }
@@ -426,13 +478,21 @@ namespace _02.Scripts.Monster.BossMonster
         private void OnDestroy()
         {
             if (Owners.TryGetValue(_ownerId, out BossBattleEffects ownerEffects) && ownerEffects == this)
+            {
                 Owners.Remove(_ownerId);
+            }
             if (_ownsGlow)
+            {
                 DestroySprite(_glowSprite);
+            }
             if (_ownsSpark)
+            {
                 DestroySprite(_sparkSprite);
+            }
             if (_ownsFlame)
+            {
                 DestroySprite(_flameSprite);
+            }
             DestroySprite(_spikeSprite);
             Destroy(_solidMaterial);
             Destroy(_glowMaterial);

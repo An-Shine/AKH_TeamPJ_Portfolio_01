@@ -1,0 +1,51 @@
+RABBIT OVERDRIVE — Boss Pattern / HUD / Hit Fix v3
+기준 파일: kyoungwontest(9).unitypackage
+이 파일은 보스 관련 변경 파일만 담은 적용 패키지입니다.
+
+적용 순서
+1. Unity가 Play 중이면 상단 Play 버튼을 눌러 종료합니다.
+2. Assets > Import Package > Custom Package... 를 선택합니다.
+3. Boss_Pattern_UI_Hit_Fix_v3.unitypackage 를 선택합니다.
+4. Import 창에서 모든 항목을 선택한 상태로 Import를 누릅니다.
+5. 컴파일이 끝나면 기존 보스가 있는 씬을 열어 Play를 누릅니다.
+프리팹에 컴포넌트를 직접 추가하거나 Inspector 슬롯을 새로 연결할 필요가 없습니다.
+이전 v2 수정 패키지 없이도 적용됩니다.
+
+변경 내용
+- 패턴에서 바닥 문양, 바닥 혈흔 웅덩이, 큰 signature 장식 및 지면 장식 이미지를 생성하지 않습니다.
+- 보스 패턴의 메시/스프라이트/파티클에 방 경계 및 실제 고정 장애물 마스크를 적용합니다.
+  Solid Layers가 0인 제공 씬에서도 고정 벽 콜라이더를 찾아 시각 마스크를 만듭니다.
+- 빨간 경고 범위와 실제 탄환은 유지하고, 전투의 피해량 및 패턴 시간을 바꾸지 않습니다.
+- 플레이어 HP <= 0, IsGameOver, Time.timeScale <= 0이면 보스 체력 UI를 즉시 숨깁니다.
+  재개/부활 후 플레이어가 보스방에 있으면 다시 표시합니다.
+- 플레이어 HUD의 HealthFrame, Fill, TrackBackground와 글꼴/색을 읽어 보스 UI에 적용합니다.
+  제공된 플레이어 체력바 프레임/채움 이미지도 보스 전용 경로에 함께 들어 있습니다.
+- 1280 x 720 기준 UI 폭 640 -> 526: 양쪽 57씩 축소합니다.
+  1.5cm의 픽셀 환산은 디스플레이마다 달라 96dpi 기준 약 57px로 잡았습니다.
+  화면 폭이 좁아지면 가상 화면 폭의 72% 이내로 추가 축소합니다.
+- 보스 초상은 기존 보스 스프라이트를 사용합니다.
+- 실제 보스 체력이 감소하면 몸통의 무작위 3곳에 스파크 + 혈흔을 함께 생성합니다.
+  각 효과는 8프레임이며 약 0.30 / 0.42초 동안 재생됩니다.
+  효과 크기는 보스 몸통 기준 0.9배, 범위 1.8~4.8 월드 단위입니다.
+  연속 사격 시 시각 효과 간격만 0.04초로 제한하며 피해 처리에는 영향을 주지 않습니다.
+- 플레이어, 아이템, 맵, 원본 PlayerUI 프리팹의 파일은 포함하거나 수정하지 않습니다.
+
+이미지 경로
+Assets/Resources/Monster/BossHitUpgrade/BossHitAtlas.png
+상단 2행: 스파크 8프레임. 하단 2행: 혈흔 8프레임.
+실제 생성 PNG는 1254 x 1254 RGBA입니다. 코드는 실제 크기를 읽어 정수 셀 경계로 나눕니다.
+Point 필터 / 무압축 / 알파 투명 / MipMap OFF 설정을 포함합니다.
+
+검증 범위
+C# 문법 파싱, 기존 전투 메서드 변경 범위, GUID 유지, 리소스 연결, PNG 알파,
+UI 좌표/비율 및 unitypackage 내부 구성 검사를 수행했습니다.
+이 환경에는 Unity와 dotnet SDK가 없어 실제 Unity 컴파일/Play 모드 및
+프로젝트의 dotnet format / Husky 실행은 하지 못했습니다.
+실제 적용 후: 플레이어 사망, ESC 일시정지, 재개, 부활, 보스 사망,
+모서리 패턴, 연속 사격을 확인하세요.
+
+Image generation
+Mode: built-in image_gen (CLI/API fallback not used)
+Exact generation prompt:
+Use case: stylized-concept. Asset type: production Unity 2D pixel game boss-hit VFX spritesheet, a single transparent texture atlas. Primary request: Create a precise 4-column by 4-row regular atlas on a 1024 by 1024 transparent canvas, exactly 16 equal 256 by 256 cells, no visible grid lines. Every effect centered on the center of its own cell, contained within that cell with at least 24px transparent padding. Rows 1 and 2 together are ONE eight-frame sequential animation (read left to right) of a dramatic machine-armor bullet impact: tiny bright cream ignition, explosive thick yellow-orange sparks, irregular angular white-hot streaks and square fragments extending radially, then dissipating embers. Rows 3 and 4 together are ONE eight-frame sequential animation (read left to right) of a dark-red crimson monster blood impact burst: tight initial impact then large energetic stylized red splashes and pixel droplets scattering radially, then dissipating small droplets. Frame 1 small ignition, frames 2-3 largest readable hit, frames 4-6 fragments fly outward, frames 7-8 fade toward almost empty. Style: hand-authored coherent crisp pixel art compatible with a top-down 2D shooter, low-resolution pixel clusters, hard stepped edges, chunky vivid silhouettes, tightly limited palette, no soft blur or gradient haze. These are transient airborne effects centered at the hit point, NOT floor decals, NOT blood pools. Big and powerful but no characters, no wounds, no body parts. Constraints: actual alpha transparent background, isolated sprite VFX only, no labels, no text, no numerals, no borders, no environment, no UI, no weapons, no monster silhouette, no smoke clouds, no floor, no checkerboard drawn into pixels. Never let a sprite touch or cross a cell edge.
+
