@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1270086565446766856}
   - component: {fileID: 8604231478619485937}
   - component: {fileID: 4891707145990715358}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: RadiationGenerator
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1904686153
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 6162b36b6c3f050469d3deb7a5b687ee, type: 3}
@@ -122,6 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ed8de1ada934d4eb76728ed185ba546, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item
+  _isCommon: 0
   _gainEffectPrefab: {fileID: 0}
   _gainEffectSFX: 13
   _tooltipOffset: {x: 0, y: 1, z: 0}

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3101502280089785928}
   - component: {fileID: 7485850900965901992}
   - component: {fileID: 6087001421204802612}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: PlasmaRiflePickUp
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1904686153
-  m_SortingLayer: 5
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7189594213055922541, guid: 42b917242b89fef4caa18b2afa761c9a, type: 3}
