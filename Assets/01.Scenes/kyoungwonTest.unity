@@ -71343,6 +71343,9 @@ MonoBehaviour:
   _pauseMenuRoot: {fileID: 958123838}
   _pauseTabAnimator: {fileID: 958123835}
   _gameStateManager: {fileID: 1013143322}
+  _goToMenuRoot: {fileID: 2026101401190}
+  _goToMenuYesButton: {fileID: 2026101401191}
+  _goToMenuCancelButton: {fileID: 2026101401192}
 --- !u!4 &848454405
 Transform:
   m_ObjectHideFlags: 0
@@ -73849,7 +73852,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4362767581897339671, guid: 117456d2249d00548af0f6eca39dfe29, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GoToMainMenu
+      value: OpenGoToMenu
       objectReference: {fileID: 0}
     - target: {fileID: 4362767581897339671, guid: 117456d2249d00548af0f6eca39dfe29, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -118204,6 +118207,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 608215432}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2026101401190 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3594959163066231475, guid: 117456d2249d00548af0f6eca39dfe29, type: 3}
+  m_PrefabInstance: {fileID: 958123833}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2026101401191 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3490819286361891671, guid: 117456d2249d00548af0f6eca39dfe29, type: 3}
+  m_PrefabInstance: {fileID: 958123833}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!114 &2026101401192 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3491292214363279529, guid: 117456d2249d00548af0f6eca39dfe29, type: 3}
+  m_PrefabInstance: {fileID: 958123833}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
