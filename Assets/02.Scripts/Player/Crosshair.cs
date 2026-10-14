@@ -211,7 +211,9 @@ public class CrosshairFollowMouse : MonoBehaviour
         Color purple = new Color(_chargeColor.r, _chargeColor.g, _chargeColor.b, _baseColor.a);
         Color color = Color.Lerp(_baseColor, purple, progress);
         float flash = 1f - Mathf.Clamp01(_chargeFlashAge / Mathf.Max(0.01f, _chargeFlashDuration));
-        _image.color = Color.Lerp(color, new Color(1f, 1f, 1f, _baseColor.a), flash);
+        _image.color = fullyCharged
+            ? new Color(0f, 1f, 0f, _baseColor.a)
+            : Color.Lerp(color, new Color(1f, 1f, 1f, _baseColor.a), flash);
     }
 
     private void ResetFeedback()
