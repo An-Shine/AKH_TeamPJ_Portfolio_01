@@ -5,6 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(OverlapSphere))]
 public class Item : MonoBehaviour, IInteractable
 {
+    [SerializeField] private bool _isCommon = false;
+    public bool IsCommon => _isCommon;
+
     [SerializeField] private GameObject _gainEffectPrefab;
     public GameObject GainEffectPrefab => _gainEffectPrefab;
     [SerializeField] private SFXType _gainEffectSFX;
