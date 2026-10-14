@@ -5,6 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(OverlapSphere))]
 public class Item : MonoBehaviour, IInteractable
 {
+    [SerializeField] private bool _isCommon = false;
+    public bool IsCommon => _isCommon;
+
     [SerializeField] private GameObject _gainEffectPrefab;
     public GameObject GainEffectPrefab => _gainEffectPrefab;
     [SerializeField] private SFXType _gainEffectSFX;
@@ -17,7 +20,6 @@ public class Item : MonoBehaviour, IInteractable
 
     [SerializeField] private Vector3 _tooltipOffset;
     private OverlapSphere _overlapSphere;
-    private bool _tooltipFlag;
 
     [SerializeField] private Material _shaderMaterial;
     private Material _runtimeMaterial;
@@ -32,16 +34,21 @@ public class Item : MonoBehaviour, IInteractable
         DeactivateOutline();
     }
 
-    private void Start()
-    {
-        _tooltipFlag = false;
-    }
-
     private void OnDisable()
     {
-        if (_tooltipFlag)
+        if (ToolTipManager.Instance != null)
         {
-            ToolTipManager.Instance.CloseItemTooltip();
+            ToolTipManager.Instance.CloseItemTooltip(transform);
+        }
+
+        DeactivateOutline();
+    }
+
+    private void OnDestroy()
+    {
+        if (_runtimeMaterial != null)
+        {
+            Destroy(_runtimeMaterial);
         }
     }
 
@@ -56,9 +63,17 @@ public class Item : MonoBehaviour, IInteractable
         Data = DataManager.Instance.ItemDatas.TryGetValue(id, out ItemData itemData) ? itemData : null;
 
         _effects = new List<ItemEffectData>();
+        if (Data == null)
+        {
+            Debug.LogWarning($"Item data not found: {id}", this);
+            if (ToolTipManager.Instance != null)
+                ToolTipManager.Instance.CloseItemTooltip(transform);
+            return;
+        }
+
         foreach (string effectId in Data.EffectIdList)
         {
-            if (effectId.Length <= 0)
+            if (string.IsNullOrEmpty(effectId))
             {
                 continue;
             }
@@ -77,21 +92,13 @@ public class Item : MonoBehaviour, IInteractable
 
         if (!_overlapSphere.ExistTarget())
         {
-            if (_tooltipFlag)
-            {
-                _tooltipFlag = false;
-                DeactivateOutline();
-                manager.CloseItemTooltip();
-            }
-
+            manager.CloseItemTooltip(transform);
+            DeactivateOutline();
             return;
         }
 
-        if (_tooltipFlag && manager.IsOpenTooltip) return;
-
-        ActivateOutline();
         manager.OpenItemTooltip(transform, _tooltipOffset, Data.Description);
-        _tooltipFlag = true;
+        ActivateOutline();
     }
 
     private void ActivateOutline()
