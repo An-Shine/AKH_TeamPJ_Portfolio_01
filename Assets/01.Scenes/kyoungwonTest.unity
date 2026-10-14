@@ -71369,6 +71369,9 @@ MonoBehaviour:
   _pauseMenuRoot: {fileID: 958123838}
   _pauseTabAnimator: {fileID: 958123835}
   _gameStateManager: {fileID: 1013143322}
+  _goToMenuRoot: {fileID: 2026101401190}
+  _goToMenuYesButton: {fileID: 2026101401191}
+  _goToMenuCancelButton: {fileID: 2026101401192}
 --- !u!4 &848454405
 Transform:
   m_ObjectHideFlags: 0
@@ -73875,7 +73878,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4362767581897339671, guid: 117456d2249d00548af0f6eca39dfe29, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GoToMainMenu
+      value: OpenGoToMenu
       objectReference: {fileID: 0}
     - target: {fileID: 4362767581897339671, guid: 117456d2249d00548af0f6eca39dfe29, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
