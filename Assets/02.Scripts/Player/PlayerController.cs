@@ -212,7 +212,10 @@ public class PlayerController : MonoBehaviour
             _reviveEffect.gameObject.SetActive(true);
             foreach (ParticleSystem particle in _reviveParticles)
             {
-                if (particle != null) particle.Play(false);
+                if (particle != null)
+                {
+                    particle.Play(false);
+                }
             }
 
             _reviveEffectRoutine = StartCoroutine(FinishReviveEffect(duration));
@@ -224,24 +227,36 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(duration);
         foreach (ParticleSystem particle in _reviveParticles)
         {
-            if (particle != null) particle.Stop(false, ParticleSystemStopBehavior.StopEmittingAndClear);
+            particle.Stop(false, ParticleSystemStopBehavior.StopEmittingAndClear);
         }
 
-        if (_reviveEffect != null) _reviveEffect.gameObject.SetActive(false);
+        if (_reviveEffect != null)
+        {
+            _reviveEffect.gameObject.SetActive(false);
+        }
+
         _reviveEffectRoutine = null;
     }
 
     private void StopReviveEffect()
     {
-        if (_reviveEffectRoutine != null) StopCoroutine(_reviveEffectRoutine);
-        _reviveEffectRoutine = null;
-        if (_reviveParticles == null) return;
-        foreach (ParticleSystem particle in _reviveParticles)
+        if (_reviveEffectRoutine != null)
         {
-            if (particle != null) particle.Stop(false, ParticleSystemStopBehavior.StopEmittingAndClear);
+            StopCoroutine(_reviveEffectRoutine);
         }
 
-        if (_reviveEffect != null) _reviveEffect.gameObject.SetActive(false);
+        _reviveEffectRoutine = null;
+        if (_reviveParticles == null) return;
+
+        foreach (ParticleSystem particle in _reviveParticles)
+        {
+            particle.Stop(false, ParticleSystemStopBehavior.StopEmittingAndClear);
+        }
+
+        if (_reviveEffect != null)
+        {
+            _reviveEffect.gameObject.SetActive(false);
+        }
     }
 
     private void OnDisable()
