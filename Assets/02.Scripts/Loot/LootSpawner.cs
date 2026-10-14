@@ -164,6 +164,7 @@ public class LootSpawner : MonoBehaviour
 
     public void EraseOtherItemOption(Item targetItem)
     {
+        if (_currentRoomId == RoomId.None) return;
         if (_lootSpawnInfoDictionary[_currentRoomId].IsOnlyCommon) return;
 
         bool findFlag = false;
