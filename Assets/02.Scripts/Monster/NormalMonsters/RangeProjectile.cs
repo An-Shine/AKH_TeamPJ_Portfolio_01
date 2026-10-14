@@ -211,24 +211,31 @@ public class RangeProjectile : MonoBehaviour
         int count = Physics2D.CircleCast(origin, Mathf.Max(0.01f, _sweepRadius), _direction, _filter, _castHits, distance);
         bool found = false;
         RaycastHit2D nearest = default(RaycastHit2D);
+        Vector2 nearestPoint = Vector2.zero;
+        Vector2 nearestCentroid = Vector2.zero;
         float nearestDistance = float.PositiveInfinity;
         for (int i = 0; i < count; i++)
         {
             RaycastHit2D hit = _castHits[i];
-            if (!CanImpact(hit.collider) || hit.distance >= nearestDistance)
+            if (!CanImpact(hit.collider) ||
+                !MonsterProjectileObstacles.TryResolveHit(hit, origin, origin + _direction * distance,
+                    Mathf.Max(0.01f, _sweepRadius), out Vector2 point, out Vector2 centroid, out float hitDistance) ||
+                hitDistance >= nearestDistance)
             {
                 continue;
             }
 
             found = true;
             nearest = hit;
-            nearestDistance = hit.distance;
+            nearestPoint = point;
+            nearestCentroid = centroid;
+            nearestDistance = hitDistance;
         }
 
         if (found)
         {
-            SetPosition(nearest.centroid);
-            Impact(nearest.collider, nearest.point);
+            SetPosition(nearestCentroid);
+            Impact(nearest.collider, nearestPoint);
             return;
         }
 
@@ -296,9 +303,15 @@ public class RangeProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!_hasImpacted && Time.timeScale > 0f && CanImpact(other))
+        if (_hasImpacted || Time.timeScale <= 0f || !CanImpact(other))
         {
-            Impact(other, other.ClosestPoint(transform.position));
+            return;
+        }
+
+        Vector2 point = other.ClosestPoint(transform.position);
+        if (MonsterProjectileObstacles.BlocksAtPoint(other, point))
+        {
+            Impact(other, point);
         }
     }
 
@@ -310,6 +323,11 @@ public class RangeProjectile : MonoBehaviour
         }
 
         Vector2 point = collision.contactCount > 0 ? collision.GetContact(0).point : collision.collider.ClosestPoint(transform.position);
+        if (!MonsterProjectileObstacles.BlocksAtPoint(collision.collider, point))
+        {
+            return;
+        }
+
         Impact(collision.collider, point);
     }
 

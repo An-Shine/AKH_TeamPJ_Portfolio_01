@@ -101,6 +101,11 @@ public class RangeMonster : NormalMonster
     public bool IsElite => UsesElitePatterns;
     private bool IsPatternAttack => _useVariedPatterns && _activePattern != RangeAttackPattern.Single;
 
+    protected override bool HasObstacleLineOfSight(Vector2 origin, Vector2 target)
+    {
+        return MonsterProjectileObstacles.HasClearShot(origin, target, transform, _player);
+    }
+
     protected override void Awake()
     {
         base.Awake();
