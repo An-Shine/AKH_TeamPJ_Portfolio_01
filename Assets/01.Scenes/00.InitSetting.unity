@@ -5511,10 +5511,65 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1915740737}
   m_CullTransparentMesh: 0
+--- !u!1 &2026101401
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2026101402}
+  - component: {fileID: 2026101403}
+  m_Layer: 0
+  m_Name: TutorialProgressReset
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2026101402
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026101401}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2026101403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026101401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dee3c1b93f740519241115f8b615d0f, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialProgressReset
+  _resetOnStart: 1
+  _tutorialDialogues:
+  - {fileID: 11400000, guid: 1f6f3f4633e3027479310ab38aaec163, type: 2}
+  - {fileID: 11400000, guid: ecc44f93293fa6e459a05c272f3a3487, type: 2}
+  - {fileID: 11400000, guid: 6f4f89a753cb6a64eb5c9a82d461729b, type: 2}
+  - {fileID: 11400000, guid: 16c5d46f9f9fa6d4a8282c7cdc29a7f0, type: 2}
+  - {fileID: 11400000, guid: d4843bcd3dc456949866af455a7e5900, type: 2}
+  - {fileID: 11400000, guid: bcacf73d07a167948a51e8f2cef77c0b, type: 2}
+  - {fileID: 11400000, guid: fd8a1fb5f5c910e4c8a702de1f2f23a5, type: 2}
+  - {fileID: 11400000, guid: 69033c65baa44dc44abccacf6506898f, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 2026101402}
   - {fileID: 775458762}
   - {fileID: 280574408}
   - {fileID: 631373530}
