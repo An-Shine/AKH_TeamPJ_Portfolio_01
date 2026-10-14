@@ -168,7 +168,7 @@ public class LootSpawner : MonoBehaviour
         if (_lootSpawnInfoDictionary[_currentRoomId].IsOnlyCommon) return;
 
         bool findFlag = false;
-        RoomId targetRoomId = RoomId.Room1;
+        RoomId targetRoomId = RoomId.None;
         foreach (RoomId id in _spawnedItemDictionary.Keys)
         {
             if (_spawnedItemDictionary[id].Contains(targetItem))
