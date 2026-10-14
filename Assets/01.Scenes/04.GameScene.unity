@@ -3388,7 +3388,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -1.7722216, y: 1.464056}
+  m_Offset: {x: -1.7722216, y: 1.0143185}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3398,7 +3398,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 20.266203, y: 12.818592}
+  m_Size: {x: 20.266203, y: 13.718067}
   m_EdgeRadius: 0
 --- !u!4 &275794922 stripped
 Transform:
@@ -27601,7 +27601,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 225
-      m_TileSpriteIndex: 206
+      m_TileSpriteIndex: 210
       m_TileMatrixIndex: 3
       m_TileColorIndex: 12
       m_TileObjectToInstantiateIndex: 65535
@@ -27611,7 +27611,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 222
-      m_TileSpriteIndex: 208
+      m_TileSpriteIndex: 209
       m_TileMatrixIndex: 3
       m_TileColorIndex: 12
       m_TileObjectToInstantiateIndex: 65535
@@ -27621,7 +27621,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 219
-      m_TileSpriteIndex: 207
+      m_TileSpriteIndex: 208
       m_TileMatrixIndex: 3
       m_TileColorIndex: 12
       m_TileObjectToInstantiateIndex: 65535
@@ -28556,16 +28556,16 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 1
-    m_Data: {fileID: 21300018, guid: a9ce9682a4564e6dbbe89d13ee83f67a, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 21300022, guid: a9ce9682a4564e6dbbe89d13ee83f67a, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300020, guid: a9ce9682a4564e6dbbe89d13ee83f67a, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300018, guid: a9ce9682a4564e6dbbe89d13ee83f67a, type: 3}
   - m_RefCount: 11
     m_Data: {fileID: -989319860, guid: 915f9a30489e40b8a931781bf809daa9, type: 3}
   - m_RefCount: 30
@@ -29358,7 +29358,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -7.5053263, y: 3.4801123}
+  m_Offset: {x: -6.9777727, y: 3.4801123}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -29368,7 +29368,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 12.100958, y: 7.944404}
+  m_Size: {x: 11.045851, y: 7.944404}
   m_EdgeRadius: 0
 --- !u!1 &941977727
 GameObject:
