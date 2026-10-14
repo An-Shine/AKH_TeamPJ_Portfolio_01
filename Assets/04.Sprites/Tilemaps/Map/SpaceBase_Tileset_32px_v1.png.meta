@@ -134,7 +134,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 0
+  spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -836,34 +836,34 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      North_Light_0_0: 968910040545246631
-      North_Light_1_0: 829403901094801702
-      North_Light_2_0: 672331920707878194
-      North_Electrical_0_0: 979033801847268037
-      North_Electrical_1_0: 1137808154800639239
-      North_Electrical_2_0: 165785989726048610
-      North_Divider_0_0: 282211941986485730
-      North_Divider_1_0: 348949222441461480
-      North_Divider_2_0: 941001666754387576
-      Corner_NW_0_0: 452230864737643458
-      Corner_NW_1_0: 779724550424882269
-      Corner_NW_2_0: 525358904341691120
       Corner_NE_0_0: 587396236025100508
       Corner_NE_1_0: 402562119547336629
       Corner_NE_2_0: 223482707754153759
-      Floor_Plain: 706308092160103947
+      Corner_NW_0_0: 452230864737643458
+      Corner_NW_1_0: 779724550424882269
+      Corner_NW_2_0: 525358904341691120
+      Corner_SE: 302417204294196303
+      Corner_SW: 913293088641284270
+      East_Plain: 181722374666725306
+      East_Vent: 1142726692547835844
       Floor_Drain: 620666155985497927
       Floor_Dust_0_0: 723565994775391409
       Floor_Dust_0_1: 193632869579581207
       Floor_Dust_1_0: 567785115048728323
       Floor_Dust_1_1: 209059546280003791
+      Floor_Plain: 706308092160103947
+      North_Divider_0_0: 282211941986485730
+      North_Divider_1_0: 348949222441461480
+      North_Divider_2_0: 941001666754387576
+      North_Electrical_0_0: 979033801847268037
+      North_Electrical_1_0: 1137808154800639239
+      North_Electrical_2_0: 165785989726048610
+      North_Light_0_0: 968910040545246631
+      North_Light_1_0: 829403901094801702
+      North_Light_2_0: 672331920707878194
+      South_Plain: 988349469338409577
       West_Plain: 646914207282262633
       West_Vent: 886569102224307091
-      Corner_SW: 913293088641284270
-      Corner_SE: 302417204294196303
-      East_Plain: 181722374666725306
-      East_Vent: 1142726692547835844
-      South_Plain: 988349469338409577
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: Native32_NoPadding
