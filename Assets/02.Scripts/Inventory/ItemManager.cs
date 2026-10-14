@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ItemManager : MonoBehaviour
@@ -6,9 +7,10 @@ public class ItemManager : MonoBehaviour
     private static ItemManager _instance;
     public static ItemManager Instance => _instance;
 
-    [SerializeField] private List<ItemEntry> _itemEntryList;
+    [SerializeField] private List<ItemEntry> _lootItemEntryList;
     [SerializeField] private Transform _itemContainer;
     [SerializeField] private Transform _playerTransform;
+    [SerializeField] private CommonItemPool _commonItemPool;
 
     private Dictionary<string, Item> _unobtainedItemDictionary;
     public IReadOnlyDictionary<string, Item> UnobtainedItemDictionary => _unobtainedItemDictionary;
@@ -38,18 +40,23 @@ public class ItemManager : MonoBehaviour
         _gainedItemList = new List<Item>();
         _unobtainedItemDictionary = new Dictionary<string, Item>();
         string id = string.Empty;
-        foreach (ItemEntry itemEntry in _itemEntryList)
+        foreach (ItemEntry itemEntry in _lootItemEntryList)
         {
             id = IdPrefix.ItemPrefix + itemEntry.ItemId;
             _unobtainedItemDictionary[id] = Instantiate(itemEntry.ItemPrefab, _itemContainer);
             _unobtainedItemDictionary[id].Initialize(itemEntry.ItemId);
             _unobtainedItemDictionary[id].gameObject.SetActive(false);
         }
+
+        _commonItemPool.CreatePool();
     }
 
     public void GainItem(Item item)
     {
-        _gainedItemList.Add(item);
+        if (!item.IsCommon)
+        {
+            _gainedItemList.Add(item);
+        }
 
         foreach (ItemEffectData effect in item.Effects)
         {
@@ -91,5 +98,22 @@ public class ItemManager : MonoBehaviour
         if (_unobtainedItemDictionary.ContainsKey(itemId)) return;
 
         _unobtainedItemDictionary.Add(itemId, item);
+    }
+
+    public List<Item> GetRandomCommonItem(int min, int max)
+    {
+        int itemCount = UnityEngine.Random.Range(min, max + 1);
+        List<Item> result = new List<Item>();
+        Item item;
+        for (int i = 0; i < itemCount; i++)
+        {
+            item = _commonItemPool.GetRandomCommonItem();
+            if (item != null)
+            {
+                result.Add(item);
+            }
+        }
+
+        return result;
     }
 }

@@ -22,6 +22,7 @@ public class LootSpawner : MonoBehaviour
     [Header("Item Display Stand")]
     [SerializeField] private DisplayStand _itemStandPrefab;
     [SerializeField] private Vector2 _itemStandSize;
+    [SerializeField] private Vector2 _checkItemStandSize;
 
     [Header("Weapon Display Stand")]
     [SerializeField] private DisplayStand _weaponStandPrefab;
@@ -32,6 +33,9 @@ public class LootSpawner : MonoBehaviour
 
     [Header("Evade Layer")]
     [SerializeField] private LayerMask _nonTargetLayerMask;
+
+    [Header("Common Item Min Max")]
+    [SerializeField] private Vector2Int _commonItemMinMax;
 
     private List<RoomId> _spawnDoneRoomIds;
     private Dictionary<RoomId, List<Item>> _spawnedItemDictionary;
@@ -81,12 +85,14 @@ public class LootSpawner : MonoBehaviour
     {
         if (_currentRoomId == RoomId.None) return;
         if (_spawnDoneRoomIds.Contains(_currentRoomId)) return;
+        if (_lootSpawnInfoDictionary[_currentRoomId].IsOnlyCommon) return;
 
         int repeat;
         Vector3 spawnPosition;
 
         //item display stand
-        spawnPosition = GridPos.GetPosition(_gridInfoDictionary[_currentRoomId], _unitSize, _nonTargetLayerMask);
+        spawnPosition =
+            GridPos.GetPosition(_gridInfoDictionary[_currentRoomId], _checkItemStandSize, _nonTargetLayerMask);
         DisplayStand itemStand = Instantiate(_itemStandPrefab, spawnPosition, Quaternion.identity);
         itemStand.StartAppearance();
 
@@ -158,6 +164,8 @@ public class LootSpawner : MonoBehaviour
 
     public void EraseOtherItemOption(Item targetItem)
     {
+        if (_lootSpawnInfoDictionary[_currentRoomId].IsOnlyCommon) return;
+
         bool findFlag = false;
         RoomId targetRoomId = RoomId.Room1;
         foreach (RoomId id in _spawnedItemDictionary.Keys)
@@ -187,5 +195,26 @@ public class LootSpawner : MonoBehaviour
     public void SetCurrentRoom(RoomId roomId)
     {
         _currentRoomId = roomId;
+    }
+
+    public void SpawnCommonItem()
+    {
+        if (_currentRoomId == RoomId.None) return;
+        if (_spawnDoneRoomIds.Contains(_currentRoomId)) return;
+
+        ItemManager manager = ItemManager.Instance;
+        if (manager == null) return;
+
+        Vector3 spawnPosition;
+        List<Item> spawnList = manager.GetRandomCommonItem(_commonItemMinMax[0], _commonItemMinMax[1]);
+        foreach (Item targetItem in spawnList)
+        {
+            spawnPosition = GridPos.GetPosition(_gridInfoDictionary[_currentRoomId], _unitSize, _nonTargetLayerMask);
+            targetItem.transform.position = spawnPosition;
+            targetItem.gameObject.SetActive(true);
+            targetItem.StartAppearance();
+        }
+
+        _spawnDoneRoomIds.Add(_currentRoomId);
     }
 }
