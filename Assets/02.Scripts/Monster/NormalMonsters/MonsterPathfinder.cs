@@ -63,6 +63,14 @@ internal sealed class MonsterPathfinder
         _canSeeTarget = canSeeTarget;
     }
 
+    public void Invalidate()
+    {
+        _path.Clear();
+        _waypoint = 0;
+        _hasSearched = false;
+        _nextSearchTime = 0f;
+    }
+
     public Vector2 GetDirection(
         Vector2 origin,
         Vector2 target,
@@ -105,13 +113,21 @@ internal sealed class MonsterPathfinder
             _lastTarget = target;
             bool found = BuildPath(origin, target, Mathf.Max(_cellSize, searchMargin),
                 Mathf.Clamp(maxVisitedNodes, 64, 8192));
-            _nextSearchTime = Time.time + Mathf.Max(found ? 0.1f : 1f, repathInterval);
+            _nextSearchTime = Time.time + Mathf.Max(found ? 0.1f : 0.35f, repathInterval);
         }
 
         float tolerance = Mathf.Clamp(waypointTolerance, 0.02f, _cellSize * 0.4f);
 
         while (_waypoint < _path.Count &&
             (_path[_waypoint] - origin).sqrMagnitude <= tolerance * tolerance)
+        {
+            _waypoint++;
+        }
+
+        // 군집 회피로 지나친 경유점에 되돌아가지 않고, 이동 가능한 다음 구간으로 진행합니다.
+        while (_waypoint + 1 < _path.Count &&
+               Vector2.Dot(origin - _path[_waypoint], _path[_waypoint + 1] - _path[_waypoint]) >= 0f &&
+               _canTravel(origin, _path[_waypoint + 1]))
         {
             _waypoint++;
         }
@@ -136,8 +152,7 @@ internal sealed class MonsterPathfinder
         if (!_canTravel(origin, _path[_waypoint]))
         {
             // 문이 닫히는 등 경로가 막히면 다음 탐색 차례를 기다립니다.
-            _path.Clear();
-            _nextSearchTime = 0f;
+            Invalidate();
             return Vector2.zero;
         }
 
@@ -194,6 +209,8 @@ internal sealed class MonsterPathfinder
         _nodes[start] = new Node { Parent = start, Cost = 0f };
         Push(new OpenNode { Cell = start, Cost = 0f, Estimate = Estimate(start, goal) });
         int visited = 0;
+        Vector2Int closest = start;
+        float closestEstimate = Estimate(start, goal);
 
         while (_open.Count > 0 && visited < maxVisitedNodes)
         {
@@ -208,6 +225,13 @@ internal sealed class MonsterPathfinder
             currentNode.Closed = true;
             _nodes[current.Cell] = currentNode;
             visited++;
+
+            float estimate = Estimate(current.Cell, goal);
+            if (estimate < closestEstimate)
+            {
+                closest = current.Cell;
+                closestEstimate = estimate;
+            }
 
             if (current.Cell == goal)
             {
@@ -255,6 +279,13 @@ internal sealed class MonsterPathfinder
                 _nodes[next] = new Node { Parent = current.Cell, Cost = cost };
                 Push(new OpenNode { Cell = next, Cost = cost, Estimate = Estimate(next, goal) });
             }
+        }
+
+        // 탐색 예산 안에서 목표에 도달하지 못해도, 도달 가능한 접근 경로를 사용합니다.
+        if (closest != start)
+        {
+            Reconstruct(start, closest);
+            return _path.Count > 1;
         }
 
         return false;

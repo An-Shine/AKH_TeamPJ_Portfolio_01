@@ -149,6 +149,12 @@ namespace _02.Scripts.Monster.NormalMonsters
             _encounter?.Rhythm.Release(_ownerId);
         }
 
+        public void InvalidateGoal()
+        {
+            _hasGoal = false;
+            _nextDecision = 0f;
+        }
+
         public Vector2 Destination(Vector2 playerPosition, float preferredDistance, bool commitApproach)
         {
             if (_encounter == null || commitApproach)
@@ -203,6 +209,12 @@ namespace _02.Scripts.Monster.NormalMonsters
                 bool visible = _hasSight(candidate, playerPosition);
                 float score = Mathf.Abs(CandidateOffsets[i]) * 0.012f + (candidate - origin).magnitude * 0.16f;
                 score += visible ? 0f : _role == MonsterCombatRole.Ranged ? 12f : 3f;
+                score += _hasSight(origin, candidate) ? 0f : 2f;
+                if (_hasGoal)
+                {
+                    score += Mathf.Min((candidate - _goal).sqrMagnitude * 0.12f, 0.6f);
+                }
+
                 score += CrowdPenalty(candidate);
                 if (score < bestScore)
                 {
