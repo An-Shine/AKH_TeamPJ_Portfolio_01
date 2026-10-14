@@ -4,6 +4,8 @@ namespace _02.Scripts.Monster.BossMonster
 {
     public sealed class BossHitVfx : MonoBehaviour
     {
+        private const float HitSizeMultiplier = 0.5f;
+
         private sealed class Burst
         {
             public SpriteRenderer Renderer;
@@ -24,7 +26,6 @@ namespace _02.Scripts.Monster.BossMonster
         private int _sortingLayer;
         private int _order;
         private int _nextBurst;
-        private float _nextHit;
         private bool _ready;
 
         public bool HasActiveBursts { get; private set; }
@@ -73,13 +74,11 @@ namespace _02.Scripts.Monster.BossMonster
 
         public void PlayHit()
         {
-            if (!_ready || _owner == null || Time.timeScale <= 0f || Time.time < _nextHit)
+            if (!_ready || _owner == null || Time.timeScale <= 0f)
             {
                 return;
             }
 
-            // Sustained automatic fire coalesces effects while every hit still applies damage.
-            _nextHit = Time.time + 0.04f;
             Bounds bounds = new Bounds(_owner.transform.position, Vector3.one * _owner.BodyWidth);
             float largestArea = 0f;
             foreach (SpriteRenderer body in _bodyRenderers)
@@ -98,15 +97,15 @@ namespace _02.Scripts.Monster.BossMonster
                 }
             }
 
-            float size = Mathf.Clamp(Mathf.Max(bounds.size.x, bounds.size.y) * 0.9f, 1.8f, 4.8f);
-            for (int i = 0; i < 3; i++)
-            {
-                Vector2 point = (Vector2)bounds.center + new Vector2(
-                    Random.Range(-bounds.extents.x * 0.6f, bounds.extents.x * 0.6f),
-                    Random.Range(-bounds.extents.y * 0.25f, bounds.extents.y * 0.6f));
-                Emit(point, size * Random.Range(0.85f, 1.2f), false);
-                Emit(point + Random.insideUnitCircle * size * 0.1f, size * Random.Range(0.8f, 1.15f), true);
-            }
+            float size = Mathf.Clamp(Mathf.Max(bounds.size.x, bounds.size.y) * 0.9f, 1.8f, 4.8f)
+                         * HitSizeMultiplier;
+            Vector2 point = (Vector2)bounds.center + new Vector2(
+                Random.Range(-bounds.extents.x * 0.6f, bounds.extents.x * 0.6f),
+                Random.Range(-bounds.extents.y * 0.25f, bounds.extents.y * 0.6f));
+            // One accepted hit plays either sparks or blood, never both.
+            bool blood = Random.value < 0.5f;
+            float variation = blood ? Random.Range(0.8f, 1.15f) : Random.Range(0.85f, 1.2f);
+            Emit(point, size * variation, blood);
         }
 
         private void Emit(Vector2 point, float size, bool blood)
