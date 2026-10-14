@@ -29,6 +29,6 @@ public class DataCollectionUI : MonoBehaviour
         _questText.text =
             "의뢰목록\n" +
             $"1. 소실된 연구소 데이터 수집 ({_collectedCount} / {_maxCollectCount})\n" +
-            "2. 보스몬스터 ??? 처치";
+            "2. 거대괴수 네메시스 제거";
     }
 }

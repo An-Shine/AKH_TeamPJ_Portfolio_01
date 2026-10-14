@@ -228,7 +228,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -10
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -989,6 +989,7 @@ MonoBehaviour:
   - {fileID: 3752560541776440137, guid: e4c67777cc259704d84123501921468b, type: 3}
   - {fileID: 8326424469708161978, guid: 5c49daa289ab3474e8046744413410ab, type: 3}
   _room: {fileID: 1103984916}
+  _mapRoomIconUI: {fileID: 0}
   _spawnPoints:
   - {fileID: 930659263}
   - {fileID: 1451372473}
@@ -1173,7 +1174,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -10
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -1773,6 +1774,7 @@ MonoBehaviour:
   - {fileID: 3752560541776440137, guid: e4c67777cc259704d84123501921468b, type: 3}
   - {fileID: 8326424469708161978, guid: 5c49daa289ab3474e8046744413410ab, type: 3}
   _room: {fileID: 1852111197}
+  _mapRoomIconUI: {fileID: 0}
   _spawnPoints:
   - {fileID: 481499747}
   _maxSpawnCount: 6
@@ -1950,7 +1952,7 @@ SortingGroup:
   m_GameObject: {fileID: 136931092}
   m_Enabled: 1
   m_SortingLayerID: 68427715
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -5
   m_SortAtRoot: 0
   m_Sort3DAs2D: 0
@@ -2621,7 +2623,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -8
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -2685,26 +2687,47 @@ MonoBehaviour:
   - {fileID: 4395003136846601785, guid: e6256c4d26d279c4aa6a3381ab6c315f, type: 3}
   _lootSpawnInfos:
   - RoomId: 0
-    SpawnPointLeftUp: {fileID: 1576771140}
-    SpawnPointRightDown: {fileID: 1567524443}
+    SpawnPointLeftUp: {x: 0, y: 0}
+    SpawnPointRightDown: {x: 0, y: 0}
+    WeaponSpawnCount: 0
+    DoNotNeedClear: 0
+    IsOnlyCommon: 1
   - RoomId: 1
-    SpawnPointLeftUp: {fileID: 650673854}
-    SpawnPointRightDown: {fileID: 1671008813}
+    SpawnPointLeftUp: {x: 0, y: 0}
+    SpawnPointRightDown: {x: 0, y: 0}
+    WeaponSpawnCount: 0
+    DoNotNeedClear: 0
+    IsOnlyCommon: 1
   - RoomId: 2
-    SpawnPointLeftUp: {fileID: 2098851}
-    SpawnPointRightDown: {fileID: 1368738064}
+    SpawnPointLeftUp: {x: 0, y: 0}
+    SpawnPointRightDown: {x: 0, y: 0}
+    WeaponSpawnCount: 0
+    DoNotNeedClear: 0
+    IsOnlyCommon: 1
   - RoomId: 3
-    SpawnPointLeftUp: {fileID: 1135658135}
-    SpawnPointRightDown: {fileID: 547913301}
+    SpawnPointLeftUp: {x: 0, y: 0}
+    SpawnPointRightDown: {x: 0, y: 0}
+    WeaponSpawnCount: 0
+    DoNotNeedClear: 0
+    IsOnlyCommon: 1
   - RoomId: 4
-    SpawnPointLeftUp: {fileID: 1072546095}
-    SpawnPointRightDown: {fileID: 476175070}
+    SpawnPointLeftUp: {x: 0, y: 0}
+    SpawnPointRightDown: {x: 0, y: 0}
+    WeaponSpawnCount: 0
+    DoNotNeedClear: 0
+    IsOnlyCommon: 1
   _unitSize: {x: 0.5, y: 0.5}
-  _weaponSpawnCount: 1
-  _itemOptionCount: 3
+  _spawnEffectPrefab: {fileID: 0}
+  _itemStandPrefab: {fileID: 0}
+  _itemStandSize: {x: 0, y: 0}
+  _checkItemStandSize: {x: 0, y: 0}
+  _weaponStandPrefab: {fileID: 0}
+  _weaponStandSize: {x: 0, y: 0}
+  _positionModifier: {x: 0, y: 0, z: 0}
   _nonTargetLayerMask:
     serializedVersion: 2
     m_Bits: 768
+  _commonItemMinMax: {x: 0, y: 0}
 --- !u!1 &202762072
 GameObject:
   m_ObjectHideFlags: 0
@@ -4460,7 +4483,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -5
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -5878,7 +5901,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -5
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -6123,7 +6146,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -8
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -6214,7 +6237,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -5
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -6290,7 +6313,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -4
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -7331,7 +7354,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -4
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -7825,6 +7848,7 @@ MonoBehaviour:
   - {fileID: 3752560541776440137, guid: e4c67777cc259704d84123501921468b, type: 3}
   - {fileID: 8326424469708161978, guid: 5c49daa289ab3474e8046744413410ab, type: 3}
   _room: {fileID: 22985340}
+  _mapRoomIconUI: {fileID: 0}
   _spawnPoints:
   - {fileID: 1912935177}
   - {fileID: 1993386460}
@@ -29012,6 +29036,7 @@ MonoBehaviour:
   - {fileID: 3752560541776440137, guid: e4c67777cc259704d84123501921468b, type: 3}
   - {fileID: 8326424469708161978, guid: 5c49daa289ab3474e8046744413410ab, type: 3}
   _room: {fileID: 2037550375}
+  _mapRoomIconUI: {fileID: 0}
   _spawnPoints:
   - {fileID: 1260956777}
   - {fileID: 1110224435}
@@ -30375,7 +30400,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -8
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -30684,7 +30709,7 @@ SortingGroup:
   m_GameObject: {fileID: 762150529}
   m_Enabled: 1
   m_SortingLayerID: 68427715
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -5
   m_SortAtRoot: 0
   m_Sort3DAs2D: 0
@@ -70540,6 +70565,7 @@ MonoBehaviour:
   _monsterPrefabs:
   - {fileID: 3752560541776440137, guid: 90166dd23fa65d9bacfe3f56d89b9700, type: 3}
   _room: {fileID: 1073302199}
+  _mapRoomIconUI: {fileID: 0}
   _spawnPoints:
   - {fileID: 531271239}
   - {fileID: 785192728}
@@ -71032,7 +71058,7 @@ SortingGroup:
   m_GameObject: {fileID: 828961064}
   m_Enabled: 1
   m_SortingLayerID: 68427715
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -5
   m_SortAtRoot: 0
   m_Sort3DAs2D: 0
@@ -71436,7 +71462,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -10
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -72658,7 +72684,7 @@ SortingGroup:
   m_GameObject: {fileID: 914046325}
   m_Enabled: 1
   m_SortingLayerID: 68427715
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -5
   m_SortAtRoot: 0
   m_Sort3DAs2D: 0
@@ -72924,7 +72950,7 @@ SortingGroup:
   m_GameObject: {fileID: 919570133}
   m_Enabled: 1
   m_SortingLayerID: 68427715
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -5
   m_SortAtRoot: 0
   m_Sort3DAs2D: 0
@@ -73270,7 +73296,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -4
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -74043,7 +74069,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -10
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -74957,7 +74983,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -8
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -75203,7 +75229,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 5
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2241811257695641816, guid: 6f772bb05da30504badf91ae08ea920e, type: 3}
@@ -76056,7 +76082,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -5
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -77019,7 +77045,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -5
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -79179,7 +79205,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -5
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -79353,7 +79379,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -4
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -79493,6 +79519,7 @@ MonoBehaviour:
   _monsterPrefabs:
   - {fileID: 3752560541776440137, guid: 90166dd23fa65d9bacfe3f56d89b9700, type: 3}
   _room: {fileID: 945076744}
+  _mapRoomIconUI: {fileID: 0}
   _spawnPoints:
   - {fileID: 1453862422}
   - {fileID: 1595491748}
@@ -90907,7 +90934,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -8
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -94258,6 +94285,10 @@ MonoBehaviour:
   _recoverDuration: 0.1
   _reloadRotationSpeed: 720
   _rotationReturnSpeed: 1080
+  _chargeColor: {r: 0.65, g: 0.2, b: 1, a: 1}
+  _chargeFlashDuration: 0.18
+  _chargeRing: {fileID: 0}
+  _chargedScale: 0.7
 --- !u!222 &1404648773
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -94948,7 +94979,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -8
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -95088,7 +95119,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -4
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -95908,7 +95939,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -10
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -106518,43 +106549,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d90e55def2f4fd89d1a56f4ea24ef70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemManager
-  _itemEntryList:
-  - ItemId: 0
-    ItemPrefab: {fileID: 4220967996708444725, guid: 58ed5222bc1f3814baf4b53ae8d9f792, type: 3}
-  - ItemId: 1
-    ItemPrefab: {fileID: 5158470827918489186, guid: fec5fa7daa50d5049b8b3be7c750a03b, type: 3}
-  - ItemId: 2
-    ItemPrefab: {fileID: 2881585295263553560, guid: b700618286991164394c50638c3d8456, type: 3}
-  - ItemId: 3
-    ItemPrefab: {fileID: 1999943091658586458, guid: 154b410946f72be46a6f7d7d47f4e711, type: 3}
-  - ItemId: 4
-    ItemPrefab: {fileID: 670094435488806455, guid: 09efb38b9d1838347855d74a26aeae7d, type: 3}
-  - ItemId: 5
-    ItemPrefab: {fileID: 7369551286898498312, guid: 50bcac24e55de5a499c789940547b697, type: 3}
-  - ItemId: 6
-    ItemPrefab: {fileID: 751336301646340192, guid: c93ef105bed638143a680affa2d9f611, type: 3}
-  - ItemId: 7
-    ItemPrefab: {fileID: 5026259335527411976, guid: 1c0bea44d5476404ca51ea7bcda9fdde, type: 3}
-  - ItemId: 8
-    ItemPrefab: {fileID: -6975915289467254642, guid: f8c86f80e4dbfcc43be56d49b622c288, type: 3}
-  - ItemId: 9
-    ItemPrefab: {fileID: 2411266119045533921, guid: e814ff20b6516bf46b56cc75a2b7e9e0, type: 3}
-  - ItemId: 10
-    ItemPrefab: {fileID: -2514233485333587086, guid: 4066805fd1ad49c498404f980d9a66f0, type: 3}
-  - ItemId: 11
-    ItemPrefab: {fileID: 2675392472269499183, guid: 3c8147bddf3b9db4697b93d4e16da329, type: 3}
-  - ItemId: 12
-    ItemPrefab: {fileID: 5696288406888112251, guid: ff651bd291b307f4e9767643748c480e, type: 3}
-  - ItemId: 13
-    ItemPrefab: {fileID: 85414102422346481, guid: f96fb170470de664a8de571b84e3f8f4, type: 3}
-  - ItemId: 14
-    ItemPrefab: {fileID: 6242697073394968390, guid: 640659ff2ee688942872d570bd44ce21, type: 3}
-  - ItemId: 15
-    ItemPrefab: {fileID: 1286150407042091770, guid: b8f281d0415c69f4185459bbde127a30, type: 3}
-  - ItemId: 16
-    ItemPrefab: {fileID: 4891707145990715358, guid: 5de3899297e43a54aa12c807983a469b, type: 3}
+  _lootItemEntryList: []
   _itemContainer: {fileID: 460850062}
   _playerTransform: {fileID: 970876085}
+  _commonItemPool: {fileID: 0}
 --- !u!1 &1671008812
 GameObject:
   m_ObjectHideFlags: 0
@@ -108267,6 +108265,7 @@ MonoBehaviour:
   - {fileID: 3752560541776440137, guid: e4c67777cc259704d84123501921468b, type: 3}
   - {fileID: 8326424469708161978, guid: 5c49daa289ab3474e8046744413410ab, type: 3}
   _room: {fileID: 471122285}
+  _mapRoomIconUI: {fileID: 0}
   _spawnPoints:
   - {fileID: 176012030}
   - {fileID: 1468511250}
@@ -108564,7 +108563,7 @@ SortingGroup:
   m_GameObject: {fileID: 1783178291}
   m_Enabled: 1
   m_SortingLayerID: 68427715
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -5
   m_SortAtRoot: 0
   m_Sort3DAs2D: 0
@@ -115718,6 +115717,7 @@ MonoBehaviour:
   - {fileID: 3752560541776440137, guid: e4c67777cc259704d84123501921468b, type: 3}
   - {fileID: 8326424469708161978, guid: 5c49daa289ab3474e8046744413410ab, type: 3}
   _room: {fileID: 13238419}
+  _mapRoomIconUI: {fileID: 0}
   _spawnPoints:
   - {fileID: 70150881}
   _maxSpawnCount: 6
@@ -116627,7 +116627,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -10
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -117715,7 +117715,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -4
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -118204,6 +118204,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 608215432}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &3441040839856734606
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1816277127246038883, guid: 0f0253d2841f2b54cae8618986553707, type: 3}
+      propertyPath: m_Name
+      value: GameStartCutsceme
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463012681206589841, guid: 0f0253d2841f2b54cae8618986553707, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 38.6888
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463012681206589841, guid: 0f0253d2841f2b54cae8618986553707, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 18.15394
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463012681206589841, guid: 0f0253d2841f2b54cae8618986553707, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463012681206589841, guid: 0f0253d2841f2b54cae8618986553707, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463012681206589841, guid: 0f0253d2841f2b54cae8618986553707, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463012681206589841, guid: 0f0253d2841f2b54cae8618986553707, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463012681206589841, guid: 0f0253d2841f2b54cae8618986553707, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463012681206589841, guid: 0f0253d2841f2b54cae8618986553707, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463012681206589841, guid: 0f0253d2841f2b54cae8618986553707, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463012681206589841, guid: 0f0253d2841f2b54cae8618986553707, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0f0253d2841f2b54cae8618986553707, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -118227,3 +118284,4 @@ SceneRoots:
   - {fileID: 536582134}
   - {fileID: 2055983763}
   - {fileID: 405994729}
+  - {fileID: 3441040839856734606}

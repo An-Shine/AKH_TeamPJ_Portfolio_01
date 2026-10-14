@@ -4262,6 +4262,7 @@ GameObject:
   - component: {fileID: 3122059788788733838}
   - component: {fileID: 9126132754595561248}
   - component: {fileID: 1821355986999721372}
+  - component: {fileID: 8797626729411444441}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -4405,6 +4406,19 @@ Animator:
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &1821355986999721372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914012069480314402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16bd1d2b4f5a23a4d9d2f294e73d24a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VolumeSliderController
+  _volumeSlider: {fileID: 4614813560478219390}
+--- !u!114 &8797626729411444441
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5956,11 +5970,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1443058575035092, guid: 99dd25f7aec14f24194a7f0eb3c4507c, type: 3}
       propertyPath: m_Name
-      value: Exit
+      value: FinishGame
       objectReference: {fileID: 0}
     - target: {fileID: 1443058575035092, guid: 99dd25f7aec14f24194a7f0eb3c4507c, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114010003127514778, guid: 99dd25f7aec14f24194a7f0eb3c4507c, type: 3}
+      propertyPath: m_text
+      value: "\uCDE8\uC18C"
       objectReference: {fileID: 0}
     - target: {fileID: 114010003127514778, guid: 99dd25f7aec14f24194a7f0eb3c4507c, type: 3}
       propertyPath: m_fontAsset
@@ -6009,6 +6027,10 @@ PrefabInstance:
     - target: {fileID: 114094828664264106, guid: 99dd25f7aec14f24194a7f0eb3c4507c, type: 3}
       propertyPath: m_Color.r
       value: 0.7372549
+      objectReference: {fileID: 0}
+    - target: {fileID: 114110888029886766, guid: 99dd25f7aec14f24194a7f0eb3c4507c, type: 3}
+      propertyPath: m_text
+      value: "\uAC8C\uC784 \uC885\uB8CC"
       objectReference: {fileID: 0}
     - target: {fileID: 114110888029886766, guid: 99dd25f7aec14f24194a7f0eb3c4507c, type: 3}
       propertyPath: m_fontAsset
@@ -6095,6 +6117,10 @@ PrefabInstance:
       value: 0.7372549
       objectReference: {fileID: 0}
     - target: {fileID: 114445518550213486, guid: 99dd25f7aec14f24194a7f0eb3c4507c, type: 3}
+      propertyPath: m_text
+      value: "\uB098\uAC00\uAE30"
+      objectReference: {fileID: 0}
+    - target: {fileID: 114445518550213486, guid: 99dd25f7aec14f24194a7f0eb3c4507c, type: 3}
       propertyPath: m_fontAsset
       value: 
       objectReference: {fileID: 11400000, guid: f8cf5bd443102b248a561467281bca03, type: 2}
@@ -6123,6 +6149,10 @@ PrefabInstance:
       value: 1801810542
       objectReference: {fileID: 0}
     - target: {fileID: 114458973021393860, guid: 99dd25f7aec14f24194a7f0eb3c4507c, type: 3}
+      propertyPath: m_text
+      value: "\uB098\uAC00\uAE30"
+      objectReference: {fileID: 0}
+    - target: {fileID: 114458973021393860, guid: 99dd25f7aec14f24194a7f0eb3c4507c, type: 3}
       propertyPath: m_fontAsset
       value: 
       objectReference: {fileID: 11400000, guid: f8cf5bd443102b248a561467281bca03, type: 2}
@@ -6171,6 +6201,11 @@ PrefabInstance:
       value: 0.7372549
       objectReference: {fileID: 0}
     - target: {fileID: 114621040174204366, guid: 99dd25f7aec14f24194a7f0eb3c4507c, type: 3}
+      propertyPath: m_text
+      value: "\uC9C4\uD589\uC911\uC778 \uB0B4\uC6A9\uC744 \uC783\uC744 \uC218 \uC788\uC2B5\uB2C8\uB2E4.
+        \uAC8C\uC784\uC744 \uC885\uB8CC\uD569\uB2C8\uB2E4."
+      objectReference: {fileID: 0}
+    - target: {fileID: 114621040174204366, guid: 99dd25f7aec14f24194a7f0eb3c4507c, type: 3}
       propertyPath: m_fontAsset
       value: 
       objectReference: {fileID: 11400000, guid: f8cf5bd443102b248a561467281bca03, type: 2}
@@ -6195,6 +6230,10 @@ PrefabInstance:
       value: 0.7372549
       objectReference: {fileID: 0}
     - target: {fileID: 114690031911649900, guid: 99dd25f7aec14f24194a7f0eb3c4507c, type: 3}
+      propertyPath: m_text
+      value: "\uCDE8\uC18C"
+      objectReference: {fileID: 0}
+    - target: {fileID: 114690031911649900, guid: 99dd25f7aec14f24194a7f0eb3c4507c, type: 3}
       propertyPath: m_fontAsset
       value: 
       objectReference: {fileID: 11400000, guid: f8cf5bd443102b248a561467281bca03, type: 2}
@@ -6205,6 +6244,10 @@ PrefabInstance:
     - target: {fileID: 114690031911649900, guid: 99dd25f7aec14f24194a7f0eb3c4507c, type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
       value: 1801810542
+      objectReference: {fileID: 0}
+    - target: {fileID: 114704677771457586, guid: 99dd25f7aec14f24194a7f0eb3c4507c, type: 3}
+      propertyPath: m_text
+      value: "\uB098\uAC00\uAE30"
       objectReference: {fileID: 0}
     - target: {fileID: 114704677771457586, guid: 99dd25f7aec14f24194a7f0eb3c4507c, type: 3}
       propertyPath: m_fontAsset
@@ -6269,6 +6312,10 @@ PrefabInstance:
     - target: {fileID: 114767352851709146, guid: 99dd25f7aec14f24194a7f0eb3c4507c, type: 3}
       propertyPath: m_Color.r
       value: 0.7372549
+      objectReference: {fileID: 0}
+    - target: {fileID: 114792061662403938, guid: 99dd25f7aec14f24194a7f0eb3c4507c, type: 3}
+      propertyPath: m_text
+      value: "\uCDE8\uC18C"
       objectReference: {fileID: 0}
     - target: {fileID: 114792061662403938, guid: 99dd25f7aec14f24194a7f0eb3c4507c, type: 3}
       propertyPath: m_fontAsset
@@ -6309,6 +6356,10 @@ PrefabInstance:
     - target: {fileID: 114878945504847276, guid: 99dd25f7aec14f24194a7f0eb3c4507c, type: 3}
       propertyPath: m_Color.r
       value: 0.7372549
+      objectReference: {fileID: 0}
+    - target: {fileID: 114896639365876720, guid: 99dd25f7aec14f24194a7f0eb3c4507c, type: 3}
+      propertyPath: buttonText
+      value: "\uCDE8\uC18C"
       objectReference: {fileID: 0}
     - target: {fileID: 114910953638828068, guid: 99dd25f7aec14f24194a7f0eb3c4507c, type: 3}
       propertyPath: m_Color.b
