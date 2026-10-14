@@ -15,6 +15,9 @@ public class DialogueManager : MonoBehaviour
     [Header("타이핑 설정")]
     [SerializeField][Min(1f)] private float _charactersPerSecond = 30f;
 
+    [Header("타이핑 사운드")]
+    [SerializeField] private AudioSource _typingAudioSource;
+
     private DialogueData _currentDialogue;
     private int _currentLineIndex;
     private bool _isDialogueActive;
@@ -84,6 +87,7 @@ public class DialogueManager : MonoBehaviour
         _dialogueText.ForceMeshUpdate();
         var characterCount = _dialogueText.textInfo.characterCount; // 태그를 제외한 실제 표시 글자수 가져오기
         var visibleCharacterCount = 0f;
+        if (characterCount > 0) PlayTypingAudio();
         while (_dialogueText.maxVisibleCharacters < characterCount)
         {
             // 타이핑 도중 진행 입력이 들어오면 반복 종료, 한번에 전체 출력
@@ -93,11 +97,15 @@ public class DialogueManager : MonoBehaviour
 
             _dialogueText.maxVisibleCharacters = Mathf.FloorToInt(visibleCharacterCount); // 누적된 수만큼 실제 표시글자수 갱신
 
+            if (_dialogueText.maxVisibleCharacters >= characterCount) StopTypingAudio();
+
             await UniTask.Yield(PlayerLoopTiming.Update, destroyCancellationToken); // 다음 Upadate 프레임까지 비동기 대기
         }
 
         // 반복문이 끝나면 남은 글자를 포함해 전체 문장 표시
         _dialogueText.maxVisibleCharacters = characterCount;
+
+        StopTypingAudio();
 
         _isTyping = false;
         _skipTypingRequested = false;
@@ -122,6 +130,7 @@ public class DialogueManager : MonoBehaviour
         if (_isTyping)
         {
             _skipTypingRequested = true;
+            StopTypingAudio();
             return;
         }
 
@@ -131,6 +140,8 @@ public class DialogueManager : MonoBehaviour
 
     private void EndDialogue()
     {
+        StopTypingAudio();
+
         // 대화창 UI 전체 숨기기
         _dialogueRoot.SetActive(false);
 
@@ -154,5 +165,26 @@ public class DialogueManager : MonoBehaviour
         _isTyping = false;
         _skipTypingRequested = false;
         _advanceRequested = false;
+    }
+
+    private void PlayTypingAudio()
+    {
+        if (!isActiveAndEnabled || _typingAudioSource == null || !_typingAudioSource.isActiveAndEnabled || _typingAudioSource.clip == null)
+        {
+            return;
+        }
+        _typingAudioSource.Stop();
+        _typingAudioSource.loop = true;
+        _typingAudioSource.Play();
+    }
+
+    private void StopTypingAudio()
+    {
+        if (_typingAudioSource != null) _typingAudioSource.Stop();
+    }
+
+    private void OnDisable()
+    {
+        StopTypingAudio();
     }
 }
