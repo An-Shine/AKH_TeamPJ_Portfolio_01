@@ -128,7 +128,23 @@ public class PlayerController : MonoBehaviour
             nearest = interactScript;
         }
 
-        if (nearest == null || !_fsm.TryStartInteraction(_interactionDuration)) return false;
+        if (nearest == null || !TryBeginInteraction()) return false;
+
+        Sprite objectSprite = nearest.Interact(gameObject);
+        InteractDisplayObject.Display(objectSprite, gameObject.transform.position);
+
+        PlayerManager.Instance.GetItem();
+        return true;
+    }
+
+    public bool TryBeginInteraction()
+    {
+        if (PlayerManager.IsInputBlocked || !isActiveAndEnabled || Time.timeScale <= 0f ||
+            (_dashQueued && _fsm.CanDash) || !_fsm.TryStartInteraction(_interactionDuration))
+        {
+            return false;
+        }
+
         _dashQueued = false;
         _motor.Stop();
         _weapon.CancelAttackVisual();
@@ -137,10 +153,6 @@ public class PlayerController : MonoBehaviour
             _animation.BeginInteraction();
         }
 
-        Sprite objectSprite = nearest.Interact(gameObject);
-        InteractDisplayObject.Display(objectSprite, gameObject.transform.position);
-
-        PlayerManager.Instance.GetItem();
         return true;
     }
 

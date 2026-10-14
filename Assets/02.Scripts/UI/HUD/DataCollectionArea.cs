@@ -5,7 +5,8 @@ public class DataCollectionArea : MonoBehaviour
 {
     [SerializeField] private DataCollectionUI _dataCollectionUI;
     [SerializeField] private MapRoomIconUI _mapRoomIconUI;
-    [SerializeField, InspectorName("Hacking Effect")] private GameObject _gKeyIcon;
+    [SerializeField, InspectorName("Hacking Effect")]
+    private GameObject _gKeyIcon;
     [SerializeField] private Vector3 _tooltipOffset = new(0f, 1.5f, 0f);
 
     private readonly HashSet<Collider2D> _playerColliders = new();
@@ -25,12 +26,33 @@ public class DataCollectionArea : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.G))
         {
+            if (!TryBeginPlayerInteraction()) return;
+
             _isCollected = true;
             _dataCollectionUI.CollectData();
             if (_gKeyIcon != null) _gKeyIcon.SetActive(false);
             if (_mapRoomIconUI != null) _mapRoomIconUI.MarkCleared();
             HidePrompt();
         }
+    }
+
+    private bool TryBeginPlayerInteraction()
+    {
+        foreach (Collider2D playerCollider in _playerColliders)
+        {
+            if (playerCollider == null)
+            {
+                continue;
+            }
+
+            PlayerController player = playerCollider.GetComponentInParent<PlayerController>();
+            if (player != null && player.TryBeginInteraction())
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

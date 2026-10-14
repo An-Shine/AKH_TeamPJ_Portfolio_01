@@ -6,7 +6,7 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField] private Transform _muzzle;
     [SerializeField] private ParticleSystem _reloadParticle;
     [SerializeField] private GameObject _reloadText;
-    private float _attackVisualDuration = 0.7f; // 공격 애니메이션 길이로 맞추기
+    private float _attackVisualDuration = 0.4f; // 공격 애니메이션 길이로 맞추기
 
     private Weapon _activeWeapon;
     private bool _wasFireHeld;

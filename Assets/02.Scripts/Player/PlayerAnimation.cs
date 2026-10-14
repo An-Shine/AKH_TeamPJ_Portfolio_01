@@ -225,6 +225,12 @@ public class PlayerAnimation : MonoBehaviour
             return;
         }
 
+        // 같은 Run/Idle 클립을 재생 중이어도 아이템 배율 변경을 즉시 반영합니다.
+        ItemPlayerStat playerStat = ItemManager.Instance != null ? ItemManager.Instance.PlayerStat : null;
+        _animator.speed = (motion == Motion.Run || motion == Motion.Idle) && playerStat != null
+            ? Mathf.Max(0f, 1f + playerStat.MoveSpeedMultiplier)
+            : 1f;
+
         bool attackMotion = motion == Motion.IdleAttack || motion == Motion.RunAttack;
         // 추가 발사는 공격 유지 시간만 연장하고 현재 애니메이션은 계속 재생합니다.
         if (_hasPlayed && hash == _lastHash) return;
