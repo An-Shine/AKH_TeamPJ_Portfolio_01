@@ -51,6 +51,10 @@ public class ItemUI : MonoBehaviour
             var icon = Instantiate(_itemIconPrefab, transform);
             icon.sprite = itemIcon;
             icon.enabled = true;
+            if (icon.TryGetComponent<ItemIconUI>(out var itemIconUI))
+            {
+                itemIconUI.Initialize(item.Data);
+            }
         }
 
         _displayedItemCount = gainedItems.Count;

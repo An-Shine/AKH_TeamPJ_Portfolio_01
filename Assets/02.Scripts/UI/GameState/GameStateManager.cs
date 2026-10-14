@@ -15,10 +15,12 @@ public class GameStateManager : MonoBehaviour
     [Header("게임오버")]
     [SerializeField] private GameObject _gameOverUI;
     [SerializeField] private TMP_Text _gameOverTimeText;
+    [SerializeField] private TMP_Text _gameOverReviveText;
 
     [Header("게임클리어")]
     [SerializeField] private GameObject _stageClearUI;
     [SerializeField] private TMP_Text _stageClearTimeText;
+    [SerializeField] private TMP_Text _stageClearReviveText;
 
     [Header("플레이어 사망 애니메이션 연결")]
     [SerializeField] private Animator _playerAnimator;
@@ -31,12 +33,14 @@ public class GameStateManager : MonoBehaviour
 
     public GameState CurrentState { get; private set; } = GameState.Playing;
     public float PlayTimeSeconds => _playTimeSeconds;
+    public int ReviveCount { get; private set; }
     public bool IsPlaying => CurrentState == GameState.Playing;
 
     private void Awake()
     {
         CurrentState = GameState.Playing;
         _playTimeSeconds = 0f;
+        ReviveCount = 0;
 
         _gameOverUI.SetActive(false);
         _stageClearUI.SetActive(false);
@@ -76,7 +80,7 @@ public class GameStateManager : MonoBehaviour
             return;
         }
         CurrentState = GameState.GameOver;
-        ShowResult(_gameOverUI, _gameOverTimeText);
+        ShowResult(_gameOverUI, _gameOverTimeText, _gameOverReviveText);
     }
 
     public void CompleteGame()
@@ -84,16 +88,17 @@ public class GameStateManager : MonoBehaviour
         if (CurrentState != GameState.Ending) return;
 
         CurrentState = GameState.GameClear;
-        ShowResult(_stageClearUI, _stageClearTimeText);
+        ShowResult(_stageClearUI, _stageClearTimeText, _stageClearReviveText);
     }
 
-    public void ShowResult(GameObject panel, TMP_Text timeText)
+    public void ShowResult(GameObject panel, TMP_Text timeText, TMP_Text reviveText)
     {
         var totalSeconds = Mathf.FloorToInt(_playTimeSeconds);
         var minutes = totalSeconds / 60;
         var seconds = totalSeconds % 60;
 
         timeText.text = $"플레이타임 {minutes:00} : {seconds:00}";
+        if (reviveText != null) reviveText.text = ReviveCount.ToString();
         Time.timeScale = 0f;
         panel.transform.SetAsLastSibling();
         panel.SetActive(true);
@@ -155,6 +160,7 @@ public class GameStateManager : MonoBehaviour
         var playerManager = PlayerManager.Instance;
         if (playerManager == null) return;
         if (!playerManager.TryRevive()) return;
+        ReviveCount++;
         _gameOverUI.SetActive(false);
         CurrentState = GameState.Playing;
         Time.timeScale = 1f;

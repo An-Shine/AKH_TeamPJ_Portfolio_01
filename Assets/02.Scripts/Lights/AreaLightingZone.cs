@@ -6,11 +6,22 @@ public class AreaLightingZone : MonoBehaviour
     [Header("조명")]
     [SerializeField] private Light2D[] _lights;
 
-    [Header("매니저")]
-    [SerializeField] private AreaLightManager _areaLightManager;
-
     [SerializeField] private RoomId _roomId;
     [SerializeField] private bool _isItemRoom;
+
+    private Collider2D _zoneCollider;
+
+    private void Awake()
+    {
+        _zoneCollider = GetComponent<Collider2D>();
+    }
+
+    public bool ContainsPoint(Vector2 position)
+    {
+        return isActiveAndEnabled && _zoneCollider != null &&
+               _zoneCollider.enabled && _zoneCollider.gameObject.activeInHierarchy &&
+               _zoneCollider.OverlapPoint(position);
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -18,7 +29,6 @@ public class AreaLightingZone : MonoBehaviour
 
         if (rb == null || !rb.CompareTag("Player")) return;
 
-        _areaLightManager.EnterZone(this);
         EnterRoom();
     }
 
