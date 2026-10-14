@@ -288,7 +288,7 @@ public class RangeProjectile : MonoBehaviour
         if (MonsterCombat.ResolvePlayerCollider(other, _player) != null)
         {
             // 몸의 콜라이더가 있다면 넓은 감지용 Trigger에서는 적중시키지 않습니다.
-            return !other.isTrigger || !MonsterCombat.HasEnabledBodyCollider(_playerColliders);
+            return !other.isTrigger || !MonsterCombat.HasEnabledBodyCollider(_playerColliders) || other.CompareTag("Guardian");
         }
 
         return !other.isTrigger;
@@ -335,8 +335,18 @@ public class RangeProjectile : MonoBehaviour
             _body.simulated = false;
         }
 
+        bool isFollower = false;
+        if (other.CompareTag("Guardian"))
+        {
+            isFollower = true;
+            if (other.TryGetComponent(out GuardDrone guardian))
+            {
+                guardian.TakeDamage((int)_damage);
+            }
+        }
+
         Vector3 hitPosition = new Vector3(point.x, point.y, transform.position.z);
-        Transform player = MonsterCombat.ResolvePlayerCollider(other, _player);
+        Transform player = isFollower ? null : MonsterCombat.ResolvePlayerCollider(other, _player);
         bool enhanced = _gameFeel != null && _gameFeel.IsConfigured;
         if (_hasPatternVisual && _patternVfx != null)
         {
