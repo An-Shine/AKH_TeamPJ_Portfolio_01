@@ -72,7 +72,6 @@ public class NormalMonster : MonoBehaviour
     [SerializeField, Min(0.02f)] private float _pathWaypointTolerance = 0.1f;
 
     [Header("피격 설정")]
-    [SerializeField] private float _hitCooldown = 0.1f;
     [SerializeField] private float _hitFlashDuration = 0.08f;
 
     [Header("사망 설정")]
@@ -94,7 +93,6 @@ public class NormalMonster : MonoBehaviour
     private Rigidbody2D _normalRootBody;
     private Vector3 _normalControlledPosition;
     // 피격
-    private float _normalHitCooldownTimer;
     private Coroutine _normalHitFlashRoutine;
     private NormalMonsterGameFeel _normalHitGameFeel;
     // 플레이어 접촉
@@ -178,11 +176,6 @@ public class NormalMonster : MonoBehaviour
         if (_normalIsDead)
         {
             return;
-        }
-
-        if (_normalHitCooldownTimer > 0f)
-        {
-            _normalHitCooldownTimer = Mathf.Max(0f, _normalHitCooldownTimer - Time.deltaTime);
         }
 
         if (RequiresRoomEntry && !_homeRoom.TryGetDetectedPlayer(out _))
@@ -1061,13 +1054,12 @@ public class NormalMonster : MonoBehaviour
 
     public virtual void TakeDamage(float damage)
     {
-        if (_normalIsDead || _normalHitCooldownTimer > 0f || damage <= 0f || float.IsNaN(damage) ||
-            float.IsInfinity(damage))
+        if (_normalIsDead || damage <= 0f || float.IsNaN(damage) || float.IsInfinity(damage))
         {
             return;
         }
 
-        _normalHitCooldownTimer = Mathf.Max(0f, _hitCooldown);
+        // 피격 중에도 각 타격의 피해를 즉시 적용합니다.
         _currentHealth = Mathf.Max(0f, _currentHealth - damage);
         Debug.Log($"{name} 피격! 받은 데미지: {damage}, 현재 체력: {_currentHealth}", this);
         if (_currentHealth <= 0f)
