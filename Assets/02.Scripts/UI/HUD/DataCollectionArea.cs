@@ -5,16 +5,16 @@ public class DataCollectionArea : MonoBehaviour
 {
     [SerializeField] private DataCollectionUI _dataCollectionUI;
     [SerializeField] private MapRoomIconUI _mapRoomIconUI;
-    [SerializeField] private GameObject _gKeyIcon;
+    [SerializeField, InspectorName("Hacking Effect")] private GameObject _gKeyIcon;
     [SerializeField] private Vector3 _tooltipOffset = new(0f, 1.5f, 0f);
 
     private readonly HashSet<Collider2D> _playerColliders = new();
     private bool _isCollected;
     private bool _isTooltipOpen;
 
-    private void Awake()
+    private void OnEnable()
     {
-        _gKeyIcon.SetActive(false);
+        if (_gKeyIcon != null) _gKeyIcon.SetActive(!_isCollected);
     }
 
     private void Update()
@@ -27,6 +27,7 @@ public class DataCollectionArea : MonoBehaviour
         {
             _isCollected = true;
             _dataCollectionUI.CollectData();
+            if (_gKeyIcon != null) _gKeyIcon.SetActive(false);
             if (_mapRoomIconUI != null) _mapRoomIconUI.MarkCleared();
             HidePrompt();
         }
@@ -53,23 +54,19 @@ public class DataCollectionArea : MonoBehaviour
     {
         _playerColliders.Clear();
 
-        if (_gKeyIcon != null) HidePrompt();
+        HidePrompt();
     }
 
     private void ShowPrompt()
     {
-        _gKeyIcon.SetActive(true);
-
         if (_isTooltipOpen || ToolTipManager.Instance == null) return;
 
-        ToolTipManager.Instance.OpenItemTooltip(transform, _tooltipOffset, "데이터 추출하기");
+        ToolTipManager.Instance.OpenItemTooltip(transform, _tooltipOffset, " 데이터 추출을 진행합니다.");
         _isTooltipOpen = true;
     }
 
     private void HidePrompt()
     {
-        if (_gKeyIcon != null) _gKeyIcon.SetActive(false);
-
         if (_isTooltipOpen)
         {
             if (ToolTipManager.Instance != null) ToolTipManager.Instance.CloseItemTooltip();
