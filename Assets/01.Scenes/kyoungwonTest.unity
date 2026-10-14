@@ -75030,8 +75030,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameStateManager
   _gameOverUI: {fileID: 1692236205}
   _gameOverTimeText: {fileID: 1692236204}
+  _gameOverReviveText: {fileID: 2026101501}
   _stageClearUI: {fileID: 1019473020}
   _stageClearTimeText: {fileID: 1019473019}
+  _stageClearReviveText: {fileID: 2026101502}
   _playerAnimator: {fileID: 970876078}
 --- !u!4 &1013143323
 Transform:
@@ -118264,6 +118266,28 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f0253d2841f2b54cae8618986553707, type: 3}
+--- !u!114 &2026101501 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7836868431092773048, guid: 1d8e8049c8018874d96f53d82e08fa17, type: 3}
+  m_PrefabInstance: {fileID: 1692236202}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2026101502 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6389107180127939612, guid: c88544376db20df47b68c8db2d2012f8, type: 3}
+  m_PrefabInstance: {fileID: 1019473018}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

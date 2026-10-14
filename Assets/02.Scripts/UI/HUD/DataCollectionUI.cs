@@ -4,7 +4,7 @@ using UnityEngine;
 public class DataCollectionUI : MonoBehaviour
 {
     [SerializeField] private TMP_Text _questText;
-    [SerializeField, Min(1)] private int _maxCollectCount = 2;
+    [SerializeField, Min(1)] private int _maxCollectCount = 1;
 
     private int _collectedCount;
 
@@ -27,8 +27,8 @@ public class DataCollectionUI : MonoBehaviour
     private void RefreshText()
     {
         _questText.text =
-            "의뢰목록\n" +
-            $"1. 소실된 연구소 데이터 수집 ({_collectedCount} / {_maxCollectCount})\n" +
+            "\n" +
+            $"1. 좌우 연구실 중 한 곳에서 데이터회수 ( {_collectedCount} / {_maxCollectCount})\n" +
             "2. 거대괴수 네메시스 제거";
     }
 }
