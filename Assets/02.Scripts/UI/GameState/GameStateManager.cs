@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -30,6 +31,10 @@ public class GameStateManager : MonoBehaviour
 
     private float _playTimeSeconds;
     private bool _isLeaving;
+    private readonly List<GameObject> _hiddenCrosshairs = new List<GameObject>();
+    private bool _resultCursorActive;
+    private bool _previousCursorVisible;
+    private CursorLockMode _previousCursorLockState;
 
     public GameState CurrentState { get; private set; } = GameState.Playing;
     public float PlayTimeSeconds => _playTimeSeconds;
@@ -102,6 +107,7 @@ public class GameStateManager : MonoBehaviour
         Time.timeScale = 0f;
         panel.transform.SetAsLastSibling();
         panel.SetActive(true);
+        ShowResultCursor();
 
         var panelAnimator = panel.GetComponent<Animator>();
 
@@ -110,6 +116,39 @@ public class GameStateManager : MonoBehaviour
             panelAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
             panelAnimator.Play(WindowInHash, 0, 0f);
         }
+    }
+
+    private void ShowResultCursor()
+    {
+        if (_resultCursorActive) return;
+        _resultCursorActive = true;
+        _previousCursorVisible = Cursor.visible;
+        _previousCursorLockState = Cursor.lockState;
+
+        // Image만 끄면 PlayerAimVisual이 다시 켜므로 오브젝트 자체를 숨깁니다.
+        foreach (CrosshairFollowMouse crosshair in FindObjectsByType<CrosshairFollowMouse>(FindObjectsSortMode.None))
+        {
+            if (!crosshair.gameObject.activeInHierarchy) continue;
+            _hiddenCrosshairs.Add(crosshair.gameObject);
+            crosshair.gameObject.SetActive(false);
+        }
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    private void RestoreGameplayCursor()
+    {
+        if (!_resultCursorActive) return;
+        // Crosshair의 OnEnable이 결과 화면의 커서 상태를 저장하지 않도록 먼저 복원합니다.
+        Cursor.lockState = _previousCursorLockState;
+        Cursor.visible = _previousCursorVisible;
+        foreach (GameObject crosshair in _hiddenCrosshairs)
+        {
+            if (crosshair != null) crosshair.SetActive(true);
+        }
+        _hiddenCrosshairs.Clear();
+        _resultCursorActive = false;
     }
 
     public void ReturnToShip()
@@ -164,5 +203,6 @@ public class GameStateManager : MonoBehaviour
         _gameOverUI.SetActive(false);
         CurrentState = GameState.Playing;
         Time.timeScale = 1f;
+        RestoreGameplayCursor();
     }
 }
