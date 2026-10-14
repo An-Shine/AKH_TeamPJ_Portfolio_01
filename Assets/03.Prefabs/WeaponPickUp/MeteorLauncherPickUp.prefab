@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4355310226151049922}
   - component: {fileID: 4113655694449102838}
   - component: {fileID: 7705399505605688505}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: MeteorLauncherPickUp
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1904686153
-  m_SortingLayer: 5
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -5900571650957132270, guid: af33bcc0f1ef1534b810a19ed2daf43a, type: 3}

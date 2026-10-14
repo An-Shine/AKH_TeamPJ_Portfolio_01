@@ -10,4 +10,5 @@ public class LootSpawnInfo
 
     public int WeaponSpawnCount;
     public bool DoNotNeedClear = false;
+    public bool IsOnlyCommon = true;
 }

@@ -1,5 +1,4 @@
 using _02.Scripts.Monster.Presentation;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RangeMonster : NormalMonster
@@ -65,7 +64,6 @@ public class RangeMonster : NormalMonster
     private static readonly int HitId = Animator.StringToHash("IsHit");
     private static readonly int DeadId = Animator.StringToHash("IsDead");
     private readonly int[,] _states = new int[5, 8];
-    private readonly List<RaycastHit2D> _shotPathHits = new List<RaycastHit2D>(16);
     private Animator _animator;
     private SpriteRenderer[] _renderers;
     private Color[] _colors;
@@ -105,7 +103,6 @@ public class RangeMonster : NormalMonster
 
     protected override void Awake()
     {
-        RangeProjectileTerrain.PrepareScene(gameObject.scene);
         base.Awake();
         ClampSettings();
         _gameFeel = GetComponent<NormalMonsterGameFeel>();
@@ -207,7 +204,7 @@ public class RangeMonster : NormalMonster
 
         Vector2 toPlayer = (Vector2)_player.position - (Vector2)transform.position;
         float distance = toPlayer.magnitude;
-        bool clearAttackPath = HasProjectileLineOfSight(transform.position, _player.position);
+        bool clearAttackPath = HasObstacleLineOfSight(transform.position, _player.position);
         if (!_directionInitialized || distance > _facingLockDistance)
         {
             SetDirection(toPlayer);
@@ -362,7 +359,7 @@ public class RangeMonster : NormalMonster
             return false;
         }
 
-        if (!HasProjectileLineOfSight(transform.position, _player.position))
+        if (!HasObstacleLineOfSight(transform.position, _player.position))
         {
             return false;
         }
@@ -638,7 +635,7 @@ public class RangeMonster : NormalMonster
     {
         if (_hasDied || _action != ActionState.Attack || _projectilePrefab == null || _player == null
             || !_player.gameObject.activeInHierarchy || !CanTrackPlayer()
-            || !HasProjectileLineOfSight(transform.position, _player.position))
+            || !HasObstacleLineOfSight(transform.position, _player.position))
         {
             _patternWave = RangeAttackPatterns.WaveCount(_activePattern);
             _lastPatternShotTime = Time.time;
@@ -675,32 +672,6 @@ public class RangeMonster : NormalMonster
         _patternWave++;
         _lastPatternShotTime = Time.time;
         _nextPatternShotTime = Time.time + RangeAttackPatterns.WaveInterval(_activePattern, _patternShotInterval);
-    }
-
-    private bool HasProjectileLineOfSight(Vector2 origin, Vector2 target)
-    {
-        Vector2 difference = target - origin;
-        float distance = difference.magnitude;
-        if (distance <= 0.000001f)
-            return true;
-        ContactFilter2D filter = new ContactFilter2D();
-        filter.SetLayerMask(_projectilePrefab != null ? _projectilePrefab.HitLayers : (LayerMask)(~0));
-        filter.useTriggers = false;
-        _shotPathHits.Clear();
-        int count = Physics2D.Raycast(origin, difference / distance, filter, _shotPathHits, distance);
-        for (int i = 0; i < count; i++)
-        {
-            Collider2D other = _shotPathHits[i].collider;
-            if (other == null || other.transform == transform || other.transform.IsChildOf(transform)
-                || other.GetComponentInParent<NormalMonster>() != null
-                || MonsterCombat.ResolvePlayerCollider(other, _player) != null
-                || RangeProjectilePassThrough.Allows(other))
-            {
-                continue;
-            }
-            return false;
-        }
-        return true;
     }
 
     private bool ValidateAnimator()

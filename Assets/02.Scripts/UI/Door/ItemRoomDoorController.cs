@@ -52,6 +52,7 @@ public class ItemRoomDoorController : MonoBehaviour
         if (_state != DoorState.Cleared)
         {
             LootSpawner.Instance?.SpawnLoot();
+            LootSpawner.Instance?.SpawnCommonItem();
         }
         _state = DoorState.Cleared;
         _doorController.Open();

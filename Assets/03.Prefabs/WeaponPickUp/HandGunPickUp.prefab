@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3159230837951322598}
   - component: {fileID: 3604377464205610128}
   - component: {fileID: 4362468264871964675}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: HandGunPickUp
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1904686153
-  m_SortingLayer: 5
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 5352119192046224396, guid: 333a6a675fbf82b4a8ea1f8673f1618d, type: 3}

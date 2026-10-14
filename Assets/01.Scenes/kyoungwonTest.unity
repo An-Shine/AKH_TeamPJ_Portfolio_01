@@ -989,7 +989,6 @@ MonoBehaviour:
   - {fileID: 3752560541776440137, guid: e4c67777cc259704d84123501921468b, type: 3}
   - {fileID: 8326424469708161978, guid: 5c49daa289ab3474e8046744413410ab, type: 3}
   _room: {fileID: 1103984916}
-  _mapRoomIconUI: {fileID: 0}
   _spawnPoints:
   - {fileID: 930659263}
   - {fileID: 1451372473}
@@ -1497,37 +1496,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 828419569}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &121398808 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2909121212700061259, guid: a5a57ca3f640c314c93bccdee65bd408, type: 3}
-  m_PrefabInstance: {fileID: 4430999052205444602}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &121398809
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 121398808}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b48d380ef541ef4f864aff05a050f5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameStartCutscenePlayer
-  _cutsceneClip: {fileID: 32900000, guid: 2e39e28eea1ae2649ac23c3fbc612bc7, type: 3}
-  _resourcePath: Cutscene/DesertIntro
-  _playOnStart: 1
-  _playOncePerSession: 1
-  _autoFindControls: 1
-  _disableDuringCutscene: []
-  _muteGameAudio: 1
-  _cutsceneVolume: 1
-  _prepareTimeout: 20
-  _allowSkip: 1
-  _skipHoldDuration: 0.5
-  _onGameplayReady:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &121420423
 GameObject:
   m_ObjectHideFlags: 0
@@ -1805,7 +1773,6 @@ MonoBehaviour:
   - {fileID: 3752560541776440137, guid: e4c67777cc259704d84123501921468b, type: 3}
   - {fileID: 8326424469708161978, guid: 5c49daa289ab3474e8046744413410ab, type: 3}
   _room: {fileID: 1852111197}
-  _mapRoomIconUI: {fileID: 0}
   _spawnPoints:
   - {fileID: 481499747}
   _maxSpawnCount: 6
@@ -2718,37 +2685,23 @@ MonoBehaviour:
   - {fileID: 4395003136846601785, guid: e6256c4d26d279c4aa6a3381ab6c315f, type: 3}
   _lootSpawnInfos:
   - RoomId: 0
-    SpawnPointLeftUp: {x: 0, y: 0}
-    SpawnPointRightDown: {x: 0, y: 0}
-    WeaponSpawnCount: 0
-    DoNotNeedClear: 0
+    SpawnPointLeftUp: {fileID: 1576771140}
+    SpawnPointRightDown: {fileID: 1567524443}
   - RoomId: 1
-    SpawnPointLeftUp: {x: 0, y: 0}
-    SpawnPointRightDown: {x: 0, y: 0}
-    WeaponSpawnCount: 0
-    DoNotNeedClear: 0
+    SpawnPointLeftUp: {fileID: 650673854}
+    SpawnPointRightDown: {fileID: 1671008813}
   - RoomId: 2
-    SpawnPointLeftUp: {x: 0, y: 0}
-    SpawnPointRightDown: {x: 0, y: 0}
-    WeaponSpawnCount: 0
-    DoNotNeedClear: 0
+    SpawnPointLeftUp: {fileID: 2098851}
+    SpawnPointRightDown: {fileID: 1368738064}
   - RoomId: 3
-    SpawnPointLeftUp: {x: 0, y: 0}
-    SpawnPointRightDown: {x: 0, y: 0}
-    WeaponSpawnCount: 0
-    DoNotNeedClear: 0
+    SpawnPointLeftUp: {fileID: 1135658135}
+    SpawnPointRightDown: {fileID: 547913301}
   - RoomId: 4
-    SpawnPointLeftUp: {x: 0, y: 0}
-    SpawnPointRightDown: {x: 0, y: 0}
-    WeaponSpawnCount: 0
-    DoNotNeedClear: 0
+    SpawnPointLeftUp: {fileID: 1072546095}
+    SpawnPointRightDown: {fileID: 476175070}
   _unitSize: {x: 0.5, y: 0.5}
-  _spawnEffectPrefab: {fileID: 0}
-  _itemStandPrefab: {fileID: 0}
-  _itemStandSize: {x: 0, y: 0}
-  _weaponStandPrefab: {fileID: 0}
-  _weaponStandSize: {x: 0, y: 0}
-  _positionModifier: {x: 0, y: 0, z: 0}
+  _weaponSpawnCount: 1
+  _itemOptionCount: 3
   _nonTargetLayerMask:
     serializedVersion: 2
     m_Bits: 768
@@ -7872,7 +7825,6 @@ MonoBehaviour:
   - {fileID: 3752560541776440137, guid: e4c67777cc259704d84123501921468b, type: 3}
   - {fileID: 8326424469708161978, guid: 5c49daa289ab3474e8046744413410ab, type: 3}
   _room: {fileID: 22985340}
-  _mapRoomIconUI: {fileID: 0}
   _spawnPoints:
   - {fileID: 1912935177}
   - {fileID: 1993386460}
@@ -8580,7 +8532,6 @@ GameObject:
   - component: {fileID: 642836362}
   - component: {fileID: 642836361}
   - component: {fileID: 642836360}
-  - component: {fileID: 600710000000000001}
   m_Layer: 9
   m_Name: MapBoundary
   m_TagString: Wall
@@ -29061,7 +29012,6 @@ MonoBehaviour:
   - {fileID: 3752560541776440137, guid: e4c67777cc259704d84123501921468b, type: 3}
   - {fileID: 8326424469708161978, guid: 5c49daa289ab3474e8046744413410ab, type: 3}
   _room: {fileID: 2037550375}
-  _mapRoomIconUI: {fileID: 0}
   _spawnPoints:
   - {fileID: 1260956777}
   - {fileID: 1110224435}
@@ -70590,7 +70540,6 @@ MonoBehaviour:
   _monsterPrefabs:
   - {fileID: 3752560541776440137, guid: 90166dd23fa65d9bacfe3f56d89b9700, type: 3}
   _room: {fileID: 1073302199}
-  _mapRoomIconUI: {fileID: 0}
   _spawnPoints:
   - {fileID: 531271239}
   - {fileID: 785192728}
@@ -74273,11 +74222,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9074837142586714173, guid: b5f335e30d5aa2344bc4adefae59483a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -37.1
+      value: -2.9
       objectReference: {fileID: 0}
     - target: {fileID: 9074837142586714173, guid: b5f335e30d5aa2344bc4adefae59483a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0
+      value: 53.5
       objectReference: {fileID: 0}
     - target: {fileID: 9074837142586714173, guid: b5f335e30d5aa2344bc4adefae59483a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -79544,7 +79493,6 @@ MonoBehaviour:
   _monsterPrefabs:
   - {fileID: 3752560541776440137, guid: 90166dd23fa65d9bacfe3f56d89b9700, type: 3}
   _room: {fileID: 945076744}
-  _mapRoomIconUI: {fileID: 0}
   _spawnPoints:
   - {fileID: 1453862422}
   - {fileID: 1595491748}
@@ -94310,10 +94258,6 @@ MonoBehaviour:
   _recoverDuration: 0.1
   _reloadRotationSpeed: 720
   _rotationReturnSpeed: 1080
-  _chargeColor: {r: 0.65, g: 0.2, b: 1, a: 1}
-  _chargeFlashDuration: 0.18
-  _chargeRing: {fileID: 0}
-  _chargedScale: 0.7
 --- !u!222 &1404648773
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -108323,7 +108267,6 @@ MonoBehaviour:
   - {fileID: 3752560541776440137, guid: e4c67777cc259704d84123501921468b, type: 3}
   - {fileID: 8326424469708161978, guid: 5c49daa289ab3474e8046744413410ab, type: 3}
   _room: {fileID: 471122285}
-  _mapRoomIconUI: {fileID: 0}
   _spawnPoints:
   - {fileID: 176012030}
   - {fileID: 1468511250}
@@ -115775,7 +115718,6 @@ MonoBehaviour:
   - {fileID: 3752560541776440137, guid: e4c67777cc259704d84123501921468b, type: 3}
   - {fileID: 8326424469708161978, guid: 5c49daa289ab3474e8046744413410ab, type: 3}
   _room: {fileID: 13238419}
-  _mapRoomIconUI: {fileID: 0}
   _spawnPoints:
   - {fileID: 70150881}
   _maxSpawnCount: 6
@@ -118262,86 +118204,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 608215432}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &600710000000000001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 642836358}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b899038362c5426faecc737ca81786c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RangeProjectilePassThrough
---- !u!1001 &4430999052205444602
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2785711981203815675, guid: a5a57ca3f640c314c93bccdee65bd408, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -12.32009
-      objectReference: {fileID: 0}
-    - target: {fileID: 2785711981203815675, guid: a5a57ca3f640c314c93bccdee65bd408, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 18.69343
-      objectReference: {fileID: 0}
-    - target: {fileID: 2785711981203815675, guid: a5a57ca3f640c314c93bccdee65bd408, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2785711981203815675, guid: a5a57ca3f640c314c93bccdee65bd408, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2785711981203815675, guid: a5a57ca3f640c314c93bccdee65bd408, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2785711981203815675, guid: a5a57ca3f640c314c93bccdee65bd408, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2785711981203815675, guid: a5a57ca3f640c314c93bccdee65bd408, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2785711981203815675, guid: a5a57ca3f640c314c93bccdee65bd408, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2785711981203815675, guid: a5a57ca3f640c314c93bccdee65bd408, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2785711981203815675, guid: a5a57ca3f640c314c93bccdee65bd408, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2909121212700061259, guid: a5a57ca3f640c314c93bccdee65bd408, type: 3}
-      propertyPath: m_Name
-      value: cutscene
-      objectReference: {fileID: 0}
-    - target: {fileID: 5515894210916295523, guid: a5a57ca3f640c314c93bccdee65bd408, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5515894210916295523, guid: a5a57ca3f640c314c93bccdee65bd408, type: 3}
-      propertyPath: m_TargetCamera
-      value: 
-      objectReference: {fileID: 355144966}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2909121212700061259, guid: a5a57ca3f640c314c93bccdee65bd408, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 121398809}
-  m_SourcePrefab: {fileID: 100100000, guid: a5a57ca3f640c314c93bccdee65bd408, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -118365,4 +118227,3 @@ SceneRoots:
   - {fileID: 536582134}
   - {fileID: 2055983763}
   - {fileID: 405994729}
-  - {fileID: 4430999052205444602}

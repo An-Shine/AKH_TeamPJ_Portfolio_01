@@ -9,7 +9,6 @@ public class WeaponPickup : MonoBehaviour, IInteractable
 
     [SerializeField] private Vector3 _tooltipOffset;
     private OverlapSphere _overlapSphere;
-    private bool _tooltipFlag;
 
     [SerializeField] private Material _shaderMaterial;
     private Material _runtimeMaterial;
@@ -24,11 +23,6 @@ public class WeaponPickup : MonoBehaviour, IInteractable
         DeactivateOutline();
     }
 
-    private void Start()
-    {
-        _tooltipFlag = false;
-    }
-
     private void Update()
     {
         DisplayTooltip();
@@ -36,17 +30,18 @@ public class WeaponPickup : MonoBehaviour, IInteractable
 
     private void OnDisable()
     {
-        if (_tooltipFlag)
+        if (ToolTipManager.Instance != null)
         {
-            ToolTipManager.Instance.CloseItemTooltip();
+            ToolTipManager.Instance.CloseItemTooltip(transform);
         }
+
+        DeactivateOutline();
     }
 
     public Sprite Interact(GameObject actor)
     {
         WeaponManager.Instance.GainWeapon(_weaponId);
         gameObject.SetActive(false);
-        // Destroy(gameObject);
         return gameObject.GetComponent<SpriteRenderer>().sprite;
     }
 
@@ -57,22 +52,14 @@ public class WeaponPickup : MonoBehaviour, IInteractable
 
         if (!_overlapSphere.ExistTarget())
         {
-            if (_tooltipFlag)
-            {
-                _tooltipFlag = false;
-                DeactivateOutline();
-                manager.CloseItemTooltip();
-            }
-
+            manager.CloseItemTooltip(transform);
+            DeactivateOutline();
             return;
         }
 
-        if (_tooltipFlag) return;
-
-        ActivateOutline();
         string description = BuildDescription();
         manager.OpenItemTooltip(transform, _tooltipOffset, description);
-        _tooltipFlag = true;
+        ActivateOutline();
     }
 
     private string BuildDescription()
