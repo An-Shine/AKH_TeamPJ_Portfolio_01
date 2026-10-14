@@ -50,6 +50,12 @@ TagManager:
   - name: Deco
     uniqueID: 2877432691
     locked: 0
+  - name: Stand
+    uniqueID: 3562569477
+    locked: 0
+  - name: Item
+    uniqueID: 2390281143
+    locked: 0
   - name: Monster
     uniqueID: 2925022039
     locked: 0
@@ -64,9 +70,6 @@ TagManager:
     locked: 0
   - name: Obstacle
     uniqueID: 563802219
-    locked: 0
-  - name: Item
-    uniqueID: 2390281143
     locked: 0
   - name: Projectile
     uniqueID: 1496129411

@@ -55,6 +55,10 @@ public abstract class Projectile : MonoBehaviour
     {
         GiveDamage(other);
         DecreaseDurability(other);
+        if (other.CompareTag("Enemy") || other.CompareTag("Wall") || other.CompareTag("Obstacle"))
+        {
+            ExecuteDestroyEffect();
+        }
         if (other.CompareTag("Wall") || other.CompareTag("Obstacle"))
         {
             OnDestroySelf();
@@ -111,7 +115,6 @@ public abstract class Projectile : MonoBehaviour
     protected virtual void OnDestroySelf()
     {
         ProjectilePoolManager.Instance.Release(this);
-        ExecuteDestroyEffect();
     }
 
     private void ExecuteDestroyEffect()

@@ -87,6 +87,7 @@ public class GaugeController : MonoBehaviour
         if (_chargeBehaviour == null)
         {
             _isDoNotHaveCharge = true;
+            return;
         }
 
         if (_chargeBehaviour is ChargeFire)
@@ -102,7 +103,7 @@ public class GaugeController : MonoBehaviour
 
     private void RefreshGaugePosition()
     {
-        if (!_isDoNotHaveCharge || !_isCharging) return;
+        if (_isDoNotHaveCharge || !_isCharging) return;
 
         Vector3 screenPos = _camera.WorldToScreenPoint(_target.position + _offset);
         RectTransformUtility.ScreenPointToLocalPointInRectangle(

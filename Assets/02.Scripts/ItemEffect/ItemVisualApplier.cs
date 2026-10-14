@@ -25,16 +25,30 @@ public static class ItemVisualApplier
             case 5:
             {
                 Transform child = playerTransform.GetChild(0);
-                GameObject visualObject = child.transform.GetChild(0).gameObject;
-                if (visualObject.TryGetComponent(out SpriteRenderer spriteRenderer))
+                GameObject bodyVisual = child.transform.GetChild(0).gameObject;
+                if (bodyVisual.TryGetComponent(out SpriteRenderer bodyRenderer))
                 {
                     float otherColor = itemData.VisualValue;
                     if (otherColor >= 1f)
                     {
                         otherColor = 1f;
                     }
+
                     Color color = new Color(1f, otherColor, otherColor, 1f);
-                    spriteRenderer.color = color;
+                    bodyRenderer.color = color;
+                }
+
+                GameObject armVisual = child.transform.GetChild(2).gameObject;
+                if (armVisual.TryGetComponent(out SpriteRenderer armRenderer))
+                {
+                    float otherColor = itemData.VisualValue;
+                    if (otherColor >= 1f)
+                    {
+                        otherColor = 1f;
+                    }
+
+                    Color color = new Color(1f, otherColor, otherColor, 1f);
+                    armRenderer.color = color;
                 }
 
                 break;
@@ -47,6 +61,7 @@ public static class ItemVisualApplier
                 {
                     spriteRenderer.material.SetFloat("_TextureLayer1Fade", 1f);
                 }
+
                 break;
             }
         }
