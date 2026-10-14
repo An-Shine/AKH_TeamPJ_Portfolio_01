@@ -18,11 +18,20 @@ public class PlayerHitFlash : MonoBehaviour
     private float _amount;
     private Tween _dashTween;
     private float _dashAmount;
+    [SerializeField] private Transform _hitEffect;
+    [SerializeField] private Animator _hitEffectAnimator;
+    private static readonly int HitEffectHash = Animator.StringToHash("Base Layer.PlayerHitEffect");
 
     private void Awake()
     {
         _renderers = transform.GetComponentsInChildren<SpriteRenderer>(true);
         _properties = new MaterialPropertyBlock();
+        _hitEffect = transform.Find("PlayerHit");
+        if (_hitEffect != null)
+        {
+            _hitEffectAnimator = _hitEffect.GetComponent<Animator>();
+            _hitEffect.gameObject.SetActive(false);
+        }
     }
 
     public void Play()
@@ -34,11 +43,33 @@ public class PlayerHitFlash : MonoBehaviour
 
         _tween?.Kill();
         _flashColor = Color.red;
+        PlayHitEffect();
         Apply(1f);
         _tween = DOTween.To(() => _amount, Apply, 0f, _duration)
             .SetEase(Ease.Linear)
             .SetTarget(this)
             .OnComplete(() => _tween = null);
+    }
+
+    private void PlayHitEffect()
+    {
+        if (_hitEffect == null || _hitEffectAnimator == null ||
+            _hitEffectAnimator.runtimeAnimatorController == null)
+        {
+            return;
+        }
+
+        _hitEffect.gameObject.SetActive(true);
+        _hitEffectAnimator.Play(HitEffectHash, 0, 0f);
+        _hitEffectAnimator.Update(0f);
+    }
+
+    private void LateUpdate()
+    {
+        if (_hitEffectAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
+        {
+            _hitEffect.gameObject.SetActive(false);
+        }
     }
 
     public void PlayRevive(float duration)
@@ -114,6 +145,11 @@ public class PlayerHitFlash : MonoBehaviour
 
     private void OnDisable()
     {
+        if (_hitEffect != null)
+        {
+            _hitEffect.gameObject.SetActive(false);
+        }
+
         _tween?.Kill();
         _tween = null;
         _dashTween?.Kill();
