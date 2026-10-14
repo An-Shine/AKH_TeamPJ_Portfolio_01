@@ -71,7 +71,11 @@ namespace _02.Scripts.Monster.BossMonster
             _order = order;
             _z = z;
             _random = new System.Random(seed & int.MaxValue);
-            _shader = Resources.Load<Shader>(ResourceRoot + "BossCrispVfx");
+            _shader = Resources.Load<Shader>(BossArenaVfxClip.ShaderPath);
+            if (_shader == null)
+            {
+                _shader = Resources.Load<Shader>(ResourceRoot + "BossCrispVfx");
+            }
             TextAsset data = Resources.Load<TextAsset>(ResourceRoot + "BossVfxCatalog");
             if (_shader == null || data == null)
             {
@@ -80,7 +84,9 @@ namespace _02.Scripts.Monster.BossMonster
             }
             BossVfxCatalog catalog = JsonUtility.FromJson<BossVfxCatalog>(data.text);
             if (catalog == null || catalog.textures == null)
+            {
                 return;
+            }
             foreach (BossVfxTextureDefinition definition in catalog.textures)
             {
                 Texture2D texture = Resources.Load<Texture2D>(definition.path);
@@ -188,8 +194,19 @@ namespace _02.Scripts.Monster.BossMonster
         private void Emit(string key, Vector2 point, Vector2 velocity, float width, float height,
             float lifetime, Color color, float angle = 0f, bool primary = false)
         {
-            if (!_ready || Time.timeScale <= 0f || !_pools.TryGetValue(key, out Pool pool))
+            // Remove the decorative floor/card sprites that pop into view during patterns.
+            // Warning meshes, projectiles and airborne impact particles have separate renderers.
+            if (MonsterVfxReadability.IsGroundParticle(key) || key.StartsWith("signature_", StringComparison.Ordinal) ||
+                key == "earth_burst" || key == "earth_shards" || key == "electric_surface" || key == "fire_spin" ||
+                key == "vortex" || key == "twirl" || key == "photon_ring" || key == "shock_ring" || key == "nova")
+            {
                 return;
+            }
+
+            if (!_ready || Time.timeScale <= 0f || !_pools.TryGetValue(key, out Pool pool))
+            {
+                return;
+            }
             if (_budgetFrame != Time.frameCount)
             {
                 _budgetFrame = Time.frameCount;
@@ -258,7 +275,9 @@ namespace _02.Scripts.Monster.BossMonster
         public void Explosion(Vector2 point, float radius, Color color, int sparks = 28)
         {
             if (!_ready || Time.timeScale <= 0f)
+            {
                 return;
+            }
             radius = Mathf.Clamp(radius, 0.12f, 4.2f);
             // The white core is local and short; the larger outline retains the pattern's hue.
             Square("impact", point, radius * 1.1f, 0.065f, Color.white, Range(0f, 360f), true);
@@ -299,7 +318,9 @@ namespace _02.Scripts.Monster.BossMonster
         public void FirePillar(Vector2 point, float radius, Color color)
         {
             if (!_ready || Time.timeScale <= 0f)
+            {
                 return;
+            }
             radius = Mathf.Clamp(radius, 0.2f, 2.8f);
             Explosion(point, radius * 0.7f, color, 24);
             Square("fire_spin", point, radius * 1.9f, 0.35f, Alpha(color, 0.55f));
@@ -320,7 +341,9 @@ namespace _02.Scripts.Monster.BossMonster
         public void Lightning(Vector2 point, float radius, Color color)
         {
             if (!_ready || Time.timeScale <= 0f)
+            {
                 return;
+            }
             radius = Mathf.Clamp(radius, 0.25f, 2.3f);
             float height = radius * 3.5f + 1.8f;
             _mesh.Lightning(point + Vector2.up * height, point, 0.04f + radius * 0.012f, color, 0.2f);
@@ -351,7 +374,9 @@ namespace _02.Scripts.Monster.BossMonster
         public void GroundBreak(Vector2 point, float radius, Color color)
         {
             if (!_ready || Time.timeScale <= 0f)
+            {
                 return;
+            }
             radius = Mathf.Clamp(radius, 0.2f, 3.2f);
             Square("earth_burst", point, radius * 2.4f, 0.36f, Color.Lerp(color, Color.white, 0.65f), 0f, true);
             Square("signature_detonation", point, radius * 1.75f, 0.24f,
@@ -377,13 +402,17 @@ namespace _02.Scripts.Monster.BossMonster
         public void Slash(Vector2 point, float radius, float angle, Color color, float intensity, float span)
         {
             if (!_ready || Time.timeScale <= 0f)
+            {
                 return;
+            }
             radius = Mathf.Clamp(radius, 0.3f, 8f);
             color.a *= intensity;
             _mesh.Arc(point, radius * 0.88f, angle - span * 0.5f, span,
                 intensity >= 0.5f ? 0.095f : 0.035f, color, intensity >= 0.5f ? 0.2f : 0.12f);
             if (intensity < 0.5f)
+            {
                 return;
+            }
             // A narrow tangent sprite follows the shared damage arc, including small pizza slices.
             float bladeWidth = Mathf.Min(radius * 0.85f, 1.8f);
             int blades = Mathf.Clamp(Mathf.CeilToInt(span / 52f), 1, 5);
@@ -407,7 +436,9 @@ namespace _02.Scripts.Monster.BossMonster
         public void Beam(Vector2 center, float angle, float length, float width, Color color, bool rift, Rect arena)
         {
             if (!_ready || Time.timeScale <= 0f)
+            {
                 return;
+            }
             Vector2 direction = Direction(angle);
             float first = -length * 0.5f;
             float last = length * 0.5f;
@@ -425,7 +456,9 @@ namespace _02.Scripts.Monster.BossMonster
             {
                 Vector2 point = Vector2.Lerp(from, to, (i + 0.5f) / samples);
                 if (!arena.Contains(point))
+                {
                     continue;
+                }
                 if (rift)
                 {
                     Square("earth_shards", point, width * 2.6f, 0.38f, color, 0f, true);
@@ -445,7 +478,9 @@ namespace _02.Scripts.Monster.BossMonster
             ref float first, ref float last)
         {
             if (Mathf.Abs(direction) < 0.00001f)
+            {
                 return center >= minimum && center <= maximum;
+            }
             float a = (minimum - center) / direction;
             float b = (maximum - center) / direction;
             first = Mathf.Max(first, Mathf.Min(a, b));
@@ -456,7 +491,9 @@ namespace _02.Scripts.Monster.BossMonster
         public void NovaArc(Vector2 point, float radius, float start, float span, float width, Color color, bool impact)
         {
             if (!_ready || Time.timeScale <= 0f)
+            {
                 return;
+            }
             _mesh.Arc(point, radius, start, span, Mathf.Clamp(width * 0.12f, 0.035f, 0.09f), color, impact ? 0.24f : 0.13f);
             int count = impact ? 16 : 3;
             for (int i = 0; i < count; i++)
@@ -468,7 +505,9 @@ namespace _02.Scripts.Monster.BossMonster
                 Emit("spark", sample, direction * (impact ? 1.6f : 0.25f), 0.035f,
                     0.19f, 0.2f, Color.Lerp(color, Color.white, 0.55f), angle - 90f);
                 if (impact && i % 3 == 0)
+                {
                     Square("magic_hit", sample, Mathf.Min(0.7f, width * 1.6f), 0.22f, color, 0f, true);
+                }
                 if (impact && i % 4 == 0)
                 {
                     float edgeDistance = Mathf.Min(angle - start, start + span - angle) * Mathf.Deg2Rad;
@@ -485,7 +524,9 @@ namespace _02.Scripts.Monster.BossMonster
         public void Vortex(Vector2 point, float radius, float angle, Color color, bool impact = false)
         {
             if (!_ready || Time.timeScale <= 0f)
+            {
                 return;
+            }
             Square("vortex", point, radius * 1.95f, 0.42f, Alpha(color, 0.55f), angle);
             Square("twirl", point, radius * 1.4f, 0.28f, Alpha(color, 0.65f), -angle);
             _mesh.Arc(point, radius * 0.65f, angle, 210f, 0.035f, color, 0.25f);
@@ -509,7 +550,9 @@ namespace _02.Scripts.Monster.BossMonster
         public void BloodPool(Vector2 point, float radius, Color color, bool impact)
         {
             if (!_ready || Time.timeScale <= 0f)
+            {
                 return;
+            }
             Square("blood_pool", point, radius * 2f, 0.62f, Alpha(color, 0.55f), 0f, impact);
             if (impact)
             {
@@ -522,7 +565,9 @@ namespace _02.Scripts.Monster.BossMonster
         public void Trail(Vector2 point, Vector2 direction, float size, Color color, bool projectile = false)
         {
             if (!_ready || Time.timeScale <= 0f)
+            {
                 return;
+            }
             size = Mathf.Clamp(size, 0.07f, 0.65f);
             float angle = BossBattleGeometry.Angle(direction);
             Emit("spark", point, -direction * 0.65f, size * 0.13f, size * 0.65f,
@@ -541,7 +586,9 @@ namespace _02.Scripts.Monster.BossMonster
         public void Muzzle(Vector2 point, Vector2 direction, float size, Color color)
         {
             if (!_ready || Time.timeScale <= 0f || Time.time < _nextMuzzle)
+            {
                 return;
+            }
             _nextMuzzle = Time.time + 0.055f;
             size = Mathf.Clamp(size, 0.18f, 0.7f);
             float angle = BossBattleGeometry.Angle(direction);
@@ -556,7 +603,9 @@ namespace _02.Scripts.Monster.BossMonster
         public void Charge(Vector2 point, float radius, float progress, Color color)
         {
             if (!_ready || Time.timeScale <= 0f || Time.time < _nextCharge)
+            {
                 return;
+            }
             _nextCharge = Time.time + 0.055f;
             progress = Mathf.Clamp01(progress);
             for (int i = 0; i < 3; i++)
@@ -584,7 +633,9 @@ namespace _02.Scripts.Monster.BossMonster
         public void PreImpact(BossEncounterPattern kind, Vector2 point, float radius, Color color)
         {
             if (!_ready || Time.timeScale <= 0f)
+            {
                 return;
+            }
             radius = Mathf.Clamp(radius, 0.2f, 3f);
             _mesh.Ring(point, radius * 0.85f, radius * 0.25f, 0.025f,
                 Alpha(color, 0.55f), 0.24f);
@@ -609,7 +660,9 @@ namespace _02.Scripts.Monster.BossMonster
         public void ArenaBlast(Rect arena, Vector2 safeCenter, float safeRadius, Color color)
         {
             if (!_ready || Time.timeScale <= 0f)
+            {
                 return;
+            }
             // Use the full visual footprint when excluding the refuge, not just its center.
             float spacing = 2.5f;
             int columns = Mathf.Clamp(Mathf.CeilToInt(arena.width / spacing), 3, 10);
@@ -622,7 +675,9 @@ namespace _02.Scripts.Monster.BossMonster
                         Mathf.Lerp(arena.yMin, arena.yMax, (y + 0.5f) / rows));
                     float clearance = (point - safeCenter).magnitude - safeRadius;
                     if (clearance < 1.25f)
+                    {
                         continue;
+                    }
                     float size = Mathf.Min(0.7f, clearance / 2.5f);
                     Square("explosion_heavy", point, size * 2.2f, 0.55f,
                         Color.Lerp(color, Color.white, 0.6f), 0f, true);
@@ -651,7 +706,9 @@ namespace _02.Scripts.Monster.BossMonster
                 foreach (Pool pool in _pools.Values)
                 {
                     if (pool.Stamps != null)
+                    {
                         pool.Stamps.Tick(Time.deltaTime);
+                    }
                 }
             }
         }
@@ -659,13 +716,19 @@ namespace _02.Scripts.Monster.BossMonster
         private void OnDestroy()
         {
             if (_mesh != null)
+            {
                 _mesh.Dispose();
+            }
             foreach (Pool pool in _pools.Values)
             {
                 if (pool.Stamps != null)
+                {
                     pool.Stamps.Dispose();
+                }
                 if (pool.Material != null)
+                {
                     Destroy(pool.Material);
+                }
             }
         }
     }
