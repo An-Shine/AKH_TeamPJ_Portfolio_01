@@ -7745,7 +7745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 488764c807942c04c887e476ded7f09f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TutorialDataCollectionTrigger
-  _dataCollectionUI: {fileID: 1475971263746718386}
+  _dataCollectionUI: {fileID: 598717972}
   _dialogueData: {fileID: 11400000, guid: d4843bcd3dc456949866af455a7e5900, type: 2}
 --- !u!1 &487839574
 GameObject:
@@ -8204,7 +8204,7 @@ PrefabInstance:
     - target: {fileID: 8938175233944035202, guid: 1d5b29f1e02bd064f89cc68a664e4cad, type: 3}
       propertyPath: _dataCollectionUI
       value: 
-      objectReference: {fileID: 1475971263746718386}
+      objectReference: {fileID: 598717972}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -91210,7 +91210,7 @@ PrefabInstance:
     - target: {fileID: 5746422105216626209, guid: 79cd5c4711e6930439a3088e73b1a9ba, type: 3}
       propertyPath: _dataCollectionUI
       value: 
-      objectReference: {fileID: 1475971263746718386}
+      objectReference: {fileID: 598717972}
     - target: {fileID: 5882911974698459285, guid: 79cd5c4711e6930439a3088e73b1a9ba, type: 3}
       propertyPath: m_Name
       value: BossRoomDoor_H
@@ -134671,17 +134671,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53d6944b4f4b59648bea2f0f25701df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemUI
---- !u!114 &1475971263746718386 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3158933889445833781, guid: a93e286aa94d10343bfa64df441335df, type: 3}
-  m_PrefabInstance: {fileID: 1475971263746718384}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 930a44c7162836e45b70f4ac7e5f8dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DataCollectionUI
 --- !u!1001 &1515544274348169284
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -135374,7 +135363,7 @@ PrefabInstance:
     - target: {fileID: 8938175233944035202, guid: 1d5b29f1e02bd064f89cc68a664e4cad, type: 3}
       propertyPath: _dataCollectionUI
       value: 
-      objectReference: {fileID: 1475971263746718386}
+      objectReference: {fileID: 598717972}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
