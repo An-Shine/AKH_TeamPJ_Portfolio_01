@@ -4,6 +4,7 @@ public class DoorController : MonoBehaviour
 {
     [SerializeField] private Animator _doorAnimator;
     [SerializeField] private Collider2D _doorBlocker;
+    [SerializeField] private AudioSource _doorOpenAudioSource;
 
     private bool _isOpen;
 
@@ -25,6 +26,7 @@ public class DoorController : MonoBehaviour
         _isOpen = true;
         _doorAnimator.Play(OpenHash, 0, 0f);
         _doorBlocker.enabled = false;
+        if (_doorOpenAudioSource != null) _doorOpenAudioSource.Play();
     }
 
     [ContextMenu("Test/Close Door")]

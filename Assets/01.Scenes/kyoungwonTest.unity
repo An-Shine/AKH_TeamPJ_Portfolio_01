@@ -756,7 +756,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 1119655273}
-  _areaLightManager: {fileID: 2007601471}
   _roomId: 0
   _isItemRoom: 0
 --- !u!61 &51469386
@@ -958,7 +957,7 @@ SortingGroup:
   m_GameObject: {fileID: 55157841}
   m_Enabled: 1
   m_SortingLayerID: 68427715
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: -5
   m_SortAtRoot: 0
   m_Sort3DAs2D: 0
@@ -1373,7 +1372,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: -4
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -5395,7 +5394,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: -10
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -5571,7 +5570,6 @@ MonoBehaviour:
   - {fileID: 240085061}
   - {fileID: 183469283}
   - {fileID: 346997714}
-  _areaLightManager: {fileID: 2007601471}
   _roomId: 9
   _isItemRoom: 1
 --- !u!61 &193769992
@@ -5653,7 +5651,6 @@ MonoBehaviour:
   _lights:
   - {fileID: 284697239}
   - {fileID: 2060978354}
-  _areaLightManager: {fileID: 2007601471}
   _roomId: 8
   _isItemRoom: 1
 --- !u!61 &206418182
@@ -6166,7 +6163,6 @@ MonoBehaviour:
   _lights:
   - {fileID: 2078304270}
   - {fileID: 1886309396}
-  _areaLightManager: {fileID: 2007601471}
   _roomId: 0
   _isItemRoom: 0
 --- !u!61 &241982433
@@ -6517,7 +6513,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: -5
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -7205,7 +7201,7 @@ SortingGroup:
   m_GameObject: {fileID: 302447007}
   m_Enabled: 1
   m_SortingLayerID: 68427715
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: -5
   m_SortAtRoot: 0
   m_Sort3DAs2D: 0
@@ -7351,7 +7347,6 @@ MonoBehaviour:
   - {fileID: 1271686413}
   - {fileID: 222105923}
   - {fileID: 1209393679}
-  _areaLightManager: {fileID: 2007601471}
   _roomId: 0
   _isItemRoom: 0
 --- !u!61 &309703121
@@ -9131,7 +9126,6 @@ MonoBehaviour:
   _lights:
   - {fileID: 2100490001}
   - {fileID: 0}
-  _areaLightManager: {fileID: 2007601471}
   _roomId: 0
   _isItemRoom: 0
 --- !u!61 &338336941
@@ -15453,7 +15447,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: -5
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -16397,7 +16391,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: -4
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -16575,7 +16569,6 @@ MonoBehaviour:
   - {fileID: 2129759151}
   - {fileID: 1231806434}
   - {fileID: 1407136462}
-  _areaLightManager: {fileID: 2007601471}
   _roomId: 0
   _isItemRoom: 0
 --- !u!61 &459735026
@@ -17050,7 +17043,6 @@ MonoBehaviour:
   _lights:
   - {fileID: 1913559879}
   - {fileID: 351993059}
-  _areaLightManager: {fileID: 2007601471}
   _roomId: 4
   _isItemRoom: 1
 --- !u!61 &491167693
@@ -17998,7 +17990,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7118849845410916409, guid: 8cfefe87713ae9742a22215d33616cf0, type: 3}
       propertyPath: m_SortingLayer
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7118849845410916409, guid: 8cfefe87713ae9742a22215d33616cf0, type: 3}
       propertyPath: m_SortingOrder
@@ -18385,7 +18377,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: -8
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -18826,7 +18818,6 @@ MonoBehaviour:
   - {fileID: 469558189}
   - {fileID: 1481249099}
   - {fileID: 1587051886}
-  _areaLightManager: {fileID: 2007601471}
   _roomId: 3
   _isItemRoom: 1
 --- !u!61 &667646727
@@ -18968,7 +18959,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: -5
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -19050,7 +19041,6 @@ MonoBehaviour:
   - {fileID: 2086014971}
   - {fileID: 1289474632}
   - {fileID: 1645161787}
-  _areaLightManager: {fileID: 2007601471}
   _roomId: 0
   _isItemRoom: 0
 --- !u!61 &680745519
@@ -19540,7 +19530,6 @@ MonoBehaviour:
   _lights:
   - {fileID: 1332260509}
   - {fileID: 1141874379}
-  _areaLightManager: {fileID: 2007601471}
   _roomId: 0
   _isItemRoom: 0
 --- !u!61 &735088734
@@ -19670,7 +19659,6 @@ MonoBehaviour:
   - {fileID: 176030375}
   - {fileID: 1897670518}
   - {fileID: 1462628141}
-  _areaLightManager: {fileID: 2007601471}
   _roomId: 0
   _isItemRoom: 0
 --- !u!61 &736067813
@@ -19804,7 +19792,6 @@ MonoBehaviour:
   - {fileID: 1396003176}
   - {fileID: 7195222}
   - {fileID: 1648867567}
-  _areaLightManager: {fileID: 2007601471}
   _roomId: 0
   _isItemRoom: 0
 --- !u!61 &739425628
@@ -20307,7 +20294,6 @@ MonoBehaviour:
   - {fileID: 1816982534}
   - {fileID: 271534928}
   - {fileID: 1505104849}
-  _areaLightManager: {fileID: 2007601471}
   _roomId: 0
   _isItemRoom: 0
 --- !u!61 &772855167
@@ -21323,7 +21309,6 @@ MonoBehaviour:
   - {fileID: 49057745}
   - {fileID: 428329648}
   - {fileID: 319926819}
-  _areaLightManager: {fileID: 2007601471}
   _roomId: 5
   _isItemRoom: 1
 --- !u!61 &856656526
@@ -22588,7 +22573,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: 5
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2241811257695641816, guid: 6f772bb05da30504badf91ae08ea920e, type: 3}
@@ -22799,7 +22784,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: -8
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -22925,7 +22910,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: -4
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -23309,7 +23294,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: -8
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -23662,7 +23647,7 @@ SortingGroup:
   m_GameObject: {fileID: 1040792582}
   m_Enabled: 1
   m_SortingLayerID: 68427715
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: -5
   m_SortAtRoot: 0
   m_Sort3DAs2D: 0
@@ -24306,7 +24291,6 @@ MonoBehaviour:
   - {fileID: 655215549}
   - {fileID: 998513295}
   - {fileID: 1111737818}
-  _areaLightManager: {fileID: 2007601471}
   _roomId: 0
   _isItemRoom: 0
 --- !u!61 &1115502946
@@ -24448,7 +24432,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: -4
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -26078,8 +26062,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameStateManager
   _gameOverUI: {fileID: 1367259247}
   _gameOverTimeText: {fileID: 644136496}
+  _gameOverReviveText: {fileID: 0}
   _stageClearUI: {fileID: 469961993}
   _stageClearTimeText: {fileID: 1567467530}
+  _stageClearReviveText: {fileID: 0}
   _playerAnimator: {fileID: 1855239044}
 --- !u!4 &1203427115
 Transform:
@@ -26367,7 +26353,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: -10
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -26458,7 +26444,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: -5
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -26862,7 +26848,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 563802219
-  m_SortingLayer: 6
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
@@ -27887,7 +27873,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: -4
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -28386,7 +28372,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: -10
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -28477,7 +28463,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: -5
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -83231,7 +83217,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: -4
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -84538,7 +84524,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: -8
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -103088,7 +103074,7 @@ SortingGroup:
   m_GameObject: {fileID: 1511103051}
   m_Enabled: 1
   m_SortingLayerID: 68427715
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: -5
   m_SortAtRoot: 0
   m_Sort3DAs2D: 0
@@ -103347,7 +103333,6 @@ MonoBehaviour:
   - {fileID: 1540609996}
   - {fileID: 2059217653}
   - {fileID: 1773708243}
-  _areaLightManager: {fileID: 2007601471}
   _roomId: 0
   _isItemRoom: 0
 --- !u!61 &1533849892
@@ -104979,7 +104964,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: -10
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -105067,7 +105052,6 @@ MonoBehaviour:
   - {fileID: 326607273}
   - {fileID: 1609288222}
   - {fileID: 2007436762}
-  _areaLightManager: {fileID: 2007601471}
   _roomId: 0
   _isItemRoom: 0
 --- !u!61 &1672845383
@@ -105695,7 +105679,6 @@ MonoBehaviour:
   - {fileID: 1054029790}
   - {fileID: 1733811569}
   - {fileID: 912960957}
-  _areaLightManager: {fileID: 2007601471}
   _roomId: 7
   _isItemRoom: 1
 --- !u!61 &1710633951
@@ -106212,7 +106195,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: -5
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -111123,7 +111106,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: 5
   m_MaskInteraction: 0
   m_RenderMode: 0
@@ -111817,7 +111800,6 @@ MonoBehaviour:
   - {fileID: 1444366114}
   - {fileID: 1883023712}
   - {fileID: 140775510}
-  _areaLightManager: {fileID: 2007601471}
   _roomId: 1
   _isItemRoom: 1
 --- !u!61 &1806147591
@@ -112193,7 +112175,6 @@ MonoBehaviour:
   - {fileID: 2046335982}
   - {fileID: 2027707722}
   - {fileID: 128168631}
-  _areaLightManager: {fileID: 2007601471}
   _roomId: 0
   _isItemRoom: 0
 --- !u!61 &1837485998
@@ -113317,7 +113298,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: -10
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -114084,7 +114065,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: -10
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -114549,7 +114530,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: -8
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -114730,7 +114711,6 @@ MonoBehaviour:
   - {fileID: 398384207}
   - {fileID: 838751445}
   - {fileID: 469484949}
-  _areaLightManager: {fileID: 2007601471}
   _roomId: 6
   _isItemRoom: 1
 --- !u!61 &1986987529
@@ -114872,7 +114852,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 68427715
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: -8
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -120498,7 +120478,6 @@ MonoBehaviour:
   - {fileID: 859455062}
   - {fileID: 1982668289}
   - {fileID: 977857665}
-  _areaLightManager: {fileID: 2007601471}
   _roomId: 0
   _isItemRoom: 0
 --- !u!61 &2082183296
@@ -133909,7 +133888,6 @@ MonoBehaviour:
   - {fileID: 894894404}
   - {fileID: 85684756}
   - {fileID: 1540763110}
-  _areaLightManager: {fileID: 2007601471}
   _roomId: 2
   _isItemRoom: 1
 --- !u!61 &2109638638
@@ -134020,7 +133998,7 @@ SortingGroup:
   m_GameObject: {fileID: 2111679872}
   m_Enabled: 1
   m_SortingLayerID: 68427715
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: -5
   m_SortAtRoot: 0
   m_Sort3DAs2D: 0
@@ -134094,7 +134072,7 @@ SortingGroup:
   m_GameObject: {fileID: 2116126799}
   m_Enabled: 1
   m_SortingLayerID: 68427715
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: -5
   m_SortAtRoot: 0
   m_Sort3DAs2D: 0
@@ -134317,7 +134295,6 @@ MonoBehaviour:
   - {fileID: 253927825}
   - {fileID: 1963664286}
   - {fileID: 1372509208}
-  _areaLightManager: {fileID: 2007601471}
   _roomId: 0
   _isItemRoom: 0
 --- !u!61 &2137319808

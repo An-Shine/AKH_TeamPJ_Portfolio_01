@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 [DisallowMultipleComponent]
 public class BossMonster : NormalMonster
 {
+    private const float ContinuousHitVfxInterval = 2f;
+
     [Header("새 보스 전투")]
     [SerializeField] private BossEncounterProfile _encounterProfile;
     [SerializeField] private BossRoom _room;
@@ -25,7 +27,6 @@ public class BossMonster : NormalMonster
     [SerializeField, Min(0f)] private float _roomEdgePadding = 1.1f;
 
     [Header("보스 피격")]
-    [SerializeField] private Color _hitSparkColor = new Color(1f, 0.9f, 0.5f, 1f);
     [SerializeField] private AudioClip _hitSound = null;
     [SerializeField, Range(0f, 1f)] private float _hitSoundVolume = 0.5f;
     [SerializeField, Min(0f)] private float _hitSoundCooldown = 0.08f;
@@ -56,6 +57,7 @@ public class BossMonster : NormalMonster
     private float _nextPlayerSearch;
     private float _nextHitReaction;
     private float _nextHitSound;
+    private float _nextContinuousHitVfx;
     private int _previousHitSound = -1;
     private float _nextStrikePulse;
     private float _deathStartTime;
@@ -472,6 +474,11 @@ public class BossMonster : NormalMonster
 
     public override void TakeDamage(float damage)
     {
+        ApplyDamage(damage, BossHitDamageSource.IsContinuousDamageCall());
+    }
+
+    private void ApplyDamage(float damage, bool continuous)
+    {
         if (_deathStarted || !isActiveAndEnabled)
         {
             return;
@@ -485,27 +492,15 @@ public class BossMonster : NormalMonster
             return;
         }
 
-        Vector2 source = _targetPlayer != null
-            ? (Vector2)_targetPlayer.position
-            : (Vector2)transform.position + Vector2.down;
-
-        Vector2 point = transform.position;
-        foreach (Collider2D collider in _bodyColliders)
-        {
-            if (collider != null && collider.enabled && collider.gameObject == gameObject)
-            {
-                point = collider.ClosestPoint(source);
-                break;
-            }
-        }
-
-        MonsterCombatEffect.SpawnImpact(new Vector3(point.x, point.y, transform.position.z),
-            ((Vector2)transform.position - source).normalized, _hitSparkColor, transform);
-
         BossBattleEffects effects = BossBattleEffects.ForOwner(gameObject);
-        if (effects != null)
+        if (effects != null && (!continuous || Time.time >= _nextContinuousHitVfx))
         {
             effects.PlayBodyHit();
+            if (continuous)
+            {
+                // Only the VFX is throttled; every damage tick was already applied above.
+                _nextContinuousHitVfx = Time.time + ContinuousHitVfxInterval;
+            }
         }
 
         if (Time.time >= _nextHitSound)

@@ -1,7 +1,7 @@
 type_of_projectile,damage,speed_scalar,Durability
 Normal,10,15,1
 Penetration,28,24,3
-BigExplosion,100,7.5,1
+BigExplosion,120,7.5,1
 Explosion,60,10.5,1
-Shot,15,21,1
-Laser,60,30,9999
+Shot,10,21,1
+Laser,40,30,9999
