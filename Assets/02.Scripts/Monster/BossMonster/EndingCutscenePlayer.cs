@@ -1,20 +1,14 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 
 [RequireComponent(typeof(VideoPlayer))]
 public class EndingCutscenePlayer : MonoBehaviour
 {
-    private const string MainMenuSceneName = "03.MainMenu";
-
     [SerializeField] private GameObject _endingCanvas;
     [SerializeField, Min(0f)] private float _deathAnimationDelay = 2f;
     [SerializeField] private AudioSource[] _gameAudioSources;
     [SerializeField] private Behaviour[] _disableDuringEnding;
-    [SerializeField] private string _nextSceneName = MainMenuSceneName;
-    [SerializeField] private UnityEvent _onFinished;
     [SerializeField] private GameStateManager _gameStateManager;
 
     private VideoPlayer _videoPlayer;
@@ -24,9 +18,6 @@ public class EndingCutscenePlayer : MonoBehaviour
     private bool _failed;
     private bool _completed;
     private bool _timeScaleCaptured;
-
-    private string NextSceneName => string.IsNullOrWhiteSpace(_nextSceneName)
-        ? MainMenuSceneName : _nextSceneName.Trim();
 
     private void Awake()
     {
@@ -60,15 +51,15 @@ public class EndingCutscenePlayer : MonoBehaviour
             return;
         }
 
-        if (!Application.CanStreamedLevelBeLoaded(NextSceneName))
+        if (_gameStateManager == null)
         {
-            Debug.LogError($"다음 씬을 빌드 씬 목록에 추가하세요: {NextSceneName}", this);
-            return;
+            _gameStateManager = FindFirstObjectByType<GameStateManager>();
         }
 
         if (_gameStateManager == null)
         {
-            _gameStateManager = FindFirstObjectByType<GameStateManager>();
+            Debug.LogError("스테이지 클리어 화면을 표시할 GameStateManager를 연결하세요.", this);
+            return;
         }
 
         _previousTimeScale = Time.timeScale;
@@ -158,8 +149,6 @@ public class EndingCutscenePlayer : MonoBehaviour
             return;
 
         _completed = true;
-        string nextSceneName = NextSceneName;
-
         _videoPlayer.Stop();
 
         if (_endingCanvas != null)
@@ -174,37 +163,6 @@ public class EndingCutscenePlayer : MonoBehaviour
             _gameStateManager.CompleteGame();
         }
 
-        Time.timeScale = 1f;
-
-        // 기존에 다음 씬을 비우고 등록한 완료 이벤트를 유지합니다.
-        if (string.IsNullOrWhiteSpace(_nextSceneName))
-        {
-            _onFinished?.Invoke();
-
-            if (this == null)
-                return;
-        }
-
-        // 완료 이벤트가 시간을 정지했더라도 메뉴는 정상 속도로 실행합니다.
-        Time.timeScale = 1f;
-
-        if (!Application.CanStreamedLevelBeLoaded(nextSceneName))
-        {
-            Debug.LogError($"다음 씬을 빌드 씬 목록에 추가하세요: {nextSceneName}", this);
-            return;
-        }
-
-        if (SceneFlowManager.Instance != null)
-        {
-            if (!SceneFlowManager.Instance.IsTransitioning)
-            {
-                SceneFlowManager.Instance.LoadScene(nextSceneName);
-            }
-
-            return;
-        }
-
-        SceneManager.LoadScene(nextSceneName, LoadSceneMode.Single);
     }
 
     private void OnVideoError(VideoPlayer player, string message)
