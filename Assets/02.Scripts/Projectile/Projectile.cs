@@ -20,6 +20,7 @@ public abstract class Projectile : MonoBehaviour
     protected Vector3 _initialPosition;
 
     [SerializeField] private int _effectProbability;
+    private bool _isAleadySpawnEffect = false;
 
     protected virtual void Update()
     {
@@ -40,6 +41,8 @@ public abstract class Projectile : MonoBehaviour
 
     public virtual void OnSpawn(Vector3 position, Vector3 direction, float range, int damage)
     {
+        _isAleadySpawnEffect = false;
+
         _durability = _initialDurability;
         _direction = direction;
         _range = range;
@@ -55,10 +58,13 @@ public abstract class Projectile : MonoBehaviour
     {
         GiveDamage(other);
         DecreaseDurability(other);
-        if (other.CompareTag("Enemy") || other.CompareTag("Wall") || other.CompareTag("Obstacle"))
+        if (!_isAleadySpawnEffect &&
+            (other.CompareTag("Enemy") || other.CompareTag("Wall") || other.CompareTag("Obstacle")))
         {
+            _isAleadySpawnEffect = true;
             ExecuteDestroyEffect();
         }
+
         if (other.CompareTag("Wall") || other.CompareTag("Obstacle"))
         {
             OnDestroySelf();
